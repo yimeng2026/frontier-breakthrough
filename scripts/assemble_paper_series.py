@@ -260,6 +260,13 @@ p3 = apply_citations(p3, [
     ("一致性仅指“与固定工件一致”；任何跨快照、跨口径或新增样例的推广均被 §2 支持域排除", "[9]"),
 ])
 
+# Record the actual primary-source reading level; do not imply that abstracts are full texts.
+p1 = replace_once(p1, "（元数据由 PDB 3HS4 回读）。", "（DOI、PDB 与 PMC 全文相关段落回读）。")
+p1 = replace_once(p1, "（元数据由 PDB 2H4N 回读）。", "（DOI、PDB 与 PubMed 摘要回读；全文未取得）。")
+p3 = replace_once(p3, "DOI: 10.21105/joss.02104。", "DOI: 10.21105/joss.02104（JOSS 全文相关段落回读）。")
+p3 = replace_once(p3, "DOI: 10.21105/joss.03994。", "DOI: 10.21105/joss.03994（JOSS 全文相关段落回读）。")
+p3 = replace_once(p3, "DOI: 10.1038/sdata.2016.18。", "DOI: 10.1038/sdata.2016.18（Scientific Data 全文相关段落回读）。")
+
 for text, expected_count in ((p1, 12), (p2, 8), (p3, 19)):
     body = text.split("## 参考文献", 1)[0]
     groups = re.findall(r"\[((?:\d+,)*\d+)\]", body)
