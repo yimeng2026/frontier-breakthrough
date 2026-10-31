@@ -26,10 +26,22 @@ class ExpansionTests(unittest.TestCase):
         self.assertEqual(result["resolution_A"], 1.74)
         self.assertIn("不是蛋白功能", result["scope"])
 
+    def test_drug_target_structure_chain(self):
+        result = self.read("validation/drug-target-structure.json")
+        self.assertEqual(result["status"], "verified")
+        self.assertEqual(result["target_chembl_id"], "CHEMBL205")
+        self.assertEqual(result["target_uniprot"], "P00918")
+        self.assertEqual(result["pdb_id"], "3HS4")
+        self.assertEqual(result["pdb_ligand_comp_id"], "AZM")
+        self.assertEqual(result["ki_nM"], 12.0)
+        self.assertAlmostEqual(result["pchembl_recomputed"], 7.92, places=2)
+        self.assertEqual(result["potential_duplicate"], 1)
+        self.assertIn("不外推临床效力", result["scope"])
+
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
-        self.assertEqual(len(packet["items"]), 5)
-        self.assertEqual(len({i["id"] for i in packet["items"]}), 5)
+        self.assertEqual(len(packet["items"]), 6)
+        self.assertEqual(len({i["id"] for i in packet["items"]}), 6)
         for item in packet["items"]:
             self.assertEqual(item["status"], "verified")
             self.assertTrue(item["limitations"])
@@ -40,7 +52,7 @@ class ExpansionTests(unittest.TestCase):
     def test_new_agent_projects_have_primary_sources(self):
         projects = self.read("data/projects.json")["projects"]
         by_id = {p["id"]: p for p in projects}
-        for pid in ("google-co-scientist", "futurehouse-robin", "kosmos", "materials-project", "rcsb-pdb", "uniprot"):
+        for pid in ("google-co-scientist", "futurehouse-robin", "kosmos", "materials-project", "rcsb-pdb", "uniprot", "chembl"):
             self.assertIn(pid, by_id)
             self.assertTrue(by_id[pid]["source"].startswith("https://"))
 

@@ -20,6 +20,7 @@
 | PubChem + RDKit | 规范结构、分子式、精确质量、TPSA 与 LogP 算法口径 | `validation/rdkit.json` | 跨数据库化学数据质量检查 |
 | Materials Project + PyMatGen | 从 Si 公开结构本地重算密度和空间群 | `validation/pymatgen.json` | 结构派生量与规范 ID 的轻量复核 |
 | RCSB PDB + UniProt | 基因/物种检索后，对 HBB 序列做逐字符比对和 MD5 重算 | `validation/pdb-uniprot.json` | 实验结构到 reviewed 序列的可追溯桥接 |
+| ChEMBL + PubChem + RCSB PDB | 乙酰唑胺 InChIKey、CA II 靶点、单一 Ki assay、3HS4/AZM 配体与 pChEMBL 重算 | `validation/drug-target-structure.json` | 药物—靶点—实验结构的来源审计；保留重复标记和 assay 边界 |
 
 ## 与自动科学发现项目的配合
 

@@ -21,6 +21,7 @@ def build() -> dict:
     rdkit = read("rdkit.json")
     pymatgen = read("pymatgen.json")
     pdb = read("pdb-uniprot.json")
+    drug = read("drug-target-structure.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -66,6 +67,15 @@ def build() -> dict:
             "scientificClaim": "P68871 去除起始甲硫氨酸后与 4HHB entity 2 的 146 aa 序列逐字符一致。",
             "limitations": pdb["scope"], "upstreamContribution": "提供不依赖截断字段、由基因/物种检索到精确序列验证的跨库桥接。",
             "snapshotFiles": ["validation/pdb-uniprot.json", "validation/pdb-4hhb.json", "validation/uniprot-hbb.json"],
+        },
+        {
+            "id": "acetazolamide-chembl-pubchem-pdb", "domain": "chemistry", "title": "乙酰唑胺—CA II—实验结构链",
+            "status": drug["status"], "evidenceClass": "cross_database_check",
+            "sources": ["https://www.ebi.ac.uk/chembl/api/data", "https://pubchem.ncbi.nlm.nih.gov/rest/pug", "https://data.rcsb.org/rest/v1/core"],
+            "metrics": {"chemblMolecule": drug["chembl_molecule"], "pubchemCid": drug["pubchem_cid"], "targetChemblId": drug["target_chembl_id"], "targetUniprot": drug["target_uniprot"], "activityId": drug["activity_id"], "assayChemblId": drug["assay_chembl_id"], "kiNm": drug["ki_nM"], "pchemblExternal": drug["pchembl_external"], "pchemblRecomputed": drug["pchembl_recomputed"], "potentialDuplicate": drug["potential_duplicate"], "pdbId": drug["pdb_id"], "ligandCompId": drug["pdb_ligand_comp_id"], "resolutionA": drug["resolution_A"]},
+            "scientificClaim": "乙酰唑胺的化合物标识、CA II 策划机制、单一 Ki 测定和 3HS4 实验复合物可以逐层追溯。",
+            "limitations": drug["scope"], "upstreamContribution": "提供 InChIKey、assay、配体实体和重复标记完整保留的药物—靶点—结构审计链。",
+            "snapshotFiles": ["validation/drug-target-structure.json", "validation/chembl-acetazolamide.json", "validation/pdb-3hs4.json", "validation/pubchem-acetazolamide.json"],
         },
     ]
     packet = {

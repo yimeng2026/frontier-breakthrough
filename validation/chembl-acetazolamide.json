@@ -1,0 +1,64 @@
+{
+  "source": "https://www.ebi.ac.uk/chembl/api/data",
+  "retrieved": "2026-10-31",
+  "molecule": {
+    "molecule_chembl_id": "CHEMBL20",
+    "pref_name": "ACETAZOLAMIDE",
+    "canonical_smiles": "CC(=O)Nc1nnc(S(N)(=O)=O)s1",
+    "standard_inchi_key": "BZKPWHYZMXOIDC-UHFFFAOYSA-N",
+    "full_molformula": "C4H6N4O3S2",
+    "alogp": "-0.86",
+    "psa": "115.04"
+  },
+  "mechanism": {
+    "mec_id": 92,
+    "mechanism_of_action": "Carbonic anhydrase II inhibitor",
+    "action_type": "INHIBITOR",
+    "direct_interaction": 1,
+    "molecular_mechanism": 1,
+    "target_chembl_id": "CHEMBL205",
+    "mechanism_ref_pubmed": "20605094"
+  },
+  "target": {
+    "target_chembl_id": "CHEMBL205",
+    "pref_name": "Carbonic anhydrase 2",
+    "organism": "Homo sapiens",
+    "component_accession": "P00918",
+    "component_relationship": "SINGLE PROTEIN",
+    "gene_symbol": "CA2"
+  },
+  "activity": {
+    "activity_id": 47560,
+    "record_id": 235477,
+    "assay_chembl_id": "CHEMBL657848",
+    "assay_description": "Inhibitory activity against human carbonic anhydrase II (hCA II) by using esterase assay method",
+    "assay_type": "B",
+    "document_chembl_id": "CHEMBL1146805",
+    "document_journal": "Bioorg Med Chem Lett",
+    "document_year": 2004,
+    "molecule_chembl_id": "CHEMBL20",
+    "target_chembl_id": "CHEMBL205",
+    "target_organism": "Homo sapiens",
+    "standard_type": "Ki",
+    "standard_relation": "=",
+    "standard_value": "12.0",
+    "standard_units": "nM",
+    "pchembl_value": "7.92",
+    "potential_duplicate": 1,
+    "data_validity_comment": null
+  },
+  "assay": {
+    "assay_chembl_id": "CHEMBL657848",
+    "description": "Inhibitory activity against human carbonic anhydrase II (hCA II) by using esterase assay method",
+    "assay_type": "B",
+    "assay_type_description": "Binding",
+    "bao_label": "single protein format",
+    "confidence_score": 8,
+    "confidence_description": "Homologous single protein target assigned",
+    "relationship_type": "H",
+    "target_chembl_id": "CHEMBL205",
+    "assay_organism": null,
+    "assay_parameters": []
+  },
+  "scope": "单一 ChEMBL 活性记录和策划机制快照；potential_duplicate=1 被保留，不把 Ki=12 nM 外推为所有实验或临床效力的统一值。"
+}

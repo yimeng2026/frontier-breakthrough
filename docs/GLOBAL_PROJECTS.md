@@ -1,6 +1,6 @@
 # 全球前沿项目、模型与战略设施目录
 
-更新日期：2026-10-31　条目数：87
+更新日期：2026-10-31　条目数：88
 
 > 本目录是有来源、可持续维护的初始集合，不声称一次性穷尽全球所有项目。条目进入目录不代表其主张已被独立复现，也不代表我们已与相关机构建立合作。
 
@@ -20,14 +20,14 @@
 | 通用 AI for Science 与科研代理 | 8 |
 | AI for Biology | 19 |
 | AI for Physics 与材料 | 26 |
-| 公共科研基础设施 | 11 |
+| 公共科研基础设施 | 12 |
 
 | 采用策略 | 数量 |
 |---|---:|
 | P0_local | 5 |
 | P1_adapt | 34 |
 | P2_watch | 29 |
-| P3_external | 19 |
+| P3_external | 20 |
 
 ## 国家与国际计划
 
@@ -215,6 +215,7 @@
 
 | 项目 | 类型 | 证据 | 策略 / 本地状态 | 我们的互补角色 | 来源 |
 |---|---|---|---|---|---|
+| ChEMBL | dataset | official_artifact | P3_external / external | 复用策划机制与活性测量，提供分子—靶点—assay—实验结构的跨库审计。 | [官方或注明来源](https://www.ebi.ac.uk/chembl/api/data) |
 | PubChem | dataset | official_artifact | P3_external / external | 提供化合物身份与计算属性快照，我们贡献规范结构、算法口径和精确质量审计。 | [官方或注明来源](https://pubchem.ncbi.nlm.nih.gov/rest/pug) |
 | RCSB Protein Data Bank | dataset | official_artifact | P3_external / external | 复用实验结构与实体序列，提供结构—序列—注释的可复核桥接。 | [官方或注明来源](https://data.rcsb.org/rest/v1/core) |
 | UniProtKB | dataset | official_artifact | P3_external / external | 提供 reviewed 蛋白序列与注释，我们贡献跨库 ID 和精确序列一致性检查。 | [官方或注明来源](https://rest.uniprot.org) |
@@ -227,6 +228,7 @@
 | Scanpy | tool | official_artifact | P1_adapt / pending | 单细胞数据预处理和基线，服务 scGPT/scFoundation 的公平评价。 | [官方或注明来源](https://github.com/scverse/scanpy) |
 | Miniforge | tool | official_artifact | P1_adapt / deferred | 为重依赖科学软件提供隔离环境；安装目标和缓存统一放 D 盘。 | [官方或注明来源](https://github.com/conda-forge/miniforge) |
 
+- **ChEMBL**：已核对 CHEMBL20、CHEMBL205 和 activity 47560；单个 Ki 与重复标记均保留边界。
 - **PubChem**：已核对 CID 1986；数据库计算属性不是湿实验数据。
 - **RCSB Protein Data Bank**：已保存 4HHB entity 2 快照；entity_id 与 chain id 严格区分。
 - **UniProtKB**：P68871 去除起始 M 后与 4HHB entity 2 序列一致；不据此推断功能。

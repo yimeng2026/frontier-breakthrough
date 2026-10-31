@@ -1,0 +1,22 @@
+{
+  "source": "https://data.rcsb.org/rest/v1/core",
+  "retrieved": "2026-10-31",
+  "pdb_id": "3HS4",
+  "doi": "10.2210/pdb3hs4/pdb",
+  "title": "Human carbonic anhydrase II complexed with acetazolamide",
+  "experimental_method": "X-RAY DIFFRACTION",
+  "resolution_A": 1.1,
+  "primary_citation_doi": "10.1107/S1744309109036665",
+  "primary_citation_year": 2009,
+  "nonpolymer_bound_components": ["AZM", "ZN"],
+  "ligand": {
+    "entity_id": 4,
+    "comp_id": "AZM",
+    "name": "5-ACETAMIDO-1,3,4-THIADIAZOLE-2-SULFONAMIDE",
+    "formula_weight_kDa": 0.222,
+    "number_of_molecules": 3,
+    "asym_ids": ["D", "E", "F"],
+    "auth_asym_ids": ["A"]
+  },
+  "scope": "人碳酸酐酶 II 与乙酰唑胺复合物的实验结构快照；不把结构存在等同于特定 assay 的活性数值。"
+}
