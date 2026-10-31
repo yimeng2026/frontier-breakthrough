@@ -1,0 +1,60 @@
+{
+  "source": "https://www.ebi.ac.uk/chembl/api/data",
+  "retrieved": "2026-10-31",
+  "molecule_chembl_id": "CHEMBL20",
+  "document_chembl_id": "CHEMBL1146805",
+  "document_journal": "Bioorg Med Chem Lett",
+  "document_year": 2004,
+  "record_id": 235477,
+  "activities": [
+    {
+      "activity_id": 47559,
+      "target": "CA I",
+      "target_chembl_id": "CHEMBL261",
+      "target_organism": "Homo sapiens",
+      "assay_chembl_id": "CHEMBL873200",
+      "assay_method": "esterase assay method",
+      "assay_description": "Inhibitory activity against human carbonic anhydrase I (hCA I) by using esterase assay method",
+      "assay_confidence_score": 8,
+      "standard_type": "Ki",
+      "standard_relation": "=",
+      "standard_value": 250.0,
+      "standard_units": "nM",
+      "pchembl_value": 6.60,
+      "potential_duplicate": 1
+    },
+    {
+      "activity_id": 47560,
+      "target": "CA II",
+      "target_chembl_id": "CHEMBL205",
+      "target_organism": "Homo sapiens",
+      "assay_chembl_id": "CHEMBL657848",
+      "assay_method": "esterase assay method",
+      "assay_description": "Inhibitory activity against human carbonic anhydrase II (hCA II) by using esterase assay method",
+      "assay_confidence_score": 8,
+      "standard_type": "Ki",
+      "standard_relation": "=",
+      "standard_value": 12.0,
+      "standard_units": "nM",
+      "pchembl_value": 7.92,
+      "potential_duplicate": 1
+    },
+    {
+      "activity_id": 47561,
+      "target": "CA IX",
+      "target_chembl_id": "CHEMBL3594",
+      "target_organism": "Homo sapiens",
+      "assay_chembl_id": "CHEMBL657970",
+      "assay_method": "CO2 hydrase assay method",
+      "assay_description": "Inhibitory activity against human carbonic anhydrase IX (hCA IX) by using CO2 hydrase assay method",
+      "assay_confidence_score": 8,
+      "standard_type": "Ki",
+      "standard_relation": "=",
+      "standard_value": 25.0,
+      "standard_units": "nM",
+      "pchembl_value": 7.60,
+      "potential_duplicate": 1
+    }
+  ],
+  "scope": "同一 ChEMBL 文档和 record_id 的三条活性记录；不同 assay 方法显式保留，potential_duplicate=1 不删除。"
+}

@@ -22,6 +22,7 @@ def build() -> dict:
     pymatgen = read("pymatgen.json")
     pdb = read("pdb-uniprot.json")
     drug = read("drug-target-structure.json")
+    selectivity = read("ca-selectivity.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -72,10 +73,10 @@ def build() -> dict:
             "id": "acetazolamide-chembl-pubchem-pdb", "domain": "chemistry", "title": "乙酰唑胺—CA II—实验结构链",
             "status": drug["status"], "evidenceClass": "cross_database_check",
             "sources": ["https://www.ebi.ac.uk/chembl/api/data", "https://pubchem.ncbi.nlm.nih.gov/rest/pug", "https://data.rcsb.org/rest/v1/core"],
-            "metrics": {"chemblMolecule": drug["chembl_molecule"], "pubchemCid": drug["pubchem_cid"], "targetChemblId": drug["target_chembl_id"], "targetUniprot": drug["target_uniprot"], "targetPdbEntity": drug["target_pdb_entity"], "targetPdbChain": drug["target_pdb_chain"], "targetSequenceExactMatch": drug["target_sequence_exact_match"], "targetSequenceLength": drug["target_sequence_length"], "targetSequenceMd5": drug["target_sequence_md5"], "activityId": drug["activity_id"], "assayChemblId": drug["assay_chembl_id"], "kiNm": drug["ki_nM"], "pchemblExternal": drug["pchembl_external"], "pchemblRecomputed": drug["pchembl_recomputed"], "potentialDuplicate": drug["potential_duplicate"], "pdbId": drug["pdb_id"], "ligandCompId": drug["pdb_ligand_comp_id"], "resolutionA": drug["resolution_A"]},
-            "scientificClaim": "乙酰唑胺的化合物标识、CA II 策划机制、P00918/3HS4 的 260 aa 精确序列、单一 Ki 测定和实验复合物可以逐层追溯。",
-            "limitations": drug["scope"], "upstreamContribution": "提供 InChIKey、靶点全长序列、assay、配体实体和重复标记完整保留的药物—靶点—结构审计链。",
-            "snapshotFiles": ["validation/drug-target-structure.json", "validation/ca2-sequence.json", "validation/chembl-acetazolamide.json", "validation/pdb-3hs4.json", "validation/pdb-3hs4-ca2.json", "validation/uniprot-ca2.json", "validation/pubchem-acetazolamide.json"],
+            "metrics": {"chemblMolecule": drug["chembl_molecule"], "pubchemCid": drug["pubchem_cid"], "targetChemblId": drug["target_chembl_id"], "targetUniprot": drug["target_uniprot"], "targetPdbEntity": drug["target_pdb_entity"], "targetPdbChain": drug["target_pdb_chain"], "targetSequenceExactMatch": drug["target_sequence_exact_match"], "targetSequenceLength": drug["target_sequence_length"], "targetSequenceMd5": drug["target_sequence_md5"], "activityId": drug["activity_id"], "assayChemblId": drug["assay_chembl_id"], "kiNm": drug["ki_nM"], "pchemblExternal": drug["pchembl_external"], "pchemblRecomputed": drug["pchembl_recomputed"], "potentialDuplicate": drug["potential_duplicate"], "pdbId": drug["pdb_id"], "ligandCompId": drug["pdb_ligand_comp_id"], "resolutionA": drug["resolution_A"], "caIKiNm": selectivity["ca_i"]["ki_nM"], "caIiKiNm": selectivity["ca_ii"]["ki_nM"], "caIxKiNm": selectivity["ca_ix"]["ki_nM"], "caIiKiRatio": selectivity["ca_i_ii_ki_ratio"], "caIiPchemblDelta": selectivity["ca_ii_minus_ca_i_pchembl_delta"], "caIxRatioComputed": selectivity["ca_ix_ratio_computed"], "selectivityIndependence": selectivity["independence"]},
+            "scientificClaim": "乙酰唑胺的化合物标识、CA II 策划机制、P00918/3HS4 的 260 aa 精确序列、单一 Ki 测定和实验复合物可以逐层追溯；同方法 CA I/II 表观比值单独分析。",
+            "limitations": drug["scope"] + " " + selectivity["scope"], "upstreamContribution": "提供 InChIKey、靶点全长序列、assay、配体实体、重复标记和方法一致定量对照完整保留的药物—靶点—结构审计链。",
+            "snapshotFiles": ["validation/drug-target-structure.json", "validation/ca-selectivity.json", "validation/chembl-ca-selectivity-panel.json", "validation/ca2-sequence.json", "validation/chembl-acetazolamide.json", "validation/pdb-3hs4.json", "validation/pdb-3hs4-ca2.json", "validation/uniprot-ca2.json", "validation/pubchem-acetazolamide.json"],
         },
     ]
     packet = {

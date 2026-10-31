@@ -38,6 +38,17 @@ class ExpansionTests(unittest.TestCase):
         self.assertEqual(pdb["sequence"], uniprot["sequence"])
         self.assertEqual(result["sequence_md5_recomputed"], "94EB709966E01FBC15DC1C46A0D03AC5")
 
+    def test_method_aware_selectivity_analysis(self):
+        result = self.read("validation/ca-selectivity.json")
+        self.assertEqual(result["ca_i"]["ki_nM"], 250.0)
+        self.assertEqual(result["ca_ii"]["ki_nM"], 12.0)
+        self.assertEqual(result["ca_ix"]["ki_nM"], 25.0)
+        self.assertAlmostEqual(result["ca_i_ii_ki_ratio"], 250.0 / 12.0)
+        self.assertAlmostEqual(result["ca_ii_minus_ca_i_pchembl_delta"], 1.3187587626, places=8)
+        self.assertFalse(result["ca_ix_ratio_computed"])
+        self.assertIn("不是独立重复实验", result["independence"])
+        self.assertIn("提示而非证明普遍选择性", result["scope"])
+
     def test_drug_target_structure_chain(self):
         result = self.read("validation/drug-target-structure.json")
         self.assertEqual(result["status"], "verified")
