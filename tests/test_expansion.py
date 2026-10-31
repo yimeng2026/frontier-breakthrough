@@ -64,6 +64,17 @@ class ExpansionTests(unittest.TestCase):
         self.assertEqual(result["potential_duplicate"], 1)
         self.assertIn("不外推临床效力", result["scope"])
 
+    def test_cross_document_stability_is_not_a_constant(self):
+        result = self.read("validation/ca-document-stability.json")
+        self.assertEqual(result["document_count"], 6)
+        self.assertEqual(result["strict_method_matched_count"], 1)
+        self.assertEqual(result["method_incomplete_count"], 5)
+        self.assertAlmostEqual(result["ratio_min"], 250.0 / 12.0)
+        self.assertEqual(result["ratio_max"], 75.0)
+        self.assertEqual(result["max_min_fold"], 3.6)
+        self.assertFalse(result["meta_analysis_performed"])
+        self.assertEqual(result["stability_conclusion"], "not_supported_as_stable_point_estimate")
+
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
         self.assertEqual(len(packet["items"]), 6)

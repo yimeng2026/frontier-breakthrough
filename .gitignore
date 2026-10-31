@@ -6,6 +6,7 @@ venv/
 .env.*
 !.env.example
 node_modules/
+papers/.bin/
 dist/
 build/
 *.egg-info/

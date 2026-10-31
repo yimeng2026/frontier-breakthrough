@@ -1,0 +1,14 @@
+{
+  "source": "https://www.ebi.ac.uk/chembl/api/data",
+  "retrieved": "2026-10-31",
+  "molecule_chembl_id": "CHEMBL20",
+  "pairs": [
+    {"document_chembl_id":"CHEMBL1146805","year":2004,"record_id":235477,"ca_i_activity":47559,"ca_ii_activity":47560,"ca_i_ki_nM":250.0,"ca_ii_ki_nM":12.0,"ca_i_method":"esterase assay method","ca_ii_method":"esterase assay method","method_status":"explicit_matched","ca_i_duplicate":1,"ca_ii_duplicate":1},
+    {"document_chembl_id":"CHEMBL1133556","year":2000,"record_id":282506,"ca_i_activity":49652,"ca_ii_activity":49653,"ca_i_ki_nM":900.0,"ca_ii_ki_nM":12.0,"ca_i_method":"not specified in assay description","ca_ii_method":"not specified in assay description","method_status":"method_incomplete","ca_i_duplicate":1,"ca_ii_duplicate":1},
+    {"document_chembl_id":"CHEMBL1146697","year":2004,"record_id":136210,"ca_i_activity":80687,"ca_ii_activity":80688,"ca_i_ki_nM":900.0,"ca_ii_ki_nM":12.0,"ca_i_method":"not specified in assay description","ca_ii_method":"not specified in assay description","method_status":"method_incomplete","ca_i_duplicate":1,"ca_ii_duplicate":1},
+    {"document_chembl_id":"CHEMBL1136178","year":2003,"record_id":180522,"ca_i_activity":106505,"ca_ii_activity":106506,"ca_i_ki_nM":200.0,"ca_ii_ki_nM":7.0,"ca_i_method":"not specified in assay description","ca_ii_method":"not specified in assay description","method_status":"method_incomplete","ca_i_duplicate":0,"ca_ii_duplicate":0},
+    {"document_chembl_id":"CHEMBL1146695","year":2004,"record_id":126435,"ca_i_activity":151872,"ca_ii_activity":151873,"ca_i_ki_nM":250.0,"ca_ii_ki_nM":12.0,"ca_i_method":"not specified in assay description","ca_ii_method":"not specified in assay description","method_status":"method_incomplete","ca_i_duplicate":1,"ca_ii_duplicate":1},
+    {"document_chembl_id":"CHEMBL1134204","year":2001,"record_id":302270,"ca_i_activity":288595,"ca_ii_activity":288596,"ca_i_ki_nM":900.0,"ca_ii_ki_nM":12.0,"ca_i_method":"not specified in assay description","ca_ii_method":"not specified in assay description","method_status":"method_incomplete","ca_i_duplicate":1,"ca_ii_duplicate":1}
+  ],
+  "scope": "六组 ChEMBL 文档配对；文档不同不自动等于实验独立，只有 CHEMBL1146805 明确写出双方均为 esterase assay。"
+}

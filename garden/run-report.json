@@ -1,0 +1,48 @@
+{
+  "startedAt": "2026-10-31T10:56:59.566Z",
+  "lawPackages": [
+    {
+      "id": "ACETAZOLAMIDE-CHAIN-20261031",
+      "created": false,
+      "existing": true
+    },
+    {
+      "id": "CA-SELECTIVITY-SENSITIVITY-20261031",
+      "created": false,
+      "existing": true
+    },
+    {
+      "id": "REPRODUCIBLE-ENGINEERING-20261031",
+      "created": false,
+      "existing": true
+    }
+  ],
+  "pipelines": [],
+  "errors": [],
+  "serversStopped": true,
+  "panelId": "1a5de4ad-5c72-49e1-88d2-9f02821ac1f9",
+  "finalUploads": [
+    {
+      "pipelineId": "d504fd42-1eb2-4560-909f-b4243998a8c8",
+      "stageId": "1ed4f1d3-bd06-40a2-a5d3-83d337a986be",
+      "file": "papers\\01_乙酰唑胺跨库证据链\\01_乙酰唑胺跨库证据链.md",
+      "contentLength": 8517,
+      "readback": true
+    },
+    {
+      "pipelineId": "8ada04a1-2ee8-4603-a642-88902c439d96",
+      "stageId": "1c8a7508-b5d0-4d8a-b5b8-f2f672c24db2",
+      "file": "papers\\02_CA表观比值不稳定性\\02_CA表观比值不稳定性.md",
+      "contentLength": 8628,
+      "readback": true
+    },
+    {
+      "pipelineId": "c306e81f-bce6-4d5b-b482-7a26c94da774",
+      "stageId": "eb4fc311-cc0a-4a36-abe0-31b9e6c23349",
+      "file": "papers\\03_轻量可复现科研引擎\\03_轻量可复现科研引擎.md",
+      "contentLength": 9516,
+      "readback": true
+    }
+  ],
+  "finishedAt": "2026-10-31T10:57:02.423Z"
+}

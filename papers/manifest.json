@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "papers": [
+    {
+      "folder": "01_乙酰唑胺跨库证据链",
+      "file": "01_乙酰唑胺跨库证据链.md",
+      "pipelineId": "d504fd42-1eb2-4560-909f-b4243998a8c8",
+      "status": "研究简报／预印本草案，未同行评议",
+      "characters": 8315,
+      "figures": 4,
+      "figureFiles": [
+        "fig01a_sequence_identity.png",
+        "fig01b_activity_pchembl.png",
+        "fig01c_evidence_chain.png",
+        "fig01d_descriptor_audit.png"
+      ]
+    },
+    {
+      "folder": "02_CA表观比值不稳定性",
+      "file": "02_CA表观比值不稳定性.md",
+      "pipelineId": "8ada04a1-2ee8-4603-a642-88902c439d96",
+      "status": "研究简报／预印本草案，未同行评议",
+      "characters": 8389,
+      "figures": 4,
+      "figureFiles": [
+        "fig02a_document_ratios.png",
+        "fig02b_ki_pairs.png",
+        "fig02c_method_completeness.png",
+        "fig02d_assay_methods.png"
+      ]
+    },
+    {
+      "folder": "03_轻量可复现科研引擎",
+      "file": "03_轻量可复现科研引擎.md",
+      "pipelineId": "c306e81f-bce6-4d5b-b482-7a26c94da774",
+      "status": "研究简报／预印本草案，未同行评议",
+      "characters": 9316,
+      "figures": 4,
+      "figureFiles": [
+        "fig03a_sindy_coefficients.png",
+        "fig03b_material_recompute.png",
+        "fig03c_sequence_bridges.png",
+        "fig03d_evidence_boundaries.png"
+      ]
+    }
+  ]
+}

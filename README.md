@@ -18,7 +18,9 @@
 - [定期消化机制](docs/RESEARCH_AUTOMATION.md)：检索—筛选—复现—回馈的闭环。
 - [机器可读目录](data/projects.json)：每项均有官方来源、证据级别、协作角色和本地状态。
 - [上游接口与证据契约](docs/UPSTREAM_INTERFACES.md)：真实跨库验证、统一 JSON 接口及组件边界。
-- [跨域证据包](exports/frontier-evidence.json)：五项已执行检查的结构化结果与限制。
+- [跨域证据包](exports/frontier-evidence.json)：六项已执行检查的结构化结果与限制。
+- [研究简报合订本（Word）](papers/前沿共生研究简报_合订本.docx)：三篇长文、十二幅图，附真实证据与复现路径。
+- [研究简报合订本（Markdown）](papers/前沿共生研究简报_合订本.md)：便于审阅和继续修订的文本版本。
 
 ## 证据原则
 
