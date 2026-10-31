@@ -1,0 +1,17 @@
+{
+  "engine": "PDB–UniProt CA II sequence check",
+  "version": "snapshot-2026-10-31",
+  "pdb_id": "3HS4",
+  "pdb_entity": 1,
+  "pdb_chain": "A",
+  "uniprot_accession": "P00918",
+  "uniprot_id": "CAH2_HUMAN",
+  "sequence_length": 260,
+  "exact_sequence_match": true,
+  "pdb_mutation_count": 0,
+  "pdb_insertion_count": 0,
+  "pdb_deletion_count": 0,
+  "sequence_md5_recomputed": "94EB709966E01FBC15DC1C46A0D03AC5",
+  "status": "verified",
+  "scope": "3HS4 entity 1 与 reviewed P00918 的 260 aa 序列逐字符一致；不是独立酶活或临床验证。"
+}

@@ -8,6 +8,11 @@
   "target_chembl_id": "CHEMBL205",
   "target_name": "Carbonic anhydrase 2",
   "target_uniprot": "P00918",
+  "target_pdb_entity": 1,
+  "target_pdb_chain": "A",
+  "target_sequence_exact_match": true,
+  "target_sequence_length": 260,
+  "target_sequence_md5": "94EB709966E01FBC15DC1C46A0D03AC5",
   "mechanism": "Carbonic anhydrase II inhibitor",
   "activity_id": 47560,
   "assay_chembl_id": "CHEMBL657848",
@@ -23,5 +28,5 @@
   "resolution_A": 1.1,
   "experimental_method": "X-RAY DIFFRACTION",
   "status": "verified",
-  "scope": "化合物 InChIKey、靶点、单一活性记录和实验复合物的对应关系已核对；Ki=12 nM 只属于 assay CHEMBL657848。potential_duplicate=1 保留为审计警告，不据此直接判造假，也不外推临床效力。"
+  "scope": "化合物 InChIKey、CA II 靶点、P00918/3HS4 entity 1 的 260 aa 精确序列、单一活性记录和实验复合物已核对；Ki=12 nM 只属于 assay CHEMBL657848。potential_duplicate=1 保留为审计警告，不据此直接判造假，也不外推临床效力。"
 }

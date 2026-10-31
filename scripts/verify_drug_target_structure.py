@@ -8,6 +8,7 @@ chembl = json.loads((OUT / "chembl-acetazolamide.json").read_text(encoding="utf-
 pubchem = json.loads((OUT / "pubchem-acetazolamide.json").read_text(encoding="utf-8"))
 pdb = json.loads((OUT / "pdb-3hs4.json").read_text(encoding="utf-8"))
 rdkit = json.loads((OUT / "rdkit.json").read_text(encoding="utf-8"))
+ca2 = json.loads((OUT / "ca2-sequence.json").read_text(encoding="utf-8"))
 activity = chembl["activity"]
 mechanism = chembl["mechanism"]
 assay = chembl["assay"]
@@ -27,6 +28,8 @@ assert "carbonic anhydrase ii" in pdb["title"].lower()
 assert pdb["experimental_method"] == "X-RAY DIFFRACTION"
 assert pdb["ligand"]["comp_id"] == "AZM"
 assert "AZM" in pdb["nonpolymer_bound_components"]
+assert ca2["uniprot_accession"] == chembl["target"]["component_accession"]
+assert ca2["pdb_id"] == pdb["pdb_id"] and ca2["exact_sequence_match"] is True
 assert activity["potential_duplicate"] == 1  # 保留审计警告，不能静默丢弃。
 report = {
     "engine": "ChEMBL–PubChem–PDB evidence-chain check",
@@ -38,6 +41,11 @@ report = {
     "target_chembl_id": "CHEMBL205",
     "target_name": chembl["target"]["pref_name"],
     "target_uniprot": chembl["target"]["component_accession"],
+    "target_pdb_entity": ca2["pdb_entity"],
+    "target_pdb_chain": ca2["pdb_chain"],
+    "target_sequence_exact_match": ca2["exact_sequence_match"],
+    "target_sequence_length": ca2["sequence_length"],
+    "target_sequence_md5": ca2["sequence_md5_recomputed"],
     "mechanism": mechanism["mechanism_of_action"],
     "activity_id": activity["activity_id"],
     "assay_chembl_id": activity["assay_chembl_id"],
@@ -53,7 +61,7 @@ report = {
     "resolution_A": pdb["resolution_A"],
     "experimental_method": pdb["experimental_method"],
     "status": "verified",
-    "scope": "化合物 InChIKey、靶点、单一活性记录和实验复合物的对应关系已核对；Ki=12 nM 只属于 assay CHEMBL657848。potential_duplicate=1 保留为审计警告，不据此直接判造假，也不外推临床效力。",
+    "scope": "化合物 InChIKey、CA II 靶点、P00918/3HS4 entity 1 的 260 aa 精确序列、单一活性记录和实验复合物已核对；Ki=12 nM 只属于 assay CHEMBL657848。potential_duplicate=1 保留为审计警告，不据此直接判造假，也不外推临床效力。",
 }
 (OUT / "drug-target-structure.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 print(json.dumps(report, ensure_ascii=False))

@@ -1,0 +1,17 @@
+{
+  "source": "https://rest.uniprot.org",
+  "retrieved": "2026-10-31",
+  "query": "accession:P00918",
+  "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+  "primary_accession": "P00918",
+  "uniprotkb_id": "CAH2_HUMAN",
+  "gene": "CA2",
+  "organism": "Homo sapiens",
+  "taxon_id": 9606,
+  "sequence": "MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK",
+  "length": 260,
+  "molecular_weight_Da": 29246,
+  "crc64": "2EC2BB7548F10558",
+  "sequence_md5_reported_by_uniprot": "94EB709966E01FBC15DC1C46A0D03AC5",
+  "scope": "UniProtKB reviewed CAH2_HUMAN 序列快照。"
+}

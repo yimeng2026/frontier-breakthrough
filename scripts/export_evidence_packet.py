@@ -72,10 +72,10 @@ def build() -> dict:
             "id": "acetazolamide-chembl-pubchem-pdb", "domain": "chemistry", "title": "乙酰唑胺—CA II—实验结构链",
             "status": drug["status"], "evidenceClass": "cross_database_check",
             "sources": ["https://www.ebi.ac.uk/chembl/api/data", "https://pubchem.ncbi.nlm.nih.gov/rest/pug", "https://data.rcsb.org/rest/v1/core"],
-            "metrics": {"chemblMolecule": drug["chembl_molecule"], "pubchemCid": drug["pubchem_cid"], "targetChemblId": drug["target_chembl_id"], "targetUniprot": drug["target_uniprot"], "activityId": drug["activity_id"], "assayChemblId": drug["assay_chembl_id"], "kiNm": drug["ki_nM"], "pchemblExternal": drug["pchembl_external"], "pchemblRecomputed": drug["pchembl_recomputed"], "potentialDuplicate": drug["potential_duplicate"], "pdbId": drug["pdb_id"], "ligandCompId": drug["pdb_ligand_comp_id"], "resolutionA": drug["resolution_A"]},
-            "scientificClaim": "乙酰唑胺的化合物标识、CA II 策划机制、单一 Ki 测定和 3HS4 实验复合物可以逐层追溯。",
-            "limitations": drug["scope"], "upstreamContribution": "提供 InChIKey、assay、配体实体和重复标记完整保留的药物—靶点—结构审计链。",
-            "snapshotFiles": ["validation/drug-target-structure.json", "validation/chembl-acetazolamide.json", "validation/pdb-3hs4.json", "validation/pubchem-acetazolamide.json"],
+            "metrics": {"chemblMolecule": drug["chembl_molecule"], "pubchemCid": drug["pubchem_cid"], "targetChemblId": drug["target_chembl_id"], "targetUniprot": drug["target_uniprot"], "targetPdbEntity": drug["target_pdb_entity"], "targetPdbChain": drug["target_pdb_chain"], "targetSequenceExactMatch": drug["target_sequence_exact_match"], "targetSequenceLength": drug["target_sequence_length"], "targetSequenceMd5": drug["target_sequence_md5"], "activityId": drug["activity_id"], "assayChemblId": drug["assay_chembl_id"], "kiNm": drug["ki_nM"], "pchemblExternal": drug["pchembl_external"], "pchemblRecomputed": drug["pchembl_recomputed"], "potentialDuplicate": drug["potential_duplicate"], "pdbId": drug["pdb_id"], "ligandCompId": drug["pdb_ligand_comp_id"], "resolutionA": drug["resolution_A"]},
+            "scientificClaim": "乙酰唑胺的化合物标识、CA II 策划机制、P00918/3HS4 的 260 aa 精确序列、单一 Ki 测定和实验复合物可以逐层追溯。",
+            "limitations": drug["scope"], "upstreamContribution": "提供 InChIKey、靶点全长序列、assay、配体实体和重复标记完整保留的药物—靶点—结构审计链。",
+            "snapshotFiles": ["validation/drug-target-structure.json", "validation/ca2-sequence.json", "validation/chembl-acetazolamide.json", "validation/pdb-3hs4.json", "validation/pdb-3hs4-ca2.json", "validation/uniprot-ca2.json", "validation/pubchem-acetazolamide.json"],
         },
     ]
     packet = {

@@ -26,11 +26,26 @@ class ExpansionTests(unittest.TestCase):
         self.assertEqual(result["resolution_A"], 1.74)
         self.assertIn("不是蛋白功能", result["scope"])
 
+    def test_ca2_full_length_sequence_bridge(self):
+        result = self.read("validation/ca2-sequence.json")
+        pdb = self.read("validation/pdb-3hs4-ca2.json")
+        uniprot = self.read("validation/uniprot-ca2.json")
+        self.assertEqual(result["uniprot_accession"], "P00918")
+        self.assertEqual(result["pdb_entity"], 1)
+        self.assertEqual(result["pdb_chain"], "A")
+        self.assertEqual(result["sequence_length"], 260)
+        self.assertTrue(result["exact_sequence_match"])
+        self.assertEqual(pdb["sequence"], uniprot["sequence"])
+        self.assertEqual(result["sequence_md5_recomputed"], "94EB709966E01FBC15DC1C46A0D03AC5")
+
     def test_drug_target_structure_chain(self):
         result = self.read("validation/drug-target-structure.json")
         self.assertEqual(result["status"], "verified")
         self.assertEqual(result["target_chembl_id"], "CHEMBL205")
         self.assertEqual(result["target_uniprot"], "P00918")
+        self.assertEqual(result["target_pdb_entity"], 1)
+        self.assertTrue(result["target_sequence_exact_match"])
+        self.assertEqual(result["target_sequence_length"], 260)
         self.assertEqual(result["pdb_id"], "3HS4")
         self.assertEqual(result["pdb_ligand_comp_id"], "AZM")
         self.assertEqual(result["ki_nM"], 12.0)

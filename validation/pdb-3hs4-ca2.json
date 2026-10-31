@@ -1,0 +1,18 @@
+{
+  "source": "https://data.rcsb.org/rest/v1/core",
+  "retrieved": "2026-10-31",
+  "pdb_id": "3HS4",
+  "entity_id": 1,
+  "chain": "A",
+  "gene": "CA2",
+  "organism": "Homo sapiens",
+  "taxon_id": 9606,
+  "expression_host": "Escherichia coli BL21(DE3)pLysS",
+  "sequence": "MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK",
+  "length": 260,
+  "mutation_count": 0,
+  "insertion_count": 0,
+  "deletion_count": 0,
+  "artifact_monomer_count": 0,
+  "scope": "3HS4 entity 1 的蛋白实体序列快照；entity_id 不是 chain id，序列一致不等于独立功能验证。"
+}
