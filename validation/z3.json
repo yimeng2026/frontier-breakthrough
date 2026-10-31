@@ -1,0 +1,11 @@
+{
+  "engine": "Z3",
+  "version": "5.3.3.0",
+  "python": "D:/research-engines/z3-env/Scripts/python.exe",
+  "checks": {
+    "negation_of_x_positive_implies_x_plus_1_positive": "unsat",
+    "x_squared_less_than_zero": "unsat"
+  },
+  "status": "verified",
+  "scope": "验证两个实数约束的已知答案，不等同一般数学定理的自动证明。"
+}

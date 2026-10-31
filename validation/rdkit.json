@@ -1,0 +1,20 @@
+{
+  "engine": "RDKit",
+  "version": "2026.9.1",
+  "python": "D:/research-engines/rdkit-env/Scripts/python.exe",
+  "input_smiles": "CC(=O)Nc1nnc(S(N)(=O)=O)s1",
+  "compound": "acetazolamide（乙酰唑胺）",
+  "pubchem_cid": 1986,
+  "canonical_structure_matches_pubchem": true,
+  "formula": "C4H6N4O3S2",
+  "tpsa_default_NO_A2": 115.03999999999999,
+  "tpsa_include_S_P_A2": 151.66,
+  "pubchem_tpsa_A2": 152,
+  "rdkit_crippen_mollogp": -0.8561000000000003,
+  "pubchem_xlogp": -0.3,
+  "xlogp_algorithm_note": "Crippen MolLogP 与 PubChem XLogP 算法不同，数值差异不能直接判为数据错误。",
+  "exact_mass_Da": 221.988132052,
+  "pubchem_exact_mass_Da": 221.98813241,
+  "status": "verified",
+  "scope": "规范结构、分子式和精确质量与 PubChem 快照一致；TPSA 计入 S/P 后按整数口径一致；XLogP 算法差异单独保留。这不是实验验证，也不据此指认数据造假。"
+}

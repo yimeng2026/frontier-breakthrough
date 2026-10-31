@@ -1,0 +1,14 @@
+{
+  "source": "https://pubchem.ncbi.nlm.nih.gov/rest/pug",
+  "retrieved": "2026-10-31",
+  "query": "pubchem_get_properties by CID 1986",
+  "CID": 1986,
+  "Title": "Acetazolamide",
+  "MolecularFormula": "C4H6N4O3S2",
+  "MolecularWeight": "222.3",
+  "ConnectivitySMILES": "CC(=O)NC1=NN=C(S1)S(=O)(=O)N",
+  "XLogP": -0.3,
+  "ExactMass": "221.98813241",
+  "TPSA": 152,
+  "scope": "PubChem 计算属性快照；不是独立湿实验测量。"
+}

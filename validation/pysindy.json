@@ -1,0 +1,19 @@
+{
+  "engine": "PySINDy",
+  "version": "2.1.0",
+  "python": "D:/research-engines/pysindy-env/Scripts/python.exe",
+  "input": "x'= -2x, y'=y; 401 points; t in [0,2]",
+  "coefficients": [
+    [
+      -2.000031361902758,
+      0.0
+    ],
+    [
+      0.0,
+      1.0000040379877289
+    ]
+  ],
+  "max_abs_error": 3.136190275787598e-05,
+  "status": "verified",
+  "scope": "仅验证本机指定版本能恢复已知线性系统，不是新规律发现。"
+}
