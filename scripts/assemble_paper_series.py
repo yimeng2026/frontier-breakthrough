@@ -127,23 +127,42 @@ for i, pair in enumerate(stability["pairs"], 1):
     pair_rows += f"| D{i} | {pair['document_chembl_id']} | {pair['ca_i_ki_nM']:g} / {pair['ca_ii_ki_nM']:g} | {pair['ki_ratio']:.4f} | {method} | {pair['ca_i_duplicate']} / {pair['ca_ii_duplicate']} |\n"
 pair_rows += "\nD1–D6 的“不同文档”不自动等于独立实验；相同数值与重复标记限制了独立性解释。\n"
 p2 = insert_before(p2, "### 3.3 不执行跨文献合并的理由", pair_rows)
+method_audit = json.loads((ROOT / "validation" / "ca-document-methods.json").read_text(encoding="utf-8"))
+method_rows = """### 3.3 文档身份、原文范围与实验独立性
+
+| 编号 | 已确认的原始论文 | 本次原文范围 | CA I／II 方法结论 |
+|---|---|---|---|
+"""
+for i, doc in enumerate(method_audit["documents"], 1):
+    reading = "出版社正文片段（非全文）" if doc["primaryEvidence"]["readingLevel"] == "partial_text_checked" else "仅摘要"
+    method = "同酯酶描述匹配；协议未复核" if doc["methodStatus"] == "explicit_matched" else "方法信息不足"
+    method_rows += f"| D{i} | {doc['shortTitle']} | {reading} | {method} |\n"
+method_rows += """
+六组文档的题名、DOI 和活性组合均已交叉确认，注册书目与本文所引原始论文一一对应[1,2,3,4,5,6]。D1 是 CA XIII 论文，D2 是水溶性 4-sulfamoylphenylthioureas 论文，D3 是 EMATE—CA II 晶体结构论文，D4 是羧基苯佐拉胺酯／酰胺论文，D5 是 E7070 论文，D6 是 DTPA 尾链论文。文档身份明确，并不意味着实验协议完整。
+
+出版社片段对独立性尤其关键。D1 明确写明 CA I、II、IX 的抑制数据是此前已发表的数据；因此，同一张表中的参考值不能直接证明同批新实验。D1 的“同酯酶”只表示 ChEMBL 与 BindingDB 的策划描述一致，并不表示完整实验条件已复核[1]。D3 的可读实验段落针对 EMATE—CA II 共结晶和 X 射线晶体学，而不是乙酰唑胺 CA I／II 的 Ki 测定；不能用论文主题替代参考化合物的活性方法[3]。
+
+六组 BindingDB 记录均明确标注 “Curated by ChEMBL”。它们提供另一个可回查入口，并与 ChEMBL 的靶点和 Ki 一致，但不是独立湿实验，也不能消除 `potential_duplicate` 所提示的血缘不确定性。此次审计仍为三组正文片段、三组摘要、零组完整协议；明确同酯酶保持 1/6，方法不足保持 5/6，没有把书目补全误写成方法补全[8]。
+"""
+p2 = insert_before(p2, "### 3.3 不执行跨文献合并的理由", method_rows)
+p2 = p2.replace("### 3.3 不执行跨文献合并的理由", "### 3.4 不执行跨文献合并的理由")
 p2 = insert_before(p2, "### 3.2 六组文档配对明细",
     fig("fig02a_document_ratios.png", "六组文档的 CA I/II 表观 Ki 比", "六组比值依次为 20.8333、75、75、28.5714、20.8333、75。只有 D1 明确同酯酶方法，因此不能把这六个数当成同一总体的独立随机样本。") + "\n\n" +
     fig("fig02b_ki_pairs.png", "六组文档内 CA I 与 CA II 的 Ki 配对", "对数坐标显示 CA I 与 CA II 的绝对 Ki 水平及配对间距。D4 的比值为 200/7=28.5714，而其他多组为 250/12 或 900/12，说明端点并非全部数据。"))
 p2 = insert_before(p2, "---\n\n## 四、讨论",
     fig("fig02c_method_completeness.png", "同方法信息完整性：仅 1/6 明确匹配", "绿色部分是允许计算同方法表观比值的 D1；灰色五组不进入同方法合并。这个 1/5 划分是限制，不是额外实验样本量。") + "\n\n" +
     fig("fig02d_assay_methods.png", "CA I、CA II、CA IX 的 assay 方法对照", "CA I 与 CA II 可计算同酯酶方法的表观比值 20.8333；CA IX 使用 CO2 水合酶方法，只列出 Ki=25 nM 和 pChEMBL=7.60，不计算跨方法选择性比。"))
-p2 = p2.replace("### 3.3 负结果的呈现", "### 3.4 负结果的呈现")
+p2 = p2.replace("### 3.3 负结果的呈现", "### 3.5 负结果的呈现")
 p2_refs = """## 参考文献
 
-[1] EMBL-EBI. ChEMBL activities 47559/47560/47561，document CHEMBL1146805，record_id=235477；CA I/II 为 esterase，CA IX 为 CO2 hydrase。https://www.ebi.ac.uk/chembl/api/data
-[2] EMBL-EBI. Activities 49652/49653，document CHEMBL1133556，record_id=282506。Ki 900/12 nM，方法描述未给出酯酶细节。同上。
-[3] EMBL-EBI. Activities 80687/80688，document CHEMBL1146697，record_id=136210。Ki 900/12 nM，方法信息不足。同上。
-[4] EMBL-EBI. Activities 106505/106506，document CHEMBL1136178，record_id=180522。Ki 200/7 nM，双方 potential_duplicate=0。同上。
-[5] EMBL-EBI. Activities 151872/151873，document CHEMBL1146695，record_id=126435。Ki 250/12 nM，方法信息不足。同上。
-[6] EMBL-EBI. Activities 288595/288596，document CHEMBL1134204，record_id=302270。Ki 900/12 nM，方法信息不足。同上。
+[1] EMBL-EBI. ChEMBL activities 47559/47560/47561，document CHEMBL1146805，record_id=235477；CA I/II 为 esterase，CA IX 为 CO2 hydrase。https://www.ebi.ac.uk/chembl/api/data；Lehtonen JM, Parkkila S, Vullo D, Casini A, Scozzafava A, Supuran CT. Carbonic anhydrase inhibitors. Inhibition of cytosolic isozyme XIII with aromatic and heterocyclic sulfonamides: a novel target for the drug design. Bioorganic & Medicinal Chemistry Letters, 2004, 14(14):3757–3762. DOI: 10.1016/j.bmcl.2004.04.106（出版社摘要、引言与片段回读，非全文）。
+[2] EMBL-EBI. Activities 49652/49653，document CHEMBL1133556，record_id=282506。Ki 900/12 nM，方法描述未给出酯酶细节。同上；Casini A, Scozzafava A, Mincione F, Menabuoni L, Ilies MA, Supuran CT. Carbonic Anhydrase Inhibitors: Water-Soluble 4-Sulfamoylphenylthioureas as Topical Intraocular Pressure-Lowering Agents with Long-Lasting Effects. Journal of Medicinal Chemistry, 2000, 43(25):4884–4892. DOI: 10.1021/jm001051+（PubMed 摘要回读）。
+[3] EMBL-EBI. Activities 80687/80688，document CHEMBL1146697，record_id=136210。Ki 900/12 nM，方法信息不足。同上；Abbate F, Winum JY, Potter BVL, Casini A, Montero JL, Scozzafava A, Supuran CT. Carbonic anhydrase inhibitors: X-ray crystallographic structure of the adduct of human isozyme II with EMATE, a dual inhibitor of carbonic anhydrases and steroid sulfatase. Bioorganic & Medicinal Chemistry Letters, 2004, 14(1):231–234. DOI: 10.1016/j.bmcl.2003.09.064（出版社摘要、引言与晶体学片段回读，非全文）。
+[4] EMBL-EBI. Activities 106505/106506，document CHEMBL1136178，record_id=180522。Ki 200/7 nM，双方 potential_duplicate=0。同上；Casini A, Scozzafava A, Mincione F, Menabuoni L, Starnotti M, Supuran CT. Carbonic anhydrase inhibitors: Topically acting antiglaucoma sulfonamides incorporating esters and amides of 3- and 4-carboxybenzolamide. Bioorganic & Medicinal Chemistry Letters, 2003, 13(17):2867–2873. DOI: 10.1016/S0960-894X(03)00580-8（PubMed 摘要回读）。
+[5] EMBL-EBI. Activities 151872/151873，document CHEMBL1146695，record_id=126435。Ki 250/12 nM，方法信息不足。同上；Abbate F, Casini A, Owa T, Scozzafava A, Supuran CT. Carbonic anhydrase inhibitors: E7070, a sulfonamide anticancer agent, potently inhibits cytosolic isozymes I and II, and transmembrane, tumor-associated isozyme IX. Bioorganic & Medicinal Chemistry Letters, 2004, 14(1):217–223. DOI: 10.1016/j.bmcl.2003.09.062（出版社引言与活性片段回读，非全文）。
+[6] EMBL-EBI. Activities 288595/288596，document CHEMBL1134204，record_id=302270。Ki 900/12 nM，方法信息不足。同上；Scozzafava A, Menabuoni L, Mincione F, Mincione G, Supuran CT. Carbonic anhydrase inhibitors: synthesis of sulfonamides incorporating dtpa tails and of their zinc complexes with powerful topical antiglaucoma properties. Bioorganic & Medicinal Chemistry Letters, 2001, 11(4):575–582. DOI: 10.1016/S0960-894X(00)00722-8（PubMed 摘要回读）。
 [7] EMBL-EBI. Assay CHEMBL873200、CHEMBL657848、CHEMBL657970：用于核对 esterase 与 CO2 hydrase 方法及 confidence_score=8。同上。
-[8] 本研究原始面板与计算：`validation/chembl-ca-selectivity-panel.json`、`validation/ca-selectivity.json`、`validation/chembl-ca-document-pairs.json`、`validation/ca-document-stability.json`。
+[8] 本研究原始面板与计算：`validation/chembl-ca-selectivity-panel.json`、`validation/ca-selectivity.json`、`validation/chembl-ca-document-pairs.json`、`validation/ca-document-stability.json`、`validation/ca-document-methods.json`。
 
 ## 附录 A：复现路径
 
@@ -151,7 +170,8 @@ p2_refs = """## 参考文献
 2. 确认 CA IX 的 25 nM 属于 CO2 hydrase assay，脚本强制 `ca_ix_ratio_computed=false`。
 3. 运行 `python scripts/analyze_ca_document_stability.py`，枚举六组文档，得到最小 20.8333、最大 75、极差倍数 3.6。
 4. 检查 `strict_method_matched_count=1`、`method_incomplete_count=5`、`meta_analysis_performed=false`。
-5. 探索性中位数仅保留在机器结果中并明确“不是选择性估计”；正文不以其替代固定常数。
+5. 运行 `python scripts/audit_ca_document_methods.py`，核对六组文档身份、DOI、BindingDB 同源记录、三组正文片段与三组摘要；完整协议数必须保持为 0。
+6. 探索性中位数仅保留在机器结果中并明确“不是选择性估计”；正文不以其替代固定常数。
 """
 p2 = p2[:p2.index("## 参考文献")] + p2_refs
 p2 = collapse_abstract(p2, "碳酸酐酶；表观 Ki；assay 可比性；跨文档敏感性；负结果")

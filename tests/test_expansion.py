@@ -75,6 +75,31 @@ class ExpansionTests(unittest.TestCase):
         self.assertFalse(result["meta_analysis_performed"])
         self.assertEqual(result["stability_conclusion"], "not_supported_as_stable_point_estimate")
 
+    def test_document_method_audit_does_not_promote_snippets_or_same_origin_records(self):
+        result = self.read("validation/ca-document-methods.json")
+        self.assertEqual(result["documentCount"], 6)
+        self.assertEqual(result["strictMethodMatchedCount"], 1)
+        self.assertEqual(result["methodIncompleteCount"], 5)
+        self.assertEqual(result["publisherSnippetCheckedCount"], 3)
+        self.assertEqual(result["abstractCheckedCount"], 3)
+        self.assertEqual(result["fullTextObtainedCount"], 0)
+        self.assertEqual(result["completeProtocolObtainedCount"], 0)
+        self.assertEqual(result["independentWetExperimentCount"], 0)
+        expected_titles = {
+            "CHEMBL1146805": "isozyme XIII",
+            "CHEMBL1133556": "Water-Soluble 4-Sulfamoylphenylthioureas",
+            "CHEMBL1146697": "with EMATE",
+            "CHEMBL1136178": "3- and 4-carboxybenzolamide",
+            "CHEMBL1146695": "E7070",
+            "CHEMBL1134204": "dtpa tails",
+        }
+        for doc in result["documents"]:
+            self.assertIn(expected_titles[doc["documentChemblId"]], doc["title"])
+            self.assertFalse(doc["protocolVerified"])
+            self.assertTrue(doc["bindingDb"]["curatedByChembl"])
+            self.assertFalse(doc["bindingDb"]["independentExperiment"])
+            self.assertIn(doc["primaryEvidence"]["readingLevel"], {"abstract_checked", "partial_text_checked"})
+
     def test_structural_control_is_not_wildtype_replication(self):
         result = self.read("validation/structural-control.json")
         self.assertFalse(result["exact_wildtype_replication"])

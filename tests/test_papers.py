@@ -38,7 +38,8 @@ class PaperSeriesTests(unittest.TestCase):
         text = self.texts["02_CA表观比值不稳定性"]
         sections = re.findall(r"^### (3\.\d) ", text, flags=re.M)
         self.assertEqual(len(sections), len(set(sections)))
-        self.assertIn("### 3.3 不执行跨文献合并的理由", text)
+        self.assertIn("### 3.3 文档身份、原文范围与实验独立性", text)
+        self.assertIn("### 3.4 不执行跨文献合并的理由", text)
 
     def test_figures_exist_and_collection_links_resolve(self):
         for item in self.manifest["papers"]:
