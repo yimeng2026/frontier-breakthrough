@@ -211,6 +211,62 @@ p3 = collapse_abstract(p3)
 p3 = header("轻量可复现科研引擎的协作方法", "A Collaboration Method for Lightweight Reproducible Scientific Engines", "AI for Science · 可复现基础设施") + p3
 
 
+# Attach every bibliography entry to the precise claims it actually supports.
+def apply_citations(text, edits):
+    for anchor, citation in edits:
+        text = replace_once(text, anchor, anchor + citation)
+    return text
+
+
+p1 = apply_citations(p1, [
+    ("以 PubChem CID 1986 为规范标识，要求 ChEMBL20 中对应条目的化学身份映射通过", "[1,4]"),
+    ("以 CHEMBL205 与 UniProtKB P00918 为双标识，要求二者指向同一蛋白实体", "[2,5]"),
+    ("将 PDB 3HS4 entity 1 的氨基酸序列与 P00918 序列做逐字符比对", "[5,6]"),
+    ("3HS4 的原始论文报告了人 CA II 与乙酰唑胺的高分辨率复合物", "[6,7]"),
+    ("| 单 assay Ki | **12 nM** | 仅属于 CHEMBL657848", "[3]"),
+    ("TPSA 在计入 S/P 后为 151.66 Å²，与 PubChem 整数显示 152 同口径；MolLogP 与 XLogP 则属于不同算法", "[4,8]"),
+    ("图中每位置均为 1，表示 P00918 与 3HS4 entity 1 在全部 260 个位置一致", "[9]"),
+    ("二者均为 X 射线衍射的人 CA II—乙酰唑胺实验结构，配体均为 AZM", "[10,11]"),
+    ("全局序列对齐显示三类差异：起始 M 缺失、H94N 替换和中段 P 插入", "[12]"),
+])
+p2 = apply_citations(p2, [
+    ("| D1 | CHEMBL1146805", "[1]"),
+    ("| D2 | CHEMBL1133556", "[2]"),
+    ("| D3 | CHEMBL1146697", "[3]"),
+    ("| D4 | CHEMBL1136178", "[4]"),
+    ("| D5 | CHEMBL1146695", "[5]"),
+    ("| D6 | CHEMBL1134204", "[6]"),
+    ("CA I 与 CA II 可计算同酯酶方法的表观比值 20.8333；CA IX 使用 CO2 水合酶方法", "[1,7]"),
+    ("任何此类合并都会把未知方法效应伪装成精密度", "[8]"),
+])
+p3 = apply_citations(p3, [
+    ("Barba (2018)", "[10]"),
+    ("Plesser (2018)", "[11]"),
+    ("National Academies, 2019", "[12]"),
+    ("Roache (1998)", "[13]"),
+    ("Oberkampf & Trucano (2002)", "[14]"),
+    ("Brunton, Proctor & Kutz (2016)", "[15]"),
+    ("Kaptanoglu et al. (2022, JOSS)", "[1,2]"),
+    ("de Moura & Bjørner (2008, TACAS)", "[16]"),
+    ("RDKit 为开源化学信息学库（rdkit.org）", "[5]"),
+    ("Ong et al., 2013, *Computational Materials Science*", "[17]"),
+    ("Jain et al. (2013, *APL Materials*)", "[7]"),
+    ("Wilkinson et al., 2016, *Scientific Data*", "[18]"),
+    ("ACM artifact review/badging（ACM, 2020）", "[19]"),
+    ("它们分别是已知约束验证和跨库算法审计", "[4,5]"),
+    ("其意义是为上游提供“在该口径下，实现偏离已知答案的上界可被锚定”的接口信号", "[3]"),
+    ("与**同一快照**记录一致", "[6,7]"),
+    ("不同对齐规则必须显式声明，不能只用“相似”概括", "[8]"),
+    ("一致性仅指“与固定工件一致”；任何跨快照、跨口径或新增样例的推广均被 §2 支持域排除", "[9]"),
+])
+
+for text, expected_count in ((p1, 12), (p2, 8), (p3, 19)):
+    body = text.split("## 参考文献", 1)[0]
+    groups = re.findall(r"\[((?:\d+,)*\d+)\]", body)
+    cited = {int(number) for group in groups for number in group.split(",")}
+    expected = set(range(1, expected_count + 1))
+    assert cited == expected, (expected_count, sorted(expected - cited), sorted(cited - expected))
+
 files = [
     ("01_乙酰唑胺跨库证据链", "01_乙酰唑胺跨库证据链.md", p1, "d504fd42-1eb2-4560-909f-b4243998a8c8"),
     ("02_CA表观比值不稳定性", "02_CA表观比值不稳定性.md", p2, "8ada04a1-2ee8-4603-a642-88902c439d96"),
