@@ -1,6 +1,6 @@
 # 全球前沿项目、模型与战略设施目录
 
-更新日期：2026-10-31　条目数：80
+更新日期：2026-10-31　条目数：87
 
 > 本目录是有来源、可持续维护的初始集合，不声称一次性穷尽全球所有项目。条目进入目录不代表其主张已被独立复现，也不代表我们已与相关机构建立合作。
 
@@ -17,17 +17,17 @@
 |---|---:|
 | 国家与国际计划 | 10 |
 | AI for Math | 13 |
-| 通用 AI for Science 与科研代理 | 5 |
+| 通用 AI for Science 与科研代理 | 8 |
 | AI for Biology | 19 |
-| AI for Physics 与材料 | 25 |
-| 公共科研基础设施 | 8 |
+| AI for Physics 与材料 | 26 |
+| 公共科研基础设施 | 11 |
 
 | 采用策略 | 数量 |
 |---|---:|
 | P0_local | 5 |
-| P1_adapt | 33 |
-| P2_watch | 27 |
-| P3_external | 15 |
+| P1_adapt | 34 |
+| P2_watch | 29 |
+| P3_external | 19 |
 
 ## 国家与国际计划
 
@@ -96,12 +96,18 @@
 | AgentRxiv | benchmark | official_artifact | P1_adapt / pending | 文献接口：将主张、证据、代码和反例关联，避免引用循环。 | [官方或注明来源](https://github.com/AgentRxiv/AgentRxiv.github.io) |
 | OpenEvolve | tool | official_artifact | P1_adapt / pending | 与 AlphaEvolve 公开结果配合，提供可复现程序进化基线。 | [官方或注明来源](https://github.com/algorithmicsuperintelligence/openevolve) |
 | LLM4AD | platform | official_artifact | P1_adapt / pending | 算法发现平台对接：贡献科学约束、评价器和失败档案。 | [官方或注明来源](https://github.com/Optima-CityU/LLM4AD) |
+| Google AI Co-Scientist | agent | preprint | P2_watch / external | 借鉴生成—批评—改进的假设链，我们提供可追溯反例、验证义务和外部数据接口。 | [官方或注明来源](https://arxiv.org/abs/2502.18864) |
+| Robin | agent | official_artifact | P1_adapt / pending | 复用公开轨迹与专业代理分工，提供跨学科假设的结构化验证和失败档案。 | [官方或注明来源](https://www.futurehouse.org/research/demonstrating-end-to-end-scientific-discovery-with-robin-a-multi-agent-system) |
+| Kosmos | agent | preprint | P2_watch / external | 借鉴结构化世界模型和代码/原始文献双引用，我们提供可重放小型验证与准确性分层。 | [官方或注明来源](https://arxiv.org/abs/2511.02824) |
 
 - **AI-Scientist**：自动论文生成不等于自动科学发现。
 - **Agent Laboratory**：先评估成本、可复现性与数据泄漏。
 - **AgentRxiv**：代理生成论文仍需原始来源和人工审查。
 - **OpenEvolve**：先在低成本、可判定任务验证。
 - **LLM4AD**：不能将算法搜索分数直接解释为物理真实性。
+- **Google AI Co-Scientist**：预印本报告部分生物医学候选有体外实验；不能把局部验证外推为通用自动发现能力。
+- **Robin**：官网记录湿实验由研究人员执行；2026-05-19 更新称已发表 Nature，后续补原始论文链接。
+- **Kosmos**：预印本自报报告陈述准确率79.4%，不是全部正确的证明；长运行成本不等于发现质量。
 
 ## AI for Biology
 
@@ -170,7 +176,8 @@
 | SevenNet | model | official_artifact | P2_watch / pending | 多 GPU 能力外部协作，本机只做公开小配置可行性评估。 | [官方或注明来源](https://github.com/MDIL-SNU/SevenNet) |
 | DeePMD-kit | tool | official_artifact | P1_adapt / pending | 势能面与分子动力学接口复用，贡献标准小体系和文档化复现。 | [官方或注明来源](https://github.com/deepmodeling/deepmd-kit) |
 | TorchMD-Net | tool | official_artifact | P1_adapt / pending | 统一神经网络势数据切分与外部测试。 | [官方或注明来源](https://github.com/torchmd/torchmd-net) |
-| PyMatGen | tool | official_artifact | P1_adapt / pending | 材料结构与性质接口，输出可审计单位和来源。 | [官方或注明来源](https://github.com/materialsproject/pymatgen) |
+| Materials Project | dataset | official_artifact | P3_external / external | 复用公开 DFT 与结构数据，提供独立结构重算、单位审计和跨代码验证，不复制整库。 | [官方或注明来源](https://api.materialsproject.org) |
+| PyMatGen | tool | official_artifact | P1_adapt / verified | 材料结构与性质接口，输出可审计单位和来源。 | [官方或注明来源](https://github.com/materialsproject/pymatgen) |
 | JARVIS-Tools | tool | official_artifact | P1_adapt / pending | 数据驱动原子设计与 ALIGNN 共用评价链。 | [官方或注明来源](https://github.com/usnistgov/jarvis) |
 | CP2K | tool | official_artifact | P3_external / deferred | 第一性原理计算由合适环境运行，我们提供输入复核和跨代码对照。 | [官方或注明来源](https://github.com/cp2k/cp2k) |
 | Quantum ESPRESSO | tool | official_artifact | P3_external / deferred | 与 CP2K 做公开小体系交叉验证；使用上游构建和容器。 | [官方或注明来源](https://github.com/QEF/q-e) |
@@ -196,7 +203,8 @@
 - **SevenNet**：不将多 GPU 宣传指标写成本机性能。
 - **DeePMD-kit**：与 LAMMPS 等组合时须单独验证。
 - **TorchMD-Net**：不同模型比较必须控制训练预算。
-- **PyMatGen**：优先复用 Materials Project，不复制其数据库。
+- **Materials Project**：已保存硅 mp-aaaaaaft 快照；DFT 带隙和稳定性不是本地独立计算。
+- **PyMatGen**：已从公开 Si 结构独立重算密度与空间群；不替代 DFT 引擎。
 - **JARVIS-Tools**：只下载研究所需数据子集。
 - **CP2K**：本机未发现 CMake/Fortran 构建链，不在当前阶段编译。
 - **Quantum ESPRESSO**：GitHub 为镜像，贡献应遵循上游 GitLab 流程。
@@ -207,6 +215,9 @@
 
 | 项目 | 类型 | 证据 | 策略 / 本地状态 | 我们的互补角色 | 来源 |
 |---|---|---|---|---|---|
+| PubChem | dataset | official_artifact | P3_external / external | 提供化合物身份与计算属性快照，我们贡献规范结构、算法口径和精确质量审计。 | [官方或注明来源](https://pubchem.ncbi.nlm.nih.gov/rest/pug) |
+| RCSB Protein Data Bank | dataset | official_artifact | P3_external / external | 复用实验结构与实体序列，提供结构—序列—注释的可复核桥接。 | [官方或注明来源](https://data.rcsb.org/rest/v1/core) |
+| UniProtKB | dataset | official_artifact | P3_external / external | 提供 reviewed 蛋白序列与注释，我们贡献跨库 ID 和精确序列一致性检查。 | [官方或注明来源](https://rest.uniprot.org) |
 | RDKit | tool | official_artifact | P0_local / verified | 本地计算与 PubChem 等独立来源核对，保留算法差异和单位。 | [官方或注明来源](https://github.com/rdkit/rdkit) |
 | SymPy | tool | official_artifact | P0_local / pending | 符号推导、量纲和小恒等式复核，为形式化前处理。 | [官方或注明来源](https://github.com/sympy/sympy) |
 | Z3 | tool | official_artifact | P0_local / verified | 约束反例与小命题可重放验证，为证明义务提供反例。 | [官方或注明来源](https://github.com/Z3Prover/z3) |
@@ -216,6 +227,9 @@
 | Scanpy | tool | official_artifact | P1_adapt / pending | 单细胞数据预处理和基线，服务 scGPT/scFoundation 的公平评价。 | [官方或注明来源](https://github.com/scverse/scanpy) |
 | Miniforge | tool | official_artifact | P1_adapt / deferred | 为重依赖科学软件提供隔离环境；安装目标和缓存统一放 D 盘。 | [官方或注明来源](https://github.com/conda-forge/miniforge) |
 
+- **PubChem**：已核对 CID 1986；数据库计算属性不是湿实验数据。
+- **RCSB Protein Data Bank**：已保存 4HHB entity 2 快照；entity_id 与 chain id 严格区分。
+- **UniProtKB**：P68871 去除起始 M 后与 4HHB entity 2 序列一致；不据此推断功能。
 - **RDKit**：属性算法不同不自动意味着数据造假。
 - **SymPy**：符号等价检查不替代完整数学证明。
 - **Z3**：SMT 可判定片段与 Lean 定理证明范围不同。

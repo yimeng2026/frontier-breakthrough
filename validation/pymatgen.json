@@ -1,0 +1,17 @@
+{
+  "engine": "PyMatGen",
+  "version": "2026.10.24",
+  "python": "D:/research-engines/pymatgen-env/Scripts/python.exe",
+  "material_id": "mp-aaaaaaft",
+  "formula": "Si",
+  "nsites": 2,
+  "density_local_g_cm3": 2.3128002565764314,
+  "density_external_g_cm3": 2.3128002565764314,
+  "density_abs_error": 0.0,
+  "space_group_local": "Fd-3m",
+  "space_group_number_local": 227,
+  "external_band_gap_eV": 0.6102999999999996,
+  "external_energy_above_hull_eV_atom": 0.0,
+  "status": "verified",
+  "scope": "本地从公开结构独立重算密度与空间群并核对；带隙和稳定性仅为外部 DFT 快照，未在本机重算。"
+}

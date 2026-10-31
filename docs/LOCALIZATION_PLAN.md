@@ -16,8 +16,9 @@
 | PySINDy | `D:\research-engines\pysindy-env` | 2.1.0 | 对 `x'=-2x, y'=y` 恢复 `x'=-2.00003136x`、`y'=1.00000404y`，非对角项为 0 | 已知合成系统的引擎验证，不是新物理规律 |
 | Z3 | `D:\research-engines\z3-env` | 5.3.3.0 | `x>0 ∧ x+1≤0` 为 UNSAT；`x²<0` 为 UNSAT | 两个实数约束的已知答案，不是通用定理证明 |
 | RDKit | `D:\research-engines\rdkit-env` | 2026.9.1 | 乙酰唑胺规范结构与 PubChem CID 1986 一致，分子式 `C4H6N4O3S2`，精确质量差小于 `1e-6 Da` | 数据库计算属性对照，不是湿实验验证 |
+| PyMatGen | `D:\research-engines\pymatgen-env` | 2026.10.24 | 从 Materials Project 的 Si 公开结构重算密度 `2.3128002566 g/cm³` 和空间群 `Fd-3m (227)` | 结构派生量复核；DFT 带隙和稳定性未在本地重算 |
 
-三个环境及当前 pip 缓存约占 D 盘 557 MB；精确数字会随后续安装变化。锁定依赖快照保存在仓库 `requirements/`，原始冻结文件也在 `D:\research-engines\*-requirements.txt`。
+锁定依赖快照保存在仓库 `requirements/`，原始冻结文件也在 `D:\research-engines\*-requirements.txt`。环境会随验证需求增长，静态文档不固定总磁盘占用。
 
 ## 重跑命令
 
@@ -27,9 +28,11 @@
 D:\research-engines\pysindy-env\Scripts\python.exe scripts\verify_pysindy.py
 D:\research-engines\z3-env\Scripts\python.exe scripts\verify_z3.py
 D:\research-engines\rdkit-env\Scripts\python.exe scripts\verify_rdkit.py
+D:\research-engines\pymatgen-env\Scripts\python.exe scripts\verify_pymatgen.py
+python scripts\verify_pdb_uniprot.py
 ```
 
-机器可读结果位于 `validation/pysindy.json`、`validation/z3.json` 和 `validation/rdkit.json`；PubChem 原始快照单独保存为 `validation/pubchem-acetazolamide.json`。
+机器可读结果位于 `validation/pysindy.json`、`validation/z3.json`、`validation/rdkit.json`、`validation/pymatgen.json` 和 `validation/pdb-uniprot.json`。外部原始快照使用对应数据源名称单独保存，不与本地计算结果混写。
 
 ## 化学数据核对示范
 

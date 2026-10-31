@@ -17,6 +17,8 @@
 - [D 盘本地化与适配](docs/LOCALIZATION_PLAN.md)：轻量实跑、重任务门槛与运行记录。
 - [定期消化机制](docs/RESEARCH_AUTOMATION.md)：检索—筛选—复现—回馈的闭环。
 - [机器可读目录](data/projects.json)：每项均有官方来源、证据级别、协作角色和本地状态。
+- [上游接口与证据契约](docs/UPSTREAM_INTERFACES.md)：真实跨库验证、统一 JSON 接口及组件边界。
+- [跨域证据包](exports/frontier-evidence.json)：五项已执行检查的结构化结果与限制。
 
 ## 证据原则
 

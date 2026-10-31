@@ -1,0 +1,17 @@
+{
+  "source": "https://rest.uniprot.org",
+  "retrieved": "2026-10-31",
+  "query": "gene:HBB AND organism_id:9606 AND reviewed:true",
+  "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+  "primary_accession": "P68871",
+  "uniprotkb_id": "HBB_HUMAN",
+  "gene": "HBB",
+  "organism": "Homo sapiens",
+  "taxon_id": 9606,
+  "sequence": "MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH",
+  "length": 147,
+  "molecular_weight_Da": 15998,
+  "crc64": "A31F6D621C6556A1",
+  "sequence_md5_reported_by_uniprot": "209D686939D0B8D1EA089368150140E2",
+  "scope": "UniProtKB reviewed 条目的序列快照，不把序列一致性外推成功能验证。"
+}

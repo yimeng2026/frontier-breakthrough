@@ -1,0 +1,18 @@
+{
+  "engine": "PDB–UniProt cross-database check",
+  "version": "snapshot-2026-10-31",
+  "pdb_id": "4HHB",
+  "pdb_entity": 2,
+  "pdb_chains": "B,D",
+  "experimental_method": "X-RAY DIFFRACTION",
+  "resolution_A": 1.74,
+  "uniprot_accession": "P68871",
+  "uniprot_id": "HBB_HUMAN",
+  "uniprot_length": 147,
+  "pdb_length": 146,
+  "relationship": "UniProt 去除起始 M 后与 PDB entity 2 的 146 aa 序列逐字符一致",
+  "sequence_md5_recomputed": "209D686939D0B8D1EA089368150140E2",
+  "mapping_basis": "PDB 的 HBB/9606 → UniProt 条件检索 → 精确序列比对；未依赖截断的跨库引用字段",
+  "status": "verified",
+  "scope": "验证实验结构实体与 reviewed 序列记录的对应关系，不是蛋白功能、机制或临床结论。"
+}

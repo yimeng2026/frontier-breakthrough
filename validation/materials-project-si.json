@@ -1,0 +1,38 @@
+{
+  "source": "https://api.materialsproject.org",
+  "retrieved": "2026-10-31",
+  "requested_legacy_id": "mp-149",
+  "material_id": "mp-aaaaaaft",
+  "api_version": "0.88.1",
+  "formula_pretty": "Si",
+  "nsites": 2,
+  "density": 2.3128002565764314,
+  "band_gap": 0.6102999999999996,
+  "is_metal": false,
+  "energy_above_hull": 0.0,
+  "is_stable": true,
+  "symmetry": {
+    "crystal_system": "Cubic",
+    "symbol": "Fd-3m",
+    "number": 227,
+    "point_group": "m-3m",
+    "symprec": 0.1,
+    "angle_tolerance": 5.0,
+    "version": "2.7.0"
+  },
+  "structure": {
+    "@module": "pymatgen.core.structure",
+    "@class": "Structure",
+    "charge": 0.0,
+    "lattice": {
+      "matrix": [[3.333573, 0.0, 1.924639], [1.111191, 3.142924, 1.924639], [0.0, 0.0, 3.849278]],
+      "pbc": [true, true, true]
+    },
+    "properties": {},
+    "sites": [
+      {"species": [{"element": "Si", "occu": 1.0}], "abc": [0.875, 0.875, 0.875], "properties": {}, "label": "Si"},
+      {"species": [{"element": "Si", "occu": 1.0}], "abc": [0.125, 0.125, 0.125], "properties": {}, "label": "Si"}
+    ]
+  },
+  "scope": "Materials Project DFT 与结构快照；本地只重算结构密度和对称性，不独立重算 DFT 带隙。"
+}
