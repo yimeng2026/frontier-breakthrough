@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-10-31T10:56:59.566Z",
+  "startedAt": "2026-10-31T11:45:59.554Z",
   "lawPackages": [
     {
       "id": "ACETAZOLAMIDE-CHAIN-20261031",
@@ -15,18 +15,23 @@
       "id": "REPRODUCIBLE-ENGINEERING-20261031",
       "created": false,
       "existing": true
+    },
+    {
+      "id": "CA-STRUCTURAL-CONTROL-20261031",
+      "created": false,
+      "existing": true
     }
   ],
   "pipelines": [],
   "errors": [],
   "serversStopped": true,
-  "panelId": "1a5de4ad-5c72-49e1-88d2-9f02821ac1f9",
+  "panelId": "ffad604a-2e23-4647-80fb-06fcb450c606",
   "finalUploads": [
     {
       "pipelineId": "d504fd42-1eb2-4560-909f-b4243998a8c8",
       "stageId": "1ed4f1d3-bd06-40a2-a5d3-83d337a986be",
       "file": "papers\\01_乙酰唑胺跨库证据链\\01_乙酰唑胺跨库证据链.md",
-      "contentLength": 8517,
+      "contentLength": 9833,
       "readback": true
     },
     {
@@ -44,5 +49,5 @@
       "readback": true
     }
   ],
-  "finishedAt": "2026-10-31T10:57:02.423Z"
+  "finishedAt": "2026-10-31T11:46:02.421Z"
 }

@@ -20,7 +20,7 @@
 | PubChem + RDKit | 规范结构、分子式、精确质量、TPSA 与 LogP 算法口径 | `validation/rdkit.json` | 跨数据库化学数据质量检查 |
 | Materials Project + PyMatGen | 从 Si 公开结构本地重算密度和空间群 | `validation/pymatgen.json` | 结构派生量与规范 ID 的轻量复核 |
 | RCSB PDB + UniProt | 基因/物种检索后，对 HBB 序列做逐字符比对和 MD5 重算 | `validation/pdb-uniprot.json` | 实验结构到 reviewed 序列的可追溯桥接 |
-| ChEMBL + PubChem + RCSB PDB + UniProt | 乙酰唑胺 InChIKey、CA II 靶点、P00918 与 3HS4 entity 1 的 260 aa 精确序列、单一 Ki assay、AZM 配体与 pChEMBL 重算；同酯酶方法 CA I/II 表观比值，CA IX 方法不同不合并 | `validation/drug-target-structure.json`、`validation/ca-selectivity.json`、`validation/ca-document-stability.json` | 药物—靶点—蛋白序列—实验结构的来源审计；保留重复标记、assay 可比性、跨文档不稳定性和非独立重复边界 |
+| ChEMBL + PubChem + RCSB PDB + UniProt | 乙酰唑胺 InChIKey、CA II 靶点、P00918 与 3HS4 entity 1 的 260 aa 精确序列、单一 Ki assay、AZM 配体与 pChEMBL 重算；同酯酶方法 CA I/II 表观比值，CA IX 方法不同不合并 | `validation/drug-target-structure.json`、`validation/ca-selectivity.json`、`validation/ca-document-stability.json`、`validation/structural-control.json` | 药物—靶点—蛋白序列—实验结构的来源审计；保留重复标记、assay 可比性、跨文档不稳定性、不同构建和长度元数据不一致，不冒充独立野生型重复 |
 
 ## 与自动科学发现项目的配合
 

@@ -25,7 +25,8 @@ class PaperSeriesTests(unittest.TestCase):
             self.assertIn("### 1.4 本文的研究动机与内容安排", text)
             self.assertIn("未同行评议", text)
             self.assertEqual(text.count("## 参考文献"), 1)
-            self.assertEqual(item["figures"], 4)
+            expected = 5 if item["folder"] == "01_乙酰唑胺跨库证据链" else 4
+            self.assertEqual(item["figures"], expected)
 
     def test_no_known_draft_errors_or_placeholder_citations(self):
         forbidden = ["release 20", "唯一检出", "0.000031902", "20.8333333333333332", "【文献", "标准化学计量归一化"]

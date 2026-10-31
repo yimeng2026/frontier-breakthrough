@@ -37,6 +37,7 @@ sindy = load("pysindy.json")
 material = load("pymatgen.json")
 hbb = load("pdb-uniprot.json")
 ca2 = load("ca2-sequence.json")
+structural_control = load("structural-control.json")
 p1 = "01_乙酰唑胺跨库证据链"
 p2 = "02_CA表观比值不稳定性"
 p3 = "03_轻量可复现科研引擎"
@@ -88,6 +89,20 @@ axes[1].bar(["RDKit MolLogP", "PubChem XLogP"], [rdkit["rdkit_crippen_mollogp"],
 axes[1].set(title="LogP：算法不同，保留差异", ylim=(-1.0, 0.1))
 axes[1].axhline(0, color="black", lw=0.6)
 save(fig, p1, "fig01d_descriptor_audit.png")
+
+# 01e：不同构建的结构对照与序列/元数据异常。
+fig, axes = plt.subplots(1, 2)
+resolutions = [structural_control["reference"]["resolution_A"], structural_control["control"]["resolution_A"]]
+axes[0].bar(["3HS4 野生型", "2H4N 对照构建"], resolutions, color=[GREEN, ORANGE])
+axes[0].set(title="两套 X 射线实验结构", ylabel="分辨率（Å，越低越高）", ylim=(0, 2.3))
+for i, value in enumerate(resolutions):
+    axes[0].text(i, value + 0.06, f"{value:.1f}", ha="center")
+axes[1].axis("off")
+axes[1].set_title("结构对照的差异与边界")
+axes[1].text(0.02, 0.82, "序列差异事件：3 类", fontsize=13, weight="bold")
+axes[1].text(0.02, 0.62, "起始 M 缺失\nH94N 替换\n中段 P 插入", fontsize=11, linespacing=1.6)
+axes[1].text(0.02, 0.26, "序列字符串 260 vs 元数据 259\n不是独立野生型重复，也不证明 Ki 重复", fontsize=11, color=ORANGE, linespacing=1.6)
+save(fig, p1, "fig01e_structural_control.png")
 
 # 02a：六组文档比值，方法状态显式区分。
 pairs = stability["pairs"]

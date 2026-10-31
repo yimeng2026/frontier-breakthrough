@@ -75,6 +75,16 @@ class ExpansionTests(unittest.TestCase):
         self.assertFalse(result["meta_analysis_performed"])
         self.assertEqual(result["stability_conclusion"], "not_supported_as_stable_point_estimate")
 
+    def test_structural_control_is_not_wildtype_replication(self):
+        result = self.read("validation/structural-control.json")
+        self.assertFalse(result["exact_wildtype_replication"])
+        self.assertEqual(result["comparison_type"], "different_construct_structural_control")
+        self.assertEqual(result["alignment_difference_event_count"], 3)
+        self.assertTrue(result["length_metadata_discrepancy"])
+        self.assertEqual(result["metadata_sample_sequence_length"], 259)
+        self.assertEqual(result["sequence_string_length"], 260)
+        self.assertEqual(len(result["excluded_candidates"]), 3)
+
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
         self.assertEqual(len(packet["items"]), 6)

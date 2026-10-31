@@ -6,13 +6,14 @@
       "file": "01_乙酰唑胺跨库证据链.md",
       "pipelineId": "d504fd42-1eb2-4560-909f-b4243998a8c8",
       "status": "研究简报／预印本草案，未同行评议",
-      "characters": 8315,
-      "figures": 4,
+      "characters": 9611,
+      "figures": 5,
       "figureFiles": [
         "fig01a_sequence_identity.png",
         "fig01b_activity_pchembl.png",
         "fig01c_evidence_chain.png",
-        "fig01d_descriptor_audit.png"
+        "fig01d_descriptor_audit.png",
+        "fig01e_structural_control.png"
       ]
     },
     {

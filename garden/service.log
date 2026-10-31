@@ -1,20 +1,22 @@
 ▲ Next.js 16.2.9 (Turbopack)
-- Local:         http://127.0.0.1:53915
-- Network:       http://127.0.0.1:53915
-✓ Ready in 298ms
+- Local:         http://127.0.0.1:54607
+- Network:       http://127.0.0.1:54607
+✓ Ready in 300ms
 
- GET / 200 in 74ms (next.js: 60ms, application-code: 14ms)
- POST /api/research/law-packages 409 in 45ms (next.js: 15ms, proxy.ts: 22ms, application-code: 7ms)
- GET /api/research/law-packages/ACETAZOLAMIDE-CHAIN-20261031 200 in 461ms (next.js: 452ms, proxy.ts: 5ms, application-code: 5ms)
+ GET / 200 in 75ms (next.js: 61ms, application-code: 14ms)
+ POST /api/research/law-packages 409 in 44ms (next.js: 16ms, proxy.ts: 21ms, application-code: 6ms)
+ GET /api/research/law-packages/ACETAZOLAMIDE-CHAIN-20261031 200 in 476ms (next.js: 466ms, proxy.ts: 4ms, application-code: 5ms)
  POST /api/research/law-packages 409 in 10ms (next.js: 2ms, proxy.ts: 5ms, application-code: 3ms)
- GET /api/research/law-packages/CA-SELECTIVITY-SENSITIVITY-20261031 200 in 35ms (next.js: 28ms, proxy.ts: 4ms, application-code: 4ms)
+ GET /api/research/law-packages/CA-SELECTIVITY-SENSITIVITY-20261031 200 in 38ms (next.js: 31ms, proxy.ts: 4ms, application-code: 3ms)
  POST /api/research/law-packages 409 in 12ms (next.js: 2ms, proxy.ts: 5ms, application-code: 4ms)
- GET /api/research/law-packages/REPRODUCIBLE-ENGINEERING-20261031 200 in 11ms (next.js: 4ms, proxy.ts: 4ms, application-code: 3ms)
- POST /api/research/panels 201 in 193ms (next.js: 86ms, proxy.ts: 5ms, application-code: 103ms)
- GET /api/research/pipelines 200 in 39ms (next.js: 22ms, proxy.ts: 4ms, application-code: 13ms)
- PUT /api/research/pipelines/d504fd42-1eb2-4560-909f-b4243998a8c8/stages/1ed4f1d3-bd06-40a2-a5d3-83d337a986be 200 in 615ms (next.js: 595ms, proxy.ts: 4ms, application-code: 15ms)
- GET /api/research/pipelines/d504fd42-1eb2-4560-909f-b4243998a8c8/stages/1ed4f1d3-bd06-40a2-a5d3-83d337a986be 200 in 37ms (next.js: 28ms, proxy.ts: 5ms, application-code: 4ms)
- PUT /api/research/pipelines/8ada04a1-2ee8-4603-a642-88902c439d96/stages/1c8a7508-b5d0-4d8a-b5b8-f2f672c24db2 200 in 22ms (next.js: 4ms, proxy.ts: 3ms, application-code: 15ms)
- GET /api/research/pipelines/8ada04a1-2ee8-4603-a642-88902c439d96/stages/1c8a7508-b5d0-4d8a-b5b8-f2f672c24db2 200 in 11ms (next.js: 4ms, proxy.ts: 4ms, application-code: 4ms)
- PUT /api/research/pipelines/c306e81f-bce6-4d5b-b482-7a26c94da774/stages/eb4fc311-cc0a-4a36-abe0-31b9e6c23349 200 in 22ms (next.js: 4ms, proxy.ts: 4ms, application-code: 14ms)
- GET /api/research/pipelines/c306e81f-bce6-4d5b-b482-7a26c94da774/stages/eb4fc311-cc0a-4a36-abe0-31b9e6c23349 200 in 12ms (next.js: 4ms, proxy.ts: 5ms, application-code: 4ms)
+ GET /api/research/law-packages/REPRODUCIBLE-ENGINEERING-20261031 200 in 11ms (next.js: 4ms, proxy.ts: 3ms, application-code: 3ms)
+ POST /api/research/law-packages 409 in 9ms (next.js: 1796µs, proxy.ts: 4ms, application-code: 4ms)
+ GET /api/research/law-packages/CA-STRUCTURAL-CONTROL-20261031 200 in 11ms (next.js: 4ms, proxy.ts: 4ms, application-code: 3ms)
+ POST /api/research/panels 201 in 194ms (next.js: 88ms, proxy.ts: 4ms, application-code: 102ms)
+ GET /api/research/pipelines 200 in 38ms (next.js: 19ms, proxy.ts: 6ms, application-code: 13ms)
+ PUT /api/research/pipelines/d504fd42-1eb2-4560-909f-b4243998a8c8/stages/1ed4f1d3-bd06-40a2-a5d3-83d337a986be 200 in 578ms (next.js: 560ms, proxy.ts: 4ms, application-code: 14ms)
+ GET /api/research/pipelines/d504fd42-1eb2-4560-909f-b4243998a8c8/stages/1ed4f1d3-bd06-40a2-a5d3-83d337a986be 200 in 39ms (next.js: 31ms, proxy.ts: 3ms, application-code: 4ms)
+ PUT /api/research/pipelines/8ada04a1-2ee8-4603-a642-88902c439d96/stages/1c8a7508-b5d0-4d8a-b5b8-f2f672c24db2 200 in 15ms (next.js: 4ms, proxy.ts: 4ms, application-code: 7ms)
+ GET /api/research/pipelines/8ada04a1-2ee8-4603-a642-88902c439d96/stages/1c8a7508-b5d0-4d8a-b5b8-f2f672c24db2 200 in 12ms (next.js: 5ms, proxy.ts: 3ms, application-code: 4ms)
+ PUT /api/research/pipelines/c306e81f-bce6-4d5b-b482-7a26c94da774/stages/eb4fc311-cc0a-4a36-abe0-31b9e6c23349 200 in 14ms (next.js: 4ms, proxy.ts: 4ms, application-code: 6ms)
+ GET /api/research/pipelines/c306e81f-bce6-4d5b-b482-7a26c94da774/stages/eb4fc311-cc0a-4a36-abe0-31b9e6c23349 200 in 12ms (next.js: 4ms, proxy.ts: 4ms, application-code: 4ms)
