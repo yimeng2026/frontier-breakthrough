@@ -1,0 +1,86 @@
+{
+  "status": "frozen_before_roszman1_native_identifiability",
+  "frozen_at_local": "2026-11-09T07:54:16+08:00",
+  "analysis_id": "roszman1_native_identifiability",
+  "scientific_question": "Do the frozen native arctangent fits have locally identifiable and stable parameters across the five training folds, and how does that differ from their comparatively stable held-out predictions?",
+  "analysis_type": "Read-only post-hoc local-linearization diagnostics at the five frozen native fits; no refitting or new experiment",
+  "inputs": {
+    "native_holdout": {
+      "file": "validation/roszman1-native-holdout.json",
+      "sha256": "c8678e4635a23a9bf7a59233259c48c4307911df4dd50cf6e102cc8cb975e90e"
+    },
+    "native_holdout_protocol": {
+      "file": "validation/roszman1-native-holdout-protocol.json",
+      "sha256": "cc6fd890eadf46b1fff4f7c3ee997306cd0959df672699bb00f76f5103d13ece"
+    },
+    "data": {
+      "file": "data/Roszman1.dat",
+      "sha256": "fb526231ae6b02929e3de54e072e259b3d87424089abd4b1015ffb946b1e0ab0",
+      "observations": 25
+    }
+  },
+  "fold_rule": {
+    "count": 5,
+    "train_points_per_fold": 20,
+    "test_points_per_fold": 5,
+    "assignments": {
+      "1": [-4868.68, -4868.09, -4867.41, -3375.19, -3373.14],
+      "2": [-3372.03, -2473.74, -2472.35, -2469.45, -1894.65],
+      "3": [-1893.4, -1497.24, -1495.85, -1493.41, -1208.68],
+      "4": [-1206.18, -1206.04, -997.92, -996.61, -996.31],
+      "5": [-834.94, -834.66, -710.03, -530.16, -464.17]
+    },
+    "frozen_fit_rule": "Use native_parameters and training_rss from each frozen fold exactly; no curve_fit call, parameter update or holdout change is permitted",
+    "training_rss_tolerance": "math.isclose(recomputed_rss,frozen_training_rss,rel_tol=1e-9,abs_tol=1e-12)",
+    "test_metric_rule": "Recomputed native_test_metrics must exactly reproduce the frozen metric dictionary"
+  },
+  "jacobian_rule": {
+    "parameter_order": ["b1", "b2", "b3", "b4"],
+    "train_points_per_fold": 20,
+    "db1": "1",
+    "db2": "-x",
+    "db3": "-(x-b4)/(pi*((x-b4)^2+b3^2))",
+    "db4": "-b3/(pi*((x-b4)^2+b3^2))",
+    "singular_rule": "x=b4 is excluded and non-finite Jacobians are retained as failures"
+  },
+  "local_rule": {
+    "column_scaling": "Divide each Jacobian column by its Euclidean norm; require finite nonzero norms",
+    "rank_tolerance": "max(J.shape)*eps*largest_scaled_singular_value",
+    "numerical_rank": "Count scaled singular values greater than rank_tolerance; preserve rank deficiency rather than forcing rank four",
+    "scaled_condition_number": "largest_scaled_singular_value/smallest_scaled_singular_value",
+    "unit_covariance": "pinv(Js.T@Js,rcond=1e-12,hermitian=True)",
+    "covariance": "sigma2*unit_covariance/outer(column_norms,column_norms)",
+    "sigma2": "training_RSS/(20-4)",
+    "standard_errors": "sqrt(diag(covariance)); local linearized standard errors only",
+    "correlation": "clip(covariance/outer(standard_errors,standard_errors),-1,1)",
+    "prediction_sd": "sqrt(max(0,sigma2*diagonal(Jtest_scaled@unit_covariance@Jtest_scaled.T))); descriptive delta method only",
+    "interpretation": "Local linearization at each frozen fit; rank, conditioning, standard errors and sensitivity do not prove global structural identifiability or calibrated uncertainty"
+  },
+  "parameter_stability_rule": {
+    "statistics": "For each parameter across five frozen fits, record minimum, maximum, median, range and per-fold local standard errors",
+    "comparison": "Report raw parameter values and native RMSE side by side; do not collapse them into a single stability score",
+    "prediction_stability_scope": "Stable held-out RMSE does not imply unique, invariant or physically endogenous parameters"
+  },
+  "output_rule": {
+    "summary": "validation/roszman1-native-identifiability.json",
+    "figure": "papers/40_Roszman1原生参数可识别性/fig40_roszman1_native_identifiability.png",
+    "refuse_overwrite": true
+  },
+  "decision": {
+    "refit": false,
+    "global_structural_identifiability_proved": false,
+    "physical_parameter_endogeneity_proved": false,
+    "calibrated_prediction_intervals_produced": false,
+    "rational_bounds_transferred_to_native": false,
+    "independent_physical_experiment_claimed": false,
+    "prediction_stability_equals_parameter_uniqueness": false,
+    "rank_deficiency_hidden": false
+  },
+  "prohibitions": [
+    "No refitting, retuning, new starts, new fold assignments or new parameter values",
+    "No conversion of local Jacobians, ranks, covariances or delta-method sensitivity into global identifiability or calibrated intervals",
+    "No transfer of rational denominator, ellipsoid, box or continuous-safety claims to the native model",
+    "No claim that stable held-out RMSE proves unique, invariant or physically endogenous parameters",
+    "No hiding of rank deficiency, non-finite values, failed variance estimates or fold-level parameter variation"
+  ]
+}
