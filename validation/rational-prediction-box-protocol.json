@@ -1,0 +1,30 @@
+{
+  "status": "frozen_before_prediction_box_bound_analysis",
+  "frozen_at_local": "2026-11-09T01:16:53+08:00",
+  "scientific_question": "For every held-out observation whose frozen denominator snapshot has a certified root-free coefficient box, what exact conservative upper bound covers prediction shift and observed residual for every denominator in that box?",
+  "inputs": {
+    "parameter_box": {"file": "validation/rational-parameter-box-stability.json", "sha256": "ed31e9389d7928c0e8ed0a0ef245c117970ad84019d2b5b4d94c6343d6da28be"},
+    "hahn1": {"file": "validation/hahn1-fold1-identifiability.json", "sha256": "3ef5b98effcae91afe91d46446fa1392a584996375e827f103936b652fefddfb"},
+    "thurber": {"file": "validation/thurber-prospective-gate.json", "sha256": "21212cb3bc61de0efb333af93078b0a222192460bfc93858e1cd14779dc190b0"},
+    "kirby2": {"file": "validation/kirby2-prospective-gate.json", "sha256": "c0575037cf587bbb12ecd7ad08febaf8f6eed6d50fef5009faa36f60448c92e0"}
+  },
+  "bound_rule": {
+    "radius": "Use the certified lower radius from the parameter-box analysis, including capped lower bounds; do not use the uncertified upper bracket",
+    "numerator": "Keep numerator coefficients fixed at the frozen fit; only denominator coefficients vary inside the certified box",
+    "pointwise_formula": "For R=rho*sum(sigma_j*|x|^j), require |D|-R>0 and compute |delta f| <= |N|*R/(|D|*(|D|-R)); observed residual bound is |y-f_snapshot|+|delta f|",
+    "arithmetic": "Exact rational arithmetic for every held-out observation and all returned bounds",
+    "rooted_snapshot": "Do not produce this bound for a snapshot with an existing root or without a certified positive denominator box",
+    "scope": "Bounds cover every denominator in the certified box at the observed held-out x points only; no continuous-x global bound is claimed"
+  },
+  "output_rule": {
+    "summary": "validation/rational-prediction-box-bounds.json",
+    "figure": "papers/15_参数盒预测界/fig15_prediction_box_bounds.png",
+    "refuse_overwrite": true
+  },
+  "prohibitions": [
+    "No refitting, numerator perturbation or radius retuning",
+    "No probabilistic prediction interval, RMSE bound or calibration claim",
+    "No bound for rooted snapshots or points outside the supplied held-out observations",
+    "No description of a conservative upper bound as expected error or measured uncertainty"
+  ]
+}

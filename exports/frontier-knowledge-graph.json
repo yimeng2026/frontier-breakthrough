@@ -629,6 +629,42 @@
       "sourceFiles": [
         "validation/rational-parameter-box-stability.json"
       ]
+    },
+    {
+      "id": "claim-rootfree-box-useful-prediction-bound",
+      "kind": "claim",
+      "title": "无根参数盒自动提供有实际用途的预测误差界",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/rational-prediction-box-bounds.json"
+      ]
+    },
+    {
+      "id": "evidence-prediction-box-bounds",
+      "kind": "evidence",
+      "title": "13 折 369 点精确保守上界与两处巨大分母下界驱动界",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/rational-prediction-box-bounds.json"
+      ]
+    },
+    {
+      "id": "experiment-prediction-box-protocol",
+      "kind": "experiment",
+      "title": "固定分子、认证半径和逐点精确预测界协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/rational-prediction-box-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-prediction-box-bounds",
+      "kind": "limitation",
+      "title": "巨大有限上界数学有效但可能无实际信息，且不覆盖分子、连续 x 或统计误差",
+      "status": "active",
+      "sourceFiles": [
+        "validation/rational-prediction-box-bounds.json"
+      ]
     }
   ],
   "edges": [
@@ -885,6 +921,26 @@
     {
       "from": "track-formal",
       "to": "limitation-parameter-box-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "claim-rootfree-box-useful-prediction-bound",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "evidence-prediction-box-bounds",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "experiment-prediction-box-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "limitation-prediction-box-bounds",
       "relation": "contains"
     },
     {
@@ -1175,6 +1231,21 @@
     {
       "from": "limitation-parameter-box-scope",
       "to": "claim-no-positive-rootfree-box",
+      "relation": "limits"
+    },
+    {
+      "from": "experiment-prediction-box-protocol",
+      "to": "claim-rootfree-box-useful-prediction-bound",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-prediction-box-bounds",
+      "to": "claim-rootfree-box-useful-prediction-bound",
+      "relation": "contradicts"
+    },
+    {
+      "from": "limitation-prediction-box-bounds",
+      "to": "claim-rootfree-box-useful-prediction-bound",
       "relation": "limits"
     },
     {

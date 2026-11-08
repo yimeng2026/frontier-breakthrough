@@ -868,6 +868,33 @@
         "validation/rational-parameter-box-protocol-amendment-01.json",
         "validation/rational-parameter-box-stability.json"
       ]
+    },
+    {
+      "id": "rational-prediction-box-bounds",
+      "domain": "math",
+      "title": "认证参数盒内逐点预测与残差上界",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml"
+      ],
+      "metrics": {
+        "fold_count": 15,
+        "bounded_fold_count": 13,
+        "unbounded_rooted_fold_count": 2,
+        "bounded_point_count": 369,
+        "max_prediction_shift_upper_bound_float": 403342293.0314304,
+        "max_absolute_residual_upper_bound_float": 403342296.85740846
+      },
+      "scientificClaim": "13 折共 369 个留出观测获得确定性预测平移与残差上界；无根盒并不保证有用的预测精度，极大有限上界明确保留。",
+      "limitations": "Bounds are deterministic and conservative for every denominator in each certified box at the supplied observation points Numerator coefficients remain fixed; numerator and model-structure errors are outside this bound No probabilistic interval, RMSE bound, calibration, continuous-x error bound or physical measurement uncertainty is claimed Rooted snapshots and cases without a positive denominator certificate do not receive this bound Large finite upper bounds remain valid bounds but may be uninformative for practical prediction",
+      "upstreamContribution": "提供逐点精确有理上界和分母下界，区分定义域安全、预测界宽度和实际预测信息。",
+      "snapshotFiles": [
+        "validation/rational-prediction-box-protocol.json",
+        "validation/rational-prediction-box-bounds.json"
+      ]
     }
   ]
 }

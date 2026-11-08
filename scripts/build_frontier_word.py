@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "box_stability":
+    if REPORT_MODE == "prediction_bounds":
+        replacements = {
+            "图：`papers/15_参数盒预测界/fig15_prediction_box_bounds.png`。": "![](papers/15_参数盒预测界/fig15_prediction_box_bounds.png)\n\n**图 15｜认证参数盒内逐点预测与残差上界**  \n**插入位置**：§3「结果：13 折有界，但信息质量差异巨大」之后；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "13 折逐点保守上界与无根不等于高精度"
+    elif REPORT_MODE == "box_stability":
         replacements = {
             "图：`papers/14_参数盒稳定性/fig14_parameter_box_stability.png`。": "![](papers/14_参数盒稳定性/fig14_parameter_box_stability.png)\n\n**图 14｜连续参数盒无根认证半径**  \n**插入位置**：§3「十五折结果」之后；顺序第 1 幅，共 1 幅。",
         }

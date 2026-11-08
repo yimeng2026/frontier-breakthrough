@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生参数盒预测界_图文完整版.docx",
+  "bytes": 144364,
+  "sha256": "595dac4939946476253b6e206f0fd745bbe0364e96af81acd42edde079118dd4",
+  "native_math_objects": 12,
+  "embedded_images": 1,
+  "native_tables": 3,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

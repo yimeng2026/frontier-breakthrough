@@ -35,7 +35,8 @@
 | 有理模型统一内核与跨数据集综合 | 统一雅可比、根定位、预测区和局部数值诊断；15 折中 13 折符合验收，区分事后重建与前瞻标签 | `scripts/rational_gate.py`、`exports/rational-cross-dataset.json` | 为后续有理模型提供可复用接口，不把折叠计数当作普适检出率 |
 | 精确 Sturm 根隔离 + Z3 + cvc5 | 对十五折有理系数快照精确计数；13 折 unsat、2 折 sat，数值与精确计数全一致 | `scripts/exact_roots.py`、`validation/rational-exact-interval-roots.json`、`validation/exact-interval-smt/` | 提供闭区间根证明与日志，不把 sat 模型或系数快照当作精确物理常数 |
 | 连续参数盒稳定性证明 | 13 折获得正的区域安全半径，11 折达到上限 4，2 折为有限半径括号；跨零区间分段证明 | `scripts/box_stability.py`、`validation/rational-parameter-box-stability.json` | 提供整个系数盒的无根充分证明，不把半径当作置信区或必要最大值 |
-| 主张—证据—反例—实验图谱 | 68 个节点、113 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| 参数盒内逐点预测界 | 13 折共 369 个留出点获得精确预测平移与残差上界；两个有根折不生成同类界 | `scripts/prediction_box_bounds.py`、`validation/rational-prediction-box-bounds.json` | 把无根与预测信息质量分开，巨大有限上界不包装成高精度或概率区间 |
+| 主张—证据—反例—实验图谱 | 72 个节点、120 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 与自动科学发现项目的配合
 

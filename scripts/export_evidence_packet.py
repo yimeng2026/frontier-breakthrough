@@ -42,6 +42,7 @@ def build() -> dict:
     crossDataset = json.loads((ROOT / "exports/rational-cross-dataset.json").read_text(encoding="utf-8"))
     exactRoots = read("rational-exact-interval-roots.json")
     parameterBox = read("rational-parameter-box-stability.json")
+    predictionBounds = read("rational-prediction-box-bounds.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -222,6 +223,15 @@ def build() -> dict:
             "scientificClaim": "13 个无根快照均获得正的连续参数盒无根半径；11 折达到上限 4，Hahn1 第 5 折和 Thurber 第 2 折为有限半径括号。",
             "limitations": " ".join(parameterBox["limitations"]), "upstreamContribution": "提供连续参数区域的精确充分性证明和跨零分段协议，不把下界当作置信区或必要最大半径。",
             "snapshotFiles": ["validation/rational-parameter-box-protocol.json", "validation/rational-parameter-box-protocol-amendment-01.json", "validation/rational-parameter-box-stability.json"],
+        },
+        {
+            "id": "rational-prediction-box-bounds", "domain": "math", "title": "认证参数盒内逐点预测与残差上界",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml"],
+            "metrics": predictionBounds["totals"],
+            "scientificClaim": "13 折共 369 个留出观测获得确定性预测平移与残差上界；无根盒并不保证有用的预测精度，极大有限上界明确保留。",
+            "limitations": " ".join(predictionBounds["limitations"]), "upstreamContribution": "提供逐点精确有理上界和分母下界，区分定义域安全、预测界宽度和实际预测信息。",
+            "snapshotFiles": ["validation/rational-prediction-box-protocol.json", "validation/rational-prediction-box-bounds.json"],
         },
     ]
     packet = {
