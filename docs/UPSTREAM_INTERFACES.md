@@ -73,6 +73,12 @@ summary = run_scoped_external_analysis(PROTOCOL, Path(__file__).resolve())
 
 该适配层只修正文档范围和实现追溯，不改变模型、折分、优化器、半径、协方差、数值界或失败判定。旧协议和旧包装器不回改；下一组新数据必须在自己的前瞻协议中冻结上述字段。
 
+## 极值报告生成门禁
+
+`build_frontier_word.main` 在创建 Word 前调用 `enforce_extreme_reporting_gate`。`maximum_full_composition` 和 `extreme_reporting` 必须先通过 L2 的字段与数值关系检查；`extreme_corpus` 必须先通过全集覆盖、分级和原文哈希保持检查。任何错误都会在 Pandoc、DOCX 写入和视觉处理之前终止，不允许先生成文件再补救。
+
+非极值报告模式不经过这组专用门禁，原有生成流程保持不变。三份相关 Word 均已通过实际门禁重建；验收失败测试覆盖伪造的典型性主张和不完整全集，不需要修改历史原文即可拒绝生成。
+
 ## 与自动科学发现项目的配合
 
 - **Co-Scientist**：把“生成—批评—改进”产生的假设转成本证据包的验证义务；没有原始证据的假设不进入 `verified`。

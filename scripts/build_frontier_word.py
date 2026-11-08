@@ -20,6 +20,21 @@ sys.path.insert(0, str(SHARED))
 from build_total_word import audit_docx_package, normalize_math_commands, paragraph_ancestor, scale_extent  # noqa: E402
 
 
+def enforce_extreme_reporting_gate(summary=None, corpus_text=None):
+    if REPORT_MODE in {"maximum_full_composition", "extreme_reporting"}:
+        from validate_extreme_reporting import validate_report
+        if summary is None:
+            summary = json.loads((ROOT / "exports/maximum-full-composition-audit.json").read_text(encoding="utf-8"))
+        errors = validate_report(summary, "mechanism_interpretation")
+    elif REPORT_MODE == "extreme_corpus":
+        from validate_extreme_corpus import validate_corpus
+        errors = validate_corpus(corpus_text=corpus_text)
+    else:
+        return
+    if errors:
+        raise ValueError({"report_mode": REPORT_MODE, "errors": errors})
+
+
 def prepare_frontier_markdown(source):
     source = normalize_math_commands(source.replace("\r\n", "\n").replace("\r", "\n"))
     heading = f"# {TITLE}\n"
@@ -190,6 +205,7 @@ toc-title: "目录"
 
 
 def main():
+    enforce_extreme_reporting_gate()
     from docx import Document  # noqa: F401
     from docx.enum.table import WD_TABLE_ALIGNMENT
     from docx.enum.text import WD_ALIGN_PARAGRAPH
