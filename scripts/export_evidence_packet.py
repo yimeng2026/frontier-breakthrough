@@ -35,6 +35,8 @@ def build() -> dict:
     z3Hahn1 = read("z3-hahn1-denominator.json")
     cvc5Hahn1 = read("cvc5-hahn1-denominator.json")
     groupedStress = read("grouped-stress.json")
+    identifiability = read("hahn1-fold1-identifiability.json")
+    denominatorRoots = read("hahn1-frozen-denominator-roots.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -161,6 +163,15 @@ def build() -> dict:
             "scientificClaim": "Chwirut 和 Eckerle4 五折均不劣于基线；Hahn1 第 1 折显著失效，因此整体不能称为稳健支持。",
             "limitations": " ".join(groupedStress["limitations"]), "upstreamContribution": "提供15折连续区间压力诊断、全部失败区间、基线对照和防泄漏协议。",
             "snapshotFiles": ["validation/grouped-stress-protocol.json", "validation/grouped-stress.json"],
+        },
+        {
+            "id": "hahn1-fold1-identifiability-and-poles", "domain": "physics", "title": "Hahn1 第 1 折局部可识别性与双极点诊断",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Hahn1.dat"],
+            "metrics": {"fold1TrainingRmse": identifiability["folds"][0]["training_metrics"]["rmse"], "fold1TestRmse": identifiability["folds"][0]["test_metrics"]["rmse"], "fold1ScaledConditionNumber": identifiability["folds"][0]["training_jacobian"]["scaled_condition_number"], "allFoldNumericalRanks": [fold["training_jacobian"]["numerical_rank"] for fold in identifiability["folds"]], "fold1MaxParameterCorrelation": identifiability["folds"][0]["training_jacobian"]["max_absolute_off_diagonal_parameter_correlation"], "fold1MaxLocalPredictionSd": identifiability["folds"][0]["held_out_prediction_sensitivity"]["max_local_standard_deviation"], "fold1MinAbsDenominatorHeldOut": identifiability["folds"][0]["denominator"]["min_absolute_on_held_out_points"], "fold1HeldOutPoles": [{"rootX": root["root_x"], "numeratorAtRoot": root["numerator_at_root"], "denominatorDerivativeAtRoot": root["denominator_derivative_at_root"]} for root in denominatorRoots["folds"][0]["real_roots"] if root["within_held_out_closed_interval"]], "fold1FailureReversed": identifiability["decision"]["fold_1_failure_reversed"]},
+            "scientificClaim": "五折均为数值满秩；第 1 折在约 45.526978 K 和 72.131671 K 有两个留出区数值单极点，近根位置出现巨大预测与残差，支持局部失效机制解释。",
+            "limitations": " ".join(identifiability["limitations"] + denominatorRoots["limitations"]), "upstreamContribution": "提供逐折解析雅可比、局部敏感度、数值根及根处分子和导数，形成预测区极点排除与可识别性验收义务。",
+            "snapshotFiles": ["validation/hahn1-fold1-identifiability-protocol.json", "validation/hahn1-fold1-identifiability.json", "validation/hahn1-frozen-denominator-roots-protocol.json", "validation/hahn1-frozen-denominator-roots.json"],
         },
     ]
     packet = {

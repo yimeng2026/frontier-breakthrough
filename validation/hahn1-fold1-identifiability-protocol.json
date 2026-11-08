@@ -1,0 +1,43 @@
+{
+  "status": "frozen_before_post_hoc_identifiability_diagnostics",
+  "frozen_at_local": "2026-11-08T23:38:08+08:00",
+  "analysis_type": "Post-hoc mechanism diagnosis after the grouped stress test; not preregistered and not independent validation",
+  "scientific_question": "Which measurable local-identifiability and extrapolation diagnostics accompany Hahn1 fold 1 failure, and how do they differ from folds 2-5 without refitting or changing the model?",
+  "inputs": {
+    "raw_data_file": "data/Hahn1.dat",
+    "raw_data_sha256": "7e885af48e18a222033a66cb22b491f0f5bc761b652142c0d9b28132daf63956",
+    "grouped_stress_file": "validation/grouped-stress.json",
+    "grouped_stress_sha256": "1e8bf9beeca449919182322cb9246d6079f10fbaf5d211be31d389d0360f721d",
+    "fold_rule_file": "validation/grouped-stress-protocol.json"
+  },
+  "model": {
+    "equation": "y = (b1+b2*x+b3*x^2+b4*x^3)/(1+b5*x+b6*x^2+b7*x^3) + e",
+    "parameters": "Reuse the exact seven parameters recorded for each grouped-stress fold",
+    "refit": false,
+    "new_model_or_parameters": false,
+    "new_holdout_selection": false
+  },
+  "diagnostics": {
+    "training_jacobian": "Analytic derivatives at each fold's frozen training fit: derivatives of b1-b4 are x^(i-1)/D; derivatives of b5-b7 are -prediction*x^(i-4)/D",
+    "column_scaling": "Divide each Jacobian column by its Euclidean norm before singular-value analysis; report raw and scaled singular values separately",
+    "numerical_rank_rule": "Singular values greater than max(matrix shape)*machine_epsilon*largest_singular_value; numerical rank is not equated with global structural identifiability",
+    "local_linearized_covariance": "sigma2 = training residual sum of squares/(n-7); use the column-scaled Jacobian pseudo-inverse with rcond=1e-12, then transform back to parameter units",
+    "parameter_correlation": "Covariance divided by products of local linearized standard errors; inspect rather than threshold retrospectively",
+    "prediction_sensitivity": "Local delta-method prediction standard deviation on every held-out point from the training Jacobian and training residual variance; this is a local sensitivity diagnostic, not a calibrated prediction interval",
+    "denominator": "Minimum absolute denominator on fitting and held-out observations, reported separately from conditioning and prediction error",
+    "controls": "Report all five folds; compare fold 1 with folds 2-5 without deleting failures or selecting a more favorable split"
+  },
+  "output_rule": {
+    "summary": "validation/hahn1-fold1-identifiability.json",
+    "figure": "papers/09_Hahn1失效机制/fig09_hahn1_fold1_identifiability.png",
+    "retain_per_point_fold1_records": true,
+    "refuse_overwrite": true
+  },
+  "prohibitions": [
+    "No refitting, model changes, added parameters, retuned starts or new slice selection",
+    "No claim that a high condition number alone proves global non-identifiability",
+    "No claim that full numerical rank proves physically meaningful or globally identifiable parameters",
+    "No interpretation of delta-method sensitivity as a calibrated uncertainty interval or independent experimental error",
+    "No use of post-hoc explanation to reverse or conceal the fold 1 failure"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "frozen_before_exploratory_root_localization",
+  "frozen_at_local": "2026-11-08T23:42:48+08:00",
+  "analysis_type": "Exploratory follow-up after observing a near-zero held-out denominator; not preregistered and not independent validation",
+  "trigger": "The completed local-identifiability diagnostic found a minimum absolute held-out denominator of 0.00039998906362274933 in fold 1",
+  "inputs": {
+    "diagnostic_file": "validation/hahn1-fold1-identifiability.json",
+    "diagnostic_sha256": "3ef5b98effcae91afe91d46446fa1392a584996375e827f103936b652fefddfb",
+    "raw_data_file": "data/Hahn1.dat",
+    "raw_data_sha256": "7e885af48e18a222033a66cb22b491f0f5bc761b652142c0d9b28132daf63956"
+  },
+  "method": {
+    "parameter_rule": "Reuse every frozen fold parameter vector; no refitting or parameter adjustment",
+    "root_rule": "Numerically solve D(x)=1+b5*x+b6*x^2+b7*x^3 with numpy.roots using coefficient order b7,b6,b5,1",
+    "real_root_rule": "Absolute imaginary part below 1e-8, matching the earlier Hahn1 denominator audit convention",
+    "root_checks": "Report numerator, denominator residual and denominator derivative at every numerical real root; locate roots relative to held-out ranges and nearest training observations",
+    "scope": "Numerical root localization only, not an exact algebraic proof or a certified global pole analysis"
+  },
+  "output": "validation/hahn1-frozen-denominator-roots.json",
+  "prohibitions": [
+    "No cancellation assumption when numerator and denominator both vanish",
+    "No use of the certified full-fit denominator proof as evidence about different fold-specific coefficients",
+    "No reversal of fold 1 failure and no new model selection"
+  ]
+}

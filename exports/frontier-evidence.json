@@ -558,6 +558,54 @@
         "validation/grouped-stress-protocol.json",
         "validation/grouped-stress.json"
       ]
+    },
+    {
+      "id": "hahn1-fold1-identifiability-and-poles",
+      "domain": "physics",
+      "title": "Hahn1 第 1 折局部可识别性与双极点诊断",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Hahn1.dat"
+      ],
+      "metrics": {
+        "fold1TrainingRmse": 0.07978941782993001,
+        "fold1TestRmse": 354.02266177305074,
+        "fold1ScaledConditionNumber": 7005.118518341644,
+        "allFoldNumericalRanks": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "fold1MaxParameterCorrelation": 0.9995253191872268,
+        "fold1MaxLocalPredictionSd": 1402718.0207284007,
+        "fold1MinAbsDenominatorHeldOut": 0.00039998906362274933,
+        "fold1HeldOutPoles": [
+          {
+            "rootX": 45.52697791771662,
+            "numeratorAtRoot": 4.700363920720648,
+            "denominatorDerivativeAtRoot": -0.007883305163558533
+          },
+          {
+            "rootX": 72.131671472642,
+            "numeratorAtRoot": 0.6985639085300439,
+            "denominatorDerivativeAtRoot": 0.007755819938373381
+          }
+        ],
+        "fold1FailureReversed": false
+      },
+      "scientificClaim": "五折均为数值满秩；第 1 折在约 45.526978 K 和 72.131671 K 有两个留出区数值单极点，近根位置出现巨大预测与残差，支持局部失效机制解释。",
+      "limitations": "This is post-hoc diagnosis after observing fold 1 failure, not preregistered or independent validation Local Jacobians, covariances and delta-method sensitivities do not prove global structural identifiability or calibrated uncertainty Column-normalized condition numbers reduce unit-scale dominance but do not remove nonlinear parameter compensation A nonzero denominator excludes isolated poles only at evaluated points and does not guarantee stable extrapolation No new physical experiment, model revision or parameter-endogeneity claim is produced Numerical roots and residuals are not exact algebraic certificates A simple-pole diagnosis requires the reported nonzero numerator and derivative at the numerical root; no removable singularity is assumed The earlier certified full-fit denominator proof applies to different coefficients and cannot be transferred to these fold fits Root localization is post-hoc mechanism evidence and does not make the failed fold successful",
+      "upstreamContribution": "提供逐折解析雅可比、局部敏感度、数值根及根处分子和导数，形成预测区极点排除与可识别性验收义务。",
+      "snapshotFiles": [
+        "validation/hahn1-fold1-identifiability-protocol.json",
+        "validation/hahn1-fold1-identifiability.json",
+        "validation/hahn1-frozen-denominator-roots-protocol.json",
+        "validation/hahn1-frozen-denominator-roots.json"
+      ]
     }
   ]
 }

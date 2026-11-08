@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生Hahn1失效机制诊断_图文完整版.docx",
+  "bytes": 281979,
+  "sha256": "3d2e90a2fd88350a5ff7245e0b5847b75fa75929b475b0454e5229b5d74cb57c",
+  "native_math_objects": 14,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

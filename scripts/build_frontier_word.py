@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "stress":
+    if REPORT_MODE == "mechanism":
+        replacements = {
+            "图：`papers/09_Hahn1失效机制/fig09_hahn1_fold1_identifiability.png`。": "![](papers/09_Hahn1失效机制/fig09_hahn1_fold1_identifiability.png)\n\n**图 09｜Hahn1 第 1 折局部条件、预测敏感度与双极点**  \n**插入位置**：§4「失效链条与不可转移的证明」之后；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "局部可识别性、两个低温极点与不可转移的分母证明"
+    elif REPORT_MODE == "stress":
         replacements = {
             "图：`papers/08_跨数据集压力测试/fig08_grouped_stress.png`。": "![](papers/08_跨数据集压力测试/fig08_grouped_stress.png)\n\n**图 08｜跨数据集连续区间压力测试**  \n**插入位置**：§3「全部 15 折结果」之后；顺序第 1 幅，共 1 幅。",
         }

@@ -1,0 +1,3150 @@
+{
+  "status": "computed_post_hoc_hahn1_local_identifiability_diagnostics",
+  "protocol_sha256": "460707f74e0e0b0e0e1fa3ebe84df92d542bd6e28ff9f30990c8407cef3d152e",
+  "grouped_stress_sha256": "1e8bf9beeca449919182322cb9246d6079f10fbaf5d211be31d389d0360f721d",
+  "data_sha256": "7e885af48e18a222033a66cb22b491f0f5bc761b652142c0d9b28132daf63956",
+  "analysis_scope": {
+    "post_hoc": true,
+    "preregistered": false,
+    "refit": false,
+    "new_model_or_parameters": false,
+    "new_holdout_selection": false,
+    "independent_validation": false
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "train_count": 189,
+      "test_count": 47,
+      "model_parameters": {
+        "b1": 29.67033956061389,
+        "b2": -0.8080529397121834,
+        "b3": 0.005817644316126608,
+        "b4": -2.5436805200085647e-06,
+        "b5": -0.03642001152406116,
+        "b6": 0.0003257043076452197,
+        "b7": -1.801122840443873e-07
+      },
+      "training_metrics": {
+        "rmse": 0.07978941782993001,
+        "mae": 0.06010543846158294,
+        "max_absolute_residual": 0.25401140279927503
+      },
+      "test_metrics": {
+        "rmse": 354.02266177305074,
+        "mae": 149.8200750105823,
+        "max_absolute_residual": 1754.7576968011763
+      },
+      "baseline_test_metrics": {
+        "rmse": 5.341736844196082,
+        "mae": 4.988607943466386,
+        "max_absolute_residual": 7.142057930373076
+      },
+      "model_not_worse_than_baseline": false,
+      "interval": {
+        "regime": "low_x_extrapolation",
+        "train_x_min": 94.88,
+        "train_x_max": 851.61,
+        "test_x_min": 14.13,
+        "test_x_max": 94.33,
+        "extrapolation_distance_x": 0.5499999999999972
+      },
+      "training_jacobian": {
+        "shape": [
+          189,
+          7
+        ],
+        "parameter_count": 7,
+        "raw_singular_values": [
+          760188384.1217221,
+          5227341.811826138,
+          177829.62453134742,
+          17017.674150902596,
+          318.36913426600415,
+          3.3666521303622954,
+          0.012054180691417402
+        ],
+        "scaled_singular_values": [
+          2.305328763015123,
+          1.2622582729207799,
+          0.29757657970105916,
+          0.05915878870780585,
+          0.010430182828708555,
+          0.00169315529268721,
+          0.0003290920427654484
+        ],
+        "scaled_condition_number": 7005.118518341644,
+        "numerical_rank": 7,
+        "numerical_rank_tolerance": 9.674641892273477e-14,
+        "column_norms": [
+          8.49611547023413,
+          900.2684469653946,
+          122880.00235422624,
+          40620227.91650838,
+          10171.661928891652,
+          1770315.8312268716,
+          759118293.9642484
+        ],
+        "training_residual_variance_estimate": 0.006611210859086813,
+        "parameter_correlation_matrix": [
+          [
+            0.9999999999999999,
+            -0.9915664977701908,
+            0.8857285286051249,
+            -0.8675906760248757,
+            -0.9984274581126309,
+            0.8794592383319715,
+            -0.8628719243213502
+          ],
+          [
+            -0.9915664977701908,
+            1.0,
+            -0.9381673355463058,
+            0.9173974298486619,
+            0.9957551949037682,
+            -0.9336726186281419,
+            0.9169786600290232
+          ],
+          [
+            0.8857285286051249,
+            -0.9381673355463058,
+            1.0,
+            -0.9805987442345183,
+            -0.9033925017278908,
+            0.9995253191872268,
+            -0.9895636710171015
+          ],
+          [
+            -0.8675906760248757,
+            0.9173974298486617,
+            -0.9805987442345182,
+            1.0,
+            0.8789907826795136,
+            -0.9749993790510015,
+            0.9979322670704389
+          ],
+          [
+            -0.9984274581126309,
+            0.9957551949037682,
+            -0.9033925017278908,
+            0.8789907826795136,
+            1.0,
+            -0.8985970200148253,
+            0.877424061924982
+          ],
+          [
+            0.8794592383319715,
+            -0.9336726186281421,
+            0.9995253191872268,
+            -0.9749993790510015,
+            -0.8985970200148254,
+            1.0,
+            -0.9859081432142716
+          ],
+          [
+            -0.8628719243213502,
+            0.9169786600290232,
+            -0.9895636710171014,
+            0.9979322670704389,
+            0.877424061924982,
+            -0.9859081432142714,
+            1.0
+          ]
+        ],
+        "max_absolute_off_diagonal_parameter_correlation": 0.9995253191872268,
+        "parameters": [
+          {
+            "name": "b1",
+            "value": 29.67033956061389,
+            "local_standard_error": 6.742787872346708,
+            "absolute_relative_standard_error": 0.22725684883288194
+          },
+          {
+            "name": "b2",
+            "value": -0.8080529397121834,
+            "local_standard_error": 0.18637149214643967,
+            "absolute_relative_standard_error": 0.23064267572966501
+          },
+          {
+            "name": "b3",
+            "value": 0.005817644316126608,
+            "local_standard_error": 0.0010332281256553856,
+            "absolute_relative_standard_error": 0.17760249157743452
+          },
+          {
+            "name": "b4",
+            "value": -2.5436805200085647e-06,
+            "local_standard_error": 7.392414540212495e-07,
+            "absolute_relative_standard_error": 0.2906188289788689
+          },
+          {
+            "name": "b5",
+            "value": -0.03642001152406116,
+            "local_standard_error": 0.007340126362154572,
+            "absolute_relative_standard_error": 0.20154102250366565
+          },
+          {
+            "name": "b6",
+            "value": 0.0003257043076452197,
+            "local_standard_error": 5.195578916106901e-05,
+            "absolute_relative_standard_error": 0.1595182745254415
+          },
+          {
+            "name": "b7",
+            "value": -1.801122840443873e-07,
+            "local_standard_error": 4.004933448201288e-08,
+            "absolute_relative_standard_error": 0.2223575959546603
+          }
+        ],
+        "interpretation": "Local linearization at the frozen fit; rank and conditioning do not establish or refute global structural identifiability"
+      },
+      "held_out_prediction_sensitivity": {
+        "median_local_standard_deviation": 193.94378370043495,
+        "max_local_standard_deviation": 1402718.0207284007,
+        "interpretation": "Delta-method local sensitivity propagated from the fitting design, not a calibrated prediction interval"
+      },
+      "denominator": {
+        "min_absolute_on_training_points": 0.3226899914316279,
+        "min_absolute_on_held_out_points": 0.00039998906362274933,
+        "all_finite_on_training_and_held_out_points": true
+      },
+      "held_out_points": [
+        {
+          "source_index": 1,
+          "x": 24.41,
+          "y": 0.591,
+          "model_prediction": 44.22458959547585,
+          "residual": -43.63358959547585,
+          "local_linearized_prediction_standard_deviation": 31.47696803189197,
+          "denominator": 0.3024381410557424
+        },
+        {
+          "source_index": 2,
+          "x": 34.82,
+          "y": 1.547,
+          "model_prediction": 71.17368132630057,
+          "residual": -69.62668132630057,
+          "local_linearized_prediction_standard_deviation": 132.6278310518442,
+          "denominator": 0.11914587254673924
+        },
+        {
+          "source_index": 3,
+          "x": 44.09,
+          "y": 2.902,
+          "model_prediction": 429.6379211901191,
+          "residual": -426.7359211901191,
+          "local_linearized_prediction_standard_deviation": 8646.586809721755,
+          "denominator": 0.01195042202222213
+        },
+        {
+          "source_index": 4,
+          "x": 45.07,
+          "y": 2.894,
+          "model_prediction": 1319.3474505086233,
+          "residual": -1316.4534505086233,
+          "local_linearized_prediction_standard_deviation": 87649.73398684186,
+          "denominator": 0.003665392843016861
+        },
+        {
+          "source_index": 5,
+          "x": 54.98,
+          "y": 4.703,
+          "model_prediction": -50.37875647426221,
+          "residual": 55.081756474262214,
+          "local_linearized_prediction_standard_deviation": 307.28596459500653,
+          "denominator": -0.04776662492548987
+        },
+        {
+          "source_index": 6,
+          "x": 65.51,
+          "y": 6.307,
+          "model_prediction": -25.468031510775496,
+          "residual": 31.7750315107755,
+          "local_linearized_prediction_standard_deviation": 243.420955844708,
+          "denominator": -0.03873212978778575
+        },
+        {
+          "source_index": 7,
+          "x": 70.53,
+          "y": 7.03,
+          "model_prediction": -62.09799283311811,
+          "residual": 69.12799283311811,
+          "local_linearized_prediction_standard_deviation": 1856.8515714003788,
+          "denominator": -0.011685975053478834
+        },
+        {
+          "source_index": 8,
+          "x": 75.7,
+          "y": 7.898,
+          "model_prediction": 23.476591702306113,
+          "residual": -15.578591702306113,
+          "local_linearized_prediction_standard_deviation": 168.28947433673494,
+          "denominator": 0.03131804020209583
+        },
+        {
+          "source_index": 9,
+          "x": 89.57,
+          "y": 9.47,
+          "model_prediction": 9.656829648709978,
+          "residual": -0.18682964870997765,
+          "local_linearized_prediction_standard_deviation": 0.5832414682190991,
+          "denominator": 0.22148632979311791
+        },
+        {
+          "source_index": 10,
+          "x": 91.14,
+          "y": 9.484,
+          "model_prediction": 9.700024781082005,
+          "residual": -0.2160247810820053,
+          "local_linearized_prediction_standard_deviation": 0.3254573627656316,
+          "denominator": 0.2497880585055582
+        },
+        {
+          "source_index": 57,
+          "x": 20.15,
+          "y": 0.367,
+          "model_prediction": 39.62988070807539,
+          "residual": -39.26288070807539,
+          "local_linearized_prediction_standard_deviation": 21.482448452507057,
+          "denominator": 0.3969064827981034
+        },
+        {
+          "source_index": 58,
+          "x": 28.78,
+          "y": 0.796,
+          "model_prediction": 51.411980051927976,
+          "residual": -50.61598005192798,
+          "local_linearized_prediction_standard_deviation": 51.29015624944172,
+          "denominator": 0.21731562631993975
+        },
+        {
+          "source_index": 59,
+          "x": 29.57,
+          "y": 0.892,
+          "model_prediction": 53.13784425697053,
+          "residual": -52.24584425697053,
+          "local_linearized_prediction_standard_deviation": 56.816196370494936,
+          "denominator": 0.20319428346769183
+        },
+        {
+          "source_index": 60,
+          "x": 37.41,
+          "y": 1.903,
+          "model_prediction": 88.76847760882116,
+          "residual": -86.86547760882115,
+          "local_linearized_prediction_standard_deviation": 238.69957611069313,
+          "denominator": 0.08392329929717689
+        },
+        {
+          "source_index": 61,
+          "x": 39.12,
+          "y": 2.15,
+          "model_prediction": 108.24324122417126,
+          "residual": -106.09324122417125,
+          "local_linearized_prediction_standard_deviation": 393.3867021117602,
+          "denominator": 0.06291567694480538
+        },
+        {
+          "source_index": 62,
+          "x": 50.24,
+          "y": 3.697,
+          "model_prediction": -112.68812761450947,
+          "residual": 116.38512761450947,
+          "local_linearized_prediction_standard_deviation": 975.8921035413581,
+          "denominator": -0.030484742181012416
+        },
+        {
+          "source_index": 63,
+          "x": 61.38,
+          "y": 5.87,
+          "model_prediction": -28.02600733684681,
+          "residual": 33.89600733684681,
+          "local_linearized_prediction_standard_deviation": 191.45495735774472,
+          "denominator": -0.05001875642766285
+        },
+        {
+          "source_index": 64,
+          "x": 66.25,
+          "y": 6.421,
+          "model_prediction": -26.112171150174657,
+          "residual": 32.53317115017466,
+          "local_linearized_prediction_standard_deviation": 272.83173595608383,
+          "denominator": -0.035661420444322404
+        },
+        {
+          "source_index": 65,
+          "x": 73.42,
+          "y": 7.422,
+          "model_prediction": 66.52647018667436,
+          "residual": -59.10447018667436,
+          "local_linearized_prediction_standard_deviation": 1835.0884374666539,
+          "denominator": 0.010467568821804801
+        },
+        {
+          "source_index": 106,
+          "x": 14.13,
+          "y": 0.08,
+          "model_prediction": 35.291304854515886,
+          "residual": -35.21130485451589,
+          "local_linearized_prediction_standard_deviation": 13.918309668494,
+          "denominator": 0.5499062254162906
+        },
+        {
+          "source_index": 107,
+          "x": 20.41,
+          "y": 0.248,
+          "model_prediction": 39.864967718249204,
+          "residual": -39.61696771824921,
+          "local_linearized_prediction_standard_deviation": 21.943912946780994,
+          "denominator": 0.3908142468493758
+        },
+        {
+          "source_index": 108,
+          "x": 31.3,
+          "y": 1.089,
+          "model_prediction": 57.595769389415075,
+          "residual": -56.506769389415076,
+          "local_linearized_prediction_standard_deviation": 72.47901289183294,
+          "denominator": 0.17361987588254568
+        },
+        {
+          "source_index": 109,
+          "x": 33.84,
+          "y": 1.418,
+          "model_prediction": 66.56362358666458,
+          "residual": -65.14562358666457,
+          "local_linearized_prediction_standard_deviation": 110.09553211314828,
+          "denominator": 0.13354600274737383
+        },
+        {
+          "source_index": 110,
+          "x": 39.7,
+          "y": 2.278,
+          "model_prediction": 117.45883875497005,
+          "residual": -115.18083875497004,
+          "local_linearized_prediction_standard_deviation": 480.28579497575276,
+          "denominator": 0.05619507989187342
+        },
+        {
+          "source_index": 111,
+          "x": 48.83,
+          "y": 3.624,
+          "model_prediction": -166.4471098702382,
+          "residual": 170.0711098702382,
+          "local_linearized_prediction_standard_deviation": 1883.498516644905,
+          "denominator": -0.02276018607333974
+        },
+        {
+          "source_index": 112,
+          "x": 54.5,
+          "y": 4.574,
+          "model_prediction": -53.61099352503108,
+          "residual": 58.184993525031075,
+          "local_linearized_prediction_standard_deviation": 331.3414299385048,
+          "denominator": -0.046623737164834284
+        },
+        {
+          "source_index": 113,
+          "x": 60.41,
+          "y": 5.556,
+          "model_prediction": -29.78632304399066,
+          "residual": 35.34232304399066,
+          "local_linearized_prediction_standard_deviation": 193.94378370043495,
+          "denominator": -0.05122523861382923
+        },
+        {
+          "source_index": 114,
+          "x": 72.77,
+          "y": 7.267,
+          "model_prediction": 137.20521165056087,
+          "residual": -129.93821165056087,
+          "local_linearized_prediction_standard_deviation": 8262.804270176908,
+          "denominator": 0.00506754578265628
+        },
+        {
+          "source_index": 115,
+          "x": 75.25,
+          "y": 7.695,
+          "model_prediction": 26.818877988409294,
+          "residual": -19.123877988409294,
+          "local_linearized_prediction_standard_deviation": 236.24121551994162,
+          "denominator": 0.0269678772018955
+        },
+        {
+          "source_index": 116,
+          "x": 86.84,
+          "y": 9.136,
+          "model_prediction": 9.714272758141801,
+          "residual": -0.5782727581418019,
+          "local_linearized_prediction_standard_deviation": 1.4937836588681255,
+          "denominator": 0.1755315213834591
+        },
+        {
+          "source_index": 144,
+          "x": 18.97,
+          "y": 0.214,
+          "model_prediction": 38.62173126869967,
+          "residual": -38.40773126869967,
+          "local_linearized_prediction_standard_deviation": 19.564015713970196,
+          "denominator": 0.4250910791285965
+        },
+        {
+          "source_index": 145,
+          "x": 28.93,
+          "y": 0.943,
+          "model_prediction": 51.72687852780333,
+          "residual": -50.78387852780333,
+          "local_linearized_prediction_standard_deviation": 52.27611569844919,
+          "denominator": 0.21460460021544658
+        },
+        {
+          "source_index": 146,
+          "x": 33.91,
+          "y": 1.429,
+          "model_prediction": 66.866890756787,
+          "residual": -65.437890756787,
+          "local_linearized_prediction_standard_deviation": 111.51095582612795,
+          "denominator": 0.13249785145561147
+        },
+        {
+          "source_index": 147,
+          "x": 40.03,
+          "y": 2.241,
+          "model_prediction": 123.57389423091234,
+          "residual": -121.33289423091234,
+          "local_linearized_prediction_standard_deviation": 542.8131687200927,
+          "denominator": 0.05246267259167591
+        },
+        {
+          "source_index": 148,
+          "x": 44.66,
+          "y": 2.951,
+          "model_prediction": 702.3697686892327,
+          "residual": -699.4187686892327,
+          "local_linearized_prediction_standard_deviation": 24093.85595241372,
+          "denominator": 0.007061094206995848
+        },
+        {
+          "source_index": 149,
+          "x": 49.87,
+          "y": 3.782,
+          "model_prediction": -123.398485539893,
+          "residual": 127.180485539893,
+          "local_linearized_prediction_standard_deviation": 1132.5494586908153,
+          "denominator": -0.028572739406007967
+        },
+        {
+          "source_index": 150,
+          "x": 55.16,
+          "y": 4.757,
+          "model_prediction": -49.255441963088934,
+          "residual": 54.01244196308893,
+          "local_linearized_prediction_standard_deviation": 299.23197378002084,
+          "denominator": -0.04816003702193751
+        },
+        {
+          "source_index": 151,
+          "x": 60.9,
+          "y": 5.602,
+          "model_prediction": -28.843462515151366,
+          "residual": 34.44546251515136,
+          "local_linearized_prediction_standard_deviation": 192.1585698040181,
+          "denominator": -0.05068464500502502
+        },
+        {
+          "source_index": 152,
+          "x": 72.08,
+          "y": 7.169,
+          "model_prediction": -1747.5886968011762,
+          "residual": 1754.7576968011763,
+          "local_linearized_prediction_standard_deviation": 1402718.0207284007,
+          "denominator": -0.00039998906362274933
+        },
+        {
+          "source_index": 153,
+          "x": 85.15,
+          "y": 8.92,
+          "model_prediction": 9.889562888208655,
+          "residual": -0.9695628882086549,
+          "local_linearized_prediction_standard_deviation": 2.644568318909913,
+          "denominator": 0.1491643491504126
+        },
+        {
+          "source_index": 178,
+          "x": 21.46,
+          "y": 0.375,
+          "model_prediction": 40.86691321594768,
+          "residual": -40.49191321594768,
+          "local_linearized_prediction_standard_deviation": 23.970743799720648,
+          "denominator": 0.3666436274517886
+        },
+        {
+          "source_index": 179,
+          "x": 24.33,
+          "y": 0.471,
+          "model_prediction": 44.121004838066796,
+          "residual": -43.6500048380668,
+          "local_linearized_prediction_standard_deviation": 31.228867878467767,
+          "denominator": 0.3041074281148664
+        },
+        {
+          "source_index": 180,
+          "x": 33.43,
+          "y": 1.504,
+          "model_prediction": 64.85847745732619,
+          "residual": -63.35447745732619,
+          "local_linearized_prediction_standard_deviation": 102.31216149671508,
+          "denominator": 0.13974568677072519
+        },
+        {
+          "source_index": 181,
+          "x": 39.22,
+          "y": 2.204,
+          "model_prediction": 109.71071235636903,
+          "residual": -107.50671235636904,
+          "local_linearized_prediction_standard_deviation": 406.6345607497955,
+          "denominator": 0.06174234001001508
+        },
+        {
+          "source_index": 182,
+          "x": 44.18,
+          "y": 2.813,
+          "model_prediction": 457.351735310517,
+          "residual": -454.538735310517,
+          "local_linearized_prediction_standard_deviation": 9862.362737425316,
+          "denominator": 0.011165386775891753
+        },
+        {
+          "source_index": 183,
+          "x": 55.02,
+          "y": 4.765,
+          "model_prediction": -50.12516723004678,
+          "residual": 54.89016723004678,
+          "local_linearized_prediction_standard_deviation": 305.4537239590071,
+          "denominator": -0.04785570719480357
+        },
+        {
+          "source_index": 184,
+          "x": 94.33,
+          "y": 9.835,
+          "model_prediction": 9.88133905900884,
+          "residual": -0.04633905900883839,
+          "local_linearized_prediction_standard_deviation": 0.07456005963397357,
+          "denominator": 0.31148626329784757
+        }
+      ]
+    },
+    {
+      "fold": 2,
+      "train_count": 188,
+      "test_count": 48,
+      "model_parameters": {
+        "b1": 1.1161010904499564,
+        "b2": -0.12434032926136562,
+        "b3": 0.004077308358324354,
+        "b4": -1.2924152593606815e-06,
+        "b5": -0.006109190089247961,
+        "b6": 0.00024187473474873258,
+        "b7": -1.1841997430982739e-07
+      },
+      "training_metrics": {
+        "rmse": 0.07778578940149217,
+        "mae": 0.05894877475919546,
+        "max_absolute_residual": 0.24390355909941874
+      },
+      "test_metrics": {
+        "rmse": 0.09536628127442646,
+        "mae": 0.0696529695424117,
+        "max_absolute_residual": 0.3001303645182247
+      },
+      "baseline_test_metrics": {
+        "rmse": 2.204274385446384,
+        "mae": 2.149073929199904,
+        "max_absolute_residual": 2.7703628821446173
+      },
+      "model_not_worse_than_baseline": true,
+      "interval": {
+        "regime": "contiguous_gap_with_training_on_both_sides",
+        "train_x_min": 14.13,
+        "train_x_max": 851.61,
+        "test_x_min": 94.88,
+        "test_x_max": 220.55,
+        "extrapolation_distance_x": 0.0
+      },
+      "training_jacobian": {
+        "shape": [
+          188,
+          7
+        ],
+        "parameter_count": 7,
+        "raw_singular_values": [
+          711644020.8173902,
+          2597460.226015984,
+          111755.105450815,
+          8408.680805190617,
+          348.4695170595229,
+          24.35495654936443,
+          0.4174140932690001
+        ],
+        "scaled_singular_values": [
+          2.2576460295628604,
+          1.2472895564325819,
+          0.5637305075122561,
+          0.15754780406637225,
+          0.06733443110585928,
+          0.01221220648673617,
+          0.0025900477755438035
+        ],
+        "scaled_condition_number": 871.6619248804581,
+        "numerical_rank": 7,
+        "numerical_rank_tolerance": 9.424404669063197e-14,
+        "column_norms": [
+          5.520185417056783,
+          292.5210736541085,
+          69481.4082550473,
+          36880816.2850132,
+          3138.952858659607,
+          1251509.8827903501,
+          710691357.7639445
+        ],
+        "training_residual_variance_estimate": 0.006284631260601652,
+        "parameter_correlation_matrix": [
+          [
+            1.0,
+            -0.9735770584877805,
+            0.9117950020408886,
+            -0.7510646985370443,
+            0.12912986411275312,
+            0.9341915326717556,
+            -0.7979828618030295
+          ],
+          [
+            -0.9735770584877805,
+            0.9999999999999999,
+            -0.979080284338658,
+            0.8418228054308675,
+            -0.3020509304476637,
+            -0.9894443387280223,
+            0.8826895627363573
+          ],
+          [
+            0.9117950020408888,
+            -0.979080284338658,
+            1.0,
+            -0.9065019191705228,
+            0.4803479940831645,
+            0.9933359954826688,
+            -0.9361197840748225
+          ],
+          [
+            -0.7510646985370443,
+            0.8418228054308674,
+            -0.9065019191705228,
+            1.0,
+            -0.6600237114877073,
+            -0.8566712148580964,
+            0.9960183213529016
+          ],
+          [
+            0.12912986411275312,
+            -0.3020509304476637,
+            0.4803479940831644,
+            -0.6600237114877073,
+            1.0,
+            0.39138426431102175,
+            -0.6130510004407764
+          ],
+          [
+            0.9341915326717556,
+            -0.9894443387280223,
+            0.9933359954826688,
+            -0.8566712148580964,
+            0.39138426431102175,
+            1.0,
+            -0.8956964155000395
+          ],
+          [
+            -0.7979828618030295,
+            0.8826895627363573,
+            -0.9361197840748225,
+            0.9960183213529016,
+            -0.6130510004407763,
+            -0.8956964155000395,
+            1.0
+          ]
+        ],
+        "max_absolute_off_diagonal_parameter_correlation": 0.9960183213529016,
+        "parameters": [
+          {
+            "name": "b1",
+            "value": 1.1161010904499564,
+            "local_standard_error": 0.18941466742159724,
+            "absolute_relative_standard_error": 0.1697110315923396
+          },
+          {
+            "name": "b2",
+            "value": -0.12434032926136562,
+            "local_standard_error": 0.014229133266793188,
+            "absolute_relative_standard_error": 0.11443699201474118
+          },
+          {
+            "name": "b3",
+            "value": 0.004077308358324354,
+            "local_standard_error": 0.000287931056942275,
+            "absolute_relative_standard_error": 0.07061792526788571
+          },
+          {
+            "name": "b4",
+            "value": -1.2924152593606815e-06,
+            "local_standard_error": 3.4569972810981094e-07,
+            "absolute_relative_standard_error": 0.2674834776253091
+          },
+          {
+            "name": "b5",
+            "value": -0.006109190089247961,
+            "local_standard_error": 0.00036497916681841675,
+            "absolute_relative_standard_error": 0.05974264370342183
+          },
+          {
+            "name": "b6",
+            "value": 0.00024187473474873258,
+            "local_standard_error": 1.3010526396708934e-05,
+            "absolute_relative_standard_error": 0.053790349001207986
+          },
+          {
+            "name": "b7",
+            "value": -1.1841997430982739e-07,
+            "local_standard_error": 1.6226779816336635e-08,
+            "absolute_relative_standard_error": 0.1370273884191344
+          }
+        ],
+        "interpretation": "Local linearization at the frozen fit; rank and conditioning do not establish or refute global structural identifiability"
+      },
+      "held_out_prediction_sensitivity": {
+        "median_local_standard_deviation": 0.028513135583053698,
+        "max_local_standard_deviation": 0.03265352639714457,
+        "interpretation": "Delta-method local sensitivity propagated from the fitting design, not a calibrated prediction interval"
+      },
+      "denominator": {
+        "min_absolute_on_training_points": 0.9616350230201717,
+        "min_absolute_on_held_out_points": 2.4966221997150737,
+        "all_finite_on_training_and_held_out_points": true
+      },
+      "held_out_points": [
+        {
+          "source_index": 11,
+          "x": 96.4,
+          "y": 10.072,
+          "model_prediction": 10.131212858543872,
+          "residual": -0.059212858543872926,
+          "local_linearized_prediction_standard_deviation": 0.026395201648281436,
+          "denominator": 2.552720801484918
+        },
+        {
+          "source_index": 12,
+          "x": 97.19,
+          "y": 10.163,
+          "model_prediction": 10.207661189746748,
+          "residual": -0.04466118974674771,
+          "local_linearized_prediction_standard_deviation": 0.026669198199764575,
+          "denominator": 2.58225636912157
+        },
+        {
+          "source_index": 13,
+          "x": 114.26,
+          "y": 11.615,
+          "model_prediction": 11.63901234333473,
+          "residual": -0.024012343334730346,
+          "local_linearized_prediction_standard_deviation": 0.031227403166773516,
+          "denominator": 3.2830751268605507
+        },
+        {
+          "source_index": 14,
+          "x": 120.25,
+          "y": 12.005,
+          "model_prediction": 12.053765003298006,
+          "residual": -0.04876500329800493,
+          "local_linearized_prediction_standard_deviation": 0.032081971373253686,
+          "denominator": 3.5569823557758653
+        },
+        {
+          "source_index": 15,
+          "x": 127.08,
+          "y": 12.478,
+          "model_prediction": 12.480503640389095,
+          "residual": -0.0025036403890954517,
+          "local_linearized_prediction_standard_deviation": 0.03258697726844053,
+          "denominator": 3.8867300127927358
+        },
+        {
+          "source_index": 16,
+          "x": 133.55,
+          "y": 12.982,
+          "model_prediction": 12.844606552837968,
+          "residual": 0.13739344716203128,
+          "local_linearized_prediction_standard_deviation": 0.032648528540615535,
+          "denominator": 4.21602945552776
+        },
+        {
+          "source_index": 17,
+          "x": 133.61,
+          "y": 12.97,
+          "model_prediction": 12.847815543360136,
+          "residual": 0.12218445663986444,
+          "local_linearized_prediction_standard_deviation": 0.03264737201556698,
+          "denominator": 4.219159712056916
+        },
+        {
+          "source_index": 18,
+          "x": 158.67,
+          "y": 13.926,
+          "model_prediction": 13.967429320971048,
+          "residual": -0.0414293209710479,
+          "local_linearized_prediction_standard_deviation": 0.03008033565019063,
+          "denominator": 5.647081389813453
+        },
+        {
+          "source_index": 19,
+          "x": 172.74,
+          "y": 14.452,
+          "model_prediction": 14.445110145021522,
+          "residual": 0.0068898549784783825,
+          "local_linearized_prediction_standard_deviation": 0.027492492480439168,
+          "denominator": 6.551639942436918
+        },
+        {
+          "source_index": 20,
+          "x": 171.31,
+          "y": 14.404,
+          "model_prediction": 14.400425130043779,
+          "residual": 0.0035748699562212494,
+          "local_linearized_prediction_standard_deviation": 0.02777488371705292,
+          "denominator": 6.456409540249307
+        },
+        {
+          "source_index": 21,
+          "x": 202.14,
+          "y": 15.19,
+          "model_prediction": 15.214108331209248,
+          "residual": -0.02410833120924849,
+          "local_linearized_prediction_standard_deviation": 0.021438493603781892,
+          "denominator": 8.670133573682413
+        },
+        {
+          "source_index": 22,
+          "x": 220.55,
+          "y": 15.55,
+          "model_prediction": 15.585778716616772,
+          "residual": -0.03577871661677179,
+          "local_linearized_prediction_standard_deviation": 0.017944855069544186,
+          "denominator": 10.147545572722056
+        },
+        {
+          "source_index": 66,
+          "x": 95.52,
+          "y": 9.944,
+          "model_prediction": 10.044888810475614,
+          "residual": -0.10088881047561316,
+          "local_linearized_prediction_standard_deviation": 0.026085812288060943,
+          "denominator": 2.5201255676439045
+        },
+        {
+          "source_index": 67,
+          "x": 107.32,
+          "y": 11.023,
+          "model_prediction": 11.105011216469657,
+          "residual": -0.08201121646965781,
+          "local_linearized_prediction_standard_deviation": 0.029734797297961295,
+          "denominator": 2.983798891913398
+        },
+        {
+          "source_index": 68,
+          "x": 122.04,
+          "y": 11.87,
+          "model_prediction": 12.170130364518224,
+          "residual": -0.3001303645182247,
+          "local_linearized_prediction_standard_deviation": 0.03226112533783137,
+          "denominator": 3.6416148275064555
+        },
+        {
+          "source_index": 69,
+          "x": 134.03,
+          "y": 12.786,
+          "model_prediction": 12.870196099080028,
+          "residual": -0.08419609908002812,
+          "local_linearized_prediction_standard_deviation": 0.032638436254846366,
+          "denominator": 4.241110691911379
+        },
+        {
+          "source_index": 70,
+          "x": 163.19,
+          "y": 14.067,
+          "model_prediction": 14.130588347630207,
+          "residual": -0.0635883476302066,
+          "local_linearized_prediction_standard_deviation": 0.029303305987444756,
+          "denominator": 5.9297591187028535
+        },
+        {
+          "source_index": 71,
+          "x": 163.48,
+          "y": 13.974,
+          "model_prediction": 14.140724668838635,
+          "residual": -0.16672466883863457,
+          "local_linearized_prediction_standard_deviation": 0.029251387449054474,
+          "denominator": 5.948152742316754
+        },
+        {
+          "source_index": 72,
+          "x": 175.7,
+          "y": 14.462,
+          "model_prediction": 14.535108751521154,
+          "residual": -0.07310875152115415,
+          "local_linearized_prediction_standard_deviation": 0.026898758362877,
+          "denominator": 6.7511034430615595
+        },
+        {
+          "source_index": 73,
+          "x": 179.86,
+          "y": 14.464,
+          "model_prediction": 14.656191282218792,
+          "residual": -0.19219128221879167,
+          "local_linearized_prediction_standard_deviation": 0.02604809653256043,
+          "denominator": 7.036741646323694
+        },
+        {
+          "source_index": 74,
+          "x": 211.27,
+          "y": 15.381,
+          "model_prediction": 15.406827819018496,
+          "residual": -0.02582781901849529,
+          "local_linearized_prediction_standard_deviation": 0.01964673182470424,
+          "denominator": 9.38868831864882
+        },
+        {
+          "source_index": 75,
+          "x": 217.78,
+          "y": 15.483,
+          "model_prediction": 15.534001898705336,
+          "residual": -0.051001898705335336,
+          "local_linearized_prediction_standard_deviation": 0.018438403962179592,
+          "denominator": 9.918058746268002
+        },
+        {
+          "source_index": 76,
+          "x": 219.14,
+          "y": 15.59,
+          "model_prediction": 15.559589908211928,
+          "residual": 0.03041009178807208,
+          "local_linearized_prediction_standard_deviation": 0.018194461505784285,
+          "denominator": 10.030416459455887
+        },
+        {
+          "source_index": 117,
+          "x": 94.88,
+          "y": 9.959,
+          "model_prediction": 9.981327527996728,
+          "residual": -0.02232752799672788,
+          "local_linearized_prediction_standard_deviation": 0.025858338532583652,
+          "denominator": 2.4966221997150737
+        },
+        {
+          "source_index": 118,
+          "x": 96.4,
+          "y": 9.957,
+          "model_prediction": 10.131212858543872,
+          "residual": -0.17421285854387136,
+          "local_linearized_prediction_standard_deviation": 0.026395201648281436,
+          "denominator": 2.552720801484918
+        },
+        {
+          "source_index": 119,
+          "x": 117.37,
+          "y": 11.6,
+          "model_prediction": 11.859366698991176,
+          "residual": -0.25936669899117604,
+          "local_linearized_prediction_standard_deviation": 0.031720818639397456,
+          "denominator": 3.4234941971272805
+        },
+        {
+          "source_index": 120,
+          "x": 139.08,
+          "y": 13.138,
+          "model_prediction": 13.128402922767112,
+          "residual": 0.00959707723288794,
+          "local_linearized_prediction_standard_deviation": 0.032421305606233485,
+          "denominator": 4.510396067323255
+        },
+        {
+          "source_index": 121,
+          "x": 147.73,
+          "y": 13.564,
+          "model_prediction": 13.527988775814654,
+          "residual": 0.03601122418534608,
+          "local_linearized_prediction_standard_deviation": 0.03163790131630202,
+          "denominator": 4.994404821526376
+        },
+        {
+          "source_index": 122,
+          "x": 158.63,
+          "y": 13.871,
+          "model_prediction": 13.965940695955833,
+          "residual": -0.09494069595583277,
+          "local_linearized_prediction_standard_deviation": 0.03008691914625029,
+          "denominator": 5.644613556453546
+        },
+        {
+          "source_index": 123,
+          "x": 161.84,
+          "y": 13.994,
+          "model_prediction": 14.082885820568052,
+          "residual": -0.08888582056805205,
+          "local_linearized_prediction_standard_deviation": 0.02954189673704537,
+          "denominator": 5.844541061686045
+        },
+        {
+          "source_index": 124,
+          "x": 192.11,
+          "y": 14.947,
+          "model_prediction": 14.98006157739775,
+          "residual": -0.03306157739775095,
+          "local_linearized_prediction_standard_deviation": 0.023497292837827255,
+          "denominator": 7.913448695388748
+        },
+        {
+          "source_index": 125,
+          "x": 206.76,
+          "y": 15.473,
+          "model_prediction": 15.313854496045492,
+          "residual": 0.15914550395450888,
+          "local_linearized_prediction_standard_deviation": 0.020519320856934028,
+          "denominator": 9.030230060127801
+        },
+        {
+          "source_index": 126,
+          "x": 209.07,
+          "y": 15.379,
+          "model_prediction": 15.361997051204797,
+          "residual": 0.017002948795202144,
+          "local_linearized_prediction_standard_deviation": 0.020069062737596673,
+          "denominator": 9.212978819408452
+        },
+        {
+          "source_index": 127,
+          "x": 213.32,
+          "y": 15.455,
+          "model_prediction": 15.447738746290723,
+          "residual": 0.007261253709277327,
+          "local_linearized_prediction_standard_deviation": 0.019259300428246435,
+          "denominator": 9.553871189802631
+        },
+        {
+          "source_index": 154,
+          "x": 97.06,
+          "y": 10.055,
+          "model_prediction": 10.195148705333658,
+          "residual": -0.14014870533365809,
+          "local_linearized_prediction_standard_deviation": 0.026624371068096883,
+          "denominator": 2.5773782861174306
+        },
+        {
+          "source_index": 155,
+          "x": 119.63,
+          "y": 12.035,
+          "model_prediction": 12.012674047975295,
+          "residual": 0.022325952024704776,
+          "local_linearized_prediction_standard_deviation": 0.03201188709176113,
+          "denominator": 3.5279656852608143
+        },
+        {
+          "source_index": 156,
+          "x": 133.27,
+          "y": 12.861,
+          "model_prediction": 12.829592170845201,
+          "residual": 0.03140782915479967,
+          "local_linearized_prediction_standard_deviation": 0.03265352639714457,
+          "denominator": 4.201440103919519
+        },
+        {
+          "source_index": 157,
+          "x": 143.84,
+          "y": 13.436,
+          "model_prediction": 13.354543878186236,
+          "residual": 0.08145612181376372,
+          "local_linearized_prediction_standard_deviation": 0.032048164349105436,
+          "denominator": 4.773206410975492
+        },
+        {
+          "source_index": 158,
+          "x": 161.91,
+          "y": 14.167,
+          "model_prediction": 14.085380382569332,
+          "residual": 0.08161961743066826,
+          "local_linearized_prediction_standard_deviation": 0.029529654294474253,
+          "denominator": 5.848943270419987
+        },
+        {
+          "source_index": 159,
+          "x": 180.67,
+          "y": 14.755,
+          "model_prediction": 14.679067796494778,
+          "residual": 0.07593220350522323,
+          "local_linearized_prediction_standard_deviation": 0.025880823059885982,
+          "denominator": 7.093076782113823
+        },
+        {
+          "source_index": 160,
+          "x": 198.44,
+          "y": 15.168,
+          "model_prediction": 15.130692092267921,
+          "residual": 0.03730790773207815,
+          "local_linearized_prediction_standard_deviation": 0.022189767844003026,
+          "denominator": 8.386976462684189
+        },
+        {
+          "source_index": 185,
+          "x": 96.44,
+          "y": 10.04,
+          "model_prediction": 10.13510737133121,
+          "residual": -0.09510737133121161,
+          "local_linearized_prediction_standard_deviation": 0.026409163774429197,
+          "denominator": 2.5542100473823006
+        },
+        {
+          "source_index": 186,
+          "x": 118.82,
+          "y": 11.946,
+          "model_prediction": 11.958369238537186,
+          "residual": -0.012369238537186078,
+          "local_linearized_prediction_standard_deviation": 0.0319140209515756,
+          "denominator": 3.49028777137797
+        },
+        {
+          "source_index": 187,
+          "x": 128.48,
+          "y": 12.596,
+          "model_prediction": 12.562426843217263,
+          "residual": 0.033573156782736646,
+          "local_linearized_prediction_standard_deviation": 0.03263283258870273,
+          "denominator": 3.95659515298283
+        },
+        {
+          "source_index": 188,
+          "x": 141.94,
+          "y": 13.303,
+          "model_prediction": 13.26618204442849,
+          "residual": 0.03681795557151091,
+          "local_linearized_prediction_standard_deviation": 0.03221519862743073,
+          "denominator": 4.667262170154741
+        },
+        {
+          "source_index": 189,
+          "x": 156.92,
+          "y": 13.922,
+          "model_prediction": 13.90153839396482,
+          "residual": 0.020461606035180324,
+          "local_linearized_prediction_standard_deviation": 0.030363057048516977,
+          "denominator": 5.539669440279035
+        },
+        {
+          "source_index": 190,
+          "x": 171.65,
+          "y": 14.44,
+          "model_prediction": 14.411122512863624,
+          "residual": 0.02887748713637528,
+          "local_linearized_prediction_standard_deviation": 0.027708033868428537,
+          "denominator": 6.478984727238121
+        },
+        {
+          "source_index": 191,
+          "x": 190.0,
+          "y": 14.951,
+          "model_prediction": 14.927469184794298,
+          "residual": 0.023530815205702993,
+          "local_linearized_prediction_standard_deviation": 0.023937022706642816,
+          "denominator": 7.758689203681027
+        }
+      ]
+    },
+    {
+      "fold": 3,
+      "train_count": 189,
+      "test_count": 47,
+      "model_parameters": {
+        "b1": 1.1591426516786314,
+        "b2": -0.1295842977750675,
+        "b3": 0.0042372940411687906,
+        "b4": -1.6346283605188788e-06,
+        "b5": -0.0056086965386476124,
+        "b6": 0.0002466929113936996,
+        "b7": -1.3253526826632008e-07
+      },
+      "training_metrics": {
+        "rmse": 0.07942238142163194,
+        "mae": 0.06010562991131843,
+        "max_absolute_residual": 0.2626217701445732
+      },
+      "test_metrics": {
+        "rmse": 0.086351504363819,
+        "mae": 0.06610271783274763,
+        "max_absolute_residual": 0.2408202201622167
+      },
+      "baseline_test_metrics": {
+        "rmse": 1.3032575472004715,
+        "mae": 1.2303791081294841,
+        "max_absolute_residual": 1.7110670652795577
+      },
+      "model_not_worse_than_baseline": true,
+      "interval": {
+        "regime": "contiguous_gap_with_training_on_both_sides",
+        "train_x_min": 14.13,
+        "train_x_max": 851.61,
+        "test_x_min": 221.05,
+        "test_x_max": 358.18,
+        "extrapolation_distance_x": 0.0
+      },
+      "training_jacobian": {
+        "shape": [
+          189,
+          7
+        ],
+        "parameter_count": 7,
+        "raw_singular_values": [
+          713375620.8142165,
+          2559501.4237966035,
+          123370.83014666756,
+          8930.342371793635,
+          424.1520467403656,
+          27.58563217891532,
+          0.46009020079160146
+        ],
+        "scaled_singular_values": [
+          2.2241663491703707,
+          1.282805512279395,
+          0.6150801973394644,
+          0.15159531587106936,
+          0.07772199363970489,
+          0.011766516746692253,
+          0.00318130772823242
+        ],
+        "scaled_condition_number": 699.1358708973901,
+        "numerical_rank": 7,
+        "numerical_rank_tolerance": 9.334032213663691e-14,
+        "column_norms": [
+          5.616529113890566,
+          330.1111327401395,
+          67805.52333632462,
+          36656460.946391545,
+          3543.6451887752332,
+          1202591.7493237741,
+          712436801.2347589
+        ],
+        "training_residual_variance_estimate": 0.0065505267734017715,
+        "parameter_correlation_matrix": [
+          [
+            1.0,
+            -0.9722248800905999,
+            0.9058656607683284,
+            -0.6889829706324734,
+            -0.1482425712175494,
+            0.9290795202377178,
+            -0.748389397752005
+          ],
+          [
+            -0.9722248800905999,
+            1.0,
+            -0.9768726267730599,
+            0.7842341030499654,
+            -0.021922699456245493,
+            -0.9871598734910814,
+            0.8390738213689246
+          ],
+          [
+            0.9058656607683284,
+            -0.9768726267730599,
+            1.0,
+            -0.8641221032480724,
+            0.22307951084447214,
+            0.9895158740437515,
+            -0.9069526144856455
+          ],
+          [
+            -0.6889829706324734,
+            0.7842341030499654,
+            -0.8641221032480724,
+            1.0,
+            -0.5315331568812856,
+            -0.7868916009357583,
+            0.9945728740925833
+          ],
+          [
+            -0.14824257121754938,
+            -0.021922699456245483,
+            0.22307951084447217,
+            -0.5315331568812856,
+            1.0,
+            0.10287875709283174,
+            -0.4646959728742609
+          ],
+          [
+            0.929079520237718,
+            -0.9871598734910814,
+            0.9895158740437515,
+            -0.7868916009357583,
+            0.10287875709283174,
+            1.0,
+            -0.8428135170083575
+          ],
+          [
+            -0.748389397752005,
+            0.8390738213689247,
+            -0.9069526144856455,
+            0.9945728740925833,
+            -0.4646959728742608,
+            -0.8428135170083576,
+            1.0
+          ]
+        ],
+        "max_absolute_off_diagonal_parameter_correlation": 0.9945728740925833,
+        "parameters": [
+          {
+            "name": "b1",
+            "value": 1.1591426516786314,
+            "local_standard_error": 0.1754892464748821,
+            "absolute_relative_standard_error": 0.15139572874895466
+          },
+          {
+            "name": "b2",
+            "value": -0.1295842977750675,
+            "local_standard_error": 0.012530727779327474,
+            "absolute_relative_standard_error": 0.09669943036677421
+          },
+          {
+            "name": "b3",
+            "value": 0.0042372940411687906,
+            "local_standard_error": 0.00023970759929308852,
+            "absolute_relative_standard_error": 0.056570914589389454
+          },
+          {
+            "name": "b4",
+            "value": -1.6346283605188788e-06,
+            "local_standard_error": 3.1446902660659984e-07,
+            "absolute_relative_standard_error": 0.192379524423997
+          },
+          {
+            "name": "b5",
+            "value": -0.0056086965386476124,
+            "local_standard_error": 0.0002756397284506916,
+            "absolute_relative_standard_error": 0.04914506009575529
+          },
+          {
+            "name": "b6",
+            "value": 0.0002466929113936996,
+            "local_standard_error": 1.0934353640732711e-05,
+            "absolute_relative_standard_error": 0.04432374476817645
+          },
+          {
+            "name": "b7",
+            "value": -1.3253526826632008e-07,
+            "local_standard_error": 1.4515322882173495e-08,
+            "absolute_relative_standard_error": 0.10952045498565709
+          }
+        ],
+        "interpretation": "Local linearization at the frozen fit; rank and conditioning do not establish or refute global structural identifiability"
+      },
+      "held_out_prediction_sensitivity": {
+        "median_local_standard_deviation": 0.01465376467868681,
+        "max_local_standard_deviation": 0.015082387314947151,
+        "interpretation": "Delta-method local sensitivity propagated from the fitting design, not a calibrated prediction interval"
+      },
+      "denominator": {
+        "min_absolute_on_training_points": 0.9696291577130075,
+        "min_absolute_on_held_out_points": 10.382840189371956,
+        "all_finite_on_training_and_held_out_points": true
+      },
+      "held_out_points": [
+        {
+          "source_index": 23,
+          "x": 221.05,
+          "y": 15.528,
+          "model_prediction": 15.593607739261598,
+          "residual": -0.06560773926159769,
+          "local_linearized_prediction_standard_deviation": 0.013959812739530213,
+          "denominator": 10.382840189371956
+        },
+        {
+          "source_index": 24,
+          "x": 221.39,
+          "y": 15.499,
+          "model_prediction": 15.599945251336397,
+          "residual": -0.10094525133639642,
+          "local_linearized_prediction_standard_deviation": 0.01396779591803222,
+          "denominator": 10.411427377065092
+        },
+        {
+          "source_index": 25,
+          "x": 250.99,
+          "y": 16.131,
+          "model_prediction": 16.086184502909834,
+          "residual": 0.04481549709016619,
+          "local_linearized_prediction_standard_deviation": 0.01464817310656334,
+          "denominator": 13.037372014939056
+        },
+        {
+          "source_index": 26,
+          "x": 268.99,
+          "y": 16.438,
+          "model_prediction": 16.331748574796745,
+          "residual": 0.10625142520325426,
+          "local_linearized_prediction_standard_deviation": 0.01495254881875715,
+          "denominator": 14.761409553927454
+        },
+        {
+          "source_index": 27,
+          "x": 271.8,
+          "y": 16.387,
+          "model_prediction": 16.367423566713292,
+          "residual": 0.01957643328670855,
+          "local_linearized_prediction_standard_deviation": 0.014987513484046328,
+          "denominator": 15.038840198808453
+        },
+        {
+          "source_index": 28,
+          "x": 271.97,
+          "y": 16.549,
+          "model_prediction": 16.369560989966054,
+          "residual": 0.17943901003394558,
+          "local_linearized_prediction_standard_deviation": 0.014989508019033466,
+          "denominator": 15.05569466317371
+        },
+        {
+          "source_index": 29,
+          "x": 321.31,
+          "y": 16.872,
+          "model_prediction": 16.90957332162733,
+          "residual": -0.03757332162733107,
+          "local_linearized_prediction_standard_deviation": 0.014925752279523627,
+          "denominator": 20.27000378089571
+        },
+        {
+          "source_index": 30,
+          "x": 321.69,
+          "y": 16.83,
+          "model_prediction": 16.91323335351198,
+          "residual": -0.08323335351198224,
+          "local_linearized_prediction_standard_deviation": 0.0149202115333775,
+          "denominator": 20.312532396735946
+        },
+        {
+          "source_index": 31,
+          "x": 330.14,
+          "y": 16.926,
+          "model_prediction": 16.993105466538974,
+          "residual": -0.06710546653897609,
+          "local_linearized_prediction_standard_deviation": 0.014778177866336123,
+          "denominator": 21.267017829833875
+        },
+        {
+          "source_index": 32,
+          "x": 333.03,
+          "y": 16.907,
+          "model_prediction": 17.0197892111328,
+          "residual": -0.1127892111327995,
+          "local_linearized_prediction_standard_deviation": 0.014721539507850108,
+          "denominator": 21.597270147387654
+        },
+        {
+          "source_index": 33,
+          "x": 333.47,
+          "y": 16.966,
+          "model_prediction": 17.023824854482204,
+          "residual": -0.057824854482202426,
+          "local_linearized_prediction_standard_deviation": 0.014712566055009313,
+          "denominator": 21.64771869330921
+        },
+        {
+          "source_index": 34,
+          "x": 340.77,
+          "y": 17.06,
+          "model_prediction": 17.089786507429306,
+          "residual": -0.029786507429307107,
+          "local_linearized_prediction_standard_deviation": 0.01455056994345596,
+          "denominator": 22.491101626162937
+        },
+        {
+          "source_index": 35,
+          "x": 345.65,
+          "y": 17.122,
+          "model_prediction": 17.132890231841966,
+          "residual": -0.010890231841965914,
+          "local_linearized_prediction_standard_deviation": 0.014429001815395826,
+          "denominator": 23.061526000694972
+        },
+        {
+          "source_index": 77,
+          "x": 262.52,
+          "y": 16.075,
+          "model_prediction": 16.24702438132979,
+          "residual": -0.17202438132979125,
+          "local_linearized_prediction_standard_deviation": 0.014858299342590605,
+          "denominator": 14.131047356037502
+        },
+        {
+          "source_index": 78,
+          "x": 268.01,
+          "y": 16.347,
+          "model_prediction": 16.319151065320074,
+          "residual": 0.027848934679926884,
+          "local_linearized_prediction_standard_deviation": 0.014939483230500383,
+          "denominator": 14.665172507309961
+        },
+        {
+          "source_index": 79,
+          "x": 268.62,
+          "y": 16.181,
+          "model_prediction": 16.32700197348353,
+          "residual": -0.1460019734835285,
+          "local_linearized_prediction_standard_deviation": 0.014947668147847457,
+          "denominator": 14.725043578866128
+        },
+        {
+          "source_index": 80,
+          "x": 336.25,
+          "y": 16.915,
+          "model_prediction": 17.049162418278723,
+          "residual": -0.13416241827872355,
+          "local_linearized_prediction_standard_deviation": 0.01465376467868681,
+          "denominator": 21.967480409855206
+        },
+        {
+          "source_index": 81,
+          "x": 337.23,
+          "y": 17.003,
+          "model_prediction": 17.058029510353958,
+          "residual": -0.055029510353957534,
+          "local_linearized_prediction_standard_deviation": 0.014632179648137811,
+          "denominator": 22.080619419987677
+        },
+        {
+          "source_index": 82,
+          "x": 339.33,
+          "y": 16.978,
+          "model_prediction": 17.07691935641737,
+          "residual": -0.09891935641736893,
+          "local_linearized_prediction_standard_deviation": 0.014584448357046483,
+          "denominator": 22.32378754640132
+        },
+        {
+          "source_index": 89,
+          "x": 253.24,
+          "y": 16.062,
+          "model_prediction": 16.118639037453395,
+          "residual": -0.056639037453393826,
+          "local_linearized_prediction_standard_deviation": 0.014692942881134525,
+          "denominator": 13.247766123997158
+        },
+        {
+          "source_index": 90,
+          "x": 273.13,
+          "y": 16.337,
+          "model_prediction": 16.38408346728565,
+          "residual": -0.04708346728564905,
+          "local_linearized_prediction_standard_deviation": 0.015002744311551177,
+          "denominator": 15.170915158349283
+        },
+        {
+          "source_index": 91,
+          "x": 273.66,
+          "y": 16.345,
+          "model_prediction": 16.390682880028507,
+          "residual": -0.045682880028508066,
+          "local_linearized_prediction_standard_deviation": 0.015008573692867875,
+          "denominator": 15.22368277161775
+        },
+        {
+          "source_index": 92,
+          "x": 282.1,
+          "y": 16.388,
+          "model_prediction": 16.492880977350538,
+          "residual": -0.10488097735053614,
+          "local_linearized_prediction_standard_deviation": 0.015082387314947151,
+          "denominator": 16.074341519510554
+        },
+        {
+          "source_index": 93,
+          "x": 346.62,
+          "y": 17.159,
+          "model_prediction": 17.14136847122742,
+          "residual": 0.01763152877257923,
+          "local_linearized_prediction_standard_deviation": 0.01440362571582573,
+          "denominator": 23.17553247326482
+        },
+        {
+          "source_index": 94,
+          "x": 347.19,
+          "y": 17.116,
+          "model_prediction": 17.146337052791182,
+          "residual": -0.030337052791182373,
+          "local_linearized_prediction_standard_deviation": 0.014388530923053556,
+          "denominator": 23.242621584279455
+        },
+        {
+          "source_index": 95,
+          "x": 348.78,
+          "y": 17.164,
+          "model_prediction": 17.16014474026628,
+          "residual": 0.0038552597337222494,
+          "local_linearized_prediction_standard_deviation": 0.014345716823672755,
+          "denominator": 23.43013757088247
+        },
+        {
+          "source_index": 96,
+          "x": 351.18,
+          "y": 17.123,
+          "model_prediction": 17.180844175377803,
+          "residual": -0.05784417537780229,
+          "local_linearized_prediction_standard_deviation": 0.014279154764987671,
+          "denominator": 23.714213902332194
+        },
+        {
+          "source_index": 128,
+          "x": 226.44,
+          "y": 15.908,
+          "model_prediction": 15.691806954823766,
+          "residual": 0.21619304517623306,
+          "local_linearized_prediction_standard_deviation": 0.014087765264691396,
+          "denominator": 10.840333038120486
+        },
+        {
+          "source_index": 129,
+          "x": 237.12,
+          "y": 16.114,
+          "model_prediction": 15.873179779837784,
+          "residual": 0.2408202201622167,
+          "local_linearized_prediction_standard_deviation": 0.014342317637226794,
+          "denominator": 11.773597614844038
+        },
+        {
+          "source_index": 130,
+          "x": 330.9,
+          "y": 17.071,
+          "model_prediction": 17.000152726341376,
+          "residual": 0.0708472736586252,
+          "local_linearized_prediction_standard_deviation": 0.014763672953225499,
+          "denominator": 21.353680119496552
+        },
+        {
+          "source_index": 161,
+          "x": 226.86,
+          "y": 15.651,
+          "model_prediction": 15.699261138326767,
+          "residual": -0.04826113832676704,
+          "local_linearized_prediction_standard_deviation": 0.014097821378454299,
+          "denominator": 10.876365718310918
+        },
+        {
+          "source_index": 162,
+          "x": 229.65,
+          "y": 15.746,
+          "model_prediction": 15.748084331130311,
+          "residual": -0.0020843311303107015,
+          "local_linearized_prediction_standard_deviation": 0.0141647140695589,
+          "denominator": 11.117124379391981
+        },
+        {
+          "source_index": 163,
+          "x": 258.27,
+          "y": 16.216,
+          "model_prediction": 16.189282711321788,
+          "residual": 0.026717288678213436,
+          "local_linearized_prediction_standard_deviation": 0.014786670813772202,
+          "denominator": 13.723446755595784
+        },
+        {
+          "source_index": 164,
+          "x": 273.77,
+          "y": 16.445,
+          "model_prediction": 16.39204977444808,
+          "residual": 0.05295022555192119,
+          "local_linearized_prediction_standard_deviation": 0.015009766307134445,
+          "denominator": 15.234644251369236
+        },
+        {
+          "source_index": 165,
+          "x": 339.15,
+          "y": 16.965,
+          "model_prediction": 17.07530608920499,
+          "residual": -0.11030608920498963,
+          "local_linearized_prediction_standard_deviation": 0.01458861786578658,
+          "denominator": 22.302905830839634
+        },
+        {
+          "source_index": 166,
+          "x": 350.13,
+          "y": 17.121,
+          "model_prediction": 17.17180898616529,
+          "residual": -0.05080898616528984,
+          "local_linearized_prediction_standard_deviation": 0.014308558926552308,
+          "denominator": 23.589778099209134
+        },
+        {
+          "source_index": 192,
+          "x": 223.26,
+          "y": 15.627,
+          "model_prediction": 15.634451355156168,
+          "residual": -0.007451355156167239,
+          "local_linearized_prediction_standard_deviation": 0.01401195424364541,
+          "denominator": 10.569311794307708
+        },
+        {
+          "source_index": 193,
+          "x": 223.88,
+          "y": 15.639,
+          "model_prediction": 15.645762979374641,
+          "residual": -0.006762979374641986,
+          "local_linearized_prediction_standard_deviation": 0.014026675684550014,
+          "denominator": 10.621902557455455
+        },
+        {
+          "source_index": 194,
+          "x": 231.5,
+          "y": 15.814,
+          "model_prediction": 15.779810112538046,
+          "residual": 0.03418988746195417,
+          "local_linearized_prediction_standard_deviation": 0.014209034046043772,
+          "denominator": 11.278102094024447
+        },
+        {
+          "source_index": 195,
+          "x": 265.05,
+          "y": 16.315,
+          "model_prediction": 16.280596981101077,
+          "residual": 0.03440301889892439,
+          "local_linearized_prediction_standard_deviation": 0.014897363477384008,
+          "denominator": 14.376134665415087
+        },
+        {
+          "source_index": 196,
+          "x": 269.44,
+          "y": 16.334,
+          "model_prediction": 16.337505874999817,
+          "residual": -0.003505874999817138,
+          "local_linearized_prediction_standard_deviation": 0.014958398806828638,
+          "denominator": 14.805690003004791
+        },
+        {
+          "source_index": 197,
+          "x": 271.78,
+          "y": 16.43,
+          "model_prediction": 16.367171950766338,
+          "residual": 0.06282804923366214,
+          "local_linearized_prediction_standard_deviation": 0.01498727791740952,
+          "denominator": 15.036857847342173
+        },
+        {
+          "source_index": 198,
+          "x": 273.46,
+          "y": 16.423,
+          "model_prediction": 16.388195159660633,
+          "residual": 0.034804840339365484,
+          "local_linearized_prediction_standard_deviation": 0.015006390088503284,
+          "denominator": 15.203761357987382
+        },
+        {
+          "source_index": 199,
+          "x": 334.61,
+          "y": 17.024,
+          "model_prediction": 17.034248348941574,
+          "residual": -0.010248348941573227,
+          "local_linearized_prediction_standard_deviation": 0.014688891080244557,
+          "denominator": 21.778631645325284
+        },
+        {
+          "source_index": 200,
+          "x": 339.79,
+          "y": 17.009,
+          "model_prediction": 17.081037210011026,
+          "residual": -0.07203721001102537,
+          "local_linearized_prediction_standard_deviation": 0.014573726818283228,
+          "denominator": 22.377184825758803
+        },
+        {
+          "source_index": 201,
+          "x": 349.52,
+          "y": 17.165,
+          "model_prediction": 17.16654514934303,
+          "residual": -0.0015451493430305163,
+          "local_linearized_prediction_standard_deviation": 0.014325439623204463,
+          "denominator": 23.517595597487535
+        },
+        {
+          "source_index": 202,
+          "x": 358.18,
+          "y": 17.134,
+          "model_prediction": 17.240283170211107,
+          "residual": -0.10628317021110689,
+          "local_linearized_prediction_standard_deviation": 0.014072323131478569,
+          "denominator": 24.54977441346564
+        }
+      ]
+    },
+    {
+      "fold": 4,
+      "train_count": 189,
+      "test_count": 47,
+      "model_parameters": {
+        "b1": 1.0678454557432593,
+        "b2": -0.12202604742847688,
+        "b3": 0.004076950386606688,
+        "b4": -1.4700774285671224e-06,
+        "b5": -0.0057472726265029705,
+        "b6": 0.00023980519717413233,
+        "b7": -1.2491337059698985e-07
+      },
+      "training_metrics": {
+        "rmse": 0.08220391217038486,
+        "mae": 0.06142700668032443,
+        "max_absolute_residual": 0.2691543184388845
+      },
+      "test_metrics": {
+        "rmse": 0.07410353487366038,
+        "mae": 0.0603609204708657,
+        "max_absolute_residual": 0.16750924648866317
+      },
+      "baseline_test_metrics": {
+        "rmse": 1.0344105847266927,
+        "mae": 0.9490654676884784,
+        "max_absolute_residual": 1.5237390836900389
+      },
+      "model_not_worse_than_baseline": true,
+      "interval": {
+        "regime": "contiguous_gap_with_training_on_both_sides",
+        "train_x_min": 14.13,
+        "train_x_max": 851.61,
+        "test_x_min": 358.72,
+        "test_x_max": 524.7,
+        "extrapolation_distance_x": 0.0
+      },
+      "training_jacobian": {
+        "shape": [
+          189,
+          7
+        ],
+        "parameter_count": 7,
+        "raw_singular_values": [
+          671832160.8865736,
+          2680375.139491802,
+          134357.7100250785,
+          9123.0427266061,
+          468.4141721456685,
+          28.364944490401687,
+          0.46530462073200146
+        ],
+        "scaled_singular_values": [
+          2.216358021598777,
+          1.2757191510102797,
+          0.656295609870756,
+          0.1557174103278181,
+          0.07153099666965058,
+          0.014052392790845575,
+          0.0034315008135424622
+        ],
+        "scaled_condition_number": 645.8859088279657,
+        "numerical_rank": 7,
+        "numerical_rank_tolerance": 9.301263450160332e-14,
+        "column_norms": [
+          5.713430080166935,
+          348.3177797467681,
+          66951.51384464349,
+          34331005.12293483,
+          3846.026636654311,
+          1159898.7148953467,
+          670958782.0221575
+        ],
+        "training_residual_variance_estimate": 0.007017386375197746,
+        "parameter_correlation_matrix": [
+          [
+            1.0,
+            -0.9727974826711469,
+            0.9091244325117077,
+            -0.7135008477065276,
+            -0.19397790317633715,
+            0.9287932784641901,
+            -0.7668837949958585
+          ],
+          [
+            -0.9727974826711469,
+            1.0,
+            -0.978108943978425,
+            0.802027733631815,
+            0.02563347337842526,
+            -0.987410417203117,
+            0.8508568778073017
+          ],
+          [
+            0.9091244325117079,
+            -0.978108943978425,
+            1.0,
+            -0.8710589696069235,
+            0.17093863822078711,
+            0.9929682199433228,
+            -0.9088020093392429
+          ],
+          [
+            -0.7135008477065276,
+            0.802027733631815,
+            -0.8710589696069235,
+            1.0,
+            -0.43033925545902096,
+            -0.8132485418663031,
+            0.9951475051193462
+          ],
+          [
+            -0.19397790317633712,
+            0.02563347337842525,
+            0.17093863822078711,
+            -0.43033925545902096,
+            1.0,
+            0.07427558083982248,
+            -0.36482029421197765
+          ],
+          [
+            0.9287932784641901,
+            -0.987410417203117,
+            0.9929682199433228,
+            -0.8132485418663031,
+            0.07427558083982246,
+            1.0,
+            -0.8613759255576293
+          ],
+          [
+            -0.7668837949958585,
+            0.8508568778073018,
+            -0.9088020093392429,
+            0.9951475051193462,
+            -0.36482029421197765,
+            -0.8613759255576295,
+            0.9999999999999999
+          ]
+        ],
+        "max_absolute_off_diagonal_parameter_correlation": 0.9951475051193462,
+        "parameters": [
+          {
+            "name": "b1",
+            "value": 1.0678454557432593,
+            "local_standard_error": 0.1796044302195278,
+            "absolute_relative_standard_error": 0.1681932804541614
+          },
+          {
+            "name": "b2",
+            "value": -0.12202604742847688,
+            "local_standard_error": 0.012747179639071906,
+            "absolute_relative_standard_error": 0.10446277583926013
+          },
+          {
+            "name": "b3",
+            "value": 0.004076950386606688,
+            "local_standard_error": 0.00024121973631241442,
+            "absolute_relative_standard_error": 0.059166708799021105
+          },
+          {
+            "name": "b4",
+            "value": -1.4700774285671224e-06,
+            "local_standard_error": 2.903837784723418e-07,
+            "absolute_relative_standard_error": 0.19752958097953896
+          },
+          {
+            "name": "b5",
+            "value": -0.0057472726265029705,
+            "local_standard_error": 0.00026029906934052044,
+            "absolute_relative_standard_error": 0.04529088600046175
+          },
+          {
+            "name": "b6",
+            "value": 0.00023980519717413233,
+            "local_standard_error": 1.1134760191799575e-05,
+            "absolute_relative_standard_error": 0.046432522409904954
+          },
+          {
+            "name": "b7",
+            "value": -1.2491337059698985e-07,
+            "local_standard_error": 1.3691168864476602e-08,
+            "absolute_relative_standard_error": 0.10960531125726049
+          }
+        ],
+        "interpretation": "Local linearization at the frozen fit; rank and conditioning do not establish or refute global structural identifiability"
+      },
+      "held_out_prediction_sensitivity": {
+        "median_local_standard_deviation": 0.012911205867373222,
+        "max_local_standard_deviation": 0.013134547971543816,
+        "interpretation": "Delta-method local sensitivity propagated from the fitting design, not a calibrated prediction interval"
+      },
+      "denominator": {
+        "min_absolute_on_training_points": 0.9663174004542773,
+        "min_absolute_on_held_out_points": 24.03046624465003,
+        "all_finite_on_training_and_held_out_points": true
+      },
+      "held_out_points": [
+        {
+          "source_index": 36,
+          "x": 373.11,
+          "y": 17.311,
+          "model_prediction": 17.348345351336597,
+          "residual": -0.03734535133659733,
+          "local_linearized_prediction_standard_deviation": 0.012996637179831903,
+          "denominator": 25.751042936740912
+        },
+        {
+          "source_index": 37,
+          "x": 373.79,
+          "y": 17.355,
+          "model_prediction": 17.353796447642594,
+          "residual": 0.0012035523574063234,
+          "local_linearized_prediction_standard_deviation": 0.012997709900671589,
+          "denominator": 25.83339101939429
+        },
+        {
+          "source_index": 38,
+          "x": 411.82,
+          "y": 17.668,
+          "model_prediction": 17.6453713463881,
+          "residual": 0.022628653611899807,
+          "local_linearized_prediction_standard_deviation": 0.01293897832549265,
+          "denominator": 30.57877860312756
+        },
+        {
+          "source_index": 39,
+          "x": 419.51,
+          "y": 17.767,
+          "model_prediction": 17.701748686355337,
+          "residual": 0.06525131364466219,
+          "local_linearized_prediction_standard_deviation": 0.012911205867373222,
+          "denominator": 31.56972366071021
+        },
+        {
+          "source_index": 40,
+          "x": 421.59,
+          "y": 17.803,
+          "model_prediction": 17.716879324155915,
+          "residual": 0.08612067584408578,
+          "local_linearized_prediction_standard_deviation": 0.012903525240950769,
+          "denominator": 31.839448377478
+        },
+        {
+          "source_index": 41,
+          "x": 422.02,
+          "y": 17.765,
+          "model_prediction": 17.720001312753375,
+          "residual": 0.04499868724662548,
+          "local_linearized_prediction_standard_deviation": 0.012901936780738147,
+          "denominator": 31.89529730482887
+        },
+        {
+          "source_index": 42,
+          "x": 422.47,
+          "y": 17.768,
+          "model_prediction": 17.72326634791815,
+          "residual": 0.044733652081852426,
+          "local_linearized_prediction_standard_deviation": 0.012900275079917166,
+          "denominator": 31.95377619203895
+        },
+        {
+          "source_index": 43,
+          "x": 422.61,
+          "y": 17.736,
+          "model_prediction": 17.724281687899367,
+          "residual": 0.011718312100633455,
+          "local_linearized_prediction_standard_deviation": 0.012899758302780315,
+          "denominator": 31.97197635778405
+        },
+        {
+          "source_index": 44,
+          "x": 441.75,
+          "y": 17.858,
+          "model_prediction": 17.861275086871654,
+          "residual": -0.0032750868716533432,
+          "local_linearized_prediction_standard_deviation": 0.012835229714728565,
+          "denominator": 34.48937475465185
+        },
+        {
+          "source_index": 45,
+          "x": 447.41,
+          "y": 17.877,
+          "model_prediction": 17.901179088333798,
+          "residual": -0.024179088333799115,
+          "local_linearized_prediction_standard_deviation": 0.012820871033942742,
+          "denominator": 35.244469791926754
+        },
+        {
+          "source_index": 46,
+          "x": 448.7,
+          "y": 17.912,
+          "model_prediction": 17.910240342107482,
+          "residual": 0.0017596578925171968,
+          "local_linearized_prediction_standard_deviation": 0.012818049800861096,
+          "denominator": 35.41721911369734
+        },
+        {
+          "source_index": 47,
+          "x": 472.89,
+          "y": 18.046,
+          "model_prediction": 18.07824321488322,
+          "residual": -0.032243214883219906,
+          "local_linearized_prediction_standard_deviation": 0.01280637595135287,
+          "denominator": 38.69900858890834
+        },
+        {
+          "source_index": 48,
+          "x": 476.69,
+          "y": 18.085,
+          "model_prediction": 18.10436296593455,
+          "residual": -0.01936296593454756,
+          "local_linearized_prediction_standard_deviation": 0.012813029628015093,
+          "denominator": 39.22147249640296
+        },
+        {
+          "source_index": 49,
+          "x": 522.47,
+          "y": 18.291,
+          "model_prediction": 18.41594178604813,
+          "residual": -0.12494178604812944,
+          "local_linearized_prediction_standard_deviation": 0.013110021807791545,
+          "denominator": 45.64272803469892
+        },
+        {
+          "source_index": 50,
+          "x": 522.62,
+          "y": 18.357,
+          "model_prediction": 18.416958098847,
+          "residual": -0.05995809884700165,
+          "local_linearized_prediction_standard_deviation": 0.013111644910177658,
+          "denominator": 45.66411004339318
+        },
+        {
+          "source_index": 51,
+          "x": 524.43,
+          "y": 18.426,
+          "model_prediction": 18.429221415098613,
+          "residual": -0.003221415098614955,
+          "local_linearized_prediction_standard_deviation": 0.013131533564544263,
+          "denominator": 45.922274826598986
+        },
+        {
+          "source_index": 83,
+          "x": 427.38,
+          "y": 17.756,
+          "model_prediction": 17.758751867120147,
+          "residual": -0.0027518671201463007,
+          "local_linearized_prediction_standard_deviation": 0.012882299317519396,
+          "denominator": 32.593975754268826
+        },
+        {
+          "source_index": 84,
+          "x": 428.58,
+          "y": 17.808,
+          "model_prediction": 17.76738685314752,
+          "residual": 0.040613146852479076,
+          "local_linearized_prediction_standard_deviation": 0.012877984487290044,
+          "denominator": 32.751027388357244
+        },
+        {
+          "source_index": 85,
+          "x": 432.68,
+          "y": 17.868,
+          "model_prediction": 17.796783802656034,
+          "residual": 0.0712161973439649,
+          "local_linearized_prediction_standard_deviation": 0.012863634045438681,
+          "denominator": 33.28933359583659
+        },
+        {
+          "source_index": 97,
+          "x": 450.1,
+          "y": 17.979,
+          "model_prediction": 17.920060868078835,
+          "residual": 0.05893913192116429,
+          "local_linearized_prediction_standard_deviation": 0.012815196009330907,
+          "denominator": 35.60496881500056
+        },
+        {
+          "source_index": 98,
+          "x": 450.35,
+          "y": 17.974,
+          "model_prediction": 17.92181309174887,
+          "residual": 0.05218690825113015,
+          "local_linearized_prediction_standard_deviation": 0.012814709875532848,
+          "denominator": 35.63852494968449
+        },
+        {
+          "source_index": 99,
+          "x": 451.92,
+          "y": 18.007,
+          "model_prediction": 17.932807259626955,
+          "residual": 0.07419274037304646,
+          "local_linearized_prediction_standard_deviation": 0.012811824667697846,
+          "denominator": 35.849459996873804
+        },
+        {
+          "source_index": 100,
+          "x": 455.56,
+          "y": 17.993,
+          "model_prediction": 17.958234005788775,
+          "residual": 0.03476599421122373,
+          "local_linearized_prediction_standard_deviation": 0.012806304462627937,
+          "denominator": 36.33983804639256
+        },
+        {
+          "source_index": 131,
+          "x": 358.72,
+          "y": 17.135,
+          "model_prediction": 17.230538256665636,
+          "residual": -0.09553825666563398,
+          "local_linearized_prediction_standard_deviation": 0.01294826578122231,
+          "denominator": 24.03046624465003
+        },
+        {
+          "source_index": 132,
+          "x": 370.77,
+          "y": 17.282,
+          "model_prediction": 17.32951136229093,
+          "residual": -0.04751136229092978,
+          "local_linearized_prediction_standard_deviation": 0.012992164646380679,
+          "denominator": 25.46837669811826
+        },
+        {
+          "source_index": 133,
+          "x": 372.72,
+          "y": 17.368,
+          "model_prediction": 17.345214548586345,
+          "residual": 0.022785451413653846,
+          "local_linearized_prediction_standard_deviation": 0.012995976369546853,
+          "denominator": 25.703855598342056
+        },
+        {
+          "source_index": 134,
+          "x": 396.24,
+          "y": 17.483,
+          "model_prediction": 17.52876459523134,
+          "residual": -0.04576459523133991,
+          "local_linearized_prediction_standard_deviation": 0.012985153391984692,
+          "denominator": 28.602463881982743
+        },
+        {
+          "source_index": 135,
+          "x": 416.59,
+          "y": 17.764,
+          "model_prediction": 17.680424524820147,
+          "residual": 0.08357547517985253,
+          "local_linearized_prediction_standard_deviation": 0.012921920019153302,
+          "denominator": 31.19227911682008
+        },
+        {
+          "source_index": 136,
+          "x": 484.02,
+          "y": 18.185,
+          "model_prediction": 18.154588153569495,
+          "residual": 0.03041184643050343,
+          "local_linearized_prediction_standard_deviation": 0.012833340588033487,
+          "denominator": 40.23423235553657
+        },
+        {
+          "source_index": 137,
+          "x": 495.47,
+          "y": 18.271,
+          "model_prediction": 18.23270267071469,
+          "residual": 0.038297329285310155,
+          "local_linearized_prediction_standard_deviation": 0.012885693092016202,
+          "denominator": 41.828690062257635
+        },
+        {
+          "source_index": 138,
+          "x": 514.78,
+          "y": 18.236,
+          "model_prediction": 18.363828574087563,
+          "residual": -0.12782857408756243,
+          "local_linearized_prediction_standard_deviation": 0.01303213833727332,
+          "denominator": 44.549254136398815
+        },
+        {
+          "source_index": 139,
+          "x": 515.65,
+          "y": 18.237,
+          "model_prediction": 18.369725858761907,
+          "residual": -0.13272585876190846,
+          "local_linearized_prediction_standard_deviation": 0.013040413895396716,
+          "denominator": 44.67269123574901
+        },
+        {
+          "source_index": 140,
+          "x": 519.47,
+          "y": 18.523,
+          "model_prediction": 18.395614461111848,
+          "residual": 0.12738553888815218,
+          "local_linearized_prediction_standard_deviation": 0.013078382135554843,
+          "denominator": 45.21550716425091
+        },
+        {
+          "source_index": 167,
+          "x": 362.75,
+          "y": 17.206,
+          "model_prediction": 17.2640257036509,
+          "residual": -0.05802570365090176,
+          "local_linearized_prediction_standard_deviation": 0.012967047040778865,
+          "denominator": 24.50801980353444
+        },
+        {
+          "source_index": 168,
+          "x": 371.03,
+          "y": 17.25,
+          "model_prediction": 17.33160989821278,
+          "residual": -0.08160989821277909,
+          "local_linearized_prediction_standard_deviation": 0.01299272237848278,
+          "denominator": 25.49972968699797
+        },
+        {
+          "source_index": 169,
+          "x": 393.32,
+          "y": 17.339,
+          "model_prediction": 17.506509246488662,
+          "residual": -0.16750924648866317,
+          "local_linearized_prediction_standard_deviation": 0.012991202451153252,
+          "denominator": 28.236911014027633
+        },
+        {
+          "source_index": 170,
+          "x": 448.53,
+          "y": 17.793,
+          "model_prediction": 17.90904690675891,
+          "residual": -0.1160469067589105,
+          "local_linearized_prediction_standard_deviation": 0.01281841124540897,
+          "denominator": 35.39444002054408
+        },
+        {
+          "source_index": 171,
+          "x": 473.78,
+          "y": 18.123,
+          "model_prediction": 18.08436620205871,
+          "residual": 0.03863379794129074,
+          "local_linearized_prediction_standard_deviation": 0.012807703845720293,
+          "denominator": 38.82121453984433
+        },
+        {
+          "source_index": 172,
+          "x": 511.12,
+          "y": 18.49,
+          "model_prediction": 18.33901274882733,
+          "residual": 0.1509872511726691,
+          "local_linearized_prediction_standard_deviation": 0.012998866459516445,
+          "denominator": 44.030750341284964
+        },
+        {
+          "source_index": 173,
+          "x": 524.7,
+          "y": 18.566,
+          "model_prediction": 18.431050734057504,
+          "residual": 0.13494926594249534,
+          "local_linearized_prediction_standard_deviation": 0.013134547971543816,
+          "denominator": 45.960810009580555
+        },
+        {
+          "source_index": 203,
+          "x": 377.98,
+          "y": 17.349,
+          "model_prediction": 17.387172635220892,
+          "residual": -0.038172635220892204,
+          "local_linearized_prediction_standard_deviation": 0.013002165397274695,
+          "denominator": 26.342826624891146
+        },
+        {
+          "source_index": 204,
+          "x": 394.77,
+          "y": 17.576,
+          "model_prediction": 17.517577770403193,
+          "residual": 0.05842222959680754,
+          "local_linearized_prediction_standard_deviation": 0.012988329714685182,
+          "denominator": 28.41823974108117
+        },
+        {
+          "source_index": 205,
+          "x": 429.66,
+          "y": 17.848,
+          "model_prediction": 17.775146151846783,
+          "residual": 0.0728538481532155,
+          "local_linearized_prediction_standard_deviation": 0.012874140272805562,
+          "denominator": 32.89256891576198
+        },
+        {
+          "source_index": 206,
+          "x": 468.22,
+          "y": 18.09,
+          "model_prediction": 18.046056187262394,
+          "residual": 0.043943812737605725,
+          "local_linearized_prediction_standard_deviation": 0.012801650899644707,
+          "denominator": 38.059408156397176
+        },
+        {
+          "source_index": 207,
+          "x": 487.27,
+          "y": 18.276,
+          "model_prediction": 18.176798319746005,
+          "residual": 0.09920168025399434,
+          "local_linearized_prediction_standard_deviation": 0.012845604055477768,
+          "denominator": 40.68529963661385
+        },
+        {
+          "source_index": 208,
+          "x": 519.54,
+          "y": 18.404,
+          "model_prediction": 18.396088796149584,
+          "residual": 0.00791120385041566,
+          "local_linearized_prediction_standard_deviation": 0.013079102356690011,
+          "denominator": 45.22546647188168
+        },
+        {
+          "source_index": 209,
+          "x": 523.03,
+          "y": 18.519,
+          "model_prediction": 18.4197360042912,
+          "residual": 0.09926399570879951,
+          "local_linearized_prediction_standard_deviation": 0.013116101118063475,
+          "denominator": 45.722564285910146
+        }
+      ]
+    },
+    {
+      "fold": 5,
+      "train_count": 189,
+      "test_count": 47,
+      "model_parameters": {
+        "b1": 1.140148691494554,
+        "b2": -0.1289482020114357,
+        "b3": 0.004271608559104935,
+        "b4": -2.849933701555914e-06,
+        "b5": -0.0056585402906879235,
+        "b6": 0.00024521187940848154,
+        "b7": -1.920807935645145e-07
+      },
+      "training_metrics": {
+        "rmse": 0.08072353902669223,
+        "mae": 0.06207621980083422,
+        "max_absolute_residual": 0.2668541874687982
+      },
+      "test_metrics": {
+        "rmse": 0.568123188330242,
+        "mae": 0.38666636980243063,
+        "max_absolute_residual": 1.4438968440151605
+      },
+      "baseline_test_metrics": {
+        "rmse": 23.928268119785784,
+        "mae": 16.55067708261987,
+        "max_absolute_residual": 51.40192349485493
+      },
+      "model_not_worse_than_baseline": true,
+      "interval": {
+        "regime": "high_x_extrapolation",
+        "train_x_min": 14.13,
+        "train_x_max": 524.7,
+        "test_x_min": 528.99,
+        "test_x_max": 851.61,
+        "extrapolation_distance_x": 4.289999999999964
+      },
+      "training_jacobian": {
+        "shape": [
+          189,
+          7
+        ],
+        "parameter_count": 7,
+        "raw_singular_values": [
+          425146165.31651115,
+          1521927.7062169467,
+          71622.42750783039,
+          3331.0154919810357,
+          436.9717482074689,
+          22.744481802757633,
+          0.37366337332525745
+        ],
+        "scaled_singular_values": [
+          2.2998311219006147,
+          1.1836742619766314,
+          0.5411653308758482,
+          0.1180669343687581,
+          0.05343927352626301,
+          0.005833755998424934,
+          0.001596018223564654
+        ],
+        "scaled_condition_number": 1440.980490037274,
+        "numerical_rank": 7,
+        "numerical_rank_tolerance": 9.651570254991886e-14,
+        "column_norms": [
+          5.69549926714462,
+          360.44601769285043,
+          68110.81002221767,
+          24139165.92428295,
+          4144.897245110641,
+          1115507.1650581267,
+          424461582.4125767
+        ],
+        "training_residual_variance_estimate": 0.006766916281955209,
+        "parameter_correlation_matrix": [
+          [
+            1.0,
+            -0.9774906090029427,
+            0.9226319359198594,
+            -0.7017848020150916,
+            0.2588453933566628,
+            0.9533341098379244,
+            -0.7068691895468386
+          ],
+          [
+            -0.9774906090029427,
+            1.0,
+            -0.9805596519607837,
+            0.7887269920676901,
+            -0.41891999861528456,
+            -0.9927483401826235,
+            0.7921962427597496
+          ],
+          [
+            0.922631935919859,
+            -0.9805596519607837,
+            1.0,
+            -0.8716322635923966,
+            0.5726563087533232,
+            0.9831925263280707,
+            -0.8729452080229237
+          ],
+          [
+            -0.7017848020150916,
+            0.7887269920676901,
+            -0.8716322635923969,
+            0.9999999999999998,
+            -0.6615963458752684,
+            -0.7739076294122643,
+            0.9997085725634313
+          ],
+          [
+            0.2588453933566628,
+            -0.4189199986152845,
+            0.5726563087533232,
+            -0.6615963458752684,
+            1.0,
+            0.46322130817889295,
+            -0.6473949141697899
+          ],
+          [
+            0.9533341098379244,
+            -0.9927483401826235,
+            0.9831925263280707,
+            -0.7739076294122643,
+            0.46322130817889295,
+            1.0,
+            -0.7772858683297926
+          ],
+          [
+            -0.7068691895468386,
+            0.7921962427597496,
+            -0.8729452080229237,
+            0.9997085725634313,
+            -0.6473949141697899,
+            -0.7772858683297926,
+            1.0
+          ]
+        ],
+        "max_absolute_off_diagonal_parameter_correlation": 0.9997085725634313,
+        "parameters": [
+          {
+            "name": "b1",
+            "value": 1.140148691494554,
+            "local_standard_error": 0.21950955674628544,
+            "absolute_relative_standard_error": 0.19252713122754475
+          },
+          {
+            "name": "b2",
+            "value": -0.1289482020114357,
+            "local_standard_error": 0.01713443822849162,
+            "absolute_relative_standard_error": 0.1328784578707973
+          },
+          {
+            "name": "b3",
+            "value": 0.004271608559104935,
+            "local_standard_error": 0.0003762510082115867,
+            "absolute_relative_standard_error": 0.08808180876255799
+          },
+          {
+            "name": "b4",
+            "value": -2.849933701555914e-06,
+            "local_standard_error": 1.3816383515651104e-06,
+            "absolute_relative_standard_error": 0.4847966641507515
+          },
+          {
+            "name": "b5",
+            "value": -0.0056585402906879235,
+            "local_standard_error": 0.00033303306855807864,
+            "absolute_relative_standard_error": 0.058854943404068424
+          },
+          {
+            "name": "b6",
+            "value": 0.00024521187940848154,
+            "local_standard_error": 1.4522716869637937e-05,
+            "absolute_relative_standard_error": 0.05922517662957734
+          },
+          {
+            "name": "b7",
+            "value": -1.920807935645145e-07,
+            "local_standard_error": 6.601361469790719e-08,
+            "absolute_relative_standard_error": 0.34367629096521346
+          }
+        ],
+        "interpretation": "Local linearization at the frozen fit; rank and conditioning do not establish or refute global structural identifiability"
+      },
+      "held_out_prediction_sensitivity": {
+        "median_local_standard_deviation": 0.18490290558088923,
+        "max_local_standard_deviation": 1.7150944504130397,
+        "interpretation": "Delta-method local sensitivity propagated from the fitting design, not a calibrated prediction interval"
+      },
+      "denominator": {
+        "min_absolute_on_training_points": 0.9684611802641011,
+        "min_absolute_on_held_out_points": 38.191193496824056,
+        "all_finite_on_training_and_held_out_points": true
+      },
+      "held_out_points": [
+        {
+          "source_index": 52,
+          "x": 546.75,
+          "y": 18.584,
+          "model_prediction": 18.63070092620742,
+          "residual": -0.04670092620742139,
+          "local_linearized_prediction_standard_deviation": 0.039138105371647885,
+          "denominator": 39.81447944563936
+        },
+        {
+          "source_index": 53,
+          "x": 549.53,
+          "y": 18.61,
+          "model_prediction": 18.652060737403314,
+          "residual": -0.04206073740331462,
+          "local_linearized_prediction_standard_deviation": 0.041207445361818515,
+          "denominator": 40.064750741327266
+        },
+        {
+          "source_index": 54,
+          "x": 575.29,
+          "y": 18.87,
+          "model_prediction": 18.854259048980474,
+          "residual": 0.015740951019527216,
+          "local_linearized_prediction_standard_deviation": 0.06485554042532499,
+          "denominator": 42.328036445557814
+        },
+        {
+          "source_index": 55,
+          "x": 576.0,
+          "y": 18.795,
+          "model_prediction": 18.859952432611056,
+          "residual": -0.06495243261105443,
+          "local_linearized_prediction_standard_deviation": 0.06562881170631342,
+          "denominator": 42.38888601257175
+        },
+        {
+          "source_index": 56,
+          "x": 625.55,
+          "y": 19.111,
+          "model_prediction": 19.277190938866855,
+          "residual": -0.16619093886685476,
+          "local_linearized_prediction_standard_deviation": 0.13900727418144573,
+          "denominator": 46.3962118156889
+        },
+        {
+          "source_index": 86,
+          "x": 528.99,
+          "y": 18.481,
+          "model_prediction": 18.49602613914211,
+          "residual": -0.015026139142108264,
+          "local_linearized_prediction_standard_deviation": 0.02796904573688187,
+          "denominator": 38.191193496824056
+        },
+        {
+          "source_index": 87,
+          "x": 531.08,
+          "y": 18.486,
+          "model_prediction": 18.511726796160858,
+          "residual": -0.025726796160856935,
+          "local_linearized_prediction_standard_deviation": 0.02910358989167457,
+          "denominator": 38.38429934553063
+        },
+        {
+          "source_index": 88,
+          "x": 628.34,
+          "y": 19.09,
+          "model_prediction": 19.302021280992026,
+          "residual": -0.2120212809920261,
+          "local_linearized_prediction_standard_deviation": 0.14444745026793732,
+          "denominator": 46.60633218464964
+        },
+        {
+          "source_index": 101,
+          "x": 552.22,
+          "y": 18.523,
+          "model_prediction": 18.67280776891083,
+          "residual": -0.14980776891082925,
+          "local_linearized_prediction_standard_deviation": 0.04329541635168304,
+          "denominator": 40.30586863774599
+        },
+        {
+          "source_index": 102,
+          "x": 553.56,
+          "y": 18.669,
+          "model_prediction": 18.683172350225078,
+          "residual": -0.014172350225077679,
+          "local_linearized_prediction_standard_deviation": 0.04436731700647398,
+          "denominator": 40.42558659343187
+        },
+        {
+          "source_index": 103,
+          "x": 555.74,
+          "y": 18.617,
+          "model_prediction": 18.70007718907865,
+          "residual": -0.0830771890786508,
+          "local_linearized_prediction_standard_deviation": 0.046156847169637395,
+          "denominator": 40.61978428433378
+        },
+        {
+          "source_index": 104,
+          "x": 652.59,
+          "y": 19.371,
+          "model_prediction": 19.525019761537404,
+          "residual": -0.1540197615374055,
+          "local_linearized_prediction_standard_deviation": 0.19894783271587693,
+          "denominator": 48.353314075080085
+        },
+        {
+          "source_index": 105,
+          "x": 656.2,
+          "y": 19.33,
+          "model_prediction": 19.559395936466757,
+          "residual": -0.2293959364667586,
+          "local_linearized_prediction_standard_deviation": 0.2082670352980725,
+          "denominator": 48.60061998477396
+        },
+        {
+          "source_index": 141,
+          "x": 544.47,
+          "y": 18.627,
+          "model_prediction": 18.61324274296959,
+          "residual": 0.01375725703040942,
+          "local_linearized_prediction_standard_deviation": 0.03750723265528716,
+          "denominator": 39.60841403510231
+        },
+        {
+          "source_index": 142,
+          "x": 560.11,
+          "y": 18.665,
+          "model_prediction": 18.734129555170906,
+          "residual": -0.0691295551709068,
+          "local_linearized_prediction_standard_deviation": 0.04991712357106493,
+          "denominator": 41.006910846225246
+        },
+        {
+          "source_index": 143,
+          "x": 620.77,
+          "y": 19.086,
+          "model_prediction": 19.23501815301275,
+          "residual": -0.1490181530127508,
+          "local_linearized_prediction_standard_deviation": 0.13005095666160127,
+          "denominator": 46.032063965294256
+        },
+        {
+          "source_index": 174,
+          "x": 548.75,
+          "y": 18.645,
+          "model_prediction": 18.64605945884209,
+          "residual": -0.0010594588420893558,
+          "local_linearized_prediction_standard_deviation": 0.040617814385229586,
+          "denominator": 39.99464113369112
+        },
+        {
+          "source_index": 175,
+          "x": 551.64,
+          "y": 18.706,
+          "model_prediction": 18.668327763820706,
+          "residual": 0.037672236179293606,
+          "local_linearized_prediction_standard_deviation": 0.042838040697013274,
+          "denominator": 40.25396896198963
+        },
+        {
+          "source_index": 176,
+          "x": 574.02,
+          "y": 18.924,
+          "model_prediction": 18.84409246886199,
+          "residual": 0.07990753113800864,
+          "local_linearized_prediction_standard_deviation": 0.0634895187145421,
+          "denominator": 42.218976127939754
+        },
+        {
+          "source_index": 177,
+          "x": 623.86,
+          "y": 19.1,
+          "model_prediction": 19.262227909102982,
+          "residual": -0.16222790910298102,
+          "local_linearized_prediction_standard_deviation": 0.13578880517162323,
+          "denominator": 46.2680603729094
+        },
+        {
+          "source_index": 210,
+          "x": 612.99,
+          "y": 19.133,
+          "model_prediction": 19.16733596681554,
+          "residual": -0.034335966815540075,
+          "local_linearized_prediction_standard_deviation": 0.11641652662240828,
+          "denominator": 45.42843440195789
+        },
+        {
+          "source_index": 211,
+          "x": 638.59,
+          "y": 19.074,
+          "model_prediction": 19.39466074826671,
+          "residual": -0.32066074826670743,
+          "local_linearized_prediction_standard_deviation": 0.1658468671217616,
+          "denominator": 47.362468175524384
+        },
+        {
+          "source_index": 212,
+          "x": 641.36,
+          "y": 19.239,
+          "model_prediction": 19.420092312003657,
+          "residual": -0.18109231200365628,
+          "local_linearized_prediction_standard_deviation": 0.1720283424798552,
+          "denominator": 47.56243335801767
+        },
+        {
+          "source_index": 213,
+          "x": 622.05,
+          "y": 19.28,
+          "model_prediction": 19.246266377224842,
+          "residual": 0.03373362277515923,
+          "local_linearized_prediction_standard_deviation": 0.1324049926553835,
+          "denominator": 46.13008558456464
+        },
+        {
+          "source_index": 214,
+          "x": 631.5,
+          "y": 19.101,
+          "model_prediction": 19.330340611372876,
+          "residual": -0.22934061137287642,
+          "local_linearized_prediction_standard_deviation": 0.15080395743331443,
+          "denominator": 46.84211936084823
+        },
+        {
+          "source_index": 215,
+          "x": 663.97,
+          "y": 19.398,
+          "model_prediction": 19.63450594921246,
+          "residual": -0.23650594921246082,
+          "local_linearized_prediction_standard_deviation": 0.22949653765664835,
+          "denominator": 49.12108634729695
+        },
+        {
+          "source_index": 216,
+          "x": 646.9,
+          "y": 19.252,
+          "model_prediction": 19.471482793938787,
+          "residual": -0.21948279393878778,
+          "local_linearized_prediction_standard_deviation": 0.1849268465230168,
+          "denominator": 47.95661369788886
+        },
+        {
+          "source_index": 217,
+          "x": 748.29,
+          "y": 19.89,
+          "model_prediction": 20.571244215452555,
+          "residual": -0.6812442154525549,
+          "local_linearized_prediction_standard_deviation": 0.5982182855428545,
+          "denominator": 53.588127179111325
+        },
+        {
+          "source_index": 218,
+          "x": 749.21,
+          "y": 20.007,
+          "model_prediction": 20.582958156444892,
+          "residual": -0.5759581564448908,
+          "local_linearized_prediction_standard_deviation": 0.6040829079889781,
+          "denominator": 53.62353744866155
+        },
+        {
+          "source_index": 219,
+          "x": 750.14,
+          "y": 19.929,
+          "model_prediction": 20.594838450259953,
+          "residual": -0.6658384502599546,
+          "local_linearized_prediction_standard_deviation": 0.6100630890512959,
+          "denominator": 53.6590117106436
+        },
+        {
+          "source_index": 220,
+          "x": 647.04,
+          "y": 19.268,
+          "model_prediction": 19.47279075166092,
+          "residual": -0.2047907516609193,
+          "local_linearized_prediction_standard_deviation": 0.1852622737691265,
+          "denominator": 47.96647432355616
+        },
+        {
+          "source_index": 221,
+          "x": 646.89,
+          "y": 19.324,
+          "model_prediction": 19.47138938610944,
+          "residual": -0.1473893861094382,
+          "local_linearized_prediction_standard_deviation": 0.18490290558088923,
+          "denominator": 47.95590917610762
+        },
+        {
+          "source_index": 222,
+          "x": 746.9,
+          "y": 20.049,
+          "model_prediction": 20.55361830890675,
+          "residual": -0.5046183089067497,
+          "local_linearized_prediction_standard_deviation": 0.5894533203845475,
+          "denominator": 53.53402999269262
+        },
+        {
+          "source_index": 223,
+          "x": 748.43,
+          "y": 20.107,
+          "model_prediction": 20.573024303712902,
+          "residual": -0.4660243037129028,
+          "local_linearized_prediction_standard_deviation": 0.599107457231196,
+          "denominator": 53.59353603013531
+        },
+        {
+          "source_index": 224,
+          "x": 747.35,
+          "y": 20.062,
+          "model_prediction": 20.55931504691299,
+          "residual": -0.49731504691298767,
+          "local_linearized_prediction_standard_deviation": 0.5922783634138803,
+          "denominator": 53.55162195245417
+        },
+        {
+          "source_index": 225,
+          "x": 749.27,
+          "y": 20.065,
+          "model_prediction": 20.583723440429054,
+          "residual": -0.5187234404290528,
+          "local_linearized_prediction_standard_deviation": 0.6044671492655521,
+          "denominator": 53.62583585671729
+        },
+        {
+          "source_index": 226,
+          "x": 647.61,
+          "y": 19.286,
+          "model_prediction": 19.47812079715902,
+          "residual": -0.1921207971590171,
+          "local_linearized_prediction_standard_deviation": 0.18663284780224362,
+          "denominator": 48.00656946729992
+        },
+        {
+          "source_index": 227,
+          "x": 747.78,
+          "y": 19.972,
+          "model_prediction": 20.564767077324895,
+          "residual": -0.5927670773248934,
+          "local_linearized_prediction_standard_deviation": 0.5949890448692329,
+          "denominator": 53.56836187721143
+        },
+        {
+          "source_index": 228,
+          "x": 750.51,
+          "y": 20.088,
+          "model_prediction": 20.59957598180956,
+          "residual": -0.5115759818095604,
+          "local_linearized_prediction_standard_deviation": 0.6124568878864094,
+          "denominator": 53.67303520711083
+        },
+        {
+          "source_index": 229,
+          "x": 851.37,
+          "y": 20.743,
+          "model_prediction": 22.18689684401516,
+          "residual": -1.4438968440151605,
+          "local_linearized_prediction_standard_deviation": 1.7109828796303204,
+          "denominator": 55.386713857553104
+        },
+        {
+          "source_index": 230,
+          "x": 845.97,
+          "y": 20.83,
+          "model_prediction": 22.0833033892474,
+          "residual": -1.253303389247403,
+          "local_linearized_prediction_standard_deviation": 1.6210362329809478,
+          "denominator": 55.410934285896104
+        },
+        {
+          "source_index": 231,
+          "x": 847.54,
+          "y": 20.935,
+          "model_prediction": 22.113151774328387,
+          "residual": -1.1781517743283878,
+          "local_linearized_prediction_standard_deviation": 1.6466888378706586,
+          "denominator": 55.40535727606175
+        },
+        {
+          "source_index": 232,
+          "x": 849.93,
+          "y": 21.035,
+          "model_prediction": 22.159013898680996,
+          "residual": -1.124013898680996,
+          "local_linearized_prediction_standard_deviation": 1.6865201004440171,
+          "denominator": 55.394564421864615
+        },
+        {
+          "source_index": 233,
+          "x": 851.61,
+          "y": 20.93,
+          "model_prediction": 22.1915625061811,
+          "residual": -1.2615625061811002,
+          "local_linearized_prediction_standard_deviation": 1.7150944504130397,
+          "denominator": 55.3853065844382
+        },
+        {
+          "source_index": 234,
+          "x": 849.75,
+          "y": 21.074,
+          "model_prediction": 22.15554185061577,
+          "residual": -1.0815418506157677,
+          "local_linearized_prediction_standard_deviation": 1.683486988998939,
+          "denominator": 55.3954743599398
+        },
+        {
+          "source_index": 235,
+          "x": 850.98,
+          "y": 21.085,
+          "model_prediction": 22.179326449153894,
+          "residual": -1.0943264491538933,
+          "local_linearized_prediction_standard_deviation": 1.704322646788883,
+          "denominator": 55.388940392694295
+        },
+        {
+          "source_index": 236,
+          "x": 848.23,
+          "y": 20.935,
+          "model_prediction": 22.126339438825095,
+          "residual": -1.1913394388250964,
+          "local_linearized_prediction_standard_deviation": 1.6580906966949736,
+          "denominator": 55.40252728753896
+        }
+      ]
+    }
+  ],
+  "decision": {
+    "fold_1_failure_reversed": false,
+    "global_identifiability_proved": false,
+    "physical_parameter_endogeneity_proved": false,
+    "calibrated_prediction_intervals_produced": false,
+    "interpretation": "Report measured conditioning and local sensitivity alongside the existing failure; do not convert a mechanism hypothesis into a new success claim"
+  },
+  "limitations": [
+    "This is post-hoc diagnosis after observing fold 1 failure, not preregistered or independent validation",
+    "Local Jacobians, covariances and delta-method sensitivities do not prove global structural identifiability or calibrated uncertainty",
+    "Column-normalized condition numbers reduce unit-scale dominance but do not remove nonlinear parameter compensation",
+    "A nonzero denominator excludes isolated poles only at evaluated points and does not guarantee stable extrapolation",
+    "No new physical experiment, model revision or parameter-endogeneity claim is produced"
+  ],
+  "analysis_runner_sha256": "4b8499fe825bd6e4daeacf07b9da3b710feaf0839753855d9054ee7867fa06ce"
+}

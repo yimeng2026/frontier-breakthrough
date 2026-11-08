@@ -1,0 +1,405 @@
+{
+  "status": "computed_exploratory_frozen_hahn1_denominator_roots",
+  "protocol_sha256": "4dba2b853b5596f01bd99dfc60717272a7b77f73797685d82e42660b6c835581",
+  "diagnostic_sha256": "3ef5b98effcae91afe91d46446fa1392a584996375e827f103936b652fefddfb",
+  "data_sha256": "7e885af48e18a222033a66cb22b491f0f5bc761b652142c0d9b28132daf63956",
+  "analysis_scope": {
+    "exploratory_follow_up": true,
+    "preregistered": false,
+    "refit": false,
+    "new_model_or_parameters": false,
+    "exact_algebraic_proof": false
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "model_parameters": {
+        "b1": 29.67033956061389,
+        "b2": -0.8080529397121834,
+        "b3": 0.005817644316126608,
+        "b4": -2.5436805200085647e-06,
+        "b5": -0.03642001152406116,
+        "b6": 0.0003257043076452197,
+        "b7": -1.801122840443873e-07
+      },
+      "held_out_interval": {
+        "regime": "low_x_extrapolation",
+        "train_x_min": 94.88,
+        "train_x_max": 851.61,
+        "test_x_min": 14.13,
+        "test_x_max": 94.33,
+        "extrapolation_distance_x": 0.5499999999999972
+      },
+      "all_numerical_roots": [
+        {
+          "root_real": 45.52697791771662,
+          "root_imag": 0.0,
+          "is_real": true,
+          "root_x": 45.52697791771662,
+          "absolute_denominator_residual": 5.828670879282072e-16,
+          "numerator_at_root": 4.700363920720648,
+          "denominator_derivative_at_root": -0.007883305163558533,
+          "numerical_simple_pole_evidence": true,
+          "interpretation": "Nonzero numerator and first derivative at a numerical real root support a simple-pole diagnosis, not an exact algebraic proof"
+        },
+        {
+          "root_real": 72.131671472642,
+          "root_imag": 0.0,
+          "is_real": true,
+          "root_x": 72.131671472642,
+          "absolute_denominator_residual": 1.2906342661267445e-15,
+          "numerator_at_root": 0.6985639085300439,
+          "denominator_derivative_at_root": 0.007755819938373381,
+          "numerical_simple_pole_evidence": true,
+          "interpretation": "Nonzero numerator and first derivative at a numerical real root support a simple-pole diagnosis, not an exact algebraic proof"
+        },
+        {
+          "root_real": 1690.6816832709742,
+          "root_imag": 0.0,
+          "is_real": true,
+          "root_x": 1690.6816832709742,
+          "absolute_denominator_residual": 1.1368683772161603e-13,
+          "numerator_at_root": 2999.9677230900234,
+          "denominator_derivative_at_root": -0.4795967162390171,
+          "numerical_simple_pole_evidence": true,
+          "interpretation": "Nonzero numerator and first derivative at a numerical real root support a simple-pole diagnosis, not an exact algebraic proof"
+        }
+      ],
+      "real_roots": [
+        {
+          "root_real": 45.52697791771662,
+          "root_imag": 0.0,
+          "is_real": true,
+          "root_x": 45.52697791771662,
+          "absolute_denominator_residual": 5.828670879282072e-16,
+          "numerator_at_root": 4.700363920720648,
+          "denominator_derivative_at_root": -0.007883305163558533,
+          "numerical_simple_pole_evidence": true,
+          "interpretation": "Nonzero numerator and first derivative at a numerical real root support a simple-pole diagnosis, not an exact algebraic proof",
+          "within_held_out_closed_interval": true,
+          "strictly_between_minimum_and_maximum_held_out_x": true,
+          "within_full_observed_x_range": true,
+          "nearest_training_observation_x": 94.88,
+          "nearest_training_observation_distance_x": 49.353022082283374,
+          "nearest_held_out_observation_x": 45.07,
+          "nearest_held_out_observation_distance_x": 0.4569779177166211
+        },
+        {
+          "root_real": 72.131671472642,
+          "root_imag": 0.0,
+          "is_real": true,
+          "root_x": 72.131671472642,
+          "absolute_denominator_residual": 1.2906342661267445e-15,
+          "numerator_at_root": 0.6985639085300439,
+          "denominator_derivative_at_root": 0.007755819938373381,
+          "numerical_simple_pole_evidence": true,
+          "interpretation": "Nonzero numerator and first derivative at a numerical real root support a simple-pole diagnosis, not an exact algebraic proof",
+          "within_held_out_closed_interval": true,
+          "strictly_between_minimum_and_maximum_held_out_x": true,
+          "within_full_observed_x_range": true,
+          "nearest_training_observation_x": 94.88,
+          "nearest_training_observation_distance_x": 22.748328527357998,
+          "nearest_held_out_observation_x": 72.08,
+          "nearest_held_out_observation_distance_x": 0.05167147264199912
+        },
+        {
+          "root_real": 1690.6816832709742,
+          "root_imag": 0.0,
+          "is_real": true,
+          "root_x": 1690.6816832709742,
+          "absolute_denominator_residual": 1.1368683772161603e-13,
+          "numerator_at_root": 2999.9677230900234,
+          "denominator_derivative_at_root": -0.4795967162390171,
+          "numerical_simple_pole_evidence": true,
+          "interpretation": "Nonzero numerator and first derivative at a numerical real root support a simple-pole diagnosis, not an exact algebraic proof",
+          "within_held_out_closed_interval": false,
+          "strictly_between_minimum_and_maximum_held_out_x": false,
+          "within_full_observed_x_range": false,
+          "nearest_training_observation_x": 851.61,
+          "nearest_training_observation_distance_x": 839.0716832709742,
+          "nearest_held_out_observation_x": 94.33,
+          "nearest_held_out_observation_distance_x": 1596.3516832709743
+        }
+      ],
+      "real_root_count_in_held_out_closed_interval": 2,
+      "test_rmse": 354.02266177305074,
+      "baseline_test_rmse": 5.341736844196082
+    },
+    {
+      "fold": 2,
+      "model_parameters": {
+        "b1": 1.1161010904499564,
+        "b2": -0.12434032926136562,
+        "b3": 0.004077308358324354,
+        "b4": -1.2924152593606815e-06,
+        "b5": -0.006109190089247961,
+        "b6": 0.00024187473474873258,
+        "b7": -1.1841997430982739e-07
+      },
+      "held_out_interval": {
+        "regime": "contiguous_gap_with_training_on_both_sides",
+        "train_x_min": 14.13,
+        "train_x_max": 851.61,
+        "test_x_min": 94.88,
+        "test_x_max": 220.55,
+        "extrapolation_distance_x": 0.0
+      },
+      "all_numerical_roots": [
+        {
+          "root_real": 11.739940183427791,
+          "root_imag": -63.597365539798076,
+          "is_real": false
+        },
+        {
+          "root_real": 11.739940183427791,
+          "root_imag": 63.597365539798076,
+          "is_real": false
+        },
+        {
+          "root_real": 2019.0364785364582,
+          "root_imag": 0.0,
+          "is_real": true,
+          "root_x": 2019.0364785364582,
+          "absolute_denominator_residual": 0.0,
+          "numerator_at_root": 5733.872265915044,
+          "denominator_derivative_at_root": -0.4776213897706525,
+          "numerical_simple_pole_evidence": true,
+          "interpretation": "Nonzero numerator and first derivative at a numerical real root support a simple-pole diagnosis, not an exact algebraic proof"
+        }
+      ],
+      "real_roots": [
+        {
+          "root_real": 2019.0364785364582,
+          "root_imag": 0.0,
+          "is_real": true,
+          "root_x": 2019.0364785364582,
+          "absolute_denominator_residual": 0.0,
+          "numerator_at_root": 5733.872265915044,
+          "denominator_derivative_at_root": -0.4776213897706525,
+          "numerical_simple_pole_evidence": true,
+          "interpretation": "Nonzero numerator and first derivative at a numerical real root support a simple-pole diagnosis, not an exact algebraic proof",
+          "within_held_out_closed_interval": false,
+          "strictly_between_minimum_and_maximum_held_out_x": false,
+          "within_full_observed_x_range": false,
+          "nearest_training_observation_x": 851.61,
+          "nearest_training_observation_distance_x": 1167.426478536458,
+          "nearest_held_out_observation_x": 220.55,
+          "nearest_held_out_observation_distance_x": 1798.4864785364582
+        }
+      ],
+      "real_root_count_in_held_out_closed_interval": 0,
+      "test_rmse": 0.09536628127442646,
+      "baseline_test_rmse": 2.204274385446384
+    },
+    {
+      "fold": 3,
+      "model_parameters": {
+        "b1": 1.1591426516786314,
+        "b2": -0.1295842977750675,
+        "b3": 0.0042372940411687906,
+        "b4": -1.6346283605188788e-06,
+        "b5": -0.0056086965386476124,
+        "b6": 0.0002466929113936996,
+        "b7": -1.3253526826632008e-07
+      },
+      "held_out_interval": {
+        "regime": "contiguous_gap_with_training_on_both_sides",
+        "train_x_min": 14.13,
+        "train_x_max": 851.61,
+        "test_x_min": 221.05,
+        "test_x_max": 358.18,
+        "extrapolation_distance_x": 0.0
+      },
+      "all_numerical_roots": [
+        {
+          "root_real": 10.382409666147531,
+          "root_imag": -63.178795038026905,
+          "is_real": false
+        },
+        {
+          "root_real": 10.382409666147531,
+          "root_imag": 63.178795038026905,
+          "is_real": false
+        },
+        {
+          "root_real": 1840.5730314953646,
+          "root_imag": 0.0,
+          "is_real": true,
+          "root_x": 1840.5730314953646,
+          "absolute_denominator_residual": 2.2737367544323206e-13,
+          "numerator_at_root": 3924.928612399519,
+          "denominator_derivative_at_root": -0.44446885386915047,
+          "numerical_simple_pole_evidence": true,
+          "interpretation": "Nonzero numerator and first derivative at a numerical real root support a simple-pole diagnosis, not an exact algebraic proof"
+        }
+      ],
+      "real_roots": [
+        {
+          "root_real": 1840.5730314953646,
+          "root_imag": 0.0,
+          "is_real": true,
+          "root_x": 1840.5730314953646,
+          "absolute_denominator_residual": 2.2737367544323206e-13,
+          "numerator_at_root": 3924.928612399519,
+          "denominator_derivative_at_root": -0.44446885386915047,
+          "numerical_simple_pole_evidence": true,
+          "interpretation": "Nonzero numerator and first derivative at a numerical real root support a simple-pole diagnosis, not an exact algebraic proof",
+          "within_held_out_closed_interval": false,
+          "strictly_between_minimum_and_maximum_held_out_x": false,
+          "within_full_observed_x_range": false,
+          "nearest_training_observation_x": 851.61,
+          "nearest_training_observation_distance_x": 988.9630314953646,
+          "nearest_held_out_observation_x": 358.18,
+          "nearest_held_out_observation_distance_x": 1482.3930314953645
+        }
+      ],
+      "real_root_count_in_held_out_closed_interval": 0,
+      "test_rmse": 0.086351504363819,
+      "baseline_test_rmse": 1.3032575472004715
+    },
+    {
+      "fold": 4,
+      "model_parameters": {
+        "b1": 1.0678454557432593,
+        "b2": -0.12202604742847688,
+        "b3": 0.004076950386606688,
+        "b4": -1.4700774285671224e-06,
+        "b5": -0.0057472726265029705,
+        "b6": 0.00023980519717413233,
+        "b7": -1.2491337059698985e-07
+      },
+      "held_out_interval": {
+        "regime": "contiguous_gap_with_training_on_both_sides",
+        "train_x_min": 14.13,
+        "train_x_max": 851.61,
+        "test_x_min": 358.72,
+        "test_x_max": 524.7,
+        "extrapolation_distance_x": 0.0
+      },
+      "all_numerical_roots": [
+        {
+          "root_real": 11.010833401493509,
+          "root_imag": -64.00939468888558,
+          "is_real": false
+        },
+        {
+          "root_real": 11.010833401493509,
+          "root_imag": 64.00939468888558,
+          "is_real": false
+        },
+        {
+          "root_real": 1897.7503802408794,
+          "root_imag": 0.0,
+          "is_real": true,
+          "root_x": 1897.7503802408794,
+          "absolute_denominator_residual": 1.1368683772161603e-13,
+          "numerator_at_root": 4404.964946386366,
+          "denominator_derivative_at_root": -0.445176677942588,
+          "numerical_simple_pole_evidence": true,
+          "interpretation": "Nonzero numerator and first derivative at a numerical real root support a simple-pole diagnosis, not an exact algebraic proof"
+        }
+      ],
+      "real_roots": [
+        {
+          "root_real": 1897.7503802408794,
+          "root_imag": 0.0,
+          "is_real": true,
+          "root_x": 1897.7503802408794,
+          "absolute_denominator_residual": 1.1368683772161603e-13,
+          "numerator_at_root": 4404.964946386366,
+          "denominator_derivative_at_root": -0.445176677942588,
+          "numerical_simple_pole_evidence": true,
+          "interpretation": "Nonzero numerator and first derivative at a numerical real root support a simple-pole diagnosis, not an exact algebraic proof",
+          "within_held_out_closed_interval": false,
+          "strictly_between_minimum_and_maximum_held_out_x": false,
+          "within_full_observed_x_range": false,
+          "nearest_training_observation_x": 851.61,
+          "nearest_training_observation_distance_x": 1046.1403802408795,
+          "nearest_held_out_observation_x": 524.7,
+          "nearest_held_out_observation_distance_x": 1373.0503802408793
+        }
+      ],
+      "real_root_count_in_held_out_closed_interval": 0,
+      "test_rmse": 0.07410353487366038,
+      "baseline_test_rmse": 1.0344105847266927
+    },
+    {
+      "fold": 5,
+      "model_parameters": {
+        "b1": 1.140148691494554,
+        "b2": -0.1289482020114357,
+        "b3": 0.004271608559104935,
+        "b4": -2.849933701555914e-06,
+        "b5": -0.0056585402906879235,
+        "b6": 0.00024521187940848154,
+        "b7": -1.920807935645145e-07
+      },
+      "held_out_interval": {
+        "regime": "high_x_extrapolation",
+        "train_x_min": 14.13,
+        "train_x_max": 524.7,
+        "test_x_min": 528.99,
+        "test_x_max": 851.61,
+        "extrapolation_distance_x": 4.289999999999964
+      },
+      "all_numerical_roots": [
+        {
+          "root_real": 10.074206077654903,
+          "root_imag": -63.57682095825918,
+          "is_real": false
+        },
+        {
+          "root_real": 10.074206077654903,
+          "root_imag": 63.57682095825918,
+          "is_real": false
+        },
+        {
+          "root_real": 1256.4595966830216,
+          "root_imag": 0.0,
+          "is_real": true,
+          "root_x": 1256.4595966830216,
+          "absolute_denominator_residual": 1.1368683772161603e-13,
+          "numerator_at_root": 929.6530900165944,
+          "denominator_derivative_at_root": -0.29916939985869007,
+          "numerical_simple_pole_evidence": true,
+          "interpretation": "Nonzero numerator and first derivative at a numerical real root support a simple-pole diagnosis, not an exact algebraic proof"
+        }
+      ],
+      "real_roots": [
+        {
+          "root_real": 1256.4595966830216,
+          "root_imag": 0.0,
+          "is_real": true,
+          "root_x": 1256.4595966830216,
+          "absolute_denominator_residual": 1.1368683772161603e-13,
+          "numerator_at_root": 929.6530900165944,
+          "denominator_derivative_at_root": -0.29916939985869007,
+          "numerical_simple_pole_evidence": true,
+          "interpretation": "Nonzero numerator and first derivative at a numerical real root support a simple-pole diagnosis, not an exact algebraic proof",
+          "within_held_out_closed_interval": false,
+          "strictly_between_minimum_and_maximum_held_out_x": false,
+          "within_full_observed_x_range": false,
+          "nearest_training_observation_x": 524.7,
+          "nearest_training_observation_distance_x": 731.7595966830215,
+          "nearest_held_out_observation_x": 851.61,
+          "nearest_held_out_observation_distance_x": 404.84959668302156
+        }
+      ],
+      "real_root_count_in_held_out_closed_interval": 0,
+      "test_rmse": 0.568123188330242,
+      "baseline_test_rmse": 23.928268119785784
+    }
+  ],
+  "decision": {
+    "fold_1_failure_reversed": false,
+    "certified_full_fit_proof_applied_to_fold_parameters": false,
+    "interpretation": "Different fold-specific coefficients require separate denominator audits; numerical roots explain local blow-up without ranking the whole rational family"
+  },
+  "limitations": [
+    "Numerical roots and residuals are not exact algebraic certificates",
+    "A simple-pole diagnosis requires the reported nonzero numerator and derivative at the numerical root; no removable singularity is assumed",
+    "The earlier certified full-fit denominator proof applies to different coefficients and cannot be transferred to these fold fits",
+    "Root localization is post-hoc mechanism evidence and does not make the failed fold successful"
+  ],
+  "analysis_runner_sha256": "5785185eac10bb8b44e576bcd11c200b528bcc2ef869e83935102c6b04f3beb6"
+}

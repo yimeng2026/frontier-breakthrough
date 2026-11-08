@@ -411,6 +411,43 @@
       "sourceFiles": [
         "validation/grouped-stress.json"
       ]
+    },
+    {
+      "id": "claim-fold1-heldout-pole-free",
+      "kind": "claim",
+      "title": "Hahn1 第 1 折冻结模型在低温留出闭区间内无实极点",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/hahn1-frozen-denominator-roots.json"
+      ]
+    },
+    {
+      "id": "evidence-hahn1-fold1-identifiability",
+      "kind": "evidence",
+      "title": "五折局部雅可比、参数相关和留出预测敏感度诊断",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/hahn1-fold1-identifiability.json"
+      ]
+    },
+    {
+      "id": "evidence-hahn1-frozen-denominator-roots",
+      "kind": "evidence",
+      "title": "第 1 折约 45.526978 K 与 72.131671 K 的两个数值单极点",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/hahn1-frozen-denominator-roots.json"
+      ]
+    },
+    {
+      "id": "limitation-post-hoc-mechanism",
+      "kind": "limitation",
+      "title": "事后机制诊断与数值根定位不是预注册检验或精确代数证书",
+      "status": "active",
+      "sourceFiles": [
+        "validation/hahn1-fold1-identifiability.json",
+        "validation/hahn1-frozen-denominator-roots.json"
+      ]
     }
   ],
   "edges": [
@@ -497,6 +534,26 @@
     {
       "from": "track-holdout",
       "to": "limitation-grouped-stress",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-fold1-heldout-pole-free",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-hahn1-fold1-identifiability",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-hahn1-frozen-denominator-roots",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-post-hoc-mechanism",
       "relation": "contains"
     },
     {
@@ -742,6 +799,26 @@
     {
       "from": "limitation-grouped-stress",
       "to": "claim-universal-robustness",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-hahn1-frozen-denominator-roots",
+      "to": "claim-fold1-heldout-pole-free",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-hahn1-fold1-identifiability",
+      "to": "claim-universal-robustness",
+      "relation": "contradicts"
+    },
+    {
+      "from": "limitation-post-hoc-mechanism",
+      "to": "evidence-hahn1-fold1-identifiability",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-post-hoc-mechanism",
+      "to": "evidence-hahn1-frozen-denominator-roots",
       "relation": "limits"
     },
     {
