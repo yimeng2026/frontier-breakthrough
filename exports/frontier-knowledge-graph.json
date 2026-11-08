@@ -701,6 +701,42 @@
       "sourceFiles": [
         "validation/rational-ellipsoid-box-comparison.json"
       ]
+    },
+    {
+      "id": "claim-ellipsoid-continuous-gap",
+      "kind": "claim",
+      "title": "指定椭球的连续留出区间存在未认证的支撑安全缺口",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/rational-ellipsoid-interval-safety.json"
+      ]
+    },
+    {
+      "id": "evidence-ellipsoid-continuous-interval",
+      "kind": "evidence",
+      "title": "13 折连续平方支撑均为正、0 折未认证、2 折有根",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/rational-ellipsoid-interval-safety.json"
+      ]
+    },
+    {
+      "id": "experiment-ellipsoid-interval-protocol",
+      "kind": "experiment",
+      "title": "连续闭区间平方支撑精确证明协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/rational-ellipsoid-interval-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-ellipsoid-continuous-scope",
+      "kind": "limitation",
+      "title": "连续证明只覆盖指定椭球、半径和区间，不覆盖分子或其他区域",
+      "status": "active",
+      "sourceFiles": [
+        "validation/rational-ellipsoid-interval-safety.json"
+      ]
     }
   ],
   "edges": [
@@ -997,6 +1033,26 @@
     {
       "from": "track-formal",
       "to": "limitation-ellipsoid-box-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "claim-ellipsoid-continuous-gap",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "evidence-ellipsoid-continuous-interval",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "experiment-ellipsoid-interval-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "limitation-ellipsoid-continuous-scope",
       "relation": "contains"
     },
     {
@@ -1317,6 +1373,21 @@
     {
       "from": "limitation-ellipsoid-box-scope",
       "to": "claim-ellipsoid-all-369-tighter",
+      "relation": "limits"
+    },
+    {
+      "from": "experiment-ellipsoid-interval-protocol",
+      "to": "claim-ellipsoid-continuous-gap",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-ellipsoid-continuous-interval",
+      "to": "claim-ellipsoid-continuous-gap",
+      "relation": "contradicts"
+    },
+    {
+      "from": "limitation-ellipsoid-continuous-scope",
+      "to": "claim-ellipsoid-continuous-gap",
       "relation": "limits"
     },
     {

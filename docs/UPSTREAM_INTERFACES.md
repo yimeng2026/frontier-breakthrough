@@ -37,7 +37,8 @@
 | 连续参数盒稳定性证明 | 13 折获得正的区域安全半径，11 折达到上限 4，2 折为有限半径括号；跨零区间分段证明 | `scripts/box_stability.py`、`validation/rational-parameter-box-stability.json` | 提供整个系数盒的无根充分证明，不把半径当作置信区或必要最大值 |
 | 参数盒内逐点预测界 | 13 折共 369 个留出点获得精确预测平移与残差上界；两个有根折不生成同类界 | `scripts/prediction_box_bounds.py`、`validation/rational-prediction-box-bounds.json` | 把无根与预测信息质量分开，巨大有限上界不包装成高精度或概率区间 |
 | 协方差椭球与独立盒比较 | 同一半径下 369 个适用点的椭球上界全部更紧，中位比值 0.604836 | `scripts/ellipsoid_bounds.py`、`validation/rational-ellipsoid-box-comparison.json` | 提供相关方向的确定性上界，不把区域替换或样本结果称为永远更紧或置信区 |
-| 主张—证据—反例—实验图谱 | 76 个节点、127 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| 协方差椭球连续区间证明 | 13 折平方支撑多项式在整个留出闭区间均为正，0 折未认证，2 折有根 | `scripts/ellipsoid_interval.py`、`validation/rational-ellipsoid-interval-safety.json` | 用精确 Sturm 覆盖观测点之间，不把逐点检查冒充连续证明 |
+| 主张—证据—反例—实验图谱 | 80 个节点、134 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 与自动科学发现项目的配合
 

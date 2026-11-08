@@ -943,6 +943,32 @@
         "validation/rational-ellipsoid-box-protocol.json",
         "validation/rational-ellipsoid-box-comparison.json"
       ]
+    },
+    {
+      "id": "rational-ellipsoid-continuous-interval",
+      "domain": "math",
+      "title": "协方差椭球连续区间平方支撑证明",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml"
+      ],
+      "metrics": {
+        "fold_count": 15,
+        "continuous_safe_fold_count": 13,
+        "not_certified_fold_count": 0,
+        "rooted_snapshot_fold_count": 2,
+        "interpretation": "Counts distinguish exact continuous safety, non-certification and rooted snapshots"
+      },
+      "scientificClaim": "13 个无根快照的 D²-rho²z^TΣz 在整个留出闭区间均为正，未认证折为 0，有根快照折为 2。",
+      "limitations": "A continuous certificate applies only to the specified covariance ellipsoid, radius and closed x interval Non-certification does not prove the ellipsoid is unsafe; it means the exact sufficient condition was not established Rooted snapshots do not receive a root-free neighborhood certificate Numerator perturbation and model-structure errors are outside this certificate No confidence, probability or physical measurement model is implied",
+      "upstreamContribution": "提供精确平方支撑连续证明，覆盖观测点之间，不把逐点正分母当作连续安全。",
+      "snapshotFiles": [
+        "validation/rational-ellipsoid-interval-protocol.json",
+        "validation/rational-ellipsoid-interval-safety.json"
+      ]
     }
   ]
 }

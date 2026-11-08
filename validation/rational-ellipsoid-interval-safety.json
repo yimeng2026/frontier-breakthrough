@@ -1,0 +1,789 @@
+{
+  "status": "computed_exact_rational_ellipsoid_interval_safety",
+  "protocol_sha256": "37d6805f0601521f581c78198f0d13e2d4c57fb26f777087337cda165113be01",
+  "input_sha256": {
+    "comparison": "faf252e5054f566b2165124031ca1bf02ae28d2de949b1b73ba415f74cdf9d32",
+    "parameter_box": "ed31e9389d7928c0e8ed0a0ef245c117970ad84019d2b5b4d94c6343d6da28be"
+  },
+  "cases": [
+    {
+      "dataset": "hahn1",
+      "fold": 1,
+      "closed_interval": [
+        14.13,
+        94.33
+      ],
+      "certified_radius_lower_bound_float": 0.0,
+      "denominator_coefficients": [
+        1,
+        -0.03642001152406116,
+        0.0003257043076452197,
+        -1.801122840443873e-07
+      ],
+      "denominator_covariance": [
+        [
+          5.384822766658944e-05,
+          -3.4258595719279613e-07,
+          2.5785671606401103e-10
+        ],
+        [
+          -3.4258595719279613e-07,
+          2.6989832882578233e-09,
+          -2.0511745273506993e-12
+        ],
+        [
+          2.5785671606401103e-10,
+          -2.0511745273506993e-12,
+          1.603738554469952e-15
+        ]
+      ],
+      "snapshot_safe": false,
+      "continuous_ellipsoid_safe": false,
+      "snapshot_root_count": null,
+      "support_polynomial_root_count": null,
+      "reason": "Rooted snapshot has no root-free neighborhood",
+      "interpretation": "Only a successful exact continuous certificate is called safe; non-certification is not called unsafe"
+    },
+    {
+      "dataset": "hahn1",
+      "fold": 2,
+      "closed_interval": [
+        94.88,
+        220.55
+      ],
+      "certified_radius_lower_bound_float": 4.0,
+      "denominator_coefficients": [
+        1,
+        -0.006109190089247961,
+        0.00024187473474873258,
+        -1.1841997430982739e-07
+      ],
+      "denominator_covariance": [
+        [
+          1.332072725702103e-07,
+          1.8584498411477497e-09,
+          -3.630688770370005e-12
+        ],
+        [
+          1.8584498411477497e-09,
+          1.692700975540181e-10,
+          -1.8909454285486802e-13
+        ],
+        [
+          -3.630688770370005e-12,
+          -1.8909454285486802e-13,
+          2.6330525727799945e-16
+        ]
+      ],
+      "snapshot_safe": true,
+      "continuous_ellipsoid_safe": true,
+      "snapshot_root_count": 0,
+      "support_polynomial_root_count": 0,
+      "support_polynomial_coefficients_rational": [
+        "1",
+        "-6109190089247961/500000000000000000",
+        "518940356682907304888378542657521/1000000000000000000000000000000000000",
+        "-81290695206731393467521504963469/25000000000000000000000000000000000000",
+        "2867907402820124282647253499617999/50000000000000000000000000000000000000000",
+        "-128086435947316690553475205346831/2500000000000000000000000000000000000000000",
+        "98104061990921878325687315942121/10000000000000000000000000000000000000000000000"
+      ],
+      "support_polynomial_roots": [],
+      "support_variance_coefficients_rational": [
+        "0",
+        "0",
+        "1332072725702103/10000000000000000000000",
+        "18584498411477497/5000000000000000000000000",
+        "16200872001327809/100000000000000000000000000",
+        "-9454727142743401/25000000000000000000000000000",
+        "5266105145559989/20000000000000000000000000000000"
+      ],
+      "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe",
+      "interpretation": "Only a successful exact continuous certificate is called safe; non-certification is not called unsafe"
+    },
+    {
+      "dataset": "hahn1",
+      "fold": 3,
+      "closed_interval": [
+        221.05,
+        358.18
+      ],
+      "certified_radius_lower_bound_float": 4.0,
+      "denominator_coefficients": [
+        1,
+        -0.0056086965386476124,
+        0.0002466929113936996,
+        -1.3253526826632008e-07
+      ],
+      "denominator_covariance": [
+        [
+          7.597725661953127e-08,
+          3.1007145206431886e-10,
+          -1.8592431927702232e-12
+        ],
+        [
+          3.1007145206431886e-10,
+          1.1956044294738834e-10,
+          -1.3376801239567423e-13
+        ],
+        [
+          -1.8592431927702232e-12,
+          -1.3376801239567423e-13,
+          2.1069444331043817e-16
+        ]
+      ],
+      "snapshot_safe": true,
+      "continuous_ellipsoid_safe": true,
+      "snapshot_root_count": 0,
+      "support_polynomial_root_count": 0,
+      "support_polynomial_coefficients_rational": [
+        "1",
+        "-14021741346619031/1250000000000000000",
+        "3272672897150777549850694651378961/6250000000000000000000000000000000000",
+        "-9507013060888089198141537142719/3125000000000000000000000000000000000",
+        "945165959807159999690555185820531/15625000000000000000000000000000000000000",
+        "-954850718519772444227993405249/15625000000000000000000000000000000000000",
+        "2217888475227878078763947658001/156250000000000000000000000000000000000000000"
+      ],
+      "support_polynomial_roots": [],
+      "support_variance_coefficients_rational": [
+        "0",
+        "0",
+        "7597725661953127/100000000000000000000000",
+        "15503572603215943/25000000000000000000000000",
+        "144802445702309867/1250000000000000000000000000",
+        "-13376801239567423/50000000000000000000000000000",
+        "21069444331043817/100000000000000000000000000000000"
+      ],
+      "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe",
+      "interpretation": "Only a successful exact continuous certificate is called safe; non-certification is not called unsafe"
+    },
+    {
+      "dataset": "hahn1",
+      "fold": 4,
+      "closed_interval": [
+        358.72,
+        524.7
+      ],
+      "certified_radius_lower_bound_float": 4.0,
+      "denominator_coefficients": [
+        1,
+        -0.0057472726265029705,
+        0.00023980519717413233,
+        -1.2491337059698985e-07
+      ],
+      "denominator_covariance": [
+        [
+          6.775647255568812e-08,
+          2.1530883356154319e-10,
+          -1.3001696197553723e-12
+        ],
+        [
+          2.1530883356154319e-10,
+          1.2398657419571406e-10,
+          -1.3131891693465962e-13
+        ],
+        [
+          -1.3001696197553723e-12,
+          -1.3131891693465962e-13,
+          1.8745109968868873e-16
+        ]
+      ],
+      "snapshot_safe": true,
+      "continuous_ellipsoid_safe": true,
+      "snapshot_root_count": 0,
+      "support_polynomial_root_count": 0,
+      "support_polynomial_coefficients_rational": [
+        "1",
+        "-11494545253005941/1000000000000000000",
+        "2046229733722896012515696181295481/4000000000000000000000000000000000000",
+        "-301316831469202555295174101017253/100000000000000000000000000000000000000",
+        "228000700893831331800405948471711/4000000000000000000000000000000000000000",
+        "-55707545589484121872915567133701/1000000000000000000000000000000000000000000",
+        "5041653023552763485994352401209/400000000000000000000000000000000000000000000"
+      ],
+      "support_polynomial_roots": [],
+      "support_variance_coefficients_rational": [
+        "0",
+        "0",
+        "1693911813892203/25000000000000000000000",
+        "21530883356154319/50000000000000000000000000",
+        "606931174781016577/5000000000000000000000000000",
+        "-6565945846732981/25000000000000000000000000000",
+        "18745109968868873/100000000000000000000000000000000"
+      ],
+      "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe",
+      "interpretation": "Only a successful exact continuous certificate is called safe; non-certification is not called unsafe"
+    },
+    {
+      "dataset": "hahn1",
+      "fold": 5,
+      "closed_interval": [
+        528.99,
+        851.61
+      ],
+      "certified_radius_lower_bound_float": 1.0736191272735596,
+      "denominator_coefficients": [
+        1,
+        -0.0056585402906879235,
+        0.00024521187940848154,
+        -1.920807935645145e-07
+      ],
+      "denominator_covariance": [
+        [
+          1.1091065871076448e-07,
+          2.2403763584349817e-09,
+          -1.4232596667163872e-11
+        ],
+        [
+          2.2403763584349817e-09,
+          2.1090902793859154e-10,
+          -7.451744111339966e-13
+        ],
+        [
+          -1.4232596667163872e-11,
+          -7.451744111339966e-13,
+          4.357702502032071e-15
+        ]
+      ],
+      "snapshot_safe": true,
+      "continuous_ellipsoid_safe": true,
+      "snapshot_root_count": 0,
+      "support_polynomial_root_count": 0,
+      "support_polynomial_coefficients_rational": [
+        "1",
+        "-11317080581375847/1000000000000000000",
+        "10201464745642118156955492721777065900797400263061/19531250000000000000000000000000000000000000000000000",
+        "-98887780047093174848491961019016391044262494227217/31250000000000000000000000000000000000000000000000000000",
+        "97019319173252589443196862909711652288029288686251/1562500000000000000000000000000000000000000000000000000000",
+        "-1445048784973421073146415268759601506678578647417/15625000000000000000000000000000000000000000000000000000000",
+        "199200565456903725441084730310813595162765771729/6250000000000000000000000000000000000000000000000000000000000"
+      ],
+      "support_polynomial_roots": [],
+      "support_variance_coefficients_rational": [
+        "0",
+        "0",
+        "346595808471139/3125000000000000000000",
+        "22403763584349817/5000000000000000000000000",
+        "45610958651065949/250000000000000000000000000",
+        "-3725872055669983/2500000000000000000000000000",
+        "4357702502032071/1000000000000000000000000000000"
+      ],
+      "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe",
+      "interpretation": "Only a successful exact continuous certificate is called safe; non-certification is not called unsafe"
+    },
+    {
+      "dataset": "thurber",
+      "fold": 1,
+      "closed_interval": [
+        -3.067,
+        -2.699
+      ],
+      "certified_radius_lower_bound_float": 0.0,
+      "denominator_coefficients": [
+        1,
+        1.0705802538223104,
+        0.4575080167330002,
+        0.07041862249370805
+      ],
+      "denominator_covariance": [
+        [
+          0.0015757611991668021,
+          0.0008402276724856713,
+          0.0002839532677816367
+        ],
+        [
+          0.0008402276724856713,
+          0.0004741635713481282,
+          0.0001660202632890102
+        ],
+        [
+          0.0002839532677816367,
+          0.0001660202632890102,
+          7.376463958633613e-05
+        ]
+      ],
+      "snapshot_safe": false,
+      "continuous_ellipsoid_safe": false,
+      "snapshot_root_count": null,
+      "support_polynomial_root_count": null,
+      "reason": "Rooted snapshot has no root-free neighborhood",
+      "interpretation": "Only a successful exact continuous certificate is called safe; non-certification is not called unsafe"
+    },
+    {
+      "dataset": "thurber",
+      "fold": 2,
+      "closed_interval": [
+        -2.633,
+        -1.212
+      ],
+      "certified_radius_lower_bound_float": 0.36393141746520996,
+      "denominator_coefficients": [
+        1,
+        0.8896130318759835,
+        0.3556465977569125,
+        0.04888746125732415
+      ],
+      "denominator_covariance": [
+        [
+          0.005938863326936412,
+          0.0025285601416411485,
+          0.0007553566107794438
+        ],
+        [
+          0.0025285601416411485,
+          0.0011056842353625504,
+          0.00031895296497376637
+        ],
+        [
+          0.0007553566107794438,
+          0.00031895296497376637,
+          0.00012160464838421738
+        ]
+      ],
+      "snapshot_safe": true,
+      "continuous_ellipsoid_safe": true,
+      "snapshot_root_count": 0,
+      "support_polynomial_root_count": 0,
+      "support_polynomial_coefficients_rational": [
+        "1",
+        "1779226063751967/1000000000000000",
+        "234674681695340621461370805117497827494792294659897/156250000000000000000000000000000000000000000000000",
+        "456175514367469760271238589539879753452936037523703/625000000000000000000000000000000000000000000000000",
+        "66599942555537367857056677117599901587494595901281/312500000000000000000000000000000000000000000000000",
+        "1084025950018979780756855171226433490061526222749363/31250000000000000000000000000000000000000000000000000",
+        "74183681550291873265244266306454320464078134851131/31250000000000000000000000000000000000000000000000000"
+      ],
+      "support_polynomial_roots": [],
+      "support_variance_coefficients_rational": [
+        "0",
+        "0",
+        "1484715831734103/250000000000000000",
+        "5057120283282297/1000000000000000000",
+        "1308198728460719/500000000000000000",
+        "31895296497376637/50000000000000000000",
+        "6080232419210869/50000000000000000000"
+      ],
+      "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe",
+      "interpretation": "Only a successful exact continuous certificate is called safe; non-certification is not called unsafe"
+    },
+    {
+      "dataset": "thurber",
+      "fold": 3,
+      "closed_interval": [
+        -1.1,
+        -0.4
+      ],
+      "certified_radius_lower_bound_float": 4.0,
+      "denominator_coefficients": [
+        1,
+        0.9364333550579012,
+        0.39026331339590264,
+        0.048659195662212676
+      ],
+      "denominator_covariance": [
+        [
+          0.0013004502890039927,
+          0.0005536432533860597,
+          0.00016911786447037345
+        ],
+        [
+          0.0005536432533860597,
+          0.0002541625773866051,
+          7.912119893259287e-05
+        ],
+        [
+          0.00016911786447037345,
+          7.912119893259287e-05,
+          4.659248542590978e-05
+        ]
+      ],
+      "snapshot_safe": true,
+      "continuous_ellipsoid_safe": true,
+      "snapshot_root_count": 0,
+      "support_polynomial_root_count": 0,
+      "support_polynomial_coefficients_rational": [
+        "1",
+        "2341083387644753/1250000000000000",
+        "10228917816454616573452528431009/6250000000000000000000000000000",
+        "12664265235230437105942376185599/15625000000000000000000000000000",
+        "14622454286142516652537582346887/62500000000000000000000000000000",
+        "55387374198103643591569170843327/1562500000000000000000000000000000",
+        "101389847229933776527329265942561/62500000000000000000000000000000000"
+      ],
+      "support_polynomial_roots": [],
+      "support_variance_coefficients_rational": [
+        "0",
+        "0",
+        "13004502890039927/10000000000000000000",
+        "5536432533860597/5000000000000000000",
+        "74049788290919/125000000000000000",
+        "7912119893259287/50000000000000000000",
+        "2329624271295489/50000000000000000000"
+      ],
+      "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe",
+      "interpretation": "Only a successful exact continuous certificate is called safe; non-certification is not called unsafe"
+    },
+    {
+      "dataset": "thurber",
+      "fold": 4,
+      "closed_interval": [
+        -0.309,
+        0.79
+      ],
+      "certified_radius_lower_bound_float": 4.0,
+      "denominator_coefficients": [
+        1,
+        0.9743165346925443,
+        0.3991705292479827,
+        0.04858732867682616
+      ],
+      "denominator_covariance": [
+        [
+          0.0011940737948572713,
+          0.0005071872580677254,
+          0.0001598165655087879
+        ],
+        [
+          0.0005071872580677254,
+          0.0002619064474870638,
+          9.014364555466187e-05
+        ],
+        [
+          0.0001598165655087879,
+          9.014364555466187e-05,
+          5.5120013940316404e-05
+        ]
+      ],
+      "snapshot_safe": true,
+      "continuous_ellipsoid_safe": true,
+      "snapshot_root_count": 0,
+      "support_polynomial_root_count": 0,
+      "support_polynomial_coefficients_rational": [
+        "1",
+        "9743165346925443/5000000000000000",
+        "172852858755353693971453000746249/100000000000000000000000000000000",
+        "42939077935602595911463550538361/50000000000000000000000000000000",
+        "122355676788393137131687948948533/500000000000000000000000000000000",
+        "2244041421724974419913177323429/62500000000000000000000000000000",
+        "231063794516386134983532946929/156250000000000000000000000000000"
+      ],
+      "support_polynomial_roots": [],
+      "support_variance_coefficients_rational": [
+        "0",
+        "0",
+        "11940737948572713/10000000000000000000",
+        "2535936290338627/2500000000000000000",
+        "1453848946261599/2500000000000000000",
+        "9014364555466187/50000000000000000000",
+        "13780003485079101/250000000000000000000"
+      ],
+      "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe",
+      "interpretation": "Only a successful exact continuous certificate is called safe; non-certification is not called unsafe"
+    },
+    {
+      "dataset": "thurber",
+      "fold": 5,
+      "closed_interval": [
+        0.963,
+        2.2
+      ],
+      "certified_radius_lower_bound_float": 4.0,
+      "denominator_coefficients": [
+        1,
+        0.9697947806248297,
+        0.3759795003325524,
+        0.03216435153708595
+      ],
+      "denominator_covariance": [
+        [
+          0.002261983793066937,
+          0.0013293558500417357,
+          0.0006526079950994431
+        ],
+        [
+          0.0013293558500417357,
+          0.0009870997236182946,
+          0.000523650840567405
+        ],
+        [
+          0.0006526079950994431,
+          0.000523650840567405,
+          0.0003190176278973334
+        ]
+      ],
+      "snapshot_safe": true,
+      "continuous_ellipsoid_safe": true,
+      "snapshot_root_count": 0,
+      "support_polynomial_root_count": 0,
+      "support_polynomial_coefficients_rational": [
+        "1",
+        "9697947806248297/5000000000000000",
+        "165626917650319537128834415400209/100000000000000000000000000000000",
+        "9387940374521472969885265408157/12500000000000000000000000000000",
+        "16706917373493722314809700477119/100000000000000000000000000000000",
+        "185736168517782961806331083939/25000000000000000000000000000000",
+        "-1627894614622436434240712925039/400000000000000000000000000000000"
+      ],
+      "support_polynomial_roots": [],
+      "support_variance_coefficients_rational": [
+        "0",
+        "0",
+        "2261983793066937/1000000000000000000",
+        "13293558500417357/5000000000000000000",
+        "716348660567869/312500000000000000",
+        "104730168113481/100000000000000000",
+        "1595088139486667/5000000000000000000"
+      ],
+      "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe",
+      "interpretation": "Only a successful exact continuous certificate is called safe; non-certification is not called unsafe"
+    },
+    {
+      "dataset": "kirby2",
+      "fold": 1,
+      "closed_interval": [
+        9.65,
+        100.28
+      ],
+      "certified_radius_lower_bound_float": 4.0,
+      "denominator_coefficients": [
+        1,
+        -0.0009879278080078375,
+        2.8991311355154343e-05
+      ],
+      "denominator_covariance": [
+        [
+          1.3540364285751295e-10,
+          1.641959979855689e-12
+        ],
+        [
+          1.641959979855689e-12,
+          9.954804539732229e-14
+        ]
+      ],
+      "snapshot_safe": true,
+      "continuous_ellipsoid_safe": true,
+      "snapshot_root_count": 0,
+      "support_polynomial_root_count": 0,
+      "support_polynomial_coefficients_rational": [
+        "1",
+        "-79034224640627/40000000000000000",
+        "377321328677492073121218953129/6400000000000000000000000000000000",
+        "-2293407523043844000673293293061/40000000000000000000000000000000000000",
+        "838903365365143991321953351761649/1000000000000000000000000000000000000000000"
+      ],
+      "support_polynomial_roots": [],
+      "support_variance_coefficients_rational": [
+        "0",
+        "0",
+        "2708072857150259/20000000000000000000000000",
+        "1641959979855689/500000000000000000000000000",
+        "9954804539732229/100000000000000000000000000000"
+      ],
+      "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe",
+      "interpretation": "Only a successful exact continuous certificate is called safe; non-certification is not called unsafe"
+    },
+    {
+      "dataset": "kirby2",
+      "fold": 2,
+      "closed_interval": [
+        104.46,
+        176.25
+      ],
+      "certified_radius_lower_bound_float": 4.0,
+      "denominator_coefficients": [
+        1,
+        -0.0017053852048213042,
+        2.1533313675143818e-05
+      ],
+      "denominator_covariance": [
+        [
+          6.935951295017367e-09,
+          1.6434822383979935e-11
+        ],
+        [
+          1.6434822383979935e-11,
+          6.068014695727929e-14
+        ]
+      ],
+      "snapshot_safe": true,
+      "continuous_ellipsoid_safe": true,
+      "snapshot_root_count": 0,
+      "support_polynomial_root_count": 0,
+      "support_polynomial_coefficients_rational": [
+        "1",
+        "-8526926024106521/2500000000000000000",
+        "1146599770659768995150016354723441/25000000000000000000000000000000000000",
+        "-92463879276275524276454813318589/1250000000000000000000000000000000000000",
+        "115678178870204823299310745904281/250000000000000000000000000000000000000000"
+      ],
+      "support_polynomial_roots": [],
+      "support_variance_coefficients_rational": [
+        "0",
+        "0",
+        "6935951295017367/1000000000000000000000000",
+        "3286964476795987/100000000000000000000000000",
+        "6068014695727929/100000000000000000000000000000"
+      ],
+      "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe",
+      "interpretation": "Only a successful exact continuous certificate is called safe; non-certification is not called unsafe"
+    },
+    {
+      "dataset": "kirby2",
+      "fold": 3,
+      "closed_interval": [
+        177.34,
+        229.92
+      ],
+      "certified_radius_lower_bound_float": 4.0,
+      "denominator_coefficients": [
+        1,
+        -0.001713603340415761,
+        2.144183244246622e-05
+      ],
+      "denominator_covariance": [
+        [
+          4.159810556774762e-09,
+          1.0069391199841428e-11
+        ],
+        [
+          1.0069391199841428e-11,
+          4.908839897563711e-14
+        ]
+      ],
+      "snapshot_safe": true,
+      "continuous_ellipsoid_safe": true,
+      "snapshot_root_count": 0,
+      "support_polynomial_root_count": 0,
+      "support_polynomial_coefficients_rational": [
+        "1",
+        "-1713603340415761/500000000000000000",
+        "45753544324308098284656337209121/1000000000000000000000000000000000000",
+        "-1845195297862130648764349904671/25000000000000000000000000000000000000",
+        "1147416910267966779616089602721/2500000000000000000000000000000000000000"
+      ],
+      "support_polynomial_roots": [],
+      "support_variance_coefficients_rational": [
+        "0",
+        "0",
+        "2079905278387381/500000000000000000000000",
+        "2517347799960357/125000000000000000000000000",
+        "4908839897563711/100000000000000000000000000000"
+      ],
+      "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe",
+      "interpretation": "Only a successful exact continuous certificate is called safe; non-certification is not called unsafe"
+    },
+    {
+      "dataset": "kirby2",
+      "fold": 4,
+      "closed_interval": [
+        231.69,
+        302.02
+      ],
+      "certified_radius_lower_bound_float": 4.0,
+      "denominator_coefficients": [
+        1,
+        -0.0019293087095628078,
+        2.127828010946494e-05
+      ],
+      "denominator_covariance": [
+        [
+          5.07203723565726e-09,
+          1.1972770811411637e-11
+        ],
+        [
+          1.1972770811411637e-11,
+          4.659207201757422e-14
+        ]
+      ],
+      "snapshot_safe": true,
+      "continuous_ellipsoid_safe": true,
+      "snapshot_root_count": 0,
+      "support_polynomial_root_count": 0,
+      "support_polynomial_coefficients_rational": [
+        "1",
+        "-9646543547814039/2500000000000000000",
+        "1154940992998856762534575325493521/25000000000000000000000000000000000000",
+        "-10310983868172587570088545514633/125000000000000000000000000000000000000",
+        "1130049328161425278672432723009/2500000000000000000000000000000000000000"
+      ],
+      "support_polynomial_roots": [],
+      "support_variance_coefficients_rational": [
+        "0",
+        "0",
+        "253601861782863/50000000000000000000000",
+        "11972770811411637/500000000000000000000000000",
+        "2329603600878711/50000000000000000000000000000"
+      ],
+      "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe",
+      "interpretation": "Only a successful exact continuous certificate is called safe; non-certification is not called unsafe"
+    },
+    {
+      "dataset": "kirby2",
+      "fold": 5,
+      "closed_interval": [
+        303.48,
+        371.3
+      ],
+      "certified_radius_lower_bound_float": 4.0,
+      "denominator_coefficients": [
+        1,
+        -0.0022924313459385397,
+        2.1197527901182048e-05
+      ],
+      "denominator_covariance": [
+        [
+          6.819470932772698e-09,
+          9.958315573959004e-12
+        ],
+        [
+          9.958315573959004e-12,
+          3.363311862648164e-14
+        ]
+      ],
+      "snapshot_safe": true,
+      "continuous_ellipsoid_safe": true,
+      "snapshot_root_count": 0,
+      "support_polynomial_root_count": 0,
+      "support_polynomial_coefficients_rational": [
+        "1",
+        "-22924313459385397/5000000000000000000",
+        "4754118574328131751149464976847609/100000000000000000000000000000000000000",
+        "-15235378270706204664878621554783/156250000000000000000000000000000000000",
+        "438278378147820014335620739721/976562500000000000000000000000000000000"
+      ],
+      "support_polynomial_roots": [],
+      "support_variance_coefficients_rational": [
+        "0",
+        "0",
+        "3409735466386349/500000000000000000000000",
+        "2489578893489751/125000000000000000000000000",
+        "840827965662041/25000000000000000000000000000"
+      ],
+      "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe",
+      "interpretation": "Only a successful exact continuous certificate is called safe; non-certification is not called unsafe"
+    }
+  ],
+  "totals": {
+    "fold_count": 15,
+    "continuous_safe_fold_count": 13,
+    "not_certified_fold_count": 0,
+    "rooted_snapshot_fold_count": 2,
+    "interpretation": "Counts distinguish exact continuous safety, non-certification and rooted snapshots"
+  },
+  "decision": {
+    "non_certification_called_unsafe": false,
+    "confidence_or_probability_claimed": false,
+    "pointwise_check_substituted_for_interval": false,
+    "numerator_perturbation_included": false,
+    "physical_measurement_model_claimed": false
+  },
+  "limitations": [
+    "A continuous certificate applies only to the specified covariance ellipsoid, radius and closed x interval",
+    "Non-certification does not prove the ellipsoid is unsafe; it means the exact sufficient condition was not established",
+    "Rooted snapshots do not receive a root-free neighborhood certificate",
+    "Numerator perturbation and model-structure errors are outside this certificate",
+    "No confidence, probability or physical measurement model is implied"
+  ],
+  "analysis_runner_sha256": "e68bbb9e76a12bd85a1d3ccc5983b64974bf6ea0667da2889bab7a465cf5fe0f"
+}

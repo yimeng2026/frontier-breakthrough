@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "ellipsoid_bounds":
+    if REPORT_MODE == "ellipsoid_interval":
+        replacements = {
+            "图：`papers/17_椭球连续区间/fig17_ellipsoid_interval_safety.png`。": "![](papers/17_椭球连续区间/fig17_ellipsoid_interval_safety.png)\n\n**图 17｜协方差椭球连续区间平方支撑证明**  \n**插入位置**：§3「十三折连续区间验收结果」之后；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "13 折连续无根证明与平方支撑边界"
+    elif REPORT_MODE == "ellipsoid_bounds":
         replacements = {
             "图：`papers/16_椭球与参数盒/fig16_ellipsoid_box_comparison.png`。": "![](papers/16_椭球与参数盒/fig16_ellipsoid_box_comparison.png)\n\n**图 16｜协方差椭球与独立参数盒逐点比较**  \n**插入位置**：§3「全部适用点的比较结果」之后；顺序第 1 幅，共 1 幅。",
         }

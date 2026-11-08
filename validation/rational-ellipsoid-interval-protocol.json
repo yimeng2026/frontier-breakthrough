@@ -1,0 +1,28 @@
+{
+  "status": "frozen_before_ellipsoid_interval_certification",
+  "frozen_at_local": "2026-11-09T01:41:36+08:00",
+  "scientific_question": "For every frozen root-free snapshot, does the full covariance ellipsoid remain denominator-root-free throughout the entire held-out closed x interval, including between observations?",
+  "inputs": {
+    "comparison": {"file": "validation/rational-ellipsoid-box-comparison.json", "sha256": "faf252e5054f566b2165124031ca1bf02ae28d2de949b1b73ba415f74cdf9d32"},
+    "parameter_box": {"file": "validation/rational-parameter-box-stability.json", "sha256": "ed31e9389d7928c0e8ed0a0ef245c117970ad84019d2b5b4d94c6343d6da28be"}
+  },
+  "certificate_rule": {
+    "snapshot": "Require sign-consistent nonzero snapshot denominator on the closed interval using exact Sturm root isolation",
+    "squared_support": "Construct exact polynomial D(x)^2-rho^2*z(x)^T*Sigma*z(x), where z=(x,x^2,...), and require it to be strictly positive throughout the same closed interval",
+    "interpretation": "With sign-consistent D, positivity of the squared support polynomial certifies every denominator in the ellipsoid is root-free over the continuous interval",
+    "non_certification": "A root in the squared support polynomial means this certificate is not established; do not call the ellipsoid necessarily unsafe",
+    "arithmetic": "Exact rational coefficients and Sturm root isolation; no floating-point grid or sampled perturbation points",
+    "radius": "Use the existing certified lower radius from the independent parameter-box analysis without retuning"
+  },
+  "output_rule": {
+    "summary": "validation/rational-ellipsoid-interval-safety.json",
+    "figure": "papers/17_椭球连续区间/fig17_ellipsoid_interval_safety.png",
+    "refuse_overwrite": true
+  },
+  "prohibitions": [
+    "No covariance refitting, radius retuning or interval selection",
+    "No replacement of continuous certification by observed-point checks",
+    "No claim that non-certification proves unsafety",
+    "No confidence, probability, numerator-perturbation or physical-measurement claim"
+  ]
+}

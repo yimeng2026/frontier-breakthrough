@@ -44,6 +44,7 @@ def build() -> dict:
     parameterBox = read("rational-parameter-box-stability.json")
     predictionBounds = read("rational-prediction-box-bounds.json")
     ellipsoidComparison = read("rational-ellipsoid-box-comparison.json")
+    ellipsoidInterval = read("rational-ellipsoid-interval-safety.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -242,6 +243,15 @@ def build() -> dict:
             "scientificClaim": "同一半径下 369 个适用点的协方差椭球上界全部小于独立盒；中位比值 0.604836，最大 0.999351，两个有根折不适用。",
             "limitations": " ".join(ellipsoidComparison["limitations"]), "upstreamContribution": "提供完整协方差方向、精确支撑上界和逐点比值，明确盒与椭球是不同区域，不把样本收紧称为永远更紧。",
             "snapshotFiles": ["validation/rational-ellipsoid-box-protocol.json", "validation/rational-ellipsoid-box-comparison.json"],
+        },
+        {
+            "id": "rational-ellipsoid-continuous-interval", "domain": "math", "title": "协方差椭球连续区间平方支撑证明",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml"],
+            "metrics": ellipsoidInterval["totals"],
+            "scientificClaim": "13 个无根快照的 D²-rho²z^TΣz 在整个留出闭区间均为正，未认证折为 0，有根快照折为 2。",
+            "limitations": " ".join(ellipsoidInterval["limitations"]), "upstreamContribution": "提供精确平方支撑连续证明，覆盖观测点之间，不把逐点正分母当作连续安全。",
+            "snapshotFiles": ["validation/rational-ellipsoid-interval-protocol.json", "validation/rational-ellipsoid-interval-safety.json"],
         },
     ]
     packet = {

@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生椭球连续区间证明_图文完整版.docx",
+  "bytes": 50050,
+  "sha256": "a4feaed7bba695faa8c5502a2abba9011b366219f8dbea8229f3eaa43500abf6",
+  "native_math_objects": 4,
+  "embedded_images": 1,
+  "native_tables": 3,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}
