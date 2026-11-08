@@ -1,0 +1,1669 @@
+{
+  "status": "computed_external_roszman1_ellipsoid_coverage",
+  "protocol_sha256": "eab6013d3f6d5cdfc7e5c488bd2895b29881e5821342dd4b120913567a7f3711",
+  "data_sha256": "fb526231ae6b02929e3de54e072e259b3d87424089abd4b1015ffb946b1e0ab0",
+  "analysis_scope": {
+    "candidate_model_not_native": true,
+    "native_model": "Four-parameter arctangent class for quantum defects; the cubic/cubic rational candidate is an approximation stress test, not the native model",
+    "observations": 25,
+    "dataset_used_to_design_previous_regions": false,
+    "fixed_radius": 1,
+    "independent_physical_experiment": false,
+    "dataset_specific_scope_text": true,
+    "scope_adapter": "scripts/external_coverage_scoped.py",
+    "scope_adapter_sha256": "a6f53ffea1e743fdae839677b45938274652af0ac8bd70bd503e11afe74fb548"
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "optimizer_success": true,
+      "model_parameters": {
+        "b1": -3011.332575538109,
+        "b2": -61.270648411098776,
+        "b3": -0.017017465866643558,
+        "b4": 4.083299158068843e-06,
+        "b5": -58.46485344165583,
+        "b6": 0.04716718680704004,
+        "b7": 3.2031700720828e-05
+      },
+      "test_metrics": {
+        "rmse": 0.0009972308887413533,
+        "mae": 0.0007107802615860193,
+        "max_absolute_residual": 0.0020392002106205953
+      },
+      "baseline_test_metrics": {
+        "rmse": 0.056140263339699036,
+        "mae": 0.04481781671168946,
+        "max_absolute_residual": 0.07279923267125876
+      },
+      "continuous_ellipsoid_safe": false,
+      "continuous_certificate": {
+        "snapshot_safe": true,
+        "continuous_ellipsoid_safe": false,
+        "snapshot_root_count": 0,
+        "support_polynomial_root_count": 0,
+        "support_polynomial_coefficients_rational": [
+          "1",
+          "-5846485344165583/50000000000000",
+          "-268905566840921215776720903697741478270111/10000000000000000000000000000",
+          "54236016902653665919429806215643903226417/1250000000000000000000000000000",
+          "7476847397504268209393644469164205567951/625000000000000000000000000000000",
+          "-74286278877728467427209416368668387793/3125000000000000000000000000000000",
+          "-504477065197212946808206686575437151/62500000000000000000000000000000000"
+        ],
+        "support_polynomial_roots": [],
+        "support_variance_coefficients_rational": [
+          "0",
+          "0",
+          "5378111337502071/200",
+          "-21694406763819057/500000",
+          "-11962955837527543/1000000000",
+          "59429023109737/2500000000",
+          "8071633044181437/1000000000000000"
+        ],
+        "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe"
+      },
+      "independent_box_continuous_safe": false,
+      "denominator_covariance": [
+        [
+          26890556687510.355,
+          -21694406763.819057,
+          -14732640.833322508
+        ],
+        [
+          -21694406763.819057,
+          17502325.829117473,
+          11885.8046219474
+        ],
+        [
+          -14732640.833322508,
+          11885.8046219474,
+          8.071633044181437
+        ]
+      ],
+      "point_results": [
+        {
+          "x": -4868.68,
+          "observed_y": 0.252429,
+          "snapshot_prediction": 0.2525419411412321,
+          "actual_absolute_residual": 0.00011294114123205912,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        },
+        {
+          "x": -4868.09,
+          "observed_y": 0.252141,
+          "snapshot_prediction": 0.2525547225927832,
+          "actual_absolute_residual": 0.00041372259278321666,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        },
+        {
+          "x": -4867.41,
+          "observed_y": 0.251809,
+          "snapshot_prediction": 0.2525694569742305,
+          "actual_absolute_residual": 0.0007604569742304945,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        },
+        {
+          "x": -3375.19,
+          "observed_y": 0.297989,
+          "snapshot_prediction": 0.2959497997893794,
+          "actual_absolute_residual": 0.0020392002106205953,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        },
+        {
+          "x": -3373.14,
+          "observed_y": 0.296257,
+          "snapshot_prediction": 0.29602941961093626,
+          "actual_absolute_residual": 0.00022758038906373068,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        }
+      ],
+      "attempts": [
+        {
+          "start": [
+            10,
+            -1,
+            0.05,
+            -1e-05,
+            -0.05,
+            0.001,
+            -1e-06
+          ],
+          "parameters": {
+            "b1": 69.1712845668209,
+            "b2": 8.520189366037913,
+            "b3": 0.017190845955646114,
+            "b4": -1.589348654140175e-06,
+            "b5": 9.783434824413936,
+            "b6": 0.012809269603284518,
+            "b7": -1.7436119295449808e-05
+          },
+          "rss": 0.00043816853061710457,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 210,
+          "covariance": [
+            [
+              118577965623265.88,
+              14653342365647.44,
+              29561761530.104015,
+              -2734333.8531266926,
+              16821031864544.39,
+              22018033977.46358,
+              -29989633.538089637
+            ],
+            [
+              14653342365647.44,
+              1810795500563.2432,
+              3653112271.9408517,
+              -337896.9326040461,
+              2078669021661.6501,
+              2720891654.3921447,
+              -3705986.8080727
+            ],
+            [
+              29561761530.104015,
+              3653112271.9408517,
+              7369815.789785429,
+              -681.675777724299,
+              4193522300.161366,
+              5489147.00275448,
+              -7476.485270920698
+            ],
+            [
+              -2734333.8531266926,
+              -337896.9326040461,
+              -681.675777724299,
+              0.06305203267275081,
+              -387882.50031315524,
+              -507.72212746960236,
+              0.6915422389424404
+            ],
+            [
+              16821031864544.39,
+              2078669021661.6501,
+              4193522300.161366,
+              -387882.50031315524,
+              2386169448959.538,
+              3123396977.7758656,
+              -4254218.640581878
+            ],
+            [
+              22018033977.46358,
+              2720891654.3921447,
+              5489147.00275448,
+              -507.72212746960236,
+              3123396977.7758656,
+              4088397.278872595,
+              -5568.595998209376
+            ],
+            [
+              -29989633.538089637,
+              -3705986.8080727,
+              -7476.485270920698,
+              0.6915422389424404,
+              -4254218.640581878,
+              -5568.595998209376,
+              7.584698668392596
+            ]
+          ]
+        },
+        {
+          "start": [
+            1,
+            -0.1,
+            0.005,
+            -1e-06,
+            -0.005,
+            0.0001,
+            -1e-07
+          ],
+          "parameters": {
+            "b1": -3011.332575538109,
+            "b2": -61.270648411098776,
+            "b3": -0.017017465866643558,
+            "b4": 4.083299158068843e-06,
+            "b5": -58.46485344165583,
+            "b6": 0.04716718680704004,
+            "b7": 3.2031700720828e-05
+          },
+          "rss": 0.00039069135219668445,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 285,
+          "covariance": [
+            [
+              7.137595915112738e+16,
+              1451898004728529.8,
+              403247380196.05066,
+              -96757962.29142939,
+              1385402207028929.5,
+              -1117696422725.5613,
+              -759026053.8380289
+            ],
+            [
+              1451898004728529.8,
+              29533863243258.695,
+              8202678797.9398365,
+              -1968207.4198672792,
+              28181235312437.957,
+              -22735683351.50792,
+              -15439770.285616703
+            ],
+            [
+              403247380196.05066,
+              8202678797.9398365,
+              2278196.3507012525,
+              -546.6461715402327,
+              7827002498.605781,
+              -6314565.292240118,
+              -4288.212325062149
+            ],
+            [
+              -96757962.29142939,
+              -1968207.4198672792,
+              -546.6461715402327,
+              0.1311660589709438,
+              -1878065.0531520285,
+              1515.1604211489914,
+              1.0289432908838938
+            ],
+            [
+              1385402207028929.5,
+              28181235312437.957,
+              7827002498.605781,
+              -1878065.0531520285,
+              26890556687510.355,
+              -21694406763.819057,
+              -14732640.833322508
+            ],
+            [
+              -1117696422725.5613,
+              -22735683351.50792,
+              -6314565.292240118,
+              1515.1604211489914,
+              -21694406763.819057,
+              17502325.829117473,
+              11885.8046219474
+            ],
+            [
+              -759026053.8380289,
+              -15439770.285616703,
+              -4288.212325062149,
+              1.0289432908838938,
+              -14732640.833322508,
+              11885.8046219474,
+              8.071633044181437
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fold": 2,
+      "optimizer_success": true,
+      "model_parameters": {
+        "b1": 0.8892532006709363,
+        "b2": 0.003197604485703845,
+        "b3": 2.266307274161021e-06,
+        "b4": -3.4636347472085746e-10,
+        "b5": 0.0027753633627607085,
+        "b6": -5.627584416165573e-07,
+        "b7": -2.9401637289119822e-09
+      },
+      "test_metrics": {
+        "rmse": 0.00559352982401722,
+        "mae": 0.004712348341612804,
+        "max_absolute_residual": 0.009960967072696114
+      },
+      "baseline_test_metrics": {
+        "rmse": 0.003946730577271104,
+        "mae": 0.003419141874681142,
+        "max_absolute_residual": 0.006863276299965193
+      },
+      "continuous_ellipsoid_safe": true,
+      "continuous_certificate": {
+        "snapshot_safe": true,
+        "continuous_ellipsoid_safe": true,
+        "snapshot_root_count": 0,
+        "support_polynomial_root_count": 0,
+        "support_polynomial_coefficients_rational": [
+          "1",
+          "5550726725521417/1000000000000000000",
+          "22992442146691246978810525687889/4000000000000000000000000000000000000",
+          "-84132190008715306259562229576941/10000000000000000000000000000000000000000",
+          "-1322493356620776144005191251859411/100000000000000000000000000000000000000000000",
+          "42610836064155961967382694144003/25000000000000000000000000000000000000000000000",
+          "136445624408830191371874868327921/25000000000000000000000000000000000000000000000000"
+        ],
+        "support_polynomial_roots": [],
+        "support_variance_coefficients_rational": [
+          "0",
+          "0",
+          "8290143754485017/10000000000000000000000",
+          "-738533473557803/1250000000000000000000000",
+          "-55568295153239771/20000000000000000000000000000",
+          "8023852368969139/5000000000000000000000000000000",
+          "31867377764564043/10000000000000000000000000000000000"
+        ],
+        "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe"
+      },
+      "independent_box_continuous_safe": false,
+      "denominator_covariance": [
+        [
+          8.290143754485017e-07,
+          -2.954133894231212e-10,
+          -1.546263838690548e-12
+        ],
+        [
+          -2.954133894231212e-10,
+          3.1411291971910745e-13,
+          8.023852368969139e-16
+        ],
+        [
+          -1.546263838690548e-12,
+          8.023852368969139e-16,
+          3.1867377764564043e-18
+        ]
+      ],
+      "point_results": [
+        {
+          "x": -3372.03,
+          "observed_y": 0.295319,
+          "snapshot_prediction": 0.29759213444650295,
+          "actual_absolute_residual": 0.0022731344465029557,
+          "ellipsoid_available": true,
+          "ellipsoid_unavailable_reason": null,
+          "ellipsoid_denominator_lower_bound_float": 37.49217815861595,
+          "ellipsoid_prediction_shift_upper_bound_rational": "4.8007224079441357e-1",
+          "ellipsoid_prediction_shift_upper_bound_float": 0.4800722407944136,
+          "ellipsoid_absolute_residual_upper_bound_rational": "4.8234537524091654e-1",
+          "ellipsoid_absolute_residual_upper_bound_float": 0.48234537524091653,
+          "coverage_violation": 0,
+          "box_available": true,
+          "box_prediction_shift_upper_bound_rational": "1135476949588201811438388527670204094825335220629182656665975657579/983917766211361592071365144854095975113083585614380980511655395650",
+          "box_prediction_shift_upper_bound_float": 1.1540364333092883,
+          "box_absolute_residual_upper_bound_float": 1.156309567755791,
+          "shift_ratio_ellipsoid_over_box": 0.415994007587585,
+          "ellipsoid_tighter": true
+        },
+        {
+          "x": -2473.74,
+          "observed_y": 0.339603,
+          "snapshot_prediction": 0.3435054488773131,
+          "actual_absolute_residual": 0.003902448877313114,
+          "ellipsoid_available": true,
+          "ellipsoid_unavailable_reason": null,
+          "ellipsoid_denominator_lower_bound_float": 13.026995940046481,
+          "ellipsoid_prediction_shift_upper_bound_rational": "5.8462886050865180e-1",
+          "ellipsoid_prediction_shift_upper_bound_float": 0.5846288605086518,
+          "ellipsoid_absolute_residual_upper_bound_rational": "5.8853130938596482e-1",
+          "ellipsoid_absolute_residual_upper_bound_float": 0.5885313093859648,
+          "coverage_violation": 0,
+          "box_available": true,
+          "box_prediction_shift_upper_bound_rational": "3089305177965632186006249039880409092911233132224555802423491459/685587724126006440882435619040465987503955467688191241601963650",
+          "box_prediction_shift_upper_bound_float": 4.506068398327737,
+          "box_absolute_residual_upper_bound_float": 4.50997084720505,
+          "shift_ratio_ellipsoid_over_box": 0.12974256243549598,
+          "ellipsoid_tighter": true
+        },
+        {
+          "x": -2472.35,
+          "observed_y": 0.337731,
+          "snapshot_prediction": 0.34359464586195676,
+          "actual_absolute_residual": 0.005863645861956757,
+          "ellipsoid_available": true,
+          "ellipsoid_unavailable_reason": null,
+          "ellipsoid_denominator_lower_bound_float": 13.001011177499606,
+          "ellipsoid_prediction_shift_upper_bound_rational": "5.8485867889975381e-1",
+          "ellipsoid_prediction_shift_upper_bound_float": 0.5848586788997538,
+          "ellipsoid_absolute_residual_upper_bound_rational": "5.9072232476171054e-1",
+          "ellipsoid_absolute_residual_upper_bound_float": 0.5907223247617105,
+          "coverage_violation": 0,
+          "box_available": true,
+          "box_prediction_shift_upper_bound_rational": "12613331366542700642376764661728015174623692729820575942019379/2784126828839250411071459123316905344654435049692827026225650",
+          "box_prediction_shift_upper_bound_float": 4.5304442440940855,
+          "box_absolute_residual_upper_bound_float": 4.536307889956042,
+          "shift_ratio_ellipsoid_over_box": 0.12909521613960467,
+          "ellipsoid_tighter": true
+        },
+        {
+          "x": -2469.45,
+          "observed_y": 0.33382,
+          "snapshot_prediction": 0.3437809670726961,
+          "actual_absolute_residual": 0.009960967072696114,
+          "ellipsoid_available": true,
+          "ellipsoid_unavailable_reason": null,
+          "ellipsoid_denominator_lower_bound_float": 12.946903501188528,
+          "ellipsoid_prediction_shift_upper_bound_rational": "5.8533915289990736e-1",
+          "ellipsoid_prediction_shift_upper_bound_float": 0.5853391528999073,
+          "ellipsoid_absolute_residual_upper_bound_rational": "5.9530011997260345e-1",
+          "ellipsoid_absolute_residual_upper_bound_float": 0.5953001199726035,
+          "coverage_violation": 0,
+          "box_available": true,
+          "box_prediction_shift_upper_bound_rational": "12529250032669170678587077038412535956821117712421266396098411/2734324940978811280971360462459325406541456587782895591230850",
+          "box_prediction_shift_upper_bound_float": 4.582209614115596,
+          "box_absolute_residual_upper_bound_float": 4.5921705811882925,
+          "shift_ratio_ellipsoid_over_box": 0.1277416797120667,
+          "ellipsoid_tighter": true
+        },
+        {
+          "x": -1894.65,
+          "observed_y": 0.38951,
+          "snapshot_prediction": 0.38794845455040494,
+          "actual_absolute_residual": 0.001561545449595081,
+          "ellipsoid_available": true,
+          "ellipsoid_unavailable_reason": null,
+          "ellipsoid_denominator_lower_bound_float": 4.806436040527405,
+          "ellipsoid_prediction_shift_upper_bound_rational": "7.1931001574539712e-1",
+          "ellipsoid_prediction_shift_upper_bound_float": 0.7193100157453971,
+          "ellipsoid_absolute_residual_upper_bound_rational": "7.2087156119499216e-1",
+          "ellipsoid_absolute_residual_upper_bound_float": 0.7208715611949922,
+          "coverage_violation": 0,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        }
+      ],
+      "attempts": [
+        {
+          "start": [
+            10,
+            -1,
+            0.05,
+            -1e-05,
+            -0.05,
+            0.001,
+            -1e-06
+          ],
+          "parameters": {
+            "b1": 0.8892532006709363,
+            "b2": 0.003197604485703845,
+            "b3": 2.266307274161021e-06,
+            "b4": -3.4636347472085746e-10,
+            "b5": 0.0027753633627607085,
+            "b6": -5.627584416165573e-07,
+            "b7": -2.9401637289119822e-09
+          },
+          "rss": 0.00032948014452579964,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 519,
+          "covariance": [
+            [
+              0.010071606583057132,
+              0.00011555890526603758,
+              1.0402378817669544e-07,
+              -2.4119559676598273e-11,
+              7.849674655529098e-05,
+              -5.11430118925211e-08,
+              -1.743135877490816e-10
+            ],
+            [
+              0.00011555890526603758,
+              1.4670832611510298e-06,
+              1.3509659595713793e-09,
+              -2.905858843958894e-13,
+              1.0756685725188378e-06,
+              -5.04590589594024e-10,
+              -2.1523576228375336e-12
+            ],
+            [
+              1.0402378817669544e-07,
+              1.3509659595713793e-09,
+              1.2503537190718461e-12,
+              -2.6406216158768646e-16,
+              1.0061707167171823e-09,
+              -4.349823755274482e-13,
+              -1.968778661596033e-15
+            ],
+            [
+              -2.4119559676598273e-11,
+              -2.905858843958894e-13,
+              -2.6406216158768646e-16,
+              5.970550927672431e-20,
+              -2.0481070491516838e-13,
+              1.1627276216054128e-16,
+              4.3412287255347585e-19
+            ],
+            [
+              7.849674655529098e-05,
+              1.0756685725188378e-06,
+              1.0061707167171823e-09,
+              -2.0481070491516838e-13,
+              8.290143754485017e-07,
+              -2.954133894231212e-10,
+              -1.546263838690548e-12
+            ],
+            [
+              -5.11430118925211e-08,
+              -5.04590589594024e-10,
+              -4.349823755274482e-13,
+              1.1627276216054128e-16,
+              -2.954133894231212e-10,
+              3.1411291971910745e-13,
+              8.023852368969139e-16
+            ],
+            [
+              -1.743135877490816e-10,
+              -2.1523576228375336e-12,
+              -1.968778661596033e-15,
+              4.3412287255347585e-19,
+              -1.546263838690548e-12,
+              8.023852368969139e-16,
+              3.1867377764564043e-18
+            ]
+          ]
+        },
+        {
+          "start": [
+            1,
+            -0.1,
+            0.005,
+            -1e-06,
+            -0.005,
+            0.0001,
+            -1e-07
+          ],
+          "parameters": {
+            "b1": 0.8357110727669051,
+            "b2": 0.002996872277071525,
+            "b3": 2.5096052284834927e-06,
+            "b4": -3.2045701649324235e-10,
+            "b5": 0.0028435524068912876,
+            "b6": 2.6605640829796616e-07,
+            "b7": -2.9043443585937805e-09
+          },
+          "rss": 0.0003514905152530352,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 1279,
+          "covariance": [
+            [
+              0.03926392947845888,
+              1.1174915888182751e-05,
+              -5.291938843436717e-07,
+              2.7671504198004096e-11,
+              -0.0002034674617677361,
+              -8.805881946746744e-07,
+              3.7230635582337897e-10
+            ],
+            [
+              1.1174915888182751e-05,
+              7.142889370371045e-07,
+              1.55885875012265e-09,
+              -2.218805022500157e-13,
+              7.492359358831754e-07,
+              1.0367892772676646e-09,
+              -1.8475535341374754e-12
+            ],
+            [
+              -5.291938843436717e-07,
+              1.55885875012265e-09,
+              1.1261667761523325e-11,
+              -9.31335331223292e-16,
+              4.6786684898224635e-09,
+              1.4973776188595202e-11,
+              -9.750910979829145e-15
+            ],
+            [
+              2.7671504198004096e-11,
+              -2.218805022500157e-13,
+              -9.31335331223292e-16,
+              9.630925949541441e-20,
+              -4.0265360092480793e-13,
+              -1.0385246682189602e-15,
+              9.072573416266707e-19
+            ],
+            [
+              -0.0002034674617677361,
+              7.492359358831754e-07,
+              4.6786684898224635e-09,
+              -4.0265360092480793e-13,
+              1.9715084176083577e-06,
+              6.023103392399796e-09,
+              -4.1380958940841965e-12
+            ],
+            [
+              -8.805881946746744e-07,
+              1.0367892772676646e-09,
+              1.4973776188595202e-11,
+              -1.0385246682189602e-15,
+              6.023103392399796e-09,
+              2.2088198309579422e-11,
+              -1.1901545616227916e-14
+            ],
+            [
+              3.7230635582337897e-10,
+              -1.8475535341374754e-12,
+              -9.750910979829145e-15,
+              9.072573416266707e-19,
+              -4.1380958940841965e-12,
+              -1.1901545616227916e-14,
+              8.97389984813836e-18
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fold": 3,
+      "optimizer_success": true,
+      "model_parameters": {
+        "b1": 30120482.06254692,
+        "b2": 289083.68119814387,
+        "b3": 95.01281662803005,
+        "b4": -0.03397551852013417,
+        "b5": 182928.28107030978,
+        "b6": -311.4358054295674,
+        "b7": -0.2359401575889793
+      },
+      "test_metrics": {
+        "rmse": 0.01159705052733208,
+        "mae": 0.010029506603804306,
+        "max_absolute_residual": 0.01873287369439347
+      },
+      "baseline_test_metrics": {
+        "rmse": 0.007466153057211624,
+        "mae": 0.0062093194130694255,
+        "max_absolute_residual": 0.012566771453303816
+      },
+      "continuous_ellipsoid_safe": false,
+      "continuous_certificate": {
+        "snapshot_safe": false,
+        "continuous_ellipsoid_safe": false,
+        "snapshot_root_count": 1,
+        "support_polynomial_root_count": 0,
+        "support_polynomial_coefficients_rational": [
+          "1",
+          "9146414053515489/25000000000",
+          "-2060668032759681111518833388671037437090879/2500000000000000000000",
+          "350830236400691020803270407097876402652707/125000000000000000000000",
+          "-65726839235607773505714153426904344718087/250000000000000000000000000",
+          "-90499192719136379349404858626253769672259/25000000000000000000000000000",
+          "-137120823271039574203688761362960318417151/100000000000000000000000000000000"
+        ],
+        "support_polynomial_roots": [],
+        "support_variance_coefficients_rational": [
+          "0",
+          "0",
+          "824267213137335200000",
+          "-2806641891319469000",
+          "2629073569531031/10",
+          "9049919272281039/2500",
+          "2742416465532127/2000000"
+        ],
+        "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe"
+      },
+      "independent_box_continuous_safe": false,
+      "denominator_covariance": [
+        [
+          8.242672131373352e+20,
+          -1.4033209456597345e+18,
+          -1063128397065592.2
+        ],
+        [
+          -1.4033209456597345e+18,
+          2389164151084287.5,
+          1809983854456.2078
+        ],
+        [
+          -1063128397065592.2,
+          1809983854456.2078,
+          1371208232.7660635
+        ]
+      ],
+      "point_results": [
+        {
+          "x": -1893.4,
+          "observed_y": 0.386998,
+          "snapshot_prediction": 0.38946302425309587,
+          "actual_absolute_residual": 0.00246502425309586,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        },
+        {
+          "x": -1497.24,
+          "observed_y": 0.438864,
+          "snapshot_prediction": 0.4201311263056065,
+          "actual_absolute_residual": 0.01873287369439347,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        },
+        {
+          "x": -1495.85,
+          "observed_y": 0.434887,
+          "snapshot_prediction": 0.42033132964243086,
+          "actual_absolute_residual": 0.014555670357569161,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        },
+        {
+          "x": -1493.41,
+          "observed_y": 0.427893,
+          "snapshot_prediction": 0.4206827210759291,
+          "actual_absolute_residual": 0.007210278924070945,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        },
+        {
+          "x": -1208.68,
+          "observed_y": 0.471568,
+          "snapshot_prediction": 0.4643843142101079,
+          "actual_absolute_residual": 0.007183685789892091,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        }
+      ],
+      "attempts": [
+        {
+          "start": [
+            10,
+            -1,
+            0.05,
+            -1e-05,
+            -0.05,
+            0.001,
+            -1e-06
+          ],
+          "parameters": {
+            "b1": -255815.68500874293,
+            "b2": -3970.0570495903135,
+            "b3": -0.8473071818352117,
+            "b4": 0.0002617406467708615,
+            "b5": -3456.7963576477596,
+            "b6": 3.6870175552066344,
+            "b7": 0.001973435114450141
+          },
+          "rss": 0.0002637962292353875,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 237,
+          "covariance": [
+            [
+              9.210609549791499e+19,
+              1.4293766054599155e+18,
+              305086556048422.5,
+              -94242382683.28412,
+              1.2445689255424486e+18,
+              -1327462280356795.5,
+              -710551804581.0857
+            ],
+            [
+              1.4293766054599155e+18,
+              2.2182217903542812e+16,
+              4734579004829.933,
+              -1462529231.5042088,
+              1.9314223416474956e+16,
+              -20600629286106.1,
+              -11026915440.13952
+            ],
+            [
+              305086556048422.5,
+              4734579004829.933,
+              1010549912.264711,
+              -312162.66218113975,
+              4122433432136.4565,
+              -4397004272.660537,
+              -2353588.0208757734
+            ],
+            [
+              -94242382683.28412,
+              -1462529231.5042088,
+              -312162.66218113975,
+              96.42821842731142,
+              -1273435165.6132865,
+              1358251.1293405602,
+              727.032176667156
+            ],
+            [
+              1.2445689255424486e+18,
+              1.9314223416474956e+16,
+              4122433432136.4565,
+              -1273435165.6132865,
+              1.6817039117233726e+16,
+              -17937122350435.15,
+              -9601217936.29625
+            ],
+            [
+              -1327462280356795.5,
+              -20600629286106.1,
+              -4397004272.660537,
+              1358251.1293405602,
+              -17937122350435.15,
+              19131807686.978836,
+              10240698.118643833
+            ],
+            [
+              -710551804581.0857,
+              -11026915440.13952,
+              -2353588.0208757734,
+              727.032176667156,
+              -9601217936.29625,
+              10240698.118643833,
+              5481.54673531968
+            ]
+          ]
+        },
+        {
+          "start": [
+            1,
+            -0.1,
+            0.005,
+            -1e-06,
+            -0.005,
+            0.0001,
+            -1e-07
+          ],
+          "parameters": {
+            "b1": 30120482.06254692,
+            "b2": 289083.68119814387,
+            "b3": 95.01281662803005,
+            "b4": -0.03397551852013417,
+            "b5": 182928.28107030978,
+            "b6": -311.4358054295674,
+            "b7": -0.2359401575889793
+          },
+          "rss": 0.00022200995258790654,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 375,
+          "covariance": [
+            [
+              2.2347600072263456e+25,
+              2.144826272744191e+23,
+              7.049290624722228e+19,
+              -2.5207589755558496e+16,
+              1.3572175224214796e+23,
+              -2.3106727365722666e+20,
+              -1.7505202998424896e+17
+            ],
+            [
+              2.144826272744191e+23,
+              2.0585117531151398e+21,
+              6.765605115214876e+17,
+              -241931574779941.1,
+              1.3025988430620705e+21,
+              -2.2176840363588204e+18,
+              -1680073886207125.8
+            ],
+            [
+              7.049290624722228e+19,
+              6.765605115214876e+17,
+              222361677099227.8,
+              -79514411194.70006,
+              4.281184881438253e+17,
+              -728874850366844.2,
+              -552181276656.0768
+            ],
+            [
+              -2.5207589755558496e+16,
+              -241931574779941.1,
+              -79514411194.70006,
+              28433593.729545176,
+              -153091080938045.47,
+              260638682518.67667,
+              197454748.76303166
+            ],
+            [
+              1.3572175224214796e+23,
+              1.3025988430620705e+21,
+              4.281184881438253e+17,
+              -153091080938045.47,
+              8.242672131373352e+20,
+              -1.4033209456597345e+18,
+              -1063128397065592.2
+            ],
+            [
+              -2.3106727365722666e+20,
+              -2.2176840363588204e+18,
+              -728874850366844.2,
+              260638682518.67667,
+              -1.4033209456597345e+18,
+              2389164151084287.5,
+              1809983854456.2078
+            ],
+            [
+              -1.7505202998424896e+17,
+              -1680073886207125.8,
+              -552181276656.0768,
+              197454748.76303166,
+              -1063128397065592.2,
+              1809983854456.2078,
+              1371208232.7660635
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fold": 4,
+      "optimizer_success": true,
+      "model_parameters": {
+        "b1": 745.1369080835681,
+        "b2": -26.568480457486615,
+        "b3": 0.004606450306990801,
+        "b4": -1.950701324696922e-06,
+        "b5": -38.548693459545404,
+        "b6": 0.017585925802160254,
+        "b7": -1.0685712272366911e-05
+      },
+      "test_metrics": {
+        "rmse": 0.007628517817496978,
+        "mae": 0.006345584291302664,
+        "max_absolute_residual": 0.011346025545893146
+      },
+      "baseline_test_metrics": {
+        "rmse": 0.008900113582184252,
+        "mae": 0.007718520904820813,
+        "max_absolute_residual": 0.013373940296982634
+      },
+      "continuous_ellipsoid_safe": false,
+      "continuous_certificate": {
+        "snapshot_safe": true,
+        "continuous_ellipsoid_safe": false,
+        "snapshot_root_count": 0,
+        "support_polynomial_root_count": 0,
+        "support_polynomial_coefficients_rational": [
+          "1",
+          "-9637173364886351/125000000000000",
+          "-6156983084327282066294399816974754853904799/62500000000000000000000000000",
+          "5617102174697267481417242735921652500353423/62500000000000000000000000000000",
+          "-18774595913902325680028041357357290149800349/250000000000000000000000000000000000",
+          "6226559211053426928417461130049783245522303/250000000000000000000000000000000000000",
+          "-7565533485476689553232187187265001792318079/1000000000000000000000000000000000000000000"
+        ],
+        "support_polynomial_roots": [],
+        "support_variance_coefficients_rational": [
+          "0",
+          "0",
+          "1970234587014451/20",
+          "-8987363479651213/100000",
+          "9387297957092801/125000000",
+          "-3113279605573693/125000000000",
+          "3782766742795437/500000000000000"
+        ],
+        "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe"
+      },
+      "independent_box_continuous_safe": false,
+      "denominator_covariance": [
+        [
+          98511729350722.55,
+          -44936817398.256065,
+          27300069.357163332
+        ],
+        [
+          -44936817398.256065,
+          20498244.942415744,
+          -12453.118422294772
+        ],
+        [
+          27300069.357163332,
+          -12453.118422294772,
+          7.565533485590874
+        ]
+      ],
+      "point_results": [
+        {
+          "x": -1206.18,
+          "observed_y": 0.461699,
+          "snapshot_prediction": 0.47246829680367375,
+          "actual_absolute_residual": 0.010769296803673722,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        },
+        {
+          "x": -1206.04,
+          "observed_y": 0.461144,
+          "snapshot_prediction": 0.47249002554589314,
+          "actual_absolute_residual": 0.011346025545893146,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        },
+        {
+          "x": -997.92,
+          "observed_y": 0.513532,
+          "snapshot_prediction": 0.5072588763490988,
+          "actual_absolute_residual": 0.006273123650901158,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        },
+        {
+          "x": -996.61,
+          "observed_y": 0.506641,
+          "snapshot_prediction": 0.5074942689210841,
+          "actual_absolute_residual": 0.0008532689210840605,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        },
+        {
+          "x": -996.31,
+          "observed_y": 0.505062,
+          "snapshot_prediction": 0.5075482065349612,
+          "actual_absolute_residual": 0.002486206534961233,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        }
+      ],
+      "attempts": [
+        {
+          "start": [
+            10,
+            -1,
+            0.05,
+            -1e-05,
+            -0.05,
+            0.001,
+            -1e-06
+          ],
+          "parameters": {
+            "b1": 745.1369080835681,
+            "b2": -26.568480457486615,
+            "b3": 0.004606450306990801,
+            "b4": -1.950701324696922e-06,
+            "b5": -38.548693459545404,
+            "b6": 0.017585925802160254,
+            "b7": -1.0685712272366911e-05
+          },
+          "rss": 0.0002327881126413206,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 125,
+          "covariance": [
+            [
+              3.673114248099031e+16,
+              -1311075797286338.5,
+              227198068500.0872,
+              -96240816.74190871,
+              -1902221954787069.0,
+              867711907900.3309,
+              -527153382.2221255
+            ],
+            [
+              -1311075797286338.5,
+              46797339562193.77,
+              -8109573203.994525,
+              3435205.03425443,
+              67897620350390.84,
+              -30971976510.907375,
+              18816132.42281021
+            ],
+            [
+              227198068500.0872,
+              -8109573203.994525,
+              1405318.7254476522,
+              -595.2912487617186,
+              -11766068921.75704,
+              5367174.996165279,
+              -3260.6726108348785
+            ],
+            [
+              -96240816.74190871,
+              3435205.03425443,
+              -595.2912487617186,
+              0.2521646260442632,
+              4984092.032464273,
+              -2273.528594251671,
+              1.3812168266404157
+            ],
+            [
+              -1902221954787069.0,
+              67897620350390.84,
+              -11766068921.75704,
+              4984092.032464273,
+              98511729350722.55,
+              -44936817398.256065,
+              27300069.357163332
+            ],
+            [
+              867711907900.3309,
+              -30971976510.907375,
+              5367174.996165279,
+              -2273.528594251671,
+              -44936817398.256065,
+              20498244.942415744,
+              -12453.118422294772
+            ],
+            [
+              -527153382.2221255,
+              18816132.42281021,
+              -3260.6726108348785,
+              1.3812168266404157,
+              27300069.357163332,
+              -12453.118422294772,
+              7.565533485590874
+            ]
+          ]
+        },
+        {
+          "start": [
+            1,
+            -0.1,
+            0.005,
+            -1e-06,
+            -0.005,
+            0.0001,
+            -1e-07
+          ],
+          "parameters": {
+            "b1": 5342.707340702892,
+            "b2": -190.80171019369752,
+            "b3": 0.03306220302166136,
+            "b4": -1.4002816344045343e-05,
+            "b5": -276.81136598557543,
+            "b6": 0.1262999112761931,
+            "b7": -7.669920018071881e-05
+          },
+          "rss": 0.00023278831847501255,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 157,
+          "covariance": [
+            [
+              1.3602876520042294e+18,
+              -4.858243579808723e+16,
+              8420597775815.632,
+              -3565911716.2849603,
+              -7.048320988777606e+16,
+              32160010733705.652,
+              -19532770996.416473
+            ],
+            [
+              -4.858243579808723e+16,
+              1735113206706435.0,
+              -300740178190.7714,
+              127355913.88135876,
+              2517295526802161.5,
+              -1148589164743.931,
+              697609503.1344581
+            ],
+            [
+              8420597775815.632,
+              -300740178190.7714,
+              52126082.897264235,
+              -22074.08721617973,
+              -436312686936.1672,
+              199080330.16721892,
+              -120913.8433194287
+            ],
+            [
+              -3565911716.2849603,
+              127355913.88135876,
+              -22074.08721617973,
+              9.347821654511723,
+              184767467.10650566,
+              -84305.52092041312,
+              51.20397649059452
+            ],
+            [
+              -7.048320988777606e+16,
+              2517295526802161.5,
+              -436312686936.1672,
+              184767467.10650566,
+              3652082610425712.5,
+              -1666368716088.3933,
+              1012089168.0411638
+            ],
+            [
+              32160010733705.652,
+              -1148589164743.931,
+              199080330.16721892,
+              -84305.52092041312,
+              -1666368716088.3933,
+              760329103.7619631,
+              -461795.0652489615
+            ],
+            [
+              -19532770996.416473,
+              697609503.1344581,
+              -120913.8433194287,
+              51.20397649059452,
+              1012089168.0411638,
+              -461795.0652489615,
+              280.47681111152576
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fold": 5,
+      "optimizer_success": true,
+      "model_parameters": {
+        "b1": 6201.224589272556,
+        "b2": 15.700319528949924,
+        "b3": 0.005235885200518846,
+        "b4": -2.924642448771495e-06,
+        "b5": -7.485638747487169,
+        "b6": -0.029206457985263286,
+        "b7": -1.9084995295097013e-05
+      },
+      "test_metrics": {
+        "rmse": 0.49020058545268824,
+        "mae": 0.3125669080135986,
+        "max_absolute_residual": 0.9920522540747575
+      },
+      "baseline_test_metrics": {
+        "rmse": 0.010312177770563686,
+        "mae": 0.008177388016048347,
+        "max_absolute_residual": 0.01647429465181005
+      },
+      "continuous_ellipsoid_safe": false,
+      "continuous_certificate": {
+        "snapshot_safe": true,
+        "continuous_ellipsoid_safe": false,
+        "snapshot_root_count": 0,
+        "support_polynomial_root_count": 0,
+        "support_polynomial_coefficients_rational": [
+          "1",
+          "-7485638747487169/500000000000000",
+          "-289151844349418789254277288180365439/1000000000000000000000000000000",
+          "-564959197527264726103702317314111333/250000000000000000000000000000000",
+          "-589521394598156347340136149360502981/100000000000000000000000000000000000",
+          "-1445440206322584400800622618141417641/250000000000000000000000000000000000000",
+          "-1892571196383056724877677882918477831/1000000000000000000000000000000000000000000"
+        ],
+        "support_polynomial_roots": [],
+        "support_variance_coefficients_rational": [
+          "0",
+          "0",
+          "2892078207239607/10000000000",
+          "2260274009926211/1000000000000",
+          "3685220431206351/625000000000000",
+          "722859454439601/125000000000000000",
+          "9464677167142353/5000000000000000000000"
+        ],
+        "reason": "Exact squared-support certificate: D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D on the closed interval; non-certification is not called unsafe"
+      },
+      "independent_box_continuous_safe": false,
+      "denominator_covariance": [
+        [
+          289207.8207239607,
+          1130.1370049631055,
+          0.7398410468672018
+        ],
+        [
+          1130.1370049631055,
+          4.416670596195758,
+          0.002891437817758404
+        ],
+        [
+          0.7398410468672018,
+          0.002891437817758404,
+          1.8929354334284706e-06
+        ]
+      ],
+      "point_results": [
+        {
+          "x": -834.94,
+          "observed_y": 0.535648,
+          "snapshot_prediction": 0.5182486095522942,
+          "actual_absolute_residual": 0.017399390447705776,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        },
+        {
+          "x": -834.66,
+          "observed_y": 0.533726,
+          "snapshot_prediction": 0.5182364412546419,
+          "actual_absolute_residual": 0.015489558745358178,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        },
+        {
+          "x": -710.03,
+          "observed_y": 0.568064,
+          "snapshot_prediction": 0.48899638385541616,
+          "actual_absolute_residual": 0.07906761614458385,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        },
+        {
+          "x": -530.16,
+          "observed_y": 0.612886,
+          "snapshot_prediction": 0.1540602793444121,
+          "actual_absolute_residual": 0.4588257206555879,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        },
+        {
+          "x": -464.17,
+          "observed_y": 0.624169,
+          "snapshot_prediction": -0.3678832540747575,
+          "actual_absolute_residual": 0.9920522540747575,
+          "ellipsoid_available": false,
+          "ellipsoid_unavailable_reason": "The covariance ellipsoid is not certified away from zero at this point",
+          "coverage_violation": null,
+          "box_available": false,
+          "box_unavailable_reason": "The denominator box is not certified away from zero at this point",
+          "shift_ratio_ellipsoid_over_box": null,
+          "ellipsoid_tighter": null
+        }
+      ],
+      "attempts": [
+        {
+          "start": [
+            10,
+            -1,
+            0.05,
+            -1e-05,
+            -0.05,
+            0.001,
+            -1e-06
+          ],
+          "parameters": {
+            "b1": 6201.224589272556,
+            "b2": 15.700319528949924,
+            "b3": 0.005235885200518846,
+            "b4": -2.924642448771495e-06,
+            "b5": -7.485638747487169,
+            "b6": -0.029206457985263286,
+            "b7": -1.9084995295097013e-05
+          },
+          "rss": 0.00018164766271973565,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 256,
+          "covariance": [
+            [
+              198863914971.353,
+              504113921.07836705,
+              168644.83240340973,
+              -94.0139008520893,
+              -239807507.535537,
+              -937185.1588684605,
+              -613.5414439250554
+            ],
+            [
+              504113921.07836705,
+              1277934.347933194,
+              427.52436064242875,
+              -0.23832447319012107,
+              -607880.9573940793,
+              -2375.738632822403,
+              -1.5553275469902847
+            ],
+            [
+              168644.83240340973,
+              427.52436064242875,
+              0.14302838651462643,
+              -7.972913964092386e-05,
+              -203.34981235098132,
+              -0.7947736818900168,
+              -0.0005203217080026772
+            ],
+            [
+              -94.0139008520893,
+              -0.23832447319012107,
+              -7.972913964092386e-05,
+              4.444578484055027e-08,
+              0.11336787512285496,
+              0.0004430594510756078,
+              2.900567823848882e-07
+            ],
+            [
+              -239807507.535537,
+              -607880.9573940793,
+              -203.34981235098132,
+              0.11336787512285496,
+              289207.8207239607,
+              1130.1370049631055,
+              0.7398410468672018
+            ],
+            [
+              -937185.1588684605,
+              -2375.738632822403,
+              -0.7947736818900168,
+              0.0004430594510756078,
+              1130.1370049631055,
+              4.416670596195758,
+              0.002891437817758404
+            ],
+            [
+              -613.5414439250554,
+              -1.5553275469902847,
+              -0.0005203217080026772,
+              2.900567823848882e-07,
+              0.7398410468672018,
+              0.002891437817758404,
+              1.8929354334284706e-06
+            ]
+          ]
+        },
+        {
+          "start": [
+            1,
+            -0.1,
+            0.005,
+            -1e-06,
+            -0.005,
+            0.0001,
+            -1e-07
+          ],
+          "parameters": {
+            "b1": -1902.825461332999,
+            "b2": -8.903172310052932,
+            "b3": -0.0038865545540105674,
+            "b4": 1.4284019054675954e-06,
+            "b5": -1.768561752919759,
+            "b6": 0.011343376854439445,
+            "b7": 9.793618087097743e-06
+          },
+          "rss": 0.00026153521386697325,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 179,
+          "covariance": [
+            [
+              7187447827180794.0,
+              33601616244636.848,
+              14665998354.166262,
+              -5391021.926046317,
+              6662477777587.053,
+              -42819761869.754395,
+              -36962047.90926692
+            ],
+            [
+              33601616244636.848,
+              157088947999.50012,
+              68564149.95586224,
+              -25203.25082902332,
+              31147360037.895653,
+              -200184160.3291528,
+              -172799.10517812846
+            ],
+            [
+              14665998354.166262,
+              68564149.95586224,
+              29925.992377585255,
+              -11.000388575445372,
+              13594796.448581487,
+              -87373.79017006209,
+              -75.42111592935525
+            ],
+            [
+              -5391021.926046317,
+              -25203.25082902332,
+              -11.000388575445372,
+              0.004043593521503139,
+              -4997.262606325151,
+              32.11741927604384,
+              0.027723778449396982
+            ],
+            [
+              6662477777587.053,
+              31147360037.895653,
+              13594796.448581487,
+              -4997.262606325151,
+              6175851970.951647,
+              -39692213.551008455,
+              -34262.346287869084
+            ],
+            [
+              -42819761869.754395,
+              -200184160.3291528,
+              -87373.79017006209,
+              32.11741927604384,
+              -39692213.551008455,
+              255101.9571816069,
+              220.2041851066985
+            ],
+            [
+              -36962047.90926692,
+              -172799.10517812846,
+              -75.42111592935525,
+              0.027723778449396982,
+              -34262.346287869084,
+              220.2041851066985,
+              0.1900804043325479
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "fold_count": 5,
+    "optimizer_failure_count": 0,
+    "point_count": 25,
+    "ellipsoid_available_point_count": 5,
+    "covered_point_count": 5,
+    "coverage_violation_count": 0,
+    "max_ellipsoid_absolute_residual_upper_bound_float": 0.7208715611949922,
+    "median_ellipsoid_absolute_residual_upper_bound_float": 0.5907223247617105,
+    "max_ellipsoid_prediction_shift_upper_bound_float": 0.7193100157453971,
+    "continuous_safe_fold_count": 1,
+    "independent_box_continuous_safe_fold_count": 0,
+    "tighter_point_count": 4,
+    "looser_point_count": 0,
+    "median_shift_ratio": 0.12941888928755033,
+    "max_shift_ratio": 0.415994007587585,
+    "min_shift_ratio": 0.1277416797120667
+  },
+  "decision": {
+    "probability_calibration_claimed": false,
+    "native_physical_model_claimed": false,
+    "universal_external_validity_claimed": false,
+    "continuous_x_error_bound_claimed": false,
+    "optimizer_failures_hidden": false
+  },
+  "limitations": [
+    "The cubic/cubic candidate is only an approximation stress test and not the native Roszman1 four-parameter arctangent model for quantum defects; prediction and denominator certification are separate evidence axes",
+    "Deterministic residual bounds are not probability intervals or calibration evidence",
+    "Continuous denominator safety does not imply accurate or useful prediction",
+    "Pointwise bounds do not provide a continuous-x prediction error bound",
+    "Optimizer failures and unavailable bounds are retained, not converted into successes"
+  ],
+  "analysis_runner_sha256": "0082180d6cfa9522320a1b72815f1a52f04435aca62f0f01513d4d4d779605b1"
+}
