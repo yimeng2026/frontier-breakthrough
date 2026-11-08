@@ -112,8 +112,8 @@ class ExpansionTests(unittest.TestCase):
 
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
-        self.assertEqual(len(packet["items"]), 35)
-        self.assertEqual(len({i["id"] for i in packet["items"]}), 35)
+        self.assertEqual(len(packet["items"]), 36)
+        self.assertEqual(len({i["id"] for i in packet["items"]}), 36)
         for item in packet["items"]:
             self.assertEqual(item["status"], "verified")
             self.assertTrue(item["limitations"])
@@ -228,6 +228,25 @@ class ExpansionTests(unittest.TestCase):
         self.assertEqual(item["metrics"]["implementation"]["scopeAdapter"], "scripts/external_coverage_scoped.py")
         self.assertIn("ENSO", item["limitations"])
         self.assertNotIn("native Filip", item["limitations"])
+
+    def test_v4_scope_expansion_adds_enso_and_max_bound_counterexample(self):
+        packet = self.read("exports/frontier-evidence.json")
+        identifiers = {item["id"] for item in packet["items"]}
+        self.assertIn("bound-comparison-v4-scope-expansion", identifiers)
+        item = next(item for item in packet["items"] if item["id"] == "bound-comparison-v4-scope-expansion")
+        self.assertEqual(item["metrics"]["externalV4Totals"]["point_count"], 761)
+        self.assertEqual(item["metrics"]["externalV4Totals"]["ellipsoid_available_point_count"], 527)
+        self.assertEqual(item["metrics"]["externalV4Totals"]["ellipsoid_unavailable_point_count"], 234)
+        self.assertEqual(item["metrics"]["combinedV4Totals"]["ellipsoid_available_point_count"], 896)
+        self.assertEqual(item["metrics"]["combinedV4Totals"]["prediction_shift_dominant_point_count"], 594)
+        self.assertEqual(item["metrics"]["combinedV4Totals"]["snapshot_residual_dominant_point_count"], 302)
+        self.assertEqual(len(item["metrics"]["datasets"]), 9)
+        self.assertEqual(item["metrics"]["ensoIncrement"]["unavailable"], 33)
+        self.assertEqual(item["metrics"]["ensoIncrement"]["snapshotResidualDominant"], 102)
+        self.assertEqual(item["metrics"]["ensoMaximumBound"]["dominant"], "snapshot_residual_dominant")
+        self.assertLess(item["metrics"]["ensoMaximumBound"]["shift_share"], 0.5)
+        self.assertEqual(item["metrics"]["relatedDataset"]["name"], "Chwirut2")
+        self.assertTrue(item["metrics"]["historicalPreservation"]["previousFilesPreserved"])
 
     def test_new_agent_projects_have_primary_sources(self):
         projects = self.read("data/projects.json")["projects"]

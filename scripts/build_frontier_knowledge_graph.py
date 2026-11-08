@@ -49,6 +49,10 @@ def build_graph(root):
     combinedV2Decomposition = json.loads((root / "exports/internal-external-bound-comparison-v2.json").read_text(encoding="utf-8"))
     externalV3Decomposition = json.loads((root / "exports/external-bound-decomposition-v3.json").read_text(encoding="utf-8"))
     combinedV3Decomposition = json.loads((root / "exports/internal-external-bound-comparison-v3.json").read_text(encoding="utf-8"))
+    externalV4Decomposition = json.loads((root / "exports/external-bound-decomposition-v4.json").read_text(encoding="utf-8"))
+    combinedV4Decomposition = json.loads((root / "exports/internal-external-bound-comparison-v4.json").read_text(encoding="utf-8"))
+    if externalV4Decomposition["totals"]["point_count"] != 761 or externalV4Decomposition["totals"]["ellipsoid_available_point_count"] != 527 or externalV4Decomposition["totals"]["ellipsoid_unavailable_point_count"] != 234 or externalV4Decomposition["totals"]["prediction_shift_dominant_point_count"] != 250 or externalV4Decomposition["totals"]["snapshot_residual_dominant_point_count"] != 277 or len(externalV4Decomposition["datasets"]) != 6 or externalV4Decomposition["datasets"][-1]["id"] != "enso" or externalV4Decomposition["datasets"][-1]["prediction_shift_dominant_point_count"] != 33 or externalV4Decomposition["datasets"][-1]["snapshot_residual_dominant_point_count"] != 102 or externalV4Decomposition["datasets"][-1]["maximum_residual_upper_bound"]["dominant"] != "snapshot_residual_dominant" or externalV4Decomposition["datasets"][-1]["maximum_residual_upper_bound"]["shift_share"] >= 0.5 or combinedV4Decomposition["totals"]["ellipsoid_available_point_count"] != 896 or combinedV4Decomposition["totals"]["prediction_shift_dominant_point_count"] != 594 or combinedV4Decomposition["totals"]["snapshot_residual_dominant_point_count"] != 302 or len(combinedV4Decomposition["datasets"]) != 9 or combinedV4Decomposition["analysis_scope"]["chwirut1_independent_model_family_test"] or combinedV4Decomposition["analysis_scope"]["enso_native_periodic_model_claimed"]:
+        raise ValueError("Expected v4 scope expansion and ENSO maximum-bound counterexample are not present")
     externalScopeAmendment = json.loads((root / "validation/external-scope-limitations-amendment-01-audit.json").read_text(encoding="utf-8"))
     ensoCoverage = json.loads((root / "validation/enso-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     ensoProtocol = json.loads((root / "validation/enso-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
@@ -375,6 +379,29 @@ def build_graph(root):
         edge("experiment-enso-scoped-prospective-protocol", "claim-small-rmse-useful-proof", "tests"),
         edge("limitation-enso-periodic-candidate-scope", "evidence-enso-prediction-proof-dissociation", "limits"),
         edge("evidence-enso-prediction-proof-dissociation", "claim-reusable-driver-guarantees-coverage", "contradicts"),
+    ])
+    nodes.extend([
+        node("evidence-bound-comparison-v4", "evidence", "六外部 761／527／234 与九组 896 点的新版本对照及 ENSO 增量", "supported", ["exports/external-bound-decomposition-v4.json", "exports/internal-external-bound-comparison-v4.json"]),
+        node("counterexample-enso-v4-increment", "counterexample", "ENSO 增加 168 总点、135 可用点、33 不可用点、33 平移主导点和 102 实际残差主导点，不能覆盖历史范围", "supported", ["validation/enso-ellipsoid-coverage.json", "exports/internal-external-bound-comparison-v4.json"]),
+        node("counterexample-enso-v4-maximum-composition", "counterexample", "ENSO 最大界为 11.509464，平移占比仅 0.108143，由实际残差主导，九组最大界不再全部由平移主导", "supported", ["exports/external-bound-decomposition-v4.json", "validation/enso-ellipsoid-coverage.json"]),
+        node("experiment-bound-comparison-v4-protocol", "experiment", "保留历史版本并冻结六外部与九组输入哈希、同族和周期候选范围的新版协议", "supported", ["validation/external-bound-decomposition-v4-protocol.json", "validation/internal-external-bound-comparison-v4-protocol.json"]),
+        node("limitation-bound-comparison-v4-scope", "limitation", "九组范围合计不是成功率或原生周期模型验证，内部有根折、外部不可用点、同族边界和最大界反例均不可抹去", "active", ["exports/internal-external-bound-comparison-v4.json", "validation/chwirut1-ellipsoid-coverage-protocol.json", "validation/enso-ellipsoid-coverage-protocol.json"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "evidence-bound-comparison-v4", "contains"),
+        edge("track-holdout", "counterexample-enso-v4-increment", "contains"),
+        edge("track-holdout", "counterexample-enso-v4-maximum-composition", "contains"),
+        edge("track-holdout", "experiment-bound-comparison-v4-protocol", "contains"),
+        edge("track-holdout", "limitation-bound-comparison-v4-scope", "contains"),
+        edge("evidence-bound-comparison-v4", "claim-new-data-overwrite-history", "contradicts"),
+        edge("counterexample-enso-v4-increment", "claim-new-data-overwrite-history", "contradicts"),
+        edge("evidence-bound-comparison-v4", "counterexample-enso-v4-increment", "supports"),
+        edge("experiment-bound-comparison-v4-protocol", "claim-new-data-overwrite-history", "tests"),
+        edge("limitation-bound-comparison-v4-scope", "claim-new-data-overwrite-history", "limits"),
+        edge("evidence-bound-comparison-v4", "evidence-enso-prediction-proof-dissociation", "supports"),
+        edge("limitation-bound-comparison-v4-scope", "claim-untouched-data-independent-model-family", "limits"),
+        edge("counterexample-enso-v4-maximum-composition", "claim-wide-bounds-parameter-uncertainty", "contradicts"),
+        edge("evidence-bound-comparison-v4", "counterexample-enso-v4-maximum-composition", "supports"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

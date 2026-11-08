@@ -1234,6 +1234,57 @@
         "validation/enso-ellipsoid-coverage-protocol.json",
         "validation/enso-ellipsoid-coverage.json"
       ]
+    },
+    {
+      "id": "evidence-bound-comparison-v4",
+      "kind": "evidence",
+      "title": "六外部 761／527／234 与九组 896 点的新版本对照及 ENSO 增量",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/external-bound-decomposition-v4.json",
+        "exports/internal-external-bound-comparison-v4.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-v4-increment",
+      "kind": "counterexample",
+      "title": "ENSO 增加 168 总点、135 可用点、33 不可用点、33 平移主导点和 102 实际残差主导点，不能覆盖历史范围",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-ellipsoid-coverage.json",
+        "exports/internal-external-bound-comparison-v4.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-v4-maximum-composition",
+      "kind": "counterexample",
+      "title": "ENSO 最大界为 11.509464，平移占比仅 0.108143，由实际残差主导，九组最大界不再全部由平移主导",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/external-bound-decomposition-v4.json",
+        "validation/enso-ellipsoid-coverage.json"
+      ]
+    },
+    {
+      "id": "experiment-bound-comparison-v4-protocol",
+      "kind": "experiment",
+      "title": "保留历史版本并冻结六外部与九组输入哈希、同族和周期候选范围的新版协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/external-bound-decomposition-v4-protocol.json",
+        "validation/internal-external-bound-comparison-v4-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-bound-comparison-v4-scope",
+      "kind": "limitation",
+      "title": "九组范围合计不是成功率或原生周期模型验证，内部有根折、外部不可用点、同族边界和最大界反例均不可抹去",
+      "status": "active",
+      "sourceFiles": [
+        "exports/internal-external-bound-comparison-v4.json",
+        "validation/chwirut1-ellipsoid-coverage-protocol.json",
+        "validation/enso-ellipsoid-coverage-protocol.json"
+      ]
     }
   ],
   "edges": [
@@ -2496,6 +2547,76 @@
       "from": "evidence-enso-prediction-proof-dissociation",
       "to": "claim-reusable-driver-guarantees-coverage",
       "relation": "contradicts"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-bound-comparison-v4",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-v4-increment",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-v4-maximum-composition",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-bound-comparison-v4-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-bound-comparison-v4-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-bound-comparison-v4",
+      "to": "claim-new-data-overwrite-history",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-enso-v4-increment",
+      "to": "claim-new-data-overwrite-history",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-bound-comparison-v4",
+      "to": "counterexample-enso-v4-increment",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-bound-comparison-v4-protocol",
+      "to": "claim-new-data-overwrite-history",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-bound-comparison-v4-scope",
+      "to": "claim-new-data-overwrite-history",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-bound-comparison-v4",
+      "to": "evidence-enso-prediction-proof-dissociation",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-bound-comparison-v4-scope",
+      "to": "claim-untouched-data-independent-model-family",
+      "relation": "limits"
+    },
+    {
+      "from": "counterexample-enso-v4-maximum-composition",
+      "to": "claim-wide-bounds-parameter-uncertainty",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-bound-comparison-v4",
+      "to": "counterexample-enso-v4-maximum-composition",
+      "relation": "supports"
     }
   ]
 }

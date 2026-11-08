@@ -60,6 +60,8 @@ def build() -> dict:
     combinedV2Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v2.json").read_text(encoding="utf-8"))
     externalV3Decomposition = json.loads((ROOT / "exports/external-bound-decomposition-v3.json").read_text(encoding="utf-8"))
     combinedV3Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v3.json").read_text(encoding="utf-8"))
+    externalV4Decomposition = json.loads((ROOT / "exports/external-bound-decomposition-v4.json").read_text(encoding="utf-8"))
+    combinedV4Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v4.json").read_text(encoding="utf-8"))
     externalScopeAmendment = read("external-scope-limitations-amendment-01-audit.json")
     ensoCoverage = read("enso-ellipsoid-coverage.json")
     ensoProtocol = read("enso-ellipsoid-coverage-protocol.json")
@@ -420,6 +422,26 @@ def build() -> dict:
             "limitations": "候选不是 ENSO 原生九参数周期模型，适用范围文本正确不等于物理机制或结果正确；131 对收紧比较不覆盖另外 4 个椭球独有界或 33 个无界点。" + " ".join(ensoCoverage["limitations"]),
             "upstreamContribution": "提供范围适配层首次用于新数据前瞻协议的完整案例，分开记录周期预测、连续安全、逐点可用性、界组成、同点比较和三类实现哈希。",
             "snapshotFiles": ["validation/enso-ellipsoid-coverage-protocol.json", "validation/enso-ellipsoid-coverage.json", "validation/frontier-enso-coverage-word.json"],
+        },
+        {
+            "id": "bound-comparison-v4-scope-expansion", "domain": "math", "title": "六外部与九组界组成及 ENSO 最大界反例对照",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml", "https://www.itl.nist.gov/div898/strd/lls/data/filip.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/misra1a.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml"],
+            "metrics": {
+                "externalV4Totals": externalV4Decomposition["totals"],
+                "combinedV4Totals": combinedV4Decomposition["totals"],
+                "datasets": [{"id": item["id"], "scope": item["scope"], "ellipsoid_available_point_count": item["ellipsoid_available_point_count"], "prediction_shift_dominant_point_count": item["prediction_shift_dominant_point_count"], "snapshot_residual_dominant_point_count": item["snapshot_residual_dominant_point_count"], "median_shift_share": item["median_shift_share"], "maximumBoundDominant": item["maximum_residual_upper_bound"]["dominant"]} for item in combinedV4Decomposition["datasets"]],
+                "ensoIncrement": {"pointCount": 168, "available": 135, "unavailable": 33, "predictionShiftDominant": 33, "snapshotResidualDominant": 102},
+                "ensoMaximumBound": externalV4Decomposition["datasets"][-1]["maximum_residual_upper_bound"],
+                "relatedDataset": chwirut1Protocol["dataset_scope"]["related_prior_dataset"],
+                "periodicCandidateScope": externalV4Decomposition["analysis_scope"]["periodic_candidate_scope"],
+                "decision": {**combinedV4Decomposition["decision"], "independent_model_family_claimed": False, "native_periodic_model_claimed": False},
+                "historicalPreservation": {"previousFilesPreserved": True, "fiveExternal": "exports/external-bound-decomposition-v3.json", "eightDatasets": "exports/internal-external-bound-comparison-v3.json"},
+            },
+            "scientificClaim": "六外部共 761 点，其中 527 点可用、234 点不可用；250 点平移主导、277 点实际残差主导。九组共 896 个可用点，594 点平移主导、302 点实际残差主导。ENSO 增加 102 个实际残差主导点，其最大界平移占比仅 0.108143，九组最大界不再全部由平移主导。",
+            "limitations": "这是新增周期数据后的事后范围汇总，不是合并成功率、证明能力改善或原生周期模型验证；Chwirut1 的同族边界与 ENSO 的子集比较范围必须保留。" + " ".join(combinedV4Decomposition["limitations"]),
+            "upstreamContribution": "提供六外部与九组并存的新版范围接口，同时连接 ENSO 增量、最大界实际残差主导反例、数据亲缘和两类不可用边界，防止旧机制概括覆盖新证据。",
+            "snapshotFiles": ["validation/external-bound-decomposition-v4-protocol.json", "validation/internal-external-bound-comparison-v4-protocol.json", "validation/enso-ellipsoid-coverage-protocol.json", "validation/frontier-bound-comparison-v4-word.json"],
         },
     ]
     packet = {

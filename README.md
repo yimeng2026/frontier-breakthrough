@@ -18,7 +18,7 @@
 - [定期消化机制](docs/RESEARCH_AUTOMATION.md)：检索—筛选—复现—回馈的闭环。
 - [机器可读目录](data/projects.json)：每项均有官方来源、证据级别、协作角色和本地状态。
 - [上游接口与证据契约](docs/UPSTREAM_INTERFACES.md)：真实跨库验证、统一 JSON 接口及组件边界。
-- [跨域证据包](exports/frontier-evidence.json)：三十五项已执行检查的结构化结果与限制。
+- [跨域证据包](exports/frontier-evidence.json)：三十六项已执行检查的结构化结果与限制。
 - [外部模型族限制文本修订审计](validation/external-scope-limitations-amendment-01-audit.json)：三份修订副本、原始文件与协议哈希、仅文档文本变更的完整记录。
 - [五条主线扩展工作包](docs/EXPANSION_2026-11-08.md)：真实留出、形式化反例、化学跨库、材料跨库和知识图谱的首轮成果。
 - [第二轮续展报告](docs/CONTINUATION_2026-11-08.md)：Eckerle4 双尾外推与 cvc5 交叉求解器复核。
@@ -44,6 +44,8 @@
 - [第二十二阶段 Chwirut1 同族外部审计](docs/CHWIRUT1_COVERAGE_2026-11-09.md)：214 点、83 点可用界、最低 RMSE 折零可用界与数据亲缘边界。
 - [第二十三阶段五外部与八组界组成对照](docs/BOUND_COMPARISON_V3_2026-11-09.md)：593 点外部范围、761 个可用点、Chwirut1 增量及同族数据边界。
 - [第二十四阶段 ENSO 周期数据预测—证明解离](docs/ENSO_COVERAGE_2026-11-09.md)：168 点、135 点可用界、131 对收紧比较与第 5 折零可用界。
+- [第二十五阶段六外部与九组界组成对照](docs/BOUND_COMPARISON_V4_2026-11-09.md)：761 点外部范围、896 个可用点及 ENSO 最大界实际残差主导反例。
+- [六外部与九组界组成原生 Word 图文版](papers/前沿共生六外部与九组界组成对照_图文完整版.docx)：两幅实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
 - [ENSO 预测—证明解离原生 Word 图文版](papers/前沿共生ENSO预测证明解离_图文完整版.docx)：一幅实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
 - [五外部与八组界组成原生 Word 图文版](papers/前沿共生五外部与八组界组成对照_图文完整版.docx)：两幅实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
 - [Chwirut1 预测—证明解离原生 Word 图文版](papers/前沿共生Chwirut1预测证明解离_图文完整版.docx)：一幅实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
@@ -68,7 +70,7 @@
 - [有理模型原生 Word 图文版](papers/前沿共生有理模型与分母边界_图文完整版.docx)：一幅实图、四个 Word 表格、七个原生 OMML 公式，含目录、页眉和页码。
 - [续展原生 Word 图文版](papers/前沿共生续展_双尾外推与求解器复核_图文完整版.docx)：一幅实图、四个 Word 表格、七个原生 OMML 公式，含目录、页眉和页码。
 - [扩展工作包原生 Word 图文版](papers/前沿共生扩展工作包_图文完整版.docx)：两幅实图、三个 Word 表格、五个原生 OMML 公式，含目录、页眉和页码。
-- [主张—证据—反例—实验图谱](exports/frontier-knowledge-graph.json)：133 个节点、252 条边，支持与反例均可追溯到实际文件。
+- [主张—证据—反例—实验图谱](exports/frontier-knowledge-graph.json)：138 个节点、266 条边，支持与反例均可追溯到实际文件。
 - [研究简报合订本（Word）](papers/前沿共生研究简报_合订本.docx)：三篇长文、十三幅图，附真实证据与复现路径。
 - [研究简报合订本（Markdown）](papers/前沿共生研究简报_合订本.md)：便于审阅和继续修订的文本版本。
 

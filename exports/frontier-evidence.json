@@ -2194,6 +2194,172 @@
         "validation/enso-ellipsoid-coverage.json",
         "validation/frontier-enso-coverage-word.json"
       ]
+    },
+    {
+      "id": "bound-comparison-v4-scope-expansion",
+      "domain": "math",
+      "title": "六外部与九组界组成及 ENSO 最大界反例对照",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml",
+        "https://www.itl.nist.gov/div898/strd/lls/data/filip.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/misra1a.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml"
+      ],
+      "metrics": {
+        "externalV4Totals": {
+          "point_count": 761,
+          "ellipsoid_available_point_count": 527,
+          "ellipsoid_unavailable_point_count": 234,
+          "prediction_shift_dominant_point_count": 250,
+          "snapshot_residual_dominant_point_count": 277,
+          "undefined_zero_bound_count": 0,
+          "bound_identity_mismatch_count": 0
+        },
+        "combinedV4Totals": {
+          "ellipsoid_available_point_count": 896,
+          "prediction_shift_dominant_point_count": 594,
+          "snapshot_residual_dominant_point_count": 302,
+          "undefined_zero_bound_count": 0,
+          "bound_identity_mismatch_count": 0,
+          "external_unavailable_point_count": 234,
+          "internal_unavailable_rooted_fold_count": 2
+        },
+        "datasets": [
+          {
+            "id": "hahn1",
+            "scope": "internal",
+            "ellipsoid_available_point_count": 189,
+            "prediction_shift_dominant_point_count": 189,
+            "snapshot_residual_dominant_point_count": 0,
+            "median_shift_share": 0.9820853626447161,
+            "maximumBoundDominant": "prediction_shift_dominant"
+          },
+          {
+            "id": "thurber",
+            "scope": "internal",
+            "ellipsoid_available_point_count": 29,
+            "prediction_shift_dominant_point_count": 27,
+            "snapshot_residual_dominant_point_count": 2,
+            "median_shift_share": 0.8980483989245494,
+            "maximumBoundDominant": "prediction_shift_dominant"
+          },
+          {
+            "id": "kirby2",
+            "scope": "internal",
+            "ellipsoid_available_point_count": 151,
+            "prediction_shift_dominant_point_count": 128,
+            "snapshot_residual_dominant_point_count": 23,
+            "median_shift_share": 0.9444638134420068,
+            "maximumBoundDominant": "prediction_shift_dominant"
+          },
+          {
+            "id": "filip",
+            "scope": "external",
+            "ellipsoid_available_point_count": 82,
+            "prediction_shift_dominant_point_count": 82,
+            "snapshot_residual_dominant_point_count": 0,
+            "median_shift_share": 0.9921094965998745,
+            "maximumBoundDominant": "prediction_shift_dominant"
+          },
+          {
+            "id": "mgh17",
+            "scope": "external",
+            "ellipsoid_available_point_count": 33,
+            "prediction_shift_dominant_point_count": 32,
+            "snapshot_residual_dominant_point_count": 1,
+            "median_shift_share": 0.991413833021702,
+            "maximumBoundDominant": "prediction_shift_dominant"
+          },
+          {
+            "id": "gauss1",
+            "scope": "external",
+            "ellipsoid_available_point_count": 190,
+            "prediction_shift_dominant_point_count": 24,
+            "snapshot_residual_dominant_point_count": 166,
+            "median_shift_share": 0.16947432232550075,
+            "maximumBoundDominant": "prediction_shift_dominant"
+          },
+          {
+            "id": "misra1a",
+            "scope": "external",
+            "ellipsoid_available_point_count": 4,
+            "prediction_shift_dominant_point_count": 4,
+            "snapshot_residual_dominant_point_count": 0,
+            "median_shift_share": 0.9996118041945221,
+            "maximumBoundDominant": "prediction_shift_dominant"
+          },
+          {
+            "id": "chwirut1",
+            "scope": "external",
+            "ellipsoid_available_point_count": 83,
+            "prediction_shift_dominant_point_count": 75,
+            "snapshot_residual_dominant_point_count": 8,
+            "median_shift_share": 0.7635061269778911,
+            "maximumBoundDominant": "prediction_shift_dominant"
+          },
+          {
+            "id": "enso",
+            "scope": "external",
+            "ellipsoid_available_point_count": 135,
+            "prediction_shift_dominant_point_count": 33,
+            "snapshot_residual_dominant_point_count": 102,
+            "median_shift_share": 0.278229698347853,
+            "maximumBoundDominant": "snapshot_residual_dominant"
+          }
+        ],
+        "ensoIncrement": {
+          "pointCount": 168,
+          "available": 135,
+          "unavailable": 33,
+          "predictionShiftDominant": 33,
+          "snapshotResidualDominant": 102
+        },
+        "ensoMaximumBound": {
+          "fold": 4,
+          "x": 126.0,
+          "actual_absolute_residual": 10.26479691765005,
+          "prediction_shift": 1.244667460820808,
+          "residual_upper_bound": 11.509464378470858,
+          "shift_share": 0.10814295260768458,
+          "dominant": "snapshot_residual_dominant"
+        },
+        "relatedDataset": {
+          "name": "Chwirut2",
+          "same_study": true,
+          "same_native_model_family": true,
+          "scope": "Chwirut2 was analyzed previously, but Chwirut1 observations were not used to design previous candidates or regions; this is not an independent model-family or laboratory replication test"
+        },
+        "periodicCandidateScope": "The ENSO candidate is not the native ENSO nine-parameter Fourier model; its 131 tighter ellipsoid/box pairs are a subset and not a probability or whole-dataset claim",
+        "decision": {
+          "combined_success_rate_claimed": false,
+          "universal_internal_external_ranking_claimed": false,
+          "probability_calibration_claimed": false,
+          "scope_difference_erased": false,
+          "independent_model_family_claimed": false,
+          "native_periodic_model_claimed": false
+        },
+        "historicalPreservation": {
+          "previousFilesPreserved": true,
+          "fiveExternal": "exports/external-bound-decomposition-v3.json",
+          "eightDatasets": "exports/internal-external-bound-comparison-v3.json"
+        }
+      },
+      "scientificClaim": "六外部共 761 点，其中 527 点可用、234 点不可用；250 点平移主导、277 点实际残差主导。九组共 896 个可用点，594 点平移主导、302 点实际残差主导。ENSO 增加 102 个实际残差主导点，其最大界平移占比仅 0.108143，九组最大界不再全部由平移主导。",
+      "limitations": "这是新增周期数据后的事后范围汇总，不是合并成功率、证明能力改善或原生周期模型验证；Chwirut1 的同族边界与 ENSO 的子集比较范围必须保留。The 896 available points are descriptive and not a universal sample or probability estimate Two internal rooted unavailable folds and 234 external unavailable points remain separate Arithmetic shares are not probabilities, variance decomposition or physical-mechanism attribution No universal internal-versus-external ranking or combined success rate is established Chwirut1 was not used in previous region design, but shares its study and native model family with Chwirut2; it is not an independent model-family or laboratory replication test The ENSO candidate is not the native ENSO nine-parameter Fourier model; its 131 tighter ellipsoid/box pairs are a subset and not a probability or whole-dataset claim",
+      "upstreamContribution": "提供六外部与九组并存的新版范围接口，同时连接 ENSO 增量、最大界实际残差主导反例、数据亲缘和两类不可用边界，防止旧机制概括覆盖新证据。",
+      "snapshotFiles": [
+        "validation/external-bound-decomposition-v4-protocol.json",
+        "validation/internal-external-bound-comparison-v4-protocol.json",
+        "validation/enso-ellipsoid-coverage-protocol.json",
+        "validation/frontier-bound-comparison-v4-word.json"
+      ]
     }
   ]
 }

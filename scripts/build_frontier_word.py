@@ -25,7 +25,13 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "enso_coverage":
+    if REPORT_MODE == "bound_comparison_v4":
+        replacements = {
+            "图：`papers/32_外部六组界组成/fig32_external_bound_decomposition_v4.png`。": "![](papers/32_外部六组界组成/fig32_external_bound_decomposition_v4.png)\n\n**图 32｜六组外部数据同点界组成（第 1 幅，共 2 幅）**  \n**插入位置**：§4「九组内外部数据的界组成」；顺序第 1 幅，共 2 幅。",
+            "图：`papers/33_九组界组成对照/fig33_internal_external_bound_comparison_v4.png`。": "![](papers/33_九组界组成对照/fig33_internal_external_bound_comparison_v4.png)\n\n**图 33｜九组内外部数据同点界组成对照（第 2 幅，共 2 幅）**  \n**插入位置**：图 32 之后；顺序第 2 幅，共 2 幅。",
+        }
+        subtitle = "761 点外部范围、896 个可用点与 ENSO 最大界实际残差主导反例"
+    elif REPORT_MODE == "enso_coverage":
         replacements = {
             "图：`papers/31_ENSO椭球覆盖/fig31_enso_ellipsoid_coverage.png`。": "![](papers/31_ENSO椭球覆盖/fig31_enso_ellipsoid_coverage.png)\n\n**图 31｜ENSO 候选预测与逐点界可用性（第 1 幅，共 1 幅）**  \n**插入位置**：§4「界宽度、组成与同点比较」；顺序第 1 幅，共 1 幅。",
         }
