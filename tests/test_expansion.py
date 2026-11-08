@@ -112,8 +112,8 @@ class ExpansionTests(unittest.TestCase):
 
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
-        self.assertEqual(len(packet["items"]), 37)
-        self.assertEqual(len({i["id"] for i in packet["items"]}), 37)
+        self.assertEqual(len(packet["items"]), 38)
+        self.assertEqual(len({i["id"] for i in packet["items"]}), 38)
         for item in packet["items"]:
             self.assertEqual(item["status"], "verified")
             self.assertTrue(item["limitations"])
@@ -262,6 +262,17 @@ class ExpansionTests(unittest.TestCase):
         self.assertFalse(item["metrics"]["decision"]["maximum_point_used_as_typical_claimed"])
         enso = next(entry for entry in item["metrics"]["datasets"] if entry["id"] == "enso")
         self.assertAlmostEqual(enso["maximum_share_descriptive_percentile"], 2 / 15, places=12)
+
+    def test_extreme_reporting_contract_is_executable_and_current(self):
+        packet = self.read("exports/frontier-evidence.json")
+        identifiers = {item["id"] for item in packet["items"]}
+        self.assertIn("extreme-reporting-contract", identifiers)
+        item = next(item for item in packet["items"] if item["id"] == "extreme-reporting-contract")
+        self.assertEqual(item["metrics"]["claimLevel"], "mechanism_interpretation")
+        self.assertEqual(item["metrics"]["datasetCount"], 9)
+        self.assertEqual(item["metrics"]["errorCount"], 0)
+        self.assertEqual(item["metrics"]["levelNames"], ["maximum_only", "distribution_summary", "mechanism_interpretation"])
+        self.assertFalse(item["metrics"]["decision"]["maximum_point_used_as_typical_claimed"])
 
     def test_new_agent_projects_have_primary_sources(self):
         projects = self.read("data/projects.json")["projects"]

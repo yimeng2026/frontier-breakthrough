@@ -52,6 +52,9 @@ def build_graph(root):
     externalV4Decomposition = json.loads((root / "exports/external-bound-decomposition-v4.json").read_text(encoding="utf-8"))
     combinedV4Decomposition = json.loads((root / "exports/internal-external-bound-comparison-v4.json").read_text(encoding="utf-8"))
     maximumAudit = json.loads((root / "exports/maximum-full-composition-audit.json").read_text(encoding="utf-8"))
+    extremeCheck = json.loads((root / "validation/extreme-reporting-check.json").read_text(encoding="utf-8"))
+    if extremeCheck["status"] != "passed" or extremeCheck["error_count"] != 0 or extremeCheck["claim_level"] != "mechanism_interpretation" or extremeCheck["dataset_count"] != 9 or extremeCheck["decision"]["maximum_point_used_as_typical_claimed"]:
+        raise ValueError("Expected executable extreme reporting contract is not present")
     if maximumAudit["totals"]["dataset_count"] != 9 or maximumAudit["totals"]["maximum_matches_majority_count"] != 8 or maximumAudit["totals"]["maximum_majority_mismatch_dataset_ids"] != ["gauss1"] or maximumAudit["totals"]["maximum_share_below_median_count"] != 6 or maximumAudit["totals"]["largest_bound_to_median_ratio_dataset_id"] != "gauss1" or maximumAudit["decision"]["maximum_point_used_as_typical_claimed"] or maximumAudit["decision"]["probability_representativeness_claimed"]:
         raise ValueError("Expected maximum/full composition audit states are not present")
     if externalV4Decomposition["totals"]["point_count"] != 761 or externalV4Decomposition["totals"]["ellipsoid_available_point_count"] != 527 or externalV4Decomposition["totals"]["ellipsoid_unavailable_point_count"] != 234 or externalV4Decomposition["totals"]["prediction_shift_dominant_point_count"] != 250 or externalV4Decomposition["totals"]["snapshot_residual_dominant_point_count"] != 277 or len(externalV4Decomposition["datasets"]) != 6 or externalV4Decomposition["datasets"][-1]["id"] != "enso" or externalV4Decomposition["datasets"][-1]["prediction_shift_dominant_point_count"] != 33 or externalV4Decomposition["datasets"][-1]["snapshot_residual_dominant_point_count"] != 102 or externalV4Decomposition["datasets"][-1]["maximum_residual_upper_bound"]["dominant"] != "snapshot_residual_dominant" or externalV4Decomposition["datasets"][-1]["maximum_residual_upper_bound"]["shift_share"] >= 0.5 or combinedV4Decomposition["totals"]["ellipsoid_available_point_count"] != 896 or combinedV4Decomposition["totals"]["prediction_shift_dominant_point_count"] != 594 or combinedV4Decomposition["totals"]["snapshot_residual_dominant_point_count"] != 302 or len(combinedV4Decomposition["datasets"]) != 9 or combinedV4Decomposition["analysis_scope"]["chwirut1_independent_model_family_test"] or combinedV4Decomposition["analysis_scope"]["enso_native_periodic_model_claimed"]:
@@ -426,6 +429,12 @@ def build_graph(root):
         edge("experiment-maximum-full-composition-protocol", "claim-uniform-external-bound-mechanism", "tests"),
         edge("limitation-maximum-not-typical", "evidence-maximum-full-composition-audit", "limits"),
         edge("evidence-maximum-full-composition-audit", "evidence-bound-comparison-v4", "supports"),
+    ])
+    nodes.append(node("experiment-extreme-reporting-contract", "experiment", "以 L0、L1、L2 三级契约和数值重算验收极值报告，九组审计通过且错误主张被拒绝", "supported", ["contracts/extreme-reporting.rules.json", "validation/extreme-reporting-check.json"]))
+    edges.extend([
+        edge("track-knowledge", "experiment-extreme-reporting-contract", "contains"),
+        edge("experiment-extreme-reporting-contract", "claim-knowledge-graph", "tests"),
+        edge("experiment-maximum-full-composition-protocol", "experiment-extreme-reporting-contract", "supports"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

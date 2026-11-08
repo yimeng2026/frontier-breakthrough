@@ -1330,6 +1330,16 @@
       "sourceFiles": [
         "exports/maximum-full-composition-audit.json"
       ]
+    },
+    {
+      "id": "experiment-extreme-reporting-contract",
+      "kind": "experiment",
+      "title": "以 L0、L1、L2 三级契约和数值重算验收极值报告，九组审计通过且错误主张被拒绝",
+      "status": "supported",
+      "sourceFiles": [
+        "contracts/extreme-reporting.rules.json",
+        "validation/extreme-reporting-check.json"
+      ]
     }
   ],
   "edges": [
@@ -2721,6 +2731,21 @@
     {
       "from": "evidence-maximum-full-composition-audit",
       "to": "evidence-bound-comparison-v4",
+      "relation": "supports"
+    },
+    {
+      "from": "track-knowledge",
+      "to": "experiment-extreme-reporting-contract",
+      "relation": "contains"
+    },
+    {
+      "from": "experiment-extreme-reporting-contract",
+      "to": "claim-knowledge-graph",
+      "relation": "tests"
+    },
+    {
+      "from": "experiment-maximum-full-composition-protocol",
+      "to": "experiment-extreme-reporting-contract",
       "relation": "supports"
     }
   ]

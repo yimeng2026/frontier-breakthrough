@@ -63,6 +63,7 @@ def build() -> dict:
     externalV4Decomposition = json.loads((ROOT / "exports/external-bound-decomposition-v4.json").read_text(encoding="utf-8"))
     combinedV4Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v4.json").read_text(encoding="utf-8"))
     maximumAudit = json.loads((ROOT / "exports/maximum-full-composition-audit.json").read_text(encoding="utf-8"))
+    extremeCheck = read("extreme-reporting-check.json")
     externalScopeAmendment = read("external-scope-limitations-amendment-01-audit.json")
     ensoCoverage = read("enso-ellipsoid-coverage.json")
     ensoProtocol = read("enso-ellipsoid-coverage-protocol.json")
@@ -453,6 +454,16 @@ def build() -> dict:
             "limitations": "这是只读事后分布审计，最大点不是典型点；描述性百分位、占比和界宽比不是概率、方差分解或物理因果贡献。" + " ".join(maximumAudit["limitations"]),
             "upstreamContribution": "提供最大点类别、全点中位占比、描述性百分位和最大／中位界宽比的联合验收接口，防止单个极值替代整体机制。",
             "snapshotFiles": ["validation/maximum-full-composition-protocol.json", "validation/frontier-maximum-full-composition-word.json"],
+        },
+        {
+            "id": "extreme-reporting-contract", "domain": "math", "title": "极值报告三级写作契约与机器验收",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml"],
+            "metrics": {"claimLevel": extremeCheck["claim_level"], "levelNames": extremeCheck["level_names"], "datasetCount": extremeCheck["dataset_count"], "errorCount": extremeCheck["error_count"], "decision": extremeCheck["decision"], "reportSha256": extremeCheck["report_sha256"], "rulesSha256": extremeCheck["rules_sha256"], "validatorSha256": extremeCheck["validator_sha256"]},
+            "scientificClaim": "L0 极值描述、L1 全点分布和 L2 限定机制解释已形成可执行契约；九组审计通过 L2 验收，错误百分位、类别、界宽比和最大点典型性主张会被拒绝。",
+            "limitations": "契约只验证报告结构、字段和数值关系，不证明物理机制为真，也不替代原始数据、独立实验或人工科学审查。",
+            "upstreamContribution": "提供报告等级、字段义务、数值重算、反例保留和哈希验收记录，防止单个极值在写作中被升级为整体机制。",
+            "snapshotFiles": ["validation/extreme-reporting-check.json", "validation/frontier-extreme-reporting-word.json"],
         },
     ]
     packet = {

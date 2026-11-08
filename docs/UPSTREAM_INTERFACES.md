@@ -53,7 +53,8 @@
 | ENSO 周期数据范围适配与预测—证明解离 | 168 点中 135 点可给界、33 点不可用；131 对比较收紧；第 5 折优于基线但零可用界 | `validation/enso-ellipsoid-coverage-protocol.json`、`validation/enso-ellipsoid-coverage.json` | 三类实现哈希完整留痕，不把相对预测改善或有利子集写成证明保证 |
 | 六外部与九组新版范围及最大界对照 | 外部 761 点中 527 可用、234 不可用；九组 896 点中 594 平移主导、302 实际残差主导；ENSO 最大界由实际残差主导 | `exports/external-bound-decomposition-v4.json`、`exports/internal-external-bound-comparison-v4.json` | 标明 ENSO 增量和最大界反例，不覆盖历史、同族边界或周期候选限制 |
 | 最大界点与全点组成审计 | 8／9 组最大点类别与多数一致，6 组低于中位占比；Gauss1 最大界宽为中位界宽 82.994 倍，ENSO 最大点占比位于描述性第 13.33% | `validation/maximum-full-composition-protocol.json`、`exports/maximum-full-composition-audit.json` | 分开类别、占比、描述性百分位和界宽比，不把最大点当作典型点或概率 |
-| 主张—证据—反例—实验图谱 | 143 个节点、278 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| 极值报告三级写作契约 | L0 极值描述、L1 全点分布、L2 限定机制解释；九组审计通过 L2，错误百分位、类别、界宽比和最大点典型性被拒绝 | `contracts/extreme-reporting.rules.json`、`validation/extreme-reporting-check.json` | 机器验证字段义务、数值关系和反例，不把结构通过当作物理真实性证明 |
+| 主张—证据—反例—实验图谱 | 144 个节点、281 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 范围感知外部分析适配层
 

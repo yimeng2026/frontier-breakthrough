@@ -2672,6 +2672,44 @@
         "validation/maximum-full-composition-protocol.json",
         "validation/frontier-maximum-full-composition-word.json"
       ]
+    },
+    {
+      "id": "extreme-reporting-contract",
+      "domain": "math",
+      "title": "极值报告三级写作契约与机器验收",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml"
+      ],
+      "metrics": {
+        "claimLevel": "mechanism_interpretation",
+        "levelNames": [
+          "maximum_only",
+          "distribution_summary",
+          "mechanism_interpretation"
+        ],
+        "datasetCount": 9,
+        "errorCount": 0,
+        "decision": {
+          "unified_mechanism_claimed": false,
+          "probability_representativeness_claimed": false,
+          "maximum_point_used_as_typical_claimed": false,
+          "single_scalar_ranking_claimed": false
+        },
+        "reportSha256": "3868e4ec52bc8cc6a43b8115b9e297113129266b93b14e1b985ca228c1df7cfc",
+        "rulesSha256": "21b9d0ca4bb003d9532b042a83eb39f3ffe2d8e6182a16be0398c21186525e3c",
+        "validatorSha256": "757ee8ef7f4c8b0941444f2f7f0f01f21946ce001eb37b4c80caa9a9c4637626"
+      },
+      "scientificClaim": "L0 极值描述、L1 全点分布和 L2 限定机制解释已形成可执行契约；九组审计通过 L2 验收，错误百分位、类别、界宽比和最大点典型性主张会被拒绝。",
+      "limitations": "契约只验证报告结构、字段和数值关系，不证明物理机制为真，也不替代原始数据、独立实验或人工科学审查。",
+      "upstreamContribution": "提供报告等级、字段义务、数值重算、反例保留和哈希验收记录，防止单个极值在写作中被升级为整体机制。",
+      "snapshotFiles": [
+        "validation/extreme-reporting-check.json",
+        "validation/frontier-extreme-reporting-word.json"
+      ]
     }
   ]
 }

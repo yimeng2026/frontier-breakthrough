@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "maximum_full_composition":
+    if REPORT_MODE == "extreme_reporting":
+        replacements = {
+            "图：`papers/34_最大界与全点组成/fig34_maximum_full_composition.png`。": "![](papers/34_最大界与全点组成/fig34_maximum_full_composition.png)\n\n**图 34｜极值报告三级契约的三联证据图（第 1 幅，共 1 幅）**  \n**插入位置**：§5「当前审计案例与三联图」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "L0 极值描述、L1 全点分布与 L2 限定机制解释的机器验收"
+    elif REPORT_MODE == "maximum_full_composition":
         replacements = {
             "图：`papers/34_最大界与全点组成/fig34_maximum_full_composition.png`。": "![](papers/34_最大界与全点组成/fig34_maximum_full_composition.png)\n\n**图 34｜最大界点类别、全点占比与界宽比三联审计（第 1 幅，共 1 幅）**  \n**插入位置**：§5「三联图与解释规则」；顺序第 1 幅，共 1 幅。",
         }

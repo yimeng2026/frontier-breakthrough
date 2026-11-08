@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "default_claim_level": "mechanism_interpretation",
+  "level_names": ["maximum_only", "distribution_summary", "mechanism_interpretation"],
+  "required_analysis_scope": {
+    "post_hoc": true,
+    "refit": false,
+    "retuned": false,
+    "descriptive_not_probabilistic": true
+  },
+  "prohibited_decision_flags": [
+    "unified_mechanism_claimed",
+    "probability_representativeness_claimed",
+    "maximum_point_used_as_typical_claimed",
+    "single_scalar_ranking_claimed"
+  ],
+  "level_dataset_fields": {
+    "maximum_only": ["id", "available_point_count", "maximum_dominant", "maximum_shift_share", "maximum_residual_upper_bound"],
+    "distribution_summary": ["majority_dominant", "maximum_matches_majority", "median_shift_share", "maximum_share_minus_median", "median_residual_upper_bound", "bound_max_to_median_ratio"],
+    "mechanism_interpretation": ["share_less_than_or_equal_maximum_count", "maximum_share_descriptive_percentile"]
+  },
+  "required_counterexample_total_fields": ["maximum_majority_mismatch_dataset_ids", "maximum_share_below_median_dataset_ids", "maximum_share_above_median_dataset_ids"],
+  "limitation_required_fragment": "not typical"
+}
