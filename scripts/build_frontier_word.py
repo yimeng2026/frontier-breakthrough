@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "exact_roots":
+    if REPORT_MODE == "box_stability":
+        replacements = {
+            "图：`papers/14_参数盒稳定性/fig14_parameter_box_stability.png`。": "![](papers/14_参数盒稳定性/fig14_parameter_box_stability.png)\n\n**图 14｜连续参数盒无根认证半径**  \n**插入位置**：§3「十五折结果」之后；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "连续参数盒、13 折正安全半径与保守边界"
+    elif REPORT_MODE == "exact_roots":
         replacements = {
             "图：`papers/13_精确区间根证明/fig13_exact_interval_roots.png`。": "![](papers/13_精确区间根证明/fig13_exact_interval_roots.png)\n\n**图 13｜精确 Sturm 根隔离与双求解器复核**  \n**插入位置**：§3「十五折精确结果」之后；顺序第 1 幅，共 1 幅。",
         }

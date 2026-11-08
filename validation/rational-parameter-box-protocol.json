@@ -1,0 +1,37 @@
+{
+  "status": "frozen_before_parameter_box_stability",
+  "frozen_at_local": "2026-11-09T01:02:27+08:00",
+  "scientific_question": "For each root-free frozen rational snapshot, how large a simultaneous coefficient box, scaled by local linearized standard errors, can be certified root-free over the entire held-out closed interval by exact rational arithmetic?",
+  "inputs": {
+    "exact_roots": {"file": "validation/rational-exact-interval-roots.json", "sha256": "70b0f216acdd2df3cccaa1772945149459f1642bf42f3052affdf3da7662e2ed"},
+    "hahn1_identifiability": {"file": "validation/hahn1-fold1-identifiability.json", "sha256": "3ef5b98effcae91afe91d46446fa1392a584996375e827f103936b652fefddfb"},
+    "thurber": {"file": "validation/thurber-prospective-gate.json", "sha256": "21212cb3bc61de0efb333af93078b0a222192460bfc93858e1cd14779dc190b0"},
+    "kirby2": {"file": "validation/kirby2-prospective-gate.json", "sha256": "c0575037cf587bbb12ecd7ad08febaf8f6eed6d50fef5009faa36f60448c92e0"}
+  },
+  "parameter_box_rule": {
+    "box": "For every nonconstant denominator coefficient c_j, allow |delta c_j| <= rho * sigma_j, where sigma_j is the frozen local linearized standard error",
+    "scale_scope": "Sigma is only a local sensitivity scale; the box is not a confidence ellipsoid, probability region, measurement uncertainty or physical endogeneity claim",
+    "sufficient_condition": "Choose sign s from the snapshot denominator at the lower endpoint. If s*D(x)-rho*sum(sigma_j*|x|^j)>0 for every x in the closed interval, then every coefficient in the box is root-free there",
+    "interval_sign": "Require each held-out interval to be entirely nonnegative or entirely nonpositive in x so |x|^j is polynomial with the appropriate sign",
+    "exactness": "Use exact rational coefficients and Sturm root counts; do not replace the continuous box proof with sampled perturbation points"
+  },
+  "radius_search_rule": {
+    "cap": 4,
+    "iterations": 24,
+    "lower_bound": "Largest tested radius certified by the sufficient condition; every coefficient in that entire box is root-free",
+    "upper_bound": "Smallest tested radius not satisfying the sufficient certificate; do not call it unsafe or a true maximum",
+    "cap_hit": "If radius 4 is certified, report a capped lower bound of 4 and do not claim it is maximal",
+    "rooted_snapshot": "If the snapshot already has a root, no positive root-free box exists; report snapshot_safe=false rather than running a radius search"
+  },
+  "output_rule": {
+    "summary": "validation/rational-parameter-box-stability.json",
+    "figure": "papers/14_参数盒稳定性/fig14_parameter_box_stability.png",
+    "refuse_overwrite": true
+  },
+  "prohibitions": [
+    "No refitting, standard-error recomputation or interval retuning",
+    "No interpretation of the sufficient radius as a necessary radius, confidence level or exact physical tolerance",
+    "No claim that the uncertified upper bracket is unsafe",
+    "No global root-free claim outside the specified box and closed x interval"
+  ]
+}

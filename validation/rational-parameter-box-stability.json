@@ -1,0 +1,519 @@
+{
+  "status": "computed_exact_rational_parameter_box_stability",
+  "protocol_sha256": "ae8a4a0f040a8b7008659eaa73ce2f18edadbbe6598c71f3b810482c7391f284",
+  "input_sha256": {
+    "exact_roots": "70b0f216acdd2df3cccaa1772945149459f1642bf42f3052affdf3da7662e2ed",
+    "hahn1_identifiability": "3ef5b98effcae91afe91d46446fa1392a584996375e827f103936b652fefddfb",
+    "thurber": "21212cb3bc61de0efb333af93078b0a222192460bfc93858e1cd14779dc190b0",
+    "kirby2": "c0575037cf587bbb12ecd7ad08febaf8f6eed6d50fef5009faa36f60448c92e0",
+    "protocol_amendment_01": "155213332b734947f9da2b69baad3ba96e4c104592b8e5bb0011adb221656657"
+  },
+  "cases": [
+    {
+      "dataset": "hahn1",
+      "fold": 1,
+      "closed_interval": [
+        14.13,
+        94.33
+      ],
+      "denominator_coefficients": [
+        1,
+        -0.03642001152406116,
+        0.0003257043076452197,
+        -1.801122840443873e-07
+      ],
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "local_standard_error_scales": [
+        0.007340126362154572,
+        5.195578916106901e-05,
+        4.004933448201288e-08
+      ],
+      "snapshot_exact_root_count": 2,
+      "snapshot_safe": false,
+      "certified_region_safe": false,
+      "certified_radius_lower_bound_float": 0.0,
+      "uncertified_radius_upper_bound_float": null,
+      "cap_hit": false,
+      "reason": "The unperturbed snapshot already has a root or changes sign in the closed interval",
+      "certified_radius_lower_bound_rational": "0",
+      "proof_scope": "Every denominator coefficient in the certified scaled box is root-free over the closed x interval; no probability or physical-tolerance claim"
+    },
+    {
+      "dataset": "hahn1",
+      "fold": 2,
+      "closed_interval": [
+        94.88,
+        220.55
+      ],
+      "denominator_coefficients": [
+        1,
+        -0.006109190089247961,
+        0.00024187473474873258,
+        -1.1841997430982739e-07
+      ],
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "local_standard_error_scales": [
+        0.00036497916681841675,
+        1.3010526396708934e-05,
+        1.6226779816336635e-08
+      ],
+      "snapshot_exact_root_count": 0,
+      "snapshot_safe": true,
+      "certified_region_safe": true,
+      "certified_radius_lower_bound_rational": "4",
+      "certified_radius_lower_bound_float": 4.0,
+      "uncertified_radius_upper_bound_float": null,
+      "cap_hit": true,
+      "reason": "The entire capped box is certified; the radius may be larger but was not tested beyond the cap",
+      "proof_scope": "Every denominator coefficient in the certified scaled box is root-free over the closed x interval; no probability or physical-tolerance claim"
+    },
+    {
+      "dataset": "hahn1",
+      "fold": 3,
+      "closed_interval": [
+        221.05,
+        358.18
+      ],
+      "denominator_coefficients": [
+        1,
+        -0.0056086965386476124,
+        0.0002466929113936996,
+        -1.3253526826632008e-07
+      ],
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "local_standard_error_scales": [
+        0.0002756397284506916,
+        1.0934353640732711e-05,
+        1.4515322882173495e-08
+      ],
+      "snapshot_exact_root_count": 0,
+      "snapshot_safe": true,
+      "certified_region_safe": true,
+      "certified_radius_lower_bound_rational": "4",
+      "certified_radius_lower_bound_float": 4.0,
+      "uncertified_radius_upper_bound_float": null,
+      "cap_hit": true,
+      "reason": "The entire capped box is certified; the radius may be larger but was not tested beyond the cap",
+      "proof_scope": "Every denominator coefficient in the certified scaled box is root-free over the closed x interval; no probability or physical-tolerance claim"
+    },
+    {
+      "dataset": "hahn1",
+      "fold": 4,
+      "closed_interval": [
+        358.72,
+        524.7
+      ],
+      "denominator_coefficients": [
+        1,
+        -0.0057472726265029705,
+        0.00023980519717413233,
+        -1.2491337059698985e-07
+      ],
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "local_standard_error_scales": [
+        0.00026029906934052044,
+        1.1134760191799575e-05,
+        1.3691168864476602e-08
+      ],
+      "snapshot_exact_root_count": 0,
+      "snapshot_safe": true,
+      "certified_region_safe": true,
+      "certified_radius_lower_bound_rational": "4",
+      "certified_radius_lower_bound_float": 4.0,
+      "uncertified_radius_upper_bound_float": null,
+      "cap_hit": true,
+      "reason": "The entire capped box is certified; the radius may be larger but was not tested beyond the cap",
+      "proof_scope": "Every denominator coefficient in the certified scaled box is root-free over the closed x interval; no probability or physical-tolerance claim"
+    },
+    {
+      "dataset": "hahn1",
+      "fold": 5,
+      "closed_interval": [
+        528.99,
+        851.61
+      ],
+      "denominator_coefficients": [
+        1,
+        -0.0056585402906879235,
+        0.00024521187940848154,
+        -1.920807935645145e-07
+      ],
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "local_standard_error_scales": [
+        0.00033303306855807864,
+        1.4522716869637937e-05,
+        6.601361469790719e-08
+      ],
+      "snapshot_exact_root_count": 0,
+      "snapshot_safe": true,
+      "certified_region_safe": true,
+      "certified_radius_lower_bound_rational": "4503085/4194304",
+      "certified_radius_lower_bound_float": 1.0736191272735596,
+      "uncertified_radius_upper_bound_rational": "2251543/2097152",
+      "uncertified_radius_upper_bound_float": 1.0736193656921387,
+      "cap_hit": false,
+      "reason": "Lower bound is certified for the whole box; upper bound is not certified and is not asserted unsafe",
+      "proof_scope": "Every denominator coefficient in the certified scaled box is root-free over the closed x interval; no probability or physical-tolerance claim"
+    },
+    {
+      "dataset": "thurber",
+      "fold": 1,
+      "closed_interval": [
+        -3.067,
+        -2.699
+      ],
+      "denominator_coefficients": [
+        1,
+        1.0705802538223104,
+        0.4575080167330002,
+        0.07041862249370805
+      ],
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "local_standard_error_scales": [
+        0.039711408632123024,
+        0.021784266950048065,
+        0.008592695908931256
+      ],
+      "snapshot_exact_root_count": 1,
+      "snapshot_safe": false,
+      "certified_region_safe": false,
+      "certified_radius_lower_bound_float": 0.0,
+      "uncertified_radius_upper_bound_float": null,
+      "cap_hit": false,
+      "reason": "The unperturbed snapshot already has a root or changes sign in the closed interval",
+      "certified_radius_lower_bound_rational": "0",
+      "proof_scope": "Every denominator coefficient in the certified scaled box is root-free over the closed x interval; no probability or physical-tolerance claim"
+    },
+    {
+      "dataset": "thurber",
+      "fold": 2,
+      "closed_interval": [
+        -2.633,
+        -1.212
+      ],
+      "denominator_coefficients": [
+        1,
+        0.8896130318759835,
+        0.3556465977569125,
+        0.04888746125732415
+      ],
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "local_standard_error_scales": [
+        0.07701884236953259,
+        0.033233447283262975,
+        0.011019666882798693
+      ],
+      "snapshot_exact_root_count": 0,
+      "snapshot_safe": true,
+      "certified_region_safe": true,
+      "certified_radius_lower_bound_rational": "1526439/4194304",
+      "certified_radius_lower_bound_float": 0.36393141746520996,
+      "uncertified_radius_upper_bound_rational": "190805/524288",
+      "uncertified_radius_upper_bound_float": 0.36393165588378906,
+      "cap_hit": false,
+      "reason": "Lower bound is certified for the whole box; upper bound is not certified and is not asserted unsafe",
+      "proof_scope": "Every denominator coefficient in the certified scaled box is root-free over the closed x interval; no probability or physical-tolerance claim"
+    },
+    {
+      "dataset": "thurber",
+      "fold": 3,
+      "closed_interval": [
+        -1.1,
+        -0.4
+      ],
+      "denominator_coefficients": [
+        1,
+        0.9364333550579012,
+        0.39026331339590264,
+        0.048659195662212676
+      ],
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "local_standard_error_scales": [
+        0.03606746007360868,
+        0.0159450498444203,
+        0.006827147010764014
+      ],
+      "snapshot_exact_root_count": 0,
+      "snapshot_safe": true,
+      "certified_region_safe": true,
+      "certified_radius_lower_bound_rational": "4",
+      "certified_radius_lower_bound_float": 4.0,
+      "uncertified_radius_upper_bound_float": null,
+      "cap_hit": true,
+      "reason": "The entire capped box is certified; the radius may be larger but was not tested beyond the cap",
+      "proof_scope": "Every denominator coefficient in the certified scaled box is root-free over the closed x interval; no probability or physical-tolerance claim"
+    },
+    {
+      "dataset": "thurber",
+      "fold": 4,
+      "closed_interval": [
+        -0.309,
+        0.79
+      ],
+      "denominator_coefficients": [
+        1,
+        0.9743165346925443,
+        0.3991705292479827,
+        0.04858732867682616
+      ],
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "local_standard_error_scales": [
+        0.03456256114149856,
+        0.016186962956494844,
+        0.0074260758680174815
+      ],
+      "snapshot_exact_root_count": 0,
+      "snapshot_safe": true,
+      "certified_region_safe": true,
+      "certified_radius_lower_bound_rational": "4",
+      "certified_radius_lower_bound_float": 4.0,
+      "uncertified_radius_upper_bound_float": null,
+      "cap_hit": true,
+      "reason": "The entire capped box is certified; the radius may be larger but was not tested beyond the cap",
+      "proof_scope": "Every denominator coefficient in the certified scaled box is root-free over the closed x interval; no probability or physical-tolerance claim"
+    },
+    {
+      "dataset": "thurber",
+      "fold": 5,
+      "closed_interval": [
+        0.963,
+        2.2
+      ],
+      "denominator_coefficients": [
+        1,
+        0.9697947806248297,
+        0.3759795003325524,
+        0.03216435153708595
+      ],
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "local_standard_error_scales": [
+        0.047547869922205825,
+        0.031410419763063635,
+        0.0178566809991759
+      ],
+      "snapshot_exact_root_count": 0,
+      "snapshot_safe": true,
+      "certified_region_safe": true,
+      "certified_radius_lower_bound_rational": "4",
+      "certified_radius_lower_bound_float": 4.0,
+      "uncertified_radius_upper_bound_float": null,
+      "cap_hit": true,
+      "reason": "The entire capped box is certified; the radius may be larger but was not tested beyond the cap",
+      "proof_scope": "Every denominator coefficient in the certified scaled box is root-free over the closed x interval; no probability or physical-tolerance claim"
+    },
+    {
+      "dataset": "kirby2",
+      "fold": 1,
+      "closed_interval": [
+        9.65,
+        100.28
+      ],
+      "denominator_coefficients": [
+        1,
+        -0.0009879278080078375,
+        2.8991311355154343e-05
+      ],
+      "denominator_parameter_order": [
+        "b4",
+        "b5"
+      ],
+      "local_standard_error_scales": [
+        1.163632409738013e-05,
+        3.155131039154011e-07
+      ],
+      "snapshot_exact_root_count": 0,
+      "snapshot_safe": true,
+      "certified_region_safe": true,
+      "certified_radius_lower_bound_rational": "4",
+      "certified_radius_lower_bound_float": 4.0,
+      "uncertified_radius_upper_bound_float": null,
+      "cap_hit": true,
+      "reason": "The entire capped box is certified; the radius may be larger but was not tested beyond the cap",
+      "proof_scope": "Every denominator coefficient in the certified scaled box is root-free over the closed x interval; no probability or physical-tolerance claim"
+    },
+    {
+      "dataset": "kirby2",
+      "fold": 2,
+      "closed_interval": [
+        104.46,
+        176.25
+      ],
+      "denominator_coefficients": [
+        1,
+        -0.0017053852048213042,
+        2.1533313675143818e-05
+      ],
+      "denominator_parameter_order": [
+        "b4",
+        "b5"
+      ],
+      "local_standard_error_scales": [
+        8.32816616227932e-05,
+        2.463318804342745e-07
+      ],
+      "snapshot_exact_root_count": 0,
+      "snapshot_safe": true,
+      "certified_region_safe": true,
+      "certified_radius_lower_bound_rational": "4",
+      "certified_radius_lower_bound_float": 4.0,
+      "uncertified_radius_upper_bound_float": null,
+      "cap_hit": true,
+      "reason": "The entire capped box is certified; the radius may be larger but was not tested beyond the cap",
+      "proof_scope": "Every denominator coefficient in the certified scaled box is root-free over the closed x interval; no probability or physical-tolerance claim"
+    },
+    {
+      "dataset": "kirby2",
+      "fold": 3,
+      "closed_interval": [
+        177.34,
+        229.92
+      ],
+      "denominator_coefficients": [
+        1,
+        -0.001713603340415761,
+        2.144183244246622e-05
+      ],
+      "denominator_parameter_order": [
+        "b4",
+        "b5"
+      ],
+      "local_standard_error_scales": [
+        6.449688977372879e-05,
+        2.2155957707647297e-07
+      ],
+      "snapshot_exact_root_count": 0,
+      "snapshot_safe": true,
+      "certified_region_safe": true,
+      "certified_radius_lower_bound_rational": "4",
+      "certified_radius_lower_bound_float": 4.0,
+      "uncertified_radius_upper_bound_float": null,
+      "cap_hit": true,
+      "reason": "The entire capped box is certified; the radius may be larger but was not tested beyond the cap",
+      "proof_scope": "Every denominator coefficient in the certified scaled box is root-free over the closed x interval; no probability or physical-tolerance claim"
+    },
+    {
+      "dataset": "kirby2",
+      "fold": 4,
+      "closed_interval": [
+        231.69,
+        302.02
+      ],
+      "denominator_coefficients": [
+        1,
+        -0.0019293087095628078,
+        2.127828010946494e-05
+      ],
+      "denominator_parameter_order": [
+        "b4",
+        "b5"
+      ],
+      "local_standard_error_scales": [
+        7.121782785085932e-05,
+        2.158511839080574e-07
+      ],
+      "snapshot_exact_root_count": 0,
+      "snapshot_safe": true,
+      "certified_region_safe": true,
+      "certified_radius_lower_bound_rational": "4",
+      "certified_radius_lower_bound_float": 4.0,
+      "uncertified_radius_upper_bound_float": null,
+      "cap_hit": true,
+      "reason": "The entire capped box is certified; the radius may be larger but was not tested beyond the cap",
+      "proof_scope": "Every denominator coefficient in the certified scaled box is root-free over the closed x interval; no probability or physical-tolerance claim"
+    },
+    {
+      "dataset": "kirby2",
+      "fold": 5,
+      "closed_interval": [
+        303.48,
+        371.3
+      ],
+      "denominator_coefficients": [
+        1,
+        -0.0022924313459385397,
+        2.1197527901182048e-05
+      ],
+      "denominator_parameter_order": [
+        "b4",
+        "b5"
+      ],
+      "local_standard_error_scales": [
+        8.257967600798486e-05,
+        1.8339282197362424e-07
+      ],
+      "snapshot_exact_root_count": 0,
+      "snapshot_safe": true,
+      "certified_region_safe": true,
+      "certified_radius_lower_bound_rational": "4",
+      "certified_radius_lower_bound_float": 4.0,
+      "uncertified_radius_upper_bound_float": null,
+      "cap_hit": true,
+      "reason": "The entire capped box is certified; the radius may be larger but was not tested beyond the cap",
+      "proof_scope": "Every denominator coefficient in the certified scaled box is root-free over the closed x interval; no probability or physical-tolerance claim"
+    }
+  ],
+  "totals": {
+    "fold_count": 15,
+    "snapshot_safe_fold_count": 13,
+    "rooted_snapshot_fold_count": 2,
+    "certified_region_safe_fold_count": 13,
+    "cap_hit_fold_count": 11,
+    "certified_positive_radius_fold_count": 13,
+    "interpretation": "Counts report exact sufficient certificates for these frozen folds, not necessary radii or confidence coverage"
+  },
+  "decision": {
+    "probability_or_confidence_region_claimed": false,
+    "uncertified_upper_bound_called_unsafe": false,
+    "global_root_free_claimed": false,
+    "necessary_maximum_radius_claimed": false,
+    "physical_parameter_endogeneity_proved": false
+  },
+  "limitations": [
+    "The radius is a sufficient certificate for the stated coefficient box, not a necessary maximum or a statistical confidence region",
+    "Local linearized standard errors are only scales; they do not create a probability distribution or independent physical uncertainty estimate",
+    "The proof covers simultaneous coefficient perturbations inside the certified box and the specified closed x interval only",
+    "The uncertified upper bracket is not called unsafe; cap-hit results may permit larger boxes",
+    "Rooted snapshots cannot have a root-free neighborhood; this does not predict how their roots move"
+  ],
+  "analysis_runner_sha256": "a4cab522b2d6d19a185b54d119630b6aae8fed575b48f8d2ef4a9c72795cf167"
+}

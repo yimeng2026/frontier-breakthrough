@@ -592,6 +592,43 @@
       "sourceFiles": [
         "validation/rational-exact-interval-roots.json"
       ]
+    },
+    {
+      "id": "claim-no-positive-rootfree-box",
+      "kind": "claim",
+      "title": "无根快照不存在正的连续无根参数盒",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/rational-parameter-box-stability.json"
+      ]
+    },
+    {
+      "id": "evidence-parameter-box-stability",
+      "kind": "evidence",
+      "title": "13 折正区域半径、11 折封顶与 2 折有限半径括号",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/rational-parameter-box-stability.json"
+      ]
+    },
+    {
+      "id": "experiment-parameter-box-protocol",
+      "kind": "experiment",
+      "title": "连续参数盒精确充分性证明与跨零分段协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/rational-parameter-box-protocol.json",
+        "validation/rational-parameter-box-protocol-amendment-01.json"
+      ]
+    },
+    {
+      "id": "limitation-parameter-box-scope",
+      "kind": "limitation",
+      "title": "参数盒半径是充分下界，不是置信区、必要最大值或预测精度保证",
+      "status": "active",
+      "sourceFiles": [
+        "validation/rational-parameter-box-stability.json"
+      ]
     }
   ],
   "edges": [
@@ -828,6 +865,26 @@
     {
       "from": "track-formal",
       "to": "limitation-exact-snapshot-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "claim-no-positive-rootfree-box",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "evidence-parameter-box-stability",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "experiment-parameter-box-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "limitation-parameter-box-scope",
       "relation": "contains"
     },
     {
@@ -1103,6 +1160,21 @@
     {
       "from": "limitation-exact-snapshot-scope",
       "to": "claim-exact-snapshot-all-folds-root-free",
+      "relation": "limits"
+    },
+    {
+      "from": "experiment-parameter-box-protocol",
+      "to": "claim-no-positive-rootfree-box",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-parameter-box-stability",
+      "to": "claim-no-positive-rootfree-box",
+      "relation": "contradicts"
+    },
+    {
+      "from": "limitation-parameter-box-scope",
+      "to": "claim-no-positive-rootfree-box",
       "relation": "limits"
     },
     {

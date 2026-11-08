@@ -41,6 +41,7 @@ def build() -> dict:
     kirby = read("kirby2-prospective-gate.json")
     crossDataset = json.loads((ROOT / "exports/rational-cross-dataset.json").read_text(encoding="utf-8"))
     exactRoots = read("rational-exact-interval-roots.json")
+    parameterBox = read("rational-parameter-box-stability.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -212,6 +213,15 @@ def build() -> dict:
             "scientificClaim": "对十五折有理系数快照，13 个闭区间精确无根，Hahn1 第 1 折精确有 2 根，Thurber 第 1 折精确有 1 根；双求解器逐折一致。",
             "limitations": " ".join(exactRoots["limitations"]), "upstreamContribution": "提供精确 Sturm 隔离、十五份 SMT-LIB、三十份求解器日志及完整哈希，区分快照证明与物理参数精确性。",
             "snapshotFiles": ["validation/rational-exact-interval-protocol.json", "validation/rational-exact-interval-roots.json", "validation/exact-interval-smt/hahn1-fold-1.smt2", "validation/exact-interval-smt/thurber-fold-1.smt2", "validation/exact-interval-logs/hahn1-fold-1-z3.log", "validation/exact-interval-logs/thurber-fold-1-cvc5.log"],
+        },
+        {
+            "id": "rational-parameter-box-stability", "domain": "math", "title": "连续参数盒无根稳定性证明",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml"],
+            "metrics": {"totals": parameterBox["totals"], "finiteRadiusBrackets": [{"dataset": case["dataset"], "fold": case["fold"], "lower": case["certified_radius_lower_bound_float"], "upper": case["uncertified_radius_upper_bound_float"]} for case in parameterBox["cases"] if not case["cap_hit"] and case["snapshot_safe"]]},
+            "scientificClaim": "13 个无根快照均获得正的连续参数盒无根半径；11 折达到上限 4，Hahn1 第 5 折和 Thurber 第 2 折为有限半径括号。",
+            "limitations": " ".join(parameterBox["limitations"]), "upstreamContribution": "提供连续参数区域的精确充分性证明和跨零分段协议，不把下界当作置信区或必要最大半径。",
+            "snapshotFiles": ["validation/rational-parameter-box-protocol.json", "validation/rational-parameter-box-protocol-amendment-01.json", "validation/rational-parameter-box-stability.json"],
         },
     ]
     packet = {

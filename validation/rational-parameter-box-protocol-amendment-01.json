@@ -1,0 +1,11 @@
+{
+  "status": "frozen_method_correction_before_any_radius_result",
+  "frozen_at_local": "2026-11-09T01:06:02+08:00",
+  "parent_protocol": "validation/rational-parameter-box-protocol.json",
+  "parent_sha256": "ae8a4a0f040a8b7008659eaa73ce2f18edadbbe6598c71f3b810482c7391f284",
+  "trigger": "Thurber fold 3 has a held-out x interval crossing zero, so a single absolute-x polynomial cannot be used without splitting",
+  "rule_change": "For an interval with lower<0<upper, apply the same exact box certificate separately to [lower,0] and [0,upper], and require both closed subintervals to pass",
+  "unchanged_rules": "The coefficient box, local standard-error scales, radius cap 4, iteration count 24, conservative lower-bound interpretation and all other folds remain unchanged",
+  "reason": "Method coverage correction discovered before any radius result; not a response to favorable or unfavorable stability outcomes",
+  "prohibitions": "Do not delete the zero-crossing fold, weaken the certificate or silently treat |x| as x on the negative side"
+}
