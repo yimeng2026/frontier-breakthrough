@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "internal_external_bound_comparison":
+    if REPORT_MODE == "misra1a_coverage":
+        replacements = {
+            "图：`papers/25_Misra1a椭球覆盖/fig25_misra1a_ellipsoid_coverage.png`。": "![](papers/25_Misra1a椭球覆盖/fig25_misra1a_ellipsoid_coverage.png)\n\n**图 25｜Misra1a 候选预测与逐点界可用性（第 1 幅，共 1 幅）**  \n**插入位置**：§4「四个可用点的界宽度与组成」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "14 点小样本、4 点可用界与预测—证明解离"
+    elif REPORT_MODE == "internal_external_bound_comparison":
         replacements = {
             "图：`papers/24_内外部界组成对照/fig24_internal_external_bound_comparison.png`。": "![](papers/24_内外部界组成对照/fig24_internal_external_bound_comparison.png)\n\n**图 24｜内外部六组同点界组成对照（第 1 幅，共 1 幅）**  \n**插入位置**：§4「最大界位置不能替代全点分布」；顺序第 1 幅，共 1 幅。",
         }

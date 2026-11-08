@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生Misra1a预测证明解离_图文完整版.docx",
+  "bytes": 131659,
+  "sha256": "f32e192b71c04946e99a51e317f4831e63ad4a25856242450c270ef960f3a050",
+  "native_math_objects": 2,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}
