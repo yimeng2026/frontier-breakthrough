@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "prospective":
+    if REPORT_MODE == "kirby2":
+        replacements = {
+            "图：`papers/11_Kirby2前瞻验收/fig11_kirby2_prospective_gate.png`。": "![](papers/11_Kirby2前瞻验收/fig11_kirby2_prospective_gate.png)\n\n**图 11｜Kirby2 二次有理模型五折前瞻验收**  \n**插入位置**：§5「阳性结果仍需保留的三个边界」之后；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "二次有理模型、五折有限支持与高条件数边界"
+    elif REPORT_MODE == "prospective":
         replacements = {
             "图：`papers/10_Thurber前瞻验收/fig10_thurber_prospective_gate.png`。": "![](papers/10_Thurber前瞻验收/fig10_thurber_prospective_gate.png)\n\n**图 10｜Thurber 数据集前瞻验收：极点、条件数与预测支持**  \n**插入位置**：§5「第 1 折失效位置」之后；顺序第 1 幅，共 1 幅。",
         }

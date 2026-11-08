@@ -1,0 +1,67 @@
+{
+  "status": "frozen_before_any_kirby2_fit",
+  "frozen_at_local": "2026-11-09T00:09:51+08:00",
+  "scientific_question": "Does the frozen prediction-domain and minimal numerical-identifiability framework transfer from cubic/cubic Hahn1 and Thurber to the different quadratic/quadratic NIST Kirby2 model?",
+  "selection_scope": {
+    "dataset_used_to_design_gate": false,
+    "selection_rationale": "Five-parameter quadratic/quadratic rational model with 151 observations, chosen to test a different polynomial degree rather than retune the earlier cubic/cubic failures",
+    "prospective_meaning": "Dataset-prospective computational validation, not an independent experiment or external preregistration"
+  },
+  "data": {
+    "name": "NIST/ITL StRD Kirby2",
+    "dataset_page": "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml",
+    "source_url": "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Kirby2.dat",
+    "file": "data/Kirby2.dat",
+    "sha256": "cbd288dd9d8586ec97ca408277d1a27ef41b19b543c158d594af189de80ae61c",
+    "observations": 151,
+    "units_as_published": "Observed scanning electron microscope line-width standard data; preserve published y and x without invented conversion or uncertainty"
+  },
+  "model": {
+    "equation": "y = (b1+b2*x+b3*x^2)/(1+b4*x+b5*x^2) + e",
+    "bounds": "Unbounded coefficients as published by NIST; denominator admissibility is evaluated separately",
+    "starts": [
+      {"b1": 2, "b2": -0.1, "b3": 0.003, "b4": -0.001, "b5": 0.00001},
+      {"b1": 1.5, "b2": -0.15, "b3": 0.0025, "b4": -0.0015, "b5": 0.00002}
+    ],
+    "optimizer": "scipy.optimize.curve_fit with method=lm, maxfev=200000, full_output=true; select the lowest training residual sum of squares"
+  },
+  "fold_rule": {
+    "count": 5,
+    "construction": "Sort unique x values into five contiguous, nearly equal groups; repeated x values never cross fitting and test sets; every observation is evaluated once",
+    "baseline": "Ordinary least-squares quadratic polynomial fitted only on the other four groups, selected from the published quadratic/quadratic model degree before seeing outcomes",
+    "retuning": "No start, model, threshold or fold changes after seeing test results"
+  },
+  "prediction_domain_gate": {
+    "real_root_rule": "numpy.roots for 1+b4*x+b5*x^2; absolute imaginary part below 1e-8; reject numerical real roots inside the closed held-out x interval",
+    "dense_grid_rule": "Evaluate 1001 evenly spaced points spanning each closed held-out interval; reject non-finite values, exact zeros or denominator sign changes",
+    "observation_rule": "Every held-out prediction and denominator must be finite and every held-out denominator must be nonzero",
+    "scope": "Numerical admissibility on the held-out interval, not an exact algebraic proof outside it"
+  },
+  "minimal_numerical_identifiability_gate": {
+    "jacobian": "Analytic training Jacobian at the frozen fit",
+    "column_scaling": "Euclidean-norm column scaling before singular-value analysis",
+    "rank_rule": "Require numerical rank 5 using tolerance max(matrix shape)*machine_epsilon*largest_scaled_singular_value",
+    "covariance_rule": "Local linearized parameter standard errors must be finite and positive using pseudo-inverse rcond=1e-12",
+    "diagnostics_not_gates": "Report scaled condition number and maximum absolute off-diagonal parameter correlation without retrospective cutoffs",
+    "scope": "Minimal local numerical check only; full rank does not prove global structural identifiability or physical endogeneity"
+  },
+  "decision_rules": {
+    "fold_gated_limited_support": "Prediction-domain admissible AND minimal numerical identifiability AND held-out RMSE <= quadratic-baseline held-out RMSE",
+    "overall_all_folds_gated_support": "All five folds satisfy fold_gated_limited_support; otherwise retain every failure",
+    "interpretation": "Dataset-specific computational limited support, never a universal law or independent experimental replication"
+  },
+  "full_fit_certification_rule": {
+    "purpose": "Known-answer implementation check only; never used as held-out evidence",
+    "certified_parameters": {"b1": 1.6745063063, "b2": -0.13927397867, "b3": 0.0025961181191, "b4": -0.0017241811870, "b5": 0.000021664802578},
+    "certified_residual_standard_deviation": 0.16354535131,
+    "degrees_of_freedom": 146,
+    "relative_tolerance_parameters": 0.0001,
+    "relative_tolerance_residual_standard_deviation": 0.0001
+  },
+  "output_rule": {
+    "summary": "validation/kirby2-prospective-gate.json",
+    "figure": "papers/11_Kirby2前瞻验收/fig11_kirby2_prospective_gate.png",
+    "preserve_all_folds_and_failures": true,
+    "refuse_overwrite": true
+  }
+}

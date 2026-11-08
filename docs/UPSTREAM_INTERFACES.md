@@ -31,7 +31,8 @@
 | NIST Chwirut2 + Eckerle4 + Hahn1 | 三个数据集共 15 折连续区间留出，相同 x 不跨训练与测试；Hahn1 第 1 折失效 | `validation/grouped-stress-protocol.json`、`validation/grouped-stress.json` | 提供跨数据集压力诊断和完整失败区间，不把分母非零等同于预测稳健 |
 | Hahn1 五折冻结参数事后诊断 | 解析雅可比、列归一化条件数、参数相关和局部预测敏感度；第 1 折两个低温数值单极点 | `validation/hahn1-fold1-identifiability.json`、`validation/hahn1-frozen-denominator-roots.json` | 提供逐折极点排除与可识别性验收义务；不把事后机制解释当作独立验证 |
 | NIST Thurber 数据集前瞻验收 | 37 个观测、五折连续留出、预测区极点与最低数值可识别性门；四折通过、一折失败 | `validation/thurber-prospective-gate-protocol.json`、`validation/thurber-prospective-gate.json` | 在新数据集上检验 Hahn1 衍生验收规则，保留整体未通过结论 |
-| 主张—证据—反例—实验图谱 | 52 个节点、85 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| NIST Kirby2 跨次数前瞻验收 | 151 个观测、五参数二次有理模型；五折均通过预测区、局部数值与二次基线验收 | `validation/kirby2-prospective-gate-protocol.json`、`validation/kirby2-prospective-gate.json` | 提供阳性对照，同时保留外推衰减、条件数和区间检查边界 |
+| 主张—证据—反例—实验图谱 | 56 个节点、92 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 与自动科学发现项目的配合
 

@@ -678,6 +678,79 @@
         "validation/thurber-prospective-gate-protocol.json",
         "validation/thurber-prospective-gate.json"
       ]
+    },
+    {
+      "id": "kirby2-cross-degree-prospective-gate",
+      "domain": "physics",
+      "title": "Kirby2 二次有理模型跨次数前瞻验收",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Kirby2.dat",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/v-kirby2.shtml"
+      ],
+      "metrics": {
+        "nistReproduction": true,
+        "overallAllFoldsGatedSupport": true,
+        "fold1TrainingRmse": 0.012473720737320367,
+        "fold1TestRmse": 2.709871712225335,
+        "fold1BaselineRmse": 23.27947077284179,
+        "folds": [
+          {
+            "fold": 1,
+            "testRmse": 2.709871712225335,
+            "baselineRmse": 23.27947077284179,
+            "rootsInHeldOutInterval": [],
+            "numericalRank": 5,
+            "scaledConditionNumber": 2885.479455998502,
+            "gatedLimitedSupport": true
+          },
+          {
+            "fold": 2,
+            "testRmse": 0.12954568521794038,
+            "baselineRmse": 5.176333444934569,
+            "rootsInHeldOutInterval": [],
+            "numericalRank": 5,
+            "scaledConditionNumber": 243.67267668350243,
+            "gatedLimitedSupport": true
+          },
+          {
+            "fold": 3,
+            "testRmse": 0.15755727348729637,
+            "baselineRmse": 3.204506474314001,
+            "rootsInHeldOutInterval": [],
+            "numericalRank": 5,
+            "scaledConditionNumber": 192.63421847854158,
+            "gatedLimitedSupport": true
+          },
+          {
+            "fold": 4,
+            "testRmse": 0.22998316816135522,
+            "baselineRmse": 4.245402385686905,
+            "rootsInHeldOutInterval": [],
+            "numericalRank": 5,
+            "scaledConditionNumber": 199.31002689787405,
+            "gatedLimitedSupport": true
+          },
+          {
+            "fold": 5,
+            "testRmse": 0.7426886382501828,
+            "baselineRmse": 13.061194889357278,
+            "rootsInHeldOutInterval": [],
+            "numericalRank": 5,
+            "scaledConditionNumber": 224.78270360820434,
+            "gatedLimitedSupport": true
+          }
+        ]
+      },
+      "scientificClaim": "Kirby2 五折均无留出区实根、数值秩均为 5 且均优于二次基线，因此获得本协议下整体有限支持；第 1 折外推衰减和高条件数仍保留。",
+      "limitations": "One quadratic/quadratic NIST dataset is a dataset-prospective computational check, not an independent physical experiment Numerical roots and dense-grid checks cover each closed held-out interval only Full numerical rank and finite local standard errors do not prove global structural identifiability or physical endogeneity No model, start, fold or threshold was retuned after seeing Kirby2 outcomes NIST certified values are used only for known-answer implementation reproduction, never as held-out evidence",
+      "upstreamContribution": "提供不同次数有理模型的阳性对照、全部五折根检查、局部数值诊断、二次基线和训练—留出衰减对照。",
+      "snapshotFiles": [
+        "validation/kirby2-prospective-gate-protocol.json",
+        "validation/kirby2-prospective-gate.json"
+      ]
     }
   ]
 }

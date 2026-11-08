@@ -484,6 +484,42 @@
       "sourceFiles": [
         "validation/thurber-prospective-gate.json"
       ]
+    },
+    {
+      "id": "claim-kirby2-all-folds-gated",
+      "kind": "claim",
+      "title": "Kirby2 五个连续区间折全部通过预测区、可识别性与二次基线验收",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/kirby2-prospective-gate.json"
+      ]
+    },
+    {
+      "id": "evidence-kirby2-prospective-gate",
+      "kind": "evidence",
+      "title": "Kirby2 五折有限支持及第 1 折外推衰减、高条件数记录",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/kirby2-prospective-gate.json"
+      ]
+    },
+    {
+      "id": "experiment-kirby2-prospective-protocol",
+      "kind": "experiment",
+      "title": "在任何 Kirby2 拟合前冻结的五折跨次数验收协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/kirby2-prospective-gate-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-kirby2-prospective",
+      "kind": "limitation",
+      "title": "Kirby2 的整体有限支持不是全域无根、绝对精度或其他模型的保证",
+      "status": "active",
+      "sourceFiles": [
+        "validation/kirby2-prospective-gate.json"
+      ]
     }
   ],
   "edges": [
@@ -610,6 +646,26 @@
     {
       "from": "track-holdout",
       "to": "limitation-thurber-prospective",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-kirby2-all-folds-gated",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-kirby2-prospective-gate",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-kirby2-prospective-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-kirby2-prospective",
       "relation": "contains"
     },
     {
@@ -890,6 +946,21 @@
     {
       "from": "limitation-thurber-prospective",
       "to": "claim-thurber-all-folds-gated",
+      "relation": "limits"
+    },
+    {
+      "from": "experiment-kirby2-prospective-protocol",
+      "to": "claim-kirby2-all-folds-gated",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-kirby2-prospective-gate",
+      "to": "claim-kirby2-all-folds-gated",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-kirby2-prospective",
+      "to": "claim-kirby2-all-folds-gated",
       "relation": "limits"
     },
     {

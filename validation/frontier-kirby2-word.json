@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生Kirby2跨次数验收_图文完整版.docx",
+  "bytes": 212300,
+  "sha256": "3f23939229d8f8eda35c369d3bf905ddf178652c7fa5b2e76a200747d64d093e",
+  "native_math_objects": 9,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

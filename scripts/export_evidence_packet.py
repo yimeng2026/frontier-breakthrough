@@ -38,6 +38,7 @@ def build() -> dict:
     identifiability = read("hahn1-fold1-identifiability.json")
     denominatorRoots = read("hahn1-frozen-denominator-roots.json")
     thurber = read("thurber-prospective-gate.json")
+    kirby = read("kirby2-prospective-gate.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -182,6 +183,15 @@ def build() -> dict:
             "scientificClaim": "Thurber 全数据拟合通过 NIST 已知答案复核；第 2—5 折通过冻结验收，第 1 折在约 -3.019661 的留出区实根处失效，因此整体五折支持不成立。",
             "limitations": " ".join(thurber["limitations"]), "upstreamContribution": "提供新数据集冻结协议、全部五折预测区根检查、局部秩与协方差检查、三次基线和失败记录。",
             "snapshotFiles": ["validation/thurber-prospective-gate-protocol.json", "validation/thurber-prospective-gate.json"],
+        },
+        {
+            "id": "kirby2-cross-degree-prospective-gate", "domain": "physics", "title": "Kirby2 二次有理模型跨次数前瞻验收",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Kirby2.dat", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/v-kirby2.shtml"],
+            "metrics": {"nistReproduction": kirby["full_fit_certification"]["matches_nist_within_frozen_tolerances"], "overallAllFoldsGatedSupport": kirby["decision"]["overall_all_folds_gated_support"], "fold1TrainingRmse": kirby["folds"][0]["identifiability"]["training_metrics"]["rmse"], "fold1TestRmse": kirby["folds"][0]["test_metrics"]["rmse"], "fold1BaselineRmse": kirby["folds"][0]["baseline_test_metrics"]["rmse"], "folds": [{"fold": fold["fold"], "testRmse": fold["test_metrics"]["rmse"], "baselineRmse": fold["baseline_test_metrics"]["rmse"], "rootsInHeldOutInterval": fold["domain_audit"].get("real_roots_in_closed_interval"), "numericalRank": fold["identifiability"].get("numerical_rank"), "scaledConditionNumber": fold["identifiability"].get("scaled_condition_number"), "gatedLimitedSupport": fold["decision"]["gated_limited_support"]} for fold in kirby["folds"]]},
+            "scientificClaim": "Kirby2 五折均无留出区实根、数值秩均为 5 且均优于二次基线，因此获得本协议下整体有限支持；第 1 折外推衰减和高条件数仍保留。",
+            "limitations": " ".join(kirby["limitations"]), "upstreamContribution": "提供不同次数有理模型的阳性对照、全部五折根检查、局部数值诊断、二次基线和训练—留出衰减对照。",
+            "snapshotFiles": ["validation/kirby2-prospective-gate-protocol.json", "validation/kirby2-prospective-gate.json"],
         },
     ]
     packet = {

@@ -1,0 +1,2369 @@
+{
+  "status": "computed_dataset_prospective_kirby2_gate",
+  "protocol_sha256": "f0631eaee98d4e4e68f062686e3b79eff8ae7a275e975968caf002af637434a2",
+  "data_sha256": "cbd288dd9d8586ec97ca408277d1a27ef41b19b543c158d594af189de80ae61c",
+  "model": "y = (b1+b2*x+b3*x^2)/(1+b4*x+b5*x^2) + e",
+  "analysis_scope": {
+    "dataset_used_to_design_gate": false,
+    "protocol_frozen_before_any_kirby2_fit": true,
+    "independent_physical_experiment": false,
+    "external_preregistration": false
+  },
+  "full_fit_certification": {
+    "parameters": {
+      "b1": 1.6745058258680816,
+      "b2": -0.13927394744097263,
+      "b3": 0.0025961177755950064,
+      "b4": -0.0017241816594319355,
+      "b5": 2.1664801047142444e-05
+    },
+    "residual_sum_of_squares": 3.9050739623929718,
+    "residual_standard_deviation": 0.1635453513072091,
+    "relative_parameter_errors": {
+      "b1": 2.8690959041899333e-07,
+      "b2": 2.2422729406557096e-07,
+      "b3": 1.3231485540554644e-07,
+      "b4": 2.7400364821517087e-07,
+      "b5": 7.066104346087343e-08
+    },
+    "relative_residual_standard_deviation_error": 1.7065016066908356e-11,
+    "matches_nist_within_frozen_tolerances": true,
+    "attempts": [
+      {
+        "start": [
+          2,
+          -0.1,
+          0.003,
+          -0.001,
+          1e-05
+        ],
+        "parameters": {
+          "b1": 1.6745058258680816,
+          "b2": -0.13927394744097263,
+          "b3": 0.0025961177755950064,
+          "b4": -0.0017241816594319355,
+          "b5": 2.1664801047142444e-05
+        },
+        "rss": 3.9050739623929718,
+        "success": true,
+        "ier": 1,
+        "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+        "nfev": 43,
+        "covariance": [
+          [
+            0.007742185223094415,
+            -0.00032467590830341427,
+            2.958047902443748e-06,
+            2.9484856915590317e-06,
+            1.5003816856296094e-08
+          ],
+          [
+            -0.00032467590830341427,
+            1.695964668865045e-05,
+            -1.6794554282797118e-07,
+            -1.9244910411358668e-07,
+            -8.154303905793607e-10
+          ],
+          [
+            2.958047902443748e-06,
+            -1.6794554282797118e-07,
+            1.7519738185949874e-09,
+            2.2272425274467265e-09,
+            8.104590462986372e-12
+          ],
+          [
+            2.9484856915590317e-06,
+            -1.9244910411358668e-07,
+            2.2272425274467265e-09,
+            3.472982816022757e-09,
+            8.964262433447302e-12
+          ],
+          [
+            1.5003816856296094e-08,
+            -8.154303905793607e-10,
+            8.104590462986372e-12,
+            8.964262433447302e-12,
+            4.0520832357433e-14
+          ]
+        ]
+      },
+      {
+        "start": [
+          1.5,
+          -0.15,
+          0.0025,
+          -0.0015,
+          2e-05
+        ],
+        "parameters": {
+          "b1": 1.6745087579606381,
+          "b2": -0.1392741226264253,
+          "b3": 0.0025961196538372864,
+          "b4": -0.001724179156438162,
+          "b5": 2.1664809535738708e-05
+        },
+        "rss": 3.9050739624302597,
+        "success": true,
+        "ier": 1,
+        "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+        "nfev": 31,
+        "covariance": [
+          [
+            0.007742133362234626,
+            -0.00032467266100553825,
+            2.9580116261293554e-06,
+            2.9484329131823864e-06,
+            1.500366244957083e-08
+          ],
+          [
+            -0.00032467266100553825,
+            1.6959434029052842e-05,
+            -1.6794313153068023e-07,
+            -1.924455344212091e-07,
+            -8.15420221722273e-10
+          ],
+          [
+            2.9580116261293554e-06,
+            -1.6794313153068023e-07,
+            1.7519459613532902e-09,
+            2.2271999027541226e-09,
+            8.104475775016572e-12
+          ],
+          [
+            2.9484329131823864e-06,
+            -1.924455344212091e-07,
+            2.2271999027541226e-09,
+            3.4729127455487105e-09,
+            8.964098361087045e-12
+          ],
+          [
+            1.500366244957083e-08,
+            -8.15420221722273e-10,
+            8.104475775016572e-12,
+            8.964098361087045e-12,
+            4.0520330916763503e-14
+          ]
+        ]
+      }
+    ],
+    "interpretation": "Known-answer implementation check only; not holdout evidence or a new microscope experiment"
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "train_count": 121,
+      "test_count": 30,
+      "test_x_values": [
+        9.65,
+        10.74,
+        11.81,
+        12.88,
+        14.06,
+        15.28,
+        16.63,
+        18.19,
+        19.88,
+        21.84,
+        24.0,
+        26.25,
+        28.86,
+        31.85,
+        35.79,
+        40.18,
+        44.74,
+        49.53,
+        53.94,
+        58.29,
+        62.63,
+        67.03,
+        71.25,
+        75.22,
+        79.33,
+        83.56,
+        87.75,
+        91.93,
+        96.1,
+        100.28
+      ],
+      "optimizer_success": true,
+      "model_parameters": {
+        "b1": 8.23488705863678,
+        "b2": -0.3189663661155197,
+        "b3": 0.0038964703438958245,
+        "b4": -0.0009879278080078375,
+        "b5": 2.8991311355154343e-05
+      },
+      "test_metrics": {
+        "rmse": 2.709871712225335,
+        "mae": 1.8995495654109527,
+        "max_absolute_residual": 5.549490608749166
+      },
+      "baseline_test_metrics": {
+        "rmse": 23.27947077284179,
+        "mae": 20.055058840208076,
+        "max_absolute_residual": 36.46345422032589
+      },
+      "baseline_coefficients_descending": [
+        -0.0006093166954049652,
+        0.5877989670812579,
+        -42.070773158692184
+      ],
+      "domain_audit": {
+        "closed_interval": [
+          9.65,
+          100.28
+        ],
+        "grid_point_count": 1001,
+        "real_roots_in_closed_interval": [],
+        "real_root_records_in_closed_interval": [],
+        "grid_denominator_sign_change_count": 0,
+        "grid_min_absolute_denominator": 0.9915837280215768,
+        "test_min_absolute_denominator": 0.991588507748146,
+        "all_predictions_and_denominators_finite": true,
+        "all_denominators_nonzero": true,
+        "domain_admissible": true,
+        "interpretation": "Numerical admissibility on this closed held-out interval, not an exact algebraic proof outside it"
+      },
+      "identifiability": {
+        "numerical_rank": 5,
+        "numerical_rank_tolerance": 5.742562516400976e-14,
+        "scaled_singular_values": [
+          2.1373720999186125,
+          0.6501440601078496,
+          0.09373032644456436,
+          0.012933863075196927,
+          0.0007407337783935073
+        ],
+        "scaled_condition_number": 2885.479455998502,
+        "local_standard_errors": {
+          "b1": 0.4485924841825871,
+          "b2": 0.009048838836155768,
+          "b3": 5.1620837753339726e-05,
+          "b4": 1.163632409738013e-05,
+          "b5": 3.155131039154011e-07
+        },
+        "max_absolute_off_diagonal_parameter_correlation": 0.9992585943244138,
+        "minimal_numerical_identifiability": true,
+        "training_metrics": {
+          "rmse": 0.012473720737320367,
+          "mae": 0.00948916046750273,
+          "max_absolute_residual": 0.03838892492871082
+        },
+        "interpretation": "Minimal local numerical check; full rank does not establish global identifiability or physical endogeneity"
+      },
+      "attempts": [
+        {
+          "start": [
+            2,
+            -0.1,
+            0.003,
+            -0.001,
+            1e-05
+          ],
+          "parameters": {
+            "b1": 8.234913360122198,
+            "b2": -0.3189669011009184,
+            "b3": 0.0038964734017840072,
+            "b4": -0.0009879274836449559,
+            "b5": 2.899133002120446e-05
+          },
+          "rss": 0.01882683879338392,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 43,
+          "covariance": [
+            [
+              0.20123653766995378,
+              -0.00404577885773793,
+              2.2835675299470366e-05,
+              1.73714447232151e-06,
+              1.4025115952436493e-07
+            ],
+            [
+              -0.00404577885773793,
+              8.188208335394472e-05,
+              -4.653903522721398e-07,
+              -4.256852700604976e-08,
+              -2.8508777411956373e-09
+            ],
+            [
+              2.2835675299470366e-05,
+              -4.653903522721398e-07,
+              2.6647325409580037e-09,
+              2.8836179964574256e-10,
+              1.6275104797867615e-11
+            ],
+            [
+              1.73714447232151e-06,
+              -4.256852700604976e-08,
+              2.8836179964574256e-10,
+              1.3540479821004097e-10,
+              1.6420117911805383e-12
+            ],
+            [
+              1.4025115952436493e-07,
+              -2.8508777411956373e-09,
+              1.6275104797867615e-11,
+              1.6420117911805383e-12,
+              9.954929128270899e-14
+            ]
+          ]
+        },
+        {
+          "start": [
+            1.5,
+            -0.15,
+            0.0025,
+            -0.0015,
+            2e-05
+          ],
+          "parameters": {
+            "b1": 8.23488705863678,
+            "b2": -0.3189663661155197,
+            "b3": 0.0038964703438958245,
+            "b4": -0.0009879278080078375,
+            "b5": 2.8991311355154343e-05
+          },
+          "rss": 0.018826838792951398,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 31,
+          "covariance": [
+            [
+              0.20123442011744438,
+              -0.004045733479221982,
+              2.2835399415896452e-05,
+              1.7370724557088908e-06,
+              1.4024952879338202e-07
+            ],
+            [
+              -0.004045733479221982,
+              8.18811142322165e-05,
+              -4.653844829525828e-07,
+              -4.2567050039727145e-08,
+              -2.8508429771752606e-09
+            ],
+            [
+              2.2835399415896452e-05,
+              -4.653844829525828e-07,
+              2.664697146612128e-09,
+              2.883532639968432e-10,
+              1.6274894684360998e-11
+            ],
+            [
+              1.7370724557088908e-06,
+              -4.2567050039727145e-08,
+              2.883532639968432e-10,
+              1.3540364285751295e-10,
+              1.641959979855689e-12
+            ],
+            [
+              1.4024952879338202e-07,
+              -2.8508429771752606e-09,
+              1.6274894684360998e-11,
+              1.641959979855689e-12,
+              9.954804539732229e-14
+            ]
+          ]
+        }
+      ],
+      "held_out_points": [
+        {
+          "x": 9.65,
+          "y": 0.0082,
+          "model_prediction": 5.557690608749167,
+          "baseline_prediction": -36.45525422032589,
+          "denominator": 0.9931662400443947
+        },
+        {
+          "x": 10.74,
+          "y": 0.0112,
+          "model_prediction": 5.297127126434157,
+          "baseline_prediction": -35.828095470694365,
+          "denominator": 0.9927337335276657
+        },
+        {
+          "x": 11.81,
+          "y": 0.0149,
+          "model_prediction": 5.049858033287213,
+          "baseline_prediction": -35.213852473802504,
+          "denominator": 0.9923761676291301
+        },
+        {
+          "x": 12.88,
+          "y": 0.0198,
+          "model_prediction": 4.811082659320958,
+          "baseline_prediction": -34.60100469027977,
+          "denominator": 0.9920849860353356
+        },
+        {
+          "x": 14.06,
+          "y": 0.0248,
+          "model_prediction": 4.557675027423425,
+          "baseline_prediction": -33.92677159941746,
+          "denominator": 0.9918408418168175
+        },
+        {
+          "x": 15.28,
+          "y": 0.0324,
+          "model_prediction": 4.306683069032988,
+          "baseline_prediction": -33.231467228827,
+          "denominator": 0.9916733080827435
+        },
+        {
+          "x": 16.63,
+          "y": 0.042,
+          "model_prediction": 4.0420720067516775,
+          "baseline_prediction": -32.46418707253031,
+          "denominator": 0.991588507748146
+        },
+        {
+          "x": 18.19,
+          "y": 0.0549,
+          "model_prediction": 3.7535848339112334,
+          "baseline_prediction": -31.580318279324587,
+          "denominator": 0.9916221252074165
+        },
+        {
+          "x": 19.88,
+          "y": 0.0719,
+          "model_prediction": 3.4621045946078524,
+          "baseline_prediction": -30.626140425301234,
+          "denominator": 0.9918177788992447
+        },
+        {
+          "x": 21.84,
+          "y": 0.0963,
+          "model_prediction": 3.1516404794676256,
+          "baseline_prediction": -29.523879007185265,
+          "denominator": 0.9922520947146339
+        },
+        {
+          "x": 24.0,
+          "y": 0.1291,
+          "model_prediction": 2.844001256472578,
+          "baseline_prediction": -28.314564365295254,
+          "denominator": 0.9929887279483809
+        },
+        {
+          "x": 26.25,
+          "y": 0.171,
+          "model_prediction": 2.5621926801283927,
+          "baseline_prediction": -27.060907558236647,
+          "denominator": 0.9940437205204553
+        },
+        {
+          "x": 28.86,
+          "y": 0.2314,
+          "model_prediction": 2.284859150729041,
+          "baseline_prediction": -25.614394600603198,
+          "denominator": 0.9956352550920773
+        },
+        {
+          "x": 31.85,
+          "y": 0.3227,
+          "model_prediction": 2.032654749766637,
+          "baseline_prediction": -23.96748062259856,
+          "denominator": 0.9979439378581244
+        },
+        {
+          "x": 35.79,
+          "y": 0.4809,
+          "model_prediction": 1.8069513065433778,
+          "baseline_prediction": -21.813936566530543,
+          "denominator": 1.0017777331568203
+        },
+        {
+          "x": 40.18,
+          "y": 0.7084,
+          "model_prediction": 1.6973390807637945,
+          "baseline_prediction": -19.436711276289948,
+          "denominator": 1.0071095730444943
+        },
+        {
+          "x": 44.74,
+          "y": 1.022,
+          "model_prediction": 1.7397082391585703,
+          "baseline_prediction": -16.99229685880789,
+          "denominator": 1.0138310784908537
+        },
+        {
+          "x": 49.53,
+          "y": 1.458,
+          "model_prediction": 1.9520689665103301,
+          "baseline_prediction": -14.451878771043877,
+          "denominator": 1.0221900266042439
+        },
+        {
+          "x": 53.94,
+          "y": 1.952,
+          "model_prediction": 2.2954133817054223,
+          "baseline_prediction": -12.137718179483894,
+          "denominator": 1.0310620786188267
+        },
+        {
+          "x": 58.29,
+          "y": 2.541,
+          "model_prediction": 2.768199140011591,
+          "baseline_prediction": -9.878261388035469,
+          "denominator": 1.0409181653532347
+        },
+        {
+          "x": 62.63,
+          "y": 3.223,
+          "model_prediction": 3.3674109363492626,
+          "baseline_prediction": -7.64697888557113,
+          "denominator": 1.051844990128224
+        },
+        {
+          "x": 67.03,
+          "y": 3.999,
+          "model_prediction": 4.099003216880599,
+          "baseline_prediction": -5.408281042408909,
+          "denominator": 1.0640377668663505
+        },
+        {
+          "x": 71.25,
+          "y": 4.852,
+          "model_prediction": 4.912031726847038,
+          "baseline_prediction": -3.2833310406693244,
+          "denominator": 1.0767863477308424
+        },
+        {
+          "x": 75.22,
+          "y": 5.732,
+          "model_prediction": 5.770878249170975,
+          "baseline_prediction": -1.3040782083693188,
+          "denominator": 1.0897223131085834
+        },
+        {
+          "x": 79.33,
+          "y": 6.727,
+          "model_prediction": 6.750200773651724,
+          "baseline_prediction": 0.7247372767550715,
+          "denominator": 1.1040772252861208
+        },
+        {
+          "x": 83.56,
+          "y": 7.835,
+          "model_prediction": 7.84756085268656,
+          "baseline_prediction": 2.791292654252395,
+          "denominator": 1.1198740202673394
+        },
+        {
+          "x": 87.75,
+          "y": 9.025,
+          "model_prediction": 9.017381999287544,
+          "baseline_prediction": 4.816809565776502,
+          "denominator": 1.1365442442389604
+        },
+        {
+          "x": 91.93,
+          "y": 10.267,
+          "model_prediction": 10.259902555651308,
+          "baseline_prediction": 6.816174388565244,
+          "denominator": 1.1541889898870372
+        },
+        {
+          "x": 96.1,
+          "y": 11.578,
+          "model_prediction": 11.567982393715084,
+          "baseline_prediction": 8.789539939245806,
+          "denominator": 1.1728009861906816
+        },
+        {
+          "x": 100.28,
+          "y": 12.944,
+          "model_prediction": 12.941338235379678,
+          "baseline_prediction": 10.746370800795113,
+          "denominator": 1.1924694993192164
+        }
+      ],
+      "decision": {
+        "domain_admissible": true,
+        "minimal_numerical_identifiability": true,
+        "not_worse_than_quadratic_baseline": true,
+        "gated_limited_support": true
+      }
+    },
+    {
+      "fold": 2,
+      "train_count": 120,
+      "test_count": 31,
+      "test_x_values": [
+        104.46,
+        108.66,
+        112.71,
+        116.88,
+        121.33,
+        125.79,
+        128.74,
+        130.27,
+        133.33,
+        134.79,
+        137.93,
+        139.33,
+        142.46,
+        143.9,
+        146.91,
+        148.51,
+        151.41,
+        153.17,
+        155.97,
+        157.76,
+        160.56,
+        162.3,
+        165.21,
+        166.9,
+        169.92,
+        170.32,
+        171.54,
+        173.79,
+        174.57,
+        176.25
+      ],
+      "optimizer_success": true,
+      "model_parameters": {
+        "b1": 1.6267543968843325,
+        "b2": -0.13691653153239342,
+        "b3": 0.0025831301976442555,
+        "b4": -0.0017053852048213042,
+        "b5": 2.1533313675143818e-05
+      },
+      "test_metrics": {
+        "rmse": 0.12954568521794038,
+        "mae": 0.10753097080033217,
+        "max_absolute_residual": 0.3002601068614261
+      },
+      "baseline_test_metrics": {
+        "rmse": 5.176333444934569,
+        "mae": 4.762992207320634,
+        "max_absolute_residual": 8.273370006199196
+      },
+      "baseline_coefficients_descending": [
+        -0.0001121526590757734,
+        0.3289537726450089,
+        -10.488343425811843
+      ],
+      "domain_audit": {
+        "closed_interval": [
+          104.46,
+          176.25
+        ],
+        "grid_point_count": 1001,
+        "real_roots_in_closed_interval": [],
+        "real_root_records_in_closed_interval": [],
+        "grid_denominator_sign_change_count": 0,
+        "grid_min_absolute_denominator": 1.0568246461163335,
+        "test_min_absolute_denominator": 1.0568246461163335,
+        "all_predictions_and_denominators_finite": true,
+        "all_denominators_nonzero": true,
+        "domain_admissible": true,
+        "interpretation": "Numerical admissibility on this closed held-out interval, not an exact algebraic proof outside it"
+      },
+      "identifiability": {
+        "numerical_rank": 5,
+        "numerical_rank_tolerance": 5.573377805407048e-14,
+        "scaled_singular_values": [
+          2.091688517302181,
+          0.7578975453025264,
+          0.21838359620230757,
+          0.05162729031318572,
+          0.008584009277408641
+        ],
+        "scaled_condition_number": 243.67267668350243,
+        "local_standard_errors": {
+          "b1": 0.09707447533056765,
+          "b2": 0.004837821840374715,
+          "b3": 5.373451091162387e-05,
+          "b4": 8.32816616227932e-05,
+          "b5": 2.463318804342745e-07
+        },
+        "max_absolute_off_diagonal_parameter_correlation": 0.9840319206128186,
+        "minimal_numerical_identifiability": true,
+        "training_metrics": {
+          "rmse": 0.16961402758930208,
+          "mae": 0.12818184339660418,
+          "max_absolute_residual": 0.5458646021375839
+        },
+        "interpretation": "Minimal local numerical check; full rank does not establish global identifiability or physical endogeneity"
+      },
+      "attempts": [
+        {
+          "start": [
+            2,
+            -0.1,
+            0.003,
+            -0.001,
+            1e-05
+          ],
+          "parameters": {
+            "b1": 1.6267543968843325,
+            "b2": -0.13691653153239342,
+            "b3": 0.0025831301976442555,
+            "b4": -0.0017053852048213042,
+            "b5": 2.1533313675143818e-05
+          },
+          "rss": 3.452270202607743,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 43,
+          "covariance": [
+            [
+              0.00942351433712028,
+              -0.0004201394372728502,
+              4.090658671075718e-06,
+              4.586400535015569e-06,
+              2.0108855947228867e-08
+            ],
+            [
+              -0.0004201394372728502,
+              2.3404794390230793e-05,
+              -2.5091509298934577e-07,
+              -3.2338749140919097e-07,
+              -1.172694652879665e-09
+            ],
+            [
+              4.090658671075718e-06,
+              -2.5091509298934577e-07,
+              2.8874404268744788e-09,
+              4.14186384529523e-09,
+              1.2788768494550985e-11
+            ],
+            [
+              4.586400535015569e-06,
+              -3.2338749140919097e-07,
+              4.14186384529523e-09,
+              6.935951295017367e-09,
+              1.6434822383979935e-11
+            ],
+            [
+              2.0108855947228867e-08,
+              -1.172694652879665e-09,
+              1.2788768494550985e-11,
+              1.6434822383979935e-11,
+              6.068014695727929e-14
+            ]
+          ]
+        },
+        {
+          "start": [
+            1.5,
+            -0.15,
+            0.0025,
+            -0.0015,
+            2e-05
+          ],
+          "parameters": {
+            "b1": 1.6267634554146162,
+            "b2": -0.13691709926512768,
+            "b3": 0.0025831368538462938,
+            "b4": -0.0017053754116159792,
+            "b5": 2.1533342764594118e-05
+          },
+          "rss": 3.4522702028509427,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 31,
+          "covariance": [
+            [
+              0.009423305647151018,
+              -0.0004201255973261459,
+              4.090489283824064e-06,
+              4.586135611716763e-06,
+              2.010814394085591e-08
+            ],
+            [
+              -0.0004201255973261459,
+              2.3403844484504636e-05,
+              -2.509033178679628e-07,
+              -3.2336882511972397e-07,
+              -1.1726455687436826e-09
+            ],
+            [
+              4.090489283824064e-06,
+              -2.509033178679628e-07,
+              2.887291966725734e-09,
+              4.141623138694017e-09,
+              1.2788159519974677e-11
+            ],
+            [
+              4.586135611716763e-06,
+              -3.2336882511972397e-07,
+              4.141623138694017e-09,
+              6.935545086612867e-09,
+              1.643387127958464e-11
+            ],
+            [
+              2.010814394085591e-08,
+              -1.1726455687436826e-09,
+              1.2788159519974677e-11,
+              1.643387127958464e-11,
+              6.06775570068171e-14
+            ]
+          ]
+        }
+      ],
+      "held_out_points": [
+        {
+          "x": 104.46,
+          "y": 14.377,
+          "model_prediction": 14.677260106861427,
+          "baseline_prediction": 22.650370006199196,
+          "denominator": 1.0568246461163335
+        },
+        {
+          "x": 108.66,
+          "y": 15.856,
+          "model_prediction": 16.13604700716411,
+          "baseline_prediction": 23.931587557558863,
+          "denominator": 1.06893658345996
+        },
+        {
+          "x": 112.71,
+          "y": 17.331,
+          "model_prediction": 17.579929336939486,
+          "baseline_prediction": 25.16330003850576,
+          "denominator": 1.0813354334559133
+        },
+        {
+          "x": 116.88,
+          "y": 18.885,
+          "model_prediction": 19.100441067961686,
+          "baseline_prediction": 26.42766340251709,
+          "denominator": 1.0948397627912485
+        },
+        {
+          "x": 121.33,
+          "y": 20.575,
+          "model_prediction": 20.756086253571137,
+          "baseline_prediction": 27.772622002900327,
+          "denominator": 1.110076854024768
+        },
+        {
+          "x": 125.79,
+          "y": 22.32,
+          "model_prediction": 22.444615767601235,
+          "baseline_prediction": 29.11614619250288,
+          "denominator": 1.1262038896515558
+        },
+        {
+          "x": 125.79,
+          "y": 22.303,
+          "model_prediction": 22.444615767601235,
+          "baseline_prediction": 29.11614619250288,
+          "denominator": 1.1262038896515558
+        },
+        {
+          "x": 128.74,
+          "y": 23.46,
+          "model_prediction": 23.57505291572687,
+          "baseline_prediction": 30.002348483677714,
+          "denominator": 1.1373415825700492
+        },
+        {
+          "x": 130.27,
+          "y": 24.06,
+          "model_prediction": 24.16504119284393,
+          "baseline_prediction": 30.46120330567694,
+          "denominator": 1.1432656788764213
+        },
+        {
+          "x": 133.33,
+          "y": 25.272,
+          "model_prediction": 25.3516342054833,
+          "baseline_prediction": 31.3773377207176,
+          "denominator": 1.155416315493058
+        },
+        {
+          "x": 134.79,
+          "y": 25.853,
+          "model_prediction": 25.92054381410226,
+          "baseline_prediction": 31.813707487190264,
+          "denominator": 1.1613557807053847
+        },
+        {
+          "x": 137.93,
+          "y": 27.11,
+          "model_prediction": 27.149173693134752,
+          "baseline_prediction": 32.75058143550053,
+          "denominator": 1.1744407262214696
+        },
+        {
+          "x": 139.33,
+          "y": 27.658,
+          "model_prediction": 27.698888296875413,
+          "baseline_prediction": 33.16758309244605,
+          "denominator": 1.1804116441041184
+        },
+        {
+          "x": 142.46,
+          "y": 28.924,
+          "model_prediction": 28.931284123306405,
+          "baseline_prediction": 34.09828945270791,
+          "denominator": 1.1940662292144513
+        },
+        {
+          "x": 143.9,
+          "y": 29.511,
+          "model_prediction": 29.499527200678806,
+          "baseline_prediction": 34.5257357942645,
+          "denominator": 1.2004899172932892
+        },
+        {
+          "x": 146.91,
+          "y": 30.71,
+          "model_prediction": 30.689100208004724,
+          "baseline_prediction": 35.417715154420634,
+          "denominator": 1.2142056377058814
+        },
+        {
+          "x": 148.51,
+          "y": 31.35,
+          "model_prediction": 31.32208241695819,
+          "baseline_prediction": 35.89102976898199,
+          "denominator": 1.221655215819625
+        },
+        {
+          "x": 151.41,
+          "y": 32.52,
+          "model_prediction": 32.469806154122885,
+          "baseline_prediction": 36.747448915673495,
+          "denominator": 1.2354385858942456
+        },
+        {
+          "x": 153.17,
+          "y": 33.23,
+          "model_prediction": 33.16627604952181,
+          "baseline_prediction": 37.26628691138242,
+          "denominator": 1.2439802732891088
+        },
+        {
+          "x": 155.97,
+          "y": 34.33,
+          "model_prediction": 34.27353059757802,
+          "baseline_prediction": 38.09027903031373,
+          "denominator": 1.257844258766304
+        },
+        {
+          "x": 157.76,
+          "y": 35.06,
+          "model_prediction": 34.98055142216655,
+          "baseline_prediction": 38.6161239631683,
+          "denominator": 1.266884226483426
+        },
+        {
+          "x": 160.56,
+          "y": 36.17,
+          "model_prediction": 36.084613015991614,
+          "baseline_prediction": 39.43723331015073,
+          "denominator": 1.2813017042553274
+        },
+        {
+          "x": 162.3,
+          "y": 36.84,
+          "model_prediction": 36.76924538831051,
+          "baseline_prediction": 39.946608157487034,
+          "denominator": 1.2904312414354315
+        },
+        {
+          "x": 165.21,
+          "y": 38.01,
+          "model_prediction": 37.91114894538212,
+          "baseline_prediction": 40.796976084325934,
+          "denominator": 1.3059909833740835
+        },
+        {
+          "x": 166.9,
+          "y": 38.67,
+          "model_prediction": 38.57227291532525,
+          "baseline_prediction": 41.28996049696244,
+          "denominator": 1.3151947970577973
+        },
+        {
+          "x": 169.92,
+          "y": 39.87,
+          "model_prediction": 39.749381944115335,
+          "baseline_prediction": 42.16931960928806,
+          "denominator": 1.3319481428896638
+        },
+        {
+          "x": 170.32,
+          "y": 40.03,
+          "model_prediction": 39.90484091201132,
+          "baseline_prediction": 42.28563759005649,
+          "denominator": 1.3341965866656678
+        },
+        {
+          "x": 171.54,
+          "y": 40.5,
+          "model_prediction": 40.378296652818605,
+          "baseline_prediction": 42.6401857728848,
+          "denominator": 1.341096898623627
+        },
+        {
+          "x": 173.79,
+          "y": 41.37,
+          "model_prediction": 41.24858938869505,
+          "baseline_prediction": 43.293189986379126,
+          "denominator": 1.3539910051385133
+        },
+        {
+          "x": 174.57,
+          "y": 41.67,
+          "model_prediction": 41.549371950072455,
+          "baseline_prediction": 43.51929971879604,
+          "denominator": 1.3585118538972136
+        },
+        {
+          "x": 176.25,
+          "y": 42.31,
+          "model_prediction": 42.195518292609705,
+          "baseline_prediction": 44.00584179179996,
+          "denominator": 1.3683380594870174
+        }
+      ],
+      "decision": {
+        "domain_admissible": true,
+        "minimal_numerical_identifiability": true,
+        "not_worse_than_quadratic_baseline": true,
+        "gated_limited_support": true
+      }
+    },
+    {
+      "fold": 3,
+      "train_count": 121,
+      "test_count": 30,
+      "test_x_values": [
+        177.34,
+        179.19,
+        181.02,
+        182.08,
+        183.88,
+        185.75,
+        186.8,
+        188.63,
+        190.45,
+        191.48,
+        193.35,
+        195.22,
+        196.23,
+        198.05,
+        199.97,
+        201.06,
+        202.83,
+        204.69,
+        205.86,
+        207.58,
+        209.5,
+        210.65,
+        212.33,
+        215.43,
+        217.16,
+        220.21,
+        221.98,
+        225.06,
+        226.79,
+        229.92
+      ],
+      "optimizer_success": true,
+      "model_parameters": {
+        "b1": 1.625997832859755,
+        "b2": -0.13654821262308459,
+        "b3": 0.0025721290511429608,
+        "b4": -0.001713603340415761,
+        "b5": 2.144183244246622e-05
+      },
+      "test_metrics": {
+        "rmse": 0.15755727348729637,
+        "mae": 0.1512496660701565,
+        "max_absolute_residual": 0.2097831755807249
+      },
+      "baseline_test_metrics": {
+        "rmse": 3.204506474314001,
+        "mae": 3.078385170055726,
+        "max_absolute_residual": 4.378919391631378
+      },
+      "baseline_coefficients_descending": [
+        8.602581270891675e-06,
+        0.2887167131225048,
+        -10.115426102053588
+      ],
+      "domain_audit": {
+        "closed_interval": [
+          177.34,
+          229.92
+        ],
+        "grid_point_count": 1001,
+        "real_roots_in_closed_interval": [],
+        "real_root_records_in_closed_interval": [],
+        "grid_denominator_sign_change_count": 0,
+        "grid_min_absolute_denominator": 1.370443969829299,
+        "test_min_absolute_denominator": 1.370443969829299,
+        "all_predictions_and_denominators_finite": true,
+        "all_denominators_nonzero": true,
+        "domain_admissible": true,
+        "interpretation": "Numerical admissibility on this closed held-out interval, not an exact algebraic proof outside it"
+      },
+      "identifiability": {
+        "numerical_rank": 5,
+        "numerical_rank_tolerance": 5.547173171096235e-14,
+        "scaled_singular_values": [
+          2.06464851457096,
+          0.8256032482841068,
+          0.22836790484466196,
+          0.057784191404396335,
+          0.010717973841189336
+        ],
+        "scaled_condition_number": 192.63421847854158,
+        "local_standard_errors": {
+          "b1": 0.09445874121831724,
+          "b2": 0.004447782229056971,
+          "b3": 4.5249490492720895e-05,
+          "b4": 6.449688977372879e-05,
+          "b5": 2.2155957707647297e-07
+        },
+        "max_absolute_off_diagonal_parameter_correlation": 0.9776830474652359,
+        "minimal_numerical_identifiability": true,
+        "training_metrics": {
+          "rmse": 0.17009566037111096,
+          "mae": 0.1270946053444037,
+          "max_absolute_residual": 0.5477134022061703
+        },
+        "interpretation": "Minimal local numerical check; full rank does not establish global identifiability or physical endogeneity"
+      },
+      "attempts": [
+        {
+          "start": [
+            2,
+            -0.1,
+            0.003,
+            -0.001,
+            1e-05
+          ],
+          "parameters": {
+            "b1": 1.6260013953809433,
+            "b2": -0.13654841820866245,
+            "b3": 0.0025721312341904687,
+            "b4": -0.0017136004776430055,
+            "b5": 2.144184239901784e-05
+          },
+          "rss": 3.500836575052185,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 37,
+          "covariance": [
+            [
+              0.00892235437357852,
+              -0.0003772274624213466,
+              3.444560850488495e-06,
+              3.369835826305642e-06,
+              1.7690336658882494e-08
+            ],
+            [
+              -0.0003772274624213466,
+              1.9782360959068978e-05,
+              -1.960521743454168e-07,
+              -2.210972255971339e-07,
+              -9.634373954183543e-10
+            ],
+            [
+              3.444560850488495e-06,
+              -1.960521743454168e-07,
+              2.0474624140069233e-09,
+              2.5829469322816026e-09,
+              9.542831265726574e-12
+            ],
+            [
+              3.369835826305642e-06,
+              -2.210972255971339e-07,
+              2.5829469322816026e-09,
+              4.159704586455546e-09,
+              1.006916048812919e-11
+            ],
+            [
+              1.7690336658882494e-08,
+              -9.634373954183543e-10,
+              9.542831265726574e-12,
+              1.006916048812919e-11,
+              4.908770172220675e-14
+            ]
+          ]
+        },
+        {
+          "start": [
+            1.5,
+            -0.15,
+            0.0025,
+            -0.0015,
+            2e-05
+          ],
+          "parameters": {
+            "b1": 1.625997832859755,
+            "b2": -0.13654821262308459,
+            "b3": 0.0025721290511429608,
+            "b4": -0.001713603340415761,
+            "b5": 2.144183244246622e-05
+          },
+          "rss": 3.5008365749272037,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 31,
+          "covariance": [
+            [
+              0.008922428702036007,
+              -0.00037723209077920666,
+              3.4446130627887945e-06,
+              3.3699138088800217e-06,
+              1.769055387050828e-08
+            ],
+            [
+              -0.00037723209077920666,
+              1.9782661241160986e-05,
+              -1.9605560411803066e-07,
+              -2.2110242169484832e-07,
+              -9.634515505098155e-10
+            ],
+            [
+              3.4446130627887945e-06,
+              -1.9605560411803066e-07,
+              2.047502270583052e-09,
+              2.5830093241770884e-09,
+              9.54299156032316e-12
+            ],
+            [
+              3.3699138088800217e-06,
+              -2.2110242169484832e-07,
+              2.5830093241770884e-09,
+              4.159810556774762e-09,
+              1.0069391199841428e-11
+            ],
+            [
+              1.769055387050828e-08,
+              -9.634515505098155e-10,
+              9.54299156032316e-12,
+              1.0069391199841428e-11,
+              4.908839897563711e-14
+            ]
+          ]
+        }
+      ],
+      "held_out_points": [
+        {
+          "x": 177.34,
+          "y": 42.73,
+          "model_prediction": 42.54289042368931,
+          "baseline_prediction": 41.35614247286734,
+          "denominator": 1.370443969829299
+        },
+        {
+          "x": 179.19,
+          "y": 43.46,
+          "model_prediction": 43.250216824419276,
+          "baseline_prediction": 41.895942486999914,
+          "denominator": 1.3814164182128477
+        },
+        {
+          "x": 181.02,
+          "y": 44.14,
+          "model_prediction": 43.94681121830372,
+          "baseline_prediction": 42.42996475852735,
+          "denominator": 1.3924146434091913
+        },
+        {
+          "x": 182.08,
+          "y": 44.55,
+          "model_prediction": 44.348843392664726,
+          "baseline_prediction": 42.73931548753223,
+          "denominator": 1.3988508849898014
+        },
+        {
+          "x": 183.88,
+          "y": 45.22,
+          "model_prediction": 45.02899687398917,
+          "baseline_prediction": 43.264672332308145,
+          "denominator": 1.4098907343782139
+        },
+        {
+          "x": 185.75,
+          "y": 45.92,
+          "model_prediction": 45.732095447203534,
+          "baseline_prediction": 43.81051875970258,
+          "denominator": 1.4215070643947119
+        },
+        {
+          "x": 186.8,
+          "y": 46.3,
+          "model_prediction": 46.12526778801931,
+          "baseline_prediction": 44.117036444716305,
+          "denominator": 1.4280953432975383
+        },
+        {
+          "x": 188.63,
+          "y": 47.0,
+          "model_prediction": 46.807651647876845,
+          "baseline_prediction": 44.65129832049884,
+          "denominator": 1.4396907792761686
+        },
+        {
+          "x": 190.45,
+          "y": 47.68,
+          "model_prediction": 47.48260473711122,
+          "baseline_prediction": 45.18269787942666,
+          "denominator": 1.45136529030958
+        },
+        {
+          "x": 191.48,
+          "y": 48.06,
+          "model_prediction": 47.862906504723,
+          "baseline_prediction": 45.483460245323585,
+          "denominator": 1.4580352363056455
+        },
+        {
+          "x": 193.35,
+          "y": 48.74,
+          "model_prediction": 48.550185485741466,
+          "baseline_prediction": 46.02955119248806,
+          "denominator": 1.4702610289674882
+        },
+        {
+          "x": 195.22,
+          "y": 49.41,
+          "model_prediction": 49.23328289699938,
+          "baseline_prediction": 46.57570230438543,
+          "denominator": 1.482636781517067
+        },
+        {
+          "x": 196.23,
+          "y": 49.76,
+          "model_prediction": 49.6004533397721,
+          "baseline_prediction": 46.87070733988203,
+          "denominator": 1.4893833815059465
+        },
+        {
+          "x": 198.05,
+          "y": 50.43,
+          "model_prediction": 50.25888388475339,
+          "baseline_prediction": 47.402344880618145,
+          "denominator": 1.5016510593920462
+        },
+        {
+          "x": 199.97,
+          "y": 51.11,
+          "model_prediction": 50.948945961212594,
+          "baseline_prediction": 47.963255048656436,
+          "denominator": 1.5147467550240488
+        },
+        {
+          "x": 201.06,
+          "y": 51.5,
+          "model_prediction": 51.33858752686133,
+          "baseline_prediction": 48.28171664951206,
+          "denominator": 1.5222516390731937
+        },
+        {
+          "x": 202.83,
+          "y": 52.12,
+          "model_prediction": 51.96799791728317,
+          "baseline_prediction": 48.79889509063152,
+          "denominator": 1.5345470119788405
+        },
+        {
+          "x": 204.69,
+          "y": 52.76,
+          "model_prediction": 52.624933785519936,
+          "baseline_prediction": 49.34242882352967,
+          "denominator": 1.547612344301601
+        },
+        {
+          "x": 205.86,
+          "y": 53.18,
+          "model_prediction": 53.035784227275386,
+          "baseline_prediction": 49.6843595718797,
+          "denominator": 1.5559068732351424
+        },
+        {
+          "x": 207.58,
+          "y": 53.78,
+          "model_prediction": 53.63638593402174,
+          "baseline_prediction": 50.187069758515506,
+          "denominator": 1.56820712276225
+        },
+        {
+          "x": 209.5,
+          "y": 54.46,
+          "model_prediction": 54.302012439962866,
+          "baseline_prediction": 50.74829473973592,
+          "denominator": 1.582087486540851
+        },
+        {
+          "x": 210.65,
+          "y": 54.83,
+          "model_prediction": 54.69823762422469,
+          "baseline_prediction": 51.08447549052591,
+          "denominator": 1.5904769464851805
+        },
+        {
+          "x": 212.33,
+          "y": 55.4,
+          "model_prediction": 55.27372910232876,
+          "baseline_prediction": 51.575632617879336,
+          "denominator": 1.602834796234626
+        },
+        {
+          "x": 215.43,
+          "y": 56.43,
+          "model_prediction": 56.32511649933014,
+          "baseline_prediction": 52.482061933068856,
+          "denominator": 1.6259556964406643
+        },
+        {
+          "x": 217.16,
+          "y": 57.03,
+          "model_prediction": 56.90585441829882,
+          "baseline_prediction": 52.987979852564095,
+          "denominator": 1.6390378162343204
+        },
+        {
+          "x": 220.21,
+          "y": 58.0,
+          "model_prediction": 57.919101109005425,
+          "baseline_prediction": 53.88004148604762,
+          "denominator": 1.662414269524905
+        },
+        {
+          "x": 221.98,
+          "y": 58.61,
+          "model_prediction": 58.50086312663984,
+          "baseline_prediction": 54.39780310475399,
+          "denominator": 1.6761632056936584
+        },
+        {
+          "x": 225.06,
+          "y": 59.58,
+          "model_prediction": 59.50215170971501,
+          "baseline_prediction": 55.29889533079984,
+          "denominator": 1.7004082062724246
+        },
+        {
+          "x": 226.79,
+          "y": 60.11,
+          "model_prediction": 60.058375405092924,
+          "baseline_prediction": 55.80509988658251,
+          "denominator": 1.714204763634697
+        },
+        {
+          "x": 229.92,
+          "y": 61.1,
+          "model_prediction": 61.053342765856215,
+          "baseline_prediction": 56.721080608368624,
+          "denominator": 1.739492333971916
+        }
+      ],
+      "decision": {
+        "domain_admissible": true,
+        "minimal_numerical_identifiability": true,
+        "not_worse_than_quadratic_baseline": true,
+        "gated_limited_support": true
+      }
+    },
+    {
+      "fold": 4,
+      "train_count": 121,
+      "test_count": 30,
+      "test_x_values": [
+        231.69,
+        234.77,
+        236.6,
+        239.63,
+        241.5,
+        244.48,
+        246.4,
+        249.35,
+        251.32,
+        254.22,
+        256.24,
+        259.11,
+        261.18,
+        264.02,
+        266.13,
+        268.94,
+        271.09,
+        273.87,
+        276.08,
+        278.83,
+        281.08,
+        283.81,
+        286.11,
+        288.81,
+        291.08,
+        293.75,
+        295.99,
+        298.64,
+        300.84,
+        302.02
+      ],
+      "optimizer_success": true,
+      "model_parameters": {
+        "b1": 1.5491912328399864,
+        "b2": -0.1306230023228836,
+        "b3": 0.0024865149430394955,
+        "b4": -0.0019293087095628078,
+        "b5": 2.127828010946494e-05
+      },
+      "test_metrics": {
+        "rmse": 0.22998316816135522,
+        "mae": 0.22812501138132363,
+        "max_absolute_residual": 0.26671396116192625
+      },
+      "baseline_test_metrics": {
+        "rmse": 4.245402385686905,
+        "mae": 4.198458383046484,
+        "max_absolute_residual": 4.791913718504233
+      },
+      "baseline_coefficients_descending": [
+        -1.3656212159335946e-05,
+        0.29228145059388944,
+        -9.933212663334215
+      ],
+      "domain_audit": {
+        "closed_interval": [
+          231.69,
+          302.02
+        ],
+        "grid_point_count": 1001,
+        "real_roots_in_closed_interval": [],
+        "real_root_records_in_closed_interval": [],
+        "grid_denominator_sign_change_count": 0,
+        "grid_min_absolute_denominator": 1.695221990725007,
+        "test_min_absolute_denominator": 1.695221990725007,
+        "all_predictions_and_denominators_finite": true,
+        "all_denominators_nonzero": true,
+        "domain_admissible": true,
+        "interpretation": "Numerical admissibility on this closed held-out interval, not an exact algebraic proof outside it"
+      },
+      "identifiability": {
+        "numerical_rank": 5,
+        "numerical_rank_tolerance": 5.542806165060118e-14,
+        "scaled_singular_values": [
+          2.0630231222769946,
+          0.8209472118973203,
+          0.2567450770021082,
+          0.06289752057531785,
+          0.010350824564055085
+        ],
+        "scaled_condition_number": 199.31002689787405,
+        "local_standard_errors": {
+          "b1": 0.09234242437813901,
+          "b2": 0.004473782776272179,
+          "b3": 4.709729109019739e-05,
+          "b4": 7.121782785085932e-05,
+          "b5": 2.158511839080574e-07
+        },
+        "max_absolute_off_diagonal_parameter_correlation": 0.9852549217563028,
+        "minimal_numerical_identifiability": true,
+        "training_metrics": {
+          "rmse": 0.16313379237265058,
+          "mae": 0.12558265513759637,
+          "max_absolute_residual": 0.5208308871909595
+        },
+        "interpretation": "Minimal local numerical check; full rank does not establish global identifiability or physical endogeneity"
+      },
+      "attempts": [
+        {
+          "start": [
+            2,
+            -0.1,
+            0.003,
+            -0.001,
+            1e-05
+          ],
+          "parameters": {
+            "b1": 1.5491912328399864,
+            "b2": -0.1306230023228836,
+            "b3": 0.0024865149430394955,
+            "b4": -0.0019293087095628078,
+            "b5": 2.127828010946494e-05
+          },
+          "rss": 3.220128739879851,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 43,
+          "covariance": [
+            [
+              0.00852715807010566,
+              -0.0003719119000061161,
+              3.52474236984759e-06,
+              3.9483884786663685e-06,
+              1.7102649185266787e-08
+            ],
+            [
+              -0.0003719119000061161,
+              2.001488025041355e-05,
+              -2.0550095090776535e-07,
+              -2.6051820765760754e-07,
+              -9.514393849770925e-10
+            ],
+            [
+              3.52474236984759e-06,
+              -2.0550095090776535e-07,
+              2.2181753754227646e-09,
+              3.083188984478328e-09,
+              9.772351590509283e-12
+            ],
+            [
+              3.9483884786663685e-06,
+              -2.6051820765760754e-07,
+              3.083188984478328e-09,
+              5.07203723565726e-09,
+              1.1972770811411637e-11
+            ],
+            [
+              1.7102649185266787e-08,
+              -9.514393849770925e-10,
+              9.772351590509283e-12,
+              1.1972770811411637e-11,
+              4.659207201757422e-14
+            ]
+          ]
+        },
+        {
+          "start": [
+            1.5,
+            -0.15,
+            0.0025,
+            -0.0015,
+            2e-05
+          ],
+          "parameters": {
+            "b1": 1.5491947663710013,
+            "b2": -0.13062321547660066,
+            "b3": 0.0024865172882607015,
+            "b4": -0.0019293053480509401,
+            "b5": 2.127829026845518e-05
+          },
+          "rss": 3.220128739888808,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 31,
+          "covariance": [
+            [
+              0.008527085213506721,
+              -0.00037190726707237945,
+              3.5246890031248987e-06,
+              3.948304974886874e-06,
+              1.7102432904456906e-08
+            ],
+            [
+              -0.00037190726707237945,
+              2.0014573794952763e-05,
+              -2.0549737664867966e-07,
+              -2.605125367698303e-07,
+              -9.514250215783392e-10
+            ],
+            [
+              3.5246890031248987e-06,
+              -2.0549737664867966e-07,
+              2.218132998421648e-09,
+              3.0831198507534473e-09,
+              9.772185092861241e-12
+            ],
+            [
+              3.948304974886874e-06,
+              -2.605125367698303e-07,
+              3.0831198507534473e-09,
+              5.071917784912072e-09,
+              1.1972514463258506e-11
+            ],
+            [
+              1.7102432904456906e-08,
+              -9.514250215783392e-10,
+              9.772185092861241e-12,
+              1.1972514463258506e-11,
+              4.6591379748014317e-14
+            ]
+          ]
+        }
+      ],
+      "held_out_points": [
+        {
+          "x": 231.69,
+          "y": 61.65,
+          "model_prediction": 61.79834106486779,
+          "baseline_prediction": 57.05240765869493,
+          "denominator": 1.695221990725007
+        },
+        {
+          "x": 234.77,
+          "y": 62.59,
+          "model_prediction": 62.75660443367671,
+          "baseline_prediction": 57.93301469021469,
+          "denominator": 1.7198501568423255
+        },
+        {
+          "x": 236.6,
+          "y": 63.12,
+          "model_prediction": 63.318975917347984,
+          "baseline_prediction": 58.45610979923376,
+          "denominator": 1.7346743174020387
+        },
+        {
+          "x": 239.63,
+          "y": 64.03,
+          "model_prediction": 64.23864986914694,
+          "baseline_prediction": 59.322016995845814,
+          "denominator": 1.7595325786817506
+        },
+        {
+          "x": 241.5,
+          "y": 64.62,
+          "model_prediction": 64.79910054952404,
+          "baseline_prediction": 59.85629663548025,
+          "denominator": 1.7750691187548233
+        },
+        {
+          "x": 244.48,
+          "y": 65.49,
+          "model_prediction": 65.6809739068123,
+          "baseline_prediction": 60.70751815321415,
+          "denominator": 1.8001354181317675
+        },
+        {
+          "x": 246.4,
+          "y": 66.03,
+          "model_prediction": 66.24184574096442,
+          "baseline_prediction": 61.25582770041886,
+          "denominator": 1.816485703118465
+        },
+        {
+          "x": 249.35,
+          "y": 66.89,
+          "model_prediction": 67.09245631752647,
+          "baseline_prediction": 62.09808628149577,
+          "denominator": 1.8419129291498426
+        },
+        {
+          "x": 251.32,
+          "y": 67.42,
+          "model_prediction": 67.65299144625337,
+          "baseline_prediction": 62.66041134535435,
+          "denominator": 1.8590993821017432
+        },
+        {
+          "x": 254.22,
+          "y": 68.23,
+          "model_prediction": 68.46725740533121,
+          "baseline_prediction": 63.488006643741045,
+          "denominator": 1.884699749850974
+        },
+        {
+          "x": 256.24,
+          "y": 68.77,
+          "model_prediction": 69.02680427498882,
+          "baseline_prediction": 64.06433385482181,
+          "denominator": 1.9027432022043058
+        },
+        {
+          "x": 259.11,
+          "y": 69.59,
+          "model_prediction": 69.81108205659812,
+          "baseline_prediction": 64.88298333597906,
+          "denominator": 1.928677822156025
+        },
+        {
+          "x": 261.18,
+          "y": 70.11,
+          "model_prediction": 70.36897330298977,
+          "baseline_prediction": 65.47329819411593,
+          "denominator": 1.9476008671886078
+        },
+        {
+          "x": 264.02,
+          "y": 70.86,
+          "model_prediction": 71.12385700315815,
+          "baseline_prediction": 66.28300834474449,
+          "denominator": 1.9738596321597637
+        },
+        {
+          "x": 266.13,
+          "y": 71.43,
+          "model_prediction": 71.67686374285623,
+          "baseline_prediction": 66.88444614124867,
+          "denominator": 1.9935910260046554
+        },
+        {
+          "x": 268.94,
+          "y": 72.16,
+          "model_prediction": 72.40303141408798,
+          "baseline_prediction": 67.68522426469083,
+          "denominator": 2.0201625563710457
+        },
+        {
+          "x": 271.09,
+          "y": 72.7,
+          "model_prediction": 72.95075166043459,
+          "baseline_prediction": 68.29777364032503,
+          "denominator": 2.0407199983016415
+        },
+        {
+          "x": 273.87,
+          "y": 73.4,
+          "model_prediction": 73.64891314207165,
+          "baseline_prediction": 69.08962706450423,
+          "denominator": 2.0675928761381592
+        },
+        {
+          "x": 276.08,
+          "y": 73.93,
+          "model_prediction": 74.19590281944598,
+          "baseline_prediction": 69.71897145344849,
+          "denominator": 2.0891905021131274
+        },
+        {
+          "x": 278.83,
+          "y": 74.6,
+          "model_prediction": 74.86671396116192,
+          "baseline_prediction": 70.50190602868601,
+          "denominator": 2.1163556118045737
+        },
+        {
+          "x": 281.08,
+          "y": 75.16,
+          "model_prediction": 75.40752332209118,
+          "baseline_prediction": 71.14233523058445,
+          "denominator": 2.138820991294261
+        },
+        {
+          "x": 283.81,
+          "y": 75.82,
+          "model_prediction": 76.05409172775336,
+          "baseline_prediction": 71.91920366722113,
+          "denominator": 2.166368271804482
+        },
+        {
+          "x": 286.11,
+          "y": 76.34,
+          "model_prediction": 76.59071961739612,
+          "baseline_prediction": 72.57355022218921,
+          "denominator": 2.189822771792456
+        },
+        {
+          "x": 288.81,
+          "y": 76.98,
+          "model_prediction": 77.21132437182044,
+          "baseline_prediction": 73.34151181915718,
+          "denominator": 2.217643572038077
+        },
+        {
+          "x": 291.08,
+          "y": 77.48,
+          "model_prediction": 77.7253606957428,
+          "baseline_prediction": 73.98701435303249,
+          "denominator": 2.2412737116729478
+        },
+        {
+          "x": 293.75,
+          "y": 78.08,
+          "model_prediction": 78.3210400555961,
+          "baseline_prediction": 74.74608170409061,
+          "denominator": 2.2693484088240523
+        },
+        {
+          "x": 295.99,
+          "y": 78.6,
+          "model_prediction": 78.81341647820473,
+          "baseline_prediction": 75.38275205680911,
+          "denominator": 2.2931357398369645
+        },
+        {
+          "x": 298.64,
+          "y": 79.17,
+          "model_prediction": 79.38733531845453,
+          "baseline_prediction": 76.1357788582767,
+          "denominator": 2.3215527365655744
+        },
+        {
+          "x": 300.84,
+          "y": 79.62,
+          "model_prediction": 79.85681180296812,
+          "baseline_prediction": 76.76078747223963,
+          "denominator": 2.345371244796585
+        },
+        {
+          "x": 302.02,
+          "y": 79.88,
+          "model_prediction": 80.1060369221679,
+          "baseline_prediction": 77.09596489874683,
+          "denominator": 2.3582314927765156
+        }
+      ],
+      "decision": {
+        "domain_admissible": true,
+        "minimal_numerical_identifiability": true,
+        "not_worse_than_quadratic_baseline": true,
+        "gated_limited_support": true
+      }
+    },
+    {
+      "fold": 5,
+      "train_count": 121,
+      "test_count": 30,
+      "test_x_values": [
+        303.48,
+        305.65,
+        308.27,
+        310.41,
+        313.01,
+        315.12,
+        317.71,
+        319.79,
+        322.36,
+        324.42,
+        326.98,
+        329.01,
+        331.56,
+        333.56,
+        336.1,
+        338.08,
+        340.6,
+        342.57,
+        345.08,
+        347.02,
+        349.52,
+        351.44,
+        353.93,
+        355.83,
+        358.32,
+        360.2,
+        362.67,
+        364.53,
+        367.0,
+        371.3
+      ],
+      "optimizer_success": true,
+      "model_parameters": {
+        "b1": 1.3880911002126526,
+        "b2": -0.1193715587642939,
+        "b3": 0.0023379883970181953,
+        "b4": -0.0022924313459385397,
+        "b5": 2.1197527901182048e-05
+      },
+      "test_metrics": {
+        "rmse": 0.7426886382501828,
+        "mae": 0.6814239494451247,
+        "max_absolute_residual": 1.2290180152720325
+      },
+      "baseline_test_metrics": {
+        "rmse": 13.061194889357278,
+        "mae": 12.287558437905291,
+        "max_absolute_residual": 20.60989950785374
+      },
+      "baseline_coefficients_descending": [
+        0.0002554199997725546,
+        0.22959570992258332,
+        -7.652131254844986
+      ],
+      "domain_audit": {
+        "closed_interval": [
+          303.48,
+          371.3
+        ],
+        "grid_point_count": 1001,
+        "real_roots_in_closed_interval": [],
+        "real_root_records_in_closed_interval": [],
+        "grid_denominator_sign_change_count": 0,
+        "grid_min_absolute_denominator": 2.2565875950405188,
+        "test_min_absolute_denominator": 2.2565875950405188,
+        "all_predictions_and_denominators_finite": true,
+        "all_denominators_nonzero": true,
+        "domain_admissible": true,
+        "interpretation": "Numerical admissibility on this closed held-out interval, not an exact algebraic proof outside it"
+      },
+      "identifiability": {
+        "numerical_rank": 5,
+        "numerical_rank_tolerance": 5.650645133441077e-14,
+        "scaled_singular_values": [
+          2.1031606047411686,
+          0.7262631142646936,
+          0.21588963712024048,
+          0.050611081563514904,
+          0.00935641653464126
+        ],
+        "scaled_condition_number": 224.78270360820434,
+        "local_standard_errors": {
+          "b1": 0.08427606568098285,
+          "b2": 0.0042512259322563676,
+          "b3": 4.67252095793045e-05,
+          "b4": 8.257967600798486e-05,
+          "b5": 1.8339282197362424e-07
+        },
+        "max_absolute_off_diagonal_parameter_correlation": 0.9766080961610023,
+        "minimal_numerical_identifiability": true,
+        "training_metrics": {
+          "rmse": 0.14315072557477942,
+          "mae": 0.111173989802979,
+          "max_absolute_residual": 0.45500758711014566
+        },
+        "interpretation": "Minimal local numerical check; full rank does not establish global identifiability or physical endogeneity"
+      },
+      "attempts": [
+        {
+          "start": [
+            2,
+            -0.1,
+            0.003,
+            -0.001,
+            1e-05
+          ],
+          "parameters": {
+            "b1": 1.3880904755059973,
+            "b2": -0.1193715194576203,
+            "b3": 0.002337987942580896,
+            "b4": -0.002292432122052804,
+            "b5": 2.119752638654515e-05
+          },
+          "rss": 2.4795477581542205,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 43,
+          "covariance": [
+            [
+              0.0071024947688766394,
+              -0.00032480489147418195,
+              3.234235933563139e-06,
+              4.37075005259003e-06,
+              1.324838982237646e-08
+            ],
+            [
+              -0.00032480489147418195,
+              1.8073097536651188e-05,
+              -1.939950009746001e-07,
+              -2.920775635175246e-07,
+              -7.367216724132956e-10
+            ],
+            [
+              3.234235933563139e-06,
+              -1.939950009746001e-07,
+              2.1832715479729142e-09,
+              3.5736540533428867e-09,
+              7.626680732610525e-12
+            ],
+            [
+              4.37075005259003e-06,
+              -2.920775635175246e-07,
+              3.5736540533428867e-09,
+              6.819504612035832e-09,
+              9.958354713845107e-12
+            ],
+            [
+              1.324838982237646e-08,
+              -7.367216724132956e-10,
+              7.626680732610525e-12,
+              9.958354713845107e-12,
+              3.363318991570027e-14
+            ]
+          ]
+        },
+        {
+          "start": [
+            1.5,
+            -0.15,
+            0.0025,
+            -0.0015,
+            2e-05
+          ],
+          "parameters": {
+            "b1": 1.3880911002126526,
+            "b2": -0.1193715587642939,
+            "b3": 0.0023379883970181953,
+            "b4": -0.0022924313459385397,
+            "b5": 2.1197527901182048e-05
+          },
+          "rss": 2.4795477581428824,
+          "success": true,
+          "ier": 1,
+          "message": "Both actual and predicted relative reductions in the sum of squares\n  are at most 0.000000",
+          "nfev": 31,
+          "covariance": [
+            [
+              0.007102482761622651,
+              -0.00032480409640352697,
+              3.2342262569218753e-06,
+              4.3707315036709974e-06,
+              1.3248363441751121e-08
+            ],
+            [
+              -0.00032480409640352697,
+              1.8073042998550166e-05,
+              -1.9399433104547134e-07,
+              -2.9207627449165677e-07,
+              -7.367198388460237e-10
+            ],
+            [
+              3.2342262569218753e-06,
+              -1.9399433104547134e-07,
+              2.1832632019071554e-09,
+              3.5736376524612666e-09,
+              7.626658693621729e-12
+            ],
+            [
+              4.3707315036709974e-06,
+              -2.9207627449165677e-07,
+              3.5736376524612666e-09,
+              6.819470932772698e-09,
+              9.958315573959004e-12
+            ],
+            [
+              1.3248363441751121e-08,
+              -7.367198388460237e-10,
+              7.626658693621729e-12,
+              9.958315573959004e-12,
+              3.363311862648164e-14
+            ]
+          ]
+        }
+      ],
+      "held_out_points": [
+        {
+          "x": 303.48,
+          "y": 80.19,
+          "model_prediction": 79.98368878850401,
+          "baseline_prediction": 85.54978496988086,
+          "denominator": 2.2565875950405188
+        },
+        {
+          "x": 305.65,
+          "y": 80.66,
+          "model_prediction": 80.41716009199126,
+          "baseline_prediction": 86.3856249066942,
+          "denominator": 2.279632167889702
+        },
+        {
+          "x": 308.27,
+          "y": 81.22,
+          "model_prediction": 80.93236945662055,
+          "baseline_prediction": 87.39800117589354,
+          "denominator": 2.3077215939455686
+        },
+        {
+          "x": 310.41,
+          "y": 81.66,
+          "model_prediction": 81.34665694016522,
+          "baseline_prediction": 88.22750574041076,
+          "denominator": 2.3308807921077337
+        },
+        {
+          "x": 313.01,
+          "y": 82.16,
+          "model_prediction": 81.84220271990027,
+          "baseline_prediction": 89.2384628204808,
+          "denominator": 2.359279374003096
+        },
+        {
+          "x": 315.12,
+          "y": 82.59,
+          "model_prediction": 82.23815388394739,
+          "baseline_prediction": 90.061431763422,
+          "denominator": 2.3825365786163673
+        },
+        {
+          "x": 317.71,
+          "y": 83.14,
+          "model_prediction": 82.7166878911202,
+          "baseline_prediction": 91.07472561772269,
+          "denominator": 2.411342559227002
+        },
+        {
+          "x": 319.79,
+          "y": 83.5,
+          "model_prediction": 83.0950945655495,
+          "baseline_prediction": 91.89097161406009,
+          "denominator": 2.434682224024418
+        },
+        {
+          "x": 322.36,
+          "y": 84.0,
+          "model_prediction": 83.55549197846437,
+          "baseline_prediction": 92.90255872739577,
+          "denominator": 2.463773496297638
+        },
+        {
+          "x": 324.42,
+          "y": 84.4,
+          "model_prediction": 83.91889411551955,
+          "baseline_prediction": 93.71583901758925,
+          "denominator": 2.4872939701426136
+        },
+        {
+          "x": 326.98,
+          "y": 84.89,
+          "model_prediction": 84.36361779301988,
+          "baseline_prediction": 94.72953833989177,
+          "denominator": 2.516774004264575
+        },
+        {
+          "x": 329.01,
+          "y": 85.26,
+          "model_prediction": 84.71092094959563,
+          "baseline_prediction": 95.53575015130573,
+          "denominator": 2.5403482622779494
+        },
+        {
+          "x": 331.56,
+          "y": 85.74,
+          "model_prediction": 85.14058275620158,
+          "baseline_prediction": 96.55146232419521,
+          "denominator": 2.5702088124103
+        },
+        {
+          "x": 333.56,
+          "y": 86.07,
+          "model_prediction": 85.47249583629134,
+          "baseline_prediction": 97.35042364453783,
+          "denominator": 2.5938217492336917
+        },
+        {
+          "x": 336.1,
+          "y": 86.54,
+          "model_prediction": 85.8876879758186,
+          "baseline_prediction": 98.36804992264231,
+          "denominator": 2.624054620412144
+        },
+        {
+          "x": 338.08,
+          "y": 86.89,
+          "model_prediction": 86.20649101206384,
+          "baseline_prediction": 99.1636035580734,
+          "denominator": 2.6478116860808147
+        },
+        {
+          "x": 340.6,
+          "y": 87.32,
+          "model_prediction": 86.60618615963953,
+          "baseline_prediction": 100.17902282960134,
+          "denominator": 2.678288331443705
+        },
+        {
+          "x": 342.57,
+          "y": 87.65,
+          "model_prediction": 86.91398948173372,
+          "baseline_prediction": 100.97508208220071,
+          "denominator": 2.7023008265106196
+        },
+        {
+          "x": 345.08,
+          "y": 88.1,
+          "model_prediction": 87.30033467755729,
+          "baseline_prediction": 101.9922226168438,
+          "denominator": 2.733133788786046
+        },
+        {
+          "x": 347.02,
+          "y": 88.43,
+          "model_prediction": 87.59453020574345,
+          "baseline_prediction": 102.78058408686825,
+          "denominator": 2.7571478415521167
+        },
+        {
+          "x": 349.52,
+          "y": 88.83,
+          "model_prediction": 87.96805907418198,
+          "baseline_prediction": 103.79934897827863,
+          "denominator": 2.7883290783979935
+        },
+        {
+          "x": 351.44,
+          "y": 89.12,
+          "model_prediction": 88.25071590389528,
+          "baseline_prediction": 104.5839280111679,
+          "denominator": 2.8124561589964077
+        },
+        {
+          "x": 353.93,
+          "y": 89.54,
+          "model_prediction": 88.61191785801445,
+          "baseline_prediction": 105.60423368592167,
+          "denominator": 2.843978734581606
+        },
+        {
+          "x": 355.83,
+          "y": 89.85,
+          "model_prediction": 88.88351299290181,
+          "baseline_prediction": 106.38491064294783,
+          "denominator": 2.868208914090294
+        },
+        {
+          "x": 358.32,
+          "y": 90.25,
+          "model_prediction": 89.23425702093228,
+          "baseline_prediction": 107.41080036082063,
+          "denominator": 2.9001949142699743
+        },
+        {
+          "x": 360.2,
+          "y": 90.55,
+          "model_prediction": 89.49523099878421,
+          "baseline_prediction": 108.18746612655984,
+          "denominator": 2.924519137105017
+        },
+        {
+          "x": 362.67,
+          "y": 90.93,
+          "model_prediction": 89.83315544139167,
+          "baseline_prediction": 109.21061710450054,
+          "denominator": 2.9567047824555504
+        },
+        {
+          "x": 364.53,
+          "y": 91.2,
+          "model_prediction": 90.08396583793082,
+          "baseline_prediction": 109.98314417328888,
+          "denominator": 2.98111246681102
+        },
+        {
+          "x": 367.0,
+          "y": 91.55,
+          "model_prediction": 90.4122471244386,
+          "baseline_prediction": 111.0117586361087,
+          "denominator": 3.0137515315228645
+        },
+        {
+          "x": 371.3,
+          "y": 92.2,
+          "model_prediction": 90.97098198472797,
+          "baseline_prediction": 112.80989950785374,
+          "denominator": 3.071189656587933
+        }
+      ],
+      "decision": {
+        "domain_admissible": true,
+        "minimal_numerical_identifiability": true,
+        "not_worse_than_quadratic_baseline": true,
+        "gated_limited_support": true
+      }
+    }
+  ],
+  "decision": {
+    "overall_all_folds_gated_support": true,
+    "universal_law_claimed": false,
+    "global_identifiability_proved": false,
+    "physical_parameter_endogeneity_proved": false
+  },
+  "limitations": [
+    "One quadratic/quadratic NIST dataset is a dataset-prospective computational check, not an independent physical experiment",
+    "Numerical roots and dense-grid checks cover each closed held-out interval only",
+    "Full numerical rank and finite local standard errors do not prove global structural identifiability or physical endogeneity",
+    "No model, start, fold or threshold was retuned after seeing Kirby2 outcomes",
+    "NIST certified values are used only for known-answer implementation reproduction, never as held-out evidence"
+  ],
+  "analysis_runner_sha256": "9b6291b7397ca347f3e01e00318b90be8c96e1717f89202ade4b00deef105f70"
+}
