@@ -26,8 +26,8 @@ class KnowledgeGraphTests(unittest.TestCase):
         self.assertEqual(self.nodes["claim-material-identity"]["status"], "supported")
 
     def test_second_dataset_and_cross_solver_are_linked(self):
-        self.assertEqual(len(self.graph["nodes"]), 56)
-        self.assertEqual(len(self.graph["edges"]), 92)
+        self.assertEqual(len(self.graph["nodes"]), 60)
+        self.assertEqual(len(self.graph["edges"]), 99)
         self.assertEqual(self.nodes["claim-eckerle4-two-tail"]["status"], "limited_support")
         self.assertEqual(self.nodes["claim-solver-agreement"]["status"], "supported")
         self.assertEqual(self.nodes["limitation-two-datasets"]["status"], "active")
@@ -45,6 +45,9 @@ class KnowledgeGraphTests(unittest.TestCase):
         self.assertEqual(self.nodes["claim-kirby2-all-folds-gated"]["status"], "supported")
         self.assertEqual(self.nodes["evidence-kirby2-prospective-gate"]["status"], "supported")
         self.assertEqual(self.nodes["limitation-kirby2-prospective"]["status"], "active")
+        self.assertEqual(self.nodes["claim-rational-gate-always-passes"]["status"], "falsified")
+        self.assertEqual(self.nodes["evidence-rational-cross-dataset"]["status"], "supported")
+        self.assertEqual(self.nodes["limitation-rational-cross-dataset"]["status"], "active")
 
     def test_schema_edges_and_source_files_are_valid(self):
         self.assertEqual(validate_graph(self.graph, ROOT), [])

@@ -18,7 +18,7 @@
 - [定期消化机制](docs/RESEARCH_AUTOMATION.md)：检索—筛选—复现—回馈的闭环。
 - [机器可读目录](data/projects.json)：每项均有官方来源、证据级别、协作角色和本地状态。
 - [上游接口与证据契约](docs/UPSTREAM_INTERFACES.md)：真实跨库验证、统一 JSON 接口及组件边界。
-- [跨域证据包](exports/frontier-evidence.json)：十七项已执行检查的结构化结果与限制。
+- [跨域证据包](exports/frontier-evidence.json)：十八项已执行检查的结构化结果与限制。
 - [五条主线扩展工作包](docs/EXPANSION_2026-11-08.md)：真实留出、形式化反例、化学跨库、材料跨库和知识图谱的首轮成果。
 - [第二轮续展报告](docs/CONTINUATION_2026-11-08.md)：Eckerle4 双尾外推与 cvc5 交叉求解器复核。
 - [第三阶段有理模型报告](docs/RATIONAL_2026-11-08.md)：Hahn1 高温外推与分母边界。
@@ -26,6 +26,8 @@
 - [第五阶段失效机制报告](docs/MECHANISM_2026-11-08.md)：局部可识别性、第 1 折两个低温数值单极点及旧证明不可迁移的边界。
 - [第六阶段 Thurber 前瞻验收](docs/PROSPECTIVE_2026-11-09.md)：新数据集四折通过、一折预测区极点与预测失败，保留整体未通过结论。
 - [第七阶段 Kirby2 跨次数验收](docs/KIRBY2_2026-11-09.md)：二次有理模型五折均获有限支持，同时保留外推衰减和高条件数边界。
+- [第八阶段跨数据集综合](docs/CROSS_DATASET_2026-11-09.md)：统一有理诊断内核，13／15 折符合验收，区分事后重建与数据集前瞻证据。
+- [跨数据集综合原生 Word 图文版](papers/前沿共生有理模型跨数据集综合_图文完整版.docx)：一幅实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
 - [Kirby2 原生 Word 图文版](papers/前沿共生Kirby2跨次数验收_图文完整版.docx)：一幅实图、四个 Word 表格、九个原生 OMML 公式，含目录、页眉和页码。
 - [Thurber 原生 Word 图文版](papers/前沿共生Thurber前瞻验收_图文完整版.docx)：一幅实图、四个 Word 表格、十三个原生 OMML 公式，含目录、页眉和页码。
 - [失效机制原生 Word 图文版](papers/前沿共生Hahn1失效机制诊断_图文完整版.docx)：一幅实图、四个 Word 表格、十四个原生 OMML 公式，含目录、页眉和页码。
@@ -33,7 +35,7 @@
 - [有理模型原生 Word 图文版](papers/前沿共生有理模型与分母边界_图文完整版.docx)：一幅实图、四个 Word 表格、七个原生 OMML 公式，含目录、页眉和页码。
 - [续展原生 Word 图文版](papers/前沿共生续展_双尾外推与求解器复核_图文完整版.docx)：一幅实图、四个 Word 表格、七个原生 OMML 公式，含目录、页眉和页码。
 - [扩展工作包原生 Word 图文版](papers/前沿共生扩展工作包_图文完整版.docx)：两幅实图、三个 Word 表格、五个原生 OMML 公式，含目录、页眉和页码。
-- [主张—证据—反例—实验图谱](exports/frontier-knowledge-graph.json)：56 个节点、92 条边，支持与反例均可追溯到实际文件。
+- [主张—证据—反例—实验图谱](exports/frontier-knowledge-graph.json)：60 个节点、99 条边，支持与反例均可追溯到实际文件。
 - [研究简报合订本（Word）](papers/前沿共生研究简报_合订本.docx)：三篇长文、十三幅图，附真实证据与复现路径。
 - [研究简报合订本（Markdown）](papers/前沿共生研究简报_合订本.md)：便于审阅和继续修订的文本版本。
 

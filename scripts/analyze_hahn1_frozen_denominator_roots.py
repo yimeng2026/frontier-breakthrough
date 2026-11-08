@@ -9,6 +9,7 @@ from analyze_chwirut_holdout import sha256
 from analyze_grouped_stress import make_contiguous_folds
 from analyze_hahn1_fold1_identifiability import denominator_values
 from analyze_hahn1_high_temperature import PARAMETER_NAMES, load_hahn_data
+from rational_gate import rational_root_records
 
 ROOT = Path(__file__).resolve().parents[1]
 PROTOCOL = ROOT / "validation/hahn1-frozen-denominator-roots-protocol.json"
@@ -17,31 +18,7 @@ OUT = ROOT / "validation/hahn1-frozen-denominator-roots.json"
 
 
 def polynomial_root_records(parameters):
-    values = [parameters[name] for name in PARAMETER_NAMES]
-    roots = np.roots([values[6], values[5], values[4], 1.0])
-    records = []
-    for root in sorted(roots, key=lambda item: (float(item.real), float(item.imag))):
-        is_real = bool(abs(root.imag) < 1.0e-8)
-        record = {
-            "root_real": float(root.real),
-            "root_imag": float(root.imag),
-            "is_real": is_real,
-        }
-        if is_real:
-            x = float(root.real)
-            denominator = 1.0 + values[4] * x + values[5] * x ** 2 + values[6] * x ** 3
-            numerator = values[0] + values[1] * x + values[2] * x ** 2 + values[3] * x ** 3
-            derivative = values[4] + 2 * values[5] * x + 3 * values[6] * x ** 2
-            record.update({
-                "root_x": x,
-                "absolute_denominator_residual": float(abs(denominator)),
-                "numerator_at_root": float(numerator),
-                "denominator_derivative_at_root": float(derivative),
-                "numerical_simple_pole_evidence": bool(numerator != 0 and derivative != 0),
-                "interpretation": "Nonzero numerator and first derivative at a numerical real root support a simple-pole diagnosis, not an exact algebraic proof",
-            })
-        records.append(record)
-    return records
+    return rational_root_records(parameters, PARAMETER_NAMES[:4], PARAMETER_NAMES[4:])
 
 
 def analyze():

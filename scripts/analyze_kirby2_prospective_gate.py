@@ -9,6 +9,7 @@ from scipy.optimize import curve_fit
 
 from analyze_chwirut_holdout import error_metrics, sha256
 from analyze_grouped_stress import make_contiguous_folds
+from rational_gate import rational_denominator, rational_jacobian, rational_root_records
 
 ROOT = Path(__file__).resolve().parents[1]
 PROTOCOL = ROOT / "validation/kirby2-prospective-gate-protocol.json"
@@ -23,45 +24,15 @@ def kirby_model(x, b1, b2, b3, b4, b5):
 
 
 def denominator_values(x, parameters):
-    x = np.asarray(x, dtype=float)
-    return 1 + parameters["b4"] * x + parameters["b5"] * x ** 2
+    return rational_denominator(x, parameters, PARAMETER_NAMES[3:])
 
 
 def kirby_jacobian(x, parameters):
-    x = np.asarray(x, dtype=float)
-    values = np.asarray([parameters[name] for name in PARAMETER_NAMES])
-    numerator = values[0] + values[1] * x + values[2] * x ** 2
-    denominator = 1 + values[3] * x + values[4] * x ** 2
-    prediction = numerator / denominator
-    jacobian = np.empty((x.size, 5))
-    jacobian[:, 0] = 1 / denominator
-    jacobian[:, 1] = x / denominator
-    jacobian[:, 2] = x ** 2 / denominator
-    jacobian[:, 3] = -prediction * x / denominator
-    jacobian[:, 4] = -prediction * x ** 2 / denominator
-    return jacobian
+    return rational_jacobian(x, parameters, PARAMETER_NAMES[:3], PARAMETER_NAMES[3:], kirby_model)
 
 
 def denominator_root_records(parameters):
-    roots = np.roots([parameters["b5"], parameters["b4"], 1.0])
-    records = []
-    for root in sorted(roots, key=lambda item: (float(item.real), float(item.imag))):
-        is_real = bool(abs(root.imag) < 1.0e-8)
-        record = {"root_real": float(root.real), "root_imag": float(root.imag), "is_real": is_real}
-        if is_real:
-            x = float(root.real)
-            numerator = parameters["b1"] + parameters["b2"] * x + parameters["b3"] * x ** 2
-            denominator = 1 + parameters["b4"] * x + parameters["b5"] * x ** 2
-            derivative = parameters["b4"] + 2 * parameters["b5"] * x
-            record.update({
-                "root_x": x,
-                "absolute_denominator_residual": float(abs(denominator)),
-                "numerator_at_root": float(numerator),
-                "denominator_derivative_at_root": float(derivative),
-                "numerical_simple_pole_evidence": bool(numerator != 0 and derivative != 0),
-            })
-        records.append(record)
-    return records
+    return rational_root_records(parameters, PARAMETER_NAMES[:3], PARAMETER_NAMES[3:])
 
 
 def load_kirby_data(path, expected_sha256=None):
@@ -113,60 +84,16 @@ def fit_kirby(x, y, starts):
     return best, attempts
 
 
+from rational_gate import assess_prediction_domain as shared_prediction_domain
+from rational_gate import local_identifiability as shared_local_identifiability
+
+
 def assess_prediction_domain(parameters, test_x):
-    test_x = np.asarray(test_x, dtype=float)
-    lower, upper = float(np.min(test_x)), float(np.max(test_x))
-    roots = denominator_root_records(parameters)
-    inside = [root for root in roots if root["is_real"] and lower <= root["root_x"] <= upper]
-    grid = np.linspace(lower, upper, 1001)
-    grid_denominator = denominator_values(grid, parameters)
-    test_denominator = denominator_values(test_x, parameters)
-    prediction = kirby_model(test_x, *[parameters[name] for name in PARAMETER_NAMES])
-    sign_changes = np.signbit(grid_denominator[:-1]) != np.signbit(grid_denominator[1:])
-    finite = bool(np.isfinite(prediction).all() and np.isfinite(test_denominator).all() and np.isfinite(grid_denominator).all())
-    nonzero = bool(np.all(test_denominator != 0) and np.all(grid_denominator != 0))
-    return {
-        "closed_interval": [lower, upper],
-        "grid_point_count": int(grid.size),
-        "real_roots_in_closed_interval": [root["root_x"] for root in inside],
-        "real_root_records_in_closed_interval": inside,
-        "grid_denominator_sign_change_count": int(np.sum(sign_changes)),
-        "grid_min_absolute_denominator": float(np.min(np.abs(grid_denominator))),
-        "test_min_absolute_denominator": float(np.min(np.abs(test_denominator))),
-        "all_predictions_and_denominators_finite": finite,
-        "all_denominators_nonzero": nonzero,
-        "domain_admissible": bool(finite and nonzero and not inside and not np.any(sign_changes)),
-        "interpretation": "Numerical admissibility on this closed held-out interval, not an exact algebraic proof outside it",
-    }
+    return shared_prediction_domain(parameters, test_x, kirby_model, PARAMETER_NAMES[:3], PARAMETER_NAMES[3:])
 
 
 def local_identifiability(x, y, parameters):
-    prediction = kirby_model(x, *[parameters[name] for name in PARAMETER_NAMES])
-    residual = y - prediction
-    jacobian = kirby_jacobian(x, parameters)
-    norms = np.linalg.norm(jacobian, axis=0)
-    if np.any(norms <= 0) or not np.isfinite(jacobian).all():
-        raise ValueError("Invalid training Jacobian")
-    scaled = jacobian / norms
-    singular_values = np.linalg.svd(scaled, compute_uv=False)
-    tolerance = max(jacobian.shape) * np.finfo(float).eps * singular_values[0]
-    rank = int(np.sum(singular_values > tolerance))
-    unit_covariance = np.linalg.pinv(scaled.T @ scaled, rcond=1.0e-12, hermitian=True)
-    sigma2 = float(residual @ residual) / (len(x) - 5)
-    covariance = sigma2 * unit_covariance / np.outer(norms, norms)
-    standard_errors = np.sqrt(np.maximum(np.diag(covariance), 0.0))
-    correlation = np.clip(covariance / np.outer(standard_errors, standard_errors), -1.0, 1.0)
-    return {
-        "numerical_rank": rank,
-        "numerical_rank_tolerance": float(tolerance),
-        "scaled_singular_values": singular_values.tolist(),
-        "scaled_condition_number": float(singular_values[0] / singular_values[-1]),
-        "local_standard_errors": dict(zip(PARAMETER_NAMES, map(float, standard_errors))),
-        "max_absolute_off_diagonal_parameter_correlation": float(np.max(np.abs(correlation - np.eye(5)))),
-        "minimal_numerical_identifiability": bool(rank == 5 and np.isfinite(standard_errors).all() and np.all(standard_errors > 0)),
-        "training_metrics": error_metrics(y, prediction),
-        "interpretation": "Minimal local numerical check; full rank does not establish global identifiability or physical endogeneity",
-    }
+    return shared_local_identifiability(x, y, parameters, kirby_model, PARAMETER_NAMES[:3], PARAMETER_NAMES[3:])
 
 
 def analyze():

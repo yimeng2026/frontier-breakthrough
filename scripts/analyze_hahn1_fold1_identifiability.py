@@ -8,6 +8,7 @@ import numpy as np
 from analyze_chwirut_holdout import error_metrics, sha256
 from analyze_grouped_stress import make_contiguous_folds
 from analyze_hahn1_high_temperature import PARAMETER_NAMES, hahn_model, load_hahn_data
+from rational_gate import rational_denominator, rational_jacobian
 
 ROOT = Path(__file__).resolve().parents[1]
 PROTOCOL = ROOT / "validation/hahn1-fold1-identifiability-protocol.json"
@@ -18,22 +19,11 @@ FIGURE = ROOT / "papers/09_Hahn1失效机制/fig09_hahn1_fold1_identifiability.p
 
 def hahn_jacobian(x, parameters):
     """Analytic Jacobian in the frozen b1,...,b7 parameter order."""
-    x = np.asarray(x, dtype=float)
-    values = np.asarray([parameters[name] for name in PARAMETER_NAMES], dtype=float)
-    powers = np.column_stack([np.ones_like(x), x, x ** 2, x ** 3])
-    numerator = powers @ values[:4]
-    denominator = 1.0 + powers[:, 1:] @ values[4:]
-    prediction = numerator / denominator
-    jacobian = np.empty((x.size, 7), dtype=float)
-    jacobian[:, :4] = powers / denominator[:, None]
-    jacobian[:, 4:] = -prediction[:, None] * powers[:, 1:] / denominator[:, None]
-    return jacobian
+    return rational_jacobian(x, parameters, PARAMETER_NAMES[:4], PARAMETER_NAMES[4:], hahn_model)
 
 
 def denominator_values(x, parameters):
-    x = np.asarray(x, dtype=float)
-    values = np.asarray([parameters[name] for name in PARAMETER_NAMES], dtype=float)
-    return 1.0 + values[4] * x + values[5] * x ** 2 + values[6] * x ** 3
+    return rational_denominator(x, parameters, PARAMETER_NAMES[4:])
 
 
 def interval_regime(x_train, x_test):

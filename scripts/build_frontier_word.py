@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "kirby2":
+    if REPORT_MODE == "cross_dataset":
+        replacements = {
+            "图：`papers/12_跨数据集验收综合/fig12_rational_cross_dataset.png`。": "![](papers/12_跨数据集验收综合/fig12_rational_cross_dataset.png)\n\n**图 12｜有理模型跨数据集统一验收综合**  \n**插入位置**：§4「三个数据集的整体结果」之后；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "统一诊断内核、13／15 折验收与证据等级边界"
+    elif REPORT_MODE == "kirby2":
         replacements = {
             "图：`papers/11_Kirby2前瞻验收/fig11_kirby2_prospective_gate.png`。": "![](papers/11_Kirby2前瞻验收/fig11_kirby2_prospective_gate.png)\n\n**图 11｜Kirby2 二次有理模型五折前瞻验收**  \n**插入位置**：§5「阳性结果仍需保留的三个边界」之后；顺序第 1 幅，共 1 幅。",
         }
@@ -65,10 +70,12 @@ def prepare_frontier_markdown(source):
         if original not in source:
             raise ValueError(f"Missing figure anchor: {original}")
         source = source.replace(original, replacement, 1)
+    date_match = re.search(r"^\*\*日期\*\*：(\d{4}-\d{2}-\d{2})", source, re.MULTILINE)
+    report_date = date_match.group(1) if date_match else "2026-11-08"
     metadata = f"""---
 title: "{TITLE}"
 subtitle: "{subtitle}"
-date: "2026-11-08"
+date: "{report_date}"
 toc-title: "目录"
 ---
 

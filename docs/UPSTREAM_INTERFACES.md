@@ -32,7 +32,8 @@
 | Hahn1 五折冻结参数事后诊断 | 解析雅可比、列归一化条件数、参数相关和局部预测敏感度；第 1 折两个低温数值单极点 | `validation/hahn1-fold1-identifiability.json`、`validation/hahn1-frozen-denominator-roots.json` | 提供逐折极点排除与可识别性验收义务；不把事后机制解释当作独立验证 |
 | NIST Thurber 数据集前瞻验收 | 37 个观测、五折连续留出、预测区极点与最低数值可识别性门；四折通过、一折失败 | `validation/thurber-prospective-gate-protocol.json`、`validation/thurber-prospective-gate.json` | 在新数据集上检验 Hahn1 衍生验收规则，保留整体未通过结论 |
 | NIST Kirby2 跨次数前瞻验收 | 151 个观测、五参数二次有理模型；五折均通过预测区、局部数值与二次基线验收 | `validation/kirby2-prospective-gate-protocol.json`、`validation/kirby2-prospective-gate.json` | 提供阳性对照，同时保留外推衰减、条件数和区间检查边界 |
-| 主张—证据—反例—实验图谱 | 56 个节点、92 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| 有理模型统一内核与跨数据集综合 | 统一雅可比、根定位、预测区和局部数值诊断；15 折中 13 折符合验收，区分事后重建与前瞻标签 | `scripts/rational_gate.py`、`exports/rational-cross-dataset.json` | 为后续有理模型提供可复用接口，不把折叠计数当作普适检出率 |
+| 主张—证据—反例—实验图谱 | 60 个节点、99 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 与自动科学发现项目的配合
 

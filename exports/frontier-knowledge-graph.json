@@ -520,6 +520,42 @@
       "sourceFiles": [
         "validation/kirby2-prospective-gate.json"
       ]
+    },
+    {
+      "id": "claim-rational-gate-always-passes",
+      "kind": "claim",
+      "title": "统一有理验收在所有数据集和所有折上都通过",
+      "status": "falsified",
+      "sourceFiles": [
+        "exports/rational-cross-dataset.json"
+      ]
+    },
+    {
+      "id": "evidence-rational-cross-dataset",
+      "kind": "evidence",
+      "title": "统一内核下 13／15 折符合验收及两种证据等级",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/rational-cross-dataset.json"
+      ]
+    },
+    {
+      "id": "experiment-rational-cross-dataset-protocol",
+      "kind": "experiment",
+      "title": "跨数据集冻结输入哈希与标准化综合协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/rational-cross-dataset-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-rational-cross-dataset",
+      "kind": "limitation",
+      "title": "三个数据集十五折且含事后重建，不能估计普适检出率",
+      "status": "active",
+      "sourceFiles": [
+        "exports/rational-cross-dataset.json"
+      ]
     }
   ],
   "edges": [
@@ -666,6 +702,26 @@
     {
       "from": "track-holdout",
       "to": "limitation-kirby2-prospective",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-rational-gate-always-passes",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-rational-cross-dataset",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-rational-cross-dataset-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-rational-cross-dataset",
       "relation": "contains"
     },
     {
@@ -961,6 +1017,21 @@
     {
       "from": "limitation-kirby2-prospective",
       "to": "claim-kirby2-all-folds-gated",
+      "relation": "limits"
+    },
+    {
+      "from": "experiment-rational-cross-dataset-protocol",
+      "to": "claim-rational-gate-always-passes",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-rational-cross-dataset",
+      "to": "claim-rational-gate-always-passes",
+      "relation": "contradicts"
+    },
+    {
+      "from": "limitation-rational-cross-dataset",
+      "to": "claim-rational-gate-always-passes",
       "relation": "limits"
     },
     {

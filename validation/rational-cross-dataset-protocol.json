@@ -1,0 +1,30 @@
+{
+  "status": "frozen_before_post_hoc_cross_dataset_synthesis",
+  "frozen_at_local": "2026-11-09T00:25:02+08:00",
+  "analysis_type": "Post-hoc synthesis of existing frozen outputs with a shared diagnostic kernel; no refitting and no new independent experiment",
+  "inputs": {
+    "hahn1_identifiability": {"file": "validation/hahn1-fold1-identifiability.json", "sha256": "3ef5b98effcae91afe91d46446fa1392a584996375e827f103936b652fefddfb"},
+    "hahn1_roots": {"file": "validation/hahn1-frozen-denominator-roots.json", "sha256": "f379eb6800e11767ca478d5a1ab3b2de53eaf64fbfc8c922c906ead872dfcbe4"},
+    "thurber": {"file": "validation/thurber-prospective-gate.json", "sha256": "21212cb3bc61de0efb333af93078b0a222192460bfc93858e1cd14779dc190b0"},
+    "kirby2": {"file": "validation/kirby2-prospective-gate.json", "sha256": "c0575037cf587bbb12ecd7ad08febaf8f6eed6d50fef5009faa36f60448c92e0"}
+  },
+  "normalization_rule": {
+    "hahn1": "Recompute the shared 1001-grid prediction-domain check on each frozen fold's held-out points; derive minimal local numerical identifiability from numerical rank 7 and finite positive standard errors; mark every fold as post_hoc_gate_reconstruction",
+    "thurber": "Reuse the frozen dataset-prospective domain and identifiability decisions and all five fold metrics",
+    "kirby2": "Reuse the frozen dataset-prospective domain and identifiability decisions and all five fold metrics",
+    "baseline": "Hahn1 and Thurber use cubic polynomial baselines; Kirby2 uses its frozen quadratic polynomial baseline",
+    "fold_gate_consistent": "Prediction-domain admissible AND minimal local numerical identifiability AND model RMSE <= the fold's frozen baseline RMSE",
+    "dataset_all_folds": "All five folds are gate-consistent; preserve the original assessment type and do not relabel post-hoc reconstruction as prospective"
+  },
+  "output_rule": {
+    "summary": "exports/rational-cross-dataset.json",
+    "figure": "papers/12_跨数据集验收综合/fig12_rational_cross_dataset.png",
+    "refuse_overwrite": true
+  },
+  "prohibitions": [
+    "No new fitting, model selection, threshold retuning or deletion of failures",
+    "No interpretation of fold counts as a universal detection accuracy or model-family ranking",
+    "No merging of post-hoc Hahn1 reconstruction with the stronger dataset-prospective evidence labels",
+    "No claim of independent physical experiments, global identifiability or parameter endogeneity"
+  ]
+}

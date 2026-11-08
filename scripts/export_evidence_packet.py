@@ -39,6 +39,7 @@ def build() -> dict:
     denominatorRoots = read("hahn1-frozen-denominator-roots.json")
     thurber = read("thurber-prospective-gate.json")
     kirby = read("kirby2-prospective-gate.json")
+    crossDataset = json.loads((ROOT / "exports/rational-cross-dataset.json").read_text(encoding="utf-8"))
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -192,6 +193,15 @@ def build() -> dict:
             "scientificClaim": "Kirby2 五折均无留出区实根、数值秩均为 5 且均优于二次基线，因此获得本协议下整体有限支持；第 1 折外推衰减和高条件数仍保留。",
             "limitations": " ".join(kirby["limitations"]), "upstreamContribution": "提供不同次数有理模型的阳性对照、全部五折根检查、局部数值诊断、二次基线和训练—留出衰减对照。",
             "snapshotFiles": ["validation/kirby2-prospective-gate-protocol.json", "validation/kirby2-prospective-gate.json"],
+        },
+        {
+            "id": "rational-cross-dataset-synthesis", "domain": "math", "title": "有理模型统一内核与跨数据集综合",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml"],
+            "metrics": crossDataset["totals"],
+            "scientificClaim": "统一内核下 15 折中 13 折符合验收；Hahn1 和 Thurber 各有一个预测区失败折，Kirby2 五折均通过。计数不表示普适检出率。",
+            "limitations": " ".join(crossDataset["limitations"]), "upstreamContribution": "提供统一雅可比、数值根、预测区和局部数值诊断接口，并区分事后重建与数据集前瞻证据。",
+            "snapshotFiles": ["validation/rational-cross-dataset-protocol.json", "validation/hahn1-fold1-identifiability.json", "validation/hahn1-frozen-denominator-roots.json", "validation/thurber-prospective-gate.json", "validation/kirby2-prospective-gate.json"],
         },
     ]
     packet = {

@@ -751,6 +751,41 @@
         "validation/kirby2-prospective-gate-protocol.json",
         "validation/kirby2-prospective-gate.json"
       ]
+    },
+    {
+      "id": "rational-cross-dataset-synthesis",
+      "domain": "math",
+      "title": "有理模型统一内核与跨数据集综合",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml"
+      ],
+      "metrics": {
+        "dataset_count": 3,
+        "fold_count": 15,
+        "gate_consistent_fold_count": 13,
+        "dataset_all_folds_count": 1,
+        "domain_failed_fold_count": 2,
+        "identifiability_failed_fold_count": 0,
+        "baseline_failed_fold_count": 2,
+        "pole_count_in_failed_domains": 3,
+        "post_hoc_fold_count": 5,
+        "dataset_prospective_fold_count": 10,
+        "interpretation": "Counts summarize these fifteen folds only and are not sensitivity, specificity or universal detection-accuracy estimates"
+      },
+      "scientificClaim": "统一内核下 15 折中 13 折符合验收；Hahn1 和 Thurber 各有一个预测区失败折，Kirby2 五折均通过。计数不表示普适检出率。",
+      "limitations": "Hahn1 folds are post-hoc gate reconstructions; Thurber and Kirby2 retain their dataset-prospective labels Three NIST datasets and fifteen folds cannot establish universal detection accuracy or a model-family ranking Numerical roots and dense-grid checks do not constitute exact global algebraic certificates Local full rank and finite positive standard errors do not prove global structural identifiability or physical endogeneity No new fitting, physical experiment or external collaboration was performed for this synthesis",
+      "upstreamContribution": "提供统一雅可比、数值根、预测区和局部数值诊断接口，并区分事后重建与数据集前瞻证据。",
+      "snapshotFiles": [
+        "validation/rational-cross-dataset-protocol.json",
+        "validation/hahn1-fold1-identifiability.json",
+        "validation/hahn1-frozen-denominator-roots.json",
+        "validation/thurber-prospective-gate.json",
+        "validation/kirby2-prospective-gate.json"
+      ]
     }
   ]
 }

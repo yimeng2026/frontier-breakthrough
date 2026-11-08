@@ -37,68 +37,16 @@ def load_thurber_data(path, expected_sha256=None):
     return x, y
 
 
+from rational_gate import assess_prediction_domain as shared_prediction_domain
+from rational_gate import local_identifiability as shared_local_identifiability
+
+
 def assess_prediction_domain(parameters, test_x):
-    test_x = np.asarray(test_x, dtype=float)
-    lower, upper = float(np.min(test_x)), float(np.max(test_x))
-    root_records = polynomial_root_records(parameters)
-    real_roots = sorted(root["root_x"] for root in root_records if root["is_real"] and lower <= root["root_x"] <= upper)
-    grid = np.linspace(lower, upper, 1001)
-    grid_denominator = denominator_values(grid, parameters)
-    test_denominator = denominator_values(test_x, parameters)
-    prediction = hahn_model(test_x, *[parameters[name] for name in PARAMETER_NAMES])
-    sign_changes = np.signbit(grid_denominator[:-1]) != np.signbit(grid_denominator[1:])
-    finite = bool(
-        np.isfinite(prediction).all()
-        and np.isfinite(test_denominator).all()
-        and np.isfinite(grid_denominator).all()
-    )
-    no_zero = bool(np.all(test_denominator != 0) and np.all(grid_denominator != 0))
-    domain_admissible = bool(finite and no_zero and not real_roots and not np.any(sign_changes))
-    return {
-        "closed_interval": [lower, upper],
-        "grid_point_count": int(grid.size),
-        "real_roots_in_closed_interval": real_roots,
-        "real_root_records_in_closed_interval": [root for root in root_records if root["is_real"] and root["root_x"] in real_roots],
-        "grid_denominator_sign_change_count": int(np.sum(sign_changes)),
-        "grid_min_absolute_denominator": float(np.min(np.abs(grid_denominator))),
-        "test_min_absolute_denominator": float(np.min(np.abs(test_denominator))),
-        "all_predictions_and_denominators_finite": finite,
-        "all_denominators_nonzero": no_zero,
-        "domain_admissible": domain_admissible,
-        "interpretation": "Numerical admissibility on this closed held-out interval, not an exact algebraic proof outside it",
-    }
+    return shared_prediction_domain(parameters, test_x, hahn_model, PARAMETER_NAMES[:4], PARAMETER_NAMES[4:])
 
 
 def local_identifiability(x, y, parameters):
-    prediction = hahn_model(x, *[parameters[name] for name in PARAMETER_NAMES])
-    residual = y - prediction
-    rss = float(residual @ residual)
-    jacobian = hahn_jacobian(x, parameters)
-    norms = np.linalg.norm(jacobian, axis=0)
-    if np.any(norms <= 0) or not np.isfinite(jacobian).all():
-        raise ValueError("Invalid training Jacobian")
-    scaled = jacobian / norms
-    singular_values = np.linalg.svd(scaled, compute_uv=False)
-    tolerance = max(jacobian.shape) * np.finfo(float).eps * singular_values[0]
-    rank = int(np.sum(singular_values > tolerance))
-    unit_covariance = np.linalg.pinv(scaled.T @ scaled, rcond=1.0e-12, hermitian=True)
-    sigma2 = rss / (len(x) - len(PARAMETER_NAMES))
-    covariance = sigma2 * unit_covariance / np.outer(norms, norms)
-    variances = np.diag(covariance)
-    standard_errors = np.sqrt(np.maximum(variances, 0.0))
-    correlation = np.clip(covariance / np.outer(standard_errors, standard_errors), -1.0, 1.0)
-    minimal = bool(rank == 7 and np.isfinite(standard_errors).all() and np.all(standard_errors > 0))
-    return {
-        "numerical_rank": rank,
-        "numerical_rank_tolerance": float(tolerance),
-        "scaled_singular_values": singular_values.tolist(),
-        "scaled_condition_number": float(singular_values[0] / singular_values[-1]),
-        "local_standard_errors": dict(zip(PARAMETER_NAMES, map(float, standard_errors))),
-        "max_absolute_off_diagonal_parameter_correlation": float(np.max(np.abs(correlation - np.eye(7)))),
-        "minimal_numerical_identifiability": minimal,
-        "training_metrics": error_metrics(y, prediction),
-        "interpretation": "Minimal local numerical check; full rank does not establish global identifiability or physical endogeneity",
-    }
+    return shared_local_identifiability(x, y, parameters, hahn_model, PARAMETER_NAMES[:4], PARAMETER_NAMES[4:])
 
 
 def analyze():

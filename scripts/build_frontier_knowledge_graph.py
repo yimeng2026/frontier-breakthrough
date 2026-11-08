@@ -28,7 +28,8 @@ def build_graph(root):
     denominatorRoots = json.loads((root / "validation/hahn1-frozen-denominator-roots.json").read_text(encoding="utf-8"))
     thurber = json.loads((root / "validation/thurber-prospective-gate.json").read_text(encoding="utf-8"))
     kirby = json.loads((root / "validation/kirby2-prospective-gate.json").read_text(encoding="utf-8"))
-    if not chwirut["decision"]["limited_support"] or not aspirin["canonical_structure_identical"] or not material["structure_identity_confirmed"] or not eckerle["decision"]["limited_support"] or not cvc5["all_results_match_z3"] or not hahn1["decision"]["limited_support"] or cvc5Hahn1["result"] != "unsat" or z3Hahn1["result"] != "unsat" or groupedStress["overall_robust_limited_support"] or identifiability["decision"]["fold_1_failure_reversed"] or denominatorRoots["decision"]["fold_1_failure_reversed"] or denominatorRoots["folds"][0]["real_root_count_in_held_out_closed_interval"] != 2 or thurber["decision"]["overall_all_folds_gated_support"] or not thurber["full_fit_certification"]["matches_nist_within_frozen_tolerances"] or not kirby["decision"]["overall_all_folds_gated_support"] or not kirby["full_fit_certification"]["matches_nist_within_frozen_tolerances"]:
+    crossDataset = json.loads((root / "exports/rational-cross-dataset.json").read_text(encoding="utf-8"))
+    if not chwirut["decision"]["limited_support"] or not aspirin["canonical_structure_identical"] or not material["structure_identity_confirmed"] or not eckerle["decision"]["limited_support"] or not cvc5["all_results_match_z3"] or not hahn1["decision"]["limited_support"] or cvc5Hahn1["result"] != "unsat" or z3Hahn1["result"] != "unsat" or groupedStress["overall_robust_limited_support"] or identifiability["decision"]["fold_1_failure_reversed"] or denominatorRoots["decision"]["fold_1_failure_reversed"] or denominatorRoots["folds"][0]["real_root_count_in_held_out_closed_interval"] != 2 or thurber["decision"]["overall_all_folds_gated_support"] or not thurber["full_fit_certification"]["matches_nist_within_frozen_tolerances"] or not kirby["decision"]["overall_all_folds_gated_support"] or not kirby["full_fit_certification"]["matches_nist_within_frozen_tolerances"] or crossDataset["totals"]["gate_consistent_fold_count"] != 13 or crossDataset["totals"]["domain_failed_fold_count"] != 2:
         raise ValueError("Expected evidence states are not present")
 
     nodes = [
@@ -88,10 +89,14 @@ def build_graph(root):
         node("evidence-kirby2-prospective-gate", "evidence", "Kirby2 五折有限支持及第 1 折外推衰减、高条件数记录", "supported", ["validation/kirby2-prospective-gate.json"]),
         node("experiment-kirby2-prospective-protocol", "experiment", "在任何 Kirby2 拟合前冻结的五折跨次数验收协议", "supported", ["validation/kirby2-prospective-gate-protocol.json"]),
         node("limitation-kirby2-prospective", "limitation", "Kirby2 的整体有限支持不是全域无根、绝对精度或其他模型的保证", "active", ["validation/kirby2-prospective-gate.json"]),
+        node("claim-rational-gate-always-passes", "claim", "统一有理验收在所有数据集和所有折上都通过", "falsified", ["exports/rational-cross-dataset.json"]),
+        node("evidence-rational-cross-dataset", "evidence", "统一内核下 13／15 折符合验收及两种证据等级", "supported", ["exports/rational-cross-dataset.json"]),
+        node("experiment-rational-cross-dataset-protocol", "experiment", "跨数据集冻结输入哈希与标准化综合协议", "supported", ["validation/rational-cross-dataset-protocol.json"]),
+        node("limitation-rational-cross-dataset", "limitation", "三个数据集十五折且含事后重建，不能估计普适检出率", "active", ["exports/rational-cross-dataset.json"]),
     ]
     edges = []
     for track, claims in {
-        "track-holdout": ["claim-chwirut-extrapolation", "claim-nist-reproduction", "evidence-chwirut", "experiment-chwirut-protocol", "limitation-single-split", "claim-eckerle4-two-tail", "evidence-eckerle4", "experiment-eckerle4-protocol", "limitation-two-datasets", "claim-hahn1-high-temperature", "evidence-hahn1", "experiment-hahn1-protocol", "limitation-three-datasets", "claim-universal-robustness", "evidence-grouped-stress", "experiment-grouped-stress-protocol", "limitation-grouped-stress", "claim-fold1-heldout-pole-free", "evidence-hahn1-fold1-identifiability", "evidence-hahn1-frozen-denominator-roots", "limitation-post-hoc-mechanism", "claim-thurber-all-folds-gated", "evidence-thurber-prospective-gate", "experiment-thurber-prospective-protocol", "limitation-thurber-prospective", "claim-kirby2-all-folds-gated", "evidence-kirby2-prospective-gate", "experiment-kirby2-prospective-protocol", "limitation-kirby2-prospective"],
+        "track-holdout": ["claim-chwirut-extrapolation", "claim-nist-reproduction", "evidence-chwirut", "experiment-chwirut-protocol", "limitation-single-split", "claim-eckerle4-two-tail", "evidence-eckerle4", "experiment-eckerle4-protocol", "limitation-two-datasets", "claim-hahn1-high-temperature", "evidence-hahn1", "experiment-hahn1-protocol", "limitation-three-datasets", "claim-universal-robustness", "evidence-grouped-stress", "experiment-grouped-stress-protocol", "limitation-grouped-stress", "claim-fold1-heldout-pole-free", "evidence-hahn1-fold1-identifiability", "evidence-hahn1-frozen-denominator-roots", "limitation-post-hoc-mechanism", "claim-thurber-all-folds-gated", "evidence-thurber-prospective-gate", "experiment-thurber-prospective-protocol", "limitation-thurber-prospective", "claim-kirby2-all-folds-gated", "evidence-kirby2-prospective-gate", "experiment-kirby2-prospective-protocol", "limitation-kirby2-prospective", "claim-rational-gate-always-passes", "evidence-rational-cross-dataset", "experiment-rational-cross-dataset-protocol", "limitation-rational-cross-dataset"],
         "track-formal": ["claim-universal-identifiability", "claim-positive-denominator", "evidence-z3", "counterexample-xzero", "claim-solver-agreement", "evidence-cvc5", "claim-hahn1-denominator", "evidence-hahn1-denominator", "claim-unbounded-denominator-safety", "counterexample-hahn1-outdomain-root"],
         "track-chemistry": ["claim-aspirin-identity", "claim-descriptor-fraud", "evidence-aspirin", "counterexample-descriptor", "limitation-public-records"],
         "track-materials": ["claim-material-identity", "claim-universal-bandgap", "evidence-material", "counterexample-bandgap", "experiment-material-protocol", "limitation-small-material-sample"],
@@ -136,6 +141,9 @@ def build_graph(root):
         edge("experiment-kirby2-prospective-protocol", "claim-kirby2-all-folds-gated", "tests"),
         edge("evidence-kirby2-prospective-gate", "claim-kirby2-all-folds-gated", "supports"),
         edge("limitation-kirby2-prospective", "claim-kirby2-all-folds-gated", "limits"),
+        edge("experiment-rational-cross-dataset-protocol", "claim-rational-gate-always-passes", "tests"),
+        edge("evidence-rational-cross-dataset", "claim-rational-gate-always-passes", "contradicts"),
+        edge("limitation-rational-cross-dataset", "claim-rational-gate-always-passes", "limits"),
         edge("claim-knowledge-graph", "track-holdout", "recommends"),
         edge("claim-knowledge-graph", "track-formal", "recommends"),
         edge("claim-knowledge-graph", "track-chemistry", "recommends"),
