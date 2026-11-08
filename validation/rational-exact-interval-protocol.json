@@ -1,0 +1,41 @@
+{
+  "status": "frozen_before_exact_interval_root_analysis",
+  "frozen_at_local": "2026-11-09T00:44:09+08:00",
+  "scientific_question": "For the exact decimal rational coefficient snapshots of the fifteen frozen rational-model fits, how many distinct real denominator roots lie in each held-out closed interval, and do Z3 and cvc5 independently agree on the corresponding existence or nonexistence obligations?",
+  "inputs": {
+    "hahn1_identifiability": {"file": "validation/hahn1-fold1-identifiability.json", "sha256": "3ef5b98effcae91afe91d46446fa1392a584996375e827f103936b652fefddfb"},
+    "hahn1_roots": {"file": "validation/hahn1-frozen-denominator-roots.json", "sha256": "f379eb6800e11767ca478d5a1ab3b2de53eaf64fbfc8c922c906ead872dfcbe4"},
+    "thurber": {"file": "validation/thurber-prospective-gate.json", "sha256": "21212cb3bc61de0efb333af93078b0a222192460bfc93858e1cd14779dc190b0"},
+    "kirby2": {"file": "validation/kirby2-prospective-gate.json", "sha256": "c0575037cf587bbb12ecd7ad08febaf8f6eed6d50fef5009faa36f60448c92e0"}
+  },
+  "coefficient_snapshot_rule": "Parse each JSON decimal representation directly into fractions.Fraction; the proof concerns this exact rational snapshot, not an exact physical parameter or an exact IEEE-754 binary value",
+  "exact_root_rule": {
+    "arithmetic": "Exact rational arithmetic only for root counting and interval isolation",
+    "squarefree": "Remove repeated factors by exact polynomial gcd with the derivative; count distinct real roots",
+    "sturm": "Construct Sturm sequences with exact polynomial division and evaluate sign variations at rational endpoints",
+    "isolation": "Use a Cauchy bound and rational interval subdivision; each returned interval contains exactly one distinct real root",
+    "closed_interval": "Handle exact roots at either endpoint explicitly and retain rational lower and upper bounds"
+  },
+  "solver_crosscheck_rule": {
+    "z3": "D:/research-engines/z3-env/Scripts/python.exe with z3-solver 5.3.3.0; exact RealVal rational constraints and 90000 ms timeout per fold",
+    "cvc5": "Official cvc5 1.4.2 static binary through WSL; SHA-256 6aecddf466552b83bb5883756c7955e0c9d5ddcc6d7f45b48c2f6e06a741b102; 90000 ms timeout per fold",
+    "smt_lib": "Write exact rational SMT-LIB expressions for every fold, with D(x)=0 and lower<=x<=upper",
+    "no_root_case": "When exact Sturm count is zero, require both solvers to return unsat",
+    "root_case": "When exact Sturm count is positive, expect sat only as a consistency check; the exact Sturm intervals, not approximate solver models, are the root-existence evidence",
+    "unknown_or_timeout": "Preserve as an unresolved check rather than calling it a proof"
+  },
+  "output_rule": {
+    "summary": "validation/rational-exact-interval-roots.json",
+    "smt_directory": "validation/exact-interval-smt",
+    "log_directory": "validation/exact-interval-logs",
+    "figure": "papers/13_精确区间根证明/fig13_exact_interval_roots.png",
+    "refuse_overwrite": true
+  },
+  "prohibitions": [
+    "No refitting, coefficient adjustment or new interval selection",
+    "No interpretation of exact rational snapshot proofs as proofs about physical constants or all nearby coefficients",
+    "No use of approximate sat models as exact algebraic root forms",
+    "No claim of global denominator safety outside each specified closed interval",
+    "No deletion of unknown, timeout, disagreement or negative results"
+  ]
+}

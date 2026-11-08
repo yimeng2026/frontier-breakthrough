@@ -40,6 +40,7 @@ def build() -> dict:
     thurber = read("thurber-prospective-gate.json")
     kirby = read("kirby2-prospective-gate.json")
     crossDataset = json.loads((ROOT / "exports/rational-cross-dataset.json").read_text(encoding="utf-8"))
+    exactRoots = read("rational-exact-interval-roots.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -202,6 +203,15 @@ def build() -> dict:
             "scientificClaim": "统一内核下 15 折中 13 折符合验收；Hahn1 和 Thurber 各有一个预测区失败折，Kirby2 五折均通过。计数不表示普适检出率。",
             "limitations": " ".join(crossDataset["limitations"]), "upstreamContribution": "提供统一雅可比、数值根、预测区和局部数值诊断接口，并区分事后重建与数据集前瞻证据。",
             "snapshotFiles": ["validation/rational-cross-dataset-protocol.json", "validation/hahn1-fold1-identifiability.json", "validation/hahn1-frozen-denominator-roots.json", "validation/thurber-prospective-gate.json", "validation/kirby2-prospective-gate.json"],
+        },
+        {
+            "id": "rational-exact-interval-sturm-solvers", "domain": "math", "title": "精确 Sturm 区间根隔离与双求解器复核",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml", "https://github.com/Z3Prover/z3", "https://github.com/cvc5/cvc5/releases/tag/cvc5-1.4.2"],
+            "metrics": exactRoots["totals"],
+            "scientificClaim": "对十五折有理系数快照，13 个闭区间精确无根，Hahn1 第 1 折精确有 2 根，Thurber 第 1 折精确有 1 根；双求解器逐折一致。",
+            "limitations": " ".join(exactRoots["limitations"]), "upstreamContribution": "提供精确 Sturm 隔离、十五份 SMT-LIB、三十份求解器日志及完整哈希，区分快照证明与物理参数精确性。",
+            "snapshotFiles": ["validation/rational-exact-interval-protocol.json", "validation/rational-exact-interval-roots.json", "validation/exact-interval-smt/hahn1-fold-1.smt2", "validation/exact-interval-smt/thurber-fold-1.smt2", "validation/exact-interval-logs/hahn1-fold-1-z3.log", "validation/exact-interval-logs/thurber-fold-1-cvc5.log"],
         },
     ]
     packet = {

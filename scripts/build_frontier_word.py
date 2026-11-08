@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "cross_dataset":
+    if REPORT_MODE == "exact_roots":
+        replacements = {
+            "图：`papers/13_精确区间根证明/fig13_exact_interval_roots.png`。": "![](papers/13_精确区间根证明/fig13_exact_interval_roots.png)\n\n**图 13｜精确 Sturm 根隔离与双求解器复核**  \n**插入位置**：§3「十五折精确结果」之后；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "有理系数 Sturm 根隔离、13 折 unsat 与 2 折 sat"
+    elif REPORT_MODE == "cross_dataset":
         replacements = {
             "图：`papers/12_跨数据集验收综合/fig12_rational_cross_dataset.png`。": "![](papers/12_跨数据集验收综合/fig12_rational_cross_dataset.png)\n\n**图 12｜有理模型跨数据集统一验收综合**  \n**插入位置**：§4「三个数据集的整体结果」之后；顺序第 1 幅，共 1 幅。",
         }

@@ -1,0 +1,811 @@
+{
+  "status": "computed_exact_rational_sturm_and_dual_solver_checks",
+  "protocol_sha256": "5337855c290a5744948c46ff96074f5ac1be57bba4f8b9d42e1da7cccb455aec",
+  "input_sha256": {
+    "hahn1_identifiability": "3ef5b98effcae91afe91d46446fa1392a584996375e827f103936b652fefddfb",
+    "hahn1_roots": "f379eb6800e11767ca478d5a1ab3b2de53eaf64fbfc8c922c906ead872dfcbe4",
+    "thurber": "21212cb3bc61de0efb333af93078b0a222192460bfc93858e1cd14779dc190b0",
+    "kirby2": "c0575037cf587bbb12ecd7ad08febaf8f6eed6d50fef5009faa36f60448c92e0"
+  },
+  "coefficient_snapshot_scope": "Parse each JSON decimal representation directly into fractions.Fraction; the proof concerns this exact rational snapshot, not an exact physical parameter or an exact IEEE-754 binary value",
+  "z3_version": "5.3.3.0",
+  "cvc5_version": "cvc5 1.4.2 [git 282d5e0 on branch HEAD]",
+  "cvc5_binary_sha256": "6aecddf466552b83bb5883756c7955e0c9d5ddcc6d7f45b48c2f6e06a741b102",
+  "cases": [
+    {
+      "dataset": "hahn1",
+      "fold": 1,
+      "model_parameters": {
+        "b1": 29.67033956061389,
+        "b2": -0.8080529397121834,
+        "b3": 0.005817644316126608,
+        "b4": -2.5436805200085647e-06,
+        "b5": -0.03642001152406116,
+        "b6": 0.0003257043076452197,
+        "b7": -1.801122840443873e-07
+      },
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "closed_interval": [
+        14.13,
+        94.33
+      ],
+      "closed_interval_rational": [
+        "1413/100",
+        "9433/100"
+      ],
+      "numerical_root_count": 2,
+      "exact": {
+        "method": "Exact rational Sturm sequence with squarefree gcd reduction, Cauchy bound and rational interval subdivision",
+        "coefficient_snapshot_rational": [
+          "1",
+          "-910500288101529/25000000000000000",
+          "3257043076452197/10000000000000000000",
+          "-1801122840443873/10000000000000000000000"
+        ],
+        "root_count": 2,
+        "isolating_intervals": [
+          {
+            "lower_rational": "10000001801122840443873/236076772942659321856",
+            "upper_rational": "30000005403368521331619/472153545885318643712",
+            "lower_float": 42.35910918500966,
+            "upper_float": 63.53866377751449,
+            "exact_singleton": false
+          },
+          {
+            "lower_rational": "30000005403368521331619/472153545885318643712",
+            "upper_rational": "10000001801122840443873/118038386471329660928",
+            "lower_float": 63.53866377751449,
+            "upper_float": 84.71821837001931,
+            "exact_singleton": false
+          }
+        ],
+        "matches_numerical_count": true
+      },
+      "solver_checks": {
+        "expected": "sat",
+        "z3": "sat",
+        "cvc5": "sat",
+        "matches_exact_obligation": true,
+        "smt2": "validation/exact-interval-smt/hahn1-fold-1.smt2",
+        "smt2_sha256": "df9f6ad1494a8b3b34f0898806bb4882fbc9632beee6e8975d23b36e1ad539b2",
+        "z3_log": "validation/exact-interval-logs/hahn1-fold-1-z3.log",
+        "z3_log_sha256": "71b4f3a462d25db78ba345b581e6c84c7b50c30ec017c2470430dd34631d5118",
+        "cvc5_log": "validation/exact-interval-logs/hahn1-fold-1-cvc5.log",
+        "cvc5_log_sha256": "6f8e46bc22fb721f954143c096ad5ebbb8ebcaab7ea2af46f7258b8aa3477e74"
+      }
+    },
+    {
+      "dataset": "hahn1",
+      "fold": 2,
+      "model_parameters": {
+        "b1": 1.1161010904499564,
+        "b2": -0.12434032926136562,
+        "b3": 0.004077308358324354,
+        "b4": -1.2924152593606815e-06,
+        "b5": -0.006109190089247961,
+        "b6": 0.00024187473474873258,
+        "b7": -1.1841997430982739e-07
+      },
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "closed_interval": [
+        94.88,
+        220.55
+      ],
+      "closed_interval_rational": [
+        "2372/25",
+        "4411/20"
+      ],
+      "numerical_root_count": 0,
+      "exact": {
+        "method": "Exact rational Sturm sequence with squarefree gcd reduction, Cauchy bound and rational interval subdivision",
+        "coefficient_snapshot_rational": [
+          "1",
+          "-6109190089247961/1000000000000000000",
+          "12093736737436629/50000000000000000000",
+          "-11841997430982739/100000000000000000000000"
+        ],
+        "root_count": 0,
+        "isolating_intervals": [],
+        "matches_numerical_count": true
+      },
+      "solver_checks": {
+        "expected": "unsat",
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "matches_exact_obligation": true,
+        "smt2": "validation/exact-interval-smt/hahn1-fold-2.smt2",
+        "smt2_sha256": "026625e2e3365152caa2cc3452f101e5421079b98880e42ccb38bd201fa99cb3",
+        "z3_log": "validation/exact-interval-logs/hahn1-fold-2-z3.log",
+        "z3_log_sha256": "ea7da410260c95ddcc35db618152b48d478fb1178f80f7b7d7d97ff2051f9958",
+        "cvc5_log": "validation/exact-interval-logs/hahn1-fold-2-cvc5.log",
+        "cvc5_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+      }
+    },
+    {
+      "dataset": "hahn1",
+      "fold": 3,
+      "model_parameters": {
+        "b1": 1.1591426516786314,
+        "b2": -0.1295842977750675,
+        "b3": 0.0042372940411687906,
+        "b4": -1.6346283605188788e-06,
+        "b5": -0.0056086965386476124,
+        "b6": 0.0002466929113936996,
+        "b7": -1.3253526826632008e-07
+      },
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "closed_interval": [
+        221.05,
+        358.18
+      ],
+      "closed_interval_rational": [
+        "4421/20",
+        "17909/50"
+      ],
+      "numerical_root_count": 0,
+      "exact": {
+        "method": "Exact rational Sturm sequence with squarefree gcd reduction, Cauchy bound and rational interval subdivision",
+        "coefficient_snapshot_rational": [
+          "1",
+          "-14021741346619031/2500000000000000000",
+          "616732278484249/2500000000000000000",
+          "-1656690853329001/12500000000000000000000"
+        ],
+        "root_count": 0,
+        "isolating_intervals": [],
+        "matches_numerical_count": true
+      },
+      "solver_checks": {
+        "expected": "unsat",
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "matches_exact_obligation": true,
+        "smt2": "validation/exact-interval-smt/hahn1-fold-3.smt2",
+        "smt2_sha256": "8b951a40d2a90d741daa82949364ad98687bb71b41f2b6f4afc9e638f3e11983",
+        "z3_log": "validation/exact-interval-logs/hahn1-fold-3-z3.log",
+        "z3_log_sha256": "ea7da410260c95ddcc35db618152b48d478fb1178f80f7b7d7d97ff2051f9958",
+        "cvc5_log": "validation/exact-interval-logs/hahn1-fold-3-cvc5.log",
+        "cvc5_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+      }
+    },
+    {
+      "dataset": "hahn1",
+      "fold": 4,
+      "model_parameters": {
+        "b1": 1.0678454557432593,
+        "b2": -0.12202604742847688,
+        "b3": 0.004076950386606688,
+        "b4": -1.4700774285671224e-06,
+        "b5": -0.0057472726265029705,
+        "b6": 0.00023980519717413233,
+        "b7": -1.2491337059698985e-07
+      },
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "closed_interval": [
+        358.72,
+        524.7
+      ],
+      "closed_interval_rational": [
+        "8968/25",
+        "5247/10"
+      ],
+      "numerical_root_count": 0,
+      "exact": {
+        "method": "Exact rational Sturm sequence with squarefree gcd reduction, Cauchy bound and rational interval subdivision",
+        "coefficient_snapshot_rational": [
+          "1",
+          "-11494545253005941/2000000000000000000",
+          "23980519717413233/100000000000000000000",
+          "-2498267411939797/20000000000000000000000"
+        ],
+        "root_count": 0,
+        "isolating_intervals": [],
+        "matches_numerical_count": true
+      },
+      "solver_checks": {
+        "expected": "unsat",
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "matches_exact_obligation": true,
+        "smt2": "validation/exact-interval-smt/hahn1-fold-4.smt2",
+        "smt2_sha256": "0861e6b90a818305e356b7be58aaa861c0dd9062f146cca5aca1fb730a4722e5",
+        "z3_log": "validation/exact-interval-logs/hahn1-fold-4-z3.log",
+        "z3_log_sha256": "ea7da410260c95ddcc35db618152b48d478fb1178f80f7b7d7d97ff2051f9958",
+        "cvc5_log": "validation/exact-interval-logs/hahn1-fold-4-cvc5.log",
+        "cvc5_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+      }
+    },
+    {
+      "dataset": "hahn1",
+      "fold": 5,
+      "model_parameters": {
+        "b1": 1.140148691494554,
+        "b2": -0.1289482020114357,
+        "b3": 0.004271608559104935,
+        "b4": -2.849933701555914e-06,
+        "b5": -0.0056585402906879235,
+        "b6": 0.00024521187940848154,
+        "b7": -1.920807935645145e-07
+      },
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "closed_interval": [
+        528.99,
+        851.61
+      ],
+      "closed_interval_rational": [
+        "52899/100",
+        "85161/100"
+      ],
+      "numerical_root_count": 0,
+      "exact": {
+        "method": "Exact rational Sturm sequence with squarefree gcd reduction, Cauchy bound and rational interval subdivision",
+        "coefficient_snapshot_rational": [
+          "1",
+          "-11317080581375847/2000000000000000000",
+          "12260593970424077/50000000000000000000",
+          "-384161587129029/2000000000000000000000"
+        ],
+        "root_count": 0,
+        "isolating_intervals": [],
+        "matches_numerical_count": true
+      },
+      "solver_checks": {
+        "expected": "unsat",
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "matches_exact_obligation": true,
+        "smt2": "validation/exact-interval-smt/hahn1-fold-5.smt2",
+        "smt2_sha256": "680a8fbeef0419bcb3df7989b01691a2952df6e9e69ddf51114a0e883d0c7e3c",
+        "z3_log": "validation/exact-interval-logs/hahn1-fold-5-z3.log",
+        "z3_log_sha256": "ea7da410260c95ddcc35db618152b48d478fb1178f80f7b7d7d97ff2051f9958",
+        "cvc5_log": "validation/exact-interval-logs/hahn1-fold-5-cvc5.log",
+        "cvc5_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+      }
+    },
+    {
+      "dataset": "thurber",
+      "fold": 1,
+      "model_parameters": {
+        "b1": 1286.9243342234568,
+        "b2": 1627.2767599044776,
+        "b3": 692.3900357298817,
+        "b4": 98.40695361927553,
+        "b5": 1.0705802538223104,
+        "b6": 0.4575080167330002,
+        "b7": 0.07041862249370805
+      },
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "closed_interval": [
+        -3.067,
+        -2.699
+      ],
+      "closed_interval_rational": [
+        "-3067/1000",
+        "-2699/1000"
+      ],
+      "numerical_root_count": 1,
+      "exact": {
+        "method": "Exact rational Sturm sequence with squarefree gcd reduction, Cauchy bound and rational interval subdivision",
+        "coefficient_snapshot_rational": [
+          "1",
+          "20909770582467/19531250000000",
+          "2287540083665001/5000000000000000",
+          "1408372449874161/20000000000000000"
+        ],
+        "root_count": 1,
+        "isolating_intervals": [
+          {
+            "lower_rational": "-22819977526320369/7511319732662192",
+            "upper_rational": "-83673250929841353/30045278930648768",
+            "lower_float": -3.038078305612537,
+            "upper_float": -2.784905113478159,
+            "exact_singleton": false
+          }
+        ],
+        "matches_numerical_count": true
+      },
+      "solver_checks": {
+        "expected": "sat",
+        "z3": "sat",
+        "cvc5": "sat",
+        "matches_exact_obligation": true,
+        "smt2": "validation/exact-interval-smt/thurber-fold-1.smt2",
+        "smt2_sha256": "b657bb3ea151888d2e6cb5cbfd5528c8ca5868f899f7c4938572cd64c24f93b8",
+        "z3_log": "validation/exact-interval-logs/thurber-fold-1-z3.log",
+        "z3_log_sha256": "c4d2d43ddb8f4f772cd1b645d0ec01ad939fa2de10f7d964941717a20cf55c06",
+        "cvc5_log": "validation/exact-interval-logs/thurber-fold-1-cvc5.log",
+        "cvc5_log_sha256": "9b9e48eaeea126051a84772ddff418c112c16c9820253e23cd772c940e9b0d07"
+      }
+    },
+    {
+      "dataset": "thurber",
+      "fold": 2,
+      "model_parameters": {
+        "b1": 1287.0894902929704,
+        "b2": 1407.1820136441784,
+        "b3": 521.7204687612033,
+        "b4": 64.55959648567332,
+        "b5": 0.8896130318759835,
+        "b6": 0.3556465977569125,
+        "b7": 0.04888746125732415
+      },
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "closed_interval": [
+        -2.633,
+        -1.212
+      ],
+      "closed_interval_rational": [
+        "-2633/1000",
+        "-303/250"
+      ],
+      "numerical_root_count": 0,
+      "exact": {
+        "method": "Exact rational Sturm sequence with squarefree gcd reduction, Cauchy bound and rational interval subdivision",
+        "coefficient_snapshot_rational": [
+          "1",
+          "1779226063751967/2000000000000000",
+          "28451727820553/80000000000000",
+          "977749225146483/20000000000000000"
+        ],
+        "root_count": 0,
+        "isolating_intervals": [],
+        "matches_numerical_count": true
+      },
+      "solver_checks": {
+        "expected": "unsat",
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "matches_exact_obligation": true,
+        "smt2": "validation/exact-interval-smt/thurber-fold-2.smt2",
+        "smt2_sha256": "a2315c98b52ccc0805b2ed0bc6531bdb3abe86798ea6b9b5402fe683ce950579",
+        "z3_log": "validation/exact-interval-logs/thurber-fold-2-z3.log",
+        "z3_log_sha256": "ea7da410260c95ddcc35db618152b48d478fb1178f80f7b7d7d97ff2051f9958",
+        "cvc5_log": "validation/exact-interval-logs/thurber-fold-2-cvc5.log",
+        "cvc5_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+      }
+    },
+    {
+      "dataset": "thurber",
+      "fold": 3,
+      "model_parameters": {
+        "b1": 1290.9520169963462,
+        "b2": 1463.7993191365435,
+        "b3": 563.6721993123319,
+        "b4": 71.86698209678597,
+        "b5": 0.9364333550579012,
+        "b6": 0.39026331339590264,
+        "b7": 0.048659195662212676
+      },
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "closed_interval": [
+        -1.1,
+        -0.4
+      ],
+      "closed_interval_rational": [
+        "-11/10",
+        "-2/5"
+      ],
+      "numerical_root_count": 0,
+      "exact": {
+        "method": "Exact rational Sturm sequence with squarefree gcd reduction, Cauchy bound and rational interval subdivision",
+        "coefficient_snapshot_rational": [
+          "1",
+          "2341083387644753/2500000000000000",
+          "4878291417448783/12500000000000000",
+          "12164798915553169/250000000000000000"
+        ],
+        "root_count": 0,
+        "isolating_intervals": [],
+        "matches_numerical_count": true
+      },
+      "solver_checks": {
+        "expected": "unsat",
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "matches_exact_obligation": true,
+        "smt2": "validation/exact-interval-smt/thurber-fold-3.smt2",
+        "smt2_sha256": "eaa9a7d40892a4fb0ef0d1128c6c36a01c5960a8456f84d03828741ae9fd19c7",
+        "z3_log": "validation/exact-interval-logs/thurber-fold-3-z3.log",
+        "z3_log_sha256": "ea7da410260c95ddcc35db618152b48d478fb1178f80f7b7d7d97ff2051f9958",
+        "cvc5_log": "validation/exact-interval-logs/thurber-fold-3-cvc5.log",
+        "cvc5_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+      }
+    },
+    {
+      "dataset": "thurber",
+      "fold": 4,
+      "model_parameters": {
+        "b1": 1284.119044349982,
+        "b2": 1493.9487495187027,
+        "b3": 586.8054458559402,
+        "b4": 76.08878015797073,
+        "b5": 0.9743165346925443,
+        "b6": 0.3991705292479827,
+        "b7": 0.04858732867682616
+      },
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "closed_interval": [
+        -0.309,
+        0.79
+      ],
+      "closed_interval_rational": [
+        "-309/1000",
+        "79/100"
+      ],
+      "numerical_root_count": 0,
+      "exact": {
+        "method": "Exact rational Sturm sequence with squarefree gcd reduction, Cauchy bound and rational interval subdivision",
+        "coefficient_snapshot_rational": [
+          "1",
+          "9743165346925443/10000000000000000",
+          "3991705292479827/10000000000000000",
+          "607341608460327/12500000000000000"
+        ],
+        "root_count": 0,
+        "isolating_intervals": [],
+        "matches_numerical_count": true
+      },
+      "solver_checks": {
+        "expected": "unsat",
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "matches_exact_obligation": true,
+        "smt2": "validation/exact-interval-smt/thurber-fold-4.smt2",
+        "smt2_sha256": "81eb251d8bee181143b016f67e9ab7e10cc5d028e798162c0008a8e1516d8ae1",
+        "z3_log": "validation/exact-interval-logs/thurber-fold-4-z3.log",
+        "z3_log_sha256": "ea7da410260c95ddcc35db618152b48d478fb1178f80f7b7d7d97ff2051f9958",
+        "cvc5_log": "validation/exact-interval-logs/thurber-fold-4-cvc5.log",
+        "cvc5_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+      }
+    },
+    {
+      "dataset": "thurber",
+      "fold": 5,
+      "model_parameters": {
+        "b1": 1282.160735743629,
+        "b2": 1493.229249012917,
+        "b3": 587.3576341528975,
+        "b4": 75.51904514991722,
+        "b5": 0.9697947806248297,
+        "b6": 0.3759795003325524,
+        "b7": 0.03216435153708595
+      },
+      "denominator_parameter_order": [
+        "b5",
+        "b6",
+        "b7"
+      ],
+      "closed_interval": [
+        0.963,
+        2.2
+      ],
+      "closed_interval_rational": [
+        "963/1000",
+        "11/5"
+      ],
+      "numerical_root_count": 0,
+      "exact": {
+        "method": "Exact rational Sturm sequence with squarefree gcd reduction, Cauchy bound and rational interval subdivision",
+        "coefficient_snapshot_rational": [
+          "1",
+          "9697947806248297/10000000000000000",
+          "939948750831381/2500000000000000",
+          "643287030741719/20000000000000000"
+        ],
+        "root_count": 0,
+        "isolating_intervals": [],
+        "matches_numerical_count": true
+      },
+      "solver_checks": {
+        "expected": "unsat",
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "matches_exact_obligation": true,
+        "smt2": "validation/exact-interval-smt/thurber-fold-5.smt2",
+        "smt2_sha256": "e92ebad5a55b1dc24fb76c2232f046012cb7169df1d73ebacffbd23e68af482e",
+        "z3_log": "validation/exact-interval-logs/thurber-fold-5-z3.log",
+        "z3_log_sha256": "ea7da410260c95ddcc35db618152b48d478fb1178f80f7b7d7d97ff2051f9958",
+        "cvc5_log": "validation/exact-interval-logs/thurber-fold-5-cvc5.log",
+        "cvc5_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+      }
+    },
+    {
+      "dataset": "kirby2",
+      "fold": 1,
+      "model_parameters": {
+        "b1": 8.23488705863678,
+        "b2": -0.3189663661155197,
+        "b3": 0.0038964703438958245,
+        "b4": -0.0009879278080078375,
+        "b5": 2.8991311355154343e-05
+      },
+      "denominator_parameter_order": [
+        "b4",
+        "b5"
+      ],
+      "closed_interval": [
+        9.65,
+        100.28
+      ],
+      "closed_interval_rational": [
+        "193/20",
+        "2507/25"
+      ],
+      "numerical_root_count": 0,
+      "exact": {
+        "method": "Exact rational Sturm sequence with squarefree gcd reduction, Cauchy bound and rational interval subdivision",
+        "coefficient_snapshot_rational": [
+          "1",
+          "-79034224640627/80000000000000000",
+          "28991311355154343/1000000000000000000000"
+        ],
+        "root_count": 0,
+        "isolating_intervals": [],
+        "matches_numerical_count": true
+      },
+      "solver_checks": {
+        "expected": "unsat",
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "matches_exact_obligation": true,
+        "smt2": "validation/exact-interval-smt/kirby2-fold-1.smt2",
+        "smt2_sha256": "f058cb478b1eb4b47b71e00d3ea91054a0619fd8de19c6ad30a757a9feea962b",
+        "z3_log": "validation/exact-interval-logs/kirby2-fold-1-z3.log",
+        "z3_log_sha256": "ea7da410260c95ddcc35db618152b48d478fb1178f80f7b7d7d97ff2051f9958",
+        "cvc5_log": "validation/exact-interval-logs/kirby2-fold-1-cvc5.log",
+        "cvc5_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+      }
+    },
+    {
+      "dataset": "kirby2",
+      "fold": 2,
+      "model_parameters": {
+        "b1": 1.6267543968843325,
+        "b2": -0.13691653153239342,
+        "b3": 0.0025831301976442555,
+        "b4": -0.0017053852048213042,
+        "b5": 2.1533313675143818e-05
+      },
+      "denominator_parameter_order": [
+        "b4",
+        "b5"
+      ],
+      "closed_interval": [
+        104.46,
+        176.25
+      ],
+      "closed_interval_rational": [
+        "5223/50",
+        "705/4"
+      ],
+      "numerical_root_count": 0,
+      "exact": {
+        "method": "Exact rational Sturm sequence with squarefree gcd reduction, Cauchy bound and rational interval subdivision",
+        "coefficient_snapshot_rational": [
+          "1",
+          "-8526926024106521/5000000000000000000",
+          "10766656837571909/500000000000000000000"
+        ],
+        "root_count": 0,
+        "isolating_intervals": [],
+        "matches_numerical_count": true
+      },
+      "solver_checks": {
+        "expected": "unsat",
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "matches_exact_obligation": true,
+        "smt2": "validation/exact-interval-smt/kirby2-fold-2.smt2",
+        "smt2_sha256": "4af8405b4f035d44379af52e39e745ea64772fa9396a6c75e451f22e76286a28",
+        "z3_log": "validation/exact-interval-logs/kirby2-fold-2-z3.log",
+        "z3_log_sha256": "ea7da410260c95ddcc35db618152b48d478fb1178f80f7b7d7d97ff2051f9958",
+        "cvc5_log": "validation/exact-interval-logs/kirby2-fold-2-cvc5.log",
+        "cvc5_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+      }
+    },
+    {
+      "dataset": "kirby2",
+      "fold": 3,
+      "model_parameters": {
+        "b1": 1.625997832859755,
+        "b2": -0.13654821262308459,
+        "b3": 0.0025721290511429608,
+        "b4": -0.001713603340415761,
+        "b5": 2.144183244246622e-05
+      },
+      "denominator_parameter_order": [
+        "b4",
+        "b5"
+      ],
+      "closed_interval": [
+        177.34,
+        229.92
+      ],
+      "closed_interval_rational": [
+        "8867/50",
+        "5748/25"
+      ],
+      "numerical_root_count": 0,
+      "exact": {
+        "method": "Exact rational Sturm sequence with squarefree gcd reduction, Cauchy bound and rational interval subdivision",
+        "coefficient_snapshot_rational": [
+          "1",
+          "-1713603340415761/1000000000000000000",
+          "1072091622123311/50000000000000000000"
+        ],
+        "root_count": 0,
+        "isolating_intervals": [],
+        "matches_numerical_count": true
+      },
+      "solver_checks": {
+        "expected": "unsat",
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "matches_exact_obligation": true,
+        "smt2": "validation/exact-interval-smt/kirby2-fold-3.smt2",
+        "smt2_sha256": "cd019278f547f2807135136df4451f3023cd3e23393d3ee89486d47b4f7de34d",
+        "z3_log": "validation/exact-interval-logs/kirby2-fold-3-z3.log",
+        "z3_log_sha256": "ea7da410260c95ddcc35db618152b48d478fb1178f80f7b7d7d97ff2051f9958",
+        "cvc5_log": "validation/exact-interval-logs/kirby2-fold-3-cvc5.log",
+        "cvc5_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+      }
+    },
+    {
+      "dataset": "kirby2",
+      "fold": 4,
+      "model_parameters": {
+        "b1": 1.5491912328399864,
+        "b2": -0.1306230023228836,
+        "b3": 0.0024865149430394955,
+        "b4": -0.0019293087095628078,
+        "b5": 2.127828010946494e-05
+      },
+      "denominator_parameter_order": [
+        "b4",
+        "b5"
+      ],
+      "closed_interval": [
+        231.69,
+        302.02
+      ],
+      "closed_interval_rational": [
+        "23169/100",
+        "15101/50"
+      ],
+      "numerical_root_count": 0,
+      "exact": {
+        "method": "Exact rational Sturm sequence with squarefree gcd reduction, Cauchy bound and rational interval subdivision",
+        "coefficient_snapshot_rational": [
+          "1",
+          "-9646543547814039/5000000000000000000",
+          "1063914005473247/50000000000000000000"
+        ],
+        "root_count": 0,
+        "isolating_intervals": [],
+        "matches_numerical_count": true
+      },
+      "solver_checks": {
+        "expected": "unsat",
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "matches_exact_obligation": true,
+        "smt2": "validation/exact-interval-smt/kirby2-fold-4.smt2",
+        "smt2_sha256": "d9ebf0680e5ad5aca9f89e2966210a35439d7a7e7495b0a0053e5436d8cca0bf",
+        "z3_log": "validation/exact-interval-logs/kirby2-fold-4-z3.log",
+        "z3_log_sha256": "ea7da410260c95ddcc35db618152b48d478fb1178f80f7b7d7d97ff2051f9958",
+        "cvc5_log": "validation/exact-interval-logs/kirby2-fold-4-cvc5.log",
+        "cvc5_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+      }
+    },
+    {
+      "dataset": "kirby2",
+      "fold": 5,
+      "model_parameters": {
+        "b1": 1.3880911002126526,
+        "b2": -0.1193715587642939,
+        "b3": 0.0023379883970181953,
+        "b4": -0.0022924313459385397,
+        "b5": 2.1197527901182048e-05
+      },
+      "denominator_parameter_order": [
+        "b4",
+        "b5"
+      ],
+      "closed_interval": [
+        303.48,
+        371.3
+      ],
+      "closed_interval_rational": [
+        "7587/25",
+        "3713/10"
+      ],
+      "numerical_root_count": 0,
+      "exact": {
+        "method": "Exact rational Sturm sequence with squarefree gcd reduction, Cauchy bound and rational interval subdivision",
+        "coefficient_snapshot_rational": [
+          "1",
+          "-22924313459385397/10000000000000000000",
+          "662422746911939/31250000000000000000"
+        ],
+        "root_count": 0,
+        "isolating_intervals": [],
+        "matches_numerical_count": true
+      },
+      "solver_checks": {
+        "expected": "unsat",
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "matches_exact_obligation": true,
+        "smt2": "validation/exact-interval-smt/kirby2-fold-5.smt2",
+        "smt2_sha256": "e1843ee5e39af45a6e557160622ac21e1d393a19d2c1f5bf29a7c6d9a2e49018",
+        "z3_log": "validation/exact-interval-logs/kirby2-fold-5-z3.log",
+        "z3_log_sha256": "ea7da410260c95ddcc35db618152b48d478fb1178f80f7b7d7d97ff2051f9958",
+        "cvc5_log": "validation/exact-interval-logs/kirby2-fold-5-cvc5.log",
+        "cvc5_log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18"
+      }
+    }
+  ],
+  "totals": {
+    "fold_count": 15,
+    "exact_root_count_total": 3,
+    "exact_no_root_fold_count": 13,
+    "exact_rooted_fold_count": 2,
+    "exact_numerical_count_match_count": 15,
+    "z3_unsat_count": 13,
+    "z3_sat_count": 2,
+    "cvc5_unsat_count": 13,
+    "cvc5_sat_count": 2,
+    "dual_solver_agreement_count": 15
+  },
+  "decision": {
+    "unresolved_or_disagreement_present": false,
+    "all_exact_counts_match_numerical": true,
+    "approximate_sat_models_used_as_exact_proof": false,
+    "universal_denominator_safety_claimed": false,
+    "physical_parameter_exactness_claimed": false
+  },
+  "limitations": [
+    "Exact results concern the JSON decimal rational coefficient snapshots, not exact physical parameters or exact binary floating-point values",
+    "Sturm isolation proves distinct real-root counts within each specified closed interval only",
+    "Solver sat models are consistency witnesses, not exact algebraic root forms; Sturm intervals are the root-existence evidence",
+    "No claim is made outside the specified intervals or for perturbed coefficients",
+    "The two solver checks increase implementation confidence but do not replace the exact Sturm computation or independent review"
+  ],
+  "analysis_runner_sha256": "fce6c5ffbf569a0165e4a5b552f5bfe56e46a9ba61f43b482426da756b9d67c9"
+}

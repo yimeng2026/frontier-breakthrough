@@ -29,7 +29,8 @@ def build_graph(root):
     thurber = json.loads((root / "validation/thurber-prospective-gate.json").read_text(encoding="utf-8"))
     kirby = json.loads((root / "validation/kirby2-prospective-gate.json").read_text(encoding="utf-8"))
     crossDataset = json.loads((root / "exports/rational-cross-dataset.json").read_text(encoding="utf-8"))
-    if not chwirut["decision"]["limited_support"] or not aspirin["canonical_structure_identical"] or not material["structure_identity_confirmed"] or not eckerle["decision"]["limited_support"] or not cvc5["all_results_match_z3"] or not hahn1["decision"]["limited_support"] or cvc5Hahn1["result"] != "unsat" or z3Hahn1["result"] != "unsat" or groupedStress["overall_robust_limited_support"] or identifiability["decision"]["fold_1_failure_reversed"] or denominatorRoots["decision"]["fold_1_failure_reversed"] or denominatorRoots["folds"][0]["real_root_count_in_held_out_closed_interval"] != 2 or thurber["decision"]["overall_all_folds_gated_support"] or not thurber["full_fit_certification"]["matches_nist_within_frozen_tolerances"] or not kirby["decision"]["overall_all_folds_gated_support"] or not kirby["full_fit_certification"]["matches_nist_within_frozen_tolerances"] or crossDataset["totals"]["gate_consistent_fold_count"] != 13 or crossDataset["totals"]["domain_failed_fold_count"] != 2:
+    exactRoots = json.loads((root / "validation/rational-exact-interval-roots.json").read_text(encoding="utf-8"))
+    if not chwirut["decision"]["limited_support"] or not aspirin["canonical_structure_identical"] or not material["structure_identity_confirmed"] or not eckerle["decision"]["limited_support"] or not cvc5["all_results_match_z3"] or not hahn1["decision"]["limited_support"] or cvc5Hahn1["result"] != "unsat" or z3Hahn1["result"] != "unsat" or groupedStress["overall_robust_limited_support"] or identifiability["decision"]["fold_1_failure_reversed"] or denominatorRoots["decision"]["fold_1_failure_reversed"] or denominatorRoots["folds"][0]["real_root_count_in_held_out_closed_interval"] != 2 or thurber["decision"]["overall_all_folds_gated_support"] or not thurber["full_fit_certification"]["matches_nist_within_frozen_tolerances"] or not kirby["decision"]["overall_all_folds_gated_support"] or not kirby["full_fit_certification"]["matches_nist_within_frozen_tolerances"] or crossDataset["totals"]["gate_consistent_fold_count"] != 13 or crossDataset["totals"]["domain_failed_fold_count"] != 2 or exactRoots["totals"]["exact_root_count_total"] != 3 or exactRoots["totals"]["dual_solver_agreement_count"] != 15 or exactRoots["decision"]["unresolved_or_disagreement_present"]:
         raise ValueError("Expected evidence states are not present")
 
     nodes = [
@@ -93,11 +94,15 @@ def build_graph(root):
         node("evidence-rational-cross-dataset", "evidence", "统一内核下 13／15 折符合验收及两种证据等级", "supported", ["exports/rational-cross-dataset.json"]),
         node("experiment-rational-cross-dataset-protocol", "experiment", "跨数据集冻结输入哈希与标准化综合协议", "supported", ["validation/rational-cross-dataset-protocol.json"]),
         node("limitation-rational-cross-dataset", "limitation", "三个数据集十五折且含事后重建，不能估计普适检出率", "active", ["exports/rational-cross-dataset.json"]),
+        node("claim-exact-snapshot-all-folds-root-free", "claim", "全部十五折有理系数快照在各自留出闭区间内均无实根", "falsified", ["validation/rational-exact-interval-roots.json"]),
+        node("evidence-exact-sturm-intervals", "evidence", "精确 Sturm 隔离的 13 折无根、Hahn1 两根与 Thurber 一根", "supported", ["validation/rational-exact-interval-roots.json"]),
+        node("experiment-exact-interval-protocol", "experiment", "十五折精确有理计数与双求解器复核协议", "supported", ["validation/rational-exact-interval-protocol.json"]),
+        node("limitation-exact-snapshot-scope", "limitation", "精确结论只覆盖有理系数快照和指定闭区间，不是物理常数或全域证明", "active", ["validation/rational-exact-interval-roots.json"]),
     ]
     edges = []
     for track, claims in {
         "track-holdout": ["claim-chwirut-extrapolation", "claim-nist-reproduction", "evidence-chwirut", "experiment-chwirut-protocol", "limitation-single-split", "claim-eckerle4-two-tail", "evidence-eckerle4", "experiment-eckerle4-protocol", "limitation-two-datasets", "claim-hahn1-high-temperature", "evidence-hahn1", "experiment-hahn1-protocol", "limitation-three-datasets", "claim-universal-robustness", "evidence-grouped-stress", "experiment-grouped-stress-protocol", "limitation-grouped-stress", "claim-fold1-heldout-pole-free", "evidence-hahn1-fold1-identifiability", "evidence-hahn1-frozen-denominator-roots", "limitation-post-hoc-mechanism", "claim-thurber-all-folds-gated", "evidence-thurber-prospective-gate", "experiment-thurber-prospective-protocol", "limitation-thurber-prospective", "claim-kirby2-all-folds-gated", "evidence-kirby2-prospective-gate", "experiment-kirby2-prospective-protocol", "limitation-kirby2-prospective", "claim-rational-gate-always-passes", "evidence-rational-cross-dataset", "experiment-rational-cross-dataset-protocol", "limitation-rational-cross-dataset"],
-        "track-formal": ["claim-universal-identifiability", "claim-positive-denominator", "evidence-z3", "counterexample-xzero", "claim-solver-agreement", "evidence-cvc5", "claim-hahn1-denominator", "evidence-hahn1-denominator", "claim-unbounded-denominator-safety", "counterexample-hahn1-outdomain-root"],
+        "track-formal": ["claim-universal-identifiability", "claim-positive-denominator", "evidence-z3", "counterexample-xzero", "claim-solver-agreement", "evidence-cvc5", "claim-hahn1-denominator", "evidence-hahn1-denominator", "claim-unbounded-denominator-safety", "counterexample-hahn1-outdomain-root", "claim-exact-snapshot-all-folds-root-free", "evidence-exact-sturm-intervals", "experiment-exact-interval-protocol", "limitation-exact-snapshot-scope"],
         "track-chemistry": ["claim-aspirin-identity", "claim-descriptor-fraud", "evidence-aspirin", "counterexample-descriptor", "limitation-public-records"],
         "track-materials": ["claim-material-identity", "claim-universal-bandgap", "evidence-material", "counterexample-bandgap", "experiment-material-protocol", "limitation-small-material-sample"],
         "track-knowledge": ["claim-knowledge-graph"],
@@ -144,6 +149,9 @@ def build_graph(root):
         edge("experiment-rational-cross-dataset-protocol", "claim-rational-gate-always-passes", "tests"),
         edge("evidence-rational-cross-dataset", "claim-rational-gate-always-passes", "contradicts"),
         edge("limitation-rational-cross-dataset", "claim-rational-gate-always-passes", "limits"),
+        edge("experiment-exact-interval-protocol", "claim-exact-snapshot-all-folds-root-free", "tests"),
+        edge("evidence-exact-sturm-intervals", "claim-exact-snapshot-all-folds-root-free", "contradicts"),
+        edge("limitation-exact-snapshot-scope", "claim-exact-snapshot-all-folds-root-free", "limits"),
         edge("claim-knowledge-graph", "track-holdout", "recommends"),
         edge("claim-knowledge-graph", "track-formal", "recommends"),
         edge("claim-knowledge-graph", "track-chemistry", "recommends"),

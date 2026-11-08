@@ -556,6 +556,42 @@
       "sourceFiles": [
         "exports/rational-cross-dataset.json"
       ]
+    },
+    {
+      "id": "claim-exact-snapshot-all-folds-root-free",
+      "kind": "claim",
+      "title": "全部十五折有理系数快照在各自留出闭区间内均无实根",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/rational-exact-interval-roots.json"
+      ]
+    },
+    {
+      "id": "evidence-exact-sturm-intervals",
+      "kind": "evidence",
+      "title": "精确 Sturm 隔离的 13 折无根、Hahn1 两根与 Thurber 一根",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/rational-exact-interval-roots.json"
+      ]
+    },
+    {
+      "id": "experiment-exact-interval-protocol",
+      "kind": "experiment",
+      "title": "十五折精确有理计数与双求解器复核协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/rational-exact-interval-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-exact-snapshot-scope",
+      "kind": "limitation",
+      "title": "精确结论只覆盖有理系数快照和指定闭区间，不是物理常数或全域证明",
+      "status": "active",
+      "sourceFiles": [
+        "validation/rational-exact-interval-roots.json"
+      ]
     }
   ],
   "edges": [
@@ -772,6 +808,26 @@
     {
       "from": "track-formal",
       "to": "counterexample-hahn1-outdomain-root",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "claim-exact-snapshot-all-folds-root-free",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "evidence-exact-sturm-intervals",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "experiment-exact-interval-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "limitation-exact-snapshot-scope",
       "relation": "contains"
     },
     {
@@ -1032,6 +1088,21 @@
     {
       "from": "limitation-rational-cross-dataset",
       "to": "claim-rational-gate-always-passes",
+      "relation": "limits"
+    },
+    {
+      "from": "experiment-exact-interval-protocol",
+      "to": "claim-exact-snapshot-all-folds-root-free",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-exact-sturm-intervals",
+      "to": "claim-exact-snapshot-all-folds-root-free",
+      "relation": "contradicts"
+    },
+    {
+      "from": "limitation-exact-snapshot-scope",
+      "to": "claim-exact-snapshot-all-folds-root-free",
       "relation": "limits"
     },
     {

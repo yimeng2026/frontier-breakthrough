@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生精确区间根证明_图文完整版.docx",
+  "bytes": 166252,
+  "sha256": "21a93bf2b6c50281dc2a6ee65c12961a3974cc9d970c8f7586f8370a61ddd504",
+  "native_math_objects": 3,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

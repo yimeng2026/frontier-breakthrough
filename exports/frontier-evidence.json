@@ -786,6 +786,43 @@
         "validation/thurber-prospective-gate.json",
         "validation/kirby2-prospective-gate.json"
       ]
+    },
+    {
+      "id": "rational-exact-interval-sturm-solvers",
+      "domain": "math",
+      "title": "精确 Sturm 区间根隔离与双求解器复核",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml",
+        "https://github.com/Z3Prover/z3",
+        "https://github.com/cvc5/cvc5/releases/tag/cvc5-1.4.2"
+      ],
+      "metrics": {
+        "fold_count": 15,
+        "exact_root_count_total": 3,
+        "exact_no_root_fold_count": 13,
+        "exact_rooted_fold_count": 2,
+        "exact_numerical_count_match_count": 15,
+        "z3_unsat_count": 13,
+        "z3_sat_count": 2,
+        "cvc5_unsat_count": 13,
+        "cvc5_sat_count": 2,
+        "dual_solver_agreement_count": 15
+      },
+      "scientificClaim": "对十五折有理系数快照，13 个闭区间精确无根，Hahn1 第 1 折精确有 2 根，Thurber 第 1 折精确有 1 根；双求解器逐折一致。",
+      "limitations": "Exact results concern the JSON decimal rational coefficient snapshots, not exact physical parameters or exact binary floating-point values Sturm isolation proves distinct real-root counts within each specified closed interval only Solver sat models are consistency witnesses, not exact algebraic root forms; Sturm intervals are the root-existence evidence No claim is made outside the specified intervals or for perturbed coefficients The two solver checks increase implementation confidence but do not replace the exact Sturm computation or independent review",
+      "upstreamContribution": "提供精确 Sturm 隔离、十五份 SMT-LIB、三十份求解器日志及完整哈希，区分快照证明与物理参数精确性。",
+      "snapshotFiles": [
+        "validation/rational-exact-interval-protocol.json",
+        "validation/rational-exact-interval-roots.json",
+        "validation/exact-interval-smt/hahn1-fold-1.smt2",
+        "validation/exact-interval-smt/thurber-fold-1.smt2",
+        "validation/exact-interval-logs/hahn1-fold-1-z3.log",
+        "validation/exact-interval-logs/thurber-fold-1-cvc5.log"
+      ]
     }
   ]
 }
