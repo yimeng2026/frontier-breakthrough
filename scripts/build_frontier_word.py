@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "extreme_reporting":
+    if REPORT_MODE == "extreme_corpus":
+        replacements = {
+            "图：`papers/34_最大界与全点组成/fig34_maximum_full_composition.png`。": "![](papers/34_最大界与全点组成/fig34_maximum_full_composition.png)\n\n**图 34｜既有报告极值表述分级复核的联读证据（第 1 幅，共 1 幅）**  \n**插入位置**：§5「已满足契约的文档与三联图」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "16 份文档、10 份联读要求与原文哈希保持的分级复核"
+    elif REPORT_MODE == "extreme_reporting":
         replacements = {
             "图：`papers/34_最大界与全点组成/fig34_maximum_full_composition.png`。": "![](papers/34_最大界与全点组成/fig34_maximum_full_composition.png)\n\n**图 34｜极值报告三级契约的三联证据图（第 1 幅，共 1 幅）**  \n**插入位置**：§5「当前审计案例与三联图」；顺序第 1 幅，共 1 幅。",
         }

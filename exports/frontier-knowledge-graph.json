@@ -1340,6 +1340,16 @@
         "contracts/extreme-reporting.rules.json",
         "validation/extreme-reporting-check.json"
       ]
+    },
+    {
+      "id": "experiment-extreme-corpus-classification",
+      "kind": "experiment",
+      "title": "对 16 份极值相关文档全集分级，10 份联读原文哈希保持不变",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/extreme-corpus-audit.json",
+        "validation/extreme-corpus-check.json"
+      ]
     }
   ],
   "edges": [
@@ -2746,6 +2756,21 @@
     {
       "from": "experiment-maximum-full-composition-protocol",
       "to": "experiment-extreme-reporting-contract",
+      "relation": "supports"
+    },
+    {
+      "from": "track-knowledge",
+      "to": "experiment-extreme-corpus-classification",
+      "relation": "contains"
+    },
+    {
+      "from": "experiment-extreme-corpus-classification",
+      "to": "claim-knowledge-graph",
+      "relation": "tests"
+    },
+    {
+      "from": "experiment-extreme-reporting-contract",
+      "to": "experiment-extreme-corpus-classification",
       "relation": "supports"
     }
   ]

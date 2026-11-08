@@ -53,6 +53,9 @@ def build_graph(root):
     combinedV4Decomposition = json.loads((root / "exports/internal-external-bound-comparison-v4.json").read_text(encoding="utf-8"))
     maximumAudit = json.loads((root / "exports/maximum-full-composition-audit.json").read_text(encoding="utf-8"))
     extremeCheck = json.loads((root / "validation/extreme-reporting-check.json").read_text(encoding="utf-8"))
+    corpusCheck = json.loads((root / "validation/extreme-corpus-check.json").read_text(encoding="utf-8"))
+    if corpusCheck["status"] != "passed" or corpusCheck["document_count"] != 16 or corpusCheck["companion_required_count"] != 10 or corpusCheck["unchanged_original_count"] != 10 or corpusCheck["error_count"] != 0:
+        raise ValueError("Expected extreme corpus classification and original preservation are not present")
     if extremeCheck["status"] != "passed" or extremeCheck["error_count"] != 0 or extremeCheck["claim_level"] != "mechanism_interpretation" or extremeCheck["dataset_count"] != 9 or extremeCheck["decision"]["maximum_point_used_as_typical_claimed"]:
         raise ValueError("Expected executable extreme reporting contract is not present")
     if maximumAudit["totals"]["dataset_count"] != 9 or maximumAudit["totals"]["maximum_matches_majority_count"] != 8 or maximumAudit["totals"]["maximum_majority_mismatch_dataset_ids"] != ["gauss1"] or maximumAudit["totals"]["maximum_share_below_median_count"] != 6 or maximumAudit["totals"]["largest_bound_to_median_ratio_dataset_id"] != "gauss1" or maximumAudit["decision"]["maximum_point_used_as_typical_claimed"] or maximumAudit["decision"]["probability_representativeness_claimed"]:
@@ -435,6 +438,12 @@ def build_graph(root):
         edge("track-knowledge", "experiment-extreme-reporting-contract", "contains"),
         edge("experiment-extreme-reporting-contract", "claim-knowledge-graph", "tests"),
         edge("experiment-maximum-full-composition-protocol", "experiment-extreme-reporting-contract", "supports"),
+    ])
+    nodes.append(node("experiment-extreme-corpus-classification", "experiment", "对 16 份极值相关文档全集分级，10 份联读原文哈希保持不变", "supported", ["validation/extreme-corpus-audit.json", "validation/extreme-corpus-check.json"]))
+    edges.extend([
+        edge("track-knowledge", "experiment-extreme-corpus-classification", "contains"),
+        edge("experiment-extreme-corpus-classification", "claim-knowledge-graph", "tests"),
+        edge("experiment-extreme-reporting-contract", "experiment-extreme-corpus-classification", "supports"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

@@ -64,6 +64,7 @@ def build() -> dict:
     combinedV4Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v4.json").read_text(encoding="utf-8"))
     maximumAudit = json.loads((ROOT / "exports/maximum-full-composition-audit.json").read_text(encoding="utf-8"))
     extremeCheck = read("extreme-reporting-check.json")
+    corpusCheck = read("extreme-corpus-check.json")
     externalScopeAmendment = read("external-scope-limitations-amendment-01-audit.json")
     ensoCoverage = read("enso-ellipsoid-coverage.json")
     ensoProtocol = read("enso-ellipsoid-coverage-protocol.json")
@@ -464,6 +465,16 @@ def build() -> dict:
             "limitations": "契约只验证报告结构、字段和数值关系，不证明物理机制为真，也不替代原始数据、独立实验或人工科学审查。",
             "upstreamContribution": "提供报告等级、字段义务、数值重算、反例保留和哈希验收记录，防止单个极值在写作中被升级为整体机制。",
             "snapshotFiles": ["validation/extreme-reporting-check.json", "validation/frontier-extreme-reporting-word.json"],
+        },
+        {
+            "id": "extreme-corpus-classification", "domain": "math", "title": "既有报告极值表述的全集分级与原文保持审计",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml"],
+            "metrics": {"documentCount": corpusCheck["document_count"], "companionRequiredCount": corpusCheck["companion_required_count"], "completeCount": corpusCheck["complete_count"], "descriptiveOnlyCount": corpusCheck["descriptive_only_count"], "unchangedOriginalCount": corpusCheck["unchanged_original_count"], "errorCount": corpusCheck["error_count"], "corpusDocumentSha256": corpusCheck["corpus_document_sha256"], "specSha256": corpusCheck["spec_sha256"], "validatorSha256": corpusCheck["validator_sha256"]},
+            "scientificClaim": "16 份极值相关文档已完成分级：10 份需与全点分布审计联读，4 份仅作极值事实或索引，2 份已满足契约；10 份需联读原文的哈希全部保持不变。",
+            "limitations": "全集分级只约束极值表述的阅读方式，不替代原始证据，不批量修改历史 Markdown 或 Word，也不把补充说明当作新的物理结论。",
+            "upstreamContribution": "提供全文件覆盖、主张等级、联读义务和原文哈希保持的审计接口，防止旧报告中的单个极值脱离后续反例被过度推广。",
+            "snapshotFiles": ["validation/extreme-corpus-audit.json", "validation/extreme-corpus-check.json", "validation/frontier-extreme-corpus-word.json"],
         },
     ]
     packet = {

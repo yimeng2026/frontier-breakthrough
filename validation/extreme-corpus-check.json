@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "document_count": 16,
+  "companion_required_count": 10,
+  "complete_count": 2,
+  "descriptive_only_count": 4,
+  "unchanged_original_count": 10,
+  "error_count": 0,
+  "errors": [],
+  "corpus_document": "docs/EXTREME_REPORTING_CORPUS_AUDIT.md",
+  "corpus_document_sha256": "a0eae53d923b3428de65bf7b91a83e27778433498fd187374849659cc564fcd4",
+  "spec_file": "validation\\extreme-corpus-audit.json",
+  "spec_sha256": "a592ddf56e6dfb590c2beaf6bc407fd94fd09be71f58929f6719cda045472c6f",
+  "validator_sha256": "860176895f904eee7b4d5e70a368296642ffa6775581c1a2e9b1f6f3197872fd"
+}

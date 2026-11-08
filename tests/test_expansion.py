@@ -112,8 +112,8 @@ class ExpansionTests(unittest.TestCase):
 
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
-        self.assertEqual(len(packet["items"]), 38)
-        self.assertEqual(len({i["id"] for i in packet["items"]}), 38)
+        self.assertEqual(len(packet["items"]), 39)
+        self.assertEqual(len({i["id"] for i in packet["items"]}), 39)
         for item in packet["items"]:
             self.assertEqual(item["status"], "verified")
             self.assertTrue(item["limitations"])
@@ -273,6 +273,18 @@ class ExpansionTests(unittest.TestCase):
         self.assertEqual(item["metrics"]["errorCount"], 0)
         self.assertEqual(item["metrics"]["levelNames"], ["maximum_only", "distribution_summary", "mechanism_interpretation"])
         self.assertFalse(item["metrics"]["decision"]["maximum_point_used_as_typical_claimed"])
+
+    def test_extreme_corpus_classification_preserves_originals(self):
+        packet = self.read("exports/frontier-evidence.json")
+        identifiers = {item["id"] for item in packet["items"]}
+        self.assertIn("extreme-corpus-classification", identifiers)
+        item = next(item for item in packet["items"] if item["id"] == "extreme-corpus-classification")
+        self.assertEqual(item["metrics"]["documentCount"], 16)
+        self.assertEqual(item["metrics"]["companionRequiredCount"], 10)
+        self.assertEqual(item["metrics"]["unchangedOriginalCount"], 10)
+        self.assertEqual(item["metrics"]["errorCount"], 0)
+        self.assertEqual(item["metrics"]["completeCount"], 2)
+        self.assertEqual(item["metrics"]["descriptiveOnlyCount"], 4)
 
     def test_new_agent_projects_have_primary_sources(self):
         projects = self.read("data/projects.json")["projects"]

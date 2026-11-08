@@ -2710,6 +2710,37 @@
         "validation/extreme-reporting-check.json",
         "validation/frontier-extreme-reporting-word.json"
       ]
+    },
+    {
+      "id": "extreme-corpus-classification",
+      "domain": "math",
+      "title": "既有报告极值表述的全集分级与原文保持审计",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml"
+      ],
+      "metrics": {
+        "documentCount": 16,
+        "companionRequiredCount": 10,
+        "completeCount": 2,
+        "descriptiveOnlyCount": 4,
+        "unchangedOriginalCount": 10,
+        "errorCount": 0,
+        "corpusDocumentSha256": "a0eae53d923b3428de65bf7b91a83e27778433498fd187374849659cc564fcd4",
+        "specSha256": "a592ddf56e6dfb590c2beaf6bc407fd94fd09be71f58929f6719cda045472c6f",
+        "validatorSha256": "860176895f904eee7b4d5e70a368296642ffa6775581c1a2e9b1f6f3197872fd"
+      },
+      "scientificClaim": "16 份极值相关文档已完成分级：10 份需与全点分布审计联读，4 份仅作极值事实或索引，2 份已满足契约；10 份需联读原文的哈希全部保持不变。",
+      "limitations": "全集分级只约束极值表述的阅读方式，不替代原始证据，不批量修改历史 Markdown 或 Word，也不把补充说明当作新的物理结论。",
+      "upstreamContribution": "提供全文件覆盖、主张等级、联读义务和原文哈希保持的审计接口，防止旧报告中的单个极值脱离后续反例被过度推广。",
+      "snapshotFiles": [
+        "validation/extreme-corpus-audit.json",
+        "validation/extreme-corpus-check.json",
+        "validation/frontier-extreme-corpus-word.json"
+      ]
     }
   ]
 }

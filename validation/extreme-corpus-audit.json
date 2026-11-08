@@ -1,0 +1,27 @@
+{
+  "status": "frozen_extreme_corpus_classification",
+  "frozen_at_local": "2026-11-09T06:20:00+08:00",
+  "document_count": 16,
+  "companion_required_count": 10,
+  "documents": [
+    {"file": "docs/BOUND_COMPARISON_V2_2026-11-09.md", "claim_level": "distribution_summary", "review_status": "companion_required", "original_sha256": "5f7d6c82409545b561e62d8e565e8af9ff674881966f49c302871afecd7c2b2b"},
+    {"file": "docs/BOUND_COMPARISON_V3_2026-11-09.md", "claim_level": "distribution_summary", "review_status": "companion_required", "original_sha256": "4683188ab0f6496d9d324147d46c0f431a07c1c7f903107cbb6108469447f949"},
+    {"file": "docs/BOUND_COMPARISON_V4_2026-11-09.md", "claim_level": "distribution_summary", "review_status": "companion_required", "original_sha256": "e13ccb4a9e81c4e56b43cf60afd9319e1e37bed91129b1bbf79d64e445792e6d"},
+    {"file": "docs/CHWIRUT1_COVERAGE_2026-11-09.md", "claim_level": "distribution_summary", "review_status": "companion_required", "original_sha256": "7afa0610ceb813138fd6fff644648eac7b7da66a9f7e97466ae9d3e4924a7c1a"},
+    {"file": "docs/ENSO_COVERAGE_2026-11-09.md", "claim_level": "distribution_summary", "review_status": "companion_required", "original_sha256": "f082cacdc6fa8b94fe6672c2e3f0b8398c215a82096b96d96d1e41c0faf8a837"},
+    {"file": "docs/EXTERNAL_BOUND_DECOMPOSITION_2026-11-09.md", "claim_level": "distribution_summary", "review_status": "companion_required", "original_sha256": "cf4b60f1d68a52a5679841387c4673a703cad79807fefd2afe26268ca9105efd"},
+    {"file": "docs/GAUSS1_BOUND_MECHANISM_2026-11-09.md", "claim_level": "mechanism_interpretation", "review_status": "companion_required", "original_sha256": "f1a0113057c4b9490f0fe4fc4888b8d8fb98a81968d499b016918126c77b3af2"},
+    {"file": "docs/GAUSS1_EXTERNAL_COVERAGE_2026-11-09.md", "claim_level": "distribution_summary", "review_status": "companion_required", "original_sha256": "4d51f2ba3d47b0fcf39cc9f1d83c1aa34bd82b3ca33dd6b05afb86c9605de4fb"},
+    {"file": "docs/INTERNAL_EXTERNAL_BOUND_COMPARISON_2026-11-09.md", "claim_level": "distribution_summary", "review_status": "companion_required", "original_sha256": "55adeabb8bf10cb87ac9d613aa0e18287e301383b241eb76361a09ebf930645c"},
+    {"file": "docs/MISRA1A_COVERAGE_2026-11-09.md", "claim_level": "distribution_summary", "review_status": "companion_required", "original_sha256": "e83bc5c0df39dcf90ef99b68e59ce24d8b2cd1eeb2c83f80dda0e2ea0a26300e"},
+    {"file": "docs/ELLIPSOID_BOUNDS_2026-11-09.md", "claim_level": "maximum_only", "review_status": "descriptive_only", "original_sha256": null},
+    {"file": "docs/FILIP_COVERAGE_2026-11-09.md", "claim_level": "maximum_only", "review_status": "descriptive_only", "original_sha256": null},
+    {"file": "docs/PREDICTION_BOUNDS_2026-11-09.md", "claim_level": "maximum_only", "review_status": "descriptive_only", "original_sha256": null},
+    {"file": "docs/UPSTREAM_INTERFACES.md", "claim_level": "maximum_only", "review_status": "descriptive_only", "original_sha256": null},
+    {"file": "docs/MAXIMUM_FULL_COMPOSITION_2026-11-09.md", "claim_level": "mechanism_interpretation", "review_status": "complete", "original_sha256": null},
+    {"file": "docs/EXTREME_REPORTING_PROTOCOL.md", "claim_level": "mechanism_interpretation", "review_status": "complete", "original_sha256": null}
+  ],
+  "corpus_document": "docs/EXTREME_REPORTING_CORPUS_AUDIT.md",
+  "required_companions": ["docs/MAXIMUM_FULL_COMPOSITION_2026-11-09.md", "docs/EXTREME_REPORTING_PROTOCOL.md"],
+  "required_preservation_text": "原始 Markdown 与旧 Word 均不改写"
+}
