@@ -1,0 +1,70 @@
+{
+  "status": "frozen_before_any_nonlinear_fit",
+  "frozen_at_local": "2026-11-08T20:35:00+08:00",
+  "scientific_question": "Can the three-parameter Chwirut exponential model trained at lower metal distances predict the preregistered highest-distance holdout?",
+  "data": {
+    "name": "NIST/ITL StRD Chwirut2",
+    "source_url": "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Chwirut2.dat",
+    "dataset_page": "https://www.itl.nist.gov/div898/strd/nls/data/chwirut2.shtml",
+    "reference": "Chwirut, D., NIST (1979), Ultrasonic Reference Block Study",
+    "file": "data/Chwirut2.dat",
+    "sha256": "c37e5522a34f9a57e18d7d10f8736202eabc0c33b8e7ad0010e618db04b57411",
+    "observations": 54,
+    "unique_metal_distances": 22,
+    "units_as_published": "y is ultrasonic response; x is metal distance; no additional unit conversion or uncertainty is invented"
+  },
+  "model": {
+    "class": "Exponential, three parameters",
+    "equation": "y = exp(-b1*x)/(b2+b3*x) + e",
+    "bounds": {
+      "b1": [0, "Infinity"],
+      "b2": [0, "Infinity"],
+      "b3": [0, "Infinity"]
+    },
+    "starts": [
+      {"b1": 0.1, "b2": 0.01, "b3": 0.02},
+      {"b1": 0.15, "b2": 0.008, "b3": 0.01}
+    ],
+    "optimizer": "scipy.optimize.curve_fit with identical settings and two starts; select the lowest training residual sum of squares"
+  },
+  "holdout_rule": {
+    "definition": "All observations with metal distance x >= 5.0 are held out; every repeated x value stays entirely on one side of the split",
+    "train": "x < 5.0: 47 observations",
+    "holdout": "x >= 5.0: 7 observations",
+    "purpose": "Contiguous high-distance extrapolation, not random interpolation and not a universal test of the model family"
+  },
+  "full_fit_certification_rule": {
+    "purpose": "A separate known-answer reproduction check against NIST, never used as holdout evidence",
+    "certified_parameters": {
+      "b1": 0.16657666537,
+      "b2": 0.0051653291286,
+      "b3": 0.012150007096
+    },
+    "certified_residual_standard_deviation": 3.1717133040,
+    "degrees_of_freedom": 51,
+    "relative_tolerance_parameters": 0.0001,
+    "relative_tolerance_residual_standard_deviation": 0.0001
+  },
+  "baselines": [
+    "Training-response mean",
+    "Ordinary least-squares linear response fitted only on the training interval"
+  ],
+  "metrics": [
+    "Training and holdout RMSE, MAE and maximum absolute residual",
+    "Holdout RMSE divided by training RMSE",
+    "Holdout RMSE compared with both baselines",
+    "Parameter values from each start and optimizer success"
+  ],
+  "decision_gate": {
+    "limited_support": "Holdout RMSE < 3 * training RMSE AND holdout RMSE < linear-baseline holdout RMSE",
+    "negative_or_unresolved": "Otherwise report the model class as not supported for this extrapolation task; do not retune on the holdout",
+    "interpretation": "Passing is limited evidence for this single split only, not a universal law, physical discovery, clinical implication or proof of parameter endogeneity"
+  },
+  "output_rule": "Write validation/chwirut-holdout.json and papers/04_真实数据留出/fig04_chwirut_holdout.png; preserve all starts and negative results; refuse to overwrite existing results",
+  "prohibitions": [
+    "No fitting or parameter selection on the seven holdout observations",
+    "No cherry-picking a different holdout after seeing residuals",
+    "No claim that NIST certification is independent experimental replication by us",
+    "No claim that fitting proves the model is universally valid or all parameters are physically endogenous"
+  ]
+}

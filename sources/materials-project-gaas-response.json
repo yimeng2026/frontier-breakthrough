@@ -1,0 +1,5 @@
+{
+  "is_success": "materials_project, fetched material mp-aaaaadtm: 1 record(s)",
+  "data_preview": "{\n  \"data\": [\n    {\n      \"band_gap\": 0.1839000000000004,\n      \"is_metal\": false,\n      \"energy_above_hull\": 0.0,\n      \"is_stable\": true,\n      \"nsites\": 2,\n      \"formula_pretty\": \"GaAs\",\n      \"density\": 5.053200369484521,\n      \"symmetry\": {\n        \"crystal_system\": \"Cubic\",\n        \"symbol\": \"F-43m\",\n        \"hall\": \"F -4 2 3\",\n        \"number\": 216,\n        \"point_group\": \"-43m\",\n        \"symprec\": 0.1,\n        \"angle_tolerance\": 5.0,\n        \"version\": \"2.7.0\"\n      },\n      \"material_id\": \"mp-aaaaadtm\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.88.1\",\n    \"time_stamp\": \"2026-11-08T13:34:24.321858+00:00\",\n    \"total_doc\": 1,\n    \"facet\": null,\n    \"max_limit\": 1000,\n    \"default_fields\": [\n      \"material_id\"\n    ]\n  }\n}",
+  "notice": "Full JSON result returned in the response preview."
+}

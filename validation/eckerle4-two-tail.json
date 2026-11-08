@@ -1,0 +1,597 @@
+{
+  "status": "computed_preregistered_two_tail_real_data_extrapolation",
+  "protocol_sha256": "a0e323a4bf6ac4150a685dbee88f146fdb57ea1e7022f7d78025b0caa808b624",
+  "data_sha256": "8ec2133b29a0a7cecbfccd51f7c61ee432f73c460bf5ce7106d672642e57a61e",
+  "model": "y = (b1/b2) * exp(-0.5*((x-b3)/b2)^2) + e",
+  "split": {
+    "low_count": 3,
+    "middle_count": 27,
+    "high_count": 5
+  },
+  "full_fit_certification": {
+    "parameters": {
+      "b1": 1.5543828240178486,
+      "b2": 4.088832734053702,
+      "b3": 451.54121796402364
+    },
+    "residual_standard_deviation": 0.006762924544755975,
+    "residual_sum_of_squares": 0.00146358874873801,
+    "relative_parameter_errors": {
+      "b1": 6.833442456333216e-08,
+      "b2": 1.366291590976232e-07,
+      "b3": 1.0541150174958602e-09
+    },
+    "relative_residual_standard_deviation_error": 8.276712648580542e-12,
+    "matches_nist_within_frozen_tolerances": true,
+    "attempts": [
+      {
+        "start": [
+          1,
+          10,
+          500
+        ],
+        "parameters": {
+          "b1": 1.5543828374882183,
+          "b2": 4.088832805896921,
+          "b3": 451.5412180390597
+        },
+        "rss": 0.0014635887487384066,
+        "success": true,
+        "ier": 2,
+        "message": "`ftol` termination condition is satisfied.",
+        "nfev": 18,
+        "covariance": [
+          [
+            0.0002374080774438516,
+            0.00041637093293781695,
+            1.4530116726164278e-08
+          ],
+          [
+            0.00041637093293781684,
+            0.002190523500578787,
+            6.92001748201249e-08
+          ],
+          [
+            1.4530116726164293e-08,
+            6.920017482012511e-08,
+            0.0021902892375304803
+          ]
+        ]
+      },
+      {
+        "start": [
+          1.5,
+          5,
+          450
+        ],
+        "parameters": {
+          "b1": 1.5543828240178486,
+          "b2": 4.088832734053702,
+          "b3": 451.54121796402364
+        },
+        "rss": 0.00146358874873801,
+        "success": true,
+        "ier": 2,
+        "message": "`ftol` termination condition is satisfied.",
+        "nfev": 7,
+        "covariance": [
+          [
+            0.00023740807147226047,
+            0.00041637092092993447,
+            1.4526582942472824e-08
+          ],
+          [
+            0.00041637092092993447,
+            0.002190523435376952,
+            6.918526669208637e-08
+          ],
+          [
+            1.4526582942472845e-08,
+            6.918526669208629e-08,
+            0.0021902891597562007
+          ]
+        ]
+      }
+    ],
+    "interpretation": "Known-answer reproduction of the published NIST fit, not our independent transmittance experiment"
+  },
+  "middle_fit": {
+    "parameters": {
+      "b1": 1.5543828238621002,
+      "b2": 4.088832733281501,
+      "b3": 451.54121796402825
+    },
+    "metrics": {
+      "middle_rmse": 0.0073614912171342944,
+      "low_rmse": 0.00019052319193910925,
+      "high_rmse": 0.0002481620839167666,
+      "holdout_rmse": 0.00022825954510971756,
+      "holdout_mae": 0.0001998374985626054,
+      "holdout_max_absolute_residual": 0.00045789998850193835
+    },
+    "attempts": [
+      {
+        "start": [
+          1,
+          10,
+          500
+        ],
+        "parameters": {
+          "b1": 1.554382900645064,
+          "b2": 4.088833137633025,
+          "b3": 451.5412176435386
+        },
+        "rss": 0.001463171929398612,
+        "success": true,
+        "ier": 2,
+        "message": "`ftol` termination condition is satisfied.",
+        "nfev": 15,
+        "covariance": [
+          [
+            0.000316453984175401,
+            0.0005550032114226337,
+            1.936201856826533e-08
+          ],
+          [
+            0.0005550032114226338,
+            0.002919866672351603,
+            9.221570655820714e-08
+          ],
+          [
+            1.9362018568265468e-08,
+            9.221570655820702e-08,
+            0.002919554418367265
+          ]
+        ]
+      },
+      {
+        "start": [
+          1.5,
+          5,
+          450
+        ],
+        "parameters": {
+          "b1": 1.5543828238621002,
+          "b2": 4.088832733281501,
+          "b3": 451.54121796402825
+        },
+        "rss": 0.0014631719293785243,
+        "success": true,
+        "ier": 2,
+        "message": "`ftol` termination condition is satisfied.",
+        "nfev": 7,
+        "covariance": [
+          [
+            0.0003164539426055571,
+            0.0005550031157783386,
+            1.936488575775151e-08
+          ],
+          [
+            0.0005550031157783387,
+            0.002919866117082681,
+            9.222255072701261e-08
+          ],
+          [
+            1.9364885757751524e-08,
+            9.222255072701263e-08,
+            0.0029195538407889477
+          ]
+        ]
+      }
+    ]
+  },
+  "baselines": {
+    "linear": {
+      "slope": 0.0017309338278243794,
+      "intercept": -0.6765395188613936,
+      "low_rmse": 0.025298983522023262,
+      "high_rmse": 0.17185628118697058,
+      "holdout_rmse": 0.13674475429555713
+    },
+    "training_mean": {
+      "value": 0.09821364074074071,
+      "holdout_rmse": 0.09801386531052368
+    }
+  },
+  "decision": {
+    "limited_support": true,
+    "negative_for_this_two_tail_task": false,
+    "universal_law_claimed": false,
+    "parameter_endogeneity_proved": false,
+    "gate": "Pooled holdout RMSE < 3 * middle training RMSE AND pooled holdout RMSE < pooled linear-baseline RMSE AND each tail RMSE < its linear-baseline RMSE"
+  },
+  "predictions": [
+    {
+      "index": 1,
+      "x": 400.0,
+      "y": 0.0001575,
+      "split": "low",
+      "middle_model_prediction": 1.1921018430569077e-35,
+      "full_model_prediction": 1.1921018787411044e-35,
+      "linear_prediction": 0.015834012268358122,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.0001575
+    },
+    {
+      "index": 2,
+      "x": 405.0,
+      "y": 0.0001699,
+      "split": "low",
+      "middle_model_prediction": 2.7924312594265666e-29,
+      "full_model_prediction": 2.7924313275414927e-29,
+      "linear_prediction": 0.024488681407480062,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.0001699
+    },
+    {
+      "index": 3,
+      "x": 410.0,
+      "y": 0.000235,
+      "split": "low",
+      "middle_model_prediction": 1.4663298165145172e-23,
+      "full_model_prediction": 1.4663298449852422e-23,
+      "linear_prediction": 0.03314335054660189,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.000235
+    },
+    {
+      "index": 4,
+      "x": 415.0,
+      "y": 0.0003102,
+      "split": "middle",
+      "middle_model_prediction": 1.7260798527151742e-18,
+      "full_model_prediction": 1.7260798786146183e-18,
+      "linear_prediction": 0.04179801968572383,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.00031019999999999827
+    },
+    {
+      "index": 5,
+      "x": 420.0,
+      "y": 0.0004917,
+      "split": "middle",
+      "middle_model_prediction": 4.5548087279379863e-14,
+      "full_model_prediction": 4.554808778760698e-14,
+      "linear_prediction": 0.05045268882484577,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.0004916999999544519
+    },
+    {
+      "index": 6,
+      "x": 425.0,
+      "y": 0.000871,
+      "split": "middle",
+      "middle_model_prediction": 2.6943837343245417e-10,
+      "full_model_prediction": 2.6943837555458e-10,
+      "linear_prediction": 0.0591073579639676,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.0008709997305616266
+    },
+    {
+      "index": 7,
+      "x": 430.0,
+      "y": 0.0017418,
+      "split": "middle",
+      "middle_model_prediction": 3.57296527162043e-07,
+      "full_model_prediction": 3.5729652900533076e-07,
+      "linear_prediction": 0.06776202710308954,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.0017414427034728379
+    },
+    {
+      "index": 8,
+      "x": 435.0,
+      "y": 0.00464,
+      "split": "middle",
+      "middle_model_prediction": 0.00010621312455142215,
+      "full_model_prediction": 0.00010621312487077036,
+      "linear_prediction": 0.07641669624221137,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.004533786875448578
+    },
+    {
+      "index": 9,
+      "x": 436.5,
+      "y": 0.0065895,
+      "split": "middle",
+      "middle_model_prediction": 0.00043801210244678233,
+      "full_model_prediction": 0.0004380121035291623,
+      "linear_prediction": 0.07901309698394798,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.006151487897553217
+    },
+    {
+      "index": 10,
+      "x": 438.0,
+      "y": 0.0097302,
+      "split": "middle",
+      "middle_model_prediction": 0.0015788695159738124,
+      "full_model_prediction": 0.0015788695191100706,
+      "linear_prediction": 0.0816094977256846,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.008151330484026187
+    },
+    {
+      "index": 11,
+      "x": 439.5,
+      "y": 0.0149002,
+      "split": "middle",
+      "middle_model_prediction": 0.0049746046654321275,
+      "full_model_prediction": 0.004974604673155227,
+      "linear_prediction": 0.0842058984674211,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.009925595334567872
+    },
+    {
+      "index": 12,
+      "x": 441.0,
+      "y": 0.023731,
+      "split": "middle",
+      "middle_model_prediction": 0.013700080210995417,
+      "full_model_prediction": 0.013700080227016975,
+      "linear_prediction": 0.08680229920915772,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.010030919789004581
+    },
+    {
+      "index": 13,
+      "x": 442.5,
+      "y": 0.0401683,
+      "split": "middle",
+      "middle_model_prediction": 0.032979179825500735,
+      "full_model_prediction": 0.03297917985311173,
+      "linear_prediction": 0.08939869995089422,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.0071891201744992625
+    },
+    {
+      "index": 14,
+      "x": 444.0,
+      "y": 0.0712559,
+      "split": "middle",
+      "middle_model_prediction": 0.06939190265387808,
+      "full_model_prediction": 0.0693919026924485,
+      "linear_prediction": 0.09199510069263084,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.001863997346121915
+    },
+    {
+      "index": 15,
+      "x": 445.5,
+      "y": 0.1264458,
+      "split": "middle",
+      "middle_model_prediction": 0.12762329238409562,
+      "full_model_prediction": 0.1276232924256085,
+      "linear_prediction": 0.09459150143436734,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": -0.0011774923840956186
+    },
+    {
+      "index": 16,
+      "x": 447.0,
+      "y": 0.2073413,
+      "split": "middle",
+      "middle_model_prediction": 0.2051650104893873,
+      "full_model_prediction": 0.20516501051924943,
+      "linear_prediction": 0.09718790217610396,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.0021762895106127167
+    },
+    {
+      "index": 17,
+      "x": 448.5,
+      "y": 0.2902366,
+      "split": "middle",
+      "middle_model_prediction": 0.2882895187506939,
+      "full_model_prediction": 0.28828951875549674,
+      "linear_prediction": 0.09978430291784057,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.001947081249306093
+    },
+    {
+      "index": 18,
+      "x": 450.0,
+      "y": 0.3445623,
+      "split": "middle",
+      "middle_model_prediction": 0.3540842533426746,
+      "full_model_prediction": 0.35408425332093396,
+      "linear_prediction": 0.10238070365957708,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": -0.009521953342674638
+    },
+    {
+      "index": 19,
+      "x": 451.5,
+      "y": 0.3698049,
+      "split": "middle",
+      "middle_model_prediction": 0.3801338792609804,
+      "full_model_prediction": 0.38013387922729064,
+      "linear_prediction": 0.10497710440131369,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": -0.01032897926098042
+    },
+    {
+      "index": 20,
+      "x": 453.0,
+      "y": 0.3668534,
+      "split": "middle",
+      "middle_model_prediction": 0.35671284285401966,
+      "full_model_prediction": 0.3567128428308264,
+      "linear_prediction": 0.1075735051430502,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.010140557145980333
+    },
+    {
+      "index": 21,
+      "x": 454.5,
+      "y": 0.3106727,
+      "split": "middle",
+      "middle_model_prediction": 0.2925857143093541,
+      "full_model_prediction": 0.2925857143121102,
+      "linear_prediction": 0.11016990588478681,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.01808698569064593
+    },
+    {
+      "index": 22,
+      "x": 456.0,
+      "y": 0.2078154,
+      "split": "middle",
+      "middle_model_prediction": 0.20976822019276775,
+      "full_model_prediction": 0.20976822022102193,
+      "linear_prediction": 0.11276630662652343,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": -0.0019528201927677402
+    },
+    {
+      "index": 23,
+      "x": 457.5,
+      "y": 0.1164354,
+      "split": "middle",
+      "middle_model_prediction": 0.1314554127298914,
+      "full_model_prediction": 0.1314554127707474,
+      "linear_prediction": 0.11536270736825993,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": -0.015020012729891397
+    },
+    {
+      "index": 24,
+      "x": 459.0,
+      "y": 0.0616764,
+      "split": "middle",
+      "middle_model_prediction": 0.07200612774584458,
+      "full_model_prediction": 0.0720061277845648,
+      "linear_prediction": 0.11795910810999655,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": -0.010329727745844584
+    },
+    {
+      "index": 25,
+      "x": 460.5,
+      "y": 0.03372,
+      "split": "middle",
+      "middle_model_prediction": 0.03447566436622923,
+      "full_model_prediction": 0.03447566439434436,
+      "linear_prediction": 0.12055550885173305,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": -0.0007556643662292306
+    },
+    {
+      "index": 26,
+      "x": 462.0,
+      "y": 0.0194023,
+      "split": "middle",
+      "middle_model_prediction": 0.014428063177625008,
+      "full_model_prediction": 0.014428063194132307,
+      "linear_prediction": 0.12315190959346967,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.004974236822374993
+    },
+    {
+      "index": 27,
+      "x": 463.5,
+      "y": 0.0117831,
+      "split": "middle",
+      "middle_model_prediction": 0.005277832833086274,
+      "full_model_prediction": 0.0052778328411273055,
+      "linear_prediction": 0.12574831033520617,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.006505267166913725
+    },
+    {
+      "index": 28,
+      "x": 465.0,
+      "y": 0.0074357,
+      "split": "middle",
+      "middle_model_prediction": 0.0016875452604957738,
+      "full_model_prediction": 0.0016875452637929286,
+      "linear_prediction": 0.12834471107694279,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.005748154739504226
+    },
+    {
+      "index": 29,
+      "x": 470.0,
+      "y": 0.0022732,
+      "split": "middle",
+      "middle_model_prediction": 1.4271352099632454e-05,
+      "full_model_prediction": 1.4271352153223882e-05,
+      "linear_prediction": 0.13699938021606473,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.0022589286479003674
+    },
+    {
+      "index": 30,
+      "x": 475.0,
+      "y": 0.00088,
+      "split": "middle",
+      "middle_model_prediction": 2.705545585222978e-08,
+      "full_model_prediction": 2.7055456017845558e-08,
+      "linear_prediction": 0.14565404935518655,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.0008799729445441478
+    },
+    {
+      "index": 31,
+      "x": 480.0,
+      "y": 0.0004579,
+      "split": "high",
+      "middle_model_prediction": 1.1498061661357598e-11,
+      "full_model_prediction": 1.1498061765441723e-11,
+      "linear_prediction": 0.1543087184943085,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.00045789998850193835
+    },
+    {
+      "index": 32,
+      "x": 485.0,
+      "y": 0.0002345,
+      "split": "high",
+      "middle_model_prediction": 1.0954043319032467e-15,
+      "full_model_prediction": 1.0954043456485103e-15,
+      "linear_prediction": 0.16296338763343032,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.0002344999999989046
+    },
+    {
+      "index": 33,
+      "x": 490.0,
+      "y": 0.0001586,
+      "split": "high",
+      "middle_model_prediction": 2.3393990966259164e-20,
+      "full_model_prediction": 2.3393991354803105e-20,
+      "linear_prediction": 0.17161805677255226,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.00015859999999999998
+    },
+    {
+      "index": 34,
+      "x": 495.0,
+      "y": 0.0001143,
+      "split": "high",
+      "middle_model_prediction": 1.1199902055783988e-25,
+      "full_model_prediction": 1.1199902293603894e-25,
+      "linear_prediction": 0.1802727259116742,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 0.0001143
+    },
+    {
+      "index": 35,
+      "x": 500.0,
+      "y": 7.1e-05,
+      "split": "high",
+      "middle_model_prediction": 1.2019991891146153e-31,
+      "full_model_prediction": 1.2019992208766462e-31,
+      "linear_prediction": 0.18892739505079603,
+      "mean_prediction": 0.09821364074074071,
+      "middle_model_residual": 7.1e-05
+    }
+  ],
+  "limitations": [
+    "One two-tail split on one independent NIST dataset; not random cross-validation or a universal Gaussian-family test",
+    "No independent transmittance measurements, measurement-covariance estimate or new physical mechanism was produced",
+    "NIST certified values are used only for known-answer reproduction, never as holdout evidence",
+    "All eight tail observations were excluded from fitting, start selection, model selection and threshold retuning"
+  ],
+  "analysis_runner_sha256": "b386a4039e95b8a2c3ea0b132bd57833027b44c0e16de12bfb991f54d7a09977"
+}

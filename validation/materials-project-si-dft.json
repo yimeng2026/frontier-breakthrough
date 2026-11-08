@@ -1,0 +1,20 @@
+{
+  "band_gap": 0.6102999999999996,
+  "is_metal": false,
+  "energy_above_hull": 0.0,
+  "is_stable": true,
+  "nsites": 2,
+  "formula_pretty": "Si",
+  "density": 2.3128002565764314,
+  "symmetry": {
+    "crystal_system": "Cubic",
+    "symbol": "Fd-3m",
+    "hall": "F 4d 2 3 -1d",
+    "number": 227,
+    "point_group": "m-3m",
+    "symprec": 0.1,
+    "angle_tolerance": 5.0,
+    "version": "2.7.0"
+  },
+  "material_id": "mp-aaaaaaft"
+}

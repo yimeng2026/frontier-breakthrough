@@ -1,0 +1,23 @@
+{
+  "id": "nist-strd-chwirut",
+  "status": "verified",
+  "project_entry": "data/projects.json#nist-strd-chwirut",
+  "evidenceClass": "preregistered_real_data_holdout_and_known_answer_reproduction",
+  "source": "https://www.itl.nist.gov/div898/strd/nls/data/chwirut2.shtml",
+  "raw_data": "data/Chwirut2.dat",
+  "raw_sha256": "c37e5522a34f9a57e18d7d10f8736202eabc0c33b8e7ad0010e618db04b57411",
+  "protocol": "validation/chwirut-holdout-protocol.json",
+  "summary": "validation/chwirut-holdout.json",
+  "independent_verification": "validation/chwirut-holdout-verification.json",
+  "figure": "papers/04_真实数据留出/fig04_chwirut_holdout.png",
+  "metrics": {
+    "train_count": 47,
+    "holdout_count": 7,
+    "train_rmse": 3.224726398795499,
+    "holdout_rmse": 2.019567320367325,
+    "linear_holdout_rmse": 38.974763576395276,
+    "mean_holdout_rmse": 29.009060012652835
+  },
+  "limited_support": true,
+  "scope": "Verified only for the frozen Chwirut2 split and independent prediction audit; not a universal law, independent ultrasonic experiment or proof of parameter endogeneity"
+}

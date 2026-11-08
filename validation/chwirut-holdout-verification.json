@@ -1,0 +1,17 @@
+{
+  "verification": "passed",
+  "prediction_count": 54,
+  "maximum_prediction_absolute_error": 0.0,
+  "maximum_metric_absolute_error": 0,
+  "metric_error_tolerance": 1e-09,
+  "decision_gate_recomputed": true,
+  "protocol_sha256": "fe0772a5f1a19ef413ba92f507936b006a38436cb86aefa2960ad91e3cb05193",
+  "summary_sha256": "5fc8e8bf544104c361de3430b27387ec2d04d9c2dc975f4de448dd9d2a8de3b8",
+  "verification_runner_sha256": "d3363228a149e4f8f5783a96853bedcde64f1c79246d985fde3dca7d8335f99b",
+  "boundaries": [
+    "One contiguous high-distance split on one NIST dataset; not random cross-validation or a universal model-family test",
+    "No independent ultrasonic measurements, measurement-covariance estimate or new physical mechanism was produced",
+    "NIST certified values are used only for known-answer reproduction, never as holdout evidence",
+    "The seven holdout observations were not used for fitting, start selection, model selection or threshold retuning"
+  ]
+}

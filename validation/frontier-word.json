@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生扩展工作包_图文完整版.docx",
+  "bytes": 235761,
+  "sha256": "750dc41060b405a2b55d5cf0a1124b08edf1783a95e700e9d89fa3349c3373d7",
+  "native_math_objects": 5,
+  "embedded_images": 2,
+  "native_tables": 3,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

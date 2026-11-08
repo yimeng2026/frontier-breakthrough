@@ -1,0 +1,9 @@
+{
+  "amendment": "presentation_only_no_numerical_change",
+  "reason": "The frozen split annotation overlapped the legend in the first rendering.",
+  "changed": "Moved and rotated only the split annotation; no data, fit, prediction, metric, protocol or scientific conclusion changed.",
+  "source_summary": "validation/chwirut-holdout.json",
+  "summary_sha256_before_and_after": "5fc8e8bf544104c361de3430b27387ec2d04d9c2dc975f4de448dd9d2a8de3b8",
+  "plot_script": "scripts/replot_chwirut_holdout.py",
+  "figure": "papers/04_真实数据留出/fig04_chwirut_holdout.png"
+}

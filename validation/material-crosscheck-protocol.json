@@ -1,0 +1,46 @@
+{
+  "status": "frozen_before_local_structure_recomputation",
+  "scientific_question": "Can the same nominal structure be distinguished from different DFT settings and structure snapshots when comparing MP, OQMD and local PyMatGen results?",
+  "pairs": {
+    "si": {
+      "formula": "Si",
+      "mp_id": "mp-aaaaaaft",
+      "oqmd_entry_id": 5714,
+      "oqmd_structure_id": "5714",
+      "structural_reason": "Both official records label the diamond-cubic Si structure Fd-3m"
+    },
+    "gaas": {
+      "formula": "GaAs",
+      "mp_id": "mp-aaaaadtm",
+      "oqmd_entry_id": 7551,
+      "oqmd_structure_id": "7551",
+      "structural_reason": "Both official records label the zinc-blende GaAs structure F-43m"
+    },
+    "sio2": {
+      "formula": "SiO2",
+      "mp_id": "mp-aaaaakjg",
+      "oqmd_entry_id": 22612,
+      "oqmd_structure_id": "22612",
+      "structural_reason": "MP labels P3_121 while OQMD labels P3121; these are notation variants of the same trigonal phase, not different material IDs"
+    }
+  },
+  "rules": {
+    "id_spaces": "MP material_id, OQMD native entry_id and OQMD OPTIMADE structure id are recorded separately and never assumed interchangeable",
+    "density": "Recompute from the OQMD OPTIMADE lattice and Cartesian species positions using PyMatGen Structure.density; compare but do not force equality with MP's structure-specific density",
+    "space_group": "Recompute with SpacegroupAnalyzer symprec=0.1; preserve enantiomer and notation differences",
+    "band_gap": "Compare DFT values without treating experimental gaps as an error-free reference or declaring one DFT implementation fraudulent",
+    "stability": "Keep MP energy_above_hull and OQMD stability/delta_e fields separate; do not infer identical convex-hull references",
+    "failures": "Network failure, missing structure or inconsistent species/site counts is unresolved, never a successful verification",
+    "interpretation": "Verified means the explicit local computations and source checks completed, not experimental validation, a new material discovery or proof of universal DFT accuracy"
+  },
+  "outputs": [
+    "validation/material-crosscheck.json",
+    "papers/05_材料跨库复核/fig05_material_crosscheck.png"
+  ],
+  "prohibitions": [
+    "No assignment of one universal band gap or density to all structures with the same formula",
+    "No claim that a difference between MP and OQMD is automatically an error",
+    "No use of the small three-material sample as a global DFT benchmark",
+    "No merging of MP and OQMD identifiers into a fabricated canonical ID"
+  ]
+}

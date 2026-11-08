@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生续展_双尾外推与求解器复核_图文完整版.docx",
+  "bytes": 168678,
+  "sha256": "ae1c3e8400a61f78ed14a1850dfe84a7b6c83a55ce43df391ecf59f5c910e567",
+  "native_math_objects": 7,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

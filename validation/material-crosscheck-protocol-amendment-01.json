@@ -1,0 +1,12 @@
+{
+  "amendment": "correct_optimade_structure_ids_before_any_recomputation",
+  "reason": "The initial protocol mistakenly reused native OQMD entry_id values as OPTIMADE structure IDs. The direct request for native entry 5714 returned HTTP 404 and produced no valid structure result.",
+  "failure_preserved": "No density, space group or material property was computed from the failed request.",
+  "corrected_pairs": {
+    "si": {"native_entry_id": 5714, "optimade_structure_id": "4062615"},
+    "gaas": {"native_entry_id": 7551, "optimade_structure_id": "4063731"},
+    "sio2": {"native_entry_id": 22612, "optimade_structure_id": "4083627"}
+  },
+  "verification": "oqmd_search_structures was paginated with small pages and matched attributes._oqmd_entry_id exactly to the native record before calling oqmd_get_structure",
+  "other_protocol_fields": "unchanged"
+}

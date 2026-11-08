@@ -1,0 +1,7 @@
+{
+  "amendment": "presentation_only_no_numerical_change",
+  "reason": "The density legend overlapped the tallest GaAs bars in the first rendering.",
+  "changed": "Moved only the density-panel legend to the upper left; no structure, density, band gap, stability or conclusion changed.",
+  "plot_script": "scripts/replot_material_crosscheck.py",
+  "figure": "papers/05_材料跨库复核/fig05_material_crosscheck.png"
+}

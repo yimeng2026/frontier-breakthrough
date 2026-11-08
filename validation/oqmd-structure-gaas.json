@@ -1,0 +1,96 @@
+{
+  "id": "4063731",
+  "attributes": {
+    "immutable_id": null,
+    "last_modified": null,
+    "chemical_formula_reduced": "AsGa",
+    "chemical_formula_hill": null,
+    "chemical_formula_anonymous": "AB",
+    "nelements": 2,
+    "elements": [
+      "As",
+      "Ga"
+    ],
+    "nsites": 2,
+    "lattice_vectors": [
+      [
+        2.86863,
+        -2.86863,
+        0.0
+      ],
+      [
+        -2.86863,
+        0.0,
+        -2.86863
+      ],
+      [
+        2.86863,
+        2.86863,
+        0.0
+      ]
+    ],
+    "species_at_sites": [
+      "As",
+      "Ga"
+    ],
+    "dimension_types": [
+      1,
+      1,
+      1
+    ],
+    "nperiodic_dimensions": 3,
+    "elements_ratios": [
+      0.5,
+      0.5
+    ],
+    "structure_features": [],
+    "chemical_formula_descriptive": "AsGa",
+    "species": [
+      {
+        "name": "As",
+        "chemical_symbols": [
+          "As"
+        ],
+        "concentration": [
+          1.0
+        ]
+      },
+      {
+        "name": "Ga",
+        "chemical_symbols": [
+          "Ga"
+        ],
+        "concentration": [
+          1.0
+        ]
+      }
+    ],
+    "cartesian_site_positions": [
+      [
+        1.43432,
+        -1.43432,
+        -1.43432
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "space_group_it_number": 216,
+    "space_group_symmetry_operations_xyz": null,
+    "space_group_symbol_hall": "F -4 2 3",
+    "space_group_symbol_hermann_mauguin": "F -4 3 m",
+    "space_group_symbol_hermann_mauguin_extended": null,
+    "assemblies": null,
+    "_oqmd_entry_id": 7551,
+    "_oqmd_calculation_id": 6984,
+    "_oqmd_icsd_id": 41674,
+    "_oqmd_band_gap": 0.574,
+    "_oqmd_delta_e": -0.3529,
+    "_oqmd_volume": 47.2121,
+    "_oqmd_stability": 0.0,
+    "_oqmd_prototype": "ZnS(cF8)",
+    "_oqmd_spacegroup": "F-43m"
+  }
+}

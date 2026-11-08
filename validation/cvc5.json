@@ -1,0 +1,11 @@
+{
+  "id": "cvc5",
+  "status": "verified",
+  "project_entry": "data/projects.json#cvc5",
+  "evidenceClass": "cross_solver_reproduction",
+  "source": "https://github.com/cvc5/cvc5/releases/tag/cvc5-1.4.2",
+  "summary": "validation/cvc5-crosscheck.json",
+  "solver_version": "cvc5 1.4.2 [git 282d5e0 on branch HEAD]",
+  "all_results_match_z3": true,
+  "scope": "Three finite SMT-LIB checks and one exact rational countermodel; not a general nonlinear theorem proof or universal identifiability claim"
+}

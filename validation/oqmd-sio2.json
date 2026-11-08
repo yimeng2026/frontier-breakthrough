@@ -1,0 +1,10 @@
+{
+  "name": "O2Si",
+  "entry_id": 22612,
+  "composition": "O2Si",
+  "spacegroup": "P 31 21",
+  "band_gap": 6.054,
+  "delta_e": -3.0654,
+  "stability": 0.008,
+  "record_origin": "OQMD OPTIMADE structure attributes, not a repeated native-list query"
+}

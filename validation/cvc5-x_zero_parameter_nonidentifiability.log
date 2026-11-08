@@ -1,0 +1,11 @@
+sat
+(
+(define-fun b1 () Real (/ 1 10))
+(define-fun b2 () Real 1.0)
+(define-fun b3 () Real (/ 1 50))
+(define-fun a1 () Real (/ 1 5))
+(define-fun a2 () Real 1.0)
+(define-fun a3 () Real (/ 3 100))
+(define-fun y () Real 1.0)
+(define-fun x () Real 0.0)
+)

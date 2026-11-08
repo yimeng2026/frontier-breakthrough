@@ -1,0 +1,25 @@
+{
+  "id": "nist-strd-eckerle",
+  "status": "verified",
+  "project_entry": "data/projects.json#nist-strd-eckerle",
+  "evidenceClass": "preregistered_two_tail_real_data_extrapolation",
+  "source": "https://www.itl.nist.gov/div898/strd/nls/data/eckerle4.shtml",
+  "raw_data": "data/Eckerle4.dat",
+  "raw_sha256": "8ec2133b29a0a7cecbfccd51f7c61ee432f73c460bf5ce7106d672642e57a61e",
+  "protocol": "validation/eckerle4-two-tail-protocol.json",
+  "summary": "validation/eckerle4-two-tail.json",
+  "independent_verification": "validation/eckerle4-two-tail-verification.json",
+  "figure": "papers/06_第二真实数据外推/fig06_eckerle4_two_tail.png",
+  "metrics": {
+    "middle_count": 27,
+    "low_count": 3,
+    "high_count": 5,
+    "middle_rmse": 0.0073614912171342944,
+    "low_rmse": 0.00019052319193910925,
+    "high_rmse": 0.0002481620839167666,
+    "holdout_rmse": 0.00022825954510971756,
+    "linear_holdout_rmse": 0.13674475429555713
+  },
+  "limited_support": true,
+  "scope": "Limited to the frozen Eckerle4 two-tail protocol and independent prediction audit; not a universal Gaussian law, independent transmittance experiment or proof of parameter endogeneity"
+}

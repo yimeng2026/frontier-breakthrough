@@ -1,0 +1,5 @@
+{
+  "is_success": "pubchem, pubchem_get_properties succeeded",
+  "data_preview": "{\n  \"PropertyTable\": {\n    \"Properties\": [\n      {\n        \"CID\": 2244,\n        \"MolecularFormula\": \"C9H8O4\",\n        \"MolecularWeight\": \"180.16\",\n        \"SMILES\": \"CC(=O)OC1=CC=CC=C1C(=O)O\",\n        \"ConnectivitySMILES\": \"CC(=O)OC1=CC=CC=C1C(=O)O\",\n        \"IUPACName\": \"2-acetyloxybenzoic acid\",\n        \"XLogP\": 1.2,\n        \"ExactMass\": \"180.04225873\",\n        \"MonoisotopicMass\": \"180.04225873\",\n        \"TPSA\": 63.6,\n        \"Complexity\": 212,\n        \"Charge\": 0,\n        \"HBondDonorCount\": 1,\n        \"HBondAcceptorCount\": 4,\n        \"RotatableBondCount\": 3,\n        \"HeavyAtomCount\": 13,\n        \"Title\": \"Aspirin\"\n      }\n    ]\n  }\n}",
+  "notice": "Full JSON result returned in the response preview."
+}

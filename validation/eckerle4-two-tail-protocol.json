@@ -1,0 +1,68 @@
+{
+  "status": "frozen_before_any_nonlinear_fit",
+  "frozen_at_local": "2026-11-08T22:15:00+08:00",
+  "scientific_question": "Can a three-parameter Gaussian trained on central wavelengths predict both the low- and high-wavelength tails of the independent Eckerle4 transmittance data?",
+  "data": {
+    "name": "NIST/ITL StRD Eckerle4",
+    "source_url": "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Eckerle4.dat",
+    "dataset_page": "https://www.itl.nist.gov/div898/strd/nls/data/eckerle4.shtml",
+    "reference": "Eckerle, K., NIST (1979), Circular Interference Transmittance Study",
+    "file": "data/Eckerle4.dat",
+    "sha256": "8ec2133b29a0a7cecbfccd51f7c61ee432f73c460bf5ce7106d672642e57a61e",
+    "observations": 35,
+    "units_as_published": "y is transmittance; x is wavelength; no unit conversion or measurement uncertainty is invented"
+  },
+  "model": {
+    "class": "Gaussian, three parameters",
+    "equation": "y = (b1/b2) * exp(-0.5*((x-b3)/b2)^2) + e",
+    "bounds": {
+      "b1": [0, "Infinity"],
+      "b2": [1.0e-12, "Infinity"],
+      "b3": [350, 550]
+    },
+    "starts": [
+      {"b1": 1, "b2": 10, "b3": 500},
+      {"b1": 1.5, "b2": 5, "b3": 450}
+    ],
+    "optimizer": "scipy.optimize.curve_fit with identical settings and two starts; select the lowest training residual sum of squares"
+  },
+  "holdout_rule": {
+    "low_tail": "x <= 410: 3 observations",
+    "middle_training": "410 < x < 480: 27 observations",
+    "high_tail": "x >= 480: 5 observations",
+    "purpose": "Independent two-tail extrapolation; no random interpolation, no selection of the easier tail"
+  },
+  "full_fit_certification_rule": {
+    "purpose": "Separate known-answer reproduction against NIST, never used as holdout evidence",
+    "certified_parameters": {
+      "b1": 1.5543827178,
+      "b2": 4.0888321754,
+      "b3": 451.54121844
+    },
+    "certified_residual_standard_deviation": 0.0067629245447,
+    "degrees_of_freedom": 32,
+    "relative_tolerance_parameters": 0.0001,
+    "relative_tolerance_residual_standard_deviation": 0.0001
+  },
+  "baselines": [
+    "Training-response mean",
+    "Ordinary least-squares linear response fitted only on the middle training interval"
+  ],
+  "metrics": [
+    "Middle training RMSE, low-tail RMSE and high-tail RMSE",
+    "Pooled holdout RMSE, MAE and maximum absolute residual",
+    "Each tail compared with its corresponding linear-baseline RMSE"
+  ],
+  "decision_gate": {
+    "limited_support": "Pooled holdout RMSE < 3 * middle training RMSE AND pooled holdout RMSE < pooled linear-baseline RMSE AND each tail RMSE < its linear-baseline RMSE",
+    "negative_or_unresolved": "Otherwise report the model class as not supported for this two-tail task; no retuning or tail selection after seeing residuals",
+    "interpretation": "Passing is limited evidence for this single dataset and split only, not a universal Gaussian law, proof of independent replication or parameter endogeneity"
+  },
+  "output_rule": "Write validation/eckerle4-two-tail.json and papers/06_第二真实数据外推/fig06_eckerle4_two_tail.png; preserve all starts and negative results; refuse to overwrite existing results",
+  "prohibitions": [
+    "No fitting or parameter selection on any of the eight tail observations",
+    "No replacing the two-tail protocol with high-tail-only or low-tail-only after seeing results",
+    "No claim that NIST certification is our independent experimental replication",
+    "No claim that fitting proves a universal Gaussian law or all parameters are physically endogenous"
+  ]
+}

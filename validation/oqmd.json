@@ -1,0 +1,22 @@
+{
+  "id": "oqmd",
+  "status": "verified",
+  "project_entry": "data/projects.json#oqmd",
+  "evidenceClass": "cross_database_structure_and_dft_audit",
+  "source": "https://oqmd.org/",
+  "summary": "validation/material-crosscheck.json",
+  "protocol": "validation/material-crosscheck-protocol.json",
+  "protocol_amendment": "validation/material-crosscheck-protocol-amendment-01.json",
+  "pairs": {
+    "si": {"native_entry_id": 5714, "optimade_structure_id": "4062615", "snapshot": "validation/oqmd-structure-si.json"},
+    "gaas": {"native_entry_id": 7551, "optimade_structure_id": "4063731", "snapshot": "validation/oqmd-structure-gaas.json"},
+    "sio2": {"native_entry_id": 22612, "optimade_structure_id": "4083627", "snapshot": "validation/oqmd-structure-sio2.json"}
+  },
+  "band_gap_differences_oqmd_minus_mp_eV": {
+    "si": 0.1627,
+    "gaas": 0.3901,
+    "sio2": 0.376
+  },
+  "structure_identity_confirmed": true,
+  "scope": "Three explicit MP/OQMD/PyMatGen pairs only; not a global DFT benchmark, experimental measurement or proof that one implementation is universally more accurate"
+}

@@ -1,0 +1,87 @@
+{
+  "status": "verified",
+  "engine": "RDKit",
+  "version": "2026.9.1",
+  "python": "D:/research-engines/rdkit-env/Scripts/python.exe",
+  "pubchem_cid": 2244,
+  "chembl_id": "CHEMBL25",
+  "canonical_structure_identical": true,
+  "inchikey_identical": true,
+  "rdkit": {
+    "canonical_smiles": "CC(=O)Oc1ccccc1C(=O)O",
+    "inchikey": "BSYNRYMUTXBXSQ-UHFFFAOYSA-N",
+    "formula": "C9H8O4",
+    "exact_mass": 180.042258736,
+    "tpsa": 63.60000000000001,
+    "mol_logp": 1.3101,
+    "hba": 3,
+    "hbd": 1,
+    "rotatable_bonds_default": 2,
+    "rotatable_bonds_strict": 2,
+    "heavy_atoms": 13
+  },
+  "pubchem": {
+    "CID": 2244,
+    "MolecularFormula": "C9H8O4",
+    "MolecularWeight": "180.16",
+    "SMILES": "CC(=O)OC1=CC=CC=C1C(=O)O",
+    "ConnectivitySMILES": "CC(=O)OC1=CC=CC=C1C(=O)O",
+    "IUPACName": "2-acetyloxybenzoic acid",
+    "XLogP": 1.2,
+    "ExactMass": "180.04225873",
+    "MonoisotopicMass": "180.04225873",
+    "TPSA": 63.6,
+    "Complexity": 212,
+    "Charge": 0,
+    "HBondDonorCount": 1,
+    "HBondAcceptorCount": 4,
+    "RotatableBondCount": 3,
+    "HeavyAtomCount": 13,
+    "Title": "Aspirin"
+  },
+  "chembl_properties": {
+    "alogp": "1.31",
+    "aromatic_rings": 1,
+    "full_molformula": "C9H8O4",
+    "full_mwt": "180.16",
+    "hba": 3,
+    "hbd": 1,
+    "heavy_atoms": 13,
+    "mw_freebase": "180.16",
+    "np_likeness_score": "0.12",
+    "num_ro5_violations": 0,
+    "psa": "63.60",
+    "qed_weighted": "0.55",
+    "ro3_pass": "N",
+    "rtb": 2
+  },
+  "identity_checks": {
+    "formula_matches_both": true,
+    "exact_mass_matches_pubchem": true,
+    "tpsa_matches_both": true,
+    "heavy_atoms_match_both": true,
+    "molecular_weight_display_matches_both": true
+  },
+  "difference_interpretation": {
+    "status": "consistent identity with algorithm differences; not fraud evidence",
+    "fields_not_forced_equal": [
+      "XLogP/ALogP/MolLogP",
+      "hba",
+      "rtb"
+    ],
+    "xlogp_note": "PubChem XLogP, ChEMBL ALogP and RDKit Crippen MolLogP are different algorithms or conventions; differences are retained",
+    "hba_note": "PubChem and ChEMBL hydrogen-bond acceptor counts use different definitions; do not silently harmonize them",
+    "rtb_note": "Rotatable-bond counts depend on terminal and amide/ester conventions; default and strict RDKit counts are reported separately"
+  },
+  "independent_wet_experiment": false,
+  "snapshot_sha256": {
+    "pubchem": "e33165f8dc22c5ec811e8105ce7ab7ea7a2d0e7940d369b8a8c3577c7b1e7b08",
+    "chembl": "8dc7369e8b91e7de89e03ccf7cbb9c3b89c5a65cec1a27293c8020cbca1a484c"
+  },
+  "limitations": [
+    "This is a public-record identity and algorithm audit, not a wet-lab experiment, bioactivity meta-analysis or clinical conclusion",
+    "Identical identity and selected descriptors do not imply every database field uses the same algorithm",
+    "No activity value is merged or inferred from the structural match",
+    "Descriptor differences are not labeled as data fabrication; provenance, units and conventions must be examined first"
+  ]
+}

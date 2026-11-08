@@ -21,6 +21,13 @@
 | Materials Project + PyMatGen | 从 Si 公开结构本地重算密度和空间群 | `validation/pymatgen.json` | 结构派生量与规范 ID 的轻量复核 |
 | RCSB PDB + UniProt | 基因/物种检索后，对 HBB 序列做逐字符比对和 MD5 重算 | `validation/pdb-uniprot.json` | 实验结构到 reviewed 序列的可追溯桥接 |
 | ChEMBL + PubChem + RCSB PDB + UniProt | 乙酰唑胺 InChIKey、CA II 靶点、P00918 与 3HS4 entity 1 的 260 aa 精确序列、单一 Ki assay、AZM 配体与 pChEMBL 重算；同酯酶方法 CA I/II 表观比值，CA IX 方法不同不合并 | `validation/drug-target-structure.json`、`validation/ca-selectivity.json`、`validation/ca-document-stability.json`、`validation/structural-control.json` | 药物—靶点—蛋白序列—实验结构的来源审计；保留重复标记、assay 可比性、跨文档不稳定性、不同构建和长度元数据不一致，不冒充独立野生型重复 |
+| NIST Chwirut2 | 47 个训练观测、7 个高距离留出观测，双起点模型与两项基线；54 点独立复算 | `validation/chwirut-holdout.json`、`validation/chwirut-holdout-verification.json` | 首个公开真实数据留出包；只支持该切片，不宣称普适规律 |
+| Z3 扩展反例 | 分母正性定义域、零分母反例、x=0 参数非识别性 | `validation/z3-identifiability.json` | 把实验设计和模型定义域转成可执行证明义务与反例 |
+| PubChem + ChEMBL + RDKit | 阿司匹林结构、InChIKey、分子式、精确质量、TPSA、LogP、氢键和可旋转键多口径审计 | `validation/pubchem-aspirin.json`、`validation/chembl-aspirin.json`、`validation/aspirin-crosscheck.json` | 身份一致与算法差异并列保留，不把差异称为造假 |
+| Materials Project + OQMD + PyMatGen | Si、GaAs、SiO2 的结构、带隙、密度、稳定性对照；原生 entry_id 与 OPTIMADE 结构 ID 分开核验 | `validation/material-crosscheck.json`、`validation/oqmd-structure-*.json` | 结构身份和 DFT 差异分开；提供可复核的结构映射与本地派生量 |
+| NIST Eckerle4 | 27 个中央训练观测、低尾 3 点和高尾 5 点；35 点独立复算 | `validation/eckerle4-two-tail.json`、`validation/eckerle4-two-tail-verification.json` | 第二个独立真实数据双尾外推包；只支持该双尾协议 |
+| cvc5 + Z3 | 三类定义域与可识别性检查结果一致；精确有理数模型 | `validation/cvc5-crosscheck.json`、`validation/cvc5-*.smt2`、`validation/cvc5-*.log` | 双求解器 SMT-LIB 与日志，降低单求解器依赖 |
+| 主张—证据—反例—实验图谱 | 32 个节点、49 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 与自动科学发现项目的配合
 

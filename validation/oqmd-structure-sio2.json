@@ -1,0 +1,138 @@
+{
+  "id": "4083627",
+  "attributes": {
+    "immutable_id": null,
+    "last_modified": null,
+    "chemical_formula_reduced": "O2Si",
+    "chemical_formula_hill": null,
+    "chemical_formula_anonymous": "A2B",
+    "nelements": 2,
+    "elements": [
+      "O",
+      "Si"
+    ],
+    "nsites": 9,
+    "lattice_vectors": [
+      [
+        4.854809,
+        0.0,
+        0.0
+      ],
+      [
+        -2.427405,
+        4.204389,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        5.372393
+      ]
+    ],
+    "species_at_sites": [
+      "O",
+      "O",
+      "O",
+      "O",
+      "O",
+      "O",
+      "Si",
+      "Si",
+      "Si"
+    ],
+    "dimension_types": [
+      1,
+      1,
+      1
+    ],
+    "nperiodic_dimensions": 3,
+    "elements_ratios": [
+      0.6666666666666666,
+      0.3333333333333333
+    ],
+    "structure_features": [],
+    "chemical_formula_descriptive": "O2Si",
+    "species": [
+      {
+        "name": "O",
+        "chemical_symbols": [
+          "O"
+        ],
+        "concentration": [
+          1.0
+        ]
+      },
+      {
+        "name": "Si",
+        "chemical_symbols": [
+          "Si"
+        ],
+        "concentration": [
+          1.0
+        ]
+      }
+    ],
+    "cartesian_site_positions": [
+      [
+        0.75477,
+        3.67499,
+        0.57451
+      ],
+      [
+        1.29477,
+        1.18387,
+        1.21629
+      ],
+      [
+        -1.13262,
+        3.02055,
+        2.3653
+      ],
+      [
+        3.18216,
+        0.52937,
+        3.00708
+      ],
+      [
+        0.37784,
+        1.71324,
+        4.1561
+      ],
+      [
+        2.80528,
+        2.49115,
+        4.79788
+      ],
+      [
+        1.30739,
+        2.26447,
+        2e-05
+      ],
+      [
+        -0.18738,
+        4.20438,
+        1.79082
+      ],
+      [
+        -1.12001,
+        1.93993,
+        3.58162
+      ]
+    ],
+    "space_group_it_number": 152,
+    "space_group_symmetry_operations_xyz": null,
+    "space_group_symbol_hall": "P 31 2\"",
+    "space_group_symbol_hermann_mauguin": "P 31 21",
+    "space_group_symbol_hermann_mauguin_extended": null,
+    "assemblies": null,
+    "_oqmd_entry_id": 22612,
+    "_oqmd_calculation_id": 55146,
+    "_oqmd_icsd_id": 200721,
+    "_oqmd_band_gap": 6.054,
+    "_oqmd_delta_e": -3.0654,
+    "_oqmd_volume": 109.659,
+    "_oqmd_stability": 0.008,
+    "_oqmd_prototype": "Quartz,low",
+    "_oqmd_spacegroup": "P3121"
+  }
+}

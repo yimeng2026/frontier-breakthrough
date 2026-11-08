@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yimeng2026/frontier-breakthrough/blob/main/contracts/frontier-knowledge-graph.schema.json",
+  "title": "Frontier Claim Evidence Graph",
+  "type": "object",
+  "required": ["schemaVersion", "asOf", "project", "nodes", "edges"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "asOf": {"type": "string", "format": "date"},
+    "project": {"const": "frontier-breakthrough"},
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "title", "status", "sourceFiles"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "kind": {"enum": ["project", "claim", "evidence", "counterexample", "experiment", "limitation"]},
+          "title": {"type": "string", "minLength": 1},
+          "status": {"enum": ["active", "supported", "limited_support", "falsified", "unresolved"]},
+          "sourceFiles": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "edges": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["from", "to", "relation"],
+        "properties": {
+          "from": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "to": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "relation": {"enum": ["contains", "supports", "contradicts", "tests", "limits", "recommends"]}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

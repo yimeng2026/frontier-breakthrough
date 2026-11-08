@@ -1,0 +1,7 @@
+{
+  "retrieved_at_local": "2026-11-08T20:47:31.059376+08:00",
+  "pubchem_api": "pubchem_get_properties by=cids value=2244",
+  "chembl_api": "chembl_get resource=molecule chembl_id=CHEMBL25",
+  "pubchem_sha256": "c7441858bb9bd2338d96a536e8c9af9285ccf7abb49efc14e54596a53c5368e5",
+  "chembl_sha256": "5f75bda96b839f6eb5e3a3febd8c686ddffdbcbdd90e87c2a7cf28eb677a1e52"
+}

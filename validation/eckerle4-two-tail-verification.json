@@ -1,0 +1,17 @@
+{
+  "verification": "passed",
+  "prediction_count": 35,
+  "maximum_prediction_absolute_error": 0.0,
+  "maximum_metric_absolute_error": 0,
+  "metric_error_tolerance": 1e-12,
+  "decision_gate_recomputed": true,
+  "protocol_sha256": "a0e323a4bf6ac4150a685dbee88f146fdb57ea1e7022f7d78025b0caa808b624",
+  "summary_sha256": "910d53a390d9a1914a5f0d9b2cd033f8f82454d5dbff7a0cc88fd134661756c6",
+  "verification_runner_sha256": "05b0b65504e45f8c37347d5dc323eb5014a8802bbae36a807c51f8f773a79201",
+  "boundaries": [
+    "One two-tail split on one independent NIST dataset; not random cross-validation or a universal Gaussian-family test",
+    "No independent transmittance measurements, measurement-covariance estimate or new physical mechanism was produced",
+    "NIST certified values are used only for known-answer reproduction, never as holdout evidence",
+    "All eight tail observations were excluded from fitting, start selection, model selection and threshold retuning"
+  ]
+}

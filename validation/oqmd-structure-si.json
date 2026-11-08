@@ -1,0 +1,85 @@
+{
+  "id": "4062615",
+  "attributes": {
+    "immutable_id": null,
+    "last_modified": null,
+    "chemical_formula_reduced": "Si",
+    "chemical_formula_hill": null,
+    "chemical_formula_anonymous": "A",
+    "nelements": 1,
+    "elements": [
+      "Si"
+    ],
+    "nsites": 2,
+    "lattice_vectors": [
+      [
+        2.732954,
+        -2.732954,
+        0.0
+      ],
+      [
+        -2.732954,
+        0.0,
+        -2.732954
+      ],
+      [
+        2.732954,
+        2.732954,
+        0.0
+      ]
+    ],
+    "species_at_sites": [
+      "Si",
+      "Si"
+    ],
+    "dimension_types": [
+      1,
+      1,
+      1
+    ],
+    "nperiodic_dimensions": 3,
+    "elements_ratios": [
+      1.0
+    ],
+    "structure_features": [],
+    "chemical_formula_descriptive": "Si",
+    "species": [
+      {
+        "name": "Si",
+        "chemical_symbols": [
+          "Si"
+        ],
+        "concentration": [
+          1.0
+        ]
+      }
+    ],
+    "cartesian_site_positions": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.36648,
+        -1.36648,
+        -1.36648
+      ]
+    ],
+    "space_group_it_number": 227,
+    "space_group_symmetry_operations_xyz": null,
+    "space_group_symbol_hall": "F 4d 2 3 -1d",
+    "space_group_symbol_hermann_mauguin": "F d -3 m",
+    "space_group_symbol_hermann_mauguin_extended": null,
+    "assemblies": null,
+    "_oqmd_entry_id": 5714,
+    "_oqmd_calculation_id": 5858,
+    "_oqmd_icsd_id": 29287,
+    "_oqmd_band_gap": 0.773000000000001,
+    "_oqmd_delta_e": 0.0,
+    "_oqmd_volume": 40.8251,
+    "_oqmd_stability": 0.0,
+    "_oqmd_prototype": "C(cF8)",
+    "_oqmd_spacegroup": "Fd-3m"
+  }
+}

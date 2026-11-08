@@ -1,0 +1,7 @@
+sat
+(
+(define-fun b1 () Real 1.0)
+(define-fun b2 () Real 1.0)
+(define-fun b3 () Real (- 1.0))
+(define-fun x () Real 1.0)
+)

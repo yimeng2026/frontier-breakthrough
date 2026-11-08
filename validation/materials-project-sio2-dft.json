@@ -1,0 +1,20 @@
+{
+  "band_gap": 5.678,
+  "is_metal": false,
+  "energy_above_hull": 0.0,
+  "is_stable": true,
+  "nsites": 9,
+  "formula_pretty": "SiO2",
+  "density": 2.634242418262655,
+  "symmetry": {
+    "crystal_system": "Trigonal",
+    "symbol": "P3_121",
+    "hall": "P 31 2\"",
+    "number": 152,
+    "point_group": "32",
+    "symprec": 0.1,
+    "angle_tolerance": 5.0,
+    "version": "2.7.0"
+  },
+  "material_id": "mp-aaaaakjg"
+}

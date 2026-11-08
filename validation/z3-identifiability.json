@@ -1,0 +1,47 @@
+{
+  "status": "verified",
+  "engine": "Z3",
+  "version": "5.3.3.0",
+  "python": "D:/research-engines/z3-env/Scripts/python.exe",
+  "checks": [
+    {
+      "id": "positive_denominator_by_contradiction",
+      "claim": "If b2>0, b3>=0 and x>=0, then b2+b3*x>0",
+      "result": "unsat",
+      "interpretation": "The negated implication is unsatisfiable within this explicit domain"
+    },
+    {
+      "id": "nonpositive_denominator_counterexample",
+      "claim": "The model remains defined without denominator constraints",
+      "result": "sat",
+      "model": {
+        "b1": "1",
+        "b2": "1",
+        "b3": "-1",
+        "x": "1"
+      },
+      "interpretation": "A zero denominator is reachable without sign restrictions; the claim is falsified"
+    },
+    {
+      "id": "x_zero_parameter_nonidentifiability",
+      "claim": "An x=0 response alone uniquely identifies all three parameters",
+      "result": "sat",
+      "model": {
+        "b1": "1/10",
+        "b2": "1",
+        "b3": "1/50",
+        "a1": "1/5",
+        "a2": "1",
+        "a3": "3/100",
+        "y": "1"
+      },
+      "interpretation": "Two distinct parameter triples produce the same x=0 response; identifiability depends on experimental design"
+    }
+  ],
+  "universal_identifiability_claimed": false,
+  "limitations": [
+    "These are finite-domain satisfiability checks and explicit counterexamples, not a general proof of the Chwirut model or of all nonlinear systems",
+    "The x=0 calculation is algebraically simplified before using Z3; no nonlinear exponential solver is claimed",
+    "Counterexamples falsify the stated universal claims only; they do not invalidate the NIST dataset or the fitted model within its valid domain"
+  ]
+}

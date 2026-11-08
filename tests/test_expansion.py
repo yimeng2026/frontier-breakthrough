@@ -112,8 +112,8 @@ class ExpansionTests(unittest.TestCase):
 
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
-        self.assertEqual(len(packet["items"]), 6)
-        self.assertEqual(len({i["id"] for i in packet["items"]}), 6)
+        self.assertEqual(len(packet["items"]), 12)
+        self.assertEqual(len({i["id"] for i in packet["items"]}), 12)
         for item in packet["items"]:
             self.assertEqual(item["status"], "verified")
             self.assertTrue(item["limitations"])
@@ -124,7 +124,7 @@ class ExpansionTests(unittest.TestCase):
     def test_new_agent_projects_have_primary_sources(self):
         projects = self.read("data/projects.json")["projects"]
         by_id = {p["id"]: p for p in projects}
-        for pid in ("google-co-scientist", "futurehouse-robin", "kosmos", "materials-project", "rcsb-pdb", "uniprot", "chembl"):
+        for pid in ("google-co-scientist", "futurehouse-robin", "kosmos", "materials-project", "rcsb-pdb", "uniprot", "chembl", "oqmd", "nist-strd-chwirut", "nist-strd-eckerle", "cvc5"):
             self.assertIn(pid, by_id)
             self.assertTrue(by_id[pid]["source"].startswith("https://"))
 

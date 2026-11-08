@@ -1,0 +1,171 @@
+{
+  "status": "verified",
+  "structure_identity_confirmed": true,
+  "differences_not_called_fraud": true,
+  "global_dft_benchmark_claimed": false,
+  "independent_experiment": false,
+  "id_spaces_separate": true,
+  "materials": [
+    {
+      "key": "si",
+      "formula": "Si",
+      "mp": {
+        "band_gap": 0.6102999999999996,
+        "is_metal": false,
+        "energy_above_hull": 0.0,
+        "is_stable": true,
+        "nsites": 2,
+        "formula_pretty": "Si",
+        "density": 2.3128002565764314,
+        "symmetry": {
+          "crystal_system": "Cubic",
+          "symbol": "Fd-3m",
+          "hall": "F 4d 2 3 -1d",
+          "number": 227,
+          "point_group": "m-3m",
+          "symprec": 0.1,
+          "angle_tolerance": 5.0,
+          "version": "2.7.0"
+        },
+        "material_id": "mp-aaaaaaft"
+      },
+      "oqmd": {
+        "name": "Si",
+        "entry_id": 5714,
+        "composition": "Si1",
+        "spacegroup": "Fd-3m",
+        "band_gap": 0.773000000000001,
+        "delta_e": 0.0,
+        "stability": 0.0
+      },
+      "oqmd_structure_id": "4062615",
+      "local": {
+        "density_g_cm3": 2.284726885914168,
+        "space_group_symbol": "Fd-3m",
+        "space_group_number": 227,
+        "nsites": 2,
+        "volume_A3": 40.82507218493397,
+        "method": "PyMatGen Structure.density and SpacegroupAnalyzer(symprec=0.1) on OQMD OPTIMADE lattice/sites"
+      },
+      "band_gap_mp_eV": 0.6102999999999996,
+      "band_gap_oqmd_eV": 0.773000000000001,
+      "band_gap_difference_oqmd_minus_mp": 0.1627000000000014,
+      "density_mp_g_cm3": 2.3128002565764314,
+      "density_relative_difference_abs": 0.012138259922116978,
+      "stability_mp_energy_above_hull": 0.0,
+      "stability_oqmd": 0.0,
+      "structure_identity_match": true
+    },
+    {
+      "key": "gaas",
+      "formula": "GaAs",
+      "mp": {
+        "band_gap": 0.1839000000000004,
+        "is_metal": false,
+        "energy_above_hull": 0.0,
+        "is_stable": true,
+        "nsites": 2,
+        "formula_pretty": "GaAs",
+        "density": 5.053200369484521,
+        "symmetry": {
+          "crystal_system": "Cubic",
+          "symbol": "F-43m",
+          "hall": "F -4 2 3",
+          "number": 216,
+          "point_group": "-43m",
+          "symprec": 0.1,
+          "angle_tolerance": 5.0,
+          "version": "2.7.0"
+        },
+        "material_id": "mp-aaaaadtm"
+      },
+      "oqmd": {
+        "name": "AsGa",
+        "entry_id": 7551,
+        "composition": "AsGa",
+        "spacegroup": "F -4 3 m",
+        "band_gap": 0.574,
+        "delta_e": -0.3529,
+        "stability": 0.0,
+        "record_origin": "OQMD OPTIMADE structure attributes, not a repeated native-list query"
+      },
+      "oqmd_structure_id": "4063731",
+      "local": {
+        "density_g_cm3": 5.087421481211788,
+        "space_group_symbol": "F-43m",
+        "space_group_number": 216,
+        "nsites": 2,
+        "volume_A3": 47.2121309970753,
+        "method": "PyMatGen Structure.density and SpacegroupAnalyzer(symprec=0.1) on OQMD OPTIMADE lattice/sites"
+      },
+      "band_gap_mp_eV": 0.1839000000000004,
+      "band_gap_oqmd_eV": 0.574,
+      "band_gap_difference_oqmd_minus_mp": 0.39009999999999956,
+      "density_mp_g_cm3": 5.053200369484521,
+      "density_relative_difference_abs": 0.006772165998784244,
+      "stability_mp_energy_above_hull": 0.0,
+      "stability_oqmd": 0.0,
+      "structure_identity_match": true
+    },
+    {
+      "key": "sio2",
+      "formula": "SiO2",
+      "mp": {
+        "band_gap": 5.678,
+        "is_metal": false,
+        "energy_above_hull": 0.0,
+        "is_stable": true,
+        "nsites": 9,
+        "formula_pretty": "SiO2",
+        "density": 2.634242418262655,
+        "symmetry": {
+          "crystal_system": "Trigonal",
+          "symbol": "P3_121",
+          "hall": "P 31 2\"",
+          "number": 152,
+          "point_group": "32",
+          "symprec": 0.1,
+          "angle_tolerance": 5.0,
+          "version": "2.7.0"
+        },
+        "material_id": "mp-aaaaakjg"
+      },
+      "oqmd": {
+        "name": "O2Si",
+        "entry_id": 22612,
+        "composition": "O2Si",
+        "spacegroup": "P 31 21",
+        "band_gap": 6.054,
+        "delta_e": -3.0654,
+        "stability": 0.008,
+        "record_origin": "OQMD OPTIMADE structure attributes, not a repeated native-list query"
+      },
+      "oqmd_structure_id": "4083627",
+      "local": {
+        "density_g_cm3": 2.7295342272979513,
+        "space_group_symbol": "P3_121",
+        "space_group_number": 152,
+        "nsites": 9,
+        "volume_A3": 109.65862957228155,
+        "method": "PyMatGen Structure.density and SpacegroupAnalyzer(symprec=0.1) on OQMD OPTIMADE lattice/sites"
+      },
+      "band_gap_mp_eV": 5.678,
+      "band_gap_oqmd_eV": 6.054,
+      "band_gap_difference_oqmd_minus_mp": 0.37600000000000033,
+      "density_mp_g_cm3": 2.634242418262655,
+      "density_relative_difference_abs": 0.036174274764789224,
+      "stability_mp_energy_above_hull": 0.0,
+      "stability_oqmd": 0.008,
+      "structure_identity_match": true
+    }
+  ],
+  "protocol_sha256": "7b533af1702f390d8a559214019fbb0285b8dcccf17f85c8dfa170d5a6e906d1",
+  "protocol_amendment_sha256": "042cc207931e6ee7df8d0e9091d4e36d7a54f2074c6d50d5a1ba9c27e1c19a3d",
+  "analysis_runner_sha256": "22de2edc9d74fbd8ad9aa2cb3b325eda324961abd4c1736190b3fd1ce6ebfc26",
+  "limitations": [
+    "Three paired structures are a methods demonstration, not a global DFT accuracy benchmark or new material discovery",
+    "Band gaps and stability fields come from different DFT workflows and convex-hull references; they are not forced equal",
+    "Local density is recomputed from OQMD structures; MP density may correspond to another structure snapshot or setting",
+    "No independent experiment, experimental band gap or universal ranking of DFT implementations is claimed"
+  ]
+}

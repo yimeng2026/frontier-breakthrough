@@ -18,9 +18,18 @@
 - [定期消化机制](docs/RESEARCH_AUTOMATION.md)：检索—筛选—复现—回馈的闭环。
 - [机器可读目录](data/projects.json)：每项均有官方来源、证据级别、协作角色和本地状态。
 - [上游接口与证据契约](docs/UPSTREAM_INTERFACES.md)：真实跨库验证、统一 JSON 接口及组件边界。
-- [跨域证据包](exports/frontier-evidence.json)：六项已执行检查的结构化结果与限制。
+- [跨域证据包](exports/frontier-evidence.json)：十二项已执行检查的结构化结果与限制。
+- [五条主线扩展工作包](docs/EXPANSION_2026-11-08.md)：真实留出、形式化反例、化学跨库、材料跨库和知识图谱的首轮成果。
+- [第二轮续展报告](docs/CONTINUATION_2026-11-08.md)：Eckerle4 双尾外推与 cvc5 交叉求解器复核。
+- [续展原生 Word 图文版](papers/前沿共生续展_双尾外推与求解器复核_图文完整版.docx)：一幅实图、四个 Word 表格、七个原生 OMML 公式，含目录、页眉和页码。
+- [扩展工作包原生 Word 图文版](papers/前沿共生扩展工作包_图文完整版.docx)：两幅实图、三个 Word 表格、五个原生 OMML 公式，含目录、页眉和页码。
+- [主张—证据—反例—实验图谱](exports/frontier-knowledge-graph.json)：32 个节点、49 条边，支持与反例均可追溯到实际文件。
 - [研究简报合订本（Word）](papers/前沿共生研究简报_合订本.docx)：三篇长文、十三幅图，附真实证据与复现路径。
 - [研究简报合订本（Markdown）](papers/前沿共生研究简报_合订本.md)：便于审阅和继续修订的文本版本。
+
+## 文档交付约定
+
+研究总报告除 Markdown／JSON／脚本外，均额外提供原生 Word 图文版。图片按章节与顺序嵌入，表格保留为 Word 表格，公式使用原生 OMML，包含目录、页眉和页码；每份文档通过 OOXML／OPC 验证，视觉预览不可用时明确披露。
 
 ## 证据原则
 

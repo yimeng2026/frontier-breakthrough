@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-10-31",
+  "asOf": "2026-11-08",
   "project": "frontier-breakthrough",
   "scope": "跨项目本地复核与数据库对照；verified 仅指所述检查，不是新发现、独立实验或外部认证。",
   "items": [
@@ -205,6 +205,262 @@
         "validation/pdb-3hs4-ca2.json",
         "validation/uniprot-ca2.json",
         "validation/pubchem-acetazolamide.json"
+      ]
+    },
+    {
+      "id": "chwirut-high-distance-holdout",
+      "domain": "physics",
+      "title": "Chwirut 高距离真实数据留出",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/chwirut2.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Chwirut2.dat"
+      ],
+      "metrics": {
+        "trainCount": 47,
+        "holdoutCount": 7,
+        "trainRmse": 3.224726398795499,
+        "holdoutRmse": 2.019567320367325,
+        "linearHoldoutRmse": 38.974763576395276,
+        "meanHoldoutRmse": 29.009060012652835,
+        "limitedSupport": true,
+        "nistReproduction": true
+      },
+      "scientificClaim": "三参数模型在预注册高距离切片获得有限支持；NIST 全数据认证复现与留出预测证据严格分开。",
+      "limitations": "One contiguous high-distance split on one NIST dataset; not random cross-validation or a universal model-family test No independent ultrasonic measurements, measurement-covariance estimate or new physical mechanism was produced NIST certified values are used only for known-answer reproduction, never as holdout evidence The seven holdout observations were not used for fitting, start selection, model selection or threshold retuning",
+      "upstreamContribution": "提供原始数据哈希、冻结留出协议、双起点拟合、两项基线和54点独立复算。",
+      "snapshotFiles": [
+        "validation/chwirut-holdout-protocol.json",
+        "validation/chwirut-holdout.json",
+        "validation/chwirut-holdout-verification.json"
+      ]
+    },
+    {
+      "id": "z3-identifiability-counterexamples",
+      "domain": "math",
+      "title": "Z3 定义域与参数可识别性反例",
+      "status": "verified",
+      "evidenceClass": "known_answer_reproduction",
+      "sources": [
+        "https://github.com/Z3Prover/z3"
+      ],
+      "metrics": {
+        "version": "5.3.3.0",
+        "checks": [
+          {
+            "id": "positive_denominator_by_contradiction",
+            "claim": "If b2>0, b3>=0 and x>=0, then b2+b3*x>0",
+            "result": "unsat",
+            "interpretation": "The negated implication is unsatisfiable within this explicit domain"
+          },
+          {
+            "id": "nonpositive_denominator_counterexample",
+            "claim": "The model remains defined without denominator constraints",
+            "result": "sat",
+            "model": {
+              "b1": "1",
+              "b2": "1",
+              "b3": "-1",
+              "x": "1"
+            },
+            "interpretation": "A zero denominator is reachable without sign restrictions; the claim is falsified"
+          },
+          {
+            "id": "x_zero_parameter_nonidentifiability",
+            "claim": "An x=0 response alone uniquely identifies all three parameters",
+            "result": "sat",
+            "model": {
+              "b1": "1/10",
+              "b2": "1",
+              "b3": "1/50",
+              "a1": "1/5",
+              "a2": "1",
+              "a3": "3/100",
+              "y": "1"
+            },
+            "interpretation": "Two distinct parameter triples produce the same x=0 response; identifiability depends on experimental design"
+          }
+        ]
+      },
+      "scientificClaim": "显式正性域内分母恒正；无分母约束存在反例，x=0 单点不能唯一识别全部参数。",
+      "limitations": "These are finite-domain satisfiability checks and explicit counterexamples, not a general proof of the Chwirut model or of all nonlinear systems The x=0 calculation is algebraically simplified before using Z3; no nonlinear exponential solver is claimed Counterexamples falsify the stated universal claims only; they do not invalidate the NIST dataset or the fitted model within its valid domain",
+      "upstreamContribution": "提供可重放的有限域证明义务、显式反例和实验设计可识别性边界。",
+      "snapshotFiles": [
+        "validation/z3-identifiability.json"
+      ]
+    },
+    {
+      "id": "aspirin-pubchem-chembl-rdkit",
+      "domain": "chemistry",
+      "title": "阿司匹林跨库身份与描述符口径审计",
+      "status": "verified",
+      "evidenceClass": "cross_database_check",
+      "sources": [
+        "https://pubchem.ncbi.nlm.nih.gov/rest/pug",
+        "https://www.ebi.ac.uk/chembl/api/data",
+        "https://github.com/rdkit/rdkit"
+      ],
+      "metrics": {
+        "pubchemCid": 2244,
+        "chemblId": "CHEMBL25",
+        "canonicalStructureIdentical": true,
+        "inchikeyIdentical": true,
+        "formula": "C9H8O4",
+        "exactMass": 180.042258736,
+        "tpsa": 63.60000000000001,
+        "rdkitMolLogP": 1.3101,
+        "pubchemXLogP": 1.2,
+        "chemblALogP": "1.31",
+        "rdkitHba": 3,
+        "chemblHba": 3,
+        "pubchemRotatable": 3,
+        "chemblRotatable": 2
+      },
+      "scientificClaim": "阿司匹林在 PubChem、ChEMBL 与 RDKit 间结构身份一致；LogP、氢键和可旋转键定义差异不构成造假证据。",
+      "limitations": "This is a public-record identity and algorithm audit, not a wet-lab experiment, bioactivity meta-analysis or clinical conclusion Identical identity and selected descriptors do not imply every database field uses the same algorithm No activity value is merged or inferred from the structural match Descriptor differences are not labeled as data fabrication; provenance, units and conventions must be examined first",
+      "upstreamContribution": "提供 CID/CHEMBL/InChIKey 对照、结构归一、精确质量和多口径描述符审计。",
+      "snapshotFiles": [
+        "validation/pubchem-aspirin.json",
+        "validation/chembl-aspirin.json",
+        "validation/aspirin-crosscheck.json"
+      ]
+    },
+    {
+      "id": "mp-oqmd-structure-crosscheck",
+      "domain": "physics",
+      "title": "MP／OQMD／PyMatGen 三组材料结构复核",
+      "status": "verified",
+      "evidenceClass": "cross_database_check",
+      "sources": [
+        "https://api.materialsproject.org",
+        "https://oqmd.org/",
+        "https://github.com/materialsproject/pymatgen"
+      ],
+      "metrics": {
+        "structureIdentityConfirmed": true,
+        "items": [
+          {
+            "formula": "Si",
+            "mpId": "mp-aaaaaaft",
+            "oqmdEntryId": 5714,
+            "optimadeId": "4062615",
+            "bandGapMpEv": 0.6102999999999996,
+            "bandGapOqmdEv": 0.773000000000001,
+            "densityLocal": 2.284726885914168,
+            "densityMp": 2.3128002565764314,
+            "spaceGroupLocal": "Fd-3m"
+          },
+          {
+            "formula": "GaAs",
+            "mpId": "mp-aaaaadtm",
+            "oqmdEntryId": 7551,
+            "optimadeId": "4063731",
+            "bandGapMpEv": 0.1839000000000004,
+            "bandGapOqmdEv": 0.574,
+            "densityLocal": 5.087421481211788,
+            "densityMp": 5.053200369484521,
+            "spaceGroupLocal": "F-43m"
+          },
+          {
+            "formula": "SiO2",
+            "mpId": "mp-aaaaakjg",
+            "oqmdEntryId": 22612,
+            "optimadeId": "4083627",
+            "bandGapMpEv": 5.678,
+            "bandGapOqmdEv": 6.054,
+            "densityLocal": 2.7295342272979513,
+            "densityMp": 2.634242418262655,
+            "spaceGroupLocal": "P3_121"
+          }
+        ]
+      },
+      "scientificClaim": "Si、GaAs、SiO2 的跨库结构身份分别成立，但 DFT 带隙、密度和稳定性不因此被强制相等。",
+      "limitations": "Three paired structures are a methods demonstration, not a global DFT accuracy benchmark or new material discovery Band gaps and stability fields come from different DFT workflows and convex-hull references; they are not forced equal Local density is recomputed from OQMD structures; MP density may correspond to another structure snapshot or setting No independent experiment, experimental band gap or universal ranking of DFT implementations is claimed",
+      "upstreamContribution": "提供原生 entry_id 与 OPTIMADE ID 的显式映射、完整结构快照和独立密度/空间群重算。",
+      "snapshotFiles": [
+        "validation/material-crosscheck-protocol.json",
+        "validation/material-crosscheck-protocol-amendment-01.json",
+        "validation/material-crosscheck.json",
+        "validation/materials-project-si-dft.json",
+        "validation/materials-project-gaas-dft.json",
+        "validation/materials-project-sio2-dft.json",
+        "validation/oqmd-structure-si.json",
+        "validation/oqmd-structure-gaas.json",
+        "validation/oqmd-structure-sio2.json"
+      ]
+    },
+    {
+      "id": "eckerle4-two-tail-extrapolation",
+      "domain": "physics",
+      "title": "Eckerle4 双尾真实数据外推",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/eckerle4.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Eckerle4.dat"
+      ],
+      "metrics": {
+        "middleCount": 27,
+        "lowCount": 3,
+        "highCount": 5,
+        "middleRmse": 0.0073614912171342944,
+        "lowRmse": 0.00019052319193910925,
+        "highRmse": 0.0002481620839167666,
+        "holdoutRmse": 0.00022825954510971756,
+        "linearHoldoutRmse": 0.13674475429555713,
+        "meanHoldoutRmse": 0.09801386531052368,
+        "limitedSupport": true,
+        "nistReproduction": true
+      },
+      "scientificClaim": "三参数高斯在独立 Eckerle4 的预注册双尾任务获得有限支持；全数据认证复现与双尾外推严格分开。",
+      "limitations": "One two-tail split on one independent NIST dataset; not random cross-validation or a universal Gaussian-family test No independent transmittance measurements, measurement-covariance estimate or new physical mechanism was produced NIST certified values are used only for known-answer reproduction, never as holdout evidence All eight tail observations were excluded from fitting, start selection, model selection and threshold retuning",
+      "upstreamContribution": "提供第二独立数据集、双尾协议、中央拟合、两项基线和35点独立复算。",
+      "snapshotFiles": [
+        "validation/eckerle4-two-tail-protocol.json",
+        "validation/eckerle4-two-tail.json",
+        "validation/eckerle4-two-tail-verification.json"
+      ]
+    },
+    {
+      "id": "cvc5-z3-cross-solver",
+      "domain": "math",
+      "title": "cvc5／Z3 交叉求解器复核",
+      "status": "verified",
+      "evidenceClass": "known_answer_reproduction",
+      "sources": [
+        "https://github.com/cvc5/cvc5/releases/tag/cvc5-1.4.2",
+        "https://github.com/Z3Prover/z3"
+      ],
+      "metrics": {
+        "version": "cvc5 1.4.2 [git 282d5e0 on branch HEAD]",
+        "allResultsMatchZ3": true,
+        "checks": [
+          {
+            "id": "positive_denominator_by_contradiction",
+            "cvc5": "unsat",
+            "z3": "unsat"
+          },
+          {
+            "id": "nonpositive_denominator_counterexample",
+            "cvc5": "sat",
+            "z3": "sat"
+          },
+          {
+            "id": "x_zero_parameter_nonidentifiability",
+            "cvc5": "sat",
+            "z3": "sat"
+          }
+        ]
+      },
+      "scientificClaim": "cvc5 与 Z3 对分母正性、零分母反例和 x=0 参数非识别性给出相同结果，并生成精确有理数反例模型。",
+      "limitations": "Three finite SMT-LIB checks are cross-solver reproductions, not general nonlinear theorem proving The x=0 response is algebraically simplified before using either solver; no nonlinear exponential solver is claimed Agreement between two solvers increases implementation confidence only within the explicit formulas and domains",
+      "upstreamContribution": "提供双求解器 SMT-LIB、原始日志、官方二进制哈希和精确模型，降低单求解器依赖。",
+      "snapshotFiles": [
+        "validation/cvc5-crosscheck.json",
+        "validation/cvc5-positive-denominator.smt2",
+        "validation/cvc5-zero-denominator.smt2",
+        "validation/cvc5-xzero-identifiability.smt2"
       ]
     }
   ]

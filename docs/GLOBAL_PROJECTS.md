@@ -1,6 +1,6 @@
 # 全球前沿项目、模型与战略设施目录
 
-更新日期：2026-10-31　条目数：88
+更新日期：2026-11-08　条目数：91
 
 > 本目录是有来源、可持续维护的初始集合，不声称一次性穷尽全球所有项目。条目进入目录不代表其主张已被独立复现，也不代表我们已与相关机构建立合作。
 
@@ -19,13 +19,13 @@
 | AI for Math | 13 |
 | 通用 AI for Science 与科研代理 | 8 |
 | AI for Biology | 19 |
-| AI for Physics 与材料 | 26 |
-| 公共科研基础设施 | 12 |
+| AI for Physics 与材料 | 28 |
+| 公共科研基础设施 | 13 |
 
 | 采用策略 | 数量 |
 |---|---:|
-| P0_local | 5 |
-| P1_adapt | 34 |
+| P0_local | 7 |
+| P1_adapt | 35 |
 | P2_watch | 29 |
 | P3_external | 20 |
 
@@ -183,6 +183,8 @@
 | Quantum ESPRESSO | tool | official_artifact | P3_external / deferred | 与 CP2K 做公开小体系交叉验证；使用上游构建和容器。 | [官方或注明来源](https://github.com/QEF/q-e) |
 | PySCF | tool | official_artifact | P1_adapt / pending | 量子化学小体系基准，与化学信息和数据库结果严格区分。 | [官方或注明来源](https://github.com/pyscf/pyscf) |
 | OpenMM | tool | official_artifact | P1_adapt / pending | 小分子/蛋白公开体系的能量与稳定性检查，连接 PDB 数据。 | [官方或注明来源](https://github.com/openmm/openmm) |
+| NIST StRD Chwirut 超声标定数据 | dataset | official_artifact | P0_local / verified | 冻结原始数据，执行预注册高距离留出、NIST 认证复现和逐点独立指标重算。 | [官方或注明来源](https://www.itl.nist.gov/div898/strd/nls/data/chwirut2.shtml) |
+| NIST StRD Eckerle 圆形干涉透射率数据 | dataset | official_artifact | P0_local / verified | 冻结独立数据，执行双尾外推、NIST 认证复现和35点独立指标重算。 | [官方或注明来源](https://www.itl.nist.gov/div898/strd/nls/data/eckerle4.shtml) |
 
 - **GNoME Materials Discovery**：计算候选不等于已合成材料。
 - **GraphCast**：气候/天气预测须注意资料泄漏与时空外推。
@@ -210,6 +212,8 @@
 - **Quantum ESPRESSO**：GitHub 为镜像，贡献应遵循上游 GitLab 流程。
 - **PySCF**：方法和基组必须随结果记录。
 - **OpenMM**：力场、溶剂和边界条件决定可解释范围。
+- **NIST StRD Chwirut 超声标定数据**：47 个训练观测与 7 个高距离留出观测；有限支持只适用于该切片，不宣称普适规律。
+- **NIST StRD Eckerle 圆形干涉透射率数据**：27 个中央训练观测、低尾 3 点和高尾 5 点；有限支持只适用于该双尾协议，不宣称普适高斯规律。
 
 ## 公共科研基础设施
 
@@ -222,11 +226,12 @@
 | RDKit | tool | official_artifact | P0_local / verified | 本地计算与 PubChem 等独立来源核对，保留算法差异和单位。 | [官方或注明来源](https://github.com/rdkit/rdkit) |
 | SymPy | tool | official_artifact | P0_local / pending | 符号推导、量纲和小恒等式复核，为形式化前处理。 | [官方或注明来源](https://github.com/sympy/sympy) |
 | Z3 | tool | official_artifact | P0_local / verified | 约束反例与小命题可重放验证，为证明义务提供反例。 | [官方或注明来源](https://github.com/Z3Prover/z3) |
-| cvc5 | tool | official_artifact | P1_adapt / pending | 与 Z3 交叉检查关键约束结果，降低单求解器依赖。 | [官方或注明来源](https://github.com/cvc5/cvc5) |
+| cvc5 | tool | official_artifact | P1_adapt / verified | 与 Z3 交叉检查关键约束结果，降低单求解器依赖。 | [官方或注明来源](https://github.com/cvc5/cvc5) |
 | OR-Tools | tool | official_artifact | P1_adapt / pending | 实验调度、组合搜索和约束优化，为科研流程提供基线。 | [官方或注明来源](https://github.com/google/or-tools) |
 | Biopython | tool | official_artifact | P0_local / pending | 公开序列与结构数据解析，连接 UniProt/PDB 的出处。 | [官方或注明来源](https://github.com/biopython/biopython) |
 | Scanpy | tool | official_artifact | P1_adapt / pending | 单细胞数据预处理和基线，服务 scGPT/scFoundation 的公平评价。 | [官方或注明来源](https://github.com/scverse/scanpy) |
 | Miniforge | tool | official_artifact | P1_adapt / deferred | 为重依赖科学软件提供隔离环境；安装目标和缓存统一放 D 盘。 | [官方或注明来源](https://github.com/conda-forge/miniforge) |
+| Open Quantum Materials Database（OQMD） | dataset | official_artifact | P1_adapt / verified | 与 Materials Project 和 PyMatGen 对照结构、密度、带隙与稳定性，严格区分原生 entry_id 和 OPTIMADE 结构 ID。 | [官方或注明来源](https://oqmd.org/) |
 
 - **ChEMBL**：已核对 CHEMBL20、CHEMBL205 和 activity 47560；单个 Ki 与重复标记均保留边界。
 - **PubChem**：已核对 CID 1986；数据库计算属性不是湿实验数据。
@@ -235,11 +240,12 @@
 - **RDKit**：属性算法不同不自动意味着数据造假。
 - **SymPy**：符号等价检查不替代完整数学证明。
 - **Z3**：SMT 可判定片段与 Lean 定理证明范围不同。
-- **cvc5**：不在未测试的理论片段承诺同等性能。
+- **cvc5**：官方 cvc5 1.4.2 静态二进制已在项目隔离目录运行；三项结果与 Z3 一致，精确有理数模型已保存。
 - **OR-Tools**：优化可行解不自动具有科学意义。
 - **Biopython**：解析正确不等于生物学解释正确。
 - **Scanpy**：批次校正和聚类需保留原始数据与参数。
 - **Miniforge**：本机尚未发现 Conda，先用 Python venv 完成轻量验证。
+- **Open Quantum Materials Database（OQMD）**：Si、GaAs、SiO2 三组配对完成；DFT 差异不被解释为数据造假或全球基准。
 
 ## 待补证据与持续扩展
 

@@ -1,0 +1,40 @@
+{
+  "retrieved_at_local": "2026-11-08T21:34:54.450921+08:00",
+  "pairs": {
+    "si": {
+      "formula": "Si",
+      "mp_id": "mp-aaaaaaft",
+      "oqmd_entry_id": 5714,
+      "structure_id": "4062615"
+    },
+    "gaas": {
+      "formula": "GaAs",
+      "mp_id": "mp-aaaaadtm",
+      "oqmd_entry_id": 7551,
+      "structure_id": "4063731"
+    },
+    "sio2": {
+      "formula": "SiO2",
+      "mp_id": "mp-aaaaakjg",
+      "oqmd_entry_id": 22612,
+      "structure_id": "4083627"
+    }
+  },
+  "files": {
+    "si": {
+      "materials_project_sha256": "bf4931d2b4685d92b8eb009f1b5cefb7279fe1a039eeb9734b400f6abe57ce74",
+      "oqmd_sha256": "3401f15560c7bf486eda82109c6190c30494af32887ed2e7da375a1791607311",
+      "structure_sha256": "e795dce5533ade18c9347258598abfe9d1d9dde2ac31135b9e52d4d10a5b5789"
+    },
+    "gaas": {
+      "materials_project_sha256": "4758eb306ef7942c356cd91d8166b973d2a24317ab6b064302875d5df2470897",
+      "oqmd_sha256": "1ffcfc327d65564388a6bedf87f97b5d8a35e76ed984989612ff88b6e7fa748b",
+      "structure_sha256": "725c0ae8c4e6b21da40079c157551112d1711e619ca7047ca9bb2cad5c423e95"
+    },
+    "sio2": {
+      "materials_project_sha256": "d5b20d8f99f848d56c4fc5187745037bbee20b9658358dd733e529219855bc79",
+      "oqmd_sha256": "a02378c0347387dfde11e2b06b2c90cafa58c7ae87d07ffc8bf450186ea492af",
+      "structure_sha256": "30f245fe5da2d032734b6035412b34d4fd1d6bd845d2b61aa75e39205930d34f"
+    }
+  }
+}

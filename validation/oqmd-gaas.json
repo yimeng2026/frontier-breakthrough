@@ -1,0 +1,10 @@
+{
+  "name": "AsGa",
+  "entry_id": 7551,
+  "composition": "AsGa",
+  "spacegroup": "F -4 3 m",
+  "band_gap": 0.574,
+  "delta_e": -0.3529,
+  "stability": 0.0,
+  "record_origin": "OQMD OPTIMADE structure attributes, not a repeated native-list query"
+}

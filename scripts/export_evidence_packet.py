@@ -25,6 +25,12 @@ def build() -> dict:
     selectivity = read("ca-selectivity.json")
     stability = read("ca-document-stability.json")
     structuralControl = read("structural-control.json")
+    chwirut = read("chwirut-holdout.json")
+    z3identifiability = read("z3-identifiability.json")
+    aspirin = read("aspirin-crosscheck.json")
+    material = read("material-crosscheck.json")
+    eckerle = read("eckerle4-two-tail.json")
+    cvc5 = read("cvc5-crosscheck.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -80,10 +86,64 @@ def build() -> dict:
             "limitations": drug["scope"] + " " + selectivity["scope"] + " " + stability["scope"] + " " + structuralControl["scope"], "upstreamContribution": "提供 InChIKey、靶点全长序列、assay、配体实体、重复标记、方法一致定量对照、跨文档负结果和不同构建结构对照完整保留的药物—靶点—结构审计链。",
             "snapshotFiles": ["validation/drug-target-structure.json", "validation/structural-control.json", "validation/pdb-2h4n.json", "validation/ca-selectivity.json", "validation/chembl-ca-selectivity-panel.json", "validation/ca-document-stability.json", "validation/chembl-ca-document-pairs.json", "validation/ca2-sequence.json", "validation/chembl-acetazolamide.json", "validation/pdb-3hs4.json", "validation/pdb-3hs4-ca2.json", "validation/uniprot-ca2.json", "validation/pubchem-acetazolamide.json"],
         },
+        {
+            "id": "chwirut-high-distance-holdout", "domain": "physics", "title": "Chwirut 高距离真实数据留出",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/chwirut2.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Chwirut2.dat"],
+            "metrics": {"trainCount": chwirut["split"]["train_count"], "holdoutCount": chwirut["split"]["holdout_count"], "trainRmse": chwirut["train_fit"]["metrics"]["train_rmse"], "holdoutRmse": chwirut["train_fit"]["metrics"]["holdout_rmse"], "linearHoldoutRmse": chwirut["baselines"]["linear"]["holdout_rmse"], "meanHoldoutRmse": chwirut["baselines"]["training_mean"]["holdout_rmse"], "limitedSupport": chwirut["decision"]["limited_support"], "nistReproduction": chwirut["full_fit_certification"]["matches_nist_within_frozen_tolerances"]},
+            "scientificClaim": "三参数模型在预注册高距离切片获得有限支持；NIST 全数据认证复现与留出预测证据严格分开。",
+            "limitations": " ".join(chwirut["limitations"]), "upstreamContribution": "提供原始数据哈希、冻结留出协议、双起点拟合、两项基线和54点独立复算。",
+            "snapshotFiles": ["validation/chwirut-holdout-protocol.json", "validation/chwirut-holdout.json", "validation/chwirut-holdout-verification.json"],
+        },
+        {
+            "id": "z3-identifiability-counterexamples", "domain": "math", "title": "Z3 定义域与参数可识别性反例",
+            "status": z3identifiability["status"], "evidenceClass": "known_answer_reproduction",
+            "sources": ["https://github.com/Z3Prover/z3"],
+            "metrics": {"version": z3identifiability["version"], "checks": z3identifiability["checks"]},
+            "scientificClaim": "显式正性域内分母恒正；无分母约束存在反例，x=0 单点不能唯一识别全部参数。",
+            "limitations": " ".join(z3identifiability["limitations"]), "upstreamContribution": "提供可重放的有限域证明义务、显式反例和实验设计可识别性边界。",
+            "snapshotFiles": ["validation/z3-identifiability.json"],
+        },
+        {
+            "id": "aspirin-pubchem-chembl-rdkit", "domain": "chemistry", "title": "阿司匹林跨库身份与描述符口径审计",
+            "status": aspirin["status"], "evidenceClass": "cross_database_check",
+            "sources": ["https://pubchem.ncbi.nlm.nih.gov/rest/pug", "https://www.ebi.ac.uk/chembl/api/data", "https://github.com/rdkit/rdkit"],
+            "metrics": {"pubchemCid": aspirin["pubchem_cid"], "chemblId": aspirin["chembl_id"], "canonicalStructureIdentical": aspirin["canonical_structure_identical"], "inchikeyIdentical": aspirin["inchikey_identical"], "formula": aspirin["rdkit"]["formula"], "exactMass": aspirin["rdkit"]["exact_mass"], "tpsa": aspirin["rdkit"]["tpsa"], "rdkitMolLogP": aspirin["rdkit"]["mol_logp"], "pubchemXLogP": aspirin["pubchem"]["XLogP"], "chemblALogP": aspirin["chembl_properties"]["alogp"], "rdkitHba": aspirin["rdkit"]["hba"], "chemblHba": aspirin["chembl_properties"]["hba"], "pubchemRotatable": aspirin["pubchem"]["RotatableBondCount"], "chemblRotatable": aspirin["chembl_properties"]["rtb"]},
+            "scientificClaim": "阿司匹林在 PubChem、ChEMBL 与 RDKit 间结构身份一致；LogP、氢键和可旋转键定义差异不构成造假证据。",
+            "limitations": " ".join(aspirin["limitations"]), "upstreamContribution": "提供 CID/CHEMBL/InChIKey 对照、结构归一、精确质量和多口径描述符审计。",
+            "snapshotFiles": ["validation/pubchem-aspirin.json", "validation/chembl-aspirin.json", "validation/aspirin-crosscheck.json"],
+        },
+        {
+            "id": "mp-oqmd-structure-crosscheck", "domain": "physics", "title": "MP／OQMD／PyMatGen 三组材料结构复核",
+            "status": material["status"], "evidenceClass": "cross_database_check",
+            "sources": ["https://api.materialsproject.org", "https://oqmd.org/", "https://github.com/materialsproject/pymatgen"],
+            "metrics": {"structureIdentityConfirmed": material["structure_identity_confirmed"], "items": [{"formula": item["formula"], "mpId": item["mp"]["material_id"], "oqmdEntryId": item["oqmd"]["entry_id"], "optimadeId": item["oqmd_structure_id"], "bandGapMpEv": item["band_gap_mp_eV"], "bandGapOqmdEv": item["band_gap_oqmd_eV"], "densityLocal": item["local"]["density_g_cm3"], "densityMp": item["density_mp_g_cm3"], "spaceGroupLocal": item["local"]["space_group_symbol"]} for item in material["materials"]]},
+            "scientificClaim": "Si、GaAs、SiO2 的跨库结构身份分别成立，但 DFT 带隙、密度和稳定性不因此被强制相等。",
+            "limitations": " ".join(material["limitations"]), "upstreamContribution": "提供原生 entry_id 与 OPTIMADE ID 的显式映射、完整结构快照和独立密度/空间群重算。",
+            "snapshotFiles": ["validation/material-crosscheck-protocol.json", "validation/material-crosscheck-protocol-amendment-01.json", "validation/material-crosscheck.json", "validation/materials-project-si-dft.json", "validation/materials-project-gaas-dft.json", "validation/materials-project-sio2-dft.json", "validation/oqmd-structure-si.json", "validation/oqmd-structure-gaas.json", "validation/oqmd-structure-sio2.json"],
+        },
+        {
+            "id": "eckerle4-two-tail-extrapolation", "domain": "physics", "title": "Eckerle4 双尾真实数据外推",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/eckerle4.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Eckerle4.dat"],
+            "metrics": {"middleCount": eckerle["split"]["middle_count"], "lowCount": eckerle["split"]["low_count"], "highCount": eckerle["split"]["high_count"], "middleRmse": eckerle["middle_fit"]["metrics"]["middle_rmse"], "lowRmse": eckerle["middle_fit"]["metrics"]["low_rmse"], "highRmse": eckerle["middle_fit"]["metrics"]["high_rmse"], "holdoutRmse": eckerle["middle_fit"]["metrics"]["holdout_rmse"], "linearHoldoutRmse": eckerle["baselines"]["linear"]["holdout_rmse"], "meanHoldoutRmse": eckerle["baselines"]["training_mean"]["holdout_rmse"], "limitedSupport": eckerle["decision"]["limited_support"], "nistReproduction": eckerle["full_fit_certification"]["matches_nist_within_frozen_tolerances"]},
+            "scientificClaim": "三参数高斯在独立 Eckerle4 的预注册双尾任务获得有限支持；全数据认证复现与双尾外推严格分开。",
+            "limitations": " ".join(eckerle["limitations"]), "upstreamContribution": "提供第二独立数据集、双尾协议、中央拟合、两项基线和35点独立复算。",
+            "snapshotFiles": ["validation/eckerle4-two-tail-protocol.json", "validation/eckerle4-two-tail.json", "validation/eckerle4-two-tail-verification.json"],
+        },
+        {
+            "id": "cvc5-z3-cross-solver", "domain": "math", "title": "cvc5／Z3 交叉求解器复核",
+            "status": cvc5["status"], "evidenceClass": "known_answer_reproduction",
+            "sources": ["https://github.com/cvc5/cvc5/releases/tag/cvc5-1.4.2", "https://github.com/Z3Prover/z3"],
+            "metrics": {"version": cvc5["solver_version"], "allResultsMatchZ3": cvc5["all_results_match_z3"], "checks": [{"id": item["id"], "cvc5": item["cvc5"], "z3": item["z3"]} for item in cvc5["checks"]]},
+            "scientificClaim": "cvc5 与 Z3 对分母正性、零分母反例和 x=0 参数非识别性给出相同结果，并生成精确有理数反例模型。",
+            "limitations": " ".join(cvc5["limitations"]), "upstreamContribution": "提供双求解器 SMT-LIB、原始日志、官方二进制哈希和精确模型，降低单求解器依赖。",
+            "snapshotFiles": ["validation/cvc5-crosscheck.json", "validation/cvc5-positive-denominator.smt2", "validation/cvc5-zero-denominator.smt2", "validation/cvc5-xzero-identifiability.smt2"],
+        },
     ]
     packet = {
         "schemaVersion": 1,
-        "asOf": "2026-10-31",
+        "asOf": "2026-11-08",
         "project": "frontier-breakthrough",
         "scope": "跨项目本地复核与数据库对照；verified 仅指所述检查，不是新发现、独立实验或外部认证。",
         "items": items,

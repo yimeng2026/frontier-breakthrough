@@ -1,0 +1,5 @@
+{
+  "is_success": "materials_project, fetched material mp-aaaaakjg: 1 record(s)",
+  "data_preview": "{\n  \"data\": [\n    {\n      \"band_gap\": 5.678,\n      \"is_metal\": false,\n      \"energy_above_hull\": 0.0,\n      \"is_stable\": true,\n      \"nsites\": 9,\n      \"formula_pretty\": \"SiO2\",\n      \"density\": 2.634242418262655,\n      \"symmetry\": {\n        \"crystal_system\": \"Trigonal\",\n        \"symbol\": \"P3_121\",\n        \"hall\": \"P 31 2\\\"\",\n        \"number\": 152,\n        \"point_group\": \"32\",\n        \"symprec\": 0.1,\n        \"angle_tolerance\": 5.0,\n        \"version\": \"2.7.0\"\n      },\n      \"material_id\": \"mp-aaaaakjg\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.88.1\",\n    \"time_stamp\": \"2026-11-08T13:34:57.065287+00:00\",\n    \"total_doc\": 1,\n    \"facet\": null,\n    \"max_limit\": 1000,\n    \"default_fields\": [\n      \"material_id\"\n    ]\n  }\n}",
+  "notice": "Full JSON result returned in the response preview."
+}

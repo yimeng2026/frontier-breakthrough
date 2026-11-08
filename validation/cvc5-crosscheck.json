@@ -1,0 +1,42 @@
+{
+  "status": "verified",
+  "solver_version": "cvc5 1.4.2 [git 282d5e0 on branch HEAD]",
+  "official_release": "https://github.com/cvc5/cvc5/releases/tag/cvc5-1.4.2",
+  "binary_sha256": "6aecddf466552b83bb5883756c7955e0c9d5ddcc6d7f45b48c2f6e06a741b102",
+  "official_archive_sha256": "7eb18f8c814c36a46c5a7d003983e9cfbc4b0a9828d6dd596239291bd4cc61d8",
+  "binary_path": ".engines/cvc5-1.4.2/cvc5-Linux-x86_64-static/bin/cvc5",
+  "execution": "WSL Ubuntu x86_64; official static cvc5 1.4.2 binary",
+  "all_results_match_z3": true,
+  "checks": [
+    {
+      "id": "positive_denominator_by_contradiction",
+      "cvc5": "unsat",
+      "z3": "unsat",
+      "input_file": "validation/cvc5-positive-denominator.smt2",
+      "log_file": "validation\\cvc5-positive_denominator_by_contradiction.log",
+      "raw_output": "unsat\n"
+    },
+    {
+      "id": "nonpositive_denominator_counterexample",
+      "cvc5": "sat",
+      "z3": "sat",
+      "input_file": "validation/cvc5-zero-denominator.smt2",
+      "log_file": "validation\\cvc5-nonpositive_denominator_counterexample.log",
+      "raw_output": "sat\n(\n(define-fun b1 () Real 1.0)\n(define-fun b2 () Real 1.0)\n(define-fun b3 () Real (- 1.0))\n(define-fun x () Real 1.0)\n)\n"
+    },
+    {
+      "id": "x_zero_parameter_nonidentifiability",
+      "cvc5": "sat",
+      "z3": "sat",
+      "input_file": "validation/cvc5-xzero-identifiability.smt2",
+      "log_file": "validation\\cvc5-x_zero_parameter_nonidentifiability.log",
+      "raw_output": "sat\n(\n(define-fun b1 () Real (/ 1 10))\n(define-fun b2 () Real 1.0)\n(define-fun b3 () Real (/ 1 50))\n(define-fun a1 () Real (/ 1 5))\n(define-fun a2 () Real 1.0)\n(define-fun a3 () Real (/ 3 100))\n(define-fun y () Real 1.0)\n(define-fun x () Real 0.0)\n)\n"
+    }
+  ],
+  "universal_identifiability_claimed": false,
+  "limitations": [
+    "Three finite SMT-LIB checks are cross-solver reproductions, not general nonlinear theorem proving",
+    "The x=0 response is algebraically simplified before using either solver; no nonlinear exponential solver is claimed",
+    "Agreement between two solvers increases implementation confidence only within the explicit formulas and domains"
+  ]
+}

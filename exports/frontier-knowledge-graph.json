@@ -1,0 +1,549 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-11-08",
+  "project": "frontier-breakthrough",
+  "nodes": [
+    {
+      "id": "track-holdout",
+      "kind": "project",
+      "title": "真实数据留出与外推边界",
+      "status": "active",
+      "sourceFiles": [
+        "validation/chwirut-holdout-protocol.json"
+      ]
+    },
+    {
+      "id": "track-formal",
+      "kind": "project",
+      "title": "形式化定义域与可识别性反例",
+      "status": "active",
+      "sourceFiles": [
+        "validation/z3-identifiability.json"
+      ]
+    },
+    {
+      "id": "track-chemistry",
+      "kind": "project",
+      "title": "化学与生物数据质量",
+      "status": "active",
+      "sourceFiles": [
+        "validation/aspirin-crosscheck.json"
+      ]
+    },
+    {
+      "id": "track-materials",
+      "kind": "project",
+      "title": "物理与材料跨库复核",
+      "status": "active",
+      "sourceFiles": [
+        "validation/material-crosscheck.json"
+      ]
+    },
+    {
+      "id": "track-knowledge",
+      "kind": "project",
+      "title": "主张—证据—反例—实验知识连接",
+      "status": "active",
+      "sourceFiles": [
+        "contracts/frontier-knowledge-graph.schema.json"
+      ]
+    },
+    {
+      "id": "claim-chwirut-extrapolation",
+      "kind": "claim",
+      "title": "Chwirut 三参数模型只在本预注册高距离切片获得有限支持",
+      "status": "limited_support",
+      "sourceFiles": [
+        "validation/chwirut-holdout.json"
+      ]
+    },
+    {
+      "id": "claim-nist-reproduction",
+      "kind": "claim",
+      "title": "全数据拟合复现 NIST 认证值只属于已知答案复核",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut-holdout.json",
+        "validation/chwirut-holdout-verification.json"
+      ]
+    },
+    {
+      "id": "claim-universal-identifiability",
+      "kind": "claim",
+      "title": "任意少量点都能唯一识别全部模型参数",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/z3-identifiability.json"
+      ]
+    },
+    {
+      "id": "claim-positive-denominator",
+      "kind": "claim",
+      "title": "显式正性定义域内 Chwirut 分母为正",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/z3-identifiability.json"
+      ]
+    },
+    {
+      "id": "claim-aspirin-identity",
+      "kind": "claim",
+      "title": "阿司匹林在 PubChem、ChEMBL 与 RDKit 间具有同一结构身份",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/aspirin-crosscheck.json"
+      ]
+    },
+    {
+      "id": "claim-descriptor-fraud",
+      "kind": "claim",
+      "title": "描述符或计数差异本身就是数据造假证据",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/aspirin-crosscheck.json"
+      ]
+    },
+    {
+      "id": "claim-material-identity",
+      "kind": "claim",
+      "title": "Si、GaAs、SiO2 的三组跨库结构身份分别成立",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/material-crosscheck.json"
+      ]
+    },
+    {
+      "id": "claim-universal-bandgap",
+      "kind": "claim",
+      "title": "同一结构在不同 DFT 数据库中必须给出相同带隙",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/material-crosscheck.json"
+      ]
+    },
+    {
+      "id": "claim-knowledge-graph",
+      "kind": "claim",
+      "title": "知识连接必须同时保留支持、反例、实验与限制",
+      "status": "supported",
+      "sourceFiles": [
+        "contracts/frontier-knowledge-graph.schema.json"
+      ]
+    },
+    {
+      "id": "evidence-chwirut",
+      "kind": "evidence",
+      "title": "54 个 NIST 观测的逐点预测与独立指标复算",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut-holdout.json",
+        "validation/chwirut-holdout-verification.json"
+      ]
+    },
+    {
+      "id": "evidence-z3",
+      "kind": "evidence",
+      "title": "Z3 定义域不可满足性与可识别性反例",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/z3-identifiability.json"
+      ]
+    },
+    {
+      "id": "evidence-aspirin",
+      "kind": "evidence",
+      "title": "阿司匹林身份与描述符口径快照",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/pubchem-aspirin.json",
+        "validation/chembl-aspirin.json",
+        "validation/aspirin-crosscheck.json"
+      ]
+    },
+    {
+      "id": "evidence-material",
+      "kind": "evidence",
+      "title": "三组材料的跨库 DFT 与本地结构重算",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/material-crosscheck.json"
+      ]
+    },
+    {
+      "id": "counterexample-xzero",
+      "kind": "counterexample",
+      "title": "x=0 时两个不同参数三元组产生相同响应",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/z3-identifiability.json"
+      ]
+    },
+    {
+      "id": "counterexample-descriptor",
+      "kind": "counterexample",
+      "title": "LogP、氢键和可旋转键的定义差异无需被解释为造假",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/aspirin-crosscheck.json"
+      ]
+    },
+    {
+      "id": "counterexample-bandgap",
+      "kind": "counterexample",
+      "title": "同结构的 MP 与 OQMD 带隙仍可不同",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/material-crosscheck.json"
+      ]
+    },
+    {
+      "id": "experiment-chwirut-protocol",
+      "kind": "experiment",
+      "title": "47 个训练观测与 7 个高距离留出观测",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut-holdout-protocol.json"
+      ]
+    },
+    {
+      "id": "experiment-material-protocol",
+      "kind": "experiment",
+      "title": "三组 MP／OQMD／PyMatGen 结构复核协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/material-crosscheck-protocol.json",
+        "validation/material-crosscheck-protocol-amendment-01.json"
+      ]
+    },
+    {
+      "id": "limitation-single-split",
+      "kind": "limitation",
+      "title": "单次单数据集留出不能证明普适规律或参数完全内生",
+      "status": "active",
+      "sourceFiles": [
+        "validation/chwirut-holdout.json"
+      ]
+    },
+    {
+      "id": "limitation-public-records",
+      "kind": "limitation",
+      "title": "公开记录与本地重算不等于独立湿实验或临床结论",
+      "status": "active",
+      "sourceFiles": [
+        "validation/aspirin-crosscheck.json"
+      ]
+    },
+    {
+      "id": "limitation-small-material-sample",
+      "kind": "limitation",
+      "title": "三种材料不是全球 DFT 基准，也不证明某个实现普遍更准确",
+      "status": "active",
+      "sourceFiles": [
+        "validation/material-crosscheck.json"
+      ]
+    },
+    {
+      "id": "claim-eckerle4-two-tail",
+      "kind": "claim",
+      "title": "Eckerle4 高斯模型只在预注册双尾切片获得有限支持",
+      "status": "limited_support",
+      "sourceFiles": [
+        "validation/eckerle4-two-tail.json"
+      ]
+    },
+    {
+      "id": "evidence-eckerle4",
+      "kind": "evidence",
+      "title": "35 个 Eckerle4 观测的逐点预测与独立指标复算",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/eckerle4-two-tail.json",
+        "validation/eckerle4-two-tail-verification.json"
+      ]
+    },
+    {
+      "id": "experiment-eckerle4-protocol",
+      "kind": "experiment",
+      "title": "27 个中央训练观测、低尾 3 点和高尾 5 点",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/eckerle4-two-tail-protocol.json"
+      ]
+    },
+    {
+      "id": "claim-solver-agreement",
+      "kind": "claim",
+      "title": "cvc5 与 Z3 对三项定义域和可识别性检查给出一致结果",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/cvc5-crosscheck.json"
+      ]
+    },
+    {
+      "id": "evidence-cvc5",
+      "kind": "evidence",
+      "title": "cvc5 1.4.2 的 SMT-LIB 日志与精确有理数反例模型",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/cvc5-crosscheck.json"
+      ]
+    },
+    {
+      "id": "limitation-two-datasets",
+      "kind": "limitation",
+      "title": "两个 NIST 数据集的有限支持仍不是跨领域普适规律",
+      "status": "active",
+      "sourceFiles": [
+        "validation/chwirut-holdout.json",
+        "validation/eckerle4-two-tail.json"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "track-holdout",
+      "to": "claim-chwirut-extrapolation",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-nist-reproduction",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-chwirut",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-chwirut-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-single-split",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-eckerle4-two-tail",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-eckerle4",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-eckerle4-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-two-datasets",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "claim-universal-identifiability",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "claim-positive-denominator",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "evidence-z3",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "counterexample-xzero",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "claim-solver-agreement",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "evidence-cvc5",
+      "relation": "contains"
+    },
+    {
+      "from": "track-chemistry",
+      "to": "claim-aspirin-identity",
+      "relation": "contains"
+    },
+    {
+      "from": "track-chemistry",
+      "to": "claim-descriptor-fraud",
+      "relation": "contains"
+    },
+    {
+      "from": "track-chemistry",
+      "to": "evidence-aspirin",
+      "relation": "contains"
+    },
+    {
+      "from": "track-chemistry",
+      "to": "counterexample-descriptor",
+      "relation": "contains"
+    },
+    {
+      "from": "track-chemistry",
+      "to": "limitation-public-records",
+      "relation": "contains"
+    },
+    {
+      "from": "track-materials",
+      "to": "claim-material-identity",
+      "relation": "contains"
+    },
+    {
+      "from": "track-materials",
+      "to": "claim-universal-bandgap",
+      "relation": "contains"
+    },
+    {
+      "from": "track-materials",
+      "to": "evidence-material",
+      "relation": "contains"
+    },
+    {
+      "from": "track-materials",
+      "to": "counterexample-bandgap",
+      "relation": "contains"
+    },
+    {
+      "from": "track-materials",
+      "to": "experiment-material-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-materials",
+      "to": "limitation-small-material-sample",
+      "relation": "contains"
+    },
+    {
+      "from": "track-knowledge",
+      "to": "claim-knowledge-graph",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-chwirut",
+      "to": "claim-chwirut-extrapolation",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-chwirut",
+      "to": "claim-nist-reproduction",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-chwirut-protocol",
+      "to": "claim-chwirut-extrapolation",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-single-split",
+      "to": "claim-chwirut-extrapolation",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-z3",
+      "to": "claim-positive-denominator",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-xzero",
+      "to": "claim-universal-identifiability",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-aspirin",
+      "to": "claim-aspirin-identity",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-descriptor",
+      "to": "claim-descriptor-fraud",
+      "relation": "contradicts"
+    },
+    {
+      "from": "limitation-public-records",
+      "to": "claim-aspirin-identity",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-material",
+      "to": "claim-material-identity",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-bandgap",
+      "to": "claim-universal-bandgap",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-material-protocol",
+      "to": "claim-material-identity",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-small-material-sample",
+      "to": "claim-material-identity",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-eckerle4",
+      "to": "claim-eckerle4-two-tail",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-eckerle4-protocol",
+      "to": "claim-eckerle4-two-tail",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-two-datasets",
+      "to": "claim-eckerle4-two-tail",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-cvc5",
+      "to": "claim-solver-agreement",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-cvc5",
+      "to": "counterexample-xzero",
+      "relation": "supports"
+    },
+    {
+      "from": "claim-knowledge-graph",
+      "to": "track-holdout",
+      "relation": "recommends"
+    },
+    {
+      "from": "claim-knowledge-graph",
+      "to": "track-formal",
+      "relation": "recommends"
+    },
+    {
+      "from": "claim-knowledge-graph",
+      "to": "track-chemistry",
+      "relation": "recommends"
+    },
+    {
+      "from": "claim-knowledge-graph",
+      "to": "track-materials",
+      "relation": "recommends"
+    }
+  ]
+}
