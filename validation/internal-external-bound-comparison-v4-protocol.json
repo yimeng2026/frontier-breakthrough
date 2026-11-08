@@ -1,0 +1,33 @@
+{
+  "status": "frozen_before_internal_external_bound_comparison",
+  "frozen_at_local": "2026-11-09T05:51:22+08:00",
+  "analysis_type": "Post-hoc comparison of three internal and six external same-point bound decompositions; no refitting or new experiment",
+  "inputs": {
+    "internal": {"file": "exports/internal-bound-decomposition.json", "sha256": "dac8f7e3877c3188c47d4fb446858a6485a263b562a9228a57c4637ee3e95c53"},
+    "external": {"file": "exports/external-bound-decomposition-v4.json", "sha256": "946f875b81f6324c70a0d0fbe074ccf904dbd27d18c47bc9c8dea13d21482a97"}
+  },
+  "expected": {
+    "internal_available_point_count": 369,
+    "external_available_point_count": 527
+  },
+  "comparison_rule": {
+    "available_points": "369 internal plus 527 external equals 896 descriptive available points, not a universal sample or probability estimate",
+    "scope_separation": "Retain two internal rooted unavailable folds separately from 234 external unavailable points; do not create a combined success rate",
+    "classification": "Reuse the already frozen 0.5 dominance classifications without retuning",
+    "validation": "Require zero source identity mismatches and zero undefined zero bounds in both inputs",
+    "datasets": "Preserve Hahn1, Thurber, Kirby2, Filip, MGH17, Gauss1, Misra1a, Chwirut1 and ENSO as separate distributions",
+    "related_dataset_scope": "Chwirut1 was not used in previous region design, but shares its study and native model family with Chwirut2; it is not an independent model-family or laboratory replication test",
+    "periodic_candidate_scope": "The ENSO candidate is not the native ENSO nine-parameter Fourier model; its 131 tighter ellipsoid/box pairs are a subset and not a probability or whole-dataset claim",
+    "previous_comparison": "Preserve exports/internal-external-bound-comparison.json, exports/internal-external-bound-comparison-v2.json, exports/internal-external-bound-comparison-v3.json and their figures unchanged"
+  },
+  "output_rule": {
+    "summary": "exports/internal-external-bound-comparison-v4.json",
+    "figure": "papers/33_九组界组成对照/fig33_internal_external_bound_comparison_v4.png",
+    "refuse_overwrite": true
+  },
+  "prohibitions": [
+    "No universal internal-versus-external ranking or combined success rate",
+    "No erasure of internal rooted folds, external unavailable points, Chwirut1/Chwirut2 relatedness or ENSO candidate scope",
+    "No probability, variance-decomposition or physical-mechanism interpretation of arithmetic shares"
+  ]
+}
