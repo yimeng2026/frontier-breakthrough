@@ -1,0 +1,44 @@
+{
+  "status": "frozen_before_external_bound_decomposition",
+  "frozen_at_local": "2026-11-09T05:07:19+08:00",
+  "analysis_type": "Read-only post-hoc decomposition of five external candidate stress outputs; no refitting or new experiment",
+  "dataset_ids": ["filip", "mgh17", "gauss1", "misra1a", "chwirut1"],
+  "inputs": {
+    "filip": {"file": "validation/filip-ellipsoid-coverage.json", "sha256": "35124a406780faecece0c23bf0c5472616543e74295ab815157c3559798a19e7"},
+    "mgh17": {"file": "validation/mgh17-ellipsoid-coverage.json", "sha256": "66eb9647b740462613eae15019a1c666bf9c068eacb78cd6f912b925af474bf9"},
+    "gauss1": {"file": "validation/gauss1-ellipsoid-coverage.json", "sha256": "9a4b9674e25998225455382e825cde3d271ce873992127561c069529a97f4576"},
+    "misra1a": {"file": "validation/misra1a-ellipsoid-coverage.json", "sha256": "d61b26d81d4b567e306696c1a711c7f4c8b79ecdcabd5310724b505dec445c60"},
+    "chwirut1": {"file": "validation/chwirut1-ellipsoid-coverage.json", "sha256": "e6c6816d4c4616a1efbd739fcf92d4b782049e38201ebdd4db37479ca156ed33"},
+    "gauss1_mechanism": {"file": "validation/gauss1-bound-mechanism.json", "sha256": "01eb2c3df464eb78ae770434e09e69312cb02167d705a4f7d105c4db9626041e"}
+  },
+  "decomposition_rule": {
+    "identity": "For every available point, residual_upper_bound = actual_absolute_residual + prediction_shift_upper_bound within numerical tolerance",
+    "shift_share": "prediction_shift_upper_bound / residual_upper_bound when residual_upper_bound > 0",
+    "zero_bound": "If actual residual, shift and bound are all zero, retain an undefined share rather than assigning 0 percent",
+    "shift_dominant_threshold": 0.5,
+    "classification": "prediction_shift_dominant when share >= 0.5; snapshot_residual_dominant when share < 0.5; undefined_zero_bound otherwise",
+    "identity_tolerance": "math.isclose(rel_tol=1e-8, abs_tol=1e-9)",
+    "gauss1_regression": "Reproduce all four non-null same-point maxima from validation/gauss1-bound-mechanism.json"
+  },
+  "scope_rule": {
+    "external_total_point_count": 593,
+    "ellipsoid_available_point_count": 392,
+    "ellipsoid_unavailable_point_count": 201,
+    "prediction_shift_dominant_point_count": 217,
+    "snapshot_residual_dominant_point_count": 175,
+    "chwirut1_increment": "Add 214 total points, 83 available points, 131 unavailable points, 75 prediction-shift dominant points and 8 snapshot-residual dominant points",
+    "related_dataset_scope": "Chwirut1 was not used in previous region design, but shares its study and native model family with Chwirut2; it is not an independent model-family or laboratory replication test",
+    "previous_comparison": "Preserve exports/external-bound-decomposition.json, exports/external-bound-decomposition-v2.json and their figures unchanged"
+  },
+  "output_rule": {
+    "summary": "exports/external-bound-decomposition-v3.json",
+    "figure": "papers/29_外部五组界组成/fig29_external_bound_decomposition_v3.png",
+    "refuse_overwrite": true
+  },
+  "prohibitions": [
+    "No refitting, retuning or changing of frozen bounds",
+    "No conversion of unavailable points into zero bounds or zero shares",
+    "No probability, variance-decomposition or physical-mechanism interpretation of arithmetic shares",
+    "No universal ranking of datasets, native-model validity claims or erasure of Chwirut1/Chwirut2 relatedness"
+  ]
+}
