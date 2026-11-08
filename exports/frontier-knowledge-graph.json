@@ -810,6 +810,54 @@
       "sourceFiles": [
         "exports/external-coverage-comparison.json"
       ]
+    },
+    {
+      "id": "claim-reusable-driver-guarantees-coverage",
+      "kind": "claim",
+      "title": "复用同一外部覆盖驱动即可保证所有外部点可给界且所有折连续安全",
+      "status": "falsified",
+      "sourceFiles": [
+        "exports/external-coverage-gauss1-comparison.json"
+      ]
+    },
+    {
+      "id": "evidence-gauss1-external-coverage",
+      "kind": "evidence",
+      "title": "Gauss1 共 250 点，190 点可给界、60 点不可用，连续椭球安全为 3／5 折",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/gauss1-ellipsoid-coverage.json",
+        "exports/external-coverage-gauss1-comparison.json"
+      ]
+    },
+    {
+      "id": "counterexample-gauss1-fold2-fold5",
+      "kind": "counterexample",
+      "title": "Gauss1 第 2 折候选预测显著差于基线，第 5 折没有任何可用椭球界",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/gauss1-ellipsoid-coverage.json"
+      ]
+    },
+    {
+      "id": "experiment-gauss1-coverage-protocol",
+      "kind": "experiment",
+      "title": "先于任何 Gauss1 候选分析冻结并推送的五折固定半径协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/gauss1-ellipsoid-coverage-protocol.json",
+        "validation/external-coverage-gauss1-comparison-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-gauss1-generated-candidate-scope",
+      "kind": "limitation",
+      "title": "Gauss1 是生成数据，候选不是原生八参数模型；适用点检查不是概率覆盖或独立物理实验",
+      "status": "active",
+      "sourceFiles": [
+        "validation/gauss1-ellipsoid-coverage.json",
+        "exports/external-coverage-gauss1-comparison.json"
+      ]
     }
   ],
   "edges": [
@@ -1016,6 +1064,31 @@
     {
       "from": "track-holdout",
       "to": "limitation-external-coverage-framework",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-reusable-driver-guarantees-coverage",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-gauss1-external-coverage",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-gauss1-fold2-fold5",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-gauss1-coverage-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-gauss1-generated-candidate-scope",
       "relation": "contains"
     },
     {
@@ -1531,6 +1604,31 @@
     {
       "from": "limitation-external-coverage-framework",
       "to": "claim-external-coverage-framework",
+      "relation": "limits"
+    },
+    {
+      "from": "experiment-gauss1-coverage-protocol",
+      "to": "claim-reusable-driver-guarantees-coverage",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-gauss1-external-coverage",
+      "to": "claim-reusable-driver-guarantees-coverage",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-gauss1-fold2-fold5",
+      "to": "claim-reusable-driver-guarantees-coverage",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-gauss1-external-coverage",
+      "to": "counterexample-gauss1-fold2-fold5",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-gauss1-generated-candidate-scope",
+      "to": "claim-reusable-driver-guarantees-coverage",
       "relation": "limits"
     },
     {

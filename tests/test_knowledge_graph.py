@@ -26,8 +26,8 @@ class KnowledgeGraphTests(unittest.TestCase):
         self.assertEqual(self.nodes["claim-material-identity"]["status"], "supported")
 
     def test_second_dataset_and_cross_solver_are_linked(self):
-        self.assertEqual(len(self.graph["nodes"]), 88)
-        self.assertEqual(len(self.graph["edges"]), 148)
+        self.assertEqual(len(self.graph["nodes"]), 93)
+        self.assertEqual(len(self.graph["edges"]), 158)
         self.assertEqual(self.nodes["claim-eckerle4-two-tail"]["status"], "limited_support")
         self.assertEqual(self.nodes["claim-solver-agreement"]["status"], "supported")
         self.assertEqual(self.nodes["limitation-two-datasets"]["status"], "active")
@@ -69,6 +69,19 @@ class KnowledgeGraphTests(unittest.TestCase):
         self.assertEqual(self.nodes["claim-external-coverage-framework"]["status"], "supported")
         self.assertEqual(self.nodes["evidence-external-coverage-framework"]["status"], "supported")
         self.assertEqual(self.nodes["limitation-external-coverage-framework"]["status"], "active")
+
+    def test_gauss1_counterexample_is_linked_to_reusable_driver_claim(self):
+        for identifier in ["claim-reusable-driver-guarantees-coverage", "evidence-gauss1-external-coverage", "counterexample-gauss1-fold2-fold5", "experiment-gauss1-coverage-protocol", "limitation-gauss1-generated-candidate-scope"]:
+            self.assertIn(identifier, self.nodes)
+        self.assertEqual(self.nodes["claim-reusable-driver-guarantees-coverage"]["status"], "falsified")
+        self.assertEqual(self.nodes["evidence-gauss1-external-coverage"]["status"], "supported")
+        self.assertEqual(self.nodes["counterexample-gauss1-fold2-fold5"]["status"], "supported")
+        self.assertEqual(self.nodes["experiment-gauss1-coverage-protocol"]["status"], "supported")
+        self.assertEqual(self.nodes["limitation-gauss1-generated-candidate-scope"]["status"], "active")
+        edges = {(item["from"], item["to"], item["relation"]) for item in self.graph["edges"]}
+        self.assertIn(("evidence-gauss1-external-coverage", "claim-reusable-driver-guarantees-coverage", "contradicts"), edges)
+        self.assertIn(("counterexample-gauss1-fold2-fold5", "claim-reusable-driver-guarantees-coverage", "contradicts"), edges)
+        self.assertIn(("experiment-gauss1-coverage-protocol", "claim-reusable-driver-guarantees-coverage", "tests"), edges)
 
     def test_schema_edges_and_source_files_are_valid(self):
         self.assertEqual(validate_graph(self.graph, ROOT), [])

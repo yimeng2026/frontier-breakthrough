@@ -112,14 +112,20 @@ class ExpansionTests(unittest.TestCase):
 
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
-        self.assertEqual(len(packet["items"]), 25)
-        self.assertEqual(len({i["id"] for i in packet["items"]}), 25)
+        self.assertEqual(len(packet["items"]), 26)
+        self.assertEqual(len({i["id"] for i in packet["items"]}), 26)
         for item in packet["items"]:
             self.assertEqual(item["status"], "verified")
             self.assertTrue(item["limitations"])
             self.assertTrue(item["upstreamContribution"])
             for snapshot in item["snapshotFiles"]:
                 self.assertTrue((ROOT / snapshot).is_file())
+        gauss1 = next(item for item in packet["items"] if item["id"] == "gauss1-external-coverage-counterexample")
+        self.assertEqual(gauss1["metrics"]["comparisonTotals"]["point_count"], 365)
+        self.assertEqual(gauss1["metrics"]["comparisonTotals"]["ellipsoid_available_point_count"], 305)
+        self.assertEqual(gauss1["metrics"]["comparisonTotals"]["ellipsoid_unavailable_point_count"], 60)
+        self.assertEqual(gauss1["metrics"]["gauss1"]["continuous_safe_fold_count"], 3)
+        self.assertIn("不是概率覆盖率或普适外部成功率", gauss1["limitations"])
 
     def test_new_agent_projects_have_primary_sources(self):
         projects = self.read("data/projects.json")["projects"]

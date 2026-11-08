@@ -1055,6 +1055,60 @@
         "validation/mgh17-ellipsoid-coverage.json",
         "validation/external-coverage-framework-protocol.json"
       ]
+    },
+    {
+      "id": "gauss1-external-coverage-counterexample",
+      "domain": "physics",
+      "title": "Gauss1 外部覆盖反例与三数据证据轴对照",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Gauss1.dat"
+      ],
+      "metrics": {
+        "comparisonTotals": {
+          "dataset_count": 3,
+          "point_count": 365,
+          "ellipsoid_available_point_count": 305,
+          "ellipsoid_unavailable_point_count": 60,
+          "covered_point_count": 305,
+          "coverage_violation_count": 0,
+          "fold_count": 15,
+          "continuous_safe_fold_count": 13,
+          "independent_box_continuous_safe_fold_count": 7,
+          "optimizer_failure_count": 0,
+          "interpretation": "Descriptive totals for Filip, MGH17 and Gauss1 only; not a universal external success rate or probability coverage"
+        },
+        "gauss1": {
+          "fold_count": 5,
+          "optimizer_failure_count": 0,
+          "point_count": 250,
+          "ellipsoid_available_point_count": 190,
+          "covered_point_count": 190,
+          "coverage_violation_count": 0,
+          "max_ellipsoid_absolute_residual_upper_bound_float": 4896.967582041431,
+          "median_ellipsoid_absolute_residual_upper_bound_float": 59.003610999241886,
+          "max_ellipsoid_prediction_shift_upper_bound_float": 4777.531896303414,
+          "continuous_safe_fold_count": 3,
+          "independent_box_continuous_safe_fold_count": 2,
+          "tighter_point_count": 144,
+          "looser_point_count": 0,
+          "median_shift_ratio": 0.09450941990077164,
+          "max_shift_ratio": 0.9769983033976627,
+          "min_shift_ratio": 0.0014711418013413037
+        },
+        "driverSha256": "646cbfb7cfdf0dc578c8808e4ad6113b286a048038cfa9f07f47d776ad85aa6f",
+        "protocolFrozenBeforeCandidateAnalysis": true
+      },
+      "scientificClaim": "Gauss1 的 250 点中仅 190 点可给出椭球界，连续安全为 3／5 折；第 2 折预测显著失败，第 5 折无可用界。三数据共 365 点，其中 305 点适用、60 点不可用。",
+      "limitations": "Gauss1 是生成数据，候选不是原生八参数模型。305 个适用点零违规不是概率覆盖率或普适外部成功率；60 个不可用点不能解释为覆盖或安全。All three candidates are approximation stress tests and not their native model classes The 365-point descriptive total includes 60 points without an available ellipsoid bound and is not a probability coverage estimate or universal success rate Gauss1 contributes generated observations, a failed predictive fold and a fold with no ellipsoid bounds; none may be hidden Different native models, bound widths and independent-box availability remain dataset-specific Continuous denominator safety and pointwise residual coverage do not guarantee useful prediction or physical endogeneity",
+      "upstreamContribution": "提供先推送冻结协议再执行的外部检验、完整失败记录和三数据证据轴对照，否定代码复用自动保证外部有效性的强解释。",
+      "snapshotFiles": [
+        "validation/gauss1-ellipsoid-coverage-protocol.json",
+        "validation/gauss1-ellipsoid-coverage.json",
+        "validation/external-coverage-gauss1-comparison-protocol.json"
+      ]
     }
   ]
 }

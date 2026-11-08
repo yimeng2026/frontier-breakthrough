@@ -40,7 +40,8 @@
 | 协方差椭球连续区间证明 | 13 折平方支撑多项式在整个留出闭区间均为正，0 折未认证，2 折有根 | `scripts/ellipsoid_interval.py`、`validation/rational-ellipsoid-interval-safety.json` | 用精确 Sturm 覆盖观测点之间，不把逐点检查冒充连续证明 |
 | NIST Filip 外部候选压力测试 | 五折候选 RMSE 均优于三次基线；82／82 点椭球界覆盖实际残差，独立盒连续安全为 0 | `validation/filip-ellipsoid-coverage-protocol.json`、`validation/filip-ellipsoid-coverage.json` | 提供外部候选压力测试，不声称原生 11 参数模型、概率覆盖或物理内生 |
 | 通用外部覆盖协议 + NIST MGH17 | 通用驱动保持 Filip 回归；MGH17 33／33 点覆盖，32 点椭球更紧，独立盒 5 折安全 | `scripts/external_coverage.py`、`validation/mgh17-ellipsoid-coverage.json`、`exports/external-coverage-comparison.json` | 提供可复用外部验收接口，不把 115 点汇总称为概率覆盖或普适成功率 |
-| 主张—证据—反例—实验图谱 | 88 个节点、148 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| Gauss1 外部反例与三数据对照 | 250 点中 190 点可给界、60 点不可用，连续安全 3／5 折；三数据共 365 点，305 点适用 | `validation/gauss1-ellipsoid-coverage.json`、`exports/external-coverage-gauss1-comparison.json` | 保留预测失败和无可用界反例，不把代码复用或适用点零违规称为外部有效性保证 |
+| 主张—证据—反例—实验图谱 | 93 个节点、158 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 与自动科学发现项目的配合
 

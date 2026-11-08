@@ -48,6 +48,8 @@ def build() -> dict:
     filipCoverage = read("filip-ellipsoid-coverage.json")
     mgh17Coverage = read("mgh17-ellipsoid-coverage.json")
     externalComparison = json.loads((ROOT / "exports/external-coverage-comparison.json").read_text(encoding="utf-8"))
+    gauss1Coverage = read("gauss1-ellipsoid-coverage.json")
+    gauss1Comparison = json.loads((ROOT / "exports/external-coverage-gauss1-comparison.json").read_text(encoding="utf-8"))
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -273,6 +275,16 @@ def build() -> dict:
             "scientificClaim": "通用驱动保持 Filip 的 82 点覆盖与连续安全；MGH17 33／33 点覆盖且连续安全，32 点椭球更紧，独立盒五折安全。",
             "limitations": " ".join(externalComparison["limitations"]), "upstreamContribution": "提供可复用外部覆盖驱动和跨数据对照，不把 115 点汇总称为概率覆盖或普适成功率。",
             "snapshotFiles": ["validation/mgh17-ellipsoid-coverage-protocol.json", "validation/mgh17-ellipsoid-coverage.json", "validation/external-coverage-framework-protocol.json"],
+        },
+        {
+            "id": "gauss1-external-coverage-counterexample", "domain": "physics", "title": "Gauss1 外部覆盖反例与三数据证据轴对照",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Gauss1.dat"],
+            "metrics": {"comparisonTotals": gauss1Comparison["totals"], "gauss1": gauss1Coverage["totals"], "driverSha256": gauss1Comparison["analysis_scope"]["driver_sha256"], "protocolFrozenBeforeCandidateAnalysis": True},
+            "scientificClaim": "Gauss1 的 250 点中仅 190 点可给出椭球界，连续安全为 3／5 折；第 2 折预测显著失败，第 5 折无可用界。三数据共 365 点，其中 305 点适用、60 点不可用。",
+            "limitations": "Gauss1 是生成数据，候选不是原生八参数模型。305 个适用点零违规不是概率覆盖率或普适外部成功率；60 个不可用点不能解释为覆盖或安全。" + " ".join(gauss1Comparison["limitations"]),
+            "upstreamContribution": "提供先推送冻结协议再执行的外部检验、完整失败记录和三数据证据轴对照，否定代码复用自动保证外部有效性的强解释。",
+            "snapshotFiles": ["validation/gauss1-ellipsoid-coverage-protocol.json", "validation/gauss1-ellipsoid-coverage.json", "validation/external-coverage-gauss1-comparison-protocol.json"],
         },
     ]
     packet = {
