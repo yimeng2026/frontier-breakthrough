@@ -50,6 +50,7 @@ def build() -> dict:
     externalComparison = json.loads((ROOT / "exports/external-coverage-comparison.json").read_text(encoding="utf-8"))
     gauss1Coverage = read("gauss1-ellipsoid-coverage.json")
     gauss1Comparison = json.loads((ROOT / "exports/external-coverage-gauss1-comparison.json").read_text(encoding="utf-8"))
+    gauss1Mechanism = read("gauss1-bound-mechanism.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -285,6 +286,16 @@ def build() -> dict:
             "limitations": "Gauss1 是生成数据，候选不是原生八参数模型。305 个适用点零违规不是概率覆盖率或普适外部成功率；60 个不可用点不能解释为覆盖或安全。" + " ".join(gauss1Comparison["limitations"]),
             "upstreamContribution": "提供先推送冻结协议再执行的外部检验、完整失败记录和三数据证据轴对照，否定代码复用自动保证外部有效性的强解释。",
             "snapshotFiles": ["validation/gauss1-ellipsoid-coverage-protocol.json", "validation/gauss1-ellipsoid-coverage.json", "validation/external-coverage-gauss1-comparison-protocol.json"],
+        },
+        {
+            "id": "gauss1-bound-mechanism-decomposition", "domain": "math", "title": "Gauss1 分母下界与同点残差界分解",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Gauss1.dat"],
+            "metrics": {"totals": gauss1Mechanism["totals"], "analysisScope": gauss1Mechanism["analysis_scope"], "samePointMaxima": [case["maximum_residual_upper_bound"] for case in gauss1Mechanism["folds"] if case["maximum_residual_upper_bound"] is not None], "foldDiagnostics": [{"fold": case["fold"], "minimumDenominatorLower": case["minimum_denominator_lower"], "maximumCovarianceSupport": case["maximum_covariance_support"], "available": case["ellipsoid_available_point_count"]} for case in gauss1Mechanism["folds"]]},
+            "scientificClaim": "190 个已有界点的三项数值与冻结结果全部一致。第 1、3、4 折最大残差界位置主要由实际残差贡献，第 2 折预测平移占 97.561%，第 5 折 50 点全部不可用；宽界不是单一机制。",
+            "limitations": "这是只读事后诊断，不是重新拟合或前瞻检验；同点占比不是概率贡献，连续未认证不等于已证明不安全。" + " ".join(gauss1Mechanism["limitations"]),
+            "upstreamContribution": "提供全 250 点分母下界、60 点不可用原因、190 点数值一致性及同点误差—平移分解，支持按机制而非仅按数据集检索。",
+            "snapshotFiles": ["validation/gauss1-bound-mechanism.json", "validation/gauss1-ellipsoid-coverage.json", "validation/frontier-gauss1-bound-mechanism-word.json"],
         },
     ]
     packet = {

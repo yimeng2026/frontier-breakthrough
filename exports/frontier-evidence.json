@@ -1109,6 +1109,134 @@
         "validation/gauss1-ellipsoid-coverage.json",
         "validation/external-coverage-gauss1-comparison-protocol.json"
       ]
+    },
+    {
+      "id": "gauss1-bound-mechanism-decomposition",
+      "domain": "math",
+      "title": "Gauss1 分母下界与同点残差界分解",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Gauss1.dat"
+      ],
+      "metrics": {
+        "totals": {
+          "point_count": 250,
+          "ellipsoid_available_point_count": 190,
+          "ellipsoid_unavailable_point_count": 60,
+          "classification_mismatch_count": 0,
+          "stored_bound_agreement_count": 190,
+          "stored_bound_mismatch_count": 0
+        },
+        "analysisScope": {
+          "post_hoc": true,
+          "refit": false,
+          "retuned": false,
+          "radius": 1,
+          "observations": 250
+        },
+        "samePointMaxima": [
+          {
+            "x": 1.0,
+            "value": 330.72832364692596,
+            "actual_absolute_residual": 328.4522604572851,
+            "prediction_shift": 2.2760631896408325,
+            "shift_share": 0.00688197238308104
+          },
+          {
+            "x": 72.0,
+            "value": 4896.967582041431,
+            "actual_absolute_residual": 119.43568573801718,
+            "prediction_shift": 4777.531896303414,
+            "shift_share": 0.9756102764135051
+          },
+          {
+            "x": 122.0,
+            "value": 48.7827644283648,
+            "actual_absolute_residual": 40.88636837395901,
+            "prediction_shift": 7.896396054405796,
+            "shift_share": 0.16186856458291293
+          },
+          {
+            "x": 178.0,
+            "value": 77.87862882750686,
+            "actual_absolute_residual": 75.8517057781421,
+            "prediction_shift": 2.0269230493647563,
+            "shift_share": 0.026026691531179653
+          }
+        ],
+        "foldDiagnostics": [
+          {
+            "fold": 1,
+            "minimumDenominatorLower": {
+              "x": 50.0,
+              "value": 0.7659965291068614
+            },
+            "maximumCovarianceSupport": {
+              "x": 50.0,
+              "value": 0.13659583602562209
+            },
+            "available": 50
+          },
+          {
+            "fold": 2,
+            "minimumDenominatorLower": {
+              "x": 77.0,
+              "value": -0.0335347239844951
+            },
+            "maximumCovarianceSupport": {
+              "x": 100.0,
+              "value": 0.07018102744291232
+            },
+            "available": 40
+          },
+          {
+            "fold": 3,
+            "minimumDenominatorLower": {
+              "x": 101.0,
+              "value": 0.1396997791502077
+            },
+            "maximumCovarianceSupport": {
+              "x": 150.0,
+              "value": 0.07380492470087975
+            },
+            "available": 50
+          },
+          {
+            "fold": 4,
+            "minimumDenominatorLower": {
+              "x": 151.0,
+              "value": 6.689521301296609
+            },
+            "maximumCovarianceSupport": {
+              "x": 200.0,
+              "value": 2.8744705243884514
+            },
+            "available": 50
+          },
+          {
+            "fold": 5,
+            "minimumDenominatorLower": {
+              "x": 250.0,
+              "value": -118384.77254669706
+            },
+            "maximumCovarianceSupport": {
+              "x": 250.0,
+              "value": 126227.979353383
+            },
+            "available": 0
+          }
+        ]
+      },
+      "scientificClaim": "190 个已有界点的三项数值与冻结结果全部一致。第 1、3、4 折最大残差界位置主要由实际残差贡献，第 2 折预测平移占 97.561%，第 5 折 50 点全部不可用；宽界不是单一机制。",
+      "limitations": "这是只读事后诊断，不是重新拟合或前瞻检验；同点占比不是概率贡献，连续未认证不等于已证明不安全。This is a post-hoc diagnostic of frozen outputs, not a new prospective test Continuous non-certification is not proof of unsafety Denominator diagnostics do not explain or justify the candidate physical mechanism Stored bounds use observed residuals and are not probability intervals",
+      "upstreamContribution": "提供全 250 点分母下界、60 点不可用原因、190 点数值一致性及同点误差—平移分解，支持按机制而非仅按数据集检索。",
+      "snapshotFiles": [
+        "validation/gauss1-bound-mechanism.json",
+        "validation/gauss1-ellipsoid-coverage.json",
+        "validation/frontier-gauss1-bound-mechanism-word.json"
+      ]
     }
   ]
 }

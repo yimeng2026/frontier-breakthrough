@@ -26,8 +26,8 @@ class KnowledgeGraphTests(unittest.TestCase):
         self.assertEqual(self.nodes["claim-material-identity"]["status"], "supported")
 
     def test_second_dataset_and_cross_solver_are_linked(self):
-        self.assertEqual(len(self.graph["nodes"]), 93)
-        self.assertEqual(len(self.graph["edges"]), 158)
+        self.assertEqual(len(self.graph["nodes"]), 98)
+        self.assertEqual(len(self.graph["edges"]), 169)
         self.assertEqual(self.nodes["claim-eckerle4-two-tail"]["status"], "limited_support")
         self.assertEqual(self.nodes["claim-solver-agreement"]["status"], "supported")
         self.assertEqual(self.nodes["limitation-two-datasets"]["status"], "active")
@@ -82,6 +82,20 @@ class KnowledgeGraphTests(unittest.TestCase):
         self.assertIn(("evidence-gauss1-external-coverage", "claim-reusable-driver-guarantees-coverage", "contradicts"), edges)
         self.assertIn(("counterexample-gauss1-fold2-fold5", "claim-reusable-driver-guarantees-coverage", "contradicts"), edges)
         self.assertIn(("experiment-gauss1-coverage-protocol", "claim-reusable-driver-guarantees-coverage", "tests"), edges)
+
+    def test_gauss1_bound_mechanism_distinguishes_wide_bound_causes(self):
+        identifiers = ["claim-wide-bounds-parameter-uncertainty", "evidence-gauss1-bound-decomposition", "counterexample-gauss1-fold1-wide-bound", "experiment-gauss1-bound-mechanism", "limitation-gauss1-bound-mechanism-posthoc"]
+        for identifier in identifiers:
+            self.assertIn(identifier, self.nodes)
+        self.assertEqual(self.nodes["claim-wide-bounds-parameter-uncertainty"]["status"], "falsified")
+        self.assertEqual(self.nodes["evidence-gauss1-bound-decomposition"]["status"], "supported")
+        self.assertEqual(self.nodes["counterexample-gauss1-fold1-wide-bound"]["status"], "supported")
+        self.assertEqual(self.nodes["experiment-gauss1-bound-mechanism"]["status"], "supported")
+        self.assertEqual(self.nodes["limitation-gauss1-bound-mechanism-posthoc"]["status"], "active")
+        edges = {(item["from"], item["to"], item["relation"]) for item in self.graph["edges"]}
+        self.assertIn(("evidence-gauss1-bound-decomposition", "claim-wide-bounds-parameter-uncertainty", "contradicts"), edges)
+        self.assertIn(("counterexample-gauss1-fold1-wide-bound", "claim-wide-bounds-parameter-uncertainty", "contradicts"), edges)
+        self.assertIn(("evidence-gauss1-bound-decomposition", "counterexample-gauss1-fold2-fold5", "supports"), edges)
 
     def test_schema_edges_and_source_files_are_valid(self):
         self.assertEqual(validate_graph(self.graph, ROOT), [])

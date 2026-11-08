@@ -858,6 +858,52 @@
         "validation/gauss1-ellipsoid-coverage.json",
         "exports/external-coverage-gauss1-comparison.json"
       ]
+    },
+    {
+      "id": "claim-wide-bounds-parameter-uncertainty",
+      "kind": "claim",
+      "title": "所有宽残差界都主要由参数扰动造成",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/gauss1-bound-mechanism.json"
+      ]
+    },
+    {
+      "id": "evidence-gauss1-bound-decomposition",
+      "kind": "evidence",
+      "title": "190 点数值一致及最大残差界位置的实际残差—预测平移同点分解",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/gauss1-bound-mechanism.json"
+      ]
+    },
+    {
+      "id": "counterexample-gauss1-fold1-wide-bound",
+      "kind": "counterexample",
+      "title": "第 1 折 x=1 的残差上界为 330.728324，其中预测平移仅占 0.688%",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/gauss1-bound-mechanism.json"
+      ]
+    },
+    {
+      "id": "experiment-gauss1-bound-mechanism",
+      "kind": "experiment",
+      "title": "不重拟合、不调参的全 250 点只读事后分母与界组成诊断",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/gauss1-bound-mechanism.json",
+        "docs/superpowers/plans/2026-11-09-gauss1-bound-mechanism.md"
+      ]
+    },
+    {
+      "id": "limitation-gauss1-bound-mechanism-posthoc",
+      "kind": "limitation",
+      "title": "同点事后分解不是前瞻检验、概率贡献或物理机制识别，连续未认证不等于不安全",
+      "status": "active",
+      "sourceFiles": [
+        "validation/gauss1-bound-mechanism.json"
+      ]
     }
   ],
   "edges": [
@@ -1089,6 +1135,31 @@
     {
       "from": "track-holdout",
       "to": "limitation-gauss1-generated-candidate-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-wide-bounds-parameter-uncertainty",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-gauss1-bound-decomposition",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-gauss1-fold1-wide-bound",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-gauss1-bound-mechanism",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-gauss1-bound-mechanism-posthoc",
       "relation": "contains"
     },
     {
@@ -1629,6 +1700,36 @@
     {
       "from": "limitation-gauss1-generated-candidate-scope",
       "to": "claim-reusable-driver-guarantees-coverage",
+      "relation": "limits"
+    },
+    {
+      "from": "experiment-gauss1-bound-mechanism",
+      "to": "claim-wide-bounds-parameter-uncertainty",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-gauss1-bound-decomposition",
+      "to": "claim-wide-bounds-parameter-uncertainty",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-gauss1-fold1-wide-bound",
+      "to": "claim-wide-bounds-parameter-uncertainty",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-gauss1-bound-decomposition",
+      "to": "counterexample-gauss1-fold1-wide-bound",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-gauss1-bound-decomposition",
+      "to": "counterexample-gauss1-fold2-fold5",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-gauss1-bound-mechanism-posthoc",
+      "to": "claim-wide-bounds-parameter-uncertainty",
       "relation": "limits"
     },
     {
