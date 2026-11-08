@@ -1,0 +1,63 @@
+{
+  "status": "frozen_before_maximum_full_composition_audit",
+  "frozen_at_local": "2026-11-09T07:18:13+08:00",
+  "analysis_type": "Read-only post-hoc comparison of maximum residual-bound points and full-point distributions for ten datasets; no refitting or new experiment",
+  "input": {
+    "file": "exports/internal-external-bound-comparison-v5.json",
+    "sha256": "e5681ed6dc7f55b53704ec4fb75f0d43043288e36cfcad381eaa010256177190"
+  },
+  "rules": {
+    "majority": "Compare prediction-shift and snapshot-residual dominant counts; a tie would be retained as tie_no_single_majority rather than forcing a winner",
+    "maximum_share": "Use the stored maximum-bound point shift_share without recomputing the fitted model or changing the 0.5 threshold",
+    "median_gap": "maximum_shift_share minus median shift_share over all available points with a defined share",
+    "descriptive_percentile": "Count defined shares less than or equal to the maximum-point share and divide by available point count; this is a descriptive rank, not probability",
+    "bound_ratio": "maximum_residual_upper_bound divided by median residual_upper_bound; require positive median and retain the ratio separately from share class",
+    "scope": "Unavailable points remain excluded and are never converted to zero shares"
+  },
+  "expected": {
+    "dataset_count": 10,
+    "maximum_matches_majority_count": 9,
+    "maximum_majority_mismatch_dataset_ids": ["gauss1"],
+    "maximum_prediction_shift_dominant_count": 9,
+    "maximum_snapshot_residual_dominant_dataset_ids": ["enso"],
+    "maximum_share_below_median_count": 6,
+    "maximum_share_below_median_dataset_ids": ["hahn1", "thurber", "kirby2", "misra1a", "chwirut1", "enso"],
+    "maximum_share_above_median_dataset_ids": ["filip", "mgh17", "gauss1", "roszman1"],
+    "largest_bound_to_median_ratio_dataset_id": "gauss1",
+    "largest_bound_to_median_ratio": 82.99437100729904
+  },
+  "dataset_expectations": {
+    "roszman1": {
+      "available_point_count": 5,
+      "majority_dominant": "prediction_shift_dominant",
+      "maximum_dominant": "prediction_shift_dominant",
+      "maximum_matches_majority": true,
+      "median_shift_share": 0.9933691737124666,
+      "maximum_shift_share": 0.9978338090532987,
+      "maximum_share_minus_median": 0.004464635340832079,
+      "share_less_than_or_equal_maximum_count": 5,
+      "maximum_share_descriptive_percentile": 1.0,
+      "median_residual_upper_bound": 0.5907223247617105,
+      "maximum_residual_upper_bound": 0.7208715611949922,
+      "bound_max_to_median_ratio": 1.2203221902706693
+    }
+  },
+  "scope_rule": {
+    "roszman1_candidate_scope": "The Roszman1 cubic/cubic candidate is not the native four-parameter arctangent model; its five available points occur only in fold 2 and are not an independent physical experiment or probability sample",
+    "historical_preservation": "Preserve the nine-dataset protocol, analysis script, result, figure, Markdown, Word and reporting receipt unchanged",
+    "post_hoc_scope": "Adding Roszman1 changes descriptive counts but does not create a universal ranking, success rate, physical mechanism or native-model validation"
+  },
+  "output_rule": {
+    "summary": "exports/maximum-full-composition-audit-v2.json",
+    "figure": "papers/38_十组最大界与全点组成/fig38_maximum_full_composition_v2.png",
+    "reporting_receipt": "validation/extreme-reporting-v2-check.json",
+    "refuse_overwrite": true
+  },
+  "prohibitions": [
+    "No use of a maximum point as a typical or representative observation",
+    "No conversion of descriptive percentiles, shares or ratios into probabilities or physical causal contributions",
+    "No single mechanism or single scalar ranking across datasets",
+    "No erasure of Gauss1's majority mismatch, ENSO's actual-residual maximum or the six below-median maxima",
+    "No native-arctangent-model, independent-physical-experiment or whole-Roszman1 probability-coverage claim"
+  ]
+}
