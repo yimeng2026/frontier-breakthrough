@@ -1857,6 +1857,143 @@
         "validation/internal-external-bound-comparison-v2-protocol-amendment-01.json",
         "validation/frontier-bound-comparison-v2-word.json"
       ]
+    },
+    {
+      "id": "bound-comparison-v3-scope-expansion",
+      "domain": "math",
+      "title": "五外部与八组界组成新版范围及同族数据对照",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml",
+        "https://www.itl.nist.gov/div898/strd/lls/data/filip.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/misra1a.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml"
+      ],
+      "metrics": {
+        "externalV3Totals": {
+          "point_count": 593,
+          "ellipsoid_available_point_count": 392,
+          "ellipsoid_unavailable_point_count": 201,
+          "prediction_shift_dominant_point_count": 217,
+          "snapshot_residual_dominant_point_count": 175,
+          "undefined_zero_bound_count": 0,
+          "bound_identity_mismatch_count": 0
+        },
+        "combinedV3Totals": {
+          "ellipsoid_available_point_count": 761,
+          "prediction_shift_dominant_point_count": 561,
+          "snapshot_residual_dominant_point_count": 200,
+          "undefined_zero_bound_count": 0,
+          "bound_identity_mismatch_count": 0,
+          "external_unavailable_point_count": 201,
+          "internal_unavailable_rooted_fold_count": 2
+        },
+        "datasets": [
+          {
+            "id": "hahn1",
+            "scope": "internal",
+            "ellipsoid_available_point_count": 189,
+            "prediction_shift_dominant_point_count": 189,
+            "snapshot_residual_dominant_point_count": 0,
+            "median_shift_share": 0.9820853626447161
+          },
+          {
+            "id": "thurber",
+            "scope": "internal",
+            "ellipsoid_available_point_count": 29,
+            "prediction_shift_dominant_point_count": 27,
+            "snapshot_residual_dominant_point_count": 2,
+            "median_shift_share": 0.8980483989245494
+          },
+          {
+            "id": "kirby2",
+            "scope": "internal",
+            "ellipsoid_available_point_count": 151,
+            "prediction_shift_dominant_point_count": 128,
+            "snapshot_residual_dominant_point_count": 23,
+            "median_shift_share": 0.9444638134420068
+          },
+          {
+            "id": "filip",
+            "scope": "external",
+            "ellipsoid_available_point_count": 82,
+            "prediction_shift_dominant_point_count": 82,
+            "snapshot_residual_dominant_point_count": 0,
+            "median_shift_share": 0.9921094965998745
+          },
+          {
+            "id": "mgh17",
+            "scope": "external",
+            "ellipsoid_available_point_count": 33,
+            "prediction_shift_dominant_point_count": 32,
+            "snapshot_residual_dominant_point_count": 1,
+            "median_shift_share": 0.991413833021702
+          },
+          {
+            "id": "gauss1",
+            "scope": "external",
+            "ellipsoid_available_point_count": 190,
+            "prediction_shift_dominant_point_count": 24,
+            "snapshot_residual_dominant_point_count": 166,
+            "median_shift_share": 0.16947432232550075
+          },
+          {
+            "id": "misra1a",
+            "scope": "external",
+            "ellipsoid_available_point_count": 4,
+            "prediction_shift_dominant_point_count": 4,
+            "snapshot_residual_dominant_point_count": 0,
+            "median_shift_share": 0.9996118041945221
+          },
+          {
+            "id": "chwirut1",
+            "scope": "external",
+            "ellipsoid_available_point_count": 83,
+            "prediction_shift_dominant_point_count": 75,
+            "snapshot_residual_dominant_point_count": 8,
+            "median_shift_share": 0.7635061269778911
+          }
+        ],
+        "chwirut1Increment": {
+          "pointCount": 214,
+          "available": 83,
+          "unavailable": 131,
+          "predictionShiftDominant": 75,
+          "snapshotResidualDominant": 8
+        },
+        "relatedDataset": {
+          "name": "Chwirut2",
+          "same_study": true,
+          "same_native_model_family": true,
+          "scope": "Chwirut2 was analyzed previously, but Chwirut1 observations were not used to design previous candidates or regions; this is not an independent model-family or laboratory replication test"
+        },
+        "decision": {
+          "combined_success_rate_claimed": false,
+          "universal_internal_external_ranking_claimed": false,
+          "probability_calibration_claimed": false,
+          "scope_difference_erased": false,
+          "independent_model_family_claimed": false
+        },
+        "historicalPreservation": {
+          "previousFilesPreserved": true,
+          "fourExternal": "exports/external-bound-decomposition-v2.json",
+          "sevenDatasets": "exports/internal-external-bound-comparison-v2.json"
+        }
+      },
+      "scientificClaim": "五外部共 593 点，其中 392 点可用、201 点不可用；217 点平移主导、175 点实际残差主导。八组共 761 个可用点，561 点平移主导、200 点实际残差主导。Chwirut1 带来 +214 总点、+83 可用点、+131 不可用点、+75 平移主导点和 +8 实际残差主导点，历史版本未改写。",
+      "limitations": "这是新增同族数据后的事后范围汇总，不是合并成功率、证明能力改善或独立模型族验证；Chwirut1 与 Chwirut2 的亲缘关系必须保留。The 761 available points are descriptive and not a universal sample or probability estimate Two internal rooted unavailable folds and 201 external unavailable points remain separate Arithmetic shares are not probabilities, variance decomposition or physical-mechanism attribution No universal internal-versus-external ranking or combined success rate is established Chwirut1 was not used in previous region design, but shares its study and native model family with Chwirut2; it is not an independent model-family or laboratory replication test",
+      "upstreamContribution": "提供五外部与八组并存的新版范围接口，将 Chwirut1 增量、数据亲缘、八组分布和两类不适用边界显式连接，防止总对照覆盖历史或夸大独立性。",
+      "snapshotFiles": [
+        "validation/external-bound-decomposition-v3-protocol.json",
+        "validation/internal-external-bound-comparison-v3-protocol.json",
+        "validation/chwirut1-ellipsoid-coverage-protocol.json",
+        "validation/frontier-bound-comparison-v3-word.json"
+      ]
     }
   ]
 }

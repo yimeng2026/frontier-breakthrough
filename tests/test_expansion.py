@@ -112,8 +112,8 @@ class ExpansionTests(unittest.TestCase):
 
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
-        self.assertEqual(len(packet["items"]), 32)
-        self.assertEqual(len({i["id"] for i in packet["items"]}), 32)
+        self.assertEqual(len(packet["items"]), 33)
+        self.assertEqual(len({i["id"] for i in packet["items"]}), 33)
         for item in packet["items"]:
             self.assertEqual(item["status"], "verified")
             self.assertTrue(item["limitations"])
@@ -181,6 +181,23 @@ class ExpansionTests(unittest.TestCase):
         self.assertEqual(item["metrics"]["relatedDataset"]["name"], "Chwirut2")
         self.assertFalse(item["metrics"]["decision"]["independent_model_family_claimed"])
         self.assertIn("同族", item["limitations"])
+
+    def test_v3_scope_expansion_preserves_related_data_and_history(self):
+        packet = self.read("exports/frontier-evidence.json")
+        identifiers = {item["id"] for item in packet["items"]}
+        self.assertIn("bound-comparison-v3-scope-expansion", identifiers)
+        item = next(item for item in packet["items"] if item["id"] == "bound-comparison-v3-scope-expansion")
+        self.assertEqual(item["metrics"]["externalV3Totals"]["point_count"], 593)
+        self.assertEqual(item["metrics"]["externalV3Totals"]["ellipsoid_available_point_count"], 392)
+        self.assertEqual(item["metrics"]["externalV3Totals"]["ellipsoid_unavailable_point_count"], 201)
+        self.assertEqual(item["metrics"]["combinedV3Totals"]["ellipsoid_available_point_count"], 761)
+        self.assertEqual(item["metrics"]["combinedV3Totals"]["prediction_shift_dominant_point_count"], 561)
+        self.assertEqual(item["metrics"]["combinedV3Totals"]["snapshot_residual_dominant_point_count"], 200)
+        self.assertEqual(len(item["metrics"]["datasets"]), 8)
+        self.assertEqual(item["metrics"]["chwirut1Increment"]["unavailable"], 131)
+        self.assertEqual(item["metrics"]["chwirut1Increment"]["predictionShiftDominant"], 75)
+        self.assertEqual(item["metrics"]["relatedDataset"]["name"], "Chwirut2")
+        self.assertTrue(item["metrics"]["historicalPreservation"]["previousFilesPreserved"])
 
     def test_new_agent_projects_have_primary_sources(self):
         projects = self.read("data/projects.json")["projects"]

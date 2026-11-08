@@ -1145,6 +1145,46 @@
         "validation/chwirut1-ellipsoid-coverage-protocol.json",
         "validation/chwirut1-ellipsoid-coverage.json"
       ]
+    },
+    {
+      "id": "evidence-bound-comparison-v3",
+      "kind": "evidence",
+      "title": "五外部 593／392／201 与八组 761 点的新版本对照及 Chwirut1 增量",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/external-bound-decomposition-v3.json",
+        "exports/internal-external-bound-comparison-v3.json"
+      ]
+    },
+    {
+      "id": "counterexample-chwirut1-v3-increment",
+      "kind": "counterexample",
+      "title": "Chwirut1 增加 214 总点、83 可用点、131 不可用点、75 平移主导点和 8 实际残差主导点，不能覆盖历史范围",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-ellipsoid-coverage.json",
+        "exports/internal-external-bound-comparison-v3.json"
+      ]
+    },
+    {
+      "id": "experiment-bound-comparison-v3-protocol",
+      "kind": "experiment",
+      "title": "保留历史版本并冻结五外部与八组输入哈希、同族范围的新版协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/external-bound-decomposition-v3-protocol.json",
+        "validation/internal-external-bound-comparison-v3-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-bound-comparison-v3-scope",
+      "kind": "limitation",
+      "title": "八组范围合计不是成功率或独立模型族验证，内部有根折、外部不可用点和同族边界均不可抹去",
+      "status": "active",
+      "sourceFiles": [
+        "exports/internal-external-bound-comparison-v3.json",
+        "validation/chwirut1-ellipsoid-coverage-protocol.json"
+      ]
     }
   ],
   "edges": [
@@ -2292,6 +2332,61 @@
       "from": "evidence-chwirut1-prediction-proof-dissociation",
       "to": "claim-reusable-driver-guarantees-coverage",
       "relation": "contradicts"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-bound-comparison-v3",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-chwirut1-v3-increment",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-bound-comparison-v3-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-bound-comparison-v3-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-bound-comparison-v3",
+      "to": "claim-new-data-overwrite-history",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-chwirut1-v3-increment",
+      "to": "claim-new-data-overwrite-history",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-bound-comparison-v3",
+      "to": "counterexample-chwirut1-v3-increment",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-bound-comparison-v3-protocol",
+      "to": "claim-new-data-overwrite-history",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-bound-comparison-v3-scope",
+      "to": "claim-new-data-overwrite-history",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-bound-comparison-v3",
+      "to": "evidence-chwirut1-prediction-proof-dissociation",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-bound-comparison-v3-scope",
+      "to": "claim-untouched-data-independent-model-family",
+      "relation": "limits"
     }
   ]
 }

@@ -26,8 +26,8 @@ class KnowledgeGraphTests(unittest.TestCase):
         self.assertEqual(self.nodes["claim-material-identity"]["status"], "supported")
 
     def test_second_dataset_and_cross_solver_are_linked(self):
-        self.assertEqual(len(self.graph["nodes"]), 124)
-        self.assertEqual(len(self.graph["edges"]), 229)
+        self.assertEqual(len(self.graph["nodes"]), 128)
+        self.assertEqual(len(self.graph["edges"]), 240)
         self.assertEqual(self.nodes["claim-eckerle4-two-tail"]["status"], "limited_support")
         self.assertEqual(self.nodes["claim-solver-agreement"]["status"], "supported")
         self.assertEqual(self.nodes["limitation-two-datasets"]["status"], "active")
@@ -161,8 +161,8 @@ class KnowledgeGraphTests(unittest.TestCase):
         identifiers = ["claim-untouched-data-independent-model-family", "evidence-chwirut1-prediction-proof-dissociation", "counterexample-chwirut1-fold4-no-bounds", "experiment-chwirut1-prospective-protocol", "limitation-chwirut1-related-dataset-scope"]
         for identifier in identifiers:
             self.assertIn(identifier, self.nodes)
-        self.assertEqual(len(self.graph["nodes"]), 124)
-        self.assertEqual(len(self.graph["edges"]), 229)
+        self.assertEqual(len(self.graph["nodes"]), 128)
+        self.assertEqual(len(self.graph["edges"]), 240)
         self.assertEqual(self.nodes["claim-untouched-data-independent-model-family"]["status"], "falsified")
         edges = {(item["from"], item["to"], item["relation"]) for item in self.graph["edges"]}
         self.assertIn(("evidence-chwirut1-prediction-proof-dissociation", "claim-small-rmse-useful-proof", "contradicts"), edges)
@@ -170,6 +170,19 @@ class KnowledgeGraphTests(unittest.TestCase):
         self.assertIn(("evidence-chwirut1-prediction-proof-dissociation", "claim-untouched-data-independent-model-family", "contradicts"), edges)
         self.assertIn(("experiment-chwirut1-prospective-protocol", "claim-small-rmse-useful-proof", "tests"), edges)
         self.assertIn(("limitation-chwirut1-related-dataset-scope", "claim-untouched-data-independent-model-family", "limits"), edges)
+
+    def test_v3_scope_expansion_links_chwirut1_and_preserves_history(self):
+        identifiers = ["evidence-bound-comparison-v3", "counterexample-chwirut1-v3-increment", "experiment-bound-comparison-v3-protocol", "limitation-bound-comparison-v3-scope"]
+        for identifier in identifiers:
+            self.assertIn(identifier, self.nodes)
+        self.assertEqual(len(self.graph["nodes"]), 128)
+        self.assertEqual(len(self.graph["edges"]), 240)
+        edges = {(item["from"], item["to"], item["relation"]) for item in self.graph["edges"]}
+        self.assertIn(("evidence-bound-comparison-v3", "claim-new-data-overwrite-history", "contradicts"), edges)
+        self.assertIn(("counterexample-chwirut1-v3-increment", "claim-new-data-overwrite-history", "contradicts"), edges)
+        self.assertIn(("evidence-bound-comparison-v3", "evidence-chwirut1-prediction-proof-dissociation", "supports"), edges)
+        self.assertIn(("experiment-bound-comparison-v3-protocol", "claim-new-data-overwrite-history", "tests"), edges)
+        self.assertIn(("limitation-bound-comparison-v3-scope", "claim-untouched-data-independent-model-family", "limits"), edges)
 
     def test_schema_edges_and_source_files_are_valid(self):
         self.assertEqual(validate_graph(self.graph, ROOT), [])

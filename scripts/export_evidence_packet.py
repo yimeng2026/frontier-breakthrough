@@ -58,6 +58,8 @@ def build() -> dict:
     chwirut1Protocol = read("chwirut1-ellipsoid-coverage-protocol.json")
     externalV2Decomposition = json.loads((ROOT / "exports/external-bound-decomposition-v2.json").read_text(encoding="utf-8"))
     combinedV2Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v2.json").read_text(encoding="utf-8"))
+    externalV3Decomposition = json.loads((ROOT / "exports/external-bound-decomposition-v3.json").read_text(encoding="utf-8"))
+    combinedV3Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v3.json").read_text(encoding="utf-8"))
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -361,6 +363,24 @@ def build() -> dict:
             "limitations": "这是新增数据后的事后范围汇总，不是合并成功率或证明能力改善；内部有根折与外部不可用点仍不可混同。" + " ".join(combinedV2Decomposition["limitations"]),
             "upstreamContribution": "提供新旧版本并存的范围扩展接口，明确 Misra1a 增量来源、七组分布和两类不适用边界，防止旧对照被静默覆盖。",
             "snapshotFiles": ["validation/external-bound-decomposition-v2-protocol.json", "validation/internal-external-bound-comparison-v2-protocol.json", "validation/internal-external-bound-comparison-v2-protocol-amendment-01.json", "validation/frontier-bound-comparison-v2-word.json"],
+        },
+        {
+            "id": "bound-comparison-v3-scope-expansion", "domain": "math", "title": "五外部与八组界组成新版范围及同族数据对照",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml", "https://www.itl.nist.gov/div898/strd/lls/data/filip.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/misra1a.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml"],
+            "metrics": {
+                "externalV3Totals": externalV3Decomposition["totals"],
+                "combinedV3Totals": combinedV3Decomposition["totals"],
+                "datasets": [{"id": item["id"], "scope": item["scope"], "ellipsoid_available_point_count": item["ellipsoid_available_point_count"], "prediction_shift_dominant_point_count": item["prediction_shift_dominant_point_count"], "snapshot_residual_dominant_point_count": item["snapshot_residual_dominant_point_count"], "median_shift_share": item["median_shift_share"]} for item in combinedV3Decomposition["datasets"]],
+                "chwirut1Increment": {"pointCount": 214, "available": 83, "unavailable": 131, "predictionShiftDominant": 75, "snapshotResidualDominant": 8},
+                "relatedDataset": chwirut1Protocol["dataset_scope"]["related_prior_dataset"],
+                "decision": {**combinedV3Decomposition["decision"], "independent_model_family_claimed": False},
+                "historicalPreservation": {"previousFilesPreserved": True, "fourExternal": "exports/external-bound-decomposition-v2.json", "sevenDatasets": "exports/internal-external-bound-comparison-v2.json"},
+            },
+            "scientificClaim": "五外部共 593 点，其中 392 点可用、201 点不可用；217 点平移主导、175 点实际残差主导。八组共 761 个可用点，561 点平移主导、200 点实际残差主导。Chwirut1 带来 +214 总点、+83 可用点、+131 不可用点、+75 平移主导点和 +8 实际残差主导点，历史版本未改写。",
+            "limitations": "这是新增同族数据后的事后范围汇总，不是合并成功率、证明能力改善或独立模型族验证；Chwirut1 与 Chwirut2 的亲缘关系必须保留。" + " ".join(combinedV3Decomposition["limitations"]),
+            "upstreamContribution": "提供五外部与八组并存的新版范围接口，将 Chwirut1 增量、数据亲缘、八组分布和两类不适用边界显式连接，防止总对照覆盖历史或夸大独立性。",
+            "snapshotFiles": ["validation/external-bound-decomposition-v3-protocol.json", "validation/internal-external-bound-comparison-v3-protocol.json", "validation/chwirut1-ellipsoid-coverage-protocol.json", "validation/frontier-bound-comparison-v3-word.json"],
         },
     ]
     packet = {
