@@ -375,6 +375,42 @@
       "sourceFiles": [
         "validation/z3-hahn1-denominator.json"
       ]
+    },
+    {
+      "id": "claim-universal-robustness",
+      "kind": "claim",
+      "title": "三个模型在五组连续区间留出中均稳健且不劣于基线",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/grouped-stress.json"
+      ]
+    },
+    {
+      "id": "evidence-grouped-stress",
+      "kind": "evidence",
+      "title": "三个数据集的 15 折连续区间留出结果与失败审计",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/grouped-stress.json"
+      ]
+    },
+    {
+      "id": "experiment-grouped-stress-protocol",
+      "kind": "experiment",
+      "title": "相同 x 不跨训练与测试的五组连续区间留出协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/grouped-stress-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-grouped-stress",
+      "kind": "limitation",
+      "title": "分母非零、参数可识别和跨区间预测稳健是不同问题",
+      "status": "active",
+      "sourceFiles": [
+        "validation/grouped-stress.json"
+      ]
     }
   ],
   "edges": [
@@ -441,6 +477,26 @@
     {
       "from": "track-holdout",
       "to": "limitation-three-datasets",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-universal-robustness",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-grouped-stress",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-grouped-stress-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-grouped-stress",
       "relation": "contains"
     },
     {
@@ -672,6 +728,21 @@
       "from": "counterexample-hahn1-outdomain-root",
       "to": "claim-unbounded-denominator-safety",
       "relation": "contradicts"
+    },
+    {
+      "from": "experiment-grouped-stress-protocol",
+      "to": "claim-universal-robustness",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-grouped-stress",
+      "to": "claim-universal-robustness",
+      "relation": "contradicts"
+    },
+    {
+      "from": "limitation-grouped-stress",
+      "to": "claim-universal-robustness",
+      "relation": "limits"
     },
     {
       "from": "claim-knowledge-graph",

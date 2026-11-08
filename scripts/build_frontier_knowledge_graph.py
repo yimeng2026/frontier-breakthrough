@@ -23,7 +23,8 @@ def build_graph(root):
     hahn1 = json.loads((root / "validation/hahn1-high-temperature.json").read_text(encoding="utf-8"))
     z3Hahn1 = json.loads((root / "validation/z3-hahn1-denominator.json").read_text(encoding="utf-8"))
     cvc5Hahn1 = json.loads((root / "validation/cvc5-hahn1-denominator.json").read_text(encoding="utf-8"))
-    if not chwirut["decision"]["limited_support"] or not aspirin["canonical_structure_identical"] or not material["structure_identity_confirmed"] or not eckerle["decision"]["limited_support"] or not cvc5["all_results_match_z3"] or not hahn1["decision"]["limited_support"] or cvc5Hahn1["result"] != "unsat" or z3Hahn1["result"] != "unsat":
+    groupedStress = json.loads((root / "validation/grouped-stress.json").read_text(encoding="utf-8"))
+    if not chwirut["decision"]["limited_support"] or not aspirin["canonical_structure_identical"] or not material["structure_identity_confirmed"] or not eckerle["decision"]["limited_support"] or not cvc5["all_results_match_z3"] or not hahn1["decision"]["limited_support"] or cvc5Hahn1["result"] != "unsat" or z3Hahn1["result"] != "unsat" or groupedStress["overall_robust_limited_support"]:
         raise ValueError("Expected evidence states are not present")
 
     nodes = [
@@ -67,10 +68,14 @@ def build_graph(root):
         node("evidence-hahn1-denominator", "evidence", "Z3 与 cvc5 对 Hahn1 分母实验区间给出 unsat", "supported", ["validation/z3-hahn1-denominator.json", "validation/cvc5-hahn1-denominator.json", "validation/cvc5-hahn1-denominator.smt2"]),
         node("claim-unbounded-denominator-safety", "claim", "Hahn1 分母在所有非负温度都没有零根", "falsified", ["validation/z3-hahn1-denominator.json"]),
         node("counterexample-hahn1-outdomain-root", "counterexample", "Hahn1 分母在约 1931 K 的域外正根", "supported", ["validation/z3-hahn1-denominator.json"]),
+        node("claim-universal-robustness", "claim", "三个模型在五组连续区间留出中均稳健且不劣于基线", "falsified", ["validation/grouped-stress.json"]),
+        node("evidence-grouped-stress", "evidence", "三个数据集的 15 折连续区间留出结果与失败审计", "supported", ["validation/grouped-stress.json"]),
+        node("experiment-grouped-stress-protocol", "experiment", "相同 x 不跨训练与测试的五组连续区间留出协议", "supported", ["validation/grouped-stress-protocol.json"]),
+        node("limitation-grouped-stress", "limitation", "分母非零、参数可识别和跨区间预测稳健是不同问题", "active", ["validation/grouped-stress.json"]),
     ]
     edges = []
     for track, claims in {
-        "track-holdout": ["claim-chwirut-extrapolation", "claim-nist-reproduction", "evidence-chwirut", "experiment-chwirut-protocol", "limitation-single-split", "claim-eckerle4-two-tail", "evidence-eckerle4", "experiment-eckerle4-protocol", "limitation-two-datasets", "claim-hahn1-high-temperature", "evidence-hahn1", "experiment-hahn1-protocol", "limitation-three-datasets"],
+        "track-holdout": ["claim-chwirut-extrapolation", "claim-nist-reproduction", "evidence-chwirut", "experiment-chwirut-protocol", "limitation-single-split", "claim-eckerle4-two-tail", "evidence-eckerle4", "experiment-eckerle4-protocol", "limitation-two-datasets", "claim-hahn1-high-temperature", "evidence-hahn1", "experiment-hahn1-protocol", "limitation-three-datasets", "claim-universal-robustness", "evidence-grouped-stress", "experiment-grouped-stress-protocol", "limitation-grouped-stress"],
         "track-formal": ["claim-universal-identifiability", "claim-positive-denominator", "evidence-z3", "counterexample-xzero", "claim-solver-agreement", "evidence-cvc5", "claim-hahn1-denominator", "evidence-hahn1-denominator", "claim-unbounded-denominator-safety", "counterexample-hahn1-outdomain-root"],
         "track-chemistry": ["claim-aspirin-identity", "claim-descriptor-fraud", "evidence-aspirin", "counterexample-descriptor", "limitation-public-records"],
         "track-materials": ["claim-material-identity", "claim-universal-bandgap", "evidence-material", "counterexample-bandgap", "experiment-material-protocol", "limitation-small-material-sample"],
@@ -102,6 +107,9 @@ def build_graph(root):
         edge("evidence-hahn1-denominator", "claim-hahn1-denominator", "supports"),
         edge("evidence-hahn1-denominator", "counterexample-hahn1-outdomain-root", "supports"),
         edge("counterexample-hahn1-outdomain-root", "claim-unbounded-denominator-safety", "contradicts"),
+        edge("experiment-grouped-stress-protocol", "claim-universal-robustness", "tests"),
+        edge("evidence-grouped-stress", "claim-universal-robustness", "contradicts"),
+        edge("limitation-grouped-stress", "claim-universal-robustness", "limits"),
         edge("claim-knowledge-graph", "track-holdout", "recommends"),
         edge("claim-knowledge-graph", "track-formal", "recommends"),
         edge("claim-knowledge-graph", "track-chemistry", "recommends"),

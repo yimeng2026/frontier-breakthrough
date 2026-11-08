@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "rational":
+    if REPORT_MODE == "stress":
+        replacements = {
+            "图：`papers/08_跨数据集压力测试/fig08_grouped_stress.png`。": "![](papers/08_跨数据集压力测试/fig08_grouped_stress.png)\n\n**图 08｜跨数据集连续区间压力测试**  \n**插入位置**：§3「全部 15 折结果」之后；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "连续区间压力测试、Hahn1 第 1 折失败与稳健性边界"
+    elif REPORT_MODE == "rational":
         replacements = {
             "图：`papers/07_有理模型外推/fig07_hahn1_high_temperature.png`。": "![](papers/07_有理模型外推/fig07_hahn1_high_temperature.png)\n\n**图 07｜Hahn1 高温有理模型外推**  \n**插入位置**：§2.2「高温外推结果」之后；顺序第 1 幅，共 1 幅。",
         }

@@ -34,6 +34,7 @@ def build() -> dict:
     hahn1 = read("hahn1-high-temperature.json")
     z3Hahn1 = read("z3-hahn1-denominator.json")
     cvc5Hahn1 = read("cvc5-hahn1-denominator.json")
+    groupedStress = read("grouped-stress.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -151,6 +152,15 @@ def build() -> dict:
             "scientificClaim": "七参数有理模型在预注册高温切片获得有限支持并优于三次多项式基线；分母在实验区间内无零根，但存在域外正根。",
             "limitations": " ".join(hahn1["limitations"]) + " " + z3Hahn1["limitations"], "upstreamContribution": "提供有理模型、强基线、236点预测复算和双求解器分母边界审计。",
             "snapshotFiles": ["validation/hahn1-high-temperature-protocol.json", "validation/hahn1-high-temperature.json", "validation/hahn1-high-temperature-verification.json", "validation/z3-hahn1-denominator.json", "validation/cvc5-hahn1-denominator.json", "validation/cvc5-hahn1-denominator.smt2"],
+        },
+        {
+            "id": "grouped-contiguous-stress-diagnostics", "domain": "physics", "title": "跨数据集连续区间压力测试与失效定位",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/chwirut2.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/eckerle4.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml"],
+            "metrics": {"overallRobustLimitedSupport": groupedStress["overall_robust_limited_support"], "datasets": [{"id": item["id"], "robustLimitedSupport": item["decision"]["robust_limited_support"], "medianRmse": item["median_model_rmse"], "worstFold": item["worst_fold"]} for item in groupedStress["datasets"]]},
+            "scientificClaim": "Chwirut 和 Eckerle4 五折均不劣于基线；Hahn1 第 1 折显著失效，因此整体不能称为稳健支持。",
+            "limitations": " ".join(groupedStress["limitations"]), "upstreamContribution": "提供15折连续区间压力诊断、全部失败区间、基线对照和防泄漏协议。",
+            "snapshotFiles": ["validation/grouped-stress-protocol.json", "validation/grouped-stress.json"],
         },
     ]
     packet = {

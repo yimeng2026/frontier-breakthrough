@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生压力测试与失效边界_图文完整版.docx",
+  "bytes": 187386,
+  "sha256": "d4cc4284ade4481a47b3c7df13717e0ed0c5ec8b8f9fa693a83d1bff4609e888",
+  "native_math_objects": 3,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

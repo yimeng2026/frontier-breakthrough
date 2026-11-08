@@ -501,6 +501,63 @@
         "validation/cvc5-hahn1-denominator.json",
         "validation/cvc5-hahn1-denominator.smt2"
       ]
+    },
+    {
+      "id": "grouped-contiguous-stress-diagnostics",
+      "domain": "physics",
+      "title": "跨数据集连续区间压力测试与失效定位",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/chwirut2.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/eckerle4.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml"
+      ],
+      "metrics": {
+        "overallRobustLimitedSupport": false,
+        "datasets": [
+          {
+            "id": "chwirut",
+            "robustLimitedSupport": true,
+            "medianRmse": 2.0362487577132122,
+            "worstFold": {
+              "fold": 1,
+              "model_rmse": 18.94271253893201,
+              "baseline_rmse": 39.65128000352277,
+              "optimizer_success": true
+            }
+          },
+          {
+            "id": "eckerle4",
+            "robustLimitedSupport": true,
+            "medianRmse": 0.008206716355512607,
+            "worstFold": {
+              "fold": 4,
+              "model_rmse": 0.025498422695806194,
+              "baseline_rmse": 0.0707407715704159,
+              "optimizer_success": true
+            }
+          },
+          {
+            "id": "hahn1",
+            "robustLimitedSupport": false,
+            "medianRmse": 0.09536628127442646,
+            "worstFold": {
+              "fold": 1,
+              "model_rmse": 354.02266177305074,
+              "baseline_rmse": 5.341736844196082,
+              "optimizer_success": true
+            }
+          }
+        ]
+      },
+      "scientificClaim": "Chwirut 和 Eckerle4 五折均不劣于基线；Hahn1 第 1 折显著失效，因此整体不能称为稳健支持。",
+      "limitations": "Five contiguous grouped folds per dataset are stress diagnostics, not universal model-family rankings or independent experiments Contiguous folds include interpolation and extrapolation regimes; a good median cannot hide a failing interval Optimizer failures and non-finite predictions are failures, not missing successes Parameters fitted on four groups are never selected using the held-out group",
+      "upstreamContribution": "提供15折连续区间压力诊断、全部失败区间、基线对照和防泄漏协议。",
+      "snapshotFiles": [
+        "validation/grouped-stress-protocol.json",
+        "validation/grouped-stress.json"
+      ]
     }
   ]
 }

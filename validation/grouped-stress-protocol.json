@@ -1,0 +1,48 @@
+{
+  "status": "frozen_before_grouped_stress_analysis",
+  "frozen_at_local": "2026-11-08T23:15:00+08:00",
+  "scientific_question": "Do the previously supported models remain useful across every contiguous interval of their respective datasets, and where do they fail?",
+  "datasets": {
+    "chwirut": {
+      "data_file": "data/Chwirut2.dat",
+      "protocol_file": "validation/chwirut-holdout-protocol.json",
+      "model": "Chwirut exponential, three parameters",
+      "baseline": "linear"
+    },
+    "eckerle4": {
+      "data_file": "data/Eckerle4.dat",
+      "protocol_file": "validation/eckerle4-two-tail-protocol.json",
+      "model": "Eckerle Gaussian, three parameters",
+      "baseline": "linear"
+    },
+    "hahn1": {
+      "data_file": "data/Hahn1.dat",
+      "protocol_file": "validation/hahn1-high-temperature-protocol.json",
+      "model": "Hahn cubic/cubic rational, seven parameters",
+      "baseline": "cubic_polynomial"
+    }
+  },
+  "fold_rule": {
+    "count": 5,
+    "construction": "Sort unique x values and split them into five contiguous, nearly equal groups. Every repeated x value remains in exactly one group. Each group is tested once while the other four groups are used for fitting.",
+    "leakage_control": "No observation shares an x value between a fold's fitting and test sets; every observation is evaluated exactly once",
+    "fit_rule": "Use the existing frozen model equations, starts, bounds and optimizers. Fit only the other four groups; never select starts, parameters or models using the current test group",
+    "failure_rule": "Optimizer failure, non-finite prediction or a test-group extrapolation failure is recorded as failure, not discarded or called success"
+  },
+  "baselines": {
+    "linear": "Ordinary least-squares linear response fitted on the other four groups",
+    "cubic_polynomial": "Ordinary least-squares cubic polynomial fitted on the other four groups"
+  },
+  "metrics": [
+    "Per-fold RMSE, MAE and maximum absolute residual",
+    "Median and worst fold RMSE",
+    "Per-fold model-minus-baseline RMSE",
+    "Every optimizer failure, non-finite value and fold where model RMSE exceeds baseline"
+  ],
+  "interpretation_rule": {
+    "robust_limited_support": "All five folds produce finite predictions and every fold's model RMSE is no greater than its baseline RMSE",
+    "not_universally_supported": "Any fold fails, produces non-finite predictions, or has model RMSE greater than baseline; report the exact fold rather than hiding it behind a median",
+    "scope": "Five contiguous grouped folds per dataset are a stress diagnostic, not a universal model-family ranking or independent experimental replication"
+  },
+  "output_rule": "Write validation/grouped-stress.json and papers/08_跨数据集压力测试/fig08_grouped_stress.png; preserve all folds and failures; refuse to overwrite existing results"
+}
