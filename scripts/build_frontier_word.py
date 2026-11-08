@@ -25,7 +25,13 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "misra1a_coverage":
+    if REPORT_MODE == "bound_comparison_v2":
+        replacements = {
+            "图：`papers/26_外部四组界组成/fig26_external_bound_decomposition_v2.png`。": "![](papers/26_外部四组界组成/fig26_external_bound_decomposition_v2.png)\n\n**图 26｜四组外部数据同点界组成（第 1 幅，共 2 幅）**  \n**插入位置**：§4「七组内外部数据的界组成」；顺序第 1 幅，共 2 幅。",
+            "图：`papers/27_七组界组成对照/fig27_internal_external_bound_comparison_v2.png`。": "![](papers/27_七组界组成对照/fig27_internal_external_bound_comparison_v2.png)\n\n**图 27｜七组内外部数据同点界组成对照（第 2 幅，共 2 幅）**  \n**插入位置**：图 26 之后；顺序第 2 幅，共 2 幅。",
+        }
+        subtitle = "379 点外部范围、678 个可用点与新旧版本对照"
+    elif REPORT_MODE == "misra1a_coverage":
         replacements = {
             "图：`papers/25_Misra1a椭球覆盖/fig25_misra1a_ellipsoid_coverage.png`。": "![](papers/25_Misra1a椭球覆盖/fig25_misra1a_ellipsoid_coverage.png)\n\n**图 25｜Misra1a 候选预测与逐点界可用性（第 1 幅，共 1 幅）**  \n**插入位置**：§4「四个可用点的界宽度与组成」；顺序第 1 幅，共 1 幅。",
         }

@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生四外部与七组界组成对照_图文完整版.docx",
+  "bytes": 208493,
+  "sha256": "5222aef3377b7a6308f6ac65279784b94750d85d1300cc0bfcf7af47a583036b",
+  "native_math_objects": 2,
+  "embedded_images": 2,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}
