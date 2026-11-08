@@ -904,6 +904,52 @@
       "sourceFiles": [
         "validation/gauss1-bound-mechanism.json"
       ]
+    },
+    {
+      "id": "claim-uniform-external-bound-mechanism",
+      "kind": "claim",
+      "title": "所有外部残差上界都由同一种项主导",
+      "status": "falsified",
+      "sourceFiles": [
+        "exports/external-bound-decomposition.json"
+      ]
+    },
+    {
+      "id": "evidence-external-bound-decomposition",
+      "kind": "evidence",
+      "title": "305 点算术一致性及 Filip、MGH17、Gauss1 的全点主导项分布对照",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/external-bound-decomposition.json"
+      ]
+    },
+    {
+      "id": "counterexample-filip-gauss1-composition",
+      "kind": "counterexample",
+      "title": "Filip 82／82 点由平移主导，而 Gauss1 有 166／190 点由实际残差主导",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/external-bound-decomposition.json"
+      ]
+    },
+    {
+      "id": "experiment-external-bound-decomposition-protocol",
+      "kind": "experiment",
+      "title": "冻结输入、0.5 阈值、零界规则与四点 Gauss1 回归的只读分解协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/external-bound-decomposition-protocol.json",
+        "docs/superpowers/plans/2026-11-09-external-bound-decomposition.md"
+      ]
+    },
+    {
+      "id": "limitation-external-bound-decomposition-posthoc",
+      "kind": "limitation",
+      "title": "事后算术占比不是概率、方差或物理因果贡献，三数据不形成普适排名",
+      "status": "active",
+      "sourceFiles": [
+        "exports/external-bound-decomposition.json"
+      ]
     }
   ],
   "edges": [
@@ -1160,6 +1206,31 @@
     {
       "from": "track-holdout",
       "to": "limitation-gauss1-bound-mechanism-posthoc",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-uniform-external-bound-mechanism",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-external-bound-decomposition",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-filip-gauss1-composition",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-external-bound-decomposition-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-external-bound-decomposition-posthoc",
       "relation": "contains"
     },
     {
@@ -1730,6 +1801,36 @@
     {
       "from": "limitation-gauss1-bound-mechanism-posthoc",
       "to": "claim-wide-bounds-parameter-uncertainty",
+      "relation": "limits"
+    },
+    {
+      "from": "experiment-external-bound-decomposition-protocol",
+      "to": "claim-uniform-external-bound-mechanism",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-external-bound-decomposition",
+      "to": "claim-uniform-external-bound-mechanism",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-filip-gauss1-composition",
+      "to": "claim-uniform-external-bound-mechanism",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-external-bound-decomposition",
+      "to": "counterexample-filip-gauss1-composition",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-external-bound-decomposition",
+      "to": "claim-wide-bounds-parameter-uncertainty",
+      "relation": "contradicts"
+    },
+    {
+      "from": "limitation-external-bound-decomposition-posthoc",
+      "to": "claim-uniform-external-bound-mechanism",
       "relation": "limits"
     },
     {

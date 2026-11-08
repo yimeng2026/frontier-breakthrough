@@ -26,8 +26,8 @@ class KnowledgeGraphTests(unittest.TestCase):
         self.assertEqual(self.nodes["claim-material-identity"]["status"], "supported")
 
     def test_second_dataset_and_cross_solver_are_linked(self):
-        self.assertEqual(len(self.graph["nodes"]), 98)
-        self.assertEqual(len(self.graph["edges"]), 169)
+        self.assertEqual(len(self.graph["nodes"]), 103)
+        self.assertEqual(len(self.graph["edges"]), 180)
         self.assertEqual(self.nodes["claim-eckerle4-two-tail"]["status"], "limited_support")
         self.assertEqual(self.nodes["claim-solver-agreement"]["status"], "supported")
         self.assertEqual(self.nodes["limitation-two-datasets"]["status"], "active")
@@ -96,6 +96,21 @@ class KnowledgeGraphTests(unittest.TestCase):
         self.assertIn(("evidence-gauss1-bound-decomposition", "claim-wide-bounds-parameter-uncertainty", "contradicts"), edges)
         self.assertIn(("counterexample-gauss1-fold1-wide-bound", "claim-wide-bounds-parameter-uncertainty", "contradicts"), edges)
         self.assertIn(("evidence-gauss1-bound-decomposition", "counterexample-gauss1-fold2-fold5", "supports"), edges)
+
+    def test_external_bound_composition_heterogeneity_is_linked(self):
+        identifiers = ["claim-uniform-external-bound-mechanism", "evidence-external-bound-decomposition", "counterexample-filip-gauss1-composition", "experiment-external-bound-decomposition-protocol", "limitation-external-bound-decomposition-posthoc"]
+        for identifier in identifiers:
+            self.assertIn(identifier, self.nodes)
+        self.assertEqual(self.nodes["claim-uniform-external-bound-mechanism"]["status"], "falsified")
+        self.assertEqual(self.nodes["evidence-external-bound-decomposition"]["status"], "supported")
+        self.assertEqual(self.nodes["counterexample-filip-gauss1-composition"]["status"], "supported")
+        self.assertEqual(self.nodes["experiment-external-bound-decomposition-protocol"]["status"], "supported")
+        self.assertEqual(self.nodes["limitation-external-bound-decomposition-posthoc"]["status"], "active")
+        edges = {(item["from"], item["to"], item["relation"]) for item in self.graph["edges"]}
+        self.assertIn(("evidence-external-bound-decomposition", "claim-uniform-external-bound-mechanism", "contradicts"), edges)
+        self.assertIn(("counterexample-filip-gauss1-composition", "claim-uniform-external-bound-mechanism", "contradicts"), edges)
+        self.assertIn(("evidence-external-bound-decomposition", "claim-wide-bounds-parameter-uncertainty", "contradicts"), edges)
+        self.assertIn(("experiment-external-bound-decomposition-protocol", "claim-uniform-external-bound-mechanism", "tests"), edges)
 
     def test_schema_edges_and_source_files_are_valid(self):
         self.assertEqual(validate_graph(self.graph, ROOT), [])

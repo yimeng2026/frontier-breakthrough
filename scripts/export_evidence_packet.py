@@ -51,6 +51,7 @@ def build() -> dict:
     gauss1Coverage = read("gauss1-ellipsoid-coverage.json")
     gauss1Comparison = json.loads((ROOT / "exports/external-coverage-gauss1-comparison.json").read_text(encoding="utf-8"))
     gauss1Mechanism = read("gauss1-bound-mechanism.json")
+    externalDecomposition = json.loads((ROOT / "exports/external-bound-decomposition.json").read_text(encoding="utf-8"))
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -296,6 +297,16 @@ def build() -> dict:
             "limitations": "这是只读事后诊断，不是重新拟合或前瞻检验；同点占比不是概率贡献，连续未认证不等于已证明不安全。" + " ".join(gauss1Mechanism["limitations"]),
             "upstreamContribution": "提供全 250 点分母下界、60 点不可用原因、190 点数值一致性及同点误差—平移分解，支持按机制而非仅按数据集检索。",
             "snapshotFiles": ["validation/gauss1-bound-mechanism.json", "validation/gauss1-ellipsoid-coverage.json", "validation/frontier-gauss1-bound-mechanism-word.json"],
+        },
+        {
+            "id": "external-bound-composition-heterogeneity", "domain": "math", "title": "三数据同点界组成与机制异质性",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/lls/data/filip.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml"],
+            "metrics": {"totals": externalDecomposition["totals"], "datasets": [{"id": item["id"], "ellipsoid_available_point_count": item["ellipsoid_available_point_count"], "prediction_shift_dominant_point_count": item["prediction_shift_dominant_point_count"], "snapshot_residual_dominant_point_count": item["snapshot_residual_dominant_point_count"], "median_shift_share": item["median_shift_share"], "maximum_residual_upper_bound": item["maximum_residual_upper_bound"]} for item in externalDecomposition["datasets"]], "gauss1Regression": externalDecomposition["gauss1_regression"], "analysisScope": externalDecomposition["analysis_scope"]},
+            "scientificClaim": "305 个可用点的算术恒等式全部一致。Filip 82／82 点、MGH17 32／33 点由预测平移主导，Gauss1 则 166／190 点由快照实际残差主导；三数据最大界虽均由平移主导，全点分布并不相同。",
+            "limitations": "这是只读事后算术分解，不是概率、方差或物理因果贡献；60 个不可用点没有虚构占比，三数据不形成普适排名。" + " ".join(externalDecomposition["limitations"]),
+            "upstreamContribution": "提供全点分布与最大界位置的双层对照，防止用单一数据集或单一最大值概括所有残差上界。",
+            "snapshotFiles": ["validation/external-bound-decomposition-protocol.json", "validation/frontier-external-bound-decomposition-word.json", "validation/gauss1-bound-mechanism.json"],
         },
     ]
     packet = {

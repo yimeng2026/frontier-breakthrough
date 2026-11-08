@@ -112,8 +112,8 @@ class ExpansionTests(unittest.TestCase):
 
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
-        self.assertEqual(len(packet["items"]), 27)
-        self.assertEqual(len({i["id"] for i in packet["items"]}), 27)
+        self.assertEqual(len(packet["items"]), 28)
+        self.assertEqual(len({i["id"] for i in packet["items"]}), 28)
         for item in packet["items"]:
             self.assertEqual(item["status"], "verified")
             self.assertTrue(item["limitations"])
@@ -132,6 +132,15 @@ class ExpansionTests(unittest.TestCase):
         self.assertGreater(mechanism["metrics"]["samePointMaxima"][1]["shift_share"], 0.95)
         self.assertLess(mechanism["metrics"]["samePointMaxima"][0]["shift_share"], 0.05)
         self.assertFalse(mechanism["metrics"]["analysisScope"]["refit"])
+        heterogeneity = next(item for item in packet["items"] if item["id"] == "external-bound-composition-heterogeneity")
+        self.assertEqual(heterogeneity["metrics"]["totals"]["prediction_shift_dominant_point_count"], 138)
+        self.assertEqual(heterogeneity["metrics"]["totals"]["snapshot_residual_dominant_point_count"], 167)
+        datasets = {item["id"]: item for item in heterogeneity["metrics"]["datasets"]}
+        self.assertEqual(datasets["filip"]["prediction_shift_dominant_point_count"], 82)
+        self.assertEqual(datasets["gauss1"]["snapshot_residual_dominant_point_count"], 166)
+        self.assertGreater(datasets["filip"]["median_shift_share"], 0.99)
+        self.assertLess(datasets["gauss1"]["median_shift_share"], 0.2)
+        self.assertEqual(heterogeneity["metrics"]["gauss1Regression"]["mismatch_count"], 0)
 
     def test_new_agent_projects_have_primary_sources(self):
         projects = self.read("data/projects.json")["projects"]

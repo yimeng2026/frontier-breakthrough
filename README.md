@@ -18,7 +18,7 @@
 - [定期消化机制](docs/RESEARCH_AUTOMATION.md)：检索—筛选—复现—回馈的闭环。
 - [机器可读目录](data/projects.json)：每项均有官方来源、证据级别、协作角色和本地状态。
 - [上游接口与证据契约](docs/UPSTREAM_INTERFACES.md)：真实跨库验证、统一 JSON 接口及组件边界。
-- [跨域证据包](exports/frontier-evidence.json)：二十七项已执行检查的结构化结果与限制。
+- [跨域证据包](exports/frontier-evidence.json)：二十八项已执行检查的结构化结果与限制。
 - [五条主线扩展工作包](docs/EXPANSION_2026-11-08.md)：真实留出、形式化反例、化学跨库、材料跨库和知识图谱的首轮成果。
 - [第二轮续展报告](docs/CONTINUATION_2026-11-08.md)：Eckerle4 双尾外推与 cvc5 交叉求解器复核。
 - [第三阶段有理模型报告](docs/RATIONAL_2026-11-08.md)：Hahn1 高温外推与分母边界。
@@ -36,6 +36,8 @@
 - [第十五阶段可复用外部覆盖协议](docs/EXTERNAL_COVERAGE_2026-11-09.md)：通用驱动、MGH17 新数据对照与 115 点描述性汇总。
 - [第十六阶段 Gauss1 外部反例](docs/GAUSS1_EXTERNAL_COVERAGE_2026-11-09.md)：250 点中 190 点可给界、60 点不可用，三数据对照保留预测失败与证据边界。
 - [第十七阶段 Gauss1 界失效机制](docs/GAUSS1_BOUND_MECHANISM_2026-11-09.md)：190 点界复核、同点误差—平移分解与三类宽界机制。
+- [第十八阶段三数据界组成对照](docs/EXTERNAL_BOUND_DECOMPOSITION_2026-11-09.md)：305 点算术一致性、三数据主导项分布与机制异质性。
+- [三数据界组成原生 Word 图文版](papers/前沿共生外部界组成对照_图文完整版.docx)：一幅实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
 - [Gauss1 界失效机制原生 Word 图文版](papers/前沿共生Gauss1界失效机制_图文完整版.docx)：一幅实图、四个 Word 表格、九个原生 OMML 公式，含目录、页眉和页码。
 - [Gauss1 外部反例原生 Word 图文版](papers/前沿共生Gauss1外部反例_图文完整版.docx)：三幅实图、四个 Word 表格、一个原生 OMML 公式，含目录、页眉和页码。
 - [外部覆盖协议原生 Word 图文版](papers/前沿共生外部覆盖协议_图文完整版.docx)：两幅实图、四个 Word 表格、一个原生 OMML 公式，含目录、页眉和页码。
@@ -53,7 +55,7 @@
 - [有理模型原生 Word 图文版](papers/前沿共生有理模型与分母边界_图文完整版.docx)：一幅实图、四个 Word 表格、七个原生 OMML 公式，含目录、页眉和页码。
 - [续展原生 Word 图文版](papers/前沿共生续展_双尾外推与求解器复核_图文完整版.docx)：一幅实图、四个 Word 表格、七个原生 OMML 公式，含目录、页眉和页码。
 - [扩展工作包原生 Word 图文版](papers/前沿共生扩展工作包_图文完整版.docx)：两幅实图、三个 Word 表格、五个原生 OMML 公式，含目录、页眉和页码。
-- [主张—证据—反例—实验图谱](exports/frontier-knowledge-graph.json)：98 个节点、169 条边，支持与反例均可追溯到实际文件。
+- [主张—证据—反例—实验图谱](exports/frontier-knowledge-graph.json)：103 个节点、180 条边，支持与反例均可追溯到实际文件。
 - [研究简报合订本（Word）](papers/前沿共生研究简报_合订本.docx)：三篇长文、十三幅图，附真实证据与复现路径。
 - [研究简报合订本（Markdown）](papers/前沿共生研究简报_合订本.md)：便于审阅和继续修订的文本版本。
 

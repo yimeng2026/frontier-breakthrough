@@ -1237,6 +1237,115 @@
         "validation/gauss1-ellipsoid-coverage.json",
         "validation/frontier-gauss1-bound-mechanism-word.json"
       ]
+    },
+    {
+      "id": "external-bound-composition-heterogeneity",
+      "domain": "math",
+      "title": "三数据同点界组成与机制异质性",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/lls/data/filip.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml"
+      ],
+      "metrics": {
+        "totals": {
+          "point_count": 365,
+          "ellipsoid_available_point_count": 305,
+          "ellipsoid_unavailable_point_count": 60,
+          "prediction_shift_dominant_point_count": 138,
+          "snapshot_residual_dominant_point_count": 167,
+          "undefined_zero_bound_count": 0,
+          "bound_identity_mismatch_count": 0
+        },
+        "datasets": [
+          {
+            "id": "filip",
+            "ellipsoid_available_point_count": 82,
+            "prediction_shift_dominant_point_count": 82,
+            "snapshot_residual_dominant_point_count": 0,
+            "median_shift_share": 0.9921094965998745,
+            "maximum_residual_upper_bound": {
+              "fold": 5,
+              "x": -4.517126416,
+              "actual_absolute_residual": 0.0033990715372703706,
+              "prediction_shift": 0.8408837836207781,
+              "residual_upper_bound": 0.844282855158048,
+              "shift_share": 0.995974013310227,
+              "dominant": "prediction_shift_dominant"
+            }
+          },
+          {
+            "id": "mgh17",
+            "ellipsoid_available_point_count": 33,
+            "prediction_shift_dominant_point_count": 32,
+            "snapshot_residual_dominant_point_count": 1,
+            "median_shift_share": 0.991413833021702,
+            "maximum_residual_upper_bound": {
+              "fold": 1,
+              "x": 60.0,
+              "actual_absolute_residual": 0.0015481419860000623,
+              "prediction_shift": 0.4587778117104475,
+              "residual_upper_bound": 0.46032595369644763,
+              "shift_share": 0.9966368570497309,
+              "dominant": "prediction_shift_dominant"
+            }
+          },
+          {
+            "id": "gauss1",
+            "ellipsoid_available_point_count": 190,
+            "prediction_shift_dominant_point_count": 24,
+            "snapshot_residual_dominant_point_count": 166,
+            "median_shift_share": 0.16947432232550075,
+            "maximum_residual_upper_bound": {
+              "fold": 2,
+              "x": 72.0,
+              "actual_absolute_residual": 119.43568573801466,
+              "prediction_shift": 4777.531896303414,
+              "residual_upper_bound": 4896.967582041431,
+              "shift_share": 0.9756102764135051,
+              "dominant": "prediction_shift_dominant"
+            }
+          }
+        ],
+        "gauss1Regression": {
+          "check_count": 4,
+          "mismatch_count": 0,
+          "checks": [
+            {
+              "fold": 1,
+              "match": true
+            },
+            {
+              "fold": 2,
+              "match": true
+            },
+            {
+              "fold": 3,
+              "match": true
+            },
+            {
+              "fold": 4,
+              "match": true
+            }
+          ]
+        },
+        "analysisScope": {
+          "post_hoc": true,
+          "refit": false,
+          "retuned": false,
+          "shift_dominant_threshold": 0.5
+        }
+      },
+      "scientificClaim": "305 个可用点的算术恒等式全部一致。Filip 82／82 点、MGH17 32／33 点由预测平移主导，Gauss1 则 166／190 点由快照实际残差主导；三数据最大界虽均由平移主导，全点分布并不相同。",
+      "limitations": "这是只读事后算术分解，不是概率、方差或物理因果贡献；60 个不可用点没有虚构占比，三数据不形成普适排名。This is a read-only post-hoc arithmetic decomposition of stored bounds Shares are not probabilities, variance decomposition or physical-mechanism attribution The 60 unavailable points are retained separately and have no fabricated bounds or shares Dataset-specific distributions do not establish a universal ranking or native-model validity",
+      "upstreamContribution": "提供全点分布与最大界位置的双层对照，防止用单一数据集或单一最大值概括所有残差上界。",
+      "snapshotFiles": [
+        "validation/external-bound-decomposition-protocol.json",
+        "validation/frontier-external-bound-decomposition-word.json",
+        "validation/gauss1-bound-mechanism.json"
+      ]
     }
   ]
 }
