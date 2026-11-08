@@ -950,6 +950,52 @@
       "sourceFiles": [
         "exports/external-bound-decomposition.json"
       ]
+    },
+    {
+      "id": "claim-combined-internal-external-success-rate",
+      "kind": "claim",
+      "title": "内部与外部证据可直接合并为统一成功率",
+      "status": "falsified",
+      "sourceFiles": [
+        "exports/internal-external-bound-comparison.json"
+      ]
+    },
+    {
+      "id": "evidence-internal-external-bound-comparison",
+      "kind": "evidence",
+      "title": "六组 674 点中 482 点平移主导、192 点实际残差主导及两类不适用边界",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/internal-external-bound-comparison.json"
+      ]
+    },
+    {
+      "id": "counterexample-six-dataset-bound-composition",
+      "kind": "counterexample",
+      "title": "六组最大界均由平移主导，但 Gauss1 与其他五组的全点分布显著不同",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/internal-external-bound-comparison.json"
+      ]
+    },
+    {
+      "id": "experiment-internal-external-bound-protocol",
+      "kind": "experiment",
+      "title": "冻结双输入、范围分离和六组分布的只读内外部对照协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/internal-external-bound-comparison-protocol.json",
+        "validation/internal-bound-decomposition-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-internal-external-scope",
+      "kind": "limitation",
+      "title": "内部两个有根折与外部 60 个不可用点不可混同，674 点不是总体成功率",
+      "status": "active",
+      "sourceFiles": [
+        "exports/internal-external-bound-comparison.json"
+      ]
     }
   ],
   "edges": [
@@ -1231,6 +1277,31 @@
     {
       "from": "track-holdout",
       "to": "limitation-external-bound-decomposition-posthoc",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-combined-internal-external-success-rate",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-internal-external-bound-comparison",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-six-dataset-bound-composition",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-internal-external-bound-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-internal-external-scope",
       "relation": "contains"
     },
     {
@@ -1831,6 +1902,41 @@
     {
       "from": "limitation-external-bound-decomposition-posthoc",
       "to": "claim-uniform-external-bound-mechanism",
+      "relation": "limits"
+    },
+    {
+      "from": "experiment-internal-external-bound-protocol",
+      "to": "claim-combined-internal-external-success-rate",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-internal-external-bound-comparison",
+      "to": "claim-combined-internal-external-success-rate",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-six-dataset-bound-composition",
+      "to": "claim-combined-internal-external-success-rate",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-internal-external-bound-comparison",
+      "to": "counterexample-six-dataset-bound-composition",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-six-dataset-bound-composition",
+      "to": "claim-uniform-external-bound-mechanism",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-internal-external-bound-comparison",
+      "to": "counterexample-filip-gauss1-composition",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-internal-external-scope",
+      "to": "claim-combined-internal-external-success-rate",
       "relation": "limits"
     },
     {

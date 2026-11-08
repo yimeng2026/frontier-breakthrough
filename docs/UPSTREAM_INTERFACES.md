@@ -43,7 +43,8 @@
 | Gauss1 外部反例与三数据对照 | 250 点中 190 点可给界、60 点不可用，连续安全 3／5 折；三数据共 365 点，305 点适用 | `validation/gauss1-ellipsoid-coverage.json`、`exports/external-coverage-gauss1-comparison.json` | 保留预测失败和无可用界反例，不把代码复用或适用点零违规称为外部有效性保证 |
 | Gauss1 界失效机制与同点分解 | 190 点数值全部一致；第 2 折最大界处平移占 97.561%，第 1、3、4 折主要由实际残差贡献 | `scripts/analyze_gauss1_bound_mechanism.py`、`validation/gauss1-bound-mechanism.json` | 区分候选误差、近零分母放大和极端协方差支撑，不把事后占比称为概率贡献或物理机制 |
 | 三数据界组成与机制异质性 | 305 点算术恒等式全部一致；Filip 与 MGH17 几乎全由平移主导，Gauss1 多数由实际残差主导 | `scripts/build_external_bound_decomposition.py`、`exports/external-bound-decomposition.json` | 同时保留全点分布和最大界位置，不把算术占比称为概率贡献或普适排名 |
-| 主张—证据—反例—实验图谱 | 103 个节点、180 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| 内外部六组界组成对照 | 674 点中 482 点平移主导、192 点实际残差主导；内部有根折与外部不可用点分开 | `scripts/build_internal_external_bound_comparison.py`、`exports/internal-external-bound-comparison.json` | 支持内外部可比较但不可混同的证据检索，不计算合并成功率或普适排名 |
+| 主张—证据—反例—实验图谱 | 108 个节点、192 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 与自动科学发现项目的配合
 

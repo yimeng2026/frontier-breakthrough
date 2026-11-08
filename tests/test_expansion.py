@@ -112,8 +112,8 @@ class ExpansionTests(unittest.TestCase):
 
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
-        self.assertEqual(len(packet["items"]), 28)
-        self.assertEqual(len({i["id"] for i in packet["items"]}), 28)
+        self.assertEqual(len(packet["items"]), 29)
+        self.assertEqual(len({i["id"] for i in packet["items"]}), 29)
         for item in packet["items"]:
             self.assertEqual(item["status"], "verified")
             self.assertTrue(item["limitations"])
@@ -141,6 +141,14 @@ class ExpansionTests(unittest.TestCase):
         self.assertGreater(datasets["filip"]["median_shift_share"], 0.99)
         self.assertLess(datasets["gauss1"]["median_shift_share"], 0.2)
         self.assertEqual(heterogeneity["metrics"]["gauss1Regression"]["mismatch_count"], 0)
+        combined = next(item for item in packet["items"] if item["id"] == "internal-external-bound-scope-comparison")
+        self.assertEqual(combined["metrics"]["totals"]["ellipsoid_available_point_count"], 674)
+        self.assertEqual(combined["metrics"]["totals"]["prediction_shift_dominant_point_count"], 482)
+        self.assertEqual(combined["metrics"]["totals"]["snapshot_residual_dominant_point_count"], 192)
+        self.assertEqual(combined["metrics"]["totals"]["external_unavailable_point_count"], 60)
+        self.assertEqual(combined["metrics"]["totals"]["internal_unavailable_rooted_fold_count"], 2)
+        self.assertEqual(len(combined["metrics"]["datasets"]), 6)
+        self.assertFalse(combined["metrics"]["decision"]["combined_success_rate_claimed"])
 
     def test_new_agent_projects_have_primary_sources(self):
         projects = self.read("data/projects.json")["projects"]

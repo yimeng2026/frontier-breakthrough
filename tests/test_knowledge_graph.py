@@ -26,8 +26,8 @@ class KnowledgeGraphTests(unittest.TestCase):
         self.assertEqual(self.nodes["claim-material-identity"]["status"], "supported")
 
     def test_second_dataset_and_cross_solver_are_linked(self):
-        self.assertEqual(len(self.graph["nodes"]), 103)
-        self.assertEqual(len(self.graph["edges"]), 180)
+        self.assertEqual(len(self.graph["nodes"]), 108)
+        self.assertEqual(len(self.graph["edges"]), 192)
         self.assertEqual(self.nodes["claim-eckerle4-two-tail"]["status"], "limited_support")
         self.assertEqual(self.nodes["claim-solver-agreement"]["status"], "supported")
         self.assertEqual(self.nodes["limitation-two-datasets"]["status"], "active")
@@ -111,6 +111,21 @@ class KnowledgeGraphTests(unittest.TestCase):
         self.assertIn(("counterexample-filip-gauss1-composition", "claim-uniform-external-bound-mechanism", "contradicts"), edges)
         self.assertIn(("evidence-external-bound-decomposition", "claim-wide-bounds-parameter-uncertainty", "contradicts"), edges)
         self.assertIn(("experiment-external-bound-decomposition-protocol", "claim-uniform-external-bound-mechanism", "tests"), edges)
+
+    def test_internal_external_scope_and_six_distributions_are_linked(self):
+        identifiers = ["claim-combined-internal-external-success-rate", "evidence-internal-external-bound-comparison", "counterexample-six-dataset-bound-composition", "experiment-internal-external-bound-protocol", "limitation-internal-external-scope"]
+        for identifier in identifiers:
+            self.assertIn(identifier, self.nodes)
+        self.assertEqual(self.nodes["claim-combined-internal-external-success-rate"]["status"], "falsified")
+        self.assertEqual(self.nodes["evidence-internal-external-bound-comparison"]["status"], "supported")
+        self.assertEqual(self.nodes["counterexample-six-dataset-bound-composition"]["status"], "supported")
+        self.assertEqual(self.nodes["experiment-internal-external-bound-protocol"]["status"], "supported")
+        self.assertEqual(self.nodes["limitation-internal-external-scope"]["status"], "active")
+        edges = {(item["from"], item["to"], item["relation"]) for item in self.graph["edges"]}
+        self.assertIn(("evidence-internal-external-bound-comparison", "claim-combined-internal-external-success-rate", "contradicts"), edges)
+        self.assertIn(("counterexample-six-dataset-bound-composition", "claim-combined-internal-external-success-rate", "contradicts"), edges)
+        self.assertIn(("evidence-internal-external-bound-comparison", "counterexample-filip-gauss1-composition", "supports"), edges)
+        self.assertIn(("experiment-internal-external-bound-protocol", "claim-combined-internal-external-success-rate", "tests"), edges)
 
     def test_schema_edges_and_source_files_are_valid(self):
         self.assertEqual(validate_graph(self.graph, ROOT), [])

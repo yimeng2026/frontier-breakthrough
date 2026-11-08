@@ -1346,6 +1346,159 @@
         "validation/frontier-external-bound-decomposition-word.json",
         "validation/gauss1-bound-mechanism.json"
       ]
+    },
+    {
+      "id": "internal-external-bound-scope-comparison",
+      "domain": "math",
+      "title": "内外部六组界组成与范围边界对照",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml",
+        "https://www.itl.nist.gov/div898/strd/lls/data/filip.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml"
+      ],
+      "metrics": {
+        "totals": {
+          "ellipsoid_available_point_count": 674,
+          "prediction_shift_dominant_point_count": 482,
+          "snapshot_residual_dominant_point_count": 192,
+          "undefined_zero_bound_count": 0,
+          "bound_identity_mismatch_count": 0,
+          "external_unavailable_point_count": 60,
+          "internal_unavailable_rooted_fold_count": 2
+        },
+        "datasets": [
+          {
+            "id": "hahn1",
+            "scope": "internal",
+            "ellipsoid_available_point_count": 189,
+            "prediction_shift_dominant_point_count": 189,
+            "snapshot_residual_dominant_point_count": 0,
+            "median_shift_share": 0.9820853626447161,
+            "maximum_residual_upper_bound": {
+              "fold": 5,
+              "x": 851.37,
+              "actual_absolute_residual": 1.443896844015164,
+              "prediction_shift": 39.51520206823939,
+              "residual_upper_bound": 40.959098912254554,
+              "shift_share": 0.964747836686828,
+              "dominant": "prediction_shift_dominant"
+            }
+          },
+          {
+            "id": "thurber",
+            "scope": "internal",
+            "ellipsoid_available_point_count": 29,
+            "prediction_shift_dominant_point_count": 27,
+            "snapshot_residual_dominant_point_count": 2,
+            "median_shift_share": 0.8980483989245494,
+            "maximum_residual_upper_bound": {
+              "fold": 5,
+              "x": 2.2,
+              "actual_absolute_residual": 93.4579767178684,
+              "prediction_shift": 740.7192202545073,
+              "residual_upper_bound": 834.1771969723757,
+              "shift_share": 0.8879638797882852,
+              "dominant": "prediction_shift_dominant"
+            }
+          },
+          {
+            "id": "kirby2",
+            "scope": "internal",
+            "ellipsoid_available_point_count": 151,
+            "prediction_shift_dominant_point_count": 128,
+            "snapshot_residual_dominant_point_count": 23,
+            "median_shift_share": 0.9444638134420068,
+            "maximum_residual_upper_bound": {
+              "fold": 5,
+              "x": 371.3,
+              "actual_absolute_residual": 1.2290180152720325,
+              "prediction_shift": 6.4697821865357374,
+              "residual_upper_bound": 7.698800201807761,
+              "shift_share": 0.8403623963402197,
+              "dominant": "prediction_shift_dominant"
+            }
+          },
+          {
+            "id": "filip",
+            "scope": "external",
+            "ellipsoid_available_point_count": 82,
+            "prediction_shift_dominant_point_count": 82,
+            "snapshot_residual_dominant_point_count": 0,
+            "median_shift_share": 0.9921094965998745,
+            "maximum_residual_upper_bound": {
+              "fold": 5,
+              "x": -4.517126416,
+              "actual_absolute_residual": 0.0033990715372703706,
+              "prediction_shift": 0.8408837836207781,
+              "residual_upper_bound": 0.844282855158048,
+              "shift_share": 0.995974013310227,
+              "dominant": "prediction_shift_dominant"
+            }
+          },
+          {
+            "id": "mgh17",
+            "scope": "external",
+            "ellipsoid_available_point_count": 33,
+            "prediction_shift_dominant_point_count": 32,
+            "snapshot_residual_dominant_point_count": 1,
+            "median_shift_share": 0.991413833021702,
+            "maximum_residual_upper_bound": {
+              "fold": 1,
+              "x": 60.0,
+              "actual_absolute_residual": 0.0015481419860000623,
+              "prediction_shift": 0.4587778117104475,
+              "residual_upper_bound": 0.46032595369644763,
+              "shift_share": 0.9966368570497309,
+              "dominant": "prediction_shift_dominant"
+            }
+          },
+          {
+            "id": "gauss1",
+            "scope": "external",
+            "ellipsoid_available_point_count": 190,
+            "prediction_shift_dominant_point_count": 24,
+            "snapshot_residual_dominant_point_count": 166,
+            "median_shift_share": 0.16947432232550075,
+            "maximum_residual_upper_bound": {
+              "fold": 2,
+              "x": 72.0,
+              "actual_absolute_residual": 119.43568573801466,
+              "prediction_shift": 4777.531896303414,
+              "residual_upper_bound": 4896.967582041431,
+              "shift_share": 0.9756102764135051,
+              "dominant": "prediction_shift_dominant"
+            }
+          }
+        ],
+        "analysisScope": {
+          "post_hoc": true,
+          "refit": false,
+          "retuned": false,
+          "internal_available_point_count": 369,
+          "external_available_point_count": 305,
+          "external_total_point_count": 365,
+          "shift_dominant_threshold": 0.5
+        },
+        "decision": {
+          "combined_success_rate_claimed": false,
+          "universal_internal_external_ranking_claimed": false,
+          "probability_calibration_claimed": false,
+          "scope_difference_erased": false
+        }
+      },
+      "scientificClaim": "六组共 674 个可用点，482 点由平移主导、192 点由实际残差主导；内部两个有根折与外部 60 个不可用点分别保留。六组最大界虽均由平移主导，全点分布并不相同。",
+      "limitations": "674 点仅是描述性可用样本，不是总体成功率；内部有根折与外部不可用点不可混同，算术占比不是概率贡献或物理因果。The 674 available points are descriptive and not a universal sample or probability estimate Two internal rooted unavailable folds and 60 external unavailable points remain separate Arithmetic shares are not probabilities, variance decomposition or physical-mechanism attribution No universal internal-versus-external ranking or combined success rate is established",
+      "upstreamContribution": "提供六组分布、最大界位置和两类不适用边界的联合接口，支持内外部可比较但不可混同的证据检索。",
+      "snapshotFiles": [
+        "validation/internal-external-bound-comparison-protocol.json",
+        "validation/frontier-internal-external-bound-word.json",
+        "validation/internal-bound-decomposition-protocol.json"
+      ]
     }
   ]
 }

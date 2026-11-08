@@ -52,6 +52,7 @@ def build() -> dict:
     gauss1Comparison = json.loads((ROOT / "exports/external-coverage-gauss1-comparison.json").read_text(encoding="utf-8"))
     gauss1Mechanism = read("gauss1-bound-mechanism.json")
     externalDecomposition = json.loads((ROOT / "exports/external-bound-decomposition.json").read_text(encoding="utf-8"))
+    internalExternalDecomposition = json.loads((ROOT / "exports/internal-external-bound-comparison.json").read_text(encoding="utf-8"))
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -307,6 +308,16 @@ def build() -> dict:
             "limitations": "这是只读事后算术分解，不是概率、方差或物理因果贡献；60 个不可用点没有虚构占比，三数据不形成普适排名。" + " ".join(externalDecomposition["limitations"]),
             "upstreamContribution": "提供全点分布与最大界位置的双层对照，防止用单一数据集或单一最大值概括所有残差上界。",
             "snapshotFiles": ["validation/external-bound-decomposition-protocol.json", "validation/frontier-external-bound-decomposition-word.json", "validation/gauss1-bound-mechanism.json"],
+        },
+        {
+            "id": "internal-external-bound-scope-comparison", "domain": "math", "title": "内外部六组界组成与范围边界对照",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml", "https://www.itl.nist.gov/div898/strd/lls/data/filip.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml"],
+            "metrics": {"totals": internalExternalDecomposition["totals"], "datasets": [{"id": item["id"], "scope": item["scope"], "ellipsoid_available_point_count": item["ellipsoid_available_point_count"], "prediction_shift_dominant_point_count": item["prediction_shift_dominant_point_count"], "snapshot_residual_dominant_point_count": item["snapshot_residual_dominant_point_count"], "median_shift_share": item["median_shift_share"], "maximum_residual_upper_bound": item["maximum_residual_upper_bound"]} for item in internalExternalDecomposition["datasets"]], "analysisScope": internalExternalDecomposition["analysis_scope"], "decision": internalExternalDecomposition["decision"]},
+            "scientificClaim": "六组共 674 个可用点，482 点由平移主导、192 点由实际残差主导；内部两个有根折与外部 60 个不可用点分别保留。六组最大界虽均由平移主导，全点分布并不相同。",
+            "limitations": "674 点仅是描述性可用样本，不是总体成功率；内部有根折与外部不可用点不可混同，算术占比不是概率贡献或物理因果。" + " ".join(internalExternalDecomposition["limitations"]),
+            "upstreamContribution": "提供六组分布、最大界位置和两类不适用边界的联合接口，支持内外部可比较但不可混同的证据检索。",
+            "snapshotFiles": ["validation/internal-external-bound-comparison-protocol.json", "validation/frontier-internal-external-bound-word.json", "validation/internal-bound-decomposition-protocol.json"],
         },
     ]
     packet = {
