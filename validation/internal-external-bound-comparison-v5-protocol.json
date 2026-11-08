@@ -1,0 +1,41 @@
+{
+  "status": "frozen_before_internal_external_bound_comparison",
+  "frozen_at_local": "2026-11-09T07:04:40+08:00",
+  "analysis_type": "Post-hoc comparison of three internal and seven external same-point bound decompositions; no refitting or new experiment",
+  "inputs": {
+    "internal": {"file": "exports/internal-bound-decomposition.json", "sha256": "dac8f7e3877c3188c47d4fb446858a6485a263b562a9228a57c4637ee3e95c53"},
+    "external": {"file": "exports/external-bound-decomposition-v5.json", "sha256": "2ed81d96d6abfd8c1b365c22eaa346327bf43977b7d84e603c0aec3586111c33"}
+  },
+  "expected": {
+    "internal_available_point_count": 369,
+    "external_available_point_count": 532,
+    "combined_available_point_count": 901,
+    "prediction_shift_dominant_point_count": 599,
+    "snapshot_residual_dominant_point_count": 302,
+    "external_total_point_count": 786,
+    "external_unavailable_point_count": 254,
+    "internal_unavailable_rooted_fold_count": 2
+  },
+  "comparison_rule": {
+    "available_points": "369 internal plus 532 external equals 901 descriptive available points, not a universal sample or probability estimate",
+    "scope_separation": "Retain two internal rooted unavailable folds separately from 254 external unavailable points; do not create a combined success rate",
+    "classification": "Reuse the already frozen 0.5 dominance classifications without retuning",
+    "validation": "Require zero source identity mismatches and zero undefined zero bounds in both inputs",
+    "datasets": "Preserve Hahn1, Thurber, Kirby2, Filip, MGH17, Gauss1, Misra1a, Chwirut1, ENSO and Roszman1 as separate distributions",
+    "related_dataset_scope": "Chwirut1 was not used in previous region design, but shares its study and native model family with Chwirut2; it is not an independent model-family or laboratory replication test",
+    "periodic_candidate_scope": "The ENSO candidate is not the native ENSO nine-parameter Fourier model; its 131 tighter ellipsoid/box pairs are a subset and not a probability or whole-dataset claim",
+    "roszman1_candidate_scope": "The Roszman1 cubic/cubic candidate is not the native four-parameter arctangent model; its five available points occur only in fold 2, are not a 25-point probability coverage claim and are not an independent physical experiment",
+    "previous_comparison": "Preserve exports/internal-external-bound-comparison.json and v2, v3, v4 versions and all their figures unchanged"
+  },
+  "output_rule": {
+    "summary": "exports/internal-external-bound-comparison-v5.json",
+    "figure": "papers/37_十组界组成对照/fig37_internal_external_bound_comparison_v5.png",
+    "refuse_overwrite": true
+  },
+  "prohibitions": [
+    "No universal internal-versus-external ranking or combined success rate",
+    "No erasure of internal rooted folds, external unavailable points, Chwirut1/Chwirut2 relatedness or ENSO candidate scope",
+    "No native-arctangent-model, independent-physical-experiment or whole-Roszman1 coverage claim",
+    "No probability, variance-decomposition or physical-mechanism interpretation of arithmetic shares"
+  ]
+}
