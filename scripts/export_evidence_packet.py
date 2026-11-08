@@ -53,6 +53,7 @@ def build() -> dict:
     gauss1Mechanism = read("gauss1-bound-mechanism.json")
     externalDecomposition = json.loads((ROOT / "exports/external-bound-decomposition.json").read_text(encoding="utf-8"))
     internalExternalDecomposition = json.loads((ROOT / "exports/internal-external-bound-comparison.json").read_text(encoding="utf-8"))
+    misra1aCoverage = read("misra1a-ellipsoid-coverage.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -318,6 +319,16 @@ def build() -> dict:
             "limitations": "674 点仅是描述性可用样本，不是总体成功率；内部有根折与外部不可用点不可混同，算术占比不是概率贡献或物理因果。" + " ".join(internalExternalDecomposition["limitations"]),
             "upstreamContribution": "提供六组分布、最大界位置和两类不适用边界的联合接口，支持内外部可比较但不可混同的证据检索。",
             "snapshotFiles": ["validation/internal-external-bound-comparison-protocol.json", "validation/frontier-internal-external-bound-word.json", "validation/internal-bound-decomposition-protocol.json"],
+        },
+        {
+            "id": "misra1a-prediction-proof-dissociation", "domain": "physics", "title": "Misra1a 预测—证明解离与小样本界审计",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/misra1a.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Misra1a.dat"],
+            "metrics": {"totals": misra1aCoverage["totals"], "availablePoints": [{"x": point["x"], "actual_absolute_residual": point["actual_absolute_residual"], "prediction_shift": point["ellipsoid_prediction_shift_upper_bound_float"], "residual_upper_bound": point["ellipsoid_absolute_residual_upper_bound_float"], "shift_share": point["ellipsoid_prediction_shift_upper_bound_float"] / point["ellipsoid_absolute_residual_upper_bound_float"], "denominator_lower_bound": point["ellipsoid_denominator_lower_bound_float"]} for case in misra1aCoverage["folds"] for point in case["point_results"] if point.get("ellipsoid_available", False)], "folds": [{"fold": case["fold"], "modelRmse": case["test_metrics"]["rmse"], "baselineRmse": case["baseline_test_metrics"]["rmse"], "continuousSafe": case["continuous_ellipsoid_safe"], "available": sum(point.get("ellipsoid_available", False) for point in case["point_results"])} for case in misra1aCoverage["folds"]], "decision": {**misra1aCoverage["decision"], "independent_physical_experiment_claimed": False}},
+            "scientificClaim": "Misra1a 的 14 点中仅 4 点可给界，连续安全仅 1／5 折；候选 RMSE 较小但只有两折优于基线。4 个可用点平移占比均超过 99.9%，最大上界为 414.13，形成预测—证明解离。",
+            "limitations": "小样本候选不是原生两参数模型，重分析不是新完成的独立物理实验；4 个适用点零越界不是概率覆盖或高信息量证明。" + " ".join(misra1aCoverage["limitations"]),
+            "upstreamContribution": "提供预注册小样本实测数据案例，分开记录 RMSE、连续安全、逐点可用性、界宽度和同点组成，避免拟合接近被误写为有用证明。",
+            "snapshotFiles": ["validation/misra1a-ellipsoid-coverage-protocol.json", "validation/misra1a-ellipsoid-coverage.json", "validation/frontier-misra1a-coverage-word.json"],
         },
     ]
     packet = {

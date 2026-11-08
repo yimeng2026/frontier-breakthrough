@@ -112,8 +112,8 @@ class ExpansionTests(unittest.TestCase):
 
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
-        self.assertEqual(len(packet["items"]), 29)
-        self.assertEqual(len({i["id"] for i in packet["items"]}), 29)
+        self.assertEqual(len(packet["items"]), 30)
+        self.assertEqual(len({i["id"] for i in packet["items"]}), 30)
         for item in packet["items"]:
             self.assertEqual(item["status"], "verified")
             self.assertTrue(item["limitations"])
@@ -149,6 +149,15 @@ class ExpansionTests(unittest.TestCase):
         self.assertEqual(combined["metrics"]["totals"]["internal_unavailable_rooted_fold_count"], 2)
         self.assertEqual(len(combined["metrics"]["datasets"]), 6)
         self.assertFalse(combined["metrics"]["decision"]["combined_success_rate_claimed"])
+        misra1a = next(item for item in packet["items"] if item["id"] == "misra1a-prediction-proof-dissociation")
+        self.assertEqual(misra1a["metrics"]["totals"]["point_count"], 14)
+        self.assertEqual(misra1a["metrics"]["totals"]["ellipsoid_available_point_count"], 4)
+        self.assertEqual(misra1a["metrics"]["totals"]["continuous_safe_fold_count"], 1)
+        self.assertEqual(misra1a["metrics"]["totals"]["independent_box_continuous_safe_fold_count"], 0)
+        self.assertGreater(misra1a["metrics"]["totals"]["max_ellipsoid_absolute_residual_upper_bound_float"], 400)
+        self.assertEqual(len(misra1a["metrics"]["availablePoints"]), 4)
+        self.assertTrue(all(point["shift_share"] > 0.999 for point in misra1a["metrics"]["availablePoints"]))
+        self.assertFalse(misra1a["metrics"]["decision"]["independent_physical_experiment_claimed"])
 
     def test_new_agent_projects_have_primary_sources(self):
         projects = self.read("data/projects.json")["projects"]

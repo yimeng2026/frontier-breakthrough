@@ -996,6 +996,51 @@
       "sourceFiles": [
         "exports/internal-external-bound-comparison.json"
       ]
+    },
+    {
+      "id": "claim-small-rmse-useful-proof",
+      "kind": "claim",
+      "title": "较小 RMSE 自动意味着连续证明和有用逐点界",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/misra1a-ellipsoid-coverage.json"
+      ]
+    },
+    {
+      "id": "evidence-misra1a-prediction-proof-dissociation",
+      "kind": "evidence",
+      "title": "Misra1a 小 RMSE 与仅 4／14 点可给界、1／5 折连续安全和宽上界并存",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/misra1a-ellipsoid-coverage.json"
+      ]
+    },
+    {
+      "id": "counterexample-misra1a-four-of-fourteen",
+      "kind": "counterexample",
+      "title": "Misra1a 候选 RMSE 约 0.04—0.22，但仅 4 点可给界且平移占比均超过 99.9%",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/misra1a-ellipsoid-coverage.json"
+      ]
+    },
+    {
+      "id": "experiment-misra1a-prospective-protocol",
+      "kind": "experiment",
+      "title": "在任何 Misra1a 候选分析前冻结并推送的小样本五折协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/misra1a-ellipsoid-coverage-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-misra1a-small-sample-scope",
+      "kind": "limitation",
+      "title": "小样本候选不是原生两参数模型，4 点零越界不是概率覆盖或高信息量证明",
+      "status": "active",
+      "sourceFiles": [
+        "validation/misra1a-ellipsoid-coverage.json"
+      ]
     }
   ],
   "edges": [
@@ -1302,6 +1347,31 @@
     {
       "from": "track-holdout",
       "to": "limitation-internal-external-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-small-rmse-useful-proof",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-misra1a-prediction-proof-dissociation",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-misra1a-four-of-fourteen",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-misra1a-prospective-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-misra1a-small-sample-scope",
       "relation": "contains"
     },
     {
@@ -1937,6 +2007,36 @@
     {
       "from": "limitation-internal-external-scope",
       "to": "claim-combined-internal-external-success-rate",
+      "relation": "limits"
+    },
+    {
+      "from": "experiment-misra1a-prospective-protocol",
+      "to": "claim-small-rmse-useful-proof",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-misra1a-prediction-proof-dissociation",
+      "to": "claim-small-rmse-useful-proof",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-misra1a-four-of-fourteen",
+      "to": "claim-small-rmse-useful-proof",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-misra1a-prediction-proof-dissociation",
+      "to": "counterexample-misra1a-four-of-fourteen",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-misra1a-prediction-proof-dissociation",
+      "to": "claim-wide-bounds-parameter-uncertainty",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-misra1a-small-sample-scope",
+      "to": "claim-small-rmse-useful-proof",
       "relation": "limits"
     },
     {

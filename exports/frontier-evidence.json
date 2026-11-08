@@ -1499,6 +1499,124 @@
         "validation/frontier-internal-external-bound-word.json",
         "validation/internal-bound-decomposition-protocol.json"
       ]
+    },
+    {
+      "id": "misra1a-prediction-proof-dissociation",
+      "domain": "physics",
+      "title": "Misra1a 预测—证明解离与小样本界审计",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/misra1a.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Misra1a.dat"
+      ],
+      "metrics": {
+        "totals": {
+          "fold_count": 5,
+          "optimizer_failure_count": 0,
+          "point_count": 14,
+          "ellipsoid_available_point_count": 4,
+          "covered_point_count": 4,
+          "coverage_violation_count": 0,
+          "max_ellipsoid_absolute_residual_upper_bound_float": 414.1323250556816,
+          "median_ellipsoid_absolute_residual_upper_bound_float": 263.83685255349775,
+          "max_ellipsoid_prediction_shift_upper_bound_float": 413.9341999165013,
+          "continuous_safe_fold_count": 1,
+          "independent_box_continuous_safe_fold_count": 0,
+          "tighter_point_count": 0,
+          "looser_point_count": 0,
+          "median_shift_ratio": null,
+          "max_shift_ratio": null,
+          "min_shift_ratio": null
+        },
+        "availablePoints": [
+          {
+            "x": 332.8,
+            "actual_absolute_residual": 0.03170474516664967,
+            "prediction_shift": 106.36670386732898,
+            "residual_upper_bound": 106.39840861249561,
+            "shift_share": 0.999702018614939,
+            "denominator_lower_bound": 0.10656649142644725
+          },
+          {
+            "x": 378.4,
+            "actual_absolute_residual": 0.05866708934693321,
+            "prediction_shift": 262.9884226757518,
+            "residual_upper_bound": 263.04708976509875,
+            "shift_share": 0.9997769711522019,
+            "denominator_lower_bound": 0.047248444236474736
+          },
+          {
+            "x": 689.1,
+            "actual_absolute_residual": 0.19812513918026298,
+            "prediction_shift": 413.9341999165013,
+            "residual_upper_bound": 414.1323250556816,
+            "shift_share": 0.9995215897741051,
+            "denominator_lower_bound": 0.1477154499938112
+          },
+          {
+            "x": 760.0,
+            "actual_absolute_residual": 0.23078379159132112,
+            "prediction_shift": 264.39583155030545,
+            "residual_upper_bound": 264.62661534189675,
+            "shift_share": 0.9991278889642558,
+            "denominator_lower_bound": 0.3411233851694532
+          }
+        ],
+        "folds": [
+          {
+            "fold": 1,
+            "modelRmse": 0.09646303682083646,
+            "baselineRmse": 0.10810792513107595,
+            "continuousSafe": false,
+            "available": 0
+          },
+          {
+            "fold": 2,
+            "modelRmse": 0.09820363990601153,
+            "baselineRmse": 0.032592351948375946,
+            "continuousSafe": false,
+            "available": 0
+          },
+          {
+            "fold": 3,
+            "modelRmse": 0.03850273465546608,
+            "baselineRmse": 0.03920815559829757,
+            "continuousSafe": false,
+            "available": 2
+          },
+          {
+            "fold": 4,
+            "modelRmse": 0.050660018720240556,
+            "baselineRmse": 0.04573507913153011,
+            "continuousSafe": false,
+            "available": 0
+          },
+          {
+            "fold": 5,
+            "modelRmse": 0.21507525338409453,
+            "baselineRmse": 0.07632631092163746,
+            "continuousSafe": true,
+            "available": 2
+          }
+        ],
+        "decision": {
+          "probability_calibration_claimed": false,
+          "native_physical_model_claimed": false,
+          "universal_external_validity_claimed": false,
+          "continuous_x_error_bound_claimed": false,
+          "optimizer_failures_hidden": false,
+          "independent_physical_experiment_claimed": false
+        }
+      },
+      "scientificClaim": "Misra1a 的 14 点中仅 4 点可给界，连续安全仅 1／5 折；候选 RMSE 较小但只有两折优于基线。4 个可用点平移占比均超过 99.9%，最大上界为 414.13，形成预测—证明解离。",
+      "limitations": "小样本候选不是原生两参数模型，重分析不是新完成的独立物理实验；4 个适用点零越界不是概率覆盖或高信息量证明。The cubic/cubic candidate is only an approximation stress test and not the native Filip eleven-parameter model Deterministic residual bounds are not probability intervals or calibration evidence Continuous denominator safety does not imply accurate or useful prediction Pointwise bounds do not provide a continuous-x prediction error bound Optimizer failures and unavailable bounds are retained, not converted into successes",
+      "upstreamContribution": "提供预注册小样本实测数据案例，分开记录 RMSE、连续安全、逐点可用性、界宽度和同点组成，避免拟合接近被误写为有用证明。",
+      "snapshotFiles": [
+        "validation/misra1a-ellipsoid-coverage-protocol.json",
+        "validation/misra1a-ellipsoid-coverage.json",
+        "validation/frontier-misra1a-coverage-word.json"
+      ]
     }
   ]
 }
