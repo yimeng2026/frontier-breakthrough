@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "gauss1_coverage":
+    if REPORT_MODE == "gauss1_bound_mechanism":
+        replacements = {
+            "图：`papers/21_Gauss1界失效机制/fig21_gauss1_bound_mechanism.png`。": "![](papers/21_Gauss1界失效机制/fig21_gauss1_bound_mechanism.png)\n\n**图 21｜Gauss1 分母可用性边界与残差上界（第 1 幅，共 1 幅）**  \n**插入位置**：§4「最大残差界位置的同点组成」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "190 点界复核、60 点不可用、同点误差分解与两类失效尺度"
+    elif REPORT_MODE == "gauss1_coverage":
         replacements = {
             "图：`papers/18_Filip椭球覆盖/fig18_filip_ellipsoid_coverage.png`。": "![](papers/18_Filip椭球覆盖/fig18_filip_ellipsoid_coverage.png)\n\n**图 18｜Filip 候选预测与逐点界可用性（第 1 幅，共 3 幅）**  \n**插入位置**：§4「三幅图件与读图顺序」；顺序第 1 幅，共 3 幅。",
             "图：`papers/19_MGH17椭球覆盖/fig19_mgh17_ellipsoid_coverage.png`。": "![](papers/19_MGH17椭球覆盖/fig19_mgh17_ellipsoid_coverage.png)\n\n**图 19｜MGH17 候选预测与逐点界可用性（第 2 幅，共 3 幅）**  \n**插入位置**：图 18 之后；顺序第 2 幅，共 3 幅。",

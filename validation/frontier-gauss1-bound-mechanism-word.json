@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "file": "前沿共生Gauss1界失效机制_图文完整版.docx",
+  "bytes": 162403,
+  "sha256": "9b19e7cc3182bbfd9b40bbea5ee7ad75e4216b2a47609cdc8a9971091508d9c5",
+  "native_math_objects": 9,
+  "native_display_math_objects": 2,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: render could not start because node.exe was not found; no retry and no LibreOffice fallback"
+}
