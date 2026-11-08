@@ -1,0 +1,71 @@
+{
+  "status": "frozen_before_any_thurber_fit",
+  "frozen_at_local": "2026-11-08T23:56:45+08:00",
+  "scientific_question": "Does the Hahn1-derived prediction-domain and minimal numerical-identifiability gate generalize to the untouched NIST Thurber cubic/cubic rational dataset without model or threshold retuning?",
+  "selection_scope": {
+    "dataset_used_to_design_gate": false,
+    "selection_rationale": "Same seven-parameter cubic/cubic equation as Hahn1 but a different NIST semiconductor electron-mobility experiment; only the published equation, starts, certified values and raw observations were inspected before freezing",
+    "prospective_meaning": "Dataset-prospective computational validation, not an independent physical experiment or external preregistration"
+  },
+  "data": {
+    "name": "NIST/ITL StRD Thurber",
+    "dataset_page": "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml",
+    "source_url": "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Thurber.dat",
+    "file": "data/Thurber.dat",
+    "sha256": "806b8d00a5365eff907561db796fec3af8a26a5f353297d4311fd46ed5b0146f",
+    "observations": 37,
+    "units_as_published": "y is electron mobility; x is the natural log of density; no unit conversion or measurement uncertainty is invented"
+  },
+  "model": {
+    "equation": "y = (b1+b2*x+b3*x^2+b4*x^3)/(1+b5*x+b6*x^2+b7*x^3) + e",
+    "bounds": "Unbounded coefficients as published by NIST; denominator admissibility is evaluated separately",
+    "starts": [
+      {"b1": 1000, "b2": 1000, "b3": 400, "b4": 40, "b5": 0.7, "b6": 0.3, "b7": 0.03},
+      {"b1": 1300, "b2": 1500, "b3": 500, "b4": 75, "b5": 1.0, "b6": 0.4, "b7": 0.05}
+    ],
+    "optimizer": "scipy.optimize.curve_fit with method=lm, maxfev=200000, full_output=true; select the lowest training residual sum of squares",
+    "parameter_changes_from_hahn1": "None; use only the published Thurber starts and equation"
+  },
+  "fold_rule": {
+    "count": 5,
+    "construction": "Sort unique x values and split into five contiguous, nearly equal groups; every repeated x stays in one group; each group is tested once while the other four groups are fitted",
+    "leakage_control": "No shared x between fitting and test observations; every observation is evaluated exactly once",
+    "baseline": "Ordinary least-squares cubic polynomial fitted only on the other four groups",
+    "retuning": "No start, model, threshold or fold changes after seeing test results"
+  },
+  "prediction_domain_gate": {
+    "real_root_rule": "numpy.roots for 1+b5*x+b6*x^2+b7*x^3; absolute imaginary part below 1e-8; reject a numerical real root inside the closed held-out x interval",
+    "dense_grid_rule": "Evaluate 1001 evenly spaced points spanning the closed held-out x interval; reject non-finite values, exact zeros or denominator sign changes",
+    "observation_rule": "Every held-out model prediction and denominator must be finite and every held-out denominator must be nonzero",
+    "scope": "Numerical admissibility on the held-out interval, not an exact algebraic proof outside it"
+  },
+  "minimal_numerical_identifiability_gate": {
+    "jacobian": "Analytic training Jacobian at the frozen fit",
+    "column_scaling": "Euclidean-norm column scaling before singular-value analysis",
+    "rank_rule": "Require numerical rank 7 using tolerance max(matrix shape)*machine_epsilon*largest_scaled_singular_value",
+    "covariance_rule": "Local linearized parameter standard errors must be finite and positive using pseudo-inverse rcond=1e-12",
+    "diagnostics_not_gates": "Report scaled condition number and maximum absolute off-diagonal parameter correlation without retrospective cutoffs",
+    "scope": "Minimal local numerical check only; full rank does not prove global structural identifiability or physical endogeneity"
+  },
+  "decision_rules": {
+    "domain_admissible": "Finite optimizer result and all prediction-domain checks pass",
+    "minimal_numerical_identifiability": "Numerical rank 7 and finite positive local standard errors",
+    "fold_gated_limited_support": "Domain-admissible AND minimal numerical identifiability AND held-out RMSE <= cubic-baseline held-out RMSE",
+    "overall_all_folds_gated_support": "All five folds satisfy fold_gated_limited_support; otherwise report every failed fold and gate",
+    "interpretation": "A computational limited-support gate for this dataset and protocol, never a universal law or independent experimental replication"
+  },
+  "full_fit_certification_rule": {
+    "purpose": "Known-answer implementation check only; never used as held-out evidence",
+    "certified_parameters": {"b1": 1288.1396800, "b2": 1491.0792535, "b3": 583.23836877, "b4": 75.416644291, "b5": 0.96629502864, "b6": 0.39797285797, "b7": 0.049727297349},
+    "certified_residual_standard_deviation": 13.714600784,
+    "degrees_of_freedom": 30,
+    "relative_tolerance_parameters": 0.0001,
+    "relative_tolerance_residual_standard_deviation": 0.0001
+  },
+  "output_rule": {
+    "summary": "validation/thurber-prospective-gate.json",
+    "figure": "papers/10_Thurber前瞻验收/fig10_thurber_prospective_gate.png",
+    "preserve_all_folds_and_failures": true,
+    "refuse_overwrite": true
+  }
+}

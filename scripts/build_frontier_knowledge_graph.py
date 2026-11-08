@@ -26,7 +26,8 @@ def build_graph(root):
     groupedStress = json.loads((root / "validation/grouped-stress.json").read_text(encoding="utf-8"))
     identifiability = json.loads((root / "validation/hahn1-fold1-identifiability.json").read_text(encoding="utf-8"))
     denominatorRoots = json.loads((root / "validation/hahn1-frozen-denominator-roots.json").read_text(encoding="utf-8"))
-    if not chwirut["decision"]["limited_support"] or not aspirin["canonical_structure_identical"] or not material["structure_identity_confirmed"] or not eckerle["decision"]["limited_support"] or not cvc5["all_results_match_z3"] or not hahn1["decision"]["limited_support"] or cvc5Hahn1["result"] != "unsat" or z3Hahn1["result"] != "unsat" or groupedStress["overall_robust_limited_support"] or identifiability["decision"]["fold_1_failure_reversed"] or denominatorRoots["decision"]["fold_1_failure_reversed"] or denominatorRoots["folds"][0]["real_root_count_in_held_out_closed_interval"] != 2:
+    thurber = json.loads((root / "validation/thurber-prospective-gate.json").read_text(encoding="utf-8"))
+    if not chwirut["decision"]["limited_support"] or not aspirin["canonical_structure_identical"] or not material["structure_identity_confirmed"] or not eckerle["decision"]["limited_support"] or not cvc5["all_results_match_z3"] or not hahn1["decision"]["limited_support"] or cvc5Hahn1["result"] != "unsat" or z3Hahn1["result"] != "unsat" or groupedStress["overall_robust_limited_support"] or identifiability["decision"]["fold_1_failure_reversed"] or denominatorRoots["decision"]["fold_1_failure_reversed"] or denominatorRoots["folds"][0]["real_root_count_in_held_out_closed_interval"] != 2 or thurber["decision"]["overall_all_folds_gated_support"] or not thurber["full_fit_certification"]["matches_nist_within_frozen_tolerances"]:
         raise ValueError("Expected evidence states are not present")
 
     nodes = [
@@ -78,10 +79,14 @@ def build_graph(root):
         node("evidence-hahn1-fold1-identifiability", "evidence", "五折局部雅可比、参数相关和留出预测敏感度诊断", "supported", ["validation/hahn1-fold1-identifiability.json"]),
         node("evidence-hahn1-frozen-denominator-roots", "evidence", "第 1 折约 45.526978 K 与 72.131671 K 的两个数值单极点", "supported", ["validation/hahn1-frozen-denominator-roots.json"]),
         node("limitation-post-hoc-mechanism", "limitation", "事后机制诊断与数值根定位不是预注册检验或精确代数证书", "active", ["validation/hahn1-fold1-identifiability.json", "validation/hahn1-frozen-denominator-roots.json"]),
+        node("claim-thurber-all-folds-gated", "claim", "Thurber 五个连续区间折全部通过预测区、可识别性与基线验收", "falsified", ["validation/thurber-prospective-gate.json"]),
+        node("evidence-thurber-prospective-gate", "evidence", "Thurber 四折通过、一折预测区实根与预测失败的全部记录", "supported", ["validation/thurber-prospective-gate.json"]),
+        node("experiment-thurber-prospective-protocol", "experiment", "在任何 Thurber 拟合前冻结的五折验收协议", "supported", ["validation/thurber-prospective-gate-protocol.json"]),
+        node("limitation-thurber-prospective", "limitation", "单个新数据集的数值前瞻检验不是独立物理实验或普适检出率证明", "active", ["validation/thurber-prospective-gate.json"]),
     ]
     edges = []
     for track, claims in {
-        "track-holdout": ["claim-chwirut-extrapolation", "claim-nist-reproduction", "evidence-chwirut", "experiment-chwirut-protocol", "limitation-single-split", "claim-eckerle4-two-tail", "evidence-eckerle4", "experiment-eckerle4-protocol", "limitation-two-datasets", "claim-hahn1-high-temperature", "evidence-hahn1", "experiment-hahn1-protocol", "limitation-three-datasets", "claim-universal-robustness", "evidence-grouped-stress", "experiment-grouped-stress-protocol", "limitation-grouped-stress", "claim-fold1-heldout-pole-free", "evidence-hahn1-fold1-identifiability", "evidence-hahn1-frozen-denominator-roots", "limitation-post-hoc-mechanism"],
+        "track-holdout": ["claim-chwirut-extrapolation", "claim-nist-reproduction", "evidence-chwirut", "experiment-chwirut-protocol", "limitation-single-split", "claim-eckerle4-two-tail", "evidence-eckerle4", "experiment-eckerle4-protocol", "limitation-two-datasets", "claim-hahn1-high-temperature", "evidence-hahn1", "experiment-hahn1-protocol", "limitation-three-datasets", "claim-universal-robustness", "evidence-grouped-stress", "experiment-grouped-stress-protocol", "limitation-grouped-stress", "claim-fold1-heldout-pole-free", "evidence-hahn1-fold1-identifiability", "evidence-hahn1-frozen-denominator-roots", "limitation-post-hoc-mechanism", "claim-thurber-all-folds-gated", "evidence-thurber-prospective-gate", "experiment-thurber-prospective-protocol", "limitation-thurber-prospective"],
         "track-formal": ["claim-universal-identifiability", "claim-positive-denominator", "evidence-z3", "counterexample-xzero", "claim-solver-agreement", "evidence-cvc5", "claim-hahn1-denominator", "evidence-hahn1-denominator", "claim-unbounded-denominator-safety", "counterexample-hahn1-outdomain-root"],
         "track-chemistry": ["claim-aspirin-identity", "claim-descriptor-fraud", "evidence-aspirin", "counterexample-descriptor", "limitation-public-records"],
         "track-materials": ["claim-material-identity", "claim-universal-bandgap", "evidence-material", "counterexample-bandgap", "experiment-material-protocol", "limitation-small-material-sample"],
@@ -120,12 +125,15 @@ def build_graph(root):
         edge("evidence-hahn1-fold1-identifiability", "claim-universal-robustness", "contradicts"),
         edge("limitation-post-hoc-mechanism", "evidence-hahn1-fold1-identifiability", "limits"),
         edge("limitation-post-hoc-mechanism", "evidence-hahn1-frozen-denominator-roots", "limits"),
+        edge("experiment-thurber-prospective-protocol", "claim-thurber-all-folds-gated", "tests"),
+        edge("evidence-thurber-prospective-gate", "claim-thurber-all-folds-gated", "contradicts"),
+        edge("limitation-thurber-prospective", "claim-thurber-all-folds-gated", "limits"),
         edge("claim-knowledge-graph", "track-holdout", "recommends"),
         edge("claim-knowledge-graph", "track-formal", "recommends"),
         edge("claim-knowledge-graph", "track-chemistry", "recommends"),
         edge("claim-knowledge-graph", "track-materials", "recommends"),
     ]
-    return {"schemaVersion": 1, "asOf": "2026-11-08", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
+    return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 
 
 def validate_graph(graph, root):

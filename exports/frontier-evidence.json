@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-08",
+  "asOf": "2026-11-09",
   "project": "frontier-breakthrough",
   "scope": "跨项目本地复核与数据库对照；verified 仅指所述检查，不是新发现、独立实验或外部认证。",
   "items": [
@@ -605,6 +605,78 @@
         "validation/hahn1-fold1-identifiability.json",
         "validation/hahn1-frozen-denominator-roots-protocol.json",
         "validation/hahn1-frozen-denominator-roots.json"
+      ]
+    },
+    {
+      "id": "thurber-dataset-prospective-gate",
+      "domain": "physics",
+      "title": "Thurber 预测区与可识别性数据集前瞻验收",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Thurber.dat",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/v-thurber.shtml"
+      ],
+      "metrics": {
+        "nistReproduction": true,
+        "overallAllFoldsGatedSupport": false,
+        "folds": [
+          {
+            "fold": 1,
+            "testRmse": 1208.1986272424651,
+            "baselineRmse": 182.44710220203814,
+            "rootsInHeldOutInterval": [
+              -3.0196614722769954
+            ],
+            "numericalRank": 7,
+            "scaledConditionNumber": 1264.649612716763,
+            "gatedLimitedSupport": false
+          },
+          {
+            "fold": 2,
+            "testRmse": 33.92340333974566,
+            "baselineRmse": 180.30267224425867,
+            "rootsInHeldOutInterval": [],
+            "numericalRank": 7,
+            "scaledConditionNumber": 1741.9766939306776,
+            "gatedLimitedSupport": true
+          },
+          {
+            "fold": 3,
+            "testRmse": 23.385760098748452,
+            "baselineRmse": 114.13064332644595,
+            "rootsInHeldOutInterval": [],
+            "numericalRank": 7,
+            "scaledConditionNumber": 652.5330175271603,
+            "gatedLimitedSupport": true
+          },
+          {
+            "fold": 4,
+            "testRmse": 11.02208273556512,
+            "baselineRmse": 72.81103694733595,
+            "rootsInHeldOutInterval": [],
+            "numericalRank": 7,
+            "scaledConditionNumber": 523.143592091976,
+            "gatedLimitedSupport": true
+          },
+          {
+            "fold": 5,
+            "testRmse": 57.0870826235655,
+            "baselineRmse": 834.2124067510395,
+            "rootsInHeldOutInterval": [],
+            "numericalRank": 7,
+            "scaledConditionNumber": 563.7643287904134,
+            "gatedLimitedSupport": true
+          }
+        ]
+      },
+      "scientificClaim": "Thurber 全数据拟合通过 NIST 已知答案复核；第 2—5 折通过冻结验收，第 1 折在约 -3.019661 的留出区实根处失效，因此整体五折支持不成立。",
+      "limitations": "One additional NIST dataset is a dataset-prospective computational check, not an independent physical experiment Numerical root and dense-grid checks cover each closed held-out interval, not every mathematically possible point outside it Full numerical rank and finite local standard errors do not prove global structural identifiability or physically meaningful parameters No model, start, fold or threshold was retuned after seeing Thurber outcomes NIST certified values are used only for known-answer implementation reproduction, never as held-out evidence",
+      "upstreamContribution": "提供新数据集冻结协议、全部五折预测区根检查、局部秩与协方差检查、三次基线和失败记录。",
+      "snapshotFiles": [
+        "validation/thurber-prospective-gate-protocol.json",
+        "validation/thurber-prospective-gate.json"
       ]
     }
   ]

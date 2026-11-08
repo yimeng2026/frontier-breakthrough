@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生Thurber前瞻验收_图文完整版.docx",
+  "bytes": 222385,
+  "sha256": "09fda8c399e244016b29d2c61ee6e37ac611e799293b1e1960d745f813674008",
+  "native_math_objects": 13,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

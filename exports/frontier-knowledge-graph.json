@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-08",
+  "asOf": "2026-11-09",
   "project": "frontier-breakthrough",
   "nodes": [
     {
@@ -448,6 +448,42 @@
         "validation/hahn1-fold1-identifiability.json",
         "validation/hahn1-frozen-denominator-roots.json"
       ]
+    },
+    {
+      "id": "claim-thurber-all-folds-gated",
+      "kind": "claim",
+      "title": "Thurber 五个连续区间折全部通过预测区、可识别性与基线验收",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/thurber-prospective-gate.json"
+      ]
+    },
+    {
+      "id": "evidence-thurber-prospective-gate",
+      "kind": "evidence",
+      "title": "Thurber 四折通过、一折预测区实根与预测失败的全部记录",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/thurber-prospective-gate.json"
+      ]
+    },
+    {
+      "id": "experiment-thurber-prospective-protocol",
+      "kind": "experiment",
+      "title": "在任何 Thurber 拟合前冻结的五折验收协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/thurber-prospective-gate-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-thurber-prospective",
+      "kind": "limitation",
+      "title": "单个新数据集的数值前瞻检验不是独立物理实验或普适检出率证明",
+      "status": "active",
+      "sourceFiles": [
+        "validation/thurber-prospective-gate.json"
+      ]
     }
   ],
   "edges": [
@@ -554,6 +590,26 @@
     {
       "from": "track-holdout",
       "to": "limitation-post-hoc-mechanism",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-thurber-all-folds-gated",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-thurber-prospective-gate",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-thurber-prospective-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-thurber-prospective",
       "relation": "contains"
     },
     {
@@ -819,6 +875,21 @@
     {
       "from": "limitation-post-hoc-mechanism",
       "to": "evidence-hahn1-frozen-denominator-roots",
+      "relation": "limits"
+    },
+    {
+      "from": "experiment-thurber-prospective-protocol",
+      "to": "claim-thurber-all-folds-gated",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-thurber-prospective-gate",
+      "to": "claim-thurber-all-folds-gated",
+      "relation": "contradicts"
+    },
+    {
+      "from": "limitation-thurber-prospective",
+      "to": "claim-thurber-all-folds-gated",
       "relation": "limits"
     },
     {

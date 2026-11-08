@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "mechanism":
+    if REPORT_MODE == "prospective":
+        replacements = {
+            "图：`papers/10_Thurber前瞻验收/fig10_thurber_prospective_gate.png`。": "![](papers/10_Thurber前瞻验收/fig10_thurber_prospective_gate.png)\n\n**图 10｜Thurber 数据集前瞻验收：极点、条件数与预测支持**  \n**插入位置**：§5「第 1 折失效位置」之后；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "预测区极点、最低数值可识别性与五折验收"
+    elif REPORT_MODE == "mechanism":
         replacements = {
             "图：`papers/09_Hahn1失效机制/fig09_hahn1_fold1_identifiability.png`。": "![](papers/09_Hahn1失效机制/fig09_hahn1_fold1_identifiability.png)\n\n**图 09｜Hahn1 第 1 折局部条件、预测敏感度与双极点**  \n**插入位置**：§4「失效链条与不可转移的证明」之后；顺序第 1 幅，共 1 幅。",
         }
@@ -246,7 +251,7 @@ def main():
                                     run.font.bold = True
 
             for paragraph in document.paragraphs:
-                if paragraph.text.startswith("图 0") and "插入位置" in paragraph.text:
+                if re.match(r"图 \d+", paragraph.text) and "插入位置" in paragraph.text:
                     paragraph.paragraph_format.first_line_indent = Cm(0)
                     paragraph.paragraph_format.keep_together = True
                     paragraph.paragraph_format.space_after = Pt(10)

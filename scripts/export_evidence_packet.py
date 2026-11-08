@@ -37,6 +37,7 @@ def build() -> dict:
     groupedStress = read("grouped-stress.json")
     identifiability = read("hahn1-fold1-identifiability.json")
     denominatorRoots = read("hahn1-frozen-denominator-roots.json")
+    thurber = read("thurber-prospective-gate.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -173,10 +174,19 @@ def build() -> dict:
             "limitations": " ".join(identifiability["limitations"] + denominatorRoots["limitations"]), "upstreamContribution": "提供逐折解析雅可比、局部敏感度、数值根及根处分子和导数，形成预测区极点排除与可识别性验收义务。",
             "snapshotFiles": ["validation/hahn1-fold1-identifiability-protocol.json", "validation/hahn1-fold1-identifiability.json", "validation/hahn1-frozen-denominator-roots-protocol.json", "validation/hahn1-frozen-denominator-roots.json"],
         },
+        {
+            "id": "thurber-dataset-prospective-gate", "domain": "physics", "title": "Thurber 预测区与可识别性数据集前瞻验收",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Thurber.dat", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/v-thurber.shtml"],
+            "metrics": {"nistReproduction": thurber["full_fit_certification"]["matches_nist_within_frozen_tolerances"], "overallAllFoldsGatedSupport": thurber["decision"]["overall_all_folds_gated_support"], "folds": [{"fold": fold["fold"], "testRmse": fold["test_metrics"]["rmse"], "baselineRmse": fold["baseline_test_metrics"]["rmse"], "rootsInHeldOutInterval": fold["domain_audit"].get("real_roots_in_closed_interval"), "numericalRank": fold["identifiability"].get("numerical_rank"), "scaledConditionNumber": fold["identifiability"].get("scaled_condition_number"), "gatedLimitedSupport": fold["decision"]["gated_limited_support"]} for fold in thurber["folds"]]},
+            "scientificClaim": "Thurber 全数据拟合通过 NIST 已知答案复核；第 2—5 折通过冻结验收，第 1 折在约 -3.019661 的留出区实根处失效，因此整体五折支持不成立。",
+            "limitations": " ".join(thurber["limitations"]), "upstreamContribution": "提供新数据集冻结协议、全部五折预测区根检查、局部秩与协方差检查、三次基线和失败记录。",
+            "snapshotFiles": ["validation/thurber-prospective-gate-protocol.json", "validation/thurber-prospective-gate.json"],
+        },
     ]
     packet = {
         "schemaVersion": 1,
-        "asOf": "2026-11-08",
+        "asOf": "2026-11-09",
         "project": "frontier-breakthrough",
         "scope": "跨项目本地复核与数据库对照；verified 仅指所述检查，不是新发现、独立实验或外部认证。",
         "items": items,
