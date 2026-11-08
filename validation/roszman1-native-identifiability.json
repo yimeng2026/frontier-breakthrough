@@ -1,0 +1,977 @@
+{
+  "status": "computed_roszman1_native_identifiability",
+  "protocol_sha256": "84df1ef78ff2a703fbdb7268467ab7fcbd1dd3b81bb31bb024d4bce9fdd6df7e",
+  "native_holdout_sha256": "c8678e4635a23a9bf7a59233259c48c4307911df4dd50cf6e102cc8cb975e90e",
+  "data_sha256": "fb526231ae6b02929e3de54e072e259b3d87424089abd4b1015ffb946b1e0ab0",
+  "analysis_scope": {
+    "post_hoc": true,
+    "refit": false,
+    "new_model_or_parameters": false,
+    "new_holdout_selection": false,
+    "analytic_jacobian": true,
+    "local_linearization": true,
+    "calibrated_interval": false,
+    "global_identifiability": false,
+    "independent_validation": false
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "train_count": 20,
+      "test_count": 5,
+      "native_parameters": {
+        "b1": 0.2292803516874329,
+        "b2": -1.3342061270380534e-05,
+        "b3": 1152.3164257098174,
+        "b4": -103.07849289822492
+      },
+      "training_rss": 0.00047145147229365916,
+      "training_metrics": {
+        "rmse": 0.0048551594839596115,
+        "mae": 0.003932049079566563,
+        "max_absolute_residual": 0.009700162772378451
+      },
+      "test_metrics": {
+        "rmse": 0.010044543789192596,
+        "mae": 0.0093813545812638,
+        "max_absolute_residual": 0.012589427867938652
+      },
+      "training_jacobian": {
+        "shape": [
+          20,
+          4
+        ],
+        "parameter_count": 4,
+        "raw_singular_values": [
+          7302.834216328661,
+          2.0441673309224404,
+          0.0001142300152063635,
+          3.1130993468078245e-05
+        ],
+        "column_norms": [
+          4.47213595499958,
+          7302.833133092937,
+          0.0005469064352950962,
+          0.0006769162056157079
+        ],
+        "local_covariance_valid": true,
+        "interpretation": "Local linearization at the frozen fit; rank and conditioning do not establish global structural identifiability",
+        "scaled_singular_values": [
+          1.8949938612766077,
+          0.6160598714909791,
+          0.1702363785082994,
+          0.022092439767255737
+        ],
+        "scaled_condition_number": 85.77567173387834,
+        "numerical_rank": 4,
+        "numerical_rank_tolerance": 8.415463265250478e-15,
+        "training_residual_variance_estimate": 2.9465717018353698e-05,
+        "parameter_covariance_matrix": [
+          [
+            0.0021719838848318087,
+            -4.83876005522063e-07,
+            -5.904622038950033,
+            5.497129015313042
+          ],
+          [
+            -4.838760055220629e-07,
+            1.1176467486518357e-10,
+            0.0012346232535017892,
+            -0.0012563289600743483
+          ],
+          [
+            -5.904622038950034,
+            0.0012346232535017895,
+            18181.24349292321,
+            -13950.777361670656
+          ],
+          [
+            5.497129015313043,
+            -0.0012563289600743485,
+            -13950.777361670656,
+            14480.946922829087
+          ]
+        ],
+        "parameter_correlation_matrix": [
+          [
+            0.9999999999999998,
+            -0.9820950180429338,
+            -0.9396194808321326,
+            0.9801874769970743
+          ],
+          [
+            -0.9820950180429335,
+            1.0,
+            0.866104672028533,
+            -0.9875352588520013
+          ],
+          [
+            -0.9396194808321328,
+            0.8661046720285331,
+            1.0,
+            -0.8597815779368851
+          ],
+          [
+            0.9801874769970746,
+            -0.9875352588520016,
+            -0.8597815779368851,
+            1.0
+          ]
+        ],
+        "max_absolute_off_diagonal_parameter_correlation": 0.9875352588520016,
+        "parameters": [
+          {
+            "name": "b1",
+            "value": 0.2292803516874329,
+            "local_standard_error": 0.046604547898588276,
+            "absolute_relative_standard_error": 0.20326446446716054
+          },
+          {
+            "name": "b2",
+            "value": -1.3342061270380534e-05,
+            "local_standard_error": 1.0571881330453136e-05,
+            "absolute_relative_standard_error": 0.7923724165412719
+          },
+          {
+            "name": "b3",
+            "value": 1152.3164257098174,
+            "local_standard_error": 134.8378414723523,
+            "absolute_relative_standard_error": 0.11701459639377552
+          },
+          {
+            "name": "b4",
+            "value": -103.07849289822492,
+            "local_standard_error": 120.33680618509487,
+            "absolute_relative_standard_error": 1.1674288476831927
+          }
+        ]
+      },
+      "held_out_prediction_sensitivity": {
+        "median_local_standard_deviation": 0.015627566988308333,
+        "max_local_standard_deviation": 0.01563809649639307,
+        "interpretation": "Delta-method local sensitivity propagated from the fitting design, not a calibrated prediction interval"
+      },
+      "held_out_points": [
+        {
+          "x": -4868.68,
+          "observed_y": 0.252429,
+          "native_prediction": 0.23983957213206136,
+          "residual": 0.012589427867938652,
+          "local_linearized_prediction_standard_deviation": 0.01563809649639307
+        },
+        {
+          "x": -4868.09,
+          "observed_y": 0.252141,
+          "native_prediction": 0.23985644746279822,
+          "residual": 0.012284552537201787,
+          "local_linearized_prediction_standard_deviation": 0.01563320463190169
+        },
+        {
+          "x": -4867.41,
+          "observed_y": 0.251809,
+          "native_prediction": 0.23987589960979733,
+          "residual": 0.011933100390202678,
+          "local_linearized_prediction_standard_deviation": 0.015627566988308333
+        },
+        {
+          "x": -3375.19,
+          "observed_y": 0.297989,
+          "native_prediction": 0.2920282205515499,
+          "residual": 0.005960779448450082,
+          "local_linearized_prediction_standard_deviation": 0.004971807621554693
+        },
+        {
+          "x": -3373.14,
+          "observed_y": 0.296257,
+          "native_prediction": 0.2921180873374742,
+          "residual": 0.004138912662525807,
+          "local_linearized_prediction_standard_deviation": 0.004960842078696398
+        }
+      ]
+    },
+    {
+      "fold": 2,
+      "train_count": 20,
+      "test_count": 5,
+      "native_parameters": {
+        "b1": 0.22569167309144791,
+        "b2": -9.960102385755828e-06,
+        "b3": 1132.43327873089,
+        "b4": -118.23961841798726
+      },
+      "training_rss": 0.0003895671984470871,
+      "training_metrics": {
+        "rmse": 0.004413429496701444,
+        "mae": 0.0032614110885313186,
+        "max_absolute_residual": 0.009236132512927597
+      },
+      "test_metrics": {
+        "rmse": 0.005867985323301031,
+        "mae": 0.005147725604337072,
+        "max_absolute_residual": 0.010149328860668216
+      },
+      "training_jacobian": {
+        "shape": [
+          20,
+          4
+        ],
+        "parameter_count": 4,
+        "raw_singular_values": [
+          10672.629394762362,
+          2.740466216060284,
+          0.00015779303747859392,
+          4.5277419960150524e-05
+        ],
+        "column_norms": [
+          4.47213595499958,
+          10672.628809627924,
+          0.0005246168589806932,
+          0.0006790460238412542
+        ],
+        "local_covariance_valid": true,
+        "interpretation": "Local linearization at the frozen fit; rank and conditioning do not establish global structural identifiability",
+        "scaled_singular_values": [
+          1.8205100210181633,
+          0.7923654070641738,
+          0.23794610024202015,
+          0.035804726504879814
+        ],
+        "scaled_condition_number": 50.84552232985348,
+        "numerical_rank": 4,
+        "numerical_rank_tolerance": 8.08468856758077e-15,
+        "training_residual_variance_estimate": 2.4347949902942944e-05,
+        "parameter_covariance_matrix": [
+          [
+            0.0006618694680168896,
+            -1.0630429833862663e-07,
+            -2.336382180029971,
+            1.485403978156383
+          ],
+          [
+            -1.0630429833862661e-07,
+            1.7606609323938544e-11,
+            0.0003593509088513917,
+            -0.0002461958543969656
+          ],
+          [
+            -2.3363821800299713,
+            0.00035935090885139175,
+            9154.051794569654,
+            -4718.215578981566
+          ],
+          [
+            1.485403978156383,
+            -0.0002461958543969656,
+            -4718.215578981565,
+            3700.6195892412184
+          ]
+        ],
+        "parameter_correlation_matrix": [
+          [
+            1.0,
+            -0.9847518097638676,
+            -0.9491853545730969,
+            0.9491201358735318
+          ],
+          [
+            -0.9847518097638674,
+            1.0,
+            0.8951054492457418,
+            -0.9645075912694888
+          ],
+          [
+            -0.949185354573097,
+            0.8951054492457419,
+            1.0,
+            -0.8106509124158457
+          ],
+          [
+            0.9491201358735318,
+            -0.9645075912694888,
+            -0.8106509124158455,
+            0.9999999999999999
+          ]
+        ],
+        "max_absolute_off_diagonal_parameter_correlation": 0.9847518097638676,
+        "parameters": [
+          {
+            "name": "b1",
+            "value": 0.22569167309144791,
+            "local_standard_error": 0.025726823900685633,
+            "absolute_relative_standard_error": 0.11399101946601899
+          },
+          {
+            "name": "b2",
+            "value": -9.960102385755828e-06,
+            "local_standard_error": 4.19602303663106e-06,
+            "absolute_relative_standard_error": 0.4212831228152724
+          },
+          {
+            "name": "b3",
+            "value": 1132.43327873089,
+            "local_standard_error": 95.67680907393209,
+            "absolute_relative_standard_error": 0.08448781122112238
+          },
+          {
+            "name": "b4",
+            "value": -118.23961841798726,
+            "local_standard_error": 60.8327180819764,
+            "absolute_relative_standard_error": 0.5144867591413184
+          }
+        ]
+      },
+      "held_out_prediction_sensitivity": {
+        "median_local_standard_deviation": 0.002943940791699743,
+        "max_local_standard_deviation": 0.0029457967916287835,
+        "interpretation": "Delta-method local sensitivity propagated from the fitting design, not a calibrated prediction interval"
+      },
+      "held_out_points": [
+        {
+          "x": -3372.03,
+          "observed_y": 0.295319,
+          "native_prediction": 0.29871530185908507,
+          "residual": -0.0033963018590850713,
+          "local_linearized_prediction_standard_deviation": 0.0026827670802885874
+        },
+        {
+          "x": -2473.74,
+          "observed_y": 0.339603,
+          "native_prediction": 0.3436998788053517,
+          "residual": -0.0040968788053517,
+          "local_linearized_prediction_standard_deviation": 0.0029457967916287835
+        },
+        {
+          "x": -2472.35,
+          "observed_y": 0.337731,
+          "native_prediction": 0.3437871096499595,
+          "residual": -0.006056109649959507,
+          "local_linearized_prediction_standard_deviation": 0.002945199528828822
+        },
+        {
+          "x": -2469.45,
+          "observed_y": 0.33382,
+          "native_prediction": 0.3439693288606682,
+          "residual": -0.010149328860668216,
+          "local_linearized_prediction_standard_deviation": 0.002943940791699743
+        },
+        {
+          "x": -1894.65,
+          "observed_y": 0.38951,
+          "native_prediction": 0.38746999115337916,
+          "residual": 0.0020400088466208666,
+          "local_linearized_prediction_standard_deviation": 0.0023522916707794605
+        }
+      ]
+    },
+    {
+      "fold": 3,
+      "train_count": 20,
+      "test_count": 5,
+      "native_parameters": {
+        "b1": 0.2056999448813056,
+        "b2": -6.15679942414781e-06,
+        "b3": 1151.3052953439342,
+        "b4": -186.57680096243791
+      },
+      "training_rss": 0.00029549391498883966,
+      "training_metrics": {
+        "rmse": 0.003843786642029183,
+        "mae": 0.002867597796509233,
+        "max_absolute_residual": 0.009381401165808767
+      },
+      "test_metrics": {
+        "rmse": 0.007531095882129697,
+        "mae": 0.006346510698175445,
+        "max_absolute_residual": 0.012957070974358664
+      },
+      "training_jacobian": {
+        "shape": [
+          20,
+          4
+        ],
+        "parameter_count": 4,
+        "raw_singular_values": [
+          11637.867176851496,
+          2.5431207522427797,
+          0.0001663214554930222,
+          5.89139245527787e-05
+        ],
+        "column_norms": [
+          4.47213595499958,
+          11637.866595450387,
+          0.00047556145632713856,
+          0.000666769168606678
+        ],
+        "local_covariance_valid": true,
+        "interpretation": "Local linearization at the frozen fit; rank and conditioning do not establish global structural identifiability",
+        "scaled_singular_values": [
+          1.8139213119587947,
+          0.8027497168153274,
+          0.250937307056023,
+          0.04809193385662594
+        ],
+        "scaled_condition_number": 37.717786882235735,
+        "numerical_rank": 4,
+        "numerical_rank_tolerance": 8.0554288215797e-15,
+        "training_residual_variance_estimate": 1.846836968680248e-05,
+        "parameter_covariance_matrix": [
+          [
+            0.0002767348013595352,
+            -4.527698475411792e-08,
+            -0.9945042320789121,
+            0.6290946576079862
+          ],
+          [
+            -4.527698475411792e-08,
+            7.851363451447465e-12,
+            0.00014791088330452722,
+            -0.0001089321461819941
+          ],
+          [
+            -0.9945042320789121,
+            0.00014791088330452722,
+            4339.200326006188,
+            -1898.611086156595
+          ],
+          [
+            0.6290946576079862,
+            -0.00010893214618199409,
+            -1898.611086156595,
+            1649.4160505364196
+          ]
+        ],
+        "parameter_correlation_matrix": [
+          [
+            1.0,
+            -0.9713440114219671,
+            -0.9075486106366749,
+            0.9311486110910073
+          ],
+          [
+            -0.9713440114219671,
+            1.0,
+            0.8013509191471834,
+            -0.9572346504081739
+          ],
+          [
+            -0.9075486106366749,
+            0.8013509191471834,
+            1.0,
+            -0.7096856993634757
+          ],
+          [
+            0.9311486110910073,
+            -0.9572346504081738,
+            -0.7096856993634757,
+            1.0
+          ]
+        ],
+        "max_absolute_off_diagonal_parameter_correlation": 0.9713440114219671,
+        "parameters": [
+          {
+            "name": "b1",
+            "value": 0.2056999448813056,
+            "local_standard_error": 0.0166353479482557,
+            "absolute_relative_standard_error": 0.08087191252216788
+          },
+          {
+            "name": "b2",
+            "value": -6.15679942414781e-06,
+            "local_standard_error": 2.8020284530046204e-06,
+            "absolute_relative_standard_error": 0.455111212818576
+          },
+          {
+            "name": "b3",
+            "value": 1151.3052953439342,
+            "local_standard_error": 65.8726067952847,
+            "absolute_relative_standard_error": 0.057215585702319126
+          },
+          {
+            "name": "b4",
+            "value": -186.57680096243791,
+            "local_standard_error": 40.61300346608731,
+            "absolute_relative_standard_error": 0.2176744550050658
+          }
+        ]
+      },
+      "held_out_prediction_sensitivity": {
+        "median_local_standard_deviation": 0.001650327065467431,
+        "max_local_standard_deviation": 0.0016907357099819765,
+        "interpretation": "Delta-method local sensitivity propagated from the fitting design, not a calibrated prediction interval"
+      },
+      "held_out_points": [
+        {
+          "x": -1893.4,
+          "observed_y": 0.386998,
+          "native_prediction": 0.3829364858929843,
+          "residual": 0.004061514107015718,
+          "local_linearized_prediction_standard_deviation": 0.0016907357099819765
+        },
+        {
+          "x": -1497.24,
+          "observed_y": 0.438864,
+          "native_prediction": 0.4259069290256413,
+          "residual": 0.012957070974358664,
+          "local_linearized_prediction_standard_deviation": 0.0016501586989406444
+        },
+        {
+          "x": -1495.85,
+          "observed_y": 0.434887,
+          "native_prediction": 0.42608296765134746,
+          "residual": 0.008804032348652568,
+          "local_linearized_prediction_standard_deviation": 0.001650218756597054
+        },
+        {
+          "x": -1493.41,
+          "observed_y": 0.427893,
+          "native_prediction": 0.42639247054430207,
+          "residual": 0.001500529455697952,
+          "local_linearized_prediction_standard_deviation": 0.001650327065467431
+        },
+        {
+          "x": -1208.68,
+          "observed_y": 0.471568,
+          "native_prediction": 0.46715859339484767,
+          "residual": 0.004409406605152322,
+          "local_linearized_prediction_standard_deviation": 0.0016642984581689054
+        }
+      ]
+    },
+    {
+      "fold": 4,
+      "train_count": 20,
+      "test_count": 5,
+      "native_parameters": {
+        "b1": 0.18803336453718733,
+        "b2": -4.328307495973435e-06,
+        "b3": 1273.760984384406,
+        "b4": -214.41043744014524
+      },
+      "training_rss": 0.00026318381975069425,
+      "training_metrics": {
+        "rmse": 0.0036275599219771286,
+        "mae": 0.0026228765590964598,
+        "max_absolute_residual": 0.008440234773346933
+      },
+      "test_metrics": {
+        "rmse": 0.0074538301584031715,
+        "mae": 0.0064379793156427055,
+        "max_absolute_residual": 0.011108454833014147
+      },
+      "training_jacobian": {
+        "shape": [
+          20,
+          4
+        ],
+        "parameter_count": 4,
+        "raw_singular_values": [
+          11887.147693393039,
+          2.381377956486586,
+          0.00016632024181551948,
+          4.750702690153522e-05
+        ],
+        "column_norms": [
+          4.47213595499958,
+          11887.1470906816,
+          0.00043772064327271456,
+          0.000587028517705595
+        ],
+        "local_covariance_valid": true,
+        "interpretation": "Local linearization at the frozen fit; rank and conditioning do not establish global structural identifiability",
+        "scaled_singular_values": [
+          1.824228007012659,
+          0.7673714101713391,
+          0.28575822537965306,
+          0.040933286090205356
+        ],
+        "scaled_condition_number": 44.56588222583884,
+        "numerical_rank": 4,
+        "numerical_rank_tolerance": 8.101199742206062e-15,
+        "training_residual_variance_estimate": 1.644898873441839e-05,
+        "parameter_covariance_matrix": [
+          [
+            0.00034160309699880493,
+            -5.4296220955839024e-08,
+            -1.227383206080686,
+            0.9536762726434564
+          ],
+          [
+            -5.429622095583904e-08,
+            9.027618450774109e-12,
+            0.00018225300166479057,
+            -0.00015580082199222677
+          ],
+          [
+            -1.227383206080686,
+            0.00018225300166479057,
+            5050.145259187373,
+            -3157.83461891752
+          ],
+          [
+            0.9536762726434564,
+            -0.00015580082199222677,
+            -3157.83461891752,
+            2832.7413627538263
+          ]
+        ],
+        "parameter_correlation_matrix": [
+          [
+            1.0,
+            -0.9777371256585428,
+            -0.9344742571153,
+            0.969475003412371
+          ],
+          [
+            -0.977737125658543,
+            1.0,
+            0.8535641317714047,
+            -0.9742707965066048
+          ],
+          [
+            -0.9344742571153,
+            0.8535641317714047,
+            1.0,
+            -0.8348990838448068
+          ],
+          [
+            0.969475003412371,
+            -0.9742707965066048,
+            -0.8348990838448068,
+            1.0
+          ]
+        ],
+        "max_absolute_off_diagonal_parameter_correlation": 0.977737125658543,
+        "parameters": [
+          {
+            "name": "b1",
+            "value": 0.18803336453718733,
+            "local_standard_error": 0.01848250786551449,
+            "absolute_relative_standard_error": 0.0982937677630036
+          },
+          {
+            "name": "b2",
+            "value": -4.328307495973435e-06,
+            "local_standard_error": 3.0045995491536153e-06,
+            "absolute_relative_standard_error": 0.6941742359914939
+          },
+          {
+            "name": "b3",
+            "value": 1273.760984384406,
+            "local_standard_error": 71.0643740504859,
+            "absolute_relative_standard_error": 0.0557909803500776
+          },
+          {
+            "name": "b4",
+            "value": -214.41043744014524,
+            "local_standard_error": 53.223503856415036,
+            "absolute_relative_standard_error": 0.24823187010787612
+          }
+        ]
+      },
+      "held_out_prediction_sensitivity": {
+        "median_local_standard_deviation": 0.0017944005676830037,
+        "max_local_standard_deviation": 0.0017948499204863961,
+        "interpretation": "Delta-method local sensitivity propagated from the fitting design, not a calibrated prediction interval"
+      },
+      "held_out_points": [
+        {
+          "x": -1206.18,
+          "observed_y": 0.461699,
+          "native_prediction": 0.47223006663115286,
+          "residual": -0.01053106663115283,
+          "local_linearized_prediction_standard_deviation": 0.0017553251609742132
+        },
+        {
+          "x": -1206.04,
+          "observed_y": 0.461144,
+          "native_prediction": 0.47225245483301415,
+          "residual": -0.011108454833014147,
+          "local_linearized_prediction_standard_deviation": 0.0017554079961477505
+        },
+        {
+          "x": -997.92,
+          "observed_y": 0.513532,
+          "native_prediction": 0.5081790672021843,
+          "residual": 0.005352932797815679,
+          "local_linearized_prediction_standard_deviation": 0.0017948499204863961
+        },
+        {
+          "x": -996.61,
+          "observed_y": 0.506641,
+          "native_prediction": 0.5084223491095651,
+          "residual": -0.0017813491095650669,
+          "local_linearized_prediction_standard_deviation": 0.001794485199474061
+        },
+        {
+          "x": -996.31,
+          "observed_y": 0.505062,
+          "native_prediction": 0.5084780932066658,
+          "residual": -0.0034160932066658045,
+          "local_linearized_prediction_standard_deviation": 0.0017944005676830037
+        }
+      ]
+    },
+    {
+      "fold": 5,
+      "train_count": 20,
+      "test_count": 5,
+      "native_parameters": {
+        "b1": 0.17774808044705184,
+        "b2": -2.9302024880012e-06,
+        "b3": 1333.5131337016676,
+        "b4": -215.31463429171575
+      },
+      "training_rss": 0.00043206880277583677,
+      "training_metrics": {
+        "rmse": 0.004647950100720944,
+        "mae": 0.003291286847083477,
+        "max_absolute_residual": 0.009679719160541556
+      },
+      "test_metrics": {
+        "rmse": 0.006228106060478816,
+        "mae": 0.005369437785870512,
+        "max_absolute_residual": 0.010493518518655431
+      },
+      "training_jacobian": {
+        "shape": [
+          20,
+          4
+        ],
+        "parameter_count": 4,
+        "raw_singular_values": [
+          12033.326439603095,
+          2.174269883352753,
+          9.842438714072617e-05,
+          2.007825152302054e-05
+        ],
+        "column_norms": [
+          4.47213595499958,
+          12033.325805009188,
+          0.0004562366128821547,
+          0.0004952404685648297
+        ],
+        "local_covariance_valid": true,
+        "interpretation": "Local linearization at the frozen fit; rank and conditioning do not establish global structural identifiability",
+        "scaled_singular_values": [
+          1.8647078198902058,
+          0.7054778214220069,
+          0.15730072572409212,
+          0.020549248371882184
+        ],
+        "scaled_condition_number": 90.74335888809009,
+        "numerical_rank": 4,
+        "numerical_rank_tolerance": 8.280966223362744e-15,
+        "training_residual_variance_estimate": 2.7004300173489798e-05,
+        "parameter_covariance_matrix": [
+          [
+            0.0022076224398180798,
+            -3.021377431903409e-07,
+            -11.395090944791043,
+            3.718945180257485
+          ],
+          [
+            -3.0213774319034095e-07,
+            4.240520186637992e-11,
+            0.0015088541584157716,
+            -0.0005383431470861871
+          ],
+          [
+            -11.395090944791043,
+            0.0015088541584157718,
+            62031.59015958597,
+            -17131.622355834363
+          ],
+          [
+            3.718945180257485,
+            -0.0005383431470861871,
+            -17131.622355834363,
+            7741.54144009613
+          ]
+        ],
+        "parameter_correlation_matrix": [
+          [
+            1.0,
+            -0.9874906983854849,
+            -0.9737532911986867,
+            0.8995880034565501
+          ],
+          [
+            -0.9874906983854851,
+            1.0,
+            0.9303176050371617,
+            -0.9395846218521027
+          ],
+          [
+            -0.9737532911986867,
+            0.9303176050371618,
+            1.0,
+            -0.7817687636609431
+          ],
+          [
+            0.8995880034565501,
+            -0.9395846218521027,
+            -0.7817687636609431,
+            1.0
+          ]
+        ],
+        "max_absolute_off_diagonal_parameter_correlation": 0.9874906983854851,
+        "parameters": [
+          {
+            "name": "b1",
+            "value": 0.17774808044705184,
+            "local_standard_error": 0.04698534281899069,
+            "absolute_relative_standard_error": 0.26433671013953275
+          },
+          {
+            "name": "b2",
+            "value": -2.9302024880012e-06,
+            "local_standard_error": 6.511927661328857e-06,
+            "absolute_relative_standard_error": 2.2223473251402788
+          },
+          {
+            "name": "b3",
+            "value": 1333.5131337016676,
+            "local_standard_error": 249.06141844851436,
+            "absolute_relative_standard_error": 0.18677087773192805
+          },
+          {
+            "name": "b4",
+            "value": -215.31463429171575,
+            "local_standard_error": 87.98602980073672,
+            "absolute_relative_standard_error": 0.40863933884554354
+          }
+        ]
+      },
+      "held_out_prediction_sensitivity": {
+        "median_local_standard_deviation": 0.008294211887790878,
+        "max_local_standard_deviation": 0.01679884344880718,
+        "interpretation": "Delta-method local sensitivity propagated from the fitting design, not a calibrated prediction interval"
+      },
+      "held_out_points": [
+        {
+          "x": -834.94,
+          "observed_y": 0.535648,
+          "native_prediction": 0.536844664630465,
+          "residual": -0.001196664630464972,
+          "local_linearized_prediction_standard_deviation": 0.005290532790890482
+        },
+        {
+          "x": -834.66,
+          "observed_y": 0.533726,
+          "native_prediction": 0.5369004576355019,
+          "residual": -0.0031744576355018372,
+          "local_linearized_prediction_standard_deviation": 0.005296256167430142
+        },
+        {
+          "x": -710.03,
+          "observed_y": 0.568064,
+          "native_prediction": 0.5625888058941655,
+          "residual": 0.005475194105834524,
+          "local_linearized_prediction_standard_deviation": 0.008294211887790878
+        },
+        {
+          "x": -530.16,
+          "observed_y": 0.612886,
+          "native_prediction": 0.6023924814813446,
+          "residual": 0.010493518518655431,
+          "local_linearized_prediction_standard_deviation": 0.014192536827768758
+        },
+        {
+          "x": -464.17,
+          "observed_y": 0.624169,
+          "native_prediction": 0.6176616459611042,
+          "residual": 0.006507354038895796,
+          "local_linearized_prediction_standard_deviation": 0.01679884344880718
+        }
+      ]
+    }
+  ],
+  "parameter_stability": {
+    "b1": {
+      "values": [
+        0.2292803516874329,
+        0.22569167309144791,
+        0.2056999448813056,
+        0.18803336453718733,
+        0.17774808044705184
+      ],
+      "minimum": 0.17774808044705184,
+      "maximum": 0.2292803516874329,
+      "median": 0.2056999448813056,
+      "range": 0.05153227124038107,
+      "median_local_standard_error": 0.025726823900685633
+    },
+    "b2": {
+      "values": [
+        -1.3342061270380534e-05,
+        -9.960102385755828e-06,
+        -6.15679942414781e-06,
+        -4.328307495973435e-06,
+        -2.9302024880012e-06
+      ],
+      "minimum": -1.3342061270380534e-05,
+      "maximum": -2.9302024880012e-06,
+      "median": -6.15679942414781e-06,
+      "range": 1.0411858782379334e-05,
+      "median_local_standard_error": 4.19602303663106e-06
+    },
+    "b3": {
+      "values": [
+        1152.3164257098174,
+        1132.43327873089,
+        1151.3052953439342,
+        1273.760984384406,
+        1333.5131337016676
+      ],
+      "minimum": 1132.43327873089,
+      "maximum": 1333.5131337016676,
+      "median": 1152.3164257098174,
+      "range": 201.07985497077766,
+      "median_local_standard_error": 95.67680907393209
+    },
+    "b4": {
+      "values": [
+        -103.07849289822492,
+        -118.23961841798726,
+        -186.57680096243791,
+        -214.41043744014524,
+        -215.31463429171575
+      ],
+      "minimum": -215.31463429171575,
+      "maximum": -103.07849289822492,
+      "median": -186.57680096243791,
+      "range": 112.23614139349083,
+      "median_local_standard_error": 60.8327180819764
+    }
+  },
+  "totals": {
+    "fold_count": 5,
+    "training_point_count_per_fold": 20,
+    "held_out_point_count": 25,
+    "full_numerical_rank_fold_count": 5,
+    "local_diagnostic_failure_count": 0,
+    "max_scaled_condition_number": 90.74335888809009,
+    "max_absolute_off_diagonal_parameter_correlation": 0.9875352588520016,
+    "max_local_prediction_standard_deviation": 0.01679884344880718,
+    "native_test_rmse_minimum": 0.005867985323301031,
+    "native_test_rmse_maximum": 0.010044543789192596
+  },
+  "decision": {
+    "refit": false,
+    "global_structural_identifiability_proved": false,
+    "physical_parameter_endogeneity_proved": false,
+    "calibrated_prediction_intervals_produced": false,
+    "rational_bounds_transferred_to_native": false,
+    "independent_physical_experiment_claimed": false,
+    "prediction_stability_equals_parameter_uniqueness": false,
+    "rank_deficiency_hidden": false
+  },
+  "limitations": [
+    "Local Jacobians, numerical ranks, covariances and delta-method sensitivities do not prove global structural identifiability or calibrated uncertainty",
+    "Column-normalized condition numbers reduce unit-scale dominance but do not remove nonlinear parameter compensation",
+    "Stable held-out RMSE does not imply unique, invariant or physically endogenous parameters",
+    "Parameter variation across folds is descriptive and is not a posterior distribution or independent physical estimate",
+    "No rational denominator, ellipsoid, box or continuous-safety claim is transferred to the native arctangent model"
+  ],
+  "analysis_runner_sha256": "297799a25420e090d5df642b9c809e8bce9f1fb5e28bfb87e758373ee6ab7f30"
+}
