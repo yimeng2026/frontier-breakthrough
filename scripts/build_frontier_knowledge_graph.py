@@ -51,6 +51,10 @@ def build_graph(root):
     combinedV3Decomposition = json.loads((root / "exports/internal-external-bound-comparison-v3.json").read_text(encoding="utf-8"))
     externalV4Decomposition = json.loads((root / "exports/external-bound-decomposition-v4.json").read_text(encoding="utf-8"))
     combinedV4Decomposition = json.loads((root / "exports/internal-external-bound-comparison-v4.json").read_text(encoding="utf-8"))
+    externalV5Decomposition = json.loads((root / "exports/external-bound-decomposition-v5.json").read_text(encoding="utf-8"))
+    combinedV5Decomposition = json.loads((root / "exports/internal-external-bound-comparison-v5.json").read_text(encoding="utf-8"))
+    if externalV5Decomposition["totals"]["point_count"] != 786 or externalV5Decomposition["totals"]["ellipsoid_available_point_count"] != 532 or externalV5Decomposition["totals"]["ellipsoid_unavailable_point_count"] != 254 or externalV5Decomposition["totals"]["prediction_shift_dominant_point_count"] != 255 or externalV5Decomposition["totals"]["snapshot_residual_dominant_point_count"] != 277 or len(externalV5Decomposition["datasets"]) != 7 or externalV5Decomposition["datasets"][-1]["id"] != "roszman1" or [case["available_point_count"] for case in externalV5Decomposition["datasets"][-1]["folds"]] != [0, 5, 0, 0, 0] or combinedV5Decomposition["totals"]["ellipsoid_available_point_count"] != 901 or combinedV5Decomposition["totals"]["prediction_shift_dominant_point_count"] != 599 or combinedV5Decomposition["totals"]["snapshot_residual_dominant_point_count"] != 302 or len(combinedV5Decomposition["datasets"]) != 10 or combinedV5Decomposition["analysis_scope"]["roszman1_native_arctangent_model_claimed"] or combinedV5Decomposition["analysis_scope"]["roszman1_independent_physical_experiment"]:
+        raise ValueError("Expected v5 scope expansion and Roszman1 small-sample boundaries are not present")
     maximumAudit = json.loads((root / "exports/maximum-full-composition-audit.json").read_text(encoding="utf-8"))
     extremeCheck = json.loads((root / "validation/extreme-reporting-check.json").read_text(encoding="utf-8"))
     corpusCheck = json.loads((root / "validation/extreme-corpus-check.json").read_text(encoding="utf-8"))
@@ -466,6 +470,32 @@ def build_graph(root):
         edge("experiment-roszman1-scoped-prospective-protocol", "claim-small-rmse-useful-proof", "tests"),
         edge("limitation-roszman1-small-sample-shift-scope", "evidence-roszman1-prediction-proof-dissociation", "limits"),
         edge("evidence-roszman1-prediction-proof-dissociation", "claim-reusable-driver-guarantees-coverage", "contradicts"),
+    ])
+    nodes.extend([
+        node("evidence-bound-comparison-v5", "evidence", "七外部 786／532／254 与十组 901 点的新版本对照及 Roszman1 增量", "supported", ["exports/external-bound-decomposition-v5.json", "exports/internal-external-bound-comparison-v5.json"]),
+        node("counterexample-roszman1-v5-increment", "counterexample", "Roszman1 增加 25 总点、5 可用点、20 不可用点和 5 平移主导点，实际残差主导数不变", "supported", ["validation/roszman1-ellipsoid-coverage.json", "exports/internal-external-bound-comparison-v5.json"]),
+        node("counterexample-roszman1-v5-small-sample-scope", "counterexample", "Roszman1 的 5 个可用点只在第 2 折，第 1、4 折优于基线却零可用界且第 5 折预测失败", "supported", ["exports/external-bound-decomposition-v5.json", "validation/roszman1-ellipsoid-coverage.json"]),
+        node("experiment-bound-comparison-v5-protocol", "experiment", "保留历史版本并冻结七外部与十组输入哈希、同族、周期和原生反正切候选范围的新版协议", "supported", ["validation/external-bound-decomposition-v5-protocol.json", "validation/internal-external-bound-comparison-v5-protocol.json"]),
+        node("limitation-bound-comparison-v5-scope", "limitation", "十组范围合计不是成功率或原生模型验证，内部有根折、外部不可用点、同族边界和第 2 折局部可用范围均不可抹去", "active", ["exports/internal-external-bound-comparison-v5.json", "validation/roszman1-ellipsoid-coverage-protocol.json"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "evidence-bound-comparison-v5", "contains"),
+        edge("track-holdout", "counterexample-roszman1-v5-increment", "contains"),
+        edge("track-holdout", "counterexample-roszman1-v5-small-sample-scope", "contains"),
+        edge("track-holdout", "experiment-bound-comparison-v5-protocol", "contains"),
+        edge("track-holdout", "limitation-bound-comparison-v5-scope", "contains"),
+        edge("evidence-bound-comparison-v5", "claim-new-data-overwrite-history", "contradicts"),
+        edge("counterexample-roszman1-v5-increment", "claim-new-data-overwrite-history", "contradicts"),
+        edge("evidence-bound-comparison-v5", "counterexample-roszman1-v5-increment", "supports"),
+        edge("experiment-bound-comparison-v5-protocol", "claim-new-data-overwrite-history", "tests"),
+        edge("limitation-bound-comparison-v5-scope", "claim-new-data-overwrite-history", "limits"),
+        edge("evidence-bound-comparison-v5", "evidence-roszman1-prediction-proof-dissociation", "supports"),
+        edge("limitation-bound-comparison-v5-scope", "claim-untouched-data-independent-model-family", "limits"),
+        edge("counterexample-roszman1-v5-small-sample-scope", "claim-small-rmse-useful-proof", "contradicts"),
+        edge("evidence-bound-comparison-v5", "counterexample-roszman1-v5-small-sample-scope", "supports"),
+        edge("limitation-bound-comparison-v5-scope", "evidence-bound-comparison-v5", "limits"),
+        edge("counterexample-roszman1-v5-small-sample-scope", "claim-reusable-driver-guarantees-coverage", "contradicts"),
+        edge("evidence-bound-comparison-v5", "evidence-bound-comparison-v4", "supports"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

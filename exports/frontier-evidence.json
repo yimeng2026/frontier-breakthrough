@@ -2882,6 +2882,193 @@
         "validation/roszman1-ellipsoid-coverage.json",
         "validation/frontier-roszman1-coverage-word.json"
       ]
+    },
+    {
+      "id": "bound-comparison-v5-scope-expansion",
+      "domain": "math",
+      "title": "七外部与十组界组成及 Roszman1 小样本边界对照",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml",
+        "https://www.itl.nist.gov/div898/strd/lls/data/filip.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/misra1a.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml"
+      ],
+      "metrics": {
+        "externalV5Totals": {
+          "point_count": 786,
+          "ellipsoid_available_point_count": 532,
+          "ellipsoid_unavailable_point_count": 254,
+          "prediction_shift_dominant_point_count": 255,
+          "snapshot_residual_dominant_point_count": 277,
+          "undefined_zero_bound_count": 0,
+          "bound_identity_mismatch_count": 0
+        },
+        "combinedV5Totals": {
+          "ellipsoid_available_point_count": 901,
+          "prediction_shift_dominant_point_count": 599,
+          "snapshot_residual_dominant_point_count": 302,
+          "undefined_zero_bound_count": 0,
+          "bound_identity_mismatch_count": 0,
+          "external_unavailable_point_count": 254,
+          "internal_unavailable_rooted_fold_count": 2
+        },
+        "datasets": [
+          {
+            "id": "hahn1",
+            "scope": "internal",
+            "ellipsoid_available_point_count": 189,
+            "prediction_shift_dominant_point_count": 189,
+            "snapshot_residual_dominant_point_count": 0,
+            "median_shift_share": 0.9820853626447161,
+            "maximumBoundDominant": "prediction_shift_dominant"
+          },
+          {
+            "id": "thurber",
+            "scope": "internal",
+            "ellipsoid_available_point_count": 29,
+            "prediction_shift_dominant_point_count": 27,
+            "snapshot_residual_dominant_point_count": 2,
+            "median_shift_share": 0.8980483989245494,
+            "maximumBoundDominant": "prediction_shift_dominant"
+          },
+          {
+            "id": "kirby2",
+            "scope": "internal",
+            "ellipsoid_available_point_count": 151,
+            "prediction_shift_dominant_point_count": 128,
+            "snapshot_residual_dominant_point_count": 23,
+            "median_shift_share": 0.9444638134420068,
+            "maximumBoundDominant": "prediction_shift_dominant"
+          },
+          {
+            "id": "filip",
+            "scope": "external",
+            "ellipsoid_available_point_count": 82,
+            "prediction_shift_dominant_point_count": 82,
+            "snapshot_residual_dominant_point_count": 0,
+            "median_shift_share": 0.9921094965998745,
+            "maximumBoundDominant": "prediction_shift_dominant"
+          },
+          {
+            "id": "mgh17",
+            "scope": "external",
+            "ellipsoid_available_point_count": 33,
+            "prediction_shift_dominant_point_count": 32,
+            "snapshot_residual_dominant_point_count": 1,
+            "median_shift_share": 0.991413833021702,
+            "maximumBoundDominant": "prediction_shift_dominant"
+          },
+          {
+            "id": "gauss1",
+            "scope": "external",
+            "ellipsoid_available_point_count": 190,
+            "prediction_shift_dominant_point_count": 24,
+            "snapshot_residual_dominant_point_count": 166,
+            "median_shift_share": 0.16947432232550075,
+            "maximumBoundDominant": "prediction_shift_dominant"
+          },
+          {
+            "id": "misra1a",
+            "scope": "external",
+            "ellipsoid_available_point_count": 4,
+            "prediction_shift_dominant_point_count": 4,
+            "snapshot_residual_dominant_point_count": 0,
+            "median_shift_share": 0.9996118041945221,
+            "maximumBoundDominant": "prediction_shift_dominant"
+          },
+          {
+            "id": "chwirut1",
+            "scope": "external",
+            "ellipsoid_available_point_count": 83,
+            "prediction_shift_dominant_point_count": 75,
+            "snapshot_residual_dominant_point_count": 8,
+            "median_shift_share": 0.7635061269778911,
+            "maximumBoundDominant": "prediction_shift_dominant"
+          },
+          {
+            "id": "enso",
+            "scope": "external",
+            "ellipsoid_available_point_count": 135,
+            "prediction_shift_dominant_point_count": 33,
+            "snapshot_residual_dominant_point_count": 102,
+            "median_shift_share": 0.278229698347853,
+            "maximumBoundDominant": "snapshot_residual_dominant"
+          },
+          {
+            "id": "roszman1",
+            "scope": "external",
+            "ellipsoid_available_point_count": 5,
+            "prediction_shift_dominant_point_count": 5,
+            "snapshot_residual_dominant_point_count": 0,
+            "median_shift_share": 0.9933691737124666,
+            "maximumBoundDominant": "prediction_shift_dominant"
+          }
+        ],
+        "datasetCount": 10,
+        "roszman1Increment": {
+          "pointCount": 25,
+          "available": 5,
+          "unavailable": 20,
+          "predictionShiftDominant": 5,
+          "snapshotResidualDominant": 0
+        },
+        "roszman1AvailableFolds": [
+          2
+        ],
+        "roszman1MaximumBound": {
+          "fold": 2,
+          "x": -1894.65,
+          "actual_absolute_residual": 0.001561545449595081,
+          "prediction_shift": 0.7193100157453971,
+          "residual_upper_bound": 0.7208715611949922,
+          "shift_share": 0.9978338090532987,
+          "dominant": "prediction_shift_dominant"
+        },
+        "relatedDataset": {
+          "name": "Chwirut2",
+          "same_study": true,
+          "same_native_model_family": true,
+          "scope": "Chwirut2 was analyzed previously, but Chwirut1 observations were not used to design previous candidates or regions; this is not an independent model-family or laboratory replication test"
+        },
+        "periodicCandidateScope": "The ENSO candidate is not the native ENSO nine-parameter Fourier model; its 131 tighter ellipsoid/box pairs are a subset and not a probability or whole-dataset claim",
+        "roszman1CandidateScope": "The Roszman1 cubic/cubic candidate is not the native four-parameter arctangent model; its five available points occur only in fold 2, are not a 25-point probability coverage claim and are not an independent physical experiment",
+        "decision": {
+          "combined_success_rate_claimed": false,
+          "universal_internal_external_ranking_claimed": false,
+          "probability_calibration_claimed": false,
+          "scope_difference_erased": false,
+          "independent_model_family_claimed": false,
+          "native_periodic_model_claimed": false,
+          "native_arctangent_model_claimed": false,
+          "independent_physical_experiment_claimed": false
+        },
+        "historicalPreservation": {
+          "previousFilesPreserved": true,
+          "sixExternal": "exports/external-bound-decomposition-v4.json",
+          "nineDatasets": "exports/internal-external-bound-comparison-v4.json"
+        },
+        "protocolCommits": {
+          "externalProtocol": "ae89706",
+          "externalResultsAndCombinedProtocol": "862379e",
+          "combinedResults": "851a842"
+        }
+      },
+      "scientificClaim": "七外部共 786 点，其中 532 点可用、254 点不可用；255 点平移主导、277 点实际残差主导。十组共 901 个可用点，599 点平移主导、302 点实际残差主导。Roszman1 增加 25 总点、5 个第 2 折可用点和 20 个不可用点；十组最大界中九组由平移主导，ENSO 仍由实际残差主导。",
+      "limitations": "这是新增小样本量子缺陷数据后的事后范围汇总，不是合并成功率、证明能力改善、原生反正切模型验证或独立物理实验；Chwirut1 同族边界、ENSO 周期候选边界和 Roszman1 第 2 折局部可用范围必须保留。The 901 available points are descriptive and not a universal sample or probability estimate Two internal rooted unavailable folds and 254 external unavailable points remain separate Arithmetic shares are not probabilities, variance decomposition or physical-mechanism attribution No universal internal-versus-external ranking or combined success rate is established Chwirut1 was not used in previous region design, but shares its study and native model family with Chwirut2; it is not an independent model-family or laboratory replication test The ENSO candidate is not the native ENSO nine-parameter Fourier model; its 131 tighter ellipsoid/box pairs are a subset and not a probability or whole-dataset claim The Roszman1 cubic/cubic candidate is not the native four-parameter arctangent model; its five available points occur only in fold 2, are not a 25-point probability coverage claim and are not an independent physical experiment",
+      "upstreamContribution": "提供七外部与十组并存的新版范围接口，同时连接 Roszman1 增量、逐折小样本限制、历史版本、数据亲缘和两类不可用边界，防止新增计数被写成统一成功率。",
+      "snapshotFiles": [
+        "validation/external-bound-decomposition-v5-protocol.json",
+        "validation/internal-external-bound-comparison-v5-protocol.json",
+        "validation/frontier-bound-comparison-v5-word.json"
+      ]
     }
   ]
 }

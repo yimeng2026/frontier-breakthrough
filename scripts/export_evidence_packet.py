@@ -62,6 +62,8 @@ def build() -> dict:
     combinedV3Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v3.json").read_text(encoding="utf-8"))
     externalV4Decomposition = json.loads((ROOT / "exports/external-bound-decomposition-v4.json").read_text(encoding="utf-8"))
     combinedV4Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v4.json").read_text(encoding="utf-8"))
+    externalV5Decomposition = json.loads((ROOT / "exports/external-bound-decomposition-v5.json").read_text(encoding="utf-8"))
+    combinedV5Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v5.json").read_text(encoding="utf-8"))
     maximumAudit = json.loads((ROOT / "exports/maximum-full-composition-audit.json").read_text(encoding="utf-8"))
     extremeCheck = read("extreme-reporting-check.json")
     corpusCheck = read("extreme-corpus-check.json")
@@ -560,6 +562,30 @@ def build() -> dict:
                 "validation/roszman1-ellipsoid-coverage.json",
                 "validation/frontier-roszman1-coverage-word.json",
             ],
+        },
+        {
+            "id": "bound-comparison-v5-scope-expansion", "domain": "math", "title": "七外部与十组界组成及 Roszman1 小样本边界对照",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml", "https://www.itl.nist.gov/div898/strd/lls/data/filip.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/misra1a.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml"],
+            "metrics": {
+                "externalV5Totals": externalV5Decomposition["totals"],
+                "combinedV5Totals": combinedV5Decomposition["totals"],
+                "datasets": [{"id": item["id"], "scope": item["scope"], "ellipsoid_available_point_count": item["ellipsoid_available_point_count"], "prediction_shift_dominant_point_count": item["prediction_shift_dominant_point_count"], "snapshot_residual_dominant_point_count": item["snapshot_residual_dominant_point_count"], "median_shift_share": item["median_shift_share"], "maximumBoundDominant": item["maximum_residual_upper_bound"]["dominant"]} for item in combinedV5Decomposition["datasets"]],
+                "datasetCount": len(combinedV5Decomposition["datasets"]),
+                "roszman1Increment": {"pointCount": 25, "available": 5, "unavailable": 20, "predictionShiftDominant": 5, "snapshotResidualDominant": 0},
+                "roszman1AvailableFolds": [case["fold"] for case in externalV5Decomposition["datasets"][-1]["folds"] if case["available_point_count"]],
+                "roszman1MaximumBound": externalV5Decomposition["datasets"][-1]["maximum_residual_upper_bound"],
+                "relatedDataset": chwirut1Protocol["dataset_scope"]["related_prior_dataset"],
+                "periodicCandidateScope": externalV5Decomposition["analysis_scope"]["periodic_candidate_scope"],
+                "roszman1CandidateScope": externalV5Decomposition["analysis_scope"]["roszman1_candidate_scope"],
+                "decision": {**combinedV5Decomposition["decision"], "independent_model_family_claimed": False, "native_periodic_model_claimed": False, "native_arctangent_model_claimed": False, "independent_physical_experiment_claimed": False},
+                "historicalPreservation": {"previousFilesPreserved": True, "sixExternal": "exports/external-bound-decomposition-v4.json", "nineDatasets": "exports/internal-external-bound-comparison-v4.json"},
+                "protocolCommits": {"externalProtocol": "ae89706", "externalResultsAndCombinedProtocol": "862379e", "combinedResults": "851a842"},
+            },
+            "scientificClaim": "七外部共 786 点，其中 532 点可用、254 点不可用；255 点平移主导、277 点实际残差主导。十组共 901 个可用点，599 点平移主导、302 点实际残差主导。Roszman1 增加 25 总点、5 个第 2 折可用点和 20 个不可用点；十组最大界中九组由平移主导，ENSO 仍由实际残差主导。",
+            "limitations": "这是新增小样本量子缺陷数据后的事后范围汇总，不是合并成功率、证明能力改善、原生反正切模型验证或独立物理实验；Chwirut1 同族边界、ENSO 周期候选边界和 Roszman1 第 2 折局部可用范围必须保留。" + " ".join(combinedV5Decomposition["limitations"]),
+            "upstreamContribution": "提供七外部与十组并存的新版范围接口，同时连接 Roszman1 增量、逐折小样本限制、历史版本、数据亲缘和两类不可用边界，防止新增计数被写成统一成功率。",
+            "snapshotFiles": ["validation/external-bound-decomposition-v5-protocol.json", "validation/internal-external-bound-comparison-v5-protocol.json", "validation/frontier-bound-comparison-v5-word.json"],
         },
     ]
     packet = {

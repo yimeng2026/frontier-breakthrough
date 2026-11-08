@@ -1388,6 +1388,56 @@
       "sourceFiles": [
         "validation/roszman1-ellipsoid-coverage.json"
       ]
+    },
+    {
+      "id": "evidence-bound-comparison-v5",
+      "kind": "evidence",
+      "title": "七外部 786／532／254 与十组 901 点的新版本对照及 Roszman1 增量",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/external-bound-decomposition-v5.json",
+        "exports/internal-external-bound-comparison-v5.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-v5-increment",
+      "kind": "counterexample",
+      "title": "Roszman1 增加 25 总点、5 可用点、20 不可用点和 5 平移主导点，实际残差主导数不变",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-ellipsoid-coverage.json",
+        "exports/internal-external-bound-comparison-v5.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-v5-small-sample-scope",
+      "kind": "counterexample",
+      "title": "Roszman1 的 5 个可用点只在第 2 折，第 1、4 折优于基线却零可用界且第 5 折预测失败",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/external-bound-decomposition-v5.json",
+        "validation/roszman1-ellipsoid-coverage.json"
+      ]
+    },
+    {
+      "id": "experiment-bound-comparison-v5-protocol",
+      "kind": "experiment",
+      "title": "保留历史版本并冻结七外部与十组输入哈希、同族、周期和原生反正切候选范围的新版协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/external-bound-decomposition-v5-protocol.json",
+        "validation/internal-external-bound-comparison-v5-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-bound-comparison-v5-scope",
+      "kind": "limitation",
+      "title": "十组范围合计不是成功率或原生模型验证，内部有根折、外部不可用点、同族边界和第 2 折局部可用范围均不可抹去",
+      "status": "active",
+      "sourceFiles": [
+        "exports/internal-external-bound-comparison-v5.json",
+        "validation/roszman1-ellipsoid-coverage-protocol.json"
+      ]
     }
   ],
   "edges": [
@@ -2860,6 +2910,91 @@
       "from": "evidence-roszman1-prediction-proof-dissociation",
       "to": "claim-reusable-driver-guarantees-coverage",
       "relation": "contradicts"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-bound-comparison-v5",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-v5-increment",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-v5-small-sample-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-bound-comparison-v5-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-bound-comparison-v5-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-bound-comparison-v5",
+      "to": "claim-new-data-overwrite-history",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-v5-increment",
+      "to": "claim-new-data-overwrite-history",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-bound-comparison-v5",
+      "to": "counterexample-roszman1-v5-increment",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-bound-comparison-v5-protocol",
+      "to": "claim-new-data-overwrite-history",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-bound-comparison-v5-scope",
+      "to": "claim-new-data-overwrite-history",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-bound-comparison-v5",
+      "to": "evidence-roszman1-prediction-proof-dissociation",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-bound-comparison-v5-scope",
+      "to": "claim-untouched-data-independent-model-family",
+      "relation": "limits"
+    },
+    {
+      "from": "counterexample-roszman1-v5-small-sample-scope",
+      "to": "claim-small-rmse-useful-proof",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-bound-comparison-v5",
+      "to": "counterexample-roszman1-v5-small-sample-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-bound-comparison-v5-scope",
+      "to": "evidence-bound-comparison-v5",
+      "relation": "limits"
+    },
+    {
+      "from": "counterexample-roszman1-v5-small-sample-scope",
+      "to": "claim-reusable-driver-guarantees-coverage",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-bound-comparison-v5",
+      "to": "evidence-bound-comparison-v4",
+      "relation": "supports"
     }
   ]
 }

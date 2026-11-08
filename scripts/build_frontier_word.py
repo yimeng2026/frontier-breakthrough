@@ -40,7 +40,13 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "roszman1_coverage":
+    if REPORT_MODE == "bound_comparison_v5":
+        replacements = {
+            "图：`papers/36_外部七组界组成/fig36_external_bound_decomposition_v5.png`。": "![](papers/36_外部七组界组成/fig36_external_bound_decomposition_v5.png)\n\n**图 36｜七组外部数据同点界组成（第 1 幅，共 2 幅）**  \n**插入位置**：§4「十组内外部数据的界组成」；顺序第 1 幅，共 2 幅。",
+            "图：`papers/37_十组界组成对照/fig37_internal_external_bound_comparison_v5.png`。": "![](papers/37_十组界组成对照/fig37_internal_external_bound_comparison_v5.png)\n\n**图 37｜十组内外部数据同点界组成对照（第 2 幅，共 2 幅）**  \n**插入位置**：图 36 之后；顺序第 2 幅，共 2 幅。",
+        }
+        subtitle = "786 点外部范围、901 个可用点与 Roszman1 小样本平移主导边界"
+    elif REPORT_MODE == "roszman1_coverage":
         replacements = {
             "图：`papers/35_Roszman1椭球覆盖/fig35_roszman1_ellipsoid_coverage.png`。": "![](papers/35_Roszman1椭球覆盖/fig35_roszman1_ellipsoid_coverage.png)\n\n**图 35｜Roszman1 候选预测与逐点界可用性（第 1 幅，共 1 幅）**  \n**插入位置**：§4「五个可用点的界宽度与平移主导」；顺序第 1 幅，共 1 幅。",
         }
