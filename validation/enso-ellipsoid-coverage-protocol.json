@@ -1,0 +1,79 @@
+{
+  "status": "frozen_before_any_enso_rational_fit",
+  "frozen_at_local": "2026-11-09T05:37:26+08:00",
+  "analysis_id": "enso",
+  "scientific_question": "On the untouched NIST ENSO monthly pressure dataset, can the frozen external coverage driver and scope-aware adapter evaluate a cubic/cubic candidate, continuous ellipsoid safety, pointwise residual bounds and bound composition without protocol drift or native-periodic-model overclaim?",
+  "dataset_scope": {
+    "name": "NIST/ITL StRD ENSO",
+    "dataset_page": "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml",
+    "source_url": "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/ENSO.dat",
+    "file": "data/ENSO.dat",
+    "sha256": "0c644f45b0e586cb1bb0613bad68f63c704efadacd086e768468d33d83f3e5d9",
+    "observations": 168,
+    "unique_predictor_values": 168,
+    "native_model": "Nine-parameter miscellaneous Fourier class with annual and two longer cycles; the cubic/cubic rational candidate is an approximation stress test, not the native model",
+    "native_equation": "y = b1 + b2*cos(2*pi*x/12) + b3*sin(2*pi*x/12) + b5*cos(2*pi*x/b4) + b6*sin(2*pi*x/b4) + b8*cos(2*pi*x/b7) + b9*sin(2*pi*x/b7) + e",
+    "response": "monthly averaged atmospheric pressure difference between Easter Island and Darwin, Australia",
+    "predictor": "time in months",
+    "reference": "Kahaner, D., C. Moler, and S. Nash (1989), Numerical Methods and Software, pp. 441-445",
+    "observed_data": true,
+    "generated_data": false,
+    "dataset_used_to_design_previous_regions": false,
+    "model_family_scope": "The native periodic model differs from previous candidate families, but this reanalysis is not an independent physical experiment or validation of the native ENSO model"
+  },
+  "implementation_rule": {
+    "driver": "scripts/external_coverage.py",
+    "driver_sha256": "646cbfb7cfdf0dc578c8808e4ad6113b286a048038cfa9f07f47d776ad85aa6f",
+    "scope_adapter": "scripts/external_coverage_scoped.py",
+    "scope_adapter_sha256": "a6f53ffea1e743fdae839677b45938274652af0ac8bd70bd503e11afe74fb548",
+    "wrapper": "scripts/analyze_enso_ellipsoid_coverage.py",
+    "wrapper_sha256": "e4df2179acd573f40bfc9f6d46dcb204a3e39bd3dd15c2cf3d0b1b46c8d2de98",
+    "changes_after_freeze": "No driver, scope adapter or wrapper change is permitted under this protocol; any implementation change requires a new protocol and preservation of this frozen analysis",
+    "scope_rule": "The adapter applies the frozen ENSO-specific limitation and records both wrapper and adapter hashes; it does not alter fitting, certificates, bounds or thresholds"
+  },
+  "candidate_rule": {
+    "equation": "y = (b1+b2*x+b3*x^2+b4*x^3)/(1+b5*x+b6*x^2+b7*x^3) + e",
+    "starts_source": "validation/hahn1-high-temperature-protocol.json",
+    "starts": [
+      {"b1": 10, "b2": -1, "b3": 0.05, "b4": -0.00001, "b5": -0.05, "b6": 0.001, "b7": -0.000001},
+      {"b1": 1, "b2": -0.1, "b3": 0.005, "b4": -0.000001, "b5": -0.005, "b6": 0.0001, "b7": -0.0000001}
+    ],
+    "optimizer": "scipy.optimize.curve_fit method=lm, maxfev=200000, full_output=true; select lowest training RSS",
+    "scope_limitation": "The cubic/cubic candidate is only an approximation stress test and not the native ENSO nine-parameter Fourier model with annual, El Nino and Southern Oscillation cycles; periodic predictive skill and deterministic denominator certification are separate evidence axes",
+    "retuning": "No model, start, radius, fold or threshold changes after seeing outcomes"
+  },
+  "fold_rule": {
+    "count": 5,
+    "construction": "Sort unique x values into five contiguous, nearly equal groups; repeated x never crosses fitting and test sets; every observation is evaluated once",
+    "baseline": "Cubic polynomial fitted only on the other four groups; this is a candidate baseline, not the native nine-parameter Fourier fit"
+  },
+  "ellipsoid_rule": {
+    "radius": 1,
+    "radius_scope": "Fixed before fitting; a deterministic scale only, not a confidence level",
+    "covariance": "Use denominator block from the best training attempt; require exact symmetry and positive definiteness",
+    "continuous_certificate": "Require exact D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D over each closed held-out interval",
+    "pointwise_bound": "For R=rho*sqrt_upper(z^T Sigma z), require |D|-R>0 and compute prediction shift and observed residual upper bounds; compare with the independent box at the same radius",
+    "coverage": "Check actual |y-f_snapshot| against each available deterministic residual bound and record any violation; do not call this probability calibration",
+    "composition": "For each available point, preserve actual residual, prediction shift and residual upper bound so shift share can be audited without refitting"
+  },
+  "output_rule": {
+    "summary": "validation/enso-ellipsoid-coverage.json",
+    "figure": "papers/31_ENSO椭球覆盖/fig31_enso_ellipsoid_coverage.png",
+    "refuse_overwrite": true
+  },
+  "decision": {
+    "native_physical_model_claimed": false,
+    "probability_calibration_claimed": false,
+    "independent_physical_experiment_claimed": false,
+    "independent_model_family_claimed": false,
+    "universal_external_validity_claimed": false
+  },
+  "prohibitions": [
+    "No claim that the native ENSO model is cubic/cubic or that the candidate captures the physical El Nino and Southern Oscillation mechanisms",
+    "No description of this reanalysis as a newly performed independent physical experiment or native model-family validation",
+    "No hiding of optimizer failures, non-positive covariance, unavailable bounds, coverage violations or prediction failures",
+    "No probability, confidence, RMSE-bound or continuous-x error-bound claim from pointwise bounds",
+    "No use of the original nine-parameter certified fit as candidate holdout evidence",
+    "No retuning of starts, radius, folds or candidate degree after seeing candidate outcomes"
+  ]
+}
