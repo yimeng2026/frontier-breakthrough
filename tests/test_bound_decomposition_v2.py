@@ -31,6 +31,20 @@ class BoundDecompositionV2Tests(unittest.TestCase):
         self.assertEqual([item["ellipsoid_available_point_count"] for item in summary["datasets"]], [82, 33, 190, 4])
         self.assertEqual(module.validate_summary(summary), [])
 
+    def test_v2_limitations_use_current_unavailable_count(self):
+        module = self.load_module(EXTERNAL_SCRIPT, "build_external_bound_decomposition_v2")
+        summary = module.analyze()
+        limitations = " ".join(summary["limitations"])
+        self.assertIn("70 unavailable points", limitations)
+        self.assertNotIn("60 unavailable points", limitations)
+
+    def test_v2_amended_protocol_is_traceable_in_evidence_and_graph(self):
+        amendment = '"validation/internal-external-bound-comparison-v2-protocol-amendment-01.json"'
+        evidence = (ROOT / "exports/frontier-evidence.json").read_text(encoding="utf-8")
+        graph = (ROOT / "exports/frontier-knowledge-graph.json").read_text(encoding="utf-8")
+        self.assertIn(amendment, evidence)
+        self.assertIn(amendment, graph)
+
     def test_seven_dataset_combined_scope_is_not_success_rate(self):
         module = self.load_module(COMBINED_SCRIPT, "build_internal_external_bound_comparison_v2")
         summary = module.analyze()

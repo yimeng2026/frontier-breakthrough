@@ -124,7 +124,7 @@ def analyze(protocol_path=PROTOCOL):
         "limitations": [
             "This is a read-only post-hoc arithmetic decomposition of stored bounds",
             "Shares are not probabilities, variance decomposition or physical-mechanism attribution",
-            "The 60 unavailable points are retained separately and have no fabricated bounds or shares",
+            f"The {totals['ellipsoid_unavailable_point_count']} unavailable points are retained separately and have no fabricated bounds or shares",
             "Dataset-specific distributions do not establish a universal ranking or native-model validity",
         ],
         "analysis_runner_sha256": sha256(Path(__file__).resolve()),

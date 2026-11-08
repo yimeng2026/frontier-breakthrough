@@ -340,7 +340,7 @@ def build() -> dict:
             "scientificClaim": "四外部共 379 点，其中 309 点可用、70 点不可用；142 点平移主导、167 点实际残差主导。七组共 678 个可用点，486 点平移主导、192 点实际残差主导。Misra1a 带来 +14 总点、+4 可用点、+10 不可用点和 +4 平移主导点，历史文件未改写。",
             "limitations": "这是新增数据后的事后范围汇总，不是合并成功率或证明能力改善；内部有根折与外部不可用点仍不可混同。" + " ".join(combinedV2Decomposition["limitations"]),
             "upstreamContribution": "提供新旧版本并存的范围扩展接口，明确 Misra1a 增量来源、七组分布和两类不适用边界，防止旧对照被静默覆盖。",
-            "snapshotFiles": ["validation/external-bound-decomposition-v2-protocol.json", "validation/internal-external-bound-comparison-v2-protocol.json", "validation/frontier-bound-comparison-v2-word.json"],
+            "snapshotFiles": ["validation/external-bound-decomposition-v2-protocol.json", "validation/internal-external-bound-comparison-v2-protocol.json", "validation/internal-external-bound-comparison-v2-protocol-amendment-01.json", "validation/frontier-bound-comparison-v2-word.json"],
         },
     ]
     packet = {

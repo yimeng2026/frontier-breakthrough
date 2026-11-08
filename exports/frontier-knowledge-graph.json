@@ -1089,6 +1089,15 @@
       "sourceFiles": [
         "exports/internal-external-bound-comparison-v2.json"
       ]
+    },
+    {
+      "id": "experiment-bound-comparison-v2-protocol-amendment",
+      "kind": "experiment",
+      "title": "修订七组协议的外部诊断哈希并保留原协议与全部数值范围",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/internal-external-bound-comparison-v2-protocol-amendment-01.json"
+      ]
     }
   ],
   "edges": [
@@ -2161,6 +2170,16 @@
       "from": "claim-knowledge-graph",
       "to": "track-materials",
       "relation": "recommends"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-bound-comparison-v2-protocol-amendment",
+      "relation": "contains"
+    },
+    {
+      "from": "experiment-bound-comparison-v2-protocol-amendment",
+      "to": "claim-new-data-overwrite-history",
+      "relation": "tests"
     }
   ]
 }

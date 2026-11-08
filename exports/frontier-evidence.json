@@ -1735,6 +1735,7 @@
       "snapshotFiles": [
         "validation/external-bound-decomposition-v2-protocol.json",
         "validation/internal-external-bound-comparison-v2-protocol.json",
+        "validation/internal-external-bound-comparison-v2-protocol-amendment-01.json",
         "validation/frontier-bound-comparison-v2-word.json"
       ]
     }

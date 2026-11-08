@@ -6,7 +6,7 @@ from pathlib import Path
 import build_internal_external_bound_comparison as base
 
 ROOT = Path(__file__).resolve().parents[1]
-PROTOCOL = ROOT / "validation/internal-external-bound-comparison-v2-protocol.json"
+PROTOCOL = ROOT / "validation/internal-external-bound-comparison-v2-protocol-amendment-01.json"
 OUT = ROOT / "exports/internal-external-bound-comparison-v2.json"
 FIGURE = ROOT / "papers/27_七组界组成对照/fig27_internal_external_bound_comparison_v2.png"
 

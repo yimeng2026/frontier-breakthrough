@@ -292,6 +292,11 @@ def build_graph(root):
         edge("claim-knowledge-graph", "track-chemistry", "recommends"),
         edge("claim-knowledge-graph", "track-materials", "recommends"),
     ]
+    nodes.append(node("experiment-bound-comparison-v2-protocol-amendment", "experiment", "修订七组协议的外部诊断哈希并保留原协议与全部数值范围", "supported", ["validation/internal-external-bound-comparison-v2-protocol-amendment-01.json"]))
+    edges.extend([
+        edge("track-holdout", "experiment-bound-comparison-v2-protocol-amendment", "contains"),
+        edge("experiment-bound-comparison-v2-protocol-amendment", "claim-new-data-overwrite-history", "tests"),
+    ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 
 
