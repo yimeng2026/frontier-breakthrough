@@ -46,6 +46,8 @@ def build() -> dict:
     ellipsoidComparison = read("rational-ellipsoid-box-comparison.json")
     ellipsoidInterval = read("rational-ellipsoid-interval-safety.json")
     filipCoverage = read("filip-ellipsoid-coverage.json")
+    mgh17Coverage = read("mgh17-ellipsoid-coverage.json")
+    externalComparison = json.loads((ROOT / "exports/external-coverage-comparison.json").read_text(encoding="utf-8"))
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -262,6 +264,15 @@ def build() -> dict:
             "scientificClaim": "候选 cubic/cubic 在 Filip 五折均优于三次基线且连续椭球安全；82／82 点未发生实际残差越界，独立盒连续安全为 0。",
             "limitations": " ".join(filipCoverage["limitations"]), "upstreamContribution": "提供外部候选压力测试和逐点覆盖，区分候选近似、概率覆盖、界宽度及独立盒不可用。",
             "snapshotFiles": ["validation/filip-ellipsoid-coverage-protocol.json", "validation/filip-ellipsoid-coverage.json"],
+        },
+        {
+            "id": "external-coverage-framework-mgh17", "domain": "physics", "title": "通用外部覆盖协议与 MGH17 对照",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/MGH17.dat", "https://www.itl.nist.gov/div898/strd/lls/data/LINKS/DATA/Filip.dat"],
+            "metrics": {"comparisonTotals": externalComparison["totals"], "mgh17": mgh17Coverage["totals"], "driverSha256": externalComparison["analysis_scope"]["driver_sha256"]},
+            "scientificClaim": "通用驱动保持 Filip 的 82 点覆盖与连续安全；MGH17 33／33 点覆盖且连续安全，32 点椭球更紧，独立盒五折安全。",
+            "limitations": " ".join(externalComparison["limitations"]), "upstreamContribution": "提供可复用外部覆盖驱动和跨数据对照，不把 115 点汇总称为概率覆盖或普适成功率。",
+            "snapshotFiles": ["validation/mgh17-ellipsoid-coverage-protocol.json", "validation/mgh17-ellipsoid-coverage.json", "validation/external-coverage-framework-protocol.json"],
         },
     ]
     packet = {

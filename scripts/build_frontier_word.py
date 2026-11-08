@@ -25,7 +25,13 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "filip_coverage":
+    if REPORT_MODE == "external_coverage":
+        replacements = {
+            "图：`papers/18_Filip椭球覆盖/fig18_filip_ellipsoid_coverage.png`。": "![](papers/18_Filip椭球覆盖/fig18_filip_ellipsoid_coverage.png)\n\n**图 18｜Filip 候选预测与逐点界可用性（第 1 幅，共 2 幅）**  \n**插入位置**：§3「图件与证据等级」；顺序第 1 幅，共 2 幅。",
+            "图：`papers/19_MGH17椭球覆盖/fig19_mgh17_ellipsoid_coverage.png`。": "![](papers/19_MGH17椭球覆盖/fig19_mgh17_ellipsoid_coverage.png)\n\n**图 19｜MGH17 候选预测与逐点界可用性（第 2 幅，共 2 幅）**  \n**插入位置**：图 18 之后；顺序第 2 幅，共 2 幅。",
+        }
+        subtitle = "通用驱动、115 点覆盖与两种独立盒边界"
+    elif REPORT_MODE == "filip_coverage":
         replacements = {
             "图：`papers/18_Filip椭球覆盖/fig18_filip_ellipsoid_coverage.png`。": "![](papers/18_Filip椭球覆盖/fig18_filip_ellipsoid_coverage.png)\n\n**图 18｜Filip 外部候选预测与逐点界可用性**  \n**插入位置**：§3「逐点覆盖与界的宽度」之后；顺序第 1 幅，共 1 幅。",
         }

@@ -1005,6 +1005,56 @@
         "validation/filip-ellipsoid-coverage-protocol.json",
         "validation/filip-ellipsoid-coverage.json"
       ]
+    },
+    {
+      "id": "external-coverage-framework-mgh17",
+      "domain": "physics",
+      "title": "通用外部覆盖协议与 MGH17 对照",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/MGH17.dat",
+        "https://www.itl.nist.gov/div898/strd/lls/data/LINKS/DATA/Filip.dat"
+      ],
+      "metrics": {
+        "comparisonTotals": {
+          "dataset_count": 2,
+          "point_count": 115,
+          "covered_point_count": 115,
+          "coverage_violation_count": 0,
+          "continuous_safe_fold_count": 10,
+          "optimizer_failure_count": 0,
+          "interpretation": "Descriptive totals for Filip and MGH17 only; not a universal external success rate or probability coverage"
+        },
+        "mgh17": {
+          "fold_count": 5,
+          "optimizer_failure_count": 0,
+          "point_count": 33,
+          "ellipsoid_available_point_count": 33,
+          "covered_point_count": 33,
+          "coverage_violation_count": 0,
+          "max_ellipsoid_absolute_residual_upper_bound_float": 0.46032595369644763,
+          "median_ellipsoid_absolute_residual_upper_bound_float": 0.09769881627524976,
+          "max_ellipsoid_prediction_shift_upper_bound_float": 0.4587778117104475,
+          "continuous_safe_fold_count": 5,
+          "independent_box_continuous_safe_fold_count": 5,
+          "tighter_point_count": 32,
+          "looser_point_count": 0,
+          "median_shift_ratio": 0.6139078406262599,
+          "max_shift_ratio": 0.9838081620137522,
+          "min_shift_ratio": 0.5010482243132373
+        },
+        "driverSha256": "646cbfb7cfdf0dc578c8808e4ad6113b286a048038cfa9f07f47d776ad85aa6f"
+      },
+      "scientificClaim": "通用驱动保持 Filip 的 82 点覆盖与连续安全；MGH17 33／33 点覆盖且连续安全，32 点椭球更紧，独立盒五折安全。",
+      "limitations": "Both candidates are approximation stress tests and not their native model classes The 115-point descriptive total is not a probability coverage estimate or universal success rate Different native models, bound widths and independent-box availability remain dataset-specific Continuous denominator safety and pointwise residual coverage do not guarantee useful prediction or physical endogeneity",
+      "upstreamContribution": "提供可复用外部覆盖驱动和跨数据对照，不把 115 点汇总称为概率覆盖或普适成功率。",
+      "snapshotFiles": [
+        "validation/mgh17-ellipsoid-coverage-protocol.json",
+        "validation/mgh17-ellipsoid-coverage.json",
+        "validation/external-coverage-framework-protocol.json"
+      ]
     }
   ]
 }

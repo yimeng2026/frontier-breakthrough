@@ -1,0 +1,179 @@
+{
+  "status": "computed_external_coverage_comparison",
+  "protocol_sha256": "9ad7ac4ee1aa39a883506ac8a5ce64548c63467ef22a3f77aa50a52505486a18",
+  "input_sha256": {
+    "filip": "35124a406780faecece0c23bf0c5472616543e74295ab815157c3559798a19e7",
+    "mgh17": "66eb9647b740462613eae15019a1c666bf9c068eacb78cd6f912b925af474bf9"
+  },
+  "analysis_scope": {
+    "reusable_driver": "scripts/external_coverage.py",
+    "driver_sha256": "646cbfb7cfdf0dc578c8808e4ad6113b286a048038cfa9f07f47d776ad85aa6f",
+    "candidate_models_not_native": true,
+    "refit": false,
+    "independent_physical_experiment": false
+  },
+  "datasets": [
+    {
+      "id": "filip",
+      "status": "computed_external_filip_ellipsoid_coverage",
+      "native_model": "Eleven-parameter polynomial class; the cubic/cubic rational candidate is an approximation stress test, not the native physical model",
+      "totals": {
+        "fold_count": 5,
+        "optimizer_failure_count": 0,
+        "point_count": 82,
+        "ellipsoid_available_point_count": 82,
+        "covered_point_count": 82,
+        "coverage_violation_count": 0,
+        "max_ellipsoid_absolute_residual_upper_bound_float": 0.844282855158048,
+        "median_ellipsoid_absolute_residual_upper_bound_float": 0.5228957856494698,
+        "max_ellipsoid_prediction_shift_upper_bound_float": 0.8408837836207781,
+        "continuous_safe_fold_count": 5,
+        "independent_box_continuous_safe_fold_count": 0,
+        "tighter_point_count": 0,
+        "looser_point_count": 0,
+        "median_shift_ratio": null,
+        "max_shift_ratio": null,
+        "min_shift_ratio": null
+      },
+      "folds": [
+        {
+          "fold": 1,
+          "model_rmse": 0.008352547002659567,
+          "baseline_rmse": 0.21399485572536214,
+          "continuous_safe": true,
+          "point_count": 17,
+          "ellipsoid_available_point_count": 17,
+          "covered_point_count": 17
+        },
+        {
+          "fold": 2,
+          "model_rmse": 0.004383296757307305,
+          "baseline_rmse": 0.028048176007231543,
+          "continuous_safe": true,
+          "point_count": 17,
+          "ellipsoid_available_point_count": 17,
+          "covered_point_count": 17
+        },
+        {
+          "fold": 3,
+          "model_rmse": 0.0028247445586573336,
+          "baseline_rmse": 0.027611441067767303,
+          "continuous_safe": true,
+          "point_count": 16,
+          "ellipsoid_available_point_count": 16,
+          "covered_point_count": 16
+        },
+        {
+          "fold": 4,
+          "model_rmse": 0.0029366058288428755,
+          "baseline_rmse": 0.013622520406326352,
+          "continuous_safe": true,
+          "point_count": 16,
+          "ellipsoid_available_point_count": 16,
+          "covered_point_count": 16
+        },
+        {
+          "fold": 5,
+          "model_rmse": 0.004516949600558446,
+          "baseline_rmse": 0.1584125456212932,
+          "continuous_safe": true,
+          "point_count": 16,
+          "ellipsoid_available_point_count": 16,
+          "covered_point_count": 16
+        }
+      ]
+    },
+    {
+      "id": "mgh17",
+      "status": "computed_external_mgh17_ellipsoid_coverage",
+      "native_model": "Five-parameter double-exponential class; the cubic/cubic rational candidate is an approximation stress test, not the native model",
+      "totals": {
+        "fold_count": 5,
+        "optimizer_failure_count": 0,
+        "point_count": 33,
+        "ellipsoid_available_point_count": 33,
+        "covered_point_count": 33,
+        "coverage_violation_count": 0,
+        "max_ellipsoid_absolute_residual_upper_bound_float": 0.46032595369644763,
+        "median_ellipsoid_absolute_residual_upper_bound_float": 0.09769881627524976,
+        "max_ellipsoid_prediction_shift_upper_bound_float": 0.4587778117104475,
+        "continuous_safe_fold_count": 5,
+        "independent_box_continuous_safe_fold_count": 5,
+        "tighter_point_count": 32,
+        "looser_point_count": 0,
+        "median_shift_ratio": 0.6139078406262599,
+        "max_shift_ratio": 0.9838081620137522,
+        "min_shift_ratio": 0.5010482243132373
+      },
+      "folds": [
+        {
+          "fold": 1,
+          "model_rmse": 0.03344279302476258,
+          "baseline_rmse": 0.17443681513917844,
+          "continuous_safe": true,
+          "point_count": 7,
+          "ellipsoid_available_point_count": 7,
+          "covered_point_count": 7
+        },
+        {
+          "fold": 2,
+          "model_rmse": 0.0011005229414912982,
+          "baseline_rmse": 0.02092617293553611,
+          "continuous_safe": true,
+          "point_count": 7,
+          "ellipsoid_available_point_count": 7,
+          "covered_point_count": 7
+        },
+        {
+          "fold": 3,
+          "model_rmse": 0.0007298492726194769,
+          "baseline_rmse": 0.031431717861667714,
+          "continuous_safe": true,
+          "point_count": 7,
+          "ellipsoid_available_point_count": 7,
+          "covered_point_count": 7
+        },
+        {
+          "fold": 4,
+          "model_rmse": 0.0007132839285784441,
+          "baseline_rmse": 0.03435732416529183,
+          "continuous_safe": true,
+          "point_count": 6,
+          "ellipsoid_available_point_count": 6,
+          "covered_point_count": 6
+        },
+        {
+          "fold": 5,
+          "model_rmse": 0.001774099913784814,
+          "baseline_rmse": 0.17538011689193136,
+          "continuous_safe": true,
+          "point_count": 6,
+          "ellipsoid_available_point_count": 6,
+          "covered_point_count": 6
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "dataset_count": 2,
+    "point_count": 115,
+    "covered_point_count": 115,
+    "coverage_violation_count": 0,
+    "continuous_safe_fold_count": 10,
+    "optimizer_failure_count": 0,
+    "interpretation": "Descriptive totals for Filip and MGH17 only; not a universal external success rate or probability coverage"
+  },
+  "decision": {
+    "universal_external_success_rate_claimed": false,
+    "probability_calibration_claimed": false,
+    "native_physical_model_claimed": false,
+    "parameter_endogeneity_proved": false
+  },
+  "limitations": [
+    "Both candidates are approximation stress tests and not their native model classes",
+    "The 115-point descriptive total is not a probability coverage estimate or universal success rate",
+    "Different native models, bound widths and independent-box availability remain dataset-specific",
+    "Continuous denominator safety and pointwise residual coverage do not guarantee useful prediction or physical endogeneity"
+  ],
+  "analysis_runner_sha256": "4ccde3364a39b3ed073158b8cf46cbec0d73973cc218b69628f06724a1a6b2e0"
+}

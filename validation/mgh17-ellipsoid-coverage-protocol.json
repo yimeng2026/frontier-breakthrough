@@ -1,0 +1,50 @@
+{
+  "status": "frozen_before_any_mgh17_rational_fit",
+  "frozen_at_local": "2026-11-09T02:14:47+08:00",
+  "analysis_id": "mgh17",
+  "scientific_question": "On the untouched NIST MGH17 smooth exponential dataset, can the reusable external coverage driver evaluate a cubic/cubic candidate, continuous ellipsoid safety and pointwise residual coverage without protocol drift?",
+  "dataset_scope": {
+    "name": "NIST/ITL StRD MGH17",
+    "dataset_page": "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml",
+    "source_url": "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/MGH17.dat",
+    "file": "data/MGH17.dat",
+    "sha256": "75edb5522ee639794ae1f0d0f4a1e3638e963c6854888b853e1f45cea3c2f4d7",
+    "observations": 33,
+    "native_model": "Five-parameter double-exponential class; the cubic/cubic rational candidate is an approximation stress test, not the native model",
+    "dataset_used_to_design_previous_regions": false
+  },
+  "candidate_rule": {
+    "equation": "y = (b1+b2*x+b3*x^2+b4*x^3)/(1+b5*x+b6*x^2+b7*x^3) + e",
+    "starts_source": "validation/hahn1-high-temperature-protocol.json",
+    "starts": [
+      {"b1": 10, "b2": -1, "b3": 0.05, "b4": -0.00001, "b5": -0.05, "b6": 0.001, "b7": -0.000001},
+      {"b1": 1, "b2": -0.1, "b3": 0.005, "b4": -0.000001, "b5": -0.005, "b6": 0.0001, "b7": -0.0000001}
+    ],
+    "optimizer": "scipy.optimize.curve_fit method=lm, maxfev=200000, full_output=true; select lowest training RSS",
+    "retuning": "No model, start, radius, fold or threshold changes after seeing outcomes"
+  },
+  "fold_rule": {
+    "count": 5,
+    "construction": "Sort unique x values into five contiguous, nearly equal groups; repeated x never crosses fitting and test sets; every observation is evaluated once",
+    "baseline": "Cubic polynomial fitted only on the other four groups; this is a candidate baseline, not the native exponential fit"
+  },
+  "ellipsoid_rule": {
+    "radius": 1,
+    "radius_scope": "Fixed before fitting; a deterministic scale only, not a confidence level",
+    "covariance": "Use denominator block from the best training attempt; require exact symmetry and positive definiteness",
+    "continuous_certificate": "Require exact D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D over each closed held-out interval",
+    "pointwise_bound": "For R=rho*sqrt_upper(z^T Sigma z), require |D|-R>0 and compute prediction shift and observed residual upper bounds; compare with the independent box at the same radius",
+    "coverage": "Check actual |y-f_snapshot| against each available deterministic residual bound and record any violation; do not call this probability calibration"
+  },
+  "output_rule": {
+    "summary": "validation/mgh17-ellipsoid-coverage.json",
+    "figure": "papers/19_MGH17椭球覆盖/fig19_mgh17_ellipsoid_coverage.png",
+    "refuse_overwrite": true
+  },
+  "prohibitions": [
+    "No claim that the native MGH17 model is cubic/cubic or that the candidate is physically endogenous",
+    "No hiding of optimizer failures, non-positive covariance, unavailable bounds or coverage violations",
+    "No probability, confidence, RMSE-bound or continuous-x error-bound claim from pointwise bounds",
+    "No use of the original exponential certified fit as candidate holdout evidence"
+  ]
+}

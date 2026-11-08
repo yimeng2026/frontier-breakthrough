@@ -773,6 +773,43 @@
       "sourceFiles": [
         "validation/filip-ellipsoid-coverage.json"
       ]
+    },
+    {
+      "id": "claim-external-coverage-framework",
+      "kind": "claim",
+      "title": "通用驱动可复现 Filip 并支持 MGH17 的逐点覆盖与连续安全",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/external-coverage-comparison.json"
+      ]
+    },
+    {
+      "id": "evidence-external-coverage-framework",
+      "kind": "evidence",
+      "title": "两个数据集 115 点无越界、10 折连续安全及 MGH17 32 点更紧",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/external-coverage-comparison.json"
+      ]
+    },
+    {
+      "id": "experiment-external-coverage-framework",
+      "kind": "experiment",
+      "title": "通用驱动回归与 MGH17 独立冻结协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/mgh17-ellipsoid-coverage-protocol.json",
+        "validation/external-coverage-framework-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-external-coverage-framework",
+      "kind": "limitation",
+      "title": "通用驱动减少实现漂移但不增加科学独立性，115 点不是概率覆盖或普适成功率",
+      "status": "active",
+      "sourceFiles": [
+        "exports/external-coverage-comparison.json"
+      ]
     }
   ],
   "edges": [
@@ -959,6 +996,26 @@
     {
       "from": "track-holdout",
       "to": "limitation-filip-candidate-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-external-coverage-framework",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-external-coverage-framework",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-external-coverage-framework",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-external-coverage-framework",
       "relation": "contains"
     },
     {
@@ -1459,6 +1516,21 @@
     {
       "from": "limitation-filip-candidate-scope",
       "to": "claim-filip-ellipsoid-covered",
+      "relation": "limits"
+    },
+    {
+      "from": "experiment-external-coverage-framework",
+      "to": "claim-external-coverage-framework",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-external-coverage-framework",
+      "to": "claim-external-coverage-framework",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-external-coverage-framework",
+      "to": "claim-external-coverage-framework",
       "relation": "limits"
     },
     {

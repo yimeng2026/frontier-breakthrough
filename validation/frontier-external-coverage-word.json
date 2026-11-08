@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生外部覆盖协议_图文完整版.docx",
+  "bytes": 210718,
+  "sha256": "703dcb9d2852580bbaaebeda99ffb9f3bd17d61354a644fb9c164ea57e59f8f6",
+  "native_math_objects": 1,
+  "embedded_images": 2,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

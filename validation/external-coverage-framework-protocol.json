@@ -1,0 +1,20 @@
+{
+  "status": "frozen_before_external_coverage_comparison",
+  "frozen_at_local": "2026-11-09T02:17:08+08:00",
+  "analysis_type": "Post-hoc comparison of existing external candidate stress outputs; no refitting or new experiment",
+  "inputs": {
+    "filip": {"file": "validation/filip-ellipsoid-coverage.json", "sha256": "35124a406780faecece0c23bf0c5472616543e74295ab815157c3559798a19e7"},
+    "mgh17": {"file": "validation/mgh17-ellipsoid-coverage.json", "sha256": "66eb9647b740462613eae15019a1c666bf9c068eacb78cd6f912b925af474bf9"}
+  },
+  "comparison_rule": {
+    "driver": "Use scripts/external_coverage.py as the single reusable driver and preserve both wrapper-specific native-model boundaries",
+    "metrics": "Retain dataset-specific point counts, covered points, continuous safe folds, bound widths, independent-box status and candidate/baseline RMSE per fold",
+    "totals": "Sums are descriptive of these 115 points only and are not a universal external success rate or probability coverage",
+    "evidence_levels": "Filip and MGH17 are candidate approximation stress tests, not native-model validation, physical endogeneity or probability calibration"
+  },
+  "output_rule": {
+    "summary": "exports/external-coverage-comparison.json",
+    "figures": ["papers/18_Filip椭球覆盖/fig18_filip_ellipsoid_coverage.png", "papers/19_MGH17椭球覆盖/fig19_mgh17_ellipsoid_coverage.png"],
+    "refuse_overwrite": true
+  }
+}
