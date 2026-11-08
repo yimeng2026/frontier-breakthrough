@@ -112,8 +112,8 @@ class ExpansionTests(unittest.TestCase):
 
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
-        self.assertEqual(len(packet["items"]), 34)
-        self.assertEqual(len({i["id"] for i in packet["items"]}), 34)
+        self.assertEqual(len(packet["items"]), 35)
+        self.assertEqual(len({i["id"] for i in packet["items"]}), 35)
         for item in packet["items"]:
             self.assertEqual(item["status"], "verified")
             self.assertTrue(item["limitations"])
@@ -212,6 +212,22 @@ class ExpansionTests(unittest.TestCase):
         for identifier in ["external-coverage-framework-mgh17", "gauss1-external-coverage-counterexample", "misra1a-prediction-proof-dissociation"]:
             existing = next(entry for entry in packet["items"] if entry["id"] == identifier)
             self.assertNotIn("native Filip", existing["limitations"])
+
+    def test_enso_prediction_proof_dissociation_and_adapter_scope(self):
+        packet = self.read("exports/frontier-evidence.json")
+        identifiers = {item["id"] for item in packet["items"]}
+        self.assertIn("enso-prediction-proof-dissociation", identifiers)
+        item = next(item for item in packet["items"] if item["id"] == "enso-prediction-proof-dissociation")
+        self.assertEqual(item["metrics"]["totals"]["point_count"], 168)
+        self.assertEqual(item["metrics"]["totals"]["ellipsoid_available_point_count"], 135)
+        self.assertEqual(item["metrics"]["totals"]["continuous_safe_fold_count"], 4)
+        self.assertEqual(item["metrics"]["fold5PredictionWithoutBounds"]["availablePointCount"], 0)
+        self.assertLess(item["metrics"]["fold5PredictionWithoutBounds"]["modelRmse"], item["metrics"]["fold5PredictionWithoutBounds"]["baselineRmse"])
+        self.assertEqual(item["metrics"]["boxComparison"]["availablePairCount"], 131)
+        self.assertEqual(item["metrics"]["boxComparison"]["tighterPointCount"], 131)
+        self.assertEqual(item["metrics"]["implementation"]["scopeAdapter"], "scripts/external_coverage_scoped.py")
+        self.assertIn("ENSO", item["limitations"])
+        self.assertNotIn("native Filip", item["limitations"])
 
     def test_new_agent_projects_have_primary_sources(self):
         projects = self.read("data/projects.json")["projects"]

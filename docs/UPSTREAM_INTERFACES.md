@@ -50,7 +50,8 @@
 | 五外部与八组新版范围对照 | 外部 593 点中 392 可用、201 不可用；八组 761 点中 561 平移主导、200 实际残差主导 | `exports/external-bound-decomposition-v3.json`、`exports/internal-external-bound-comparison-v3.json` | 标明 Chwirut1 增量与同族边界，不覆盖历史或计算合并成功率 |
 | 外部模型族限制文本修订 | MGH17、Gauss1、Misra1a 各生成一份修订副本；除首条限制文本和溯源字段外原字段全部保持 | `validation/external-scope-limitations-amendment-01.json`、`validation/external-scope-limitations-amendment-01-audit.json` | 保留原始文件、冻结协议和全部数值，阻止错误文本继续传播 |
 | 范围感知外部分析适配层 | 校验驱动与适配器哈希，生成或采用数据专属限制文本，保留调用方与同族数据边界 | `scripts/external_coverage_scoped.py` | 新协议可复用正确范围说明，旧驱动与旧包装器不变 |
-| 主张—证据—反例—实验图谱 | 129 个节点、242 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| ENSO 周期数据范围适配与预测—证明解离 | 168 点中 135 点可给界、33 点不可用；131 对比较收紧；第 5 折优于基线但零可用界 | `validation/enso-ellipsoid-coverage-protocol.json`、`validation/enso-ellipsoid-coverage.json` | 三类实现哈希完整留痕，不把相对预测改善或有利子集写成证明保证 |
+| 主张—证据—反例—实验图谱 | 133 个节点、252 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 范围感知外部分析适配层
 

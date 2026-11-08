@@ -1195,6 +1195,45 @@
         "validation/external-scope-limitations-amendment-01.json",
         "validation/external-scope-limitations-amendment-01-audit.json"
       ]
+    },
+    {
+      "id": "evidence-enso-prediction-proof-dissociation",
+      "kind": "evidence",
+      "title": "ENSO 共 168 点，135 点可给界、33 点不可用，4／5 折连续安全且 131 对比较收紧",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-ellipsoid-coverage.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-fold5-no-bounds",
+      "kind": "counterexample",
+      "title": "ENSO 第 5 折 RMSE 明显优于基线，但 33 个留出点有 0 个可用界",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-ellipsoid-coverage.json"
+      ]
+    },
+    {
+      "id": "experiment-enso-scoped-prospective-protocol",
+      "kind": "experiment",
+      "title": "在任何 ENSO 候选分析前冻结并推送的范围感知五折协议及三类实现哈希",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-ellipsoid-coverage-protocol.json",
+        "scripts/external_coverage_scoped.py",
+        "scripts/analyze_enso_ellipsoid_coverage.py"
+      ]
+    },
+    {
+      "id": "limitation-enso-periodic-candidate-scope",
+      "kind": "limitation",
+      "title": "候选不是 ENSO 原生九参数周期模型，适用点检查与 131 对收紧均不是概率覆盖或物理机制验证",
+      "status": "active",
+      "sourceFiles": [
+        "validation/enso-ellipsoid-coverage-protocol.json",
+        "validation/enso-ellipsoid-coverage.json"
+      ]
     }
   ],
   "edges": [
@@ -2407,6 +2446,56 @@
       "from": "experiment-external-scope-limitations-amendment",
       "to": "claim-knowledge-graph",
       "relation": "tests"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-enso-prediction-proof-dissociation",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-fold5-no-bounds",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-enso-scoped-prospective-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-enso-periodic-candidate-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-enso-prediction-proof-dissociation",
+      "to": "claim-small-rmse-useful-proof",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-enso-fold5-no-bounds",
+      "to": "claim-small-rmse-useful-proof",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-enso-prediction-proof-dissociation",
+      "to": "counterexample-enso-fold5-no-bounds",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-scoped-prospective-protocol",
+      "to": "claim-small-rmse-useful-proof",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-enso-periodic-candidate-scope",
+      "to": "evidence-enso-prediction-proof-dissociation",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-enso-prediction-proof-dissociation",
+      "to": "claim-reusable-driver-guarantees-coverage",
+      "relation": "contradicts"
     }
   ]
 }

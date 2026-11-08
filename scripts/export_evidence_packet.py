@@ -61,6 +61,8 @@ def build() -> dict:
     externalV3Decomposition = json.loads((ROOT / "exports/external-bound-decomposition-v3.json").read_text(encoding="utf-8"))
     combinedV3Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v3.json").read_text(encoding="utf-8"))
     externalScopeAmendment = read("external-scope-limitations-amendment-01-audit.json")
+    ensoCoverage = read("enso-ellipsoid-coverage.json")
+    ensoProtocol = read("enso-ellipsoid-coverage-protocol.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -400,6 +402,24 @@ def build() -> dict:
             "limitations": "这是文档适用范围修订，不是重新拟合、数值结果升级或原冻结文件消失；原始文件及其历史错误文本保留用于审计，新证据叙述使用修订副本。",
             "upstreamContribution": "提供原文件、原协议、修订副本、修订脚本和输出哈希的完整链条，阻止通用 Filip 文案继续传播，同时不重写科学结果。",
             "snapshotFiles": ["validation/external-scope-limitations-amendment-01.json", "validation/external-scope-limitations-amendment-01-audit.json", "validation/mgh17-ellipsoid-coverage-scope-v2.json", "validation/gauss1-ellipsoid-coverage-scope-v2.json", "validation/misra1a-ellipsoid-coverage-scope-v2.json"],
+        },
+        {
+            "id": "enso-prediction-proof-dissociation", "domain": "physics", "title": "ENSO 周期数据预测—证明解离与范围适配审计",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/ENSO.dat"],
+            "metrics": {
+                "totals": ensoCoverage["totals"],
+                "folds": [{"fold": case["fold"], "pointCount": len(case["point_results"]), "modelRmse": case["test_metrics"]["rmse"], "baselineRmse": case["baseline_test_metrics"]["rmse"], "continuousSafe": case["continuous_ellipsoid_safe"], "boxContinuousSafe": case["independent_box_continuous_safe"], "available": sum(point.get("ellipsoid_available", False) for point in case["point_results"]), "boxAvailable": sum(point.get("box_available", False) for point in case["point_results"])} for case in ensoCoverage["folds"]],
+                "fold5PredictionWithoutBounds": {"fold": ensoCoverage["folds"][4]["fold"], "modelRmse": ensoCoverage["folds"][4]["test_metrics"]["rmse"], "baselineRmse": ensoCoverage["folds"][4]["baseline_test_metrics"]["rmse"], "availablePointCount": sum(point.get("ellipsoid_available", False) for point in ensoCoverage["folds"][4]["point_results"]), "continuousSafe": ensoCoverage["folds"][4]["continuous_ellipsoid_safe"]},
+                "boxComparison": {"availablePairCount": ensoCoverage["totals"]["tighter_point_count"] + ensoCoverage["totals"]["looser_point_count"], "tighterPointCount": ensoCoverage["totals"]["tighter_point_count"], "ellipsoidOnlyPointCount": sum(point.get("ellipsoid_available", False) and not point.get("box_available", False) for case in ensoCoverage["folds"] for point in case["point_results"]), "medianShiftRatio": ensoCoverage["totals"]["median_shift_ratio"], "minShiftRatio": ensoCoverage["totals"]["min_shift_ratio"], "maxShiftRatio": ensoCoverage["totals"]["max_shift_ratio"]},
+                "implementation": {"driver": ensoProtocol["implementation_rule"]["driver"], "driverSha256": ensoProtocol["implementation_rule"]["driver_sha256"], "scopeAdapter": ensoProtocol["implementation_rule"]["scope_adapter"], "scopeAdapterSha256": ensoCoverage["analysis_scope"]["scope_adapter_sha256"], "wrapper": ensoProtocol["implementation_rule"]["wrapper"], "wrapperSha256": ensoProtocol["implementation_rule"]["wrapper_sha256"]},
+                "protocolCommits": {"frozenBeforeResults": "f4bcf28", "results": "53bf6cf"},
+                "decision": {**ensoCoverage["decision"], "independent_physical_experiment_claimed": False, "independent_model_family_claimed": False},
+            },
+            "scientificClaim": "ENSO 的 168 点中 135 点可给界、33 点不可用，连续椭球安全为 4／5 折，独立盒为 3／5 折；131 个可比较点中椭球均更紧。第 5 折 RMSE 明显优于基线，但 33 点全部无可给界，形成新的预测—证明解离。",
+            "limitations": "候选不是 ENSO 原生九参数周期模型，适用范围文本正确不等于物理机制或结果正确；131 对收紧比较不覆盖另外 4 个椭球独有界或 33 个无界点。" + " ".join(ensoCoverage["limitations"]),
+            "upstreamContribution": "提供范围适配层首次用于新数据前瞻协议的完整案例，分开记录周期预测、连续安全、逐点可用性、界组成、同点比较和三类实现哈希。",
+            "snapshotFiles": ["validation/enso-ellipsoid-coverage-protocol.json", "validation/enso-ellipsoid-coverage.json", "validation/frontier-enso-coverage-word.json"],
         },
     ]
     packet = {

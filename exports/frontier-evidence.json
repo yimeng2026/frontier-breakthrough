@@ -2067,6 +2067,133 @@
         "validation/gauss1-ellipsoid-coverage-scope-v2.json",
         "validation/misra1a-ellipsoid-coverage-scope-v2.json"
       ]
+    },
+    {
+      "id": "enso-prediction-proof-dissociation",
+      "domain": "physics",
+      "title": "ENSO 周期数据预测—证明解离与范围适配审计",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/ENSO.dat"
+      ],
+      "metrics": {
+        "totals": {
+          "fold_count": 5,
+          "optimizer_failure_count": 0,
+          "point_count": 168,
+          "ellipsoid_available_point_count": 135,
+          "covered_point_count": 135,
+          "coverage_violation_count": 0,
+          "max_ellipsoid_absolute_residual_upper_bound_float": 11.509464378470858,
+          "median_ellipsoid_absolute_residual_upper_bound_float": 3.102868256636901,
+          "max_ellipsoid_prediction_shift_upper_bound_float": 2.2336755504574617,
+          "continuous_safe_fold_count": 4,
+          "independent_box_continuous_safe_fold_count": 3,
+          "tighter_point_count": 131,
+          "looser_point_count": 0,
+          "median_shift_ratio": 0.11264493644036656,
+          "max_shift_ratio": 0.9415005465906463,
+          "min_shift_ratio": 0.014912239714749198
+        },
+        "folds": [
+          {
+            "fold": 1,
+            "pointCount": 34,
+            "modelRmse": 2.7238127584543035,
+            "baselineRmse": 5.827335434441512,
+            "continuousSafe": true,
+            "boxContinuousSafe": false,
+            "available": 34,
+            "boxAvailable": 30
+          },
+          {
+            "fold": 2,
+            "pointCount": 34,
+            "modelRmse": 3.3846808126491004,
+            "baselineRmse": 3.472071286937893,
+            "continuousSafe": true,
+            "boxContinuousSafe": true,
+            "available": 34,
+            "boxAvailable": 34
+          },
+          {
+            "fold": 3,
+            "pointCount": 34,
+            "modelRmse": 3.3351302924292012,
+            "baselineRmse": 3.2961720550339235,
+            "continuousSafe": true,
+            "boxContinuousSafe": true,
+            "available": 34,
+            "boxAvailable": 34
+          },
+          {
+            "fold": 4,
+            "pointCount": 33,
+            "modelRmse": 4.2004754455756155,
+            "baselineRmse": 4.290307709909275,
+            "continuousSafe": true,
+            "boxContinuousSafe": true,
+            "available": 33,
+            "boxAvailable": 33
+          },
+          {
+            "fold": 5,
+            "pointCount": 33,
+            "modelRmse": 3.387222832692024,
+            "baselineRmse": 8.501406590947113,
+            "continuousSafe": false,
+            "boxContinuousSafe": false,
+            "available": 0,
+            "boxAvailable": 0
+          }
+        ],
+        "fold5PredictionWithoutBounds": {
+          "fold": 5,
+          "modelRmse": 3.387222832692024,
+          "baselineRmse": 8.501406590947113,
+          "availablePointCount": 0,
+          "continuousSafe": false
+        },
+        "boxComparison": {
+          "availablePairCount": 131,
+          "tighterPointCount": 131,
+          "ellipsoidOnlyPointCount": 4,
+          "medianShiftRatio": 0.11264493644036656,
+          "minShiftRatio": 0.014912239714749198,
+          "maxShiftRatio": 0.9415005465906463
+        },
+        "implementation": {
+          "driver": "scripts/external_coverage.py",
+          "driverSha256": "646cbfb7cfdf0dc578c8808e4ad6113b286a048038cfa9f07f47d776ad85aa6f",
+          "scopeAdapter": "scripts/external_coverage_scoped.py",
+          "scopeAdapterSha256": "a6f53ffea1e743fdae839677b45938274652af0ac8bd70bd503e11afe74fb548",
+          "wrapper": "scripts/analyze_enso_ellipsoid_coverage.py",
+          "wrapperSha256": "e4df2179acd573f40bfc9f6d46dcb204a3e39bd3dd15c2cf3d0b1b46c8d2de98"
+        },
+        "protocolCommits": {
+          "frozenBeforeResults": "f4bcf28",
+          "results": "53bf6cf"
+        },
+        "decision": {
+          "probability_calibration_claimed": false,
+          "native_physical_model_claimed": false,
+          "universal_external_validity_claimed": false,
+          "continuous_x_error_bound_claimed": false,
+          "optimizer_failures_hidden": false,
+          "independent_physical_experiment_claimed": false,
+          "independent_model_family_claimed": false
+        }
+      },
+      "scientificClaim": "ENSO 的 168 点中 135 点可给界、33 点不可用，连续椭球安全为 4／5 折，独立盒为 3／5 折；131 个可比较点中椭球均更紧。第 5 折 RMSE 明显优于基线，但 33 点全部无可给界，形成新的预测—证明解离。",
+      "limitations": "候选不是 ENSO 原生九参数周期模型，适用范围文本正确不等于物理机制或结果正确；131 对收紧比较不覆盖另外 4 个椭球独有界或 33 个无界点。The cubic/cubic candidate is only an approximation stress test and not the native ENSO nine-parameter Fourier model with annual, El Nino and Southern Oscillation cycles; periodic predictive skill and deterministic denominator certification are separate evidence axes Deterministic residual bounds are not probability intervals or calibration evidence Continuous denominator safety does not imply accurate or useful prediction Pointwise bounds do not provide a continuous-x prediction error bound Optimizer failures and unavailable bounds are retained, not converted into successes",
+      "upstreamContribution": "提供范围适配层首次用于新数据前瞻协议的完整案例，分开记录周期预测、连续安全、逐点可用性、界组成、同点比较和三类实现哈希。",
+      "snapshotFiles": [
+        "validation/enso-ellipsoid-coverage-protocol.json",
+        "validation/enso-ellipsoid-coverage.json",
+        "validation/frontier-enso-coverage-word.json"
+      ]
     }
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生ENSO预测证明解离_图文完整版.docx",
+  "bytes": 120735,
+  "sha256": "297d3820252fa3f27a147f8b28f12de5892c1cce3f7a096cdaed0baee7f5b62d",
+  "native_math_objects": 2,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

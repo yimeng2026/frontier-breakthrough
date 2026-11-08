@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "bound_comparison_v3":
+    if REPORT_MODE == "enso_coverage":
+        replacements = {
+            "图：`papers/31_ENSO椭球覆盖/fig31_enso_ellipsoid_coverage.png`。": "![](papers/31_ENSO椭球覆盖/fig31_enso_ellipsoid_coverage.png)\n\n**图 31｜ENSO 候选预测与逐点界可用性（第 1 幅，共 1 幅）**  \n**插入位置**：§4「界宽度、组成与同点比较」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "168 点周期数据、135 点可用界、131 对收紧比较与第 5 折零可用界"
+    elif REPORT_MODE == "bound_comparison_v3":
         replacements = {
             "图：`papers/29_外部五组界组成/fig29_external_bound_decomposition_v3.png`。": "![](papers/29_外部五组界组成/fig29_external_bound_decomposition_v3.png)\n\n**图 29｜五组外部数据同点界组成（第 1 幅，共 2 幅）**  \n**插入位置**：§4「八组内外部数据的界组成」；顺序第 1 幅，共 2 幅。",
             "图：`papers/30_八组界组成对照/fig30_internal_external_bound_comparison_v3.png`。": "![](papers/30_八组界组成对照/fig30_internal_external_bound_comparison_v3.png)\n\n**图 30｜八组内外部数据同点界组成对照（第 2 幅，共 2 幅）**  \n**插入位置**：图 29 之后；顺序第 2 幅，共 2 幅。",

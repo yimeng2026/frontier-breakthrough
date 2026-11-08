@@ -50,6 +50,10 @@ def build_graph(root):
     externalV3Decomposition = json.loads((root / "exports/external-bound-decomposition-v3.json").read_text(encoding="utf-8"))
     combinedV3Decomposition = json.loads((root / "exports/internal-external-bound-comparison-v3.json").read_text(encoding="utf-8"))
     externalScopeAmendment = json.loads((root / "validation/external-scope-limitations-amendment-01-audit.json").read_text(encoding="utf-8"))
+    ensoCoverage = json.loads((root / "validation/enso-ellipsoid-coverage.json").read_text(encoding="utf-8"))
+    ensoProtocol = json.loads((root / "validation/enso-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
+    if ensoCoverage["totals"]["point_count"] != 168 or ensoCoverage["totals"]["ellipsoid_available_point_count"] != 135 or ensoCoverage["totals"]["coverage_violation_count"] != 0 or ensoCoverage["totals"]["continuous_safe_fold_count"] != 4 or ensoCoverage["totals"]["independent_box_continuous_safe_fold_count"] != 3 or ensoCoverage["totals"]["tighter_point_count"] != 131 or ensoCoverage["totals"]["looser_point_count"] != 0 or ensoCoverage["folds"][4]["test_metrics"]["rmse"] >= ensoCoverage["folds"][4]["baseline_test_metrics"]["rmse"] or any(point.get("ellipsoid_available", False) for point in ensoCoverage["folds"][4]["point_results"]) or not ensoCoverage["analysis_scope"]["dataset_specific_scope_text"] or ensoCoverage["analysis_scope"]["scope_adapter_sha256"] != ensoProtocol["implementation_rule"]["scope_adapter_sha256"]:
+        raise ValueError("Expected ENSO prediction-proof dissociation and scoped adapter provenance are not present")
     if externalScopeAmendment["correction_count"] != 3 or externalScopeAmendment["numeric_results_modified"] or not externalScopeAmendment["original_files_preserved"] or externalScopeAmendment["dataset_ids"] != ["mgh17", "gauss1", "misra1a"]:
         raise ValueError("Expected external scope amendment is not present")
     if externalV3Decomposition["totals"]["point_count"] != 593 or externalV3Decomposition["totals"]["ellipsoid_available_point_count"] != 392 or externalV3Decomposition["totals"]["ellipsoid_unavailable_point_count"] != 201 or externalV3Decomposition["totals"]["prediction_shift_dominant_point_count"] != 217 or externalV3Decomposition["totals"]["snapshot_residual_dominant_point_count"] != 175 or len(externalV3Decomposition["datasets"]) != 5 or externalV3Decomposition["datasets"][-1]["id"] != "chwirut1" or externalV3Decomposition["datasets"][-1]["prediction_shift_dominant_point_count"] != 75 or externalV3Decomposition["datasets"][-1]["snapshot_residual_dominant_point_count"] != 8 or combinedV3Decomposition["totals"]["ellipsoid_available_point_count"] != 761 or combinedV3Decomposition["totals"]["prediction_shift_dominant_point_count"] != 561 or combinedV3Decomposition["totals"]["snapshot_residual_dominant_point_count"] != 200 or len(combinedV3Decomposition["datasets"]) != 8 or combinedV3Decomposition["analysis_scope"]["chwirut1_independent_model_family_test"]:
@@ -353,6 +357,24 @@ def build_graph(root):
     edges.extend([
         edge("track-knowledge", "experiment-external-scope-limitations-amendment", "contains"),
         edge("experiment-external-scope-limitations-amendment", "claim-knowledge-graph", "tests"),
+    ])
+    nodes.extend([
+        node("evidence-enso-prediction-proof-dissociation", "evidence", "ENSO 共 168 点，135 点可给界、33 点不可用，4／5 折连续安全且 131 对比较收紧", "supported", ["validation/enso-ellipsoid-coverage.json"]),
+        node("counterexample-enso-fold5-no-bounds", "counterexample", "ENSO 第 5 折 RMSE 明显优于基线，但 33 个留出点有 0 个可用界", "supported", ["validation/enso-ellipsoid-coverage.json"]),
+        node("experiment-enso-scoped-prospective-protocol", "experiment", "在任何 ENSO 候选分析前冻结并推送的范围感知五折协议及三类实现哈希", "supported", ["validation/enso-ellipsoid-coverage-protocol.json", "scripts/external_coverage_scoped.py", "scripts/analyze_enso_ellipsoid_coverage.py"]),
+        node("limitation-enso-periodic-candidate-scope", "limitation", "候选不是 ENSO 原生九参数周期模型，适用点检查与 131 对收紧均不是概率覆盖或物理机制验证", "active", ["validation/enso-ellipsoid-coverage-protocol.json", "validation/enso-ellipsoid-coverage.json"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "evidence-enso-prediction-proof-dissociation", "contains"),
+        edge("track-holdout", "counterexample-enso-fold5-no-bounds", "contains"),
+        edge("track-holdout", "experiment-enso-scoped-prospective-protocol", "contains"),
+        edge("track-holdout", "limitation-enso-periodic-candidate-scope", "contains"),
+        edge("evidence-enso-prediction-proof-dissociation", "claim-small-rmse-useful-proof", "contradicts"),
+        edge("counterexample-enso-fold5-no-bounds", "claim-small-rmse-useful-proof", "contradicts"),
+        edge("evidence-enso-prediction-proof-dissociation", "counterexample-enso-fold5-no-bounds", "supports"),
+        edge("experiment-enso-scoped-prospective-protocol", "claim-small-rmse-useful-proof", "tests"),
+        edge("limitation-enso-periodic-candidate-scope", "evidence-enso-prediction-proof-dissociation", "limits"),
+        edge("evidence-enso-prediction-proof-dissociation", "claim-reusable-driver-guarantees-coverage", "contradicts"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 
