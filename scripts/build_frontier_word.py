@@ -25,7 +25,14 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "external_coverage":
+    if REPORT_MODE == "gauss1_coverage":
+        replacements = {
+            "图：`papers/18_Filip椭球覆盖/fig18_filip_ellipsoid_coverage.png`。": "![](papers/18_Filip椭球覆盖/fig18_filip_ellipsoid_coverage.png)\n\n**图 18｜Filip 候选预测与逐点界可用性（第 1 幅，共 3 幅）**  \n**插入位置**：§4「三幅图件与读图顺序」；顺序第 1 幅，共 3 幅。",
+            "图：`papers/19_MGH17椭球覆盖/fig19_mgh17_ellipsoid_coverage.png`。": "![](papers/19_MGH17椭球覆盖/fig19_mgh17_ellipsoid_coverage.png)\n\n**图 19｜MGH17 候选预测与逐点界可用性（第 2 幅，共 3 幅）**  \n**插入位置**：图 18 之后；顺序第 2 幅，共 3 幅。",
+            "图：`papers/20_Gauss1椭球覆盖/fig20_gauss1_ellipsoid_coverage.png`。": "![](papers/20_Gauss1椭球覆盖/fig20_gauss1_ellipsoid_coverage.png)\n\n**图 20｜Gauss1 候选预测失败与逐点界可用性（第 3 幅，共 3 幅）**  \n**插入位置**：图 19 之后；顺序第 3 幅，共 3 幅。",
+        }
+        subtitle = "365 点总量、305 点可用界、60 点不可用与 13／15 折连续安全"
+    elif REPORT_MODE == "external_coverage":
         replacements = {
             "图：`papers/18_Filip椭球覆盖/fig18_filip_ellipsoid_coverage.png`。": "![](papers/18_Filip椭球覆盖/fig18_filip_ellipsoid_coverage.png)\n\n**图 18｜Filip 候选预测与逐点界可用性（第 1 幅，共 2 幅）**  \n**插入位置**：§3「图件与证据等级」；顺序第 1 幅，共 2 幅。",
             "图：`papers/19_MGH17椭球覆盖/fig19_mgh17_ellipsoid_coverage.png`。": "![](papers/19_MGH17椭球覆盖/fig19_mgh17_ellipsoid_coverage.png)\n\n**图 19｜MGH17 候选预测与逐点界可用性（第 2 幅，共 2 幅）**  \n**插入位置**：图 18 之后；顺序第 2 幅，共 2 幅。",

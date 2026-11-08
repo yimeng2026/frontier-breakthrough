@@ -1,0 +1,34 @@
+{
+  "status": "frozen_before_gauss1_external_coverage_comparison",
+  "frozen_at_local": "2026-11-09T02:39:50+08:00",
+  "analysis_type": "Post-hoc comparison of three existing external candidate stress outputs; no refitting, retuning or new experiment",
+  "descriptive_label": "Filip, MGH17 and Gauss1",
+  "inputs": {
+    "filip": {"file": "validation/filip-ellipsoid-coverage.json", "sha256": "35124a406780faecece0c23bf0c5472616543e74295ab815157c3559798a19e7"},
+    "mgh17": {"file": "validation/mgh17-ellipsoid-coverage.json", "sha256": "66eb9647b740462613eae15019a1c666bf9c068eacb78cd6f912b925af474bf9"},
+    "gauss1": {"file": "validation/gauss1-ellipsoid-coverage.json", "sha256": "9a4b9674e25998225455382e825cde3d271ce873992127561c069529a97f4576"}
+  },
+  "comparison_rule": {
+    "driver": "Use scripts/external_coverage.py as the single reusable driver and preserve wrapper-specific native-model boundaries",
+    "metrics": "Retain dataset-specific total points, ellipsoid-available and unavailable points, covered points, continuous safe folds, bound widths, independent-box status and candidate/baseline RMSE per fold",
+    "totals": "Sums describe these 365 observations only: 305 ellipsoid-available points and 60 unavailable points; they are not a universal external success rate or probability coverage",
+    "evidence_levels": "All three are candidate approximation stress tests, not native-model validation, physical endogeneity, independent physical experiments or probability calibration",
+    "previous_comparison": "Preserve exports/external-coverage-comparison.json and its two-dataset protocol unchanged"
+  },
+  "limitations": [
+    "All three candidates are approximation stress tests and not their native model classes",
+    "The 365-point descriptive total includes 60 points without an available ellipsoid bound and is not a probability coverage estimate or universal success rate",
+    "Gauss1 contributes generated observations, a failed predictive fold and a fold with no ellipsoid bounds; none may be hidden",
+    "Different native models, bound widths and independent-box availability remain dataset-specific",
+    "Continuous denominator safety and pointwise residual coverage do not guarantee useful prediction or physical endogeneity"
+  ],
+  "output_rule": {
+    "summary": "exports/external-coverage-gauss1-comparison.json",
+    "figures": [
+      "papers/18_Filip椭球覆盖/fig18_filip_ellipsoid_coverage.png",
+      "papers/19_MGH17椭球覆盖/fig19_mgh17_ellipsoid_coverage.png",
+      "papers/20_Gauss1椭球覆盖/fig20_gauss1_ellipsoid_coverage.png"
+    ],
+    "refuse_overwrite": true
+  }
+}

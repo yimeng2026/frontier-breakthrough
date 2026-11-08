@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生Gauss1外部反例_图文完整版.docx",
+  "bytes": 313690,
+  "sha256": "62f5df70bb40c534d4556a90e09b5ed6fb2cdefa0a39c0b5539c421f66bcc9a1",
+  "native_math_objects": 1,
+  "embedded_images": 3,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}
