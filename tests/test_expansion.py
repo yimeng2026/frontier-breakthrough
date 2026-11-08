@@ -112,8 +112,8 @@ class ExpansionTests(unittest.TestCase):
 
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
-        self.assertEqual(len(packet["items"]), 30)
-        self.assertEqual(len({i["id"] for i in packet["items"]}), 30)
+        self.assertEqual(len(packet["items"]), 31)
+        self.assertEqual(len({i["id"] for i in packet["items"]}), 31)
         for item in packet["items"]:
             self.assertEqual(item["status"], "verified")
             self.assertTrue(item["limitations"])
@@ -158,6 +158,15 @@ class ExpansionTests(unittest.TestCase):
         self.assertEqual(len(misra1a["metrics"]["availablePoints"]), 4)
         self.assertTrue(all(point["shift_share"] > 0.999 for point in misra1a["metrics"]["availablePoints"]))
         self.assertFalse(misra1a["metrics"]["decision"]["independent_physical_experiment_claimed"])
+        v2 = next(item for item in packet["items"] if item["id"] == "bound-comparison-v2-scope-expansion")
+        self.assertEqual(v2["metrics"]["externalV2Totals"]["point_count"], 379)
+        self.assertEqual(v2["metrics"]["externalV2Totals"]["ellipsoid_available_point_count"], 309)
+        self.assertEqual(v2["metrics"]["externalV2Totals"]["ellipsoid_unavailable_point_count"], 70)
+        self.assertEqual(v2["metrics"]["combinedV2Totals"]["ellipsoid_available_point_count"], 678)
+        self.assertEqual(v2["metrics"]["combinedV2Totals"]["prediction_shift_dominant_point_count"], 486)
+        self.assertEqual(v2["metrics"]["combinedV2Totals"]["snapshot_residual_dominant_point_count"], 192)
+        self.assertEqual(len(v2["metrics"]["datasets"]), 7)
+        self.assertTrue(v2["metrics"]["historicalPreservation"]["previousFilesPreserved"])
 
     def test_new_agent_projects_have_primary_sources(self):
         projects = self.read("data/projects.json")["projects"]

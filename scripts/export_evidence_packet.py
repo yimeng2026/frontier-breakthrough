@@ -54,6 +54,8 @@ def build() -> dict:
     externalDecomposition = json.loads((ROOT / "exports/external-bound-decomposition.json").read_text(encoding="utf-8"))
     internalExternalDecomposition = json.loads((ROOT / "exports/internal-external-bound-comparison.json").read_text(encoding="utf-8"))
     misra1aCoverage = read("misra1a-ellipsoid-coverage.json")
+    externalV2Decomposition = json.loads((ROOT / "exports/external-bound-decomposition-v2.json").read_text(encoding="utf-8"))
+    combinedV2Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v2.json").read_text(encoding="utf-8"))
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -329,6 +331,16 @@ def build() -> dict:
             "limitations": "小样本候选不是原生两参数模型，重分析不是新完成的独立物理实验；4 个适用点零越界不是概率覆盖或高信息量证明。" + " ".join(misra1aCoverage["limitations"]),
             "upstreamContribution": "提供预注册小样本实测数据案例，分开记录 RMSE、连续安全、逐点可用性、界宽度和同点组成，避免拟合接近被误写为有用证明。",
             "snapshotFiles": ["validation/misra1a-ellipsoid-coverage-protocol.json", "validation/misra1a-ellipsoid-coverage.json", "validation/frontier-misra1a-coverage-word.json"],
+        },
+        {
+            "id": "bound-comparison-v2-scope-expansion", "domain": "math", "title": "四外部与七组界组成新版范围对照",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml", "https://www.itl.nist.gov/div898/strd/lls/data/filip.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/misra1a.shtml"],
+            "metrics": {"externalV2Totals": externalV2Decomposition["totals"], "combinedV2Totals": combinedV2Decomposition["totals"], "datasets": [{"id": item["id"], "scope": item["scope"], "ellipsoid_available_point_count": item["ellipsoid_available_point_count"], "prediction_shift_dominant_point_count": item["prediction_shift_dominant_point_count"], "snapshot_residual_dominant_point_count": item["snapshot_residual_dominant_point_count"], "median_shift_share": item["median_shift_share"]} for item in combinedV2Decomposition["datasets"]], "decision": combinedV2Decomposition["decision"], "historicalPreservation": {"previousFilesPreserved": True, "threeExternal": "exports/external-bound-decomposition.json", "sixDatasets": "exports/internal-external-bound-comparison.json", "misra1aIncrement": {"pointCount": 14, "available": 4, "unavailable": 10, "predictionShiftDominant": 4, "snapshotResidualDominant": 0}}},
+            "scientificClaim": "四外部共 379 点，其中 309 点可用、70 点不可用；142 点平移主导、167 点实际残差主导。七组共 678 个可用点，486 点平移主导、192 点实际残差主导。Misra1a 带来 +14 总点、+4 可用点、+10 不可用点和 +4 平移主导点，历史文件未改写。",
+            "limitations": "这是新增数据后的事后范围汇总，不是合并成功率或证明能力改善；内部有根折与外部不可用点仍不可混同。" + " ".join(combinedV2Decomposition["limitations"]),
+            "upstreamContribution": "提供新旧版本并存的范围扩展接口，明确 Misra1a 增量来源、七组分布和两类不适用边界，防止旧对照被静默覆盖。",
+            "snapshotFiles": ["validation/external-bound-decomposition-v2-protocol.json", "validation/internal-external-bound-comparison-v2-protocol.json", "validation/frontier-bound-comparison-v2-word.json"],
         },
     ]
     packet = {

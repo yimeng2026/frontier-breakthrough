@@ -45,7 +45,8 @@
 | 三数据界组成与机制异质性 | 305 点算术恒等式全部一致；Filip 与 MGH17 几乎全由平移主导，Gauss1 多数由实际残差主导 | `scripts/build_external_bound_decomposition.py`、`exports/external-bound-decomposition.json` | 同时保留全点分布和最大界位置，不把算术占比称为概率贡献或普适排名 |
 | 内外部六组界组成对照 | 674 点中 482 点平移主导、192 点实际残差主导；内部有根折与外部不可用点分开 | `scripts/build_internal_external_bound_comparison.py`、`exports/internal-external-bound-comparison.json` | 支持内外部可比较但不可混同的证据检索，不计算合并成功率或普适排名 |
 | Misra1a 预测—证明解离 | 14 点中仅 4 点可给界，连续安全 1／5 折；小 RMSE 与宽上界和平移主导并存 | `validation/misra1a-ellipsoid-coverage-protocol.json`、`validation/misra1a-ellipsoid-coverage.json` | 提供预注册小样本反例，不把拟合接近或 4 点零越界称为连续证明、概率覆盖或高信息量 |
-| 主张—证据—反例—实验图谱 | 113 个节点、203 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| 四外部与七组新版范围对照 | 外部 379 点中 309 可用、70 不可用；七组 678 点中 486 平移主导、192 实际残差主导 | `exports/external-bound-decomposition-v2.json`、`exports/internal-external-bound-comparison-v2.json` | 新旧文件并存并标明 Misra1a 增量，不覆盖历史或计算合并成功率 |
+| 主张—证据—反例—实验图谱 | 118 个节点、214 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 与自动科学发现项目的配合
 

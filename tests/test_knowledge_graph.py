@@ -26,8 +26,8 @@ class KnowledgeGraphTests(unittest.TestCase):
         self.assertEqual(self.nodes["claim-material-identity"]["status"], "supported")
 
     def test_second_dataset_and_cross_solver_are_linked(self):
-        self.assertEqual(len(self.graph["nodes"]), 113)
-        self.assertEqual(len(self.graph["edges"]), 203)
+        self.assertEqual(len(self.graph["nodes"]), 118)
+        self.assertEqual(len(self.graph["edges"]), 214)
         self.assertEqual(self.nodes["claim-eckerle4-two-tail"]["status"], "limited_support")
         self.assertEqual(self.nodes["claim-solver-agreement"]["status"], "supported")
         self.assertEqual(self.nodes["limitation-two-datasets"]["status"], "active")
@@ -141,6 +141,21 @@ class KnowledgeGraphTests(unittest.TestCase):
         self.assertIn(("counterexample-misra1a-four-of-fourteen", "claim-small-rmse-useful-proof", "contradicts"), edges)
         self.assertIn(("evidence-misra1a-prediction-proof-dissociation", "claim-wide-bounds-parameter-uncertainty", "supports"), edges)
         self.assertIn(("experiment-misra1a-prospective-protocol", "claim-small-rmse-useful-proof", "tests"), edges)
+
+    def test_v2_scope_expansion_preserves_history_and_links_misra1a(self):
+        identifiers = ["claim-new-data-overwrite-history", "evidence-bound-comparison-v2", "counterexample-misra1a-v2-increment", "experiment-bound-comparison-v2-protocol", "limitation-bound-comparison-v2-scope"]
+        for identifier in identifiers:
+            self.assertIn(identifier, self.nodes)
+        self.assertEqual(self.nodes["claim-new-data-overwrite-history"]["status"], "falsified")
+        self.assertEqual(self.nodes["evidence-bound-comparison-v2"]["status"], "supported")
+        self.assertEqual(self.nodes["counterexample-misra1a-v2-increment"]["status"], "supported")
+        self.assertEqual(self.nodes["experiment-bound-comparison-v2-protocol"]["status"], "supported")
+        self.assertEqual(self.nodes["limitation-bound-comparison-v2-scope"]["status"], "active")
+        edges = {(item["from"], item["to"], item["relation"]) for item in self.graph["edges"]}
+        self.assertIn(("evidence-bound-comparison-v2", "claim-new-data-overwrite-history", "contradicts"), edges)
+        self.assertIn(("counterexample-misra1a-v2-increment", "claim-new-data-overwrite-history", "contradicts"), edges)
+        self.assertIn(("evidence-bound-comparison-v2", "evidence-misra1a-prediction-proof-dissociation", "supports"), edges)
+        self.assertIn(("experiment-bound-comparison-v2-protocol", "claim-new-data-overwrite-history", "tests"), edges)
 
     def test_schema_edges_and_source_files_are_valid(self):
         self.assertEqual(validate_graph(self.graph, ROOT), [])

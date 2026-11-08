@@ -1041,6 +1041,54 @@
       "sourceFiles": [
         "validation/misra1a-ellipsoid-coverage.json"
       ]
+    },
+    {
+      "id": "claim-new-data-overwrite-history",
+      "kind": "claim",
+      "title": "新增数据可以覆盖旧对照并合并历史范围",
+      "status": "falsified",
+      "sourceFiles": [
+        "exports/internal-external-bound-comparison-v2.json"
+      ]
+    },
+    {
+      "id": "evidence-bound-comparison-v2",
+      "kind": "evidence",
+      "title": "四外部 379／309／70 与七组 678 点的新版本对照及 Misra1a 增量",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/external-bound-decomposition-v2.json",
+        "exports/internal-external-bound-comparison-v2.json"
+      ]
+    },
+    {
+      "id": "counterexample-misra1a-v2-increment",
+      "kind": "counterexample",
+      "title": "Misra1a 增加 14 总点、4 可用点、10 不可用点和 4 平移主导点，实际残差主导数不变",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/misra1a-ellipsoid-coverage.json",
+        "exports/internal-external-bound-comparison-v2.json"
+      ]
+    },
+    {
+      "id": "experiment-bound-comparison-v2-protocol",
+      "kind": "experiment",
+      "title": "保留历史文件并冻结四外部与七组输入哈希和范围差异的新版协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/external-bound-decomposition-v2-protocol.json",
+        "validation/internal-external-bound-comparison-v2-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-bound-comparison-v2-scope",
+      "kind": "limitation",
+      "title": "新版范围合计不是成功率或证明能力改善，内部有根折与外部不可用点不可混同",
+      "status": "active",
+      "sourceFiles": [
+        "exports/internal-external-bound-comparison-v2.json"
+      ]
     }
   ],
   "edges": [
@@ -1372,6 +1420,31 @@
     {
       "from": "track-holdout",
       "to": "limitation-misra1a-small-sample-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-new-data-overwrite-history",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-bound-comparison-v2",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-misra1a-v2-increment",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-bound-comparison-v2-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-bound-comparison-v2-scope",
       "relation": "contains"
     },
     {
@@ -2037,6 +2110,36 @@
     {
       "from": "limitation-misra1a-small-sample-scope",
       "to": "claim-small-rmse-useful-proof",
+      "relation": "limits"
+    },
+    {
+      "from": "experiment-bound-comparison-v2-protocol",
+      "to": "claim-new-data-overwrite-history",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-bound-comparison-v2",
+      "to": "claim-new-data-overwrite-history",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-misra1a-v2-increment",
+      "to": "claim-new-data-overwrite-history",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-bound-comparison-v2",
+      "to": "counterexample-misra1a-v2-increment",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-bound-comparison-v2",
+      "to": "evidence-misra1a-prediction-proof-dissociation",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-bound-comparison-v2-scope",
+      "to": "claim-new-data-overwrite-history",
       "relation": "limits"
     },
     {
