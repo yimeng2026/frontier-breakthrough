@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "external_bound_decomposition":
+    if REPORT_MODE == "internal_external_bound_comparison":
+        replacements = {
+            "图：`papers/24_内外部界组成对照/fig24_internal_external_bound_comparison.png`。": "![](papers/24_内外部界组成对照/fig24_internal_external_bound_comparison.png)\n\n**图 24｜内外部六组同点界组成对照（第 1 幅，共 1 幅）**  \n**插入位置**：§4「最大界位置不能替代全点分布」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "674 点算术对照、六组分布与两类不适用边界"
+    elif REPORT_MODE == "external_bound_decomposition":
         replacements = {
             "图：`papers/22_外部界组成对照/fig22_external_bound_decomposition.png`。": "![](papers/22_外部界组成对照/fig22_external_bound_decomposition.png)\n\n**图 22｜三数据同点界组成与平移占比分布（第 1 幅，共 1 幅）**  \n**插入位置**：§4「最大残差上界的同点组成」；顺序第 1 幅，共 1 幅。",
         }

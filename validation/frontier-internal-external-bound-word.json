@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生内外部界组成对照_图文完整版.docx",
+  "bytes": 127269,
+  "sha256": "6b8bcd7423b7c0f4b7924da5ae112febdfeb979c8877d2b2bf644185c9a2f990",
+  "native_math_objects": 2,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}
