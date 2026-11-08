@@ -1,0 +1,35 @@
+{
+  "status": "frozen_before_internal_bound_decomposition",
+  "frozen_at_local": "2026-11-09T03:35:50+08:00",
+  "analysis_type": "Read-only post-hoc decomposition of 369 existing internal ellipsoid residual bounds with independent snapshot residual recomputation; no refitting or new experiment",
+  "inputs": {
+    "ellipsoid_comparison": {"file": "validation/rational-ellipsoid-box-comparison.json", "sha256": "faf252e5054f566b2165124031ca1bf02ae28d2de949b1b73ba415f74cdf9d32"},
+    "prediction_box": {"file": "validation/rational-prediction-box-bounds.json", "sha256": "00d8840ff692e50aa0c7de6a09dd8efc665f3e9dc4601c9e7d859e650c5c33d8"}
+  },
+  "decomposition_rule": {
+    "actual_residual": "Recompute abs(observed_y - snapshot_prediction_float) from the independent prediction-box point records; do not derive it as bound minus shift",
+    "identity": "For every available point, ellipsoid_residual_upper_bound = recomputed_actual_residual + ellipsoid_prediction_shift within numerical tolerance",
+    "shift_share": "ellipsoid_prediction_shift / ellipsoid_residual_upper_bound when the bound is positive",
+    "zero_bound": "If actual residual, shift and bound are all zero, retain an undefined share rather than assigning 0 percent",
+    "shift_dominant_threshold": 0.5,
+    "classification": "prediction_shift_dominant when share >= 0.5; snapshot_residual_dominant when share < 0.5; undefined_zero_bound otherwise",
+    "identity_tolerance": "math.isclose(rel_tol=1e-8, abs_tol=1e-9)",
+    "point_identity": "Match comparison and prediction points by dataset, fold, x and observed_y; require equal point counts per available case"
+  },
+  "scope_rule": {
+    "available_point_count": 369,
+    "unavailable_rooted_fold_count": 2,
+    "rooted_folds": "Retain as unavailable cases, not as zero points, zero bounds or successful certificates"
+  },
+  "output_rule": {
+    "summary": "exports/internal-bound-decomposition.json",
+    "figure": "papers/23_内部界组成/fig23_internal_bound_decomposition.png",
+    "refuse_overwrite": true
+  },
+  "prohibitions": [
+    "No refitting, retuning or changing of frozen bounds",
+    "No deriving actual residual as bound minus shift",
+    "No conversion of rooted unavailable folds into zero points or successful bounds",
+    "No probability, variance-decomposition, physical-mechanism or universal internal-versus-external ranking claims"
+  ]
+}
