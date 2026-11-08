@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生第三十一阶段十组极值审计_图文完整版.docx",
+  "bytes": 118061,
+  "sha256": "182dd065fedcf31e12f7000d5d70a83252dc591d5001e5bdb2c7d3739a31dd14",
+  "native_math_objects": 2,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

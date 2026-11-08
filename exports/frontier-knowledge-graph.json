@@ -1438,6 +1438,54 @@
         "exports/internal-external-bound-comparison-v5.json",
         "validation/roszman1-ellipsoid-coverage-protocol.json"
       ]
+    },
+    {
+      "id": "claim-descriptive-percentile-probability-coverage",
+      "kind": "claim",
+      "title": "描述性百分位等于概率覆盖率或总体代表性",
+      "status": "falsified",
+      "sourceFiles": [
+        "exports/maximum-full-composition-audit-v2.json"
+      ]
+    },
+    {
+      "id": "evidence-maximum-full-composition-v2",
+      "kind": "evidence",
+      "title": "十组中 9 组最大点类别与多数一致、6 组低于中位占比及十组界宽比审计",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/maximum-full-composition-audit-v2.json",
+        "validation/extreme-reporting-v2-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-v2-percentile-not-coverage",
+      "kind": "counterexample",
+      "title": "Roszman1 最大点占比在 5 个第 2 折可用点中为描述性第 100%，但另有 20 点不可用，不能称为 25 点概率覆盖",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/maximum-full-composition-audit-v2.json",
+        "validation/roszman1-ellipsoid-coverage.json"
+      ]
+    },
+    {
+      "id": "experiment-maximum-full-composition-v2-protocol",
+      "kind": "experiment",
+      "title": "冻结十组输入并分别计算类别、占比差、描述性百分位和界宽比的只读审计协议及独立 L2 收据",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/maximum-full-composition-v2-protocol.json",
+        "validation/extreme-reporting-v2-check.json"
+      ]
+    },
+    {
+      "id": "limitation-maximum-v2-small-sample-not-probability",
+      "kind": "limitation",
+      "title": "最大界点是极值而非典型点，小样本描述性百分位不是概率、总体代表性或物理因果",
+      "status": "active",
+      "sourceFiles": [
+        "exports/maximum-full-composition-audit-v2.json"
+      ]
     }
   ],
   "edges": [
@@ -2995,6 +3043,86 @@
       "from": "evidence-bound-comparison-v5",
       "to": "evidence-bound-comparison-v4",
       "relation": "supports"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-descriptive-percentile-probability-coverage",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-maximum-full-composition-v2",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-v2-percentile-not-coverage",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-maximum-full-composition-v2-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-maximum-v2-small-sample-not-probability",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-maximum-full-composition-v2",
+      "to": "claim-descriptive-percentile-probability-coverage",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-v2-percentile-not-coverage",
+      "to": "claim-descriptive-percentile-probability-coverage",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-maximum-full-composition-v2",
+      "to": "counterexample-roszman1-v2-percentile-not-coverage",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-maximum-full-composition-v2-protocol",
+      "to": "claim-descriptive-percentile-probability-coverage",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-maximum-v2-small-sample-not-probability",
+      "to": "evidence-maximum-full-composition-v2",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-maximum-full-composition-v2",
+      "to": "evidence-bound-comparison-v5",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-maximum-full-composition-v2",
+      "to": "evidence-maximum-full-composition-audit",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-maximum-full-composition-v2-protocol",
+      "to": "experiment-extreme-reporting-contract",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-maximum-full-composition-v2",
+      "to": "counterexample-gauss1-maximum-majority-mismatch",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-maximum-full-composition-v2",
+      "to": "counterexample-enso-maximum-low-share-percentile",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-maximum-v2-small-sample-not-probability",
+      "to": "claim-descriptive-percentile-probability-coverage",
+      "relation": "limits"
     }
   ]
 }

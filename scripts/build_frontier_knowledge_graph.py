@@ -56,6 +56,10 @@ def build_graph(root):
     if externalV5Decomposition["totals"]["point_count"] != 786 or externalV5Decomposition["totals"]["ellipsoid_available_point_count"] != 532 or externalV5Decomposition["totals"]["ellipsoid_unavailable_point_count"] != 254 or externalV5Decomposition["totals"]["prediction_shift_dominant_point_count"] != 255 or externalV5Decomposition["totals"]["snapshot_residual_dominant_point_count"] != 277 or len(externalV5Decomposition["datasets"]) != 7 or externalV5Decomposition["datasets"][-1]["id"] != "roszman1" or [case["available_point_count"] for case in externalV5Decomposition["datasets"][-1]["folds"]] != [0, 5, 0, 0, 0] or combinedV5Decomposition["totals"]["ellipsoid_available_point_count"] != 901 or combinedV5Decomposition["totals"]["prediction_shift_dominant_point_count"] != 599 or combinedV5Decomposition["totals"]["snapshot_residual_dominant_point_count"] != 302 or len(combinedV5Decomposition["datasets"]) != 10 or combinedV5Decomposition["analysis_scope"]["roszman1_native_arctangent_model_claimed"] or combinedV5Decomposition["analysis_scope"]["roszman1_independent_physical_experiment"]:
         raise ValueError("Expected v5 scope expansion and Roszman1 small-sample boundaries are not present")
     maximumAudit = json.loads((root / "exports/maximum-full-composition-audit.json").read_text(encoding="utf-8"))
+    maximumV2Audit = json.loads((root / "exports/maximum-full-composition-audit-v2.json").read_text(encoding="utf-8"))
+    extremeV2Check = json.loads((root / "validation/extreme-reporting-v2-check.json").read_text(encoding="utf-8"))
+    if maximumV2Audit["totals"]["dataset_count"] != 10 or maximumV2Audit["totals"]["maximum_matches_majority_count"] != 9 or maximumV2Audit["totals"]["maximum_majority_mismatch_dataset_ids"] != ["gauss1"] or maximumV2Audit["totals"]["maximum_snapshot_residual_dominant_dataset_ids"] != ["enso"] or maximumV2Audit["totals"]["maximum_share_below_median_count"] != 6 or maximumV2Audit["totals"]["maximum_share_above_median_dataset_ids"] != ["filip", "mgh17", "gauss1", "roszman1"] or maximumV2Audit["datasets"][-1]["id"] != "roszman1" or maximumV2Audit["datasets"][-1]["available_point_count"] != 5 or maximumV2Audit["datasets"][-1]["maximum_share_descriptive_percentile"] != 1.0 or maximumV2Audit["analysis_scope"]["roszman1_native_arctangent_model_claimed"] or maximumV2Audit["analysis_scope"]["roszman1_independent_physical_experiment"] or extremeV2Check["status"] != "passed" or extremeV2Check["dataset_count"] != 10 or extremeV2Check["error_count"] != 0 or extremeV2Check["claim_level"] != "mechanism_interpretation":
+        raise ValueError("Expected ten-dataset extreme audit and small-sample percentile boundaries are not present")
     extremeCheck = json.loads((root / "validation/extreme-reporting-check.json").read_text(encoding="utf-8"))
     corpusCheck = json.loads((root / "validation/extreme-corpus-check.json").read_text(encoding="utf-8"))
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
@@ -496,6 +500,31 @@ def build_graph(root):
         edge("limitation-bound-comparison-v5-scope", "evidence-bound-comparison-v5", "limits"),
         edge("counterexample-roszman1-v5-small-sample-scope", "claim-reusable-driver-guarantees-coverage", "contradicts"),
         edge("evidence-bound-comparison-v5", "evidence-bound-comparison-v4", "supports"),
+    ])
+    nodes.extend([
+        node("claim-descriptive-percentile-probability-coverage", "claim", "描述性百分位等于概率覆盖率或总体代表性", "falsified", ["exports/maximum-full-composition-audit-v2.json"]),
+        node("evidence-maximum-full-composition-v2", "evidence", "十组中 9 组最大点类别与多数一致、6 组低于中位占比及十组界宽比审计", "supported", ["exports/maximum-full-composition-audit-v2.json", "validation/extreme-reporting-v2-check.json"]),
+        node("counterexample-roszman1-v2-percentile-not-coverage", "counterexample", "Roszman1 最大点占比在 5 个第 2 折可用点中为描述性第 100%，但另有 20 点不可用，不能称为 25 点概率覆盖", "supported", ["exports/maximum-full-composition-audit-v2.json", "validation/roszman1-ellipsoid-coverage.json"]),
+        node("experiment-maximum-full-composition-v2-protocol", "experiment", "冻结十组输入并分别计算类别、占比差、描述性百分位和界宽比的只读审计协议及独立 L2 收据", "supported", ["validation/maximum-full-composition-v2-protocol.json", "validation/extreme-reporting-v2-check.json"]),
+        node("limitation-maximum-v2-small-sample-not-probability", "limitation", "最大界点是极值而非典型点，小样本描述性百分位不是概率、总体代表性或物理因果", "active", ["exports/maximum-full-composition-audit-v2.json"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-descriptive-percentile-probability-coverage", "contains"),
+        edge("track-holdout", "evidence-maximum-full-composition-v2", "contains"),
+        edge("track-holdout", "counterexample-roszman1-v2-percentile-not-coverage", "contains"),
+        edge("track-holdout", "experiment-maximum-full-composition-v2-protocol", "contains"),
+        edge("track-holdout", "limitation-maximum-v2-small-sample-not-probability", "contains"),
+        edge("evidence-maximum-full-composition-v2", "claim-descriptive-percentile-probability-coverage", "contradicts"),
+        edge("counterexample-roszman1-v2-percentile-not-coverage", "claim-descriptive-percentile-probability-coverage", "contradicts"),
+        edge("evidence-maximum-full-composition-v2", "counterexample-roszman1-v2-percentile-not-coverage", "supports"),
+        edge("experiment-maximum-full-composition-v2-protocol", "claim-descriptive-percentile-probability-coverage", "tests"),
+        edge("limitation-maximum-v2-small-sample-not-probability", "evidence-maximum-full-composition-v2", "limits"),
+        edge("evidence-maximum-full-composition-v2", "evidence-bound-comparison-v5", "supports"),
+        edge("evidence-maximum-full-composition-v2", "evidence-maximum-full-composition-audit", "supports"),
+        edge("experiment-maximum-full-composition-v2-protocol", "experiment-extreme-reporting-contract", "supports"),
+        edge("evidence-maximum-full-composition-v2", "counterexample-gauss1-maximum-majority-mismatch", "supports"),
+        edge("evidence-maximum-full-composition-v2", "counterexample-enso-maximum-low-share-percentile", "supports"),
+        edge("limitation-maximum-v2-small-sample-not-probability", "claim-descriptive-percentile-probability-coverage", "limits"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

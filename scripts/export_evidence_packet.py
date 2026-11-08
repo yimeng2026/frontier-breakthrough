@@ -65,6 +65,8 @@ def build() -> dict:
     externalV5Decomposition = json.loads((ROOT / "exports/external-bound-decomposition-v5.json").read_text(encoding="utf-8"))
     combinedV5Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v5.json").read_text(encoding="utf-8"))
     maximumAudit = json.loads((ROOT / "exports/maximum-full-composition-audit.json").read_text(encoding="utf-8"))
+    maximumV2Audit = json.loads((ROOT / "exports/maximum-full-composition-audit-v2.json").read_text(encoding="utf-8"))
+    extremeV2Check = read("extreme-reporting-v2-check.json")
     extremeCheck = read("extreme-reporting-check.json")
     corpusCheck = read("extreme-corpus-check.json")
     roszman1Coverage = read("roszman1-ellipsoid-coverage.json")
@@ -586,6 +588,27 @@ def build() -> dict:
             "limitations": "这是新增小样本量子缺陷数据后的事后范围汇总，不是合并成功率、证明能力改善、原生反正切模型验证或独立物理实验；Chwirut1 同族边界、ENSO 周期候选边界和 Roszman1 第 2 折局部可用范围必须保留。" + " ".join(combinedV5Decomposition["limitations"]),
             "upstreamContribution": "提供七外部与十组并存的新版范围接口，同时连接 Roszman1 增量、逐折小样本限制、历史版本、数据亲缘和两类不可用边界，防止新增计数被写成统一成功率。",
             "snapshotFiles": ["validation/external-bound-decomposition-v5-protocol.json", "validation/internal-external-bound-comparison-v5-protocol.json", "validation/frontier-bound-comparison-v5-word.json"],
+        },
+        {
+            "id": "maximum-full-composition-v2-audit", "domain": "math", "title": "十组最大界点、全点组成与小样本描述性百分位审计",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml", "https://www.itl.nist.gov/div898/strd/lls/data/filip.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/misra1a.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml"],
+            "metrics": {
+                "totals": maximumV2Audit["totals"],
+                "datasets": maximumV2Audit["datasets"],
+                "roszman1": maximumV2Audit["datasets"][-1],
+                "roszman1AvailableFolds": [case["fold"] for case in externalV5Decomposition["datasets"][-1]["folds"] if case["available_point_count"]],
+                "excludedRoszman1PointCount": externalV5Decomposition["datasets"][-1]["ellipsoid_unavailable_point_count"],
+                "analysisScope": maximumV2Audit["analysis_scope"],
+                "decision": {**maximumV2Audit["decision"], "native_arctangent_model_claimed": False, "independent_physical_experiment_claimed": False},
+                "reportingReceipt": {"claimLevel": extremeV2Check["claim_level"], "errorCount": extremeV2Check["error_count"], "datasetCount": extremeV2Check["dataset_count"], "reportSha256": extremeV2Check["report_sha256"], "rulesSha256": extremeV2Check["rules_sha256"], "validatorSha256": extremeV2Check["validator_sha256"], "baseValidatorSha256": extremeV2Check["base_validator_sha256"]},
+                "historicalPreservation": {"nineDatasetAudit": "exports/maximum-full-composition-audit.json", "nineDatasetReceipt": "validation/extreme-reporting-check.json", "previousFilesPreserved": True},
+                "protocolCommits": {"protocol": "b9b65e4", "results": "767e26a", "reportingReceipt": "280b7f5"},
+            },
+            "scientificClaim": "十组中 9 组最大点类别与多数一致，Gauss1 仍是唯一类别反例，ENSO 仍是唯一最大点实际残差主导组，6 组最大点占比低于中位数。Roszman1 最大点占比在 5 个第 2 折可用点中处描述性第 100% 位置，界宽比为 1.220322；该百分位不覆盖另外 20 个不可用点。",
+            "limitations": "描述性百分位只适用于各组已定义占比的可用点，不是概率、总体代表性或物理因果；Roszman1 的 100% 仅指 5 个第 2 折可用点，不是 25 点概率覆盖或原生模型验证。" + " ".join(maximumV2Audit["limitations"]),
+            "upstreamContribution": "在保留九组审计和旧收据的同时，提供十组动态图题、独立 L2 收据和小样本百分位反例，阻止把局部排序升级为概率覆盖。",
+            "snapshotFiles": ["validation/maximum-full-composition-v2-protocol.json", "validation/extreme-reporting-v2-check.json", "validation/frontier-maximum-full-composition-v2-word.json"],
         },
     ]
     packet = {

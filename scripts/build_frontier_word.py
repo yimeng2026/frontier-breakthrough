@@ -21,7 +21,12 @@ from build_total_word import audit_docx_package, normalize_math_commands, paragr
 
 
 def enforce_extreme_reporting_gate(summary=None, corpus_text=None):
-    if REPORT_MODE in {"maximum_full_composition", "extreme_reporting"}:
+    if REPORT_MODE == "maximum_full_composition_v2":
+        from validate_extreme_reporting_v2 import validate_v2_report
+        if summary is None:
+            summary = json.loads((ROOT / "exports/maximum-full-composition-audit-v2.json").read_text(encoding="utf-8"))
+        errors = validate_v2_report(summary, "mechanism_interpretation")
+    elif REPORT_MODE in {"maximum_full_composition", "extreme_reporting"}:
         from validate_extreme_reporting import validate_report
         if summary is None:
             summary = json.loads((ROOT / "exports/maximum-full-composition-audit.json").read_text(encoding="utf-8"))
@@ -40,7 +45,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "bound_comparison_v5":
+    if REPORT_MODE == "maximum_full_composition_v2":
+        replacements = {
+            "图：`papers/38_十组最大界与全点组成/fig38_maximum_full_composition_v2.png`。": "![](papers/38_十组最大界与全点组成/fig38_maximum_full_composition_v2.png)\n\n**图 38｜十组最大界点类别、全点占比与界宽比三联审计（第 1 幅，共 1 幅）**  \n**插入位置**：§5「十组三联图与解释规则」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "9／10 组类别一致、6 组低于中位占比与 Roszman1 小样本极值审计"
+    elif REPORT_MODE == "bound_comparison_v5":
         replacements = {
             "图：`papers/36_外部七组界组成/fig36_external_bound_decomposition_v5.png`。": "![](papers/36_外部七组界组成/fig36_external_bound_decomposition_v5.png)\n\n**图 36｜七组外部数据同点界组成（第 1 幅，共 2 幅）**  \n**插入位置**：§4「十组内外部数据的界组成」；顺序第 1 幅，共 2 幅。",
             "图：`papers/37_十组界组成对照/fig37_internal_external_bound_comparison_v5.png`。": "![](papers/37_十组界组成对照/fig37_internal_external_bound_comparison_v5.png)\n\n**图 37｜十组内外部数据同点界组成对照（第 2 幅，共 2 幅）**  \n**插入位置**：图 36 之后；顺序第 2 幅，共 2 幅。",
