@@ -18,7 +18,7 @@
 - [定期消化机制](docs/RESEARCH_AUTOMATION.md)：检索—筛选—复现—回馈的闭环。
 - [机器可读目录](data/projects.json)：每项均有官方来源、证据级别、协作角色和本地状态。
 - [上游接口与证据契约](docs/UPSTREAM_INTERFACES.md)：真实跨库验证、统一 JSON 接口及组件边界。
-- [跨域证据包](exports/frontier-evidence.json)：三十一项已执行检查的结构化结果与限制。
+- [跨域证据包](exports/frontier-evidence.json)：三十二项已执行检查的结构化结果与限制。
 - [五条主线扩展工作包](docs/EXPANSION_2026-11-08.md)：真实留出、形式化反例、化学跨库、材料跨库和知识图谱的首轮成果。
 - [第二轮续展报告](docs/CONTINUATION_2026-11-08.md)：Eckerle4 双尾外推与 cvc5 交叉求解器复核。
 - [第三阶段有理模型报告](docs/RATIONAL_2026-11-08.md)：Hahn1 高温外推与分母边界。
@@ -40,6 +40,8 @@
 - [第十九阶段内外部界组成对照](docs/INTERNAL_EXTERNAL_BOUND_COMPARISON_2026-11-09.md)：674 个可用点的六组分布、两类不适用边界与范围分离。
 - [第二十阶段 Misra1a 预测—证明解离](docs/MISRA1A_COVERAGE_2026-11-09.md)：14 点小样本、4 点可用界、连续安全与界宽度审计。
 - [第二十一阶段四外部与七组界组成对照](docs/BOUND_COMPARISON_V2_2026-11-09.md)：379 点外部范围、678 个可用点及新旧版本差异。
+- [第二十二阶段 Chwirut1 同族外部审计](docs/CHWIRUT1_COVERAGE_2026-11-09.md)：214 点、83 点可用界、最低 RMSE 折零可用界与数据亲缘边界。
+- [Chwirut1 预测—证明解离原生 Word 图文版](papers/前沿共生Chwirut1预测证明解离_图文完整版.docx)：一幅实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
 - [四外部与七组界组成原生 Word 图文版](papers/前沿共生四外部与七组界组成对照_图文完整版.docx)：两幅实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
 - [Misra1a 预测—证明解离原生 Word 图文版](papers/前沿共生Misra1a预测证明解离_图文完整版.docx)：一幅实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
 - [内外部界组成原生 Word 图文版](papers/前沿共生内外部界组成对照_图文完整版.docx)：一幅实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
@@ -61,7 +63,7 @@
 - [有理模型原生 Word 图文版](papers/前沿共生有理模型与分母边界_图文完整版.docx)：一幅实图、四个 Word 表格、七个原生 OMML 公式，含目录、页眉和页码。
 - [续展原生 Word 图文版](papers/前沿共生续展_双尾外推与求解器复核_图文完整版.docx)：一幅实图、四个 Word 表格、七个原生 OMML 公式，含目录、页眉和页码。
 - [扩展工作包原生 Word 图文版](papers/前沿共生扩展工作包_图文完整版.docx)：两幅实图、三个 Word 表格、五个原生 OMML 公式，含目录、页眉和页码。
-- [主张—证据—反例—实验图谱](exports/frontier-knowledge-graph.json)：118 个节点、214 条边，支持与反例均可追溯到实际文件。
+- [主张—证据—反例—实验图谱](exports/frontier-knowledge-graph.json)：124 个节点、229 条边，支持与反例均可追溯到实际文件。
 - [研究简报合订本（Word）](papers/前沿共生研究简报_合订本.docx)：三篇长文、十三幅图，附真实证据与复现路径。
 - [研究简报合订本（Markdown）](papers/前沿共生研究简报_合订本.md)：便于审阅和继续修订的文本版本。
 

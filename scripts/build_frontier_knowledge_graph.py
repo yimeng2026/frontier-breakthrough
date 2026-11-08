@@ -43,8 +43,12 @@ def build_graph(root):
     externalDecomposition = json.loads((root / "exports/external-bound-decomposition.json").read_text(encoding="utf-8"))
     internalExternalDecomposition = json.loads((root / "exports/internal-external-bound-comparison.json").read_text(encoding="utf-8"))
     misra1aCoverage = json.loads((root / "validation/misra1a-ellipsoid-coverage.json").read_text(encoding="utf-8"))
+    chwirut1Coverage = json.loads((root / "validation/chwirut1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
+    chwirut1Protocol = json.loads((root / "validation/chwirut1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     externalV2Decomposition = json.loads((root / "exports/external-bound-decomposition-v2.json").read_text(encoding="utf-8"))
     combinedV2Decomposition = json.loads((root / "exports/internal-external-bound-comparison-v2.json").read_text(encoding="utf-8"))
+    if chwirut1Coverage["totals"]["point_count"] != 214 or chwirut1Coverage["totals"]["ellipsoid_available_point_count"] != 83 or chwirut1Coverage["totals"]["coverage_violation_count"] != 0 or chwirut1Coverage["totals"]["continuous_safe_fold_count"] != 2 or chwirut1Coverage["folds"][3]["test_metrics"]["rmse"] != min(case["test_metrics"]["rmse"] for case in chwirut1Coverage["folds"]) or chwirut1Coverage["folds"][3]["test_metrics"]["rmse"] >= chwirut1Coverage["folds"][3]["baseline_test_metrics"]["rmse"] or any(point.get("ellipsoid_available", False) for point in chwirut1Coverage["folds"][3]["point_results"]) or chwirut1Coverage["analysis_scope"]["independent_model_family_test"] or not chwirut1Protocol["dataset_scope"]["related_prior_dataset"]["same_study"] or not chwirut1Protocol["dataset_scope"]["related_prior_dataset"]["same_native_model_family"]:
+        raise ValueError("Expected Chwirut1 prediction-proof dissociation and related-data scope are not present")
     if not chwirut["decision"]["limited_support"] or not aspirin["canonical_structure_identical"] or not material["structure_identity_confirmed"] or not eckerle["decision"]["limited_support"] or not cvc5["all_results_match_z3"] or not hahn1["decision"]["limited_support"] or cvc5Hahn1["result"] != "unsat" or z3Hahn1["result"] != "unsat" or groupedStress["overall_robust_limited_support"] or identifiability["decision"]["fold_1_failure_reversed"] or denominatorRoots["decision"]["fold_1_failure_reversed"] or denominatorRoots["folds"][0]["real_root_count_in_held_out_closed_interval"] != 2 or thurber["decision"]["overall_all_folds_gated_support"] or not thurber["full_fit_certification"]["matches_nist_within_frozen_tolerances"] or not kirby["decision"]["overall_all_folds_gated_support"] or not kirby["full_fit_certification"]["matches_nist_within_frozen_tolerances"] or crossDataset["totals"]["gate_consistent_fold_count"] != 13 or crossDataset["totals"]["domain_failed_fold_count"] != 2 or exactRoots["totals"]["exact_root_count_total"] != 3 or exactRoots["totals"]["dual_solver_agreement_count"] != 15 or exactRoots["decision"]["unresolved_or_disagreement_present"] or parameterBox["totals"]["certified_region_safe_fold_count"] != 13 or parameterBox["totals"]["cap_hit_fold_count"] != 11 or predictionBounds["totals"]["bounded_fold_count"] != 13 or predictionBounds["totals"]["bounded_point_count"] != 369 or ellipsoidComparison["totals"]["comparison_point_count"] != 369 or ellipsoidComparison["totals"]["tighter_point_count"] != 369 or ellipsoidComparison["totals"]["unavailable_rooted_fold_count"] != 2 or ellipsoidInterval["totals"]["continuous_safe_fold_count"] != 13 or ellipsoidInterval["totals"]["not_certified_fold_count"] != 0 or ellipsoidInterval["totals"]["rooted_snapshot_fold_count"] != 2 or filipCoverage["totals"]["ellipsoid_available_point_count"] != 82 or filipCoverage["totals"]["covered_point_count"] != 82 or filipCoverage["totals"]["continuous_safe_fold_count"] != 5 or mgh17Coverage["totals"]["ellipsoid_available_point_count"] != 33 or mgh17Coverage["totals"]["covered_point_count"] != 33 or mgh17Coverage["totals"]["continuous_safe_fold_count"] != 5 or mgh17Coverage["totals"]["independent_box_continuous_safe_fold_count"] != 5 or mgh17Coverage["totals"]["tighter_point_count"] != 32 or externalComparison["totals"]["point_count"] != 115 or externalComparison["totals"]["covered_point_count"] != 115:
         raise ValueError("Expected evidence states are not present")
     if gauss1Coverage["totals"]["point_count"] != 250 or gauss1Coverage["totals"]["ellipsoid_available_point_count"] != 190 or gauss1Coverage["totals"]["continuous_safe_fold_count"] != 3 or gauss1Coverage["folds"][1]["test_metrics"]["rmse"] <= gauss1Coverage["folds"][1]["baseline_test_metrics"]["rmse"] or any(point.get("ellipsoid_available", False) for point in gauss1Coverage["folds"][4]["point_results"]) or gauss1Comparison["totals"]["point_count"] != 365 or gauss1Comparison["totals"]["ellipsoid_available_point_count"] != 305 or gauss1Comparison["totals"]["ellipsoid_unavailable_point_count"] != 60 or gauss1Comparison["totals"]["continuous_safe_fold_count"] != 13:
@@ -296,6 +300,28 @@ def build_graph(root):
     edges.extend([
         edge("track-holdout", "experiment-bound-comparison-v2-protocol-amendment", "contains"),
         edge("experiment-bound-comparison-v2-protocol-amendment", "claim-new-data-overwrite-history", "tests"),
+    ])
+    nodes.extend([
+        node("claim-untouched-data-independent-model-family", "claim", "未触碰数据自动构成独立模型族或独立实验室复现", "falsified", ["validation/chwirut1-ellipsoid-coverage-protocol.json", "validation/chwirut1-ellipsoid-coverage.json"]),
+        node("evidence-chwirut1-prediction-proof-dissociation", "evidence", "Chwirut1 共 214 点，83 点可给界、131 点不可用，2／5 折连续安全且三折优于基线", "supported", ["validation/chwirut1-ellipsoid-coverage.json"]),
+        node("counterexample-chwirut1-fold4-no-bounds", "counterexample", "Chwirut1 第 4 折 RMSE 最低且优于基线，但 23 个留出点有 0 个可用界", "supported", ["validation/chwirut1-ellipsoid-coverage.json"]),
+        node("experiment-chwirut1-prospective-protocol", "experiment", "在任何 Chwirut1 候选分析前冻结并推送的同族数据五折协议", "supported", ["validation/chwirut1-ellipsoid-coverage-protocol.json"]),
+        node("limitation-chwirut1-related-dataset-scope", "limitation", "Chwirut1 未触碰但与 Chwirut2 同研究同模型族，适用点零越界不是概率覆盖或独立模型族验证", "active", ["validation/chwirut1-ellipsoid-coverage-protocol.json", "validation/chwirut1-ellipsoid-coverage.json"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-untouched-data-independent-model-family", "contains"),
+        edge("track-holdout", "evidence-chwirut1-prediction-proof-dissociation", "contains"),
+        edge("track-holdout", "counterexample-chwirut1-fold4-no-bounds", "contains"),
+        edge("track-holdout", "experiment-chwirut1-prospective-protocol", "contains"),
+        edge("track-holdout", "limitation-chwirut1-related-dataset-scope", "contains"),
+        edge("evidence-chwirut1-prediction-proof-dissociation", "claim-small-rmse-useful-proof", "contradicts"),
+        edge("counterexample-chwirut1-fold4-no-bounds", "claim-small-rmse-useful-proof", "contradicts"),
+        edge("evidence-chwirut1-prediction-proof-dissociation", "counterexample-chwirut1-fold4-no-bounds", "supports"),
+        edge("experiment-chwirut1-prospective-protocol", "claim-small-rmse-useful-proof", "tests"),
+        edge("limitation-chwirut1-related-dataset-scope", "evidence-chwirut1-prediction-proof-dissociation", "limits"),
+        edge("evidence-chwirut1-prediction-proof-dissociation", "claim-untouched-data-independent-model-family", "contradicts"),
+        edge("limitation-chwirut1-related-dataset-scope", "claim-untouched-data-independent-model-family", "limits"),
+        edge("evidence-chwirut1-prediction-proof-dissociation", "claim-reusable-driver-guarantees-coverage", "contradicts"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

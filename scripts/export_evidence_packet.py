@@ -54,6 +54,8 @@ def build() -> dict:
     externalDecomposition = json.loads((ROOT / "exports/external-bound-decomposition.json").read_text(encoding="utf-8"))
     internalExternalDecomposition = json.loads((ROOT / "exports/internal-external-bound-comparison.json").read_text(encoding="utf-8"))
     misra1aCoverage = read("misra1a-ellipsoid-coverage.json")
+    chwirut1Coverage = read("chwirut1-ellipsoid-coverage.json")
+    chwirut1Protocol = read("chwirut1-ellipsoid-coverage-protocol.json")
     externalV2Decomposition = json.loads((ROOT / "exports/external-bound-decomposition-v2.json").read_text(encoding="utf-8"))
     combinedV2Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v2.json").read_text(encoding="utf-8"))
     items = [
@@ -331,6 +333,24 @@ def build() -> dict:
             "limitations": "小样本候选不是原生两参数模型，重分析不是新完成的独立物理实验；4 个适用点零越界不是概率覆盖或高信息量证明。" + " ".join(misra1aCoverage["limitations"]),
             "upstreamContribution": "提供预注册小样本实测数据案例，分开记录 RMSE、连续安全、逐点可用性、界宽度和同点组成，避免拟合接近被误写为有用证明。",
             "snapshotFiles": ["validation/misra1a-ellipsoid-coverage-protocol.json", "validation/misra1a-ellipsoid-coverage.json", "validation/frontier-misra1a-coverage-word.json"],
+        },
+        {
+            "id": "chwirut1-prediction-proof-dissociation", "domain": "physics", "title": "Chwirut1 同族外部审计与最低 RMSE 折零可用界",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Chwirut1.dat"],
+            "metrics": {
+                "totals": chwirut1Coverage["totals"],
+                "folds": [{"fold": case["fold"], "pointCount": len(case["point_results"]), "modelRmse": case["test_metrics"]["rmse"], "baselineRmse": case["baseline_test_metrics"]["rmse"], "continuousSafe": case["continuous_ellipsoid_safe"], "available": sum(point.get("ellipsoid_available", False) for point in case["point_results"]), "boxAvailable": sum(point.get("box_available", False) for point in case["point_results"])} for case in chwirut1Coverage["folds"]],
+                "bestPredictionWithoutBounds": {"fold": chwirut1Coverage["folds"][3]["fold"], "modelRmse": chwirut1Coverage["folds"][3]["test_metrics"]["rmse"], "baselineRmse": chwirut1Coverage["folds"][3]["baseline_test_metrics"]["rmse"], "availablePointCount": sum(point.get("ellipsoid_available", False) for point in chwirut1Coverage["folds"][3]["point_results"]), "continuousSafe": chwirut1Coverage["folds"][3]["continuous_ellipsoid_safe"]},
+                "boxComparison": {"availablePairCount": chwirut1Coverage["totals"]["tighter_point_count"] + chwirut1Coverage["totals"]["looser_point_count"], "tighterPointCount": chwirut1Coverage["totals"]["tighter_point_count"], "medianShiftRatio": chwirut1Coverage["totals"]["median_shift_ratio"], "minShiftRatio": chwirut1Coverage["totals"]["min_shift_ratio"], "maxShiftRatio": chwirut1Coverage["totals"]["max_shift_ratio"]},
+                "relatedDataset": chwirut1Protocol["dataset_scope"]["related_prior_dataset"],
+                "protocolCommits": {"frozenBeforeResults": "e07df7a", "results": "c339a0b"},
+                "decision": {**chwirut1Coverage["decision"], "independent_physical_experiment_claimed": False, "independent_model_family_claimed": False},
+            },
+            "scientificClaim": "Chwirut1 的 214 点中 83 点可给界、131 点不可用，连续椭球安全为 2／5 折；第 2、4、5 折优于三次基线。第 4 折 RMSE 最低且优于基线，但 23 点全部无可给界，形成新的预测—证明解离。",
+            "limitations": "Chwirut1 与 Chwirut2 同族，未触碰不是独立模型族或实验室复现；83 个适用点零越界不是 214 点概率覆盖，未认证不等于已证明不安全。" + " ".join(chwirut1Coverage["limitations"]),
+            "upstreamContribution": "提供同族但未触碰数据的预注册压力测试，将预测排序、连续安全、逐点可用性、界宽度、盒／椭球可比较范围与数据亲缘关系分层记录。",
+            "snapshotFiles": ["validation/chwirut1-ellipsoid-coverage-protocol.json", "validation/chwirut1-ellipsoid-coverage.json", "validation/frontier-chwirut1-coverage-word.json"],
         },
         {
             "id": "bound-comparison-v2-scope-expansion", "domain": "math", "title": "四外部与七组界组成新版范围对照",

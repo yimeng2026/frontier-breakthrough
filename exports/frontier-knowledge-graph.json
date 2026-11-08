@@ -1098,6 +1098,53 @@
       "sourceFiles": [
         "validation/internal-external-bound-comparison-v2-protocol-amendment-01.json"
       ]
+    },
+    {
+      "id": "claim-untouched-data-independent-model-family",
+      "kind": "claim",
+      "title": "未触碰数据自动构成独立模型族或独立实验室复现",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/chwirut1-ellipsoid-coverage-protocol.json",
+        "validation/chwirut1-ellipsoid-coverage.json"
+      ]
+    },
+    {
+      "id": "evidence-chwirut1-prediction-proof-dissociation",
+      "kind": "evidence",
+      "title": "Chwirut1 共 214 点，83 点可给界、131 点不可用，2／5 折连续安全且三折优于基线",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-ellipsoid-coverage.json"
+      ]
+    },
+    {
+      "id": "counterexample-chwirut1-fold4-no-bounds",
+      "kind": "counterexample",
+      "title": "Chwirut1 第 4 折 RMSE 最低且优于基线，但 23 个留出点有 0 个可用界",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-ellipsoid-coverage.json"
+      ]
+    },
+    {
+      "id": "experiment-chwirut1-prospective-protocol",
+      "kind": "experiment",
+      "title": "在任何 Chwirut1 候选分析前冻结并推送的同族数据五折协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-ellipsoid-coverage-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-chwirut1-related-dataset-scope",
+      "kind": "limitation",
+      "title": "Chwirut1 未触碰但与 Chwirut2 同研究同模型族，适用点零越界不是概率覆盖或独立模型族验证",
+      "status": "active",
+      "sourceFiles": [
+        "validation/chwirut1-ellipsoid-coverage-protocol.json",
+        "validation/chwirut1-ellipsoid-coverage.json"
+      ]
     }
   ],
   "edges": [
@@ -2180,6 +2227,71 @@
       "from": "experiment-bound-comparison-v2-protocol-amendment",
       "to": "claim-new-data-overwrite-history",
       "relation": "tests"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-untouched-data-independent-model-family",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-chwirut1-prediction-proof-dissociation",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-chwirut1-fold4-no-bounds",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-chwirut1-prospective-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-chwirut1-related-dataset-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-chwirut1-prediction-proof-dissociation",
+      "to": "claim-small-rmse-useful-proof",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-chwirut1-fold4-no-bounds",
+      "to": "claim-small-rmse-useful-proof",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-chwirut1-prediction-proof-dissociation",
+      "to": "counterexample-chwirut1-fold4-no-bounds",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-chwirut1-prospective-protocol",
+      "to": "claim-small-rmse-useful-proof",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-chwirut1-related-dataset-scope",
+      "to": "evidence-chwirut1-prediction-proof-dissociation",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-chwirut1-prediction-proof-dissociation",
+      "to": "claim-untouched-data-independent-model-family",
+      "relation": "contradicts"
+    },
+    {
+      "from": "limitation-chwirut1-related-dataset-scope",
+      "to": "claim-untouched-data-independent-model-family",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-chwirut1-prediction-proof-dissociation",
+      "to": "claim-reusable-driver-guarantees-coverage",
+      "relation": "contradicts"
     }
   ]
 }

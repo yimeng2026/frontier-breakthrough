@@ -112,8 +112,8 @@ class ExpansionTests(unittest.TestCase):
 
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
-        self.assertEqual(len(packet["items"]), 31)
-        self.assertEqual(len({i["id"] for i in packet["items"]}), 31)
+        self.assertEqual(len(packet["items"]), 32)
+        self.assertEqual(len({i["id"] for i in packet["items"]}), 32)
         for item in packet["items"]:
             self.assertEqual(item["status"], "verified")
             self.assertTrue(item["limitations"])
@@ -167,6 +167,20 @@ class ExpansionTests(unittest.TestCase):
         self.assertEqual(v2["metrics"]["combinedV2Totals"]["snapshot_residual_dominant_point_count"], 192)
         self.assertEqual(len(v2["metrics"]["datasets"]), 7)
         self.assertTrue(v2["metrics"]["historicalPreservation"]["previousFilesPreserved"])
+
+    def test_chwirut1_prediction_proof_dissociation_and_related_scope(self):
+        packet = self.read("exports/frontier-evidence.json")
+        identifiers = {item["id"] for item in packet["items"]}
+        self.assertIn("chwirut1-prediction-proof-dissociation", identifiers)
+        item = next(item for item in packet["items"] if item["id"] == "chwirut1-prediction-proof-dissociation")
+        self.assertEqual(item["metrics"]["totals"]["point_count"], 214)
+        self.assertEqual(item["metrics"]["totals"]["ellipsoid_available_point_count"], 83)
+        self.assertEqual(item["metrics"]["totals"]["continuous_safe_fold_count"], 2)
+        self.assertEqual(item["metrics"]["bestPredictionWithoutBounds"]["fold"], 4)
+        self.assertEqual(item["metrics"]["bestPredictionWithoutBounds"]["availablePointCount"], 0)
+        self.assertEqual(item["metrics"]["relatedDataset"]["name"], "Chwirut2")
+        self.assertFalse(item["metrics"]["decision"]["independent_model_family_claimed"])
+        self.assertIn("同族", item["limitations"])
 
     def test_new_agent_projects_have_primary_sources(self):
         projects = self.read("data/projects.json")["projects"]

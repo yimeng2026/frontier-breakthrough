@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生Chwirut1预测证明解离_图文完整版.docx",
+  "bytes": 132289,
+  "sha256": "3f22a24722f868f4acfe674a6e6b7901c3c871737bed43e2c6bca3a98d8105b0",
+  "native_math_objects": 2,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

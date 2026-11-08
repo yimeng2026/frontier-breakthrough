@@ -1619,6 +1619,125 @@
       ]
     },
     {
+      "id": "chwirut1-prediction-proof-dissociation",
+      "domain": "physics",
+      "title": "Chwirut1 同族外部审计与最低 RMSE 折零可用界",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Chwirut1.dat"
+      ],
+      "metrics": {
+        "totals": {
+          "fold_count": 5,
+          "optimizer_failure_count": 0,
+          "point_count": 214,
+          "ellipsoid_available_point_count": 83,
+          "covered_point_count": 83,
+          "coverage_violation_count": 0,
+          "max_ellipsoid_absolute_residual_upper_bound_float": 13.299029728904719,
+          "median_ellipsoid_absolute_residual_upper_bound_float": 8.430035393517988,
+          "max_ellipsoid_prediction_shift_upper_bound_float": 8.84336621009718,
+          "continuous_safe_fold_count": 2,
+          "independent_box_continuous_safe_fold_count": 1,
+          "tighter_point_count": 29,
+          "looser_point_count": 0,
+          "median_shift_ratio": 0.43897139816218983,
+          "max_shift_ratio": 0.4579972381932424,
+          "min_shift_ratio": 0.37300635866836335
+        },
+        "folds": [
+          {
+            "fold": 1,
+            "pointCount": 57,
+            "modelRmse": 16.138743756819224,
+            "baselineRmse": 15.10811245428186,
+            "continuousSafe": false,
+            "available": 0,
+            "boxAvailable": 0
+          },
+          {
+            "fold": 2,
+            "pointCount": 54,
+            "modelRmse": 2.4493945003433435,
+            "baselineRmse": 3.9559114550296703,
+            "continuousSafe": true,
+            "available": 54,
+            "boxAvailable": 0
+          },
+          {
+            "fold": 3,
+            "pointCount": 51,
+            "modelRmse": 8.488618909338863,
+            "baselineRmse": 4.820903500712885,
+            "continuousSafe": false,
+            "available": 0,
+            "boxAvailable": 0
+          },
+          {
+            "fold": 4,
+            "pointCount": 23,
+            "modelRmse": 1.5342121863881184,
+            "baselineRmse": 3.9849289449012026,
+            "continuousSafe": false,
+            "available": 0,
+            "boxAvailable": 0
+          },
+          {
+            "fold": 5,
+            "pointCount": 29,
+            "modelRmse": 2.8556168919034737,
+            "baselineRmse": 28.747338380862608,
+            "continuousSafe": true,
+            "available": 29,
+            "boxAvailable": 29
+          }
+        ],
+        "bestPredictionWithoutBounds": {
+          "fold": 4,
+          "modelRmse": 1.5342121863881184,
+          "baselineRmse": 3.9849289449012026,
+          "availablePointCount": 0,
+          "continuousSafe": false
+        },
+        "boxComparison": {
+          "availablePairCount": 29,
+          "tighterPointCount": 29,
+          "medianShiftRatio": 0.43897139816218983,
+          "minShiftRatio": 0.37300635866836335,
+          "maxShiftRatio": 0.4579972381932424
+        },
+        "relatedDataset": {
+          "name": "Chwirut2",
+          "same_study": true,
+          "same_native_model_family": true,
+          "scope": "Chwirut2 was analyzed previously, but Chwirut1 observations were not used to design previous candidates or regions; this is not an independent model-family or laboratory replication test"
+        },
+        "protocolCommits": {
+          "frozenBeforeResults": "e07df7a",
+          "results": "c339a0b"
+        },
+        "decision": {
+          "probability_calibration_claimed": false,
+          "native_physical_model_claimed": false,
+          "universal_external_validity_claimed": false,
+          "continuous_x_error_bound_claimed": false,
+          "optimizer_failures_hidden": false,
+          "independent_physical_experiment_claimed": false,
+          "independent_model_family_claimed": false
+        }
+      },
+      "scientificClaim": "Chwirut1 的 214 点中 83 点可给界、131 点不可用，连续椭球安全为 2／5 折；第 2、4、5 折优于三次基线。第 4 折 RMSE 最低且优于基线，但 23 点全部无可给界，形成新的预测—证明解离。",
+      "limitations": "Chwirut1 与 Chwirut2 同族，未触碰不是独立模型族或实验室复现；83 个适用点零越界不是 214 点概率覆盖，未认证不等于已证明不安全。The cubic/cubic candidate is only an approximation stress test and not the native Chwirut1 three-parameter exponential model; Chwirut1 shares its study and native model family with previously analyzed Chwirut2, so this is not an independent model-family validation Deterministic residual bounds are not probability intervals or calibration evidence Continuous denominator safety does not imply accurate or useful prediction Pointwise bounds do not provide a continuous-x prediction error bound Optimizer failures and unavailable bounds are retained, not converted into successes",
+      "upstreamContribution": "提供同族但未触碰数据的预注册压力测试，将预测排序、连续安全、逐点可用性、界宽度、盒／椭球可比较范围与数据亲缘关系分层记录。",
+      "snapshotFiles": [
+        "validation/chwirut1-ellipsoid-coverage-protocol.json",
+        "validation/chwirut1-ellipsoid-coverage.json",
+        "validation/frontier-chwirut1-coverage-word.json"
+      ]
+    },
+    {
       "id": "bound-comparison-v2-scope-expansion",
       "domain": "math",
       "title": "四外部与七组界组成新版范围对照",

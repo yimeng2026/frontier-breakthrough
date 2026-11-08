@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "bound_comparison_v2":
+    if REPORT_MODE == "chwirut1_coverage":
+        replacements = {
+            "图：`papers/28_Chwirut1椭球覆盖/fig28_chwirut1_ellipsoid_coverage.png`。": "![](papers/28_Chwirut1椭球覆盖/fig28_chwirut1_ellipsoid_coverage.png)\n\n**图 28｜Chwirut1 候选预测与逐点界可用性（第 1 幅，共 1 幅）**  \n**插入位置**：§4「界宽度、组成与同点比较」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "214 点同族外部审计、83 点可用界与最低 RMSE 折的零可用界"
+    elif REPORT_MODE == "bound_comparison_v2":
         replacements = {
             "图：`papers/26_外部四组界组成/fig26_external_bound_decomposition_v2.png`。": "![](papers/26_外部四组界组成/fig26_external_bound_decomposition_v2.png)\n\n**图 26｜四组外部数据同点界组成（第 1 幅，共 2 幅）**  \n**插入位置**：§4「七组内外部数据的界组成」；顺序第 1 幅，共 2 幅。",
             "图：`papers/27_七组界组成对照/fig27_internal_external_bound_comparison_v2.png`。": "![](papers/27_七组界组成对照/fig27_internal_external_bound_comparison_v2.png)\n\n**图 27｜七组内外部数据同点界组成对照（第 2 幅，共 2 幅）**  \n**插入位置**：图 26 之后；顺序第 2 幅，共 2 幅。",
