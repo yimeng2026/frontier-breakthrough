@@ -65,6 +65,8 @@ def build() -> dict:
     maximumAudit = json.loads((ROOT / "exports/maximum-full-composition-audit.json").read_text(encoding="utf-8"))
     extremeCheck = read("extreme-reporting-check.json")
     corpusCheck = read("extreme-corpus-check.json")
+    roszman1Coverage = read("roszman1-ellipsoid-coverage.json")
+    roszman1Protocol = read("roszman1-ellipsoid-coverage-protocol.json")
     externalScopeAmendment = read("external-scope-limitations-amendment-01-audit.json")
     ensoCoverage = read("enso-ellipsoid-coverage.json")
     ensoProtocol = read("enso-ellipsoid-coverage-protocol.json")
@@ -475,6 +477,89 @@ def build() -> dict:
             "limitations": "全集分级只约束极值表述的阅读方式，不替代原始证据，不批量修改历史 Markdown 或 Word，也不把补充说明当作新的物理结论。",
             "upstreamContribution": "提供全文件覆盖、主张等级、联读义务和原文哈希保持的审计接口，防止旧报告中的单个极值脱离后续反例被过度推广。",
             "snapshotFiles": ["validation/extreme-corpus-audit.json", "validation/extreme-corpus-check.json", "validation/frontier-extreme-corpus-word.json"],
+        },
+        {
+            "id": "roszman1-prediction-proof-dissociation",
+            "domain": "physics",
+            "title": "Roszman1 小样本预测—证明解离与平移主导界审计",
+            "status": "verified",
+            "evidenceClass": "local_recomputation",
+            "sources": [
+                "https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml",
+                "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Roszman1.dat",
+            ],
+            "metrics": {
+                "totals": roszman1Coverage["totals"],
+                "folds": [
+                    {
+                        "fold": case["fold"],
+                        "testPointCount": len(case["point_results"]),
+                        "modelRmse": case["test_metrics"]["rmse"],
+                        "baselineRmse": case["baseline_test_metrics"]["rmse"],
+                        "continuousEllipsoidSafe": case["continuous_ellipsoid_safe"],
+                        "independentBoxContinuousSafe": case["independent_box_continuous_safe"],
+                        "availablePointCount": sum(point.get("ellipsoid_available", False) for point in case["point_results"]),
+                        "boxAvailablePointCount": sum(point.get("box_available", False) for point in case["point_results"]),
+                    }
+                    for case in roszman1Coverage["folds"]
+                ],
+                "betterBaselineWithoutBounds": [
+                    {
+                        "fold": case["fold"],
+                        "modelRmse": case["test_metrics"]["rmse"],
+                        "baselineRmse": case["baseline_test_metrics"]["rmse"],
+                        "availablePointCount": sum(point.get("ellipsoid_available", False) for point in case["point_results"]),
+                    }
+                    for case in [roszman1Coverage["folds"][0], roszman1Coverage["folds"][3]]
+                ],
+                "fold5Failure": {
+                    "fold": 5,
+                    "modelRmse": roszman1Coverage["folds"][4]["test_metrics"]["rmse"],
+                    "baselineRmse": roszman1Coverage["folds"][4]["baseline_test_metrics"]["rmse"],
+                    "availablePointCount": sum(point.get("ellipsoid_available", False) for point in roszman1Coverage["folds"][4]["point_results"]),
+                },
+                "boxComparison": {
+                    "availablePairCount": sum(
+                        point.get("ellipsoid_available", False) and point.get("box_available", False)
+                        for case in roszman1Coverage["folds"] for point in case["point_results"]
+                    ),
+                    "tighterPointCount": roszman1Coverage["totals"]["tighter_point_count"],
+                    "ellipsoidOnlyPointCount": sum(
+                        point.get("ellipsoid_available", False) and not point.get("box_available", False)
+                        for case in roszman1Coverage["folds"] for point in case["point_results"]
+                    ),
+                    "medianShiftRatio": roszman1Coverage["totals"]["median_shift_ratio"],
+                    "minShiftRatio": roszman1Coverage["totals"]["min_shift_ratio"],
+                    "maxShiftRatio": roszman1Coverage["totals"]["max_shift_ratio"],
+                },
+                "minimumAvailableShiftShare": min(
+                    point["ellipsoid_prediction_shift_upper_bound_float"] / point["ellipsoid_absolute_residual_upper_bound_float"]
+                    for case in roszman1Coverage["folds"]
+                    for point in case["point_results"] if point.get("ellipsoid_available")
+                ),
+                "implementation": {
+                    "driver": roszman1Protocol["implementation_rule"]["driver"],
+                    "driverSha256": roszman1Protocol["implementation_rule"]["driver_sha256"],
+                    "scopeAdapter": roszman1Protocol["implementation_rule"]["scope_adapter"],
+                    "scopeAdapterSha256": roszman1Coverage["analysis_scope"]["scope_adapter_sha256"],
+                    "wrapper": roszman1Protocol["implementation_rule"]["wrapper"],
+                    "wrapperSha256": roszman1Protocol["implementation_rule"]["wrapper_sha256"],
+                },
+                "protocolCommits": {"frozenBeforeResults": "0ad8c06", "results": "a25641a"},
+                "decision": {
+                    **roszman1Coverage["decision"],
+                    "independent_physical_experiment_claimed": False,
+                    "independent_model_family_claimed": False,
+                },
+            },
+            "scientificClaim": "25 点中仅第 2 折的 5 点可给界，20 点不可用；第 1、4 折优于基线但零可用界，第 5 折明显预测失败。4 对比较中椭球更紧，另 1 点只有椭球界，平移占比均超过 98.3%。",
+            "limitations": "小样本和平移主导界只覆盖第 2 折，不是 25 点概率覆盖、连续 x 误差界或原生反正切模型验证。",
+            "upstreamContribution": "分开记录预测、连续安全、逐点可用性、界宽度、平移组成、同点比较范围和三类实现哈希。",
+            "snapshotFiles": [
+                "validation/roszman1-ellipsoid-coverage-protocol.json",
+                "validation/roszman1-ellipsoid-coverage.json",
+                "validation/frontier-roszman1-coverage-word.json",
+            ],
         },
     ]
     packet = {

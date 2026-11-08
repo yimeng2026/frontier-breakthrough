@@ -1350,6 +1350,44 @@
         "validation/extreme-corpus-audit.json",
         "validation/extreme-corpus-check.json"
       ]
+    },
+    {
+      "id": "evidence-roszman1-prediction-proof-dissociation",
+      "kind": "evidence",
+      "title": "Roszman1 共 25 点，5 点可给界、20 点不可用，1／5 折连续安全且 4 对比较收紧",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-ellipsoid-coverage.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-fold1-fold4-no-bounds",
+      "kind": "counterexample",
+      "title": "Roszman1 第 1、4 折优于基线但均零可用界，第 5 折预测显著失败",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-ellipsoid-coverage.json"
+      ]
+    },
+    {
+      "id": "experiment-roszman1-scoped-prospective-protocol",
+      "kind": "experiment",
+      "title": "在任何 Roszman1 候选分析前冻结并推送的范围感知五折协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-ellipsoid-coverage-protocol.json",
+        "scripts/external_coverage_scoped.py",
+        "scripts/analyze_roszman1_ellipsoid_coverage.py"
+      ]
+    },
+    {
+      "id": "limitation-roszman1-small-sample-shift-scope",
+      "kind": "limitation",
+      "title": "Roszman1 的 5 个平移主导可用点只位于第 2 折，不能写成 25 点概率覆盖或原生模型验证",
+      "status": "active",
+      "sourceFiles": [
+        "validation/roszman1-ellipsoid-coverage.json"
+      ]
     }
   ],
   "edges": [
@@ -2772,6 +2810,56 @@
       "from": "experiment-extreme-reporting-contract",
       "to": "experiment-extreme-corpus-classification",
       "relation": "supports"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-roszman1-prediction-proof-dissociation",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-fold1-fold4-no-bounds",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-roszman1-scoped-prospective-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-roszman1-small-sample-shift-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-roszman1-prediction-proof-dissociation",
+      "to": "claim-small-rmse-useful-proof",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-fold1-fold4-no-bounds",
+      "to": "claim-small-rmse-useful-proof",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-roszman1-prediction-proof-dissociation",
+      "to": "counterexample-roszman1-fold1-fold4-no-bounds",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-scoped-prospective-protocol",
+      "to": "claim-small-rmse-useful-proof",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-roszman1-small-sample-shift-scope",
+      "to": "evidence-roszman1-prediction-proof-dissociation",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-roszman1-prediction-proof-dissociation",
+      "to": "claim-reusable-driver-guarantees-coverage",
+      "relation": "contradicts"
     }
   ]
 }

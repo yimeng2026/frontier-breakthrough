@@ -112,8 +112,8 @@ class ExpansionTests(unittest.TestCase):
 
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
-        self.assertEqual(len(packet["items"]), 39)
-        self.assertEqual(len({i["id"] for i in packet["items"]}), 39)
+        self.assertEqual(len(packet["items"]), 40)
+        self.assertEqual(len({i["id"] for i in packet["items"]}), 40)
         for item in packet["items"]:
             self.assertEqual(item["status"], "verified")
             self.assertTrue(item["limitations"])
@@ -285,6 +285,23 @@ class ExpansionTests(unittest.TestCase):
         self.assertEqual(item["metrics"]["errorCount"], 0)
         self.assertEqual(item["metrics"]["completeCount"], 2)
         self.assertEqual(item["metrics"]["descriptiveOnlyCount"], 4)
+
+    def test_roszman1_small_sample_and_shift_dominant_scope(self):
+        packet = self.read("exports/frontier-evidence.json")
+        identifiers = {item["id"] for item in packet["items"]}
+        self.assertIn("roszman1-prediction-proof-dissociation", identifiers)
+        item = next(item for item in packet["items"] if item["id"] == "roszman1-prediction-proof-dissociation")
+        self.assertEqual(item["metrics"]["totals"]["point_count"], 25)
+        self.assertEqual(item["metrics"]["totals"]["ellipsoid_available_point_count"], 5)
+        self.assertEqual(item["metrics"]["totals"]["continuous_safe_fold_count"], 1)
+        self.assertEqual(item["metrics"]["totals"]["independent_box_continuous_safe_fold_count"], 0)
+        self.assertEqual(item["metrics"]["boxComparison"]["availablePairCount"], 4)
+        self.assertEqual(item["metrics"]["boxComparison"]["tighterPointCount"], 4)
+        self.assertEqual(item["metrics"]["boxComparison"]["ellipsoidOnlyPointCount"], 1)
+        self.assertGreater(item["metrics"]["minimumAvailableShiftShare"], 0.98)
+        self.assertEqual(len(item["metrics"]["betterBaselineWithoutBounds"]), 2)
+        self.assertEqual(item["metrics"]["fold5Failure"]["availablePointCount"], 0)
+        self.assertEqual(item["metrics"]["implementation"]["scopeAdapter"], "scripts/external_coverage_scoped.py")
 
     def test_new_agent_projects_have_primary_sources(self):
         projects = self.read("data/projects.json")["projects"]

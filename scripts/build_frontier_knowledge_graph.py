@@ -54,6 +54,10 @@ def build_graph(root):
     maximumAudit = json.loads((root / "exports/maximum-full-composition-audit.json").read_text(encoding="utf-8"))
     extremeCheck = json.loads((root / "validation/extreme-reporting-check.json").read_text(encoding="utf-8"))
     corpusCheck = json.loads((root / "validation/extreme-corpus-check.json").read_text(encoding="utf-8"))
+    roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
+    roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
+    if roszman1Coverage["totals"]["point_count"] != 25 or roszman1Coverage["totals"]["ellipsoid_available_point_count"] != 5 or roszman1Coverage["totals"]["continuous_safe_fold_count"] != 1 or roszman1Coverage["totals"]["independent_box_continuous_safe_fold_count"] != 0 or roszman1Coverage["totals"]["tighter_point_count"] != 4 or roszman1Coverage["totals"]["looser_point_count"] != 0 or any(point.get("ellipsoid_available", False) for point in roszman1Coverage["folds"][0]["point_results"]) or any(point.get("ellipsoid_available", False) for point in roszman1Coverage["folds"][3]["point_results"]) or any(point.get("ellipsoid_available", False) for point in roszman1Coverage["folds"][4]["point_results"]) or roszman1Coverage["folds"][0]["test_metrics"]["rmse"] >= roszman1Coverage["folds"][0]["baseline_test_metrics"]["rmse"] or roszman1Coverage["folds"][3]["test_metrics"]["rmse"] >= roszman1Coverage["folds"][3]["baseline_test_metrics"]["rmse"] or roszman1Coverage["folds"][4]["test_metrics"]["rmse"] <= roszman1Coverage["folds"][4]["baseline_test_metrics"]["rmse"] or roszman1Coverage["analysis_scope"]["scope_adapter_sha256"] != roszman1Protocol["implementation_rule"]["scope_adapter_sha256"]:
+        raise ValueError("Expected Roszman1 fold-specific dissociation and scoped provenance are not present")
     if corpusCheck["status"] != "passed" or corpusCheck["document_count"] != 16 or corpusCheck["companion_required_count"] != 10 or corpusCheck["unchanged_original_count"] != 10 or corpusCheck["error_count"] != 0:
         raise ValueError("Expected extreme corpus classification and original preservation are not present")
     if extremeCheck["status"] != "passed" or extremeCheck["error_count"] != 0 or extremeCheck["claim_level"] != "mechanism_interpretation" or extremeCheck["dataset_count"] != 9 or extremeCheck["decision"]["maximum_point_used_as_typical_claimed"]:
@@ -444,6 +448,24 @@ def build_graph(root):
         edge("track-knowledge", "experiment-extreme-corpus-classification", "contains"),
         edge("experiment-extreme-corpus-classification", "claim-knowledge-graph", "tests"),
         edge("experiment-extreme-reporting-contract", "experiment-extreme-corpus-classification", "supports"),
+    ])
+    nodes.extend([
+        node("evidence-roszman1-prediction-proof-dissociation", "evidence", "Roszman1 共 25 点，5 点可给界、20 点不可用，1／5 折连续安全且 4 对比较收紧", "supported", ["validation/roszman1-ellipsoid-coverage.json"]),
+        node("counterexample-roszman1-fold1-fold4-no-bounds", "counterexample", "Roszman1 第 1、4 折优于基线但均零可用界，第 5 折预测显著失败", "supported", ["validation/roszman1-ellipsoid-coverage.json"]),
+        node("experiment-roszman1-scoped-prospective-protocol", "experiment", "在任何 Roszman1 候选分析前冻结并推送的范围感知五折协议", "supported", ["validation/roszman1-ellipsoid-coverage-protocol.json", "scripts/external_coverage_scoped.py", "scripts/analyze_roszman1_ellipsoid_coverage.py"]),
+        node("limitation-roszman1-small-sample-shift-scope", "limitation", "Roszman1 的 5 个平移主导可用点只位于第 2 折，不能写成 25 点概率覆盖或原生模型验证", "active", ["validation/roszman1-ellipsoid-coverage.json"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "evidence-roszman1-prediction-proof-dissociation", "contains"),
+        edge("track-holdout", "counterexample-roszman1-fold1-fold4-no-bounds", "contains"),
+        edge("track-holdout", "experiment-roszman1-scoped-prospective-protocol", "contains"),
+        edge("track-holdout", "limitation-roszman1-small-sample-shift-scope", "contains"),
+        edge("evidence-roszman1-prediction-proof-dissociation", "claim-small-rmse-useful-proof", "contradicts"),
+        edge("counterexample-roszman1-fold1-fold4-no-bounds", "claim-small-rmse-useful-proof", "contradicts"),
+        edge("evidence-roszman1-prediction-proof-dissociation", "counterexample-roszman1-fold1-fold4-no-bounds", "supports"),
+        edge("experiment-roszman1-scoped-prospective-protocol", "claim-small-rmse-useful-proof", "tests"),
+        edge("limitation-roszman1-small-sample-shift-scope", "evidence-roszman1-prediction-proof-dissociation", "limits"),
+        edge("evidence-roszman1-prediction-proof-dissociation", "claim-reusable-driver-guarantees-coverage", "contradicts"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

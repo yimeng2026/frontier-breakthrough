@@ -2741,6 +2741,147 @@
         "validation/extreme-corpus-check.json",
         "validation/frontier-extreme-corpus-word.json"
       ]
+    },
+    {
+      "id": "roszman1-prediction-proof-dissociation",
+      "domain": "physics",
+      "title": "Roszman1 小样本预测—证明解离与平移主导界审计",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Roszman1.dat"
+      ],
+      "metrics": {
+        "totals": {
+          "fold_count": 5,
+          "optimizer_failure_count": 0,
+          "point_count": 25,
+          "ellipsoid_available_point_count": 5,
+          "covered_point_count": 5,
+          "coverage_violation_count": 0,
+          "max_ellipsoid_absolute_residual_upper_bound_float": 0.7208715611949922,
+          "median_ellipsoid_absolute_residual_upper_bound_float": 0.5907223247617105,
+          "max_ellipsoid_prediction_shift_upper_bound_float": 0.7193100157453971,
+          "continuous_safe_fold_count": 1,
+          "independent_box_continuous_safe_fold_count": 0,
+          "tighter_point_count": 4,
+          "looser_point_count": 0,
+          "median_shift_ratio": 0.12941888928755033,
+          "max_shift_ratio": 0.415994007587585,
+          "min_shift_ratio": 0.1277416797120667
+        },
+        "folds": [
+          {
+            "fold": 1,
+            "testPointCount": 5,
+            "modelRmse": 0.0009972308887413533,
+            "baselineRmse": 0.056140263339699036,
+            "continuousEllipsoidSafe": false,
+            "independentBoxContinuousSafe": false,
+            "availablePointCount": 0,
+            "boxAvailablePointCount": 0
+          },
+          {
+            "fold": 2,
+            "testPointCount": 5,
+            "modelRmse": 0.00559352982401722,
+            "baselineRmse": 0.003946730577271104,
+            "continuousEllipsoidSafe": true,
+            "independentBoxContinuousSafe": false,
+            "availablePointCount": 5,
+            "boxAvailablePointCount": 4
+          },
+          {
+            "fold": 3,
+            "testPointCount": 5,
+            "modelRmse": 0.01159705052733208,
+            "baselineRmse": 0.007466153057211624,
+            "continuousEllipsoidSafe": false,
+            "independentBoxContinuousSafe": false,
+            "availablePointCount": 0,
+            "boxAvailablePointCount": 0
+          },
+          {
+            "fold": 4,
+            "testPointCount": 5,
+            "modelRmse": 0.007628517817496978,
+            "baselineRmse": 0.008900113582184252,
+            "continuousEllipsoidSafe": false,
+            "independentBoxContinuousSafe": false,
+            "availablePointCount": 0,
+            "boxAvailablePointCount": 0
+          },
+          {
+            "fold": 5,
+            "testPointCount": 5,
+            "modelRmse": 0.49020058545268824,
+            "baselineRmse": 0.010312177770563686,
+            "continuousEllipsoidSafe": false,
+            "independentBoxContinuousSafe": false,
+            "availablePointCount": 0,
+            "boxAvailablePointCount": 0
+          }
+        ],
+        "betterBaselineWithoutBounds": [
+          {
+            "fold": 1,
+            "modelRmse": 0.0009972308887413533,
+            "baselineRmse": 0.056140263339699036,
+            "availablePointCount": 0
+          },
+          {
+            "fold": 4,
+            "modelRmse": 0.007628517817496978,
+            "baselineRmse": 0.008900113582184252,
+            "availablePointCount": 0
+          }
+        ],
+        "fold5Failure": {
+          "fold": 5,
+          "modelRmse": 0.49020058545268824,
+          "baselineRmse": 0.010312177770563686,
+          "availablePointCount": 0
+        },
+        "boxComparison": {
+          "availablePairCount": 4,
+          "tighterPointCount": 4,
+          "ellipsoidOnlyPointCount": 1,
+          "medianShiftRatio": 0.12941888928755033,
+          "minShiftRatio": 0.1277416797120667,
+          "maxShiftRatio": 0.415994007587585
+        },
+        "minimumAvailableShiftShare": 0.9832673188892445,
+        "implementation": {
+          "driver": "scripts/external_coverage.py",
+          "driverSha256": "646cbfb7cfdf0dc578c8808e4ad6113b286a048038cfa9f07f47d776ad85aa6f",
+          "scopeAdapter": "scripts/external_coverage_scoped.py",
+          "scopeAdapterSha256": "a6f53ffea1e743fdae839677b45938274652af0ac8bd70bd503e11afe74fb548",
+          "wrapper": "scripts/analyze_roszman1_ellipsoid_coverage.py",
+          "wrapperSha256": "0082180d6cfa9522320a1b72815f1a52f04435aca62f0f01513d4d4d779605b1"
+        },
+        "protocolCommits": {
+          "frozenBeforeResults": "0ad8c06",
+          "results": "a25641a"
+        },
+        "decision": {
+          "probability_calibration_claimed": false,
+          "native_physical_model_claimed": false,
+          "universal_external_validity_claimed": false,
+          "continuous_x_error_bound_claimed": false,
+          "optimizer_failures_hidden": false,
+          "independent_physical_experiment_claimed": false,
+          "independent_model_family_claimed": false
+        }
+      },
+      "scientificClaim": "25 点中仅第 2 折的 5 点可给界，20 点不可用；第 1、4 折优于基线但零可用界，第 5 折明显预测失败。4 对比较中椭球更紧，另 1 点只有椭球界，平移占比均超过 98.3%。",
+      "limitations": "小样本和平移主导界只覆盖第 2 折，不是 25 点概率覆盖、连续 x 误差界或原生反正切模型验证。",
+      "upstreamContribution": "分开记录预测、连续安全、逐点可用性、界宽度、平移组成、同点比较范围和三类实现哈希。",
+      "snapshotFiles": [
+        "validation/roszman1-ellipsoid-coverage-protocol.json",
+        "validation/roszman1-ellipsoid-coverage.json",
+        "validation/frontier-roszman1-coverage-word.json"
+      ]
     }
   ]
 }

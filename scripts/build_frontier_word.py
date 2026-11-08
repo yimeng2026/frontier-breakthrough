@@ -40,7 +40,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "extreme_corpus":
+    if REPORT_MODE == "roszman1_coverage":
+        replacements = {
+            "图：`papers/35_Roszman1椭球覆盖/fig35_roszman1_ellipsoid_coverage.png`。": "![](papers/35_Roszman1椭球覆盖/fig35_roszman1_ellipsoid_coverage.png)\n\n**图 35｜Roszman1 候选预测与逐点界可用性（第 1 幅，共 1 幅）**  \n**插入位置**：§4「五个可用点的界宽度与平移主导」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "25 点小样本、5 点平移主导可用界与逐折预测—证明解离"
+    elif REPORT_MODE == "extreme_corpus":
         replacements = {
             "图：`papers/34_最大界与全点组成/fig34_maximum_full_composition.png`。": "![](papers/34_最大界与全点组成/fig34_maximum_full_composition.png)\n\n**图 34｜既有报告极值表述分级复核的联读证据（第 1 幅，共 1 幅）**  \n**插入位置**：§5「已满足契约的文档与三联图」；顺序第 1 幅，共 1 幅。",
         }

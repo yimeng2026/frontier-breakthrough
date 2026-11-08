@@ -55,7 +55,8 @@
 | 最大界点与全点组成审计 | 8／9 组最大点类别与多数一致，6 组低于中位占比；Gauss1 最大界宽为中位界宽 82.994 倍，ENSO 最大点占比位于描述性第 13.33% | `validation/maximum-full-composition-protocol.json`、`exports/maximum-full-composition-audit.json` | 分开类别、占比、描述性百分位和界宽比，不把最大点当作典型点或概率 |
 | 极值报告三级写作契约 | L0 极值描述、L1 全点分布、L2 限定机制解释；九组审计通过 L2，错误百分位、类别、界宽比和最大点典型性被拒绝 | `contracts/extreme-reporting.rules.json`、`validation/extreme-reporting-check.json` | 机器验证字段义务、数值关系和反例，不把结构通过当作物理真实性证明 |
 | 既有报告极值表述全集分级 | 16 份文档全部覆盖：10 份联读、4 份仅描述、2 份完整；10 份联读原文哈希全部不变 | `validation/extreme-corpus-audit.json`、`validation/extreme-corpus-check.json` | 约束旧报告的阅读等级，不批量改写历史文件，不用单个极值替代整体机制 |
-| 主张—证据—反例—实验图谱 | 145 个节点、284 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| Roszman1 小样本预测—证明解离 | 25 点中仅第 2 折 5 点可给界、20 点不可用；第 1、4 折优于基线但零可用界，第 5 折预测失败；4 对比较收紧 | `validation/roszman1-ellipsoid-coverage-protocol.json`、`validation/roszman1-ellipsoid-coverage.json`、`docs/ROSZMAN1_COVERAGE_2026-11-09.md` | 冻结三类实现哈希并保留逐折反例，不把平移主导的小样本可用子集写成概率覆盖、连续 x 误差界或原生反正切模型验证 |
+| 主张—证据—反例—实验图谱 | 149 个节点、294 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 范围感知外部分析适配层
 
