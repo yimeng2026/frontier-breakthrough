@@ -1,0 +1,272 @@
+{
+  "status": "computed_gauss1_post_hoc_bound_mechanism",
+  "source_sha256": "9a4b9674e25998225455382e825cde3d271ce873992127561c069529a97f4576",
+  "protocol_sha256": "96d5b0c060200ecb4ac43ce126ec8d0753aaae0b84d8211a73a51d114f270058",
+  "diagnostic_runner_sha256": "6058e294c63d6fba9be703fa10d4ffc054459c7c57f9f0b818e2fba08be6f3c3",
+  "analysis_scope": {
+    "post_hoc": true,
+    "refit": false,
+    "retuned": false,
+    "radius": 1,
+    "observations": 250
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "continuous_ellipsoid_safe": true,
+      "snapshot_root_count": 0,
+      "support_polynomial_root_count": 0,
+      "model_rmse": 200.42744184447844,
+      "baseline_rmse": 248.0938742810432,
+      "point_count": 50,
+      "ellipsoid_available_point_count": 50,
+      "ellipsoid_unavailable_point_count": 0,
+      "unavailable_reason_counts": {},
+      "unavailable_x": [],
+      "minimum_denominator_lower": {
+        "x": 50.0,
+        "value": 0.7659965291068614
+      },
+      "maximum_covariance_support": {
+        "x": 50.0,
+        "value": 0.13659583602562209
+      },
+      "maximum_prediction_shift_upper_bound": {
+        "x": 40.0,
+        "value": 30.834419131475666
+      },
+      "maximum_residual_upper_bound": {
+        "x": 1.0,
+        "value": 330.72832364692596,
+        "actual_absolute_residual": 328.4522604572851,
+        "prediction_shift": 2.2760631896408325,
+        "shift_share": 0.00688197238308104
+      },
+      "median_residual_upper_bound": 210.6945296387795,
+      "classification_mismatch_count": 0,
+      "stored_bound_agreement_count": 50,
+      "stored_bound_mismatch_count": 0
+    },
+    {
+      "fold": 2,
+      "continuous_ellipsoid_safe": false,
+      "snapshot_root_count": 1,
+      "support_polynomial_root_count": 2,
+      "model_rmse": 10211.473428529358,
+      "baseline_rmse": 69.37187913501303,
+      "point_count": 50,
+      "ellipsoid_available_point_count": 40,
+      "ellipsoid_unavailable_point_count": 10,
+      "unavailable_reason_counts": {
+        "The covariance ellipsoid is not certified away from zero at this point": 10
+      },
+      "unavailable_x": [
+        73.0,
+        74.0,
+        75.0,
+        76.0,
+        77.0,
+        78.0,
+        79.0,
+        80.0,
+        81.0,
+        82.0
+      ],
+      "minimum_denominator_lower": {
+        "x": 77.0,
+        "value": -0.0335347239844951
+      },
+      "maximum_covariance_support": {
+        "x": 100.0,
+        "value": 0.07018102744291232
+      },
+      "maximum_prediction_shift_upper_bound": {
+        "x": 72.0,
+        "value": 4777.531896303414
+      },
+      "maximum_residual_upper_bound": {
+        "x": 72.0,
+        "value": 4896.967582041431,
+        "actual_absolute_residual": 119.43568573801718,
+        "prediction_shift": 4777.531896303414,
+        "shift_share": 0.9756102764135051
+      },
+      "median_residual_upper_bound": 68.40770832356966,
+      "classification_mismatch_count": 0,
+      "stored_bound_agreement_count": 40,
+      "stored_bound_mismatch_count": 0
+    },
+    {
+      "fold": 3,
+      "continuous_ellipsoid_safe": true,
+      "snapshot_root_count": 0,
+      "support_polynomial_root_count": 0,
+      "model_rmse": 34.08152581160912,
+      "baseline_rmse": 59.690061871085476,
+      "point_count": 50,
+      "ellipsoid_available_point_count": 50,
+      "ellipsoid_unavailable_point_count": 0,
+      "unavailable_reason_counts": {},
+      "unavailable_x": [],
+      "minimum_denominator_lower": {
+        "x": 101.0,
+        "value": 0.1396997791502077
+      },
+      "maximum_covariance_support": {
+        "x": 150.0,
+        "value": 0.07380492470087975
+      },
+      "maximum_prediction_shift_upper_bound": {
+        "x": 101.0,
+        "value": 10.520214384922356
+      },
+      "maximum_residual_upper_bound": {
+        "x": 122.0,
+        "value": 48.7827644283648,
+        "actual_absolute_residual": 40.88636837395901,
+        "prediction_shift": 7.896396054405796,
+        "shift_share": 0.16186856458291293
+      },
+      "median_residual_upper_bound": 42.034591773613315,
+      "classification_mismatch_count": 0,
+      "stored_bound_agreement_count": 50,
+      "stored_bound_mismatch_count": 0
+    },
+    {
+      "fold": 4,
+      "continuous_ellipsoid_safe": true,
+      "snapshot_root_count": 0,
+      "support_polynomial_root_count": 0,
+      "model_rmse": 49.0390218175789,
+      "baseline_rmse": 63.06709187959371,
+      "point_count": 50,
+      "ellipsoid_available_point_count": 50,
+      "ellipsoid_unavailable_point_count": 0,
+      "unavailable_reason_counts": {},
+      "unavailable_x": [],
+      "minimum_denominator_lower": {
+        "x": 151.0,
+        "value": 6.689521301296609
+      },
+      "maximum_covariance_support": {
+        "x": 200.0,
+        "value": 2.8744705243884514
+      },
+      "maximum_prediction_shift_upper_bound": {
+        "x": 151.0,
+        "value": 2.5472601830106845
+      },
+      "maximum_residual_upper_bound": {
+        "x": 178.0,
+        "value": 77.87862882750686,
+        "actual_absolute_residual": 75.8517057781421,
+        "prediction_shift": 2.0269230493647563,
+        "shift_share": 0.026026691531179653
+      },
+      "median_residual_upper_bound": 48.34841778805609,
+      "classification_mismatch_count": 0,
+      "stored_bound_agreement_count": 50,
+      "stored_bound_mismatch_count": 0
+    },
+    {
+      "fold": 5,
+      "continuous_ellipsoid_safe": false,
+      "snapshot_root_count": 0,
+      "support_polynomial_root_count": 0,
+      "model_rmse": 40.91928806830245,
+      "baseline_rmse": 209.55898033749557,
+      "point_count": 50,
+      "ellipsoid_available_point_count": 0,
+      "ellipsoid_unavailable_point_count": 50,
+      "unavailable_reason_counts": {
+        "The covariance ellipsoid is not certified away from zero at this point": 50
+      },
+      "unavailable_x": [
+        201.0,
+        202.0,
+        203.0,
+        204.0,
+        205.0,
+        206.0,
+        207.0,
+        208.0,
+        209.0,
+        210.0,
+        211.0,
+        212.0,
+        213.0,
+        214.0,
+        215.0,
+        216.0,
+        217.0,
+        218.0,
+        219.0,
+        220.0,
+        221.0,
+        222.0,
+        223.0,
+        224.0,
+        225.0,
+        226.0,
+        227.0,
+        228.0,
+        229.0,
+        230.0,
+        231.0,
+        232.0,
+        233.0,
+        234.0,
+        235.0,
+        236.0,
+        237.0,
+        238.0,
+        239.0,
+        240.0,
+        241.0,
+        242.0,
+        243.0,
+        244.0,
+        245.0,
+        246.0,
+        247.0,
+        248.0,
+        249.0,
+        250.0
+      ],
+      "minimum_denominator_lower": {
+        "x": 250.0,
+        "value": -118384.77254669706
+      },
+      "maximum_covariance_support": {
+        "x": 250.0,
+        "value": 126227.979353383
+      },
+      "maximum_prediction_shift_upper_bound": null,
+      "maximum_residual_upper_bound": null,
+      "median_residual_upper_bound": null,
+      "classification_mismatch_count": 0,
+      "stored_bound_agreement_count": 0,
+      "stored_bound_mismatch_count": 0
+    }
+  ],
+  "totals": {
+    "point_count": 250,
+    "ellipsoid_available_point_count": 190,
+    "ellipsoid_unavailable_point_count": 60,
+    "classification_mismatch_count": 0,
+    "stored_bound_agreement_count": 190,
+    "stored_bound_mismatch_count": 0
+  },
+  "decision": {
+    "continuous_noncertification_called_unsafe": false,
+    "probability_calibration_claimed": false,
+    "native_physical_model_claimed": false,
+    "independent_physical_experiment_claimed": false
+  },
+  "limitations": [
+    "This is a post-hoc diagnostic of frozen outputs, not a new prospective test",
+    "Continuous non-certification is not proof of unsafety",
+    "Denominator diagnostics do not explain or justify the candidate physical mechanism",
+    "Stored bounds use observed residuals and are not probability intervals"
+  ]
+}
