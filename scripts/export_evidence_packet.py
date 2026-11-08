@@ -71,6 +71,8 @@ def build() -> dict:
     corpusCheck = read("extreme-corpus-check.json")
     roszman1Coverage = read("roszman1-ellipsoid-coverage.json")
     roszman1Protocol = read("roszman1-ellipsoid-coverage-protocol.json")
+    nativeHoldout = read("roszman1-native-holdout.json")
+    nativeProtocol = read("roszman1-native-holdout-protocol.json")
     externalScopeAmendment = read("external-scope-limitations-amendment-01-audit.json")
     ensoCoverage = read("enso-ellipsoid-coverage.json")
     ensoProtocol = read("enso-ellipsoid-coverage-protocol.json")
@@ -609,6 +611,25 @@ def build() -> dict:
             "limitations": "描述性百分位只适用于各组已定义占比的可用点，不是概率、总体代表性或物理因果；Roszman1 的 100% 仅指 5 个第 2 折可用点，不是 25 点概率覆盖或原生模型验证。" + " ".join(maximumV2Audit["limitations"]),
             "upstreamContribution": "在保留九组审计和旧收据的同时，提供十组动态图题、独立 L2 收据和小样本百分位反例，阻止把局部排序升级为概率覆盖。",
             "snapshotFiles": ["validation/maximum-full-composition-v2-protocol.json", "validation/extreme-reporting-v2-check.json", "validation/frontier-maximum-full-composition-v2-word.json"],
+        },
+        {
+            "id": "roszman1-native-holdout-comparison", "domain": "physics", "title": "Roszman1 原生反正切与有理候选的同折预测对照",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Roszman1.dat"],
+            "metrics": {
+                "totals": nativeHoldout["totals"],
+                "folds": [{"fold": case["fold"], "optimizerSuccess": case["optimizer_success"], "nativeTestMetrics": case["native_test_metrics"], "rationalCandidateTestMetrics": case["rational_candidate_test_metrics"], "cubicBaselineTestMetrics": case["cubic_baseline_test_metrics"], "nativeBetterThanRational": case["native_better_than_rational"], "nativeBetterThanCubicBaseline": case["native_better_than_cubic_baseline"], "nativeParameters": case["native_parameters"]} for case in nativeHoldout["folds"]],
+                "pooled": nativeHoldout["pooled"],
+                "knownAnswer": {"parameters": nativeHoldout["known_answer"]["parameters"], "certifiedParameters": nativeHoldout["known_answer"]["certified_parameters"], "rss": nativeHoldout["known_answer"]["rss"], "certifiedRss": nativeHoldout["known_answer"]["certified_rss"], "withinCertifiedTolerances": nativeHoldout["known_answer"]["within_certified_tolerances"], "evidenceClass": nativeHoldout["known_answer"]["evidence_class"]},
+                "analysisScope": nativeHoldout["analysis_scope"],
+                "decision": nativeHoldout["decision"],
+                "implementation": {"protocolSha256": nativeHoldout["protocol_sha256"], "dataSha256": nativeHoldout["data_sha256"], "candidateInputSha256": nativeHoldout["candidate_input_sha256"], "analysisRunnerSha256": nativeHoldout["analysis_runner_sha256"]},
+                "protocolCommits": {"protocol": "b295f8c", "results": "7c916c2"},
+            },
+            "scientificClaim": "全数据 NIST 参数和 RSS 复现仅证明原生公式实现正确。相同五折中，原生模型在第 3、4、5 折 RMSE 更低，第 1、2 折有理候选更低；25 点汇总 RMSE 分别为 0.007568255 和 0.219326962，显示折间稳定性差异而非绝对模型排名。",
+            "limitations": "原生模型没有继承有理分母、椭球、参数盒或连续安全证书；全数据认证拟合不是留出证据，25 点描述性汇总不是概率校准、物理内生或独立实验。" + " ".join(nativeHoldout["limitations"]),
+            "upstreamContribution": "把原生公式已知答案、逐折胜负、25 点汇总、优化失败保留和证明区域分离接入同一可复核接口，防止模型族混淆和全域排名。",
+            "snapshotFiles": ["validation/roszman1-native-holdout-protocol.json", "validation/roszman1-native-holdout.json", "validation/frontier-roszman1-native-holdout-word.json"],
         },
     ]
     packet = {

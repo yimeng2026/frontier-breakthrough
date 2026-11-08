@@ -1486,6 +1486,61 @@
       "sourceFiles": [
         "exports/maximum-full-composition-audit-v2.json"
       ]
+    },
+    {
+      "id": "claim-model-family-fold-independent-winner",
+      "kind": "claim",
+      "title": "同一模型族在所有留出折都优于其他模型族",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-native-holdout.json"
+      ]
+    },
+    {
+      "id": "claim-rational-bounds-transfer-native",
+      "kind": "claim",
+      "title": "有理分母、椭球和参数盒证明区域可直接移植到原生反正切模型",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-native-holdout.json"
+      ]
+    },
+    {
+      "id": "evidence-roszman1-native-holdout",
+      "kind": "evidence",
+      "title": "原生模型在第 3、4、5 折 RMSE 更低，第 1、2 折有理候选更低，五折全部成功且已知答案复核通过",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-native-holdout.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-native-fold-dependent-ranking",
+      "kind": "counterexample",
+      "title": "原生与有理候选各在三折和两折取得更低 RMSE，三次基线又在第 2、3 折最低，不存在固定赢家",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-native-holdout.json"
+      ]
+    },
+    {
+      "id": "experiment-roszman1-native-holdout-protocol",
+      "kind": "experiment",
+      "title": "在任何原生拟合前冻结 NIST 起点、相同五折、奇异性和失败规则的同折对照协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-native-holdout-protocol.json",
+        "scripts/analyze_roszman1_native_holdout.py"
+      ]
+    },
+    {
+      "id": "limitation-roszman1-native-no-bounds",
+      "kind": "limitation",
+      "title": "原生预测对照没有建立原生确定性界或概率校准，也不继承有理模型的证明区域",
+      "status": "active",
+      "sourceFiles": [
+        "validation/roszman1-native-holdout.json"
+      ]
     }
   ],
   "edges": [
@@ -3123,6 +3178,91 @@
       "from": "limitation-maximum-v2-small-sample-not-probability",
       "to": "claim-descriptive-percentile-probability-coverage",
       "relation": "limits"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-model-family-fold-independent-winner",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-rational-bounds-transfer-native",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-roszman1-native-holdout",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-native-fold-dependent-ranking",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-roszman1-native-holdout-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-roszman1-native-no-bounds",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-roszman1-native-holdout",
+      "to": "claim-model-family-fold-independent-winner",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-native-fold-dependent-ranking",
+      "to": "claim-model-family-fold-independent-winner",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-roszman1-native-holdout",
+      "to": "counterexample-roszman1-native-fold-dependent-ranking",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-native-holdout-protocol",
+      "to": "claim-model-family-fold-independent-winner",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-roszman1-native-holdout",
+      "to": "claim-rational-bounds-transfer-native",
+      "relation": "contradicts"
+    },
+    {
+      "from": "limitation-roszman1-native-no-bounds",
+      "to": "claim-rational-bounds-transfer-native",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-native-no-bounds",
+      "to": "evidence-roszman1-native-holdout",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-roszman1-native-holdout",
+      "to": "evidence-roszman1-prediction-proof-dissociation",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-native-holdout-protocol",
+      "to": "experiment-roszman1-scoped-prospective-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-native-holdout",
+      "to": "claim-nist-reproduction",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-native-holdout-protocol",
+      "to": "claim-nist-reproduction",
+      "relation": "tests"
     }
   ]
 }

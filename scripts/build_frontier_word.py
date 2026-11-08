@@ -45,7 +45,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "maximum_full_composition_v2":
+    if REPORT_MODE == "roszman1_native_holdout":
+        replacements = {
+            "图：`papers/39_Roszman1原生反正切对照/fig39_roszman1_native_holdout.png`。": "![](papers/39_Roszman1原生反正切对照/fig39_roszman1_native_holdout.png)\n\n**图 39｜Roszman1 原生反正切与有理候选同折对照（第 1 幅，共 1 幅）**  \n**插入位置**：§5「图件与模型族解释」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "相同 25 个留出点、五折模型族对照与原生证明边界"
+    elif REPORT_MODE == "maximum_full_composition_v2":
         replacements = {
             "图：`papers/38_十组最大界与全点组成/fig38_maximum_full_composition_v2.png`。": "![](papers/38_十组最大界与全点组成/fig38_maximum_full_composition_v2.png)\n\n**图 38｜十组最大界点类别、全点占比与界宽比三联审计（第 1 幅，共 1 幅）**  \n**插入位置**：§5「十组三联图与解释规则」；顺序第 1 幅，共 1 幅。",
         }

@@ -64,6 +64,10 @@ def build_graph(root):
     corpusCheck = json.loads((root / "validation/extreme-corpus-check.json").read_text(encoding="utf-8"))
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
+    nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
+    nativeProtocol = json.loads((root / "validation/roszman1-native-holdout-protocol.json").read_text(encoding="utf-8"))
+    if len(nativeHoldout["folds"]) != 5 or nativeHoldout["totals"]["point_count"] != 25 or nativeHoldout["totals"]["native_optimizer_failure_count"] != 0 or nativeHoldout["totals"]["native_better_than_rational_fold_count"] != 3 or nativeHoldout["totals"]["rational_better_than_native_fold_count"] != 2 or not nativeHoldout["known_answer"]["within_certified_tolerances"] or not nativeHoldout["analysis_scope"]["same_holdout_points"] or nativeHoldout["decision"]["rational_bounds_transferred_to_native"] or nativeHoldout["decision"]["certified_full_fit_used_as_holdout"] or nativeHoldout["folds"][0]["native_test_metrics"]["rmse"] <= nativeHoldout["folds"][0]["rational_candidate_test_metrics"]["rmse"] or nativeHoldout["folds"][4]["native_test_metrics"]["rmse"] >= nativeHoldout["folds"][4]["rational_candidate_test_metrics"]["rmse"] or nativeHoldout["pooled"]["native"]["rmse"] >= nativeHoldout["pooled"]["rational_candidate"]["rmse"]:
+        raise ValueError("Expected native Roszman1 fold-specific comparison and proof separation are not present")
     if roszman1Coverage["totals"]["point_count"] != 25 or roszman1Coverage["totals"]["ellipsoid_available_point_count"] != 5 or roszman1Coverage["totals"]["continuous_safe_fold_count"] != 1 or roszman1Coverage["totals"]["independent_box_continuous_safe_fold_count"] != 0 or roszman1Coverage["totals"]["tighter_point_count"] != 4 or roszman1Coverage["totals"]["looser_point_count"] != 0 or any(point.get("ellipsoid_available", False) for point in roszman1Coverage["folds"][0]["point_results"]) or any(point.get("ellipsoid_available", False) for point in roszman1Coverage["folds"][3]["point_results"]) or any(point.get("ellipsoid_available", False) for point in roszman1Coverage["folds"][4]["point_results"]) or roszman1Coverage["folds"][0]["test_metrics"]["rmse"] >= roszman1Coverage["folds"][0]["baseline_test_metrics"]["rmse"] or roszman1Coverage["folds"][3]["test_metrics"]["rmse"] >= roszman1Coverage["folds"][3]["baseline_test_metrics"]["rmse"] or roszman1Coverage["folds"][4]["test_metrics"]["rmse"] <= roszman1Coverage["folds"][4]["baseline_test_metrics"]["rmse"] or roszman1Coverage["analysis_scope"]["scope_adapter_sha256"] != roszman1Protocol["implementation_rule"]["scope_adapter_sha256"]:
         raise ValueError("Expected Roszman1 fold-specific dissociation and scoped provenance are not present")
     if corpusCheck["status"] != "passed" or corpusCheck["document_count"] != 16 or corpusCheck["companion_required_count"] != 10 or corpusCheck["unchanged_original_count"] != 10 or corpusCheck["error_count"] != 0:
@@ -525,6 +529,33 @@ def build_graph(root):
         edge("evidence-maximum-full-composition-v2", "counterexample-gauss1-maximum-majority-mismatch", "supports"),
         edge("evidence-maximum-full-composition-v2", "counterexample-enso-maximum-low-share-percentile", "supports"),
         edge("limitation-maximum-v2-small-sample-not-probability", "claim-descriptive-percentile-probability-coverage", "limits"),
+    ])
+    nodes.extend([
+        node("claim-model-family-fold-independent-winner", "claim", "同一模型族在所有留出折都优于其他模型族", "falsified", ["validation/roszman1-native-holdout.json"]),
+        node("claim-rational-bounds-transfer-native", "claim", "有理分母、椭球和参数盒证明区域可直接移植到原生反正切模型", "falsified", ["validation/roszman1-native-holdout.json"]),
+        node("evidence-roszman1-native-holdout", "evidence", "原生模型在第 3、4、5 折 RMSE 更低，第 1、2 折有理候选更低，五折全部成功且已知答案复核通过", "supported", ["validation/roszman1-native-holdout.json"]),
+        node("counterexample-roszman1-native-fold-dependent-ranking", "counterexample", "原生与有理候选各在三折和两折取得更低 RMSE，三次基线又在第 2、3 折最低，不存在固定赢家", "supported", ["validation/roszman1-native-holdout.json"]),
+        node("experiment-roszman1-native-holdout-protocol", "experiment", "在任何原生拟合前冻结 NIST 起点、相同五折、奇异性和失败规则的同折对照协议", "supported", ["validation/roszman1-native-holdout-protocol.json", "scripts/analyze_roszman1_native_holdout.py"]),
+        node("limitation-roszman1-native-no-bounds", "limitation", "原生预测对照没有建立原生确定性界或概率校准，也不继承有理模型的证明区域", "active", ["validation/roszman1-native-holdout.json"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-model-family-fold-independent-winner", "contains"),
+        edge("track-holdout", "claim-rational-bounds-transfer-native", "contains"),
+        edge("track-holdout", "evidence-roszman1-native-holdout", "contains"),
+        edge("track-holdout", "counterexample-roszman1-native-fold-dependent-ranking", "contains"),
+        edge("track-holdout", "experiment-roszman1-native-holdout-protocol", "contains"),
+        edge("track-holdout", "limitation-roszman1-native-no-bounds", "contains"),
+        edge("evidence-roszman1-native-holdout", "claim-model-family-fold-independent-winner", "contradicts"),
+        edge("counterexample-roszman1-native-fold-dependent-ranking", "claim-model-family-fold-independent-winner", "contradicts"),
+        edge("evidence-roszman1-native-holdout", "counterexample-roszman1-native-fold-dependent-ranking", "supports"),
+        edge("experiment-roszman1-native-holdout-protocol", "claim-model-family-fold-independent-winner", "tests"),
+        edge("evidence-roszman1-native-holdout", "claim-rational-bounds-transfer-native", "contradicts"),
+        edge("limitation-roszman1-native-no-bounds", "claim-rational-bounds-transfer-native", "limits"),
+        edge("limitation-roszman1-native-no-bounds", "evidence-roszman1-native-holdout", "limits"),
+        edge("evidence-roszman1-native-holdout", "evidence-roszman1-prediction-proof-dissociation", "supports"),
+        edge("experiment-roszman1-native-holdout-protocol", "experiment-roszman1-scoped-prospective-protocol", "supports"),
+        edge("evidence-roszman1-native-holdout", "claim-nist-reproduction", "supports"),
+        edge("experiment-roszman1-native-holdout-protocol", "claim-nist-reproduction", "tests"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

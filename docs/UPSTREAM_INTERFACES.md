@@ -58,7 +58,8 @@
 | Roszman1 小样本预测—证明解离 | 25 点中仅第 2 折 5 点可给界、20 点不可用；第 1、4 折优于基线但零可用界，第 5 折预测失败；4 对比较收紧 | `validation/roszman1-ellipsoid-coverage-protocol.json`、`validation/roszman1-ellipsoid-coverage.json`、`docs/ROSZMAN1_COVERAGE_2026-11-09.md` | 冻结三类实现哈希并保留逐折反例，不把平移主导的小样本可用子集写成概率覆盖、连续 x 误差界或原生反正切模型验证 |
 | 七外部与十组新版范围对照 | 外部 786 点中 532 可用、254 不可用；十组 901 点中 599 平移主导、302 实际残差主导；Roszman1 可用点仅位于第 2 折 | `exports/external-bound-decomposition-v5.json`、`exports/internal-external-bound-comparison-v5.json`、`docs/BOUND_COMPARISON_V5_2026-11-09.md` | 保留六外部与九组历史版本，标明 Roszman1 增量和原生模型边界，不计算合并成功率 |
 | 十组最大界与全点组成新版审计 | 9／10 组最大点类别与多数一致，6 组低于中位占比；Roszman1 在 5 个第 2 折可用点中的描述性百分位为 100%，另有 20 点不可用 | `validation/maximum-full-composition-v2-protocol.json`、`exports/maximum-full-composition-audit-v2.json`、`validation/extreme-reporting-v2-check.json` | 保留九组审计和收据，分开类别、百分位与界宽比，不把局部百分位写成概率覆盖或总体代表性 |
-| 主张—证据—反例—实验图谱 | 159 个节点、327 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| Roszman1 原生反正切同折对照 | 原生在第 3、4、5 折 RMSE 更低，第 1、2 折有理候选更低；五折全部成功，25 点 RMSE 分别为 0.007568255 和 0.219326962 | `validation/roszman1-native-holdout-protocol.json`、`validation/roszman1-native-holdout.json`、`docs/ROSZMAN1_NATIVE_HOLDOUT_2026-11-09.md` | 分开全数据已知答案与留出证据，保留逐折胜负，不移植有理证明区域或宣称绝对模型排名 |
+| 主张—证据—反例—实验图谱 | 165 个节点、344 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 范围感知外部分析适配层
 

@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生Roszman1原生反正切同折对照_图文完整版.docx",
+  "bytes": 149876,
+  "sha256": "97d4a61acde216b2323d14347e5d2103b4e16ecc05cf8f4dc5d020260f8173a7",
+  "native_math_objects": 2,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

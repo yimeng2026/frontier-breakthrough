@@ -18,7 +18,7 @@
 - [定期消化机制](docs/RESEARCH_AUTOMATION.md)：检索—筛选—复现—回馈的闭环。
 - [机器可读目录](data/projects.json)：每项均有官方来源、证据级别、协作角色和本地状态。
 - [上游接口与证据契约](docs/UPSTREAM_INTERFACES.md)：真实跨库验证、统一 JSON 接口及组件边界。
-- [跨域证据包](exports/frontier-evidence.json)：四十二项已执行检查的结构化结果与限制。
+- [跨域证据包](exports/frontier-evidence.json)：四十三项已执行检查的结构化结果与限制。
 - [外部模型族限制文本修订审计](validation/external-scope-limitations-amendment-01-audit.json)：三份修订副本、原始文件与协议哈希、仅文档文本变更的完整记录。
 - [五条主线扩展工作包](docs/EXPANSION_2026-11-08.md)：真实留出、形式化反例、化学跨库、材料跨库和知识图谱的首轮成果。
 - [第二轮续展报告](docs/CONTINUATION_2026-11-08.md)：Eckerle4 双尾外推与 cvc5 交叉求解器复核。
@@ -51,6 +51,8 @@
 - [第二十九阶段 Roszman1 预测—证明解离](docs/ROSZMAN1_COVERAGE_2026-11-09.md)：25 点量子缺陷实测数据、5 点可用界、逐折反例与平移主导界审计。
 - [第三十阶段七外部与十组界组成对照](docs/BOUND_COMPARISON_V5_2026-11-09.md)：786 点外部范围、901 个可用点、Roszman1 小样本增量与历史版本保持。
 - [第三十一阶段十组最大界与全点组成审计](docs/MAXIMUM_FULL_COMPOSITION_V2_2026-11-09.md)：9／10 组类别一致、6 组低于中位占比及小样本描述性百分位边界。
+- [第三十二阶段 Roszman1 原生反正切模型同折对照](docs/ROSZMAN1_NATIVE_HOLDOUT_2026-11-09.md)：相同 25 个留出点、逐折胜负、折间稳定性与原生证明边界。
+- [Roszman1 原生反正切同折对照原生 Word 图文版](papers/前沿共生Roszman1原生反正切同折对照_图文完整版.docx)：一幅实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
 - [第三十一阶段十组极值审计原生 Word 图文版](papers/前沿共生第三十一阶段十组极值审计_图文完整版.docx)：一幅三联实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
 - [七外部与十组界组成原生 Word 图文版](papers/前沿共生七外部与十组界组成对照_图文完整版.docx)：两幅实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
 - [Roszman1 预测—证明解离原生 Word 图文版](papers/前沿共生Roszman1预测证明解离_图文完整版.docx)：一幅实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
@@ -82,7 +84,7 @@
 - [有理模型原生 Word 图文版](papers/前沿共生有理模型与分母边界_图文完整版.docx)：一幅实图、四个 Word 表格、七个原生 OMML 公式，含目录、页眉和页码。
 - [续展原生 Word 图文版](papers/前沿共生续展_双尾外推与求解器复核_图文完整版.docx)：一幅实图、四个 Word 表格、七个原生 OMML 公式，含目录、页眉和页码。
 - [扩展工作包原生 Word 图文版](papers/前沿共生扩展工作包_图文完整版.docx)：两幅实图、三个 Word 表格、五个原生 OMML 公式，含目录、页眉和页码。
-- [主张—证据—反例—实验图谱](exports/frontier-knowledge-graph.json)：159 个节点、327 条边，支持与反例均可追溯到实际文件。
+- [主张—证据—反例—实验图谱](exports/frontier-knowledge-graph.json)：165 个节点、344 条边，支持与反例均可追溯到实际文件。
 - [研究简报合订本（Word）](papers/前沿共生研究简报_合订本.docx)：三篇长文、十三幅图，附真实证据与复现路径。
 - [研究简报合订本（Markdown）](papers/前沿共生研究简报_合订本.md)：便于审阅和继续修订的文本版本。
 
