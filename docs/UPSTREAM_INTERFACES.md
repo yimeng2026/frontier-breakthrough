@@ -44,9 +44,29 @@
 | Gauss1 界失效机制与同点分解 | 190 点数值全部一致；第 2 折最大界处平移占 97.561%，第 1、3、4 折主要由实际残差贡献 | `scripts/analyze_gauss1_bound_mechanism.py`、`validation/gauss1-bound-mechanism.json` | 区分候选误差、近零分母放大和极端协方差支撑，不把事后占比称为概率贡献或物理机制 |
 | 三数据界组成与机制异质性 | 305 点算术恒等式全部一致；Filip 与 MGH17 几乎全由平移主导，Gauss1 多数由实际残差主导 | `scripts/build_external_bound_decomposition.py`、`exports/external-bound-decomposition.json` | 同时保留全点分布和最大界位置，不把算术占比称为概率贡献或普适排名 |
 | 内外部六组界组成对照 | 674 点中 482 点平移主导、192 点实际残差主导；内部有根折与外部不可用点分开 | `scripts/build_internal_external_bound_comparison.py`、`exports/internal-external-bound-comparison.json` | 支持内外部可比较但不可混同的证据检索，不计算合并成功率或普适排名 |
-| Misra1a 预测—证明解离 | 14 点中仅 4 点可给界，连续安全 1／5 折；小 RMSE 与宽上界和平移主导并存 | `validation/misra1a-ellipsoid-coverage-protocol.json`、`validation/misra1a-ellipsoid-coverage.json` | 提供预注册小样本反例，不把拟合接近或 4 点零越界称为连续证明、概率覆盖或高信息量 |
+| Misra1a 预测—证明解离 | 14 点中仅 4 点可给界，连续安全 1／5 折；小 RMSE 与宽上界和平移主导并存 | `validation/misra1a-ellipsoid-coverage-protocol.json`、`validation/misra1a-ellipsoid-coverage-scope-v2.json` | 提供预注册小样本反例，不把拟合接近或 4 点零越界称为连续证明、概率覆盖或高信息量 |
 | 四外部与七组新版范围对照 | 外部 379 点中 309 可用、70 不可用；七组 678 点中 486 平移主导、192 实际残差主导 | `exports/external-bound-decomposition-v2.json`、`exports/internal-external-bound-comparison-v2.json` | 新旧文件并存并标明 Misra1a 增量，不覆盖历史或计算合并成功率 |
-| 主张—证据—反例—实验图谱 | 118 个节点、214 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| Chwirut1 同族外部审计 | 214 点中 83 点可给界、131 点不可用；第 4 折最低 RMSE 但零可用界；与 Chwirut2 同研究同模型族 | `validation/chwirut1-ellipsoid-coverage-protocol.json`、`validation/chwirut1-ellipsoid-coverage.json` | 区分未触碰数据与独立模型族验证，分开记录预测和证明 |
+| 五外部与八组新版范围对照 | 外部 593 点中 392 可用、201 不可用；八组 761 点中 561 平移主导、200 实际残差主导 | `exports/external-bound-decomposition-v3.json`、`exports/internal-external-bound-comparison-v3.json` | 标明 Chwirut1 增量与同族边界，不覆盖历史或计算合并成功率 |
+| 外部模型族限制文本修订 | MGH17、Gauss1、Misra1a 各生成一份修订副本；除首条限制文本和溯源字段外原字段全部保持 | `validation/external-scope-limitations-amendment-01.json`、`validation/external-scope-limitations-amendment-01-audit.json` | 保留原始文件、冻结协议和全部数值，阻止错误文本继续传播 |
+| 范围感知外部分析适配层 | 校验驱动与适配器哈希，生成或采用数据专属限制文本，保留调用方与同族数据边界 | `scripts/external_coverage_scoped.py` | 新协议可复用正确范围说明，旧驱动与旧包装器不变 |
+| 主张—证据—反例—实验图谱 | 129 个节点、242 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+
+## 范围感知外部分析适配层
+
+新外部分析包装器使用 `scripts/external_coverage_scoped.py`，不在旧冻结驱动上改文案或重跑旧结果。调用形式：
+
+```python
+from external_coverage_scoped import run_scoped_external_analysis
+
+summary = run_scoped_external_analysis(PROTOCOL, Path(__file__).resolve())
+```
+
+第二个参数是调用方文件，原有 `analysis_runner_sha256` 继续标识实际包装器；适配器另写入 `analysis_scope.scope_adapter_sha256`。当前适配器哈希为 `a6f53ffea1e743fdae839677b45938274652af0ac8bd70bd503e11afe74fb548`。
+
+新协议应在 `implementation_rule` 中同时冻结 `driver`、`driver_sha256` 和 `scope_adapter_sha256`，并在 `candidate_rule.scope_limitation` 中写明数据专属候选边界。未提供专属文本时，适配器只从 `dataset_scope.native_model` 的首段生成说明；存在 `related_prior_dataset` 时，强制保留 `independent_model_family_test=false` 和关联数据名称。驱动或适配器哈希不符会在调用拟合前停止。
+
+该适配层只修正文档范围和实现追溯，不改变模型、折分、优化器、半径、协方差、数值界或失败判定。旧协议和旧包装器不回改；下一组新数据必须在自己的前瞻协议中冻结上述字段。
 
 ## 与自动科学发现项目的配合
 
