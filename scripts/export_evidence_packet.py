@@ -46,20 +46,21 @@ def build() -> dict:
     ellipsoidComparison = read("rational-ellipsoid-box-comparison.json")
     ellipsoidInterval = read("rational-ellipsoid-interval-safety.json")
     filipCoverage = read("filip-ellipsoid-coverage.json")
-    mgh17Coverage = read("mgh17-ellipsoid-coverage.json")
+    mgh17Coverage = read("mgh17-ellipsoid-coverage-scope-v2.json")
     externalComparison = json.loads((ROOT / "exports/external-coverage-comparison.json").read_text(encoding="utf-8"))
-    gauss1Coverage = read("gauss1-ellipsoid-coverage.json")
+    gauss1Coverage = read("gauss1-ellipsoid-coverage-scope-v2.json")
     gauss1Comparison = json.loads((ROOT / "exports/external-coverage-gauss1-comparison.json").read_text(encoding="utf-8"))
     gauss1Mechanism = read("gauss1-bound-mechanism.json")
     externalDecomposition = json.loads((ROOT / "exports/external-bound-decomposition.json").read_text(encoding="utf-8"))
     internalExternalDecomposition = json.loads((ROOT / "exports/internal-external-bound-comparison.json").read_text(encoding="utf-8"))
-    misra1aCoverage = read("misra1a-ellipsoid-coverage.json")
+    misra1aCoverage = read("misra1a-ellipsoid-coverage-scope-v2.json")
     chwirut1Coverage = read("chwirut1-ellipsoid-coverage.json")
     chwirut1Protocol = read("chwirut1-ellipsoid-coverage-protocol.json")
     externalV2Decomposition = json.loads((ROOT / "exports/external-bound-decomposition-v2.json").read_text(encoding="utf-8"))
     combinedV2Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v2.json").read_text(encoding="utf-8"))
     externalV3Decomposition = json.loads((ROOT / "exports/external-bound-decomposition-v3.json").read_text(encoding="utf-8"))
     combinedV3Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v3.json").read_text(encoding="utf-8"))
+    externalScopeAmendment = read("external-scope-limitations-amendment-01-audit.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -284,7 +285,7 @@ def build() -> dict:
             "metrics": {"comparisonTotals": externalComparison["totals"], "mgh17": mgh17Coverage["totals"], "driverSha256": externalComparison["analysis_scope"]["driver_sha256"]},
             "scientificClaim": "通用驱动保持 Filip 的 82 点覆盖与连续安全；MGH17 33／33 点覆盖且连续安全，32 点椭球更紧，独立盒五折安全。",
             "limitations": " ".join(externalComparison["limitations"]), "upstreamContribution": "提供可复用外部覆盖驱动和跨数据对照，不把 115 点汇总称为概率覆盖或普适成功率。",
-            "snapshotFiles": ["validation/mgh17-ellipsoid-coverage-protocol.json", "validation/mgh17-ellipsoid-coverage.json", "validation/external-coverage-framework-protocol.json"],
+            "snapshotFiles": ["validation/mgh17-ellipsoid-coverage-protocol.json", "validation/mgh17-ellipsoid-coverage.json", "validation/mgh17-ellipsoid-coverage-scope-v2.json", "validation/external-coverage-framework-protocol.json"],
         },
         {
             "id": "gauss1-external-coverage-counterexample", "domain": "physics", "title": "Gauss1 外部覆盖反例与三数据证据轴对照",
@@ -294,7 +295,7 @@ def build() -> dict:
             "scientificClaim": "Gauss1 的 250 点中仅 190 点可给出椭球界，连续安全为 3／5 折；第 2 折预测显著失败，第 5 折无可用界。三数据共 365 点，其中 305 点适用、60 点不可用。",
             "limitations": "Gauss1 是生成数据，候选不是原生八参数模型。305 个适用点零违规不是概率覆盖率或普适外部成功率；60 个不可用点不能解释为覆盖或安全。" + " ".join(gauss1Comparison["limitations"]),
             "upstreamContribution": "提供先推送冻结协议再执行的外部检验、完整失败记录和三数据证据轴对照，否定代码复用自动保证外部有效性的强解释。",
-            "snapshotFiles": ["validation/gauss1-ellipsoid-coverage-protocol.json", "validation/gauss1-ellipsoid-coverage.json", "validation/external-coverage-gauss1-comparison-protocol.json"],
+            "snapshotFiles": ["validation/gauss1-ellipsoid-coverage-protocol.json", "validation/gauss1-ellipsoid-coverage.json", "validation/gauss1-ellipsoid-coverage-scope-v2.json", "validation/external-coverage-gauss1-comparison-protocol.json"],
         },
         {
             "id": "gauss1-bound-mechanism-decomposition", "domain": "math", "title": "Gauss1 分母下界与同点残差界分解",
@@ -304,7 +305,7 @@ def build() -> dict:
             "scientificClaim": "190 个已有界点的三项数值与冻结结果全部一致。第 1、3、4 折最大残差界位置主要由实际残差贡献，第 2 折预测平移占 97.561%，第 5 折 50 点全部不可用；宽界不是单一机制。",
             "limitations": "这是只读事后诊断，不是重新拟合或前瞻检验；同点占比不是概率贡献，连续未认证不等于已证明不安全。" + " ".join(gauss1Mechanism["limitations"]),
             "upstreamContribution": "提供全 250 点分母下界、60 点不可用原因、190 点数值一致性及同点误差—平移分解，支持按机制而非仅按数据集检索。",
-            "snapshotFiles": ["validation/gauss1-bound-mechanism.json", "validation/gauss1-ellipsoid-coverage.json", "validation/frontier-gauss1-bound-mechanism-word.json"],
+            "snapshotFiles": ["validation/gauss1-bound-mechanism.json", "validation/gauss1-ellipsoid-coverage.json", "validation/gauss1-ellipsoid-coverage-scope-v2.json", "validation/frontier-gauss1-bound-mechanism-word.json"],
         },
         {
             "id": "external-bound-composition-heterogeneity", "domain": "math", "title": "三数据同点界组成与机制异质性",
@@ -334,7 +335,7 @@ def build() -> dict:
             "scientificClaim": "Misra1a 的 14 点中仅 4 点可给界，连续安全仅 1／5 折；候选 RMSE 较小但只有两折优于基线。4 个可用点平移占比均超过 99.9%，最大上界为 414.13，形成预测—证明解离。",
             "limitations": "小样本候选不是原生两参数模型，重分析不是新完成的独立物理实验；4 个适用点零越界不是概率覆盖或高信息量证明。" + " ".join(misra1aCoverage["limitations"]),
             "upstreamContribution": "提供预注册小样本实测数据案例，分开记录 RMSE、连续安全、逐点可用性、界宽度和同点组成，避免拟合接近被误写为有用证明。",
-            "snapshotFiles": ["validation/misra1a-ellipsoid-coverage-protocol.json", "validation/misra1a-ellipsoid-coverage.json", "validation/frontier-misra1a-coverage-word.json"],
+            "snapshotFiles": ["validation/misra1a-ellipsoid-coverage-protocol.json", "validation/misra1a-ellipsoid-coverage.json", "validation/misra1a-ellipsoid-coverage-scope-v2.json", "validation/frontier-misra1a-coverage-word.json"],
         },
         {
             "id": "chwirut1-prediction-proof-dissociation", "domain": "physics", "title": "Chwirut1 同族外部审计与最低 RMSE 折零可用界",
@@ -381,6 +382,24 @@ def build() -> dict:
             "limitations": "这是新增同族数据后的事后范围汇总，不是合并成功率、证明能力改善或独立模型族验证；Chwirut1 与 Chwirut2 的亲缘关系必须保留。" + " ".join(combinedV3Decomposition["limitations"]),
             "upstreamContribution": "提供五外部与八组并存的新版范围接口，将 Chwirut1 增量、数据亲缘、八组分布和两类不适用边界显式连接，防止总对照覆盖历史或夸大独立性。",
             "snapshotFiles": ["validation/external-bound-decomposition-v3-protocol.json", "validation/internal-external-bound-comparison-v3-protocol.json", "validation/chwirut1-ellipsoid-coverage-protocol.json", "validation/frontier-bound-comparison-v3-word.json"],
+        },
+        {
+            "id": "external-scope-limitations-amendment", "domain": "math", "title": "三组外部结果的模型族限制文本可审计修订",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/misra1a.shtml"],
+            "metrics": {
+                "correctionCount": externalScopeAmendment["correction_count"],
+                "datasetIds": externalScopeAmendment["dataset_ids"],
+                "changedJsonPointer": externalScopeAmendment["changed_json_pointer"],
+                "numericResultsModified": externalScopeAmendment["numeric_results_modified"],
+                "originalFilesPreserved": externalScopeAmendment["original_files_preserved"],
+                "corrections": externalScopeAmendment["corrections"],
+                "amendmentRunnerSha256": externalScopeAmendment["amendment_runner_sha256"],
+            },
+            "scientificClaim": "MGH17、Gauss1、Misra1a 的三份修订副本分别使用各自原生模型族的限制文本；除 /limitations/0 和新增 scope_correction 溯源字段外，原文件所有字段保持不变。",
+            "limitations": "这是文档适用范围修订，不是重新拟合、数值结果升级或原冻结文件消失；原始文件及其历史错误文本保留用于审计，新证据叙述使用修订副本。",
+            "upstreamContribution": "提供原文件、原协议、修订副本、修订脚本和输出哈希的完整链条，阻止通用 Filip 文案继续传播，同时不重写科学结果。",
+            "snapshotFiles": ["validation/external-scope-limitations-amendment-01.json", "validation/external-scope-limitations-amendment-01-audit.json", "validation/mgh17-ellipsoid-coverage-scope-v2.json", "validation/gauss1-ellipsoid-coverage-scope-v2.json", "validation/misra1a-ellipsoid-coverage-scope-v2.json"],
         },
     ]
     packet = {

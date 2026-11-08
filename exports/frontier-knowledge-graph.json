@@ -1185,6 +1185,16 @@
         "exports/internal-external-bound-comparison-v3.json",
         "validation/chwirut1-ellipsoid-coverage-protocol.json"
       ]
+    },
+    {
+      "id": "experiment-external-scope-limitations-amendment",
+      "kind": "experiment",
+      "title": "保留原冻结文件并修订 MGH17、Gauss1、Misra1a 的模型族限制文本及来源哈希",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/external-scope-limitations-amendment-01.json",
+        "validation/external-scope-limitations-amendment-01-audit.json"
+      ]
     }
   ],
   "edges": [
@@ -2387,6 +2397,16 @@
       "from": "limitation-bound-comparison-v3-scope",
       "to": "claim-untouched-data-independent-model-family",
       "relation": "limits"
+    },
+    {
+      "from": "track-knowledge",
+      "to": "experiment-external-scope-limitations-amendment",
+      "relation": "contains"
+    },
+    {
+      "from": "experiment-external-scope-limitations-amendment",
+      "to": "claim-knowledge-graph",
+      "relation": "tests"
     }
   ]
 }

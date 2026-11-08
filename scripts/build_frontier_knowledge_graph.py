@@ -49,6 +49,9 @@ def build_graph(root):
     combinedV2Decomposition = json.loads((root / "exports/internal-external-bound-comparison-v2.json").read_text(encoding="utf-8"))
     externalV3Decomposition = json.loads((root / "exports/external-bound-decomposition-v3.json").read_text(encoding="utf-8"))
     combinedV3Decomposition = json.loads((root / "exports/internal-external-bound-comparison-v3.json").read_text(encoding="utf-8"))
+    externalScopeAmendment = json.loads((root / "validation/external-scope-limitations-amendment-01-audit.json").read_text(encoding="utf-8"))
+    if externalScopeAmendment["correction_count"] != 3 or externalScopeAmendment["numeric_results_modified"] or not externalScopeAmendment["original_files_preserved"] or externalScopeAmendment["dataset_ids"] != ["mgh17", "gauss1", "misra1a"]:
+        raise ValueError("Expected external scope amendment is not present")
     if externalV3Decomposition["totals"]["point_count"] != 593 or externalV3Decomposition["totals"]["ellipsoid_available_point_count"] != 392 or externalV3Decomposition["totals"]["ellipsoid_unavailable_point_count"] != 201 or externalV3Decomposition["totals"]["prediction_shift_dominant_point_count"] != 217 or externalV3Decomposition["totals"]["snapshot_residual_dominant_point_count"] != 175 or len(externalV3Decomposition["datasets"]) != 5 or externalV3Decomposition["datasets"][-1]["id"] != "chwirut1" or externalV3Decomposition["datasets"][-1]["prediction_shift_dominant_point_count"] != 75 or externalV3Decomposition["datasets"][-1]["snapshot_residual_dominant_point_count"] != 8 or combinedV3Decomposition["totals"]["ellipsoid_available_point_count"] != 761 or combinedV3Decomposition["totals"]["prediction_shift_dominant_point_count"] != 561 or combinedV3Decomposition["totals"]["snapshot_residual_dominant_point_count"] != 200 or len(combinedV3Decomposition["datasets"]) != 8 or combinedV3Decomposition["analysis_scope"]["chwirut1_independent_model_family_test"]:
         raise ValueError("Expected v3 scope expansion and related-data scope are not present")
     if chwirut1Coverage["totals"]["point_count"] != 214 or chwirut1Coverage["totals"]["ellipsoid_available_point_count"] != 83 or chwirut1Coverage["totals"]["coverage_violation_count"] != 0 or chwirut1Coverage["totals"]["continuous_safe_fold_count"] != 2 or chwirut1Coverage["folds"][3]["test_metrics"]["rmse"] != min(case["test_metrics"]["rmse"] for case in chwirut1Coverage["folds"]) or chwirut1Coverage["folds"][3]["test_metrics"]["rmse"] >= chwirut1Coverage["folds"][3]["baseline_test_metrics"]["rmse"] or any(point.get("ellipsoid_available", False) for point in chwirut1Coverage["folds"][3]["point_results"]) or chwirut1Coverage["analysis_scope"]["independent_model_family_test"] or not chwirut1Protocol["dataset_scope"]["related_prior_dataset"]["same_study"] or not chwirut1Protocol["dataset_scope"]["related_prior_dataset"]["same_native_model_family"]:
@@ -345,6 +348,11 @@ def build_graph(root):
         edge("limitation-bound-comparison-v3-scope", "claim-new-data-overwrite-history", "limits"),
         edge("evidence-bound-comparison-v3", "evidence-chwirut1-prediction-proof-dissociation", "supports"),
         edge("limitation-bound-comparison-v3-scope", "claim-untouched-data-independent-model-family", "limits"),
+    ])
+    nodes.append(node("experiment-external-scope-limitations-amendment", "experiment", "保留原冻结文件并修订 MGH17、Gauss1、Misra1a 的模型族限制文本及来源哈希", "supported", ["validation/external-scope-limitations-amendment-01.json", "validation/external-scope-limitations-amendment-01-audit.json"]))
+    edges.extend([
+        edge("track-knowledge", "experiment-external-scope-limitations-amendment", "contains"),
+        edge("experiment-external-scope-limitations-amendment", "claim-knowledge-graph", "tests"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

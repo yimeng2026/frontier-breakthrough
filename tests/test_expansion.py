@@ -112,8 +112,8 @@ class ExpansionTests(unittest.TestCase):
 
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
-        self.assertEqual(len(packet["items"]), 33)
-        self.assertEqual(len({i["id"] for i in packet["items"]}), 33)
+        self.assertEqual(len(packet["items"]), 34)
+        self.assertEqual(len({i["id"] for i in packet["items"]}), 34)
         for item in packet["items"]:
             self.assertEqual(item["status"], "verified")
             self.assertTrue(item["limitations"])
@@ -198,6 +198,20 @@ class ExpansionTests(unittest.TestCase):
         self.assertEqual(item["metrics"]["chwirut1Increment"]["predictionShiftDominant"], 75)
         self.assertEqual(item["metrics"]["relatedDataset"]["name"], "Chwirut2")
         self.assertTrue(item["metrics"]["historicalPreservation"]["previousFilesPreserved"])
+
+    def test_external_scope_amendment_stops_wrong_native_model_text(self):
+        packet = self.read("exports/frontier-evidence.json")
+        identifiers = {item["id"] for item in packet["items"]}
+        self.assertIn("external-scope-limitations-amendment", identifiers)
+        item = next(item for item in packet["items"] if item["id"] == "external-scope-limitations-amendment")
+        self.assertEqual(item["metrics"]["correctionCount"], 3)
+        self.assertEqual(item["metrics"]["datasetIds"], ["mgh17", "gauss1", "misra1a"])
+        self.assertTrue(item["metrics"]["originalFilesPreserved"])
+        self.assertFalse(item["metrics"]["numericResultsModified"])
+        self.assertEqual(item["metrics"]["changedJsonPointer"], "/limitations/0")
+        for identifier in ["external-coverage-framework-mgh17", "gauss1-external-coverage-counterexample", "misra1a-prediction-proof-dissociation"]:
+            existing = next(entry for entry in packet["items"] if entry["id"] == identifier)
+            self.assertNotIn("native Filip", existing["limitations"])
 
     def test_new_agent_projects_have_primary_sources(self):
         projects = self.read("data/projects.json")["projects"]

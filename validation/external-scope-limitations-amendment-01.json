@@ -1,0 +1,40 @@
+{
+  "status": "frozen_external_scope_limitations_amendment",
+  "amendment_id": "external-scope-limitations-amendment-01",
+  "created_at_local": "2026-11-09T05:21:26+08:00",
+  "reason": "Three frozen external result files incorrectly inherited the Filip-specific first limitation. Correct only that documentary scope text in separate files; do not rerun fits, change protocols or alter any numerical result.",
+  "changed_json_pointer": "/limitations/0",
+  "original_files_preserved": true,
+  "numeric_results_modified": false,
+  "audit_output": "validation/external-scope-limitations-amendment-01-audit.json",
+  "corrections": [
+    {
+      "id": "mgh17",
+      "protocol": "validation/mgh17-ellipsoid-coverage-protocol.json",
+      "protocol_sha256": "ba29a17a86461404a82420d74b0d21341f980251430d0329810e4207d1a666aa",
+      "source": "validation/mgh17-ellipsoid-coverage.json",
+      "source_sha256": "66eb9647b740462613eae15019a1c666bf9c068eacb78cd6f912b925af474bf9",
+      "output": "validation/mgh17-ellipsoid-coverage-scope-v2.json",
+      "corrected_limitation": "The cubic/cubic candidate is only an approximation stress test and not the native MGH17 five-parameter double-exponential model"
+    },
+    {
+      "id": "gauss1",
+      "protocol": "validation/gauss1-ellipsoid-coverage-protocol.json",
+      "protocol_sha256": "96d5b0c060200ecb4ac43ce126ec8d0753aaae0b84d8211a73a51d114f270058",
+      "source": "validation/gauss1-ellipsoid-coverage.json",
+      "source_sha256": "9a4b9674e25998225455382e825cde3d271ce873992127561c069529a97f4576",
+      "output": "validation/gauss1-ellipsoid-coverage-scope-v2.json",
+      "corrected_limitation": "The cubic/cubic candidate is only an approximation stress test and not the native Gauss1 eight-parameter exponential model"
+    },
+    {
+      "id": "misra1a",
+      "protocol": "validation/misra1a-ellipsoid-coverage-protocol.json",
+      "protocol_sha256": "df65fbbac3b5044de8fd28f6ddf4d044247acf4d20ce27737b76437aaf60747f",
+      "source": "validation/misra1a-ellipsoid-coverage.json",
+      "source_sha256": "d61b26d81d4b567e306696c1a711c7f4c8b79ecdcabd5310724b505dec445c60",
+      "output": "validation/misra1a-ellipsoid-coverage-scope-v2.json",
+      "corrected_limitation": "The cubic/cubic candidate is only an approximation stress test and not the native Misra1a two-parameter saturation exponential model"
+    }
+  ],
+  "future_protocol_rule": "New external protocols must freeze dataset-specific candidate scope text in a new wrapper; the original generic driver and all original frozen outputs remain unchanged"
+}

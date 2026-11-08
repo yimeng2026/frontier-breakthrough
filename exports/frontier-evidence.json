@@ -1053,6 +1053,7 @@
       "snapshotFiles": [
         "validation/mgh17-ellipsoid-coverage-protocol.json",
         "validation/mgh17-ellipsoid-coverage.json",
+        "validation/mgh17-ellipsoid-coverage-scope-v2.json",
         "validation/external-coverage-framework-protocol.json"
       ]
     },
@@ -1107,6 +1108,7 @@
       "snapshotFiles": [
         "validation/gauss1-ellipsoid-coverage-protocol.json",
         "validation/gauss1-ellipsoid-coverage.json",
+        "validation/gauss1-ellipsoid-coverage-scope-v2.json",
         "validation/external-coverage-gauss1-comparison-protocol.json"
       ]
     },
@@ -1235,6 +1237,7 @@
       "snapshotFiles": [
         "validation/gauss1-bound-mechanism.json",
         "validation/gauss1-ellipsoid-coverage.json",
+        "validation/gauss1-ellipsoid-coverage-scope-v2.json",
         "validation/frontier-gauss1-bound-mechanism-word.json"
       ]
     },
@@ -1610,11 +1613,12 @@
         }
       },
       "scientificClaim": "Misra1a 的 14 点中仅 4 点可给界，连续安全仅 1／5 折；候选 RMSE 较小但只有两折优于基线。4 个可用点平移占比均超过 99.9%，最大上界为 414.13，形成预测—证明解离。",
-      "limitations": "小样本候选不是原生两参数模型，重分析不是新完成的独立物理实验；4 个适用点零越界不是概率覆盖或高信息量证明。The cubic/cubic candidate is only an approximation stress test and not the native Filip eleven-parameter model Deterministic residual bounds are not probability intervals or calibration evidence Continuous denominator safety does not imply accurate or useful prediction Pointwise bounds do not provide a continuous-x prediction error bound Optimizer failures and unavailable bounds are retained, not converted into successes",
+      "limitations": "小样本候选不是原生两参数模型，重分析不是新完成的独立物理实验；4 个适用点零越界不是概率覆盖或高信息量证明。The cubic/cubic candidate is only an approximation stress test and not the native Misra1a two-parameter saturation exponential model Deterministic residual bounds are not probability intervals or calibration evidence Continuous denominator safety does not imply accurate or useful prediction Pointwise bounds do not provide a continuous-x prediction error bound Optimizer failures and unavailable bounds are retained, not converted into successes",
       "upstreamContribution": "提供预注册小样本实测数据案例，分开记录 RMSE、连续安全、逐点可用性、界宽度和同点组成，避免拟合接近被误写为有用证明。",
       "snapshotFiles": [
         "validation/misra1a-ellipsoid-coverage-protocol.json",
         "validation/misra1a-ellipsoid-coverage.json",
+        "validation/misra1a-ellipsoid-coverage-scope-v2.json",
         "validation/frontier-misra1a-coverage-word.json"
       ]
     },
@@ -1993,6 +1997,75 @@
         "validation/internal-external-bound-comparison-v3-protocol.json",
         "validation/chwirut1-ellipsoid-coverage-protocol.json",
         "validation/frontier-bound-comparison-v3-word.json"
+      ]
+    },
+    {
+      "id": "external-scope-limitations-amendment",
+      "domain": "math",
+      "title": "三组外部结果的模型族限制文本可审计修订",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/misra1a.shtml"
+      ],
+      "metrics": {
+        "correctionCount": 3,
+        "datasetIds": [
+          "mgh17",
+          "gauss1",
+          "misra1a"
+        ],
+        "changedJsonPointer": "/limitations/0",
+        "numericResultsModified": false,
+        "originalFilesPreserved": true,
+        "corrections": [
+          {
+            "id": "mgh17",
+            "protocol": "validation/mgh17-ellipsoid-coverage-protocol.json",
+            "protocol_sha256": "ba29a17a86461404a82420d74b0d21341f980251430d0329810e4207d1a666aa",
+            "source": "validation/mgh17-ellipsoid-coverage.json",
+            "source_sha256": "66eb9647b740462613eae15019a1c666bf9c068eacb78cd6f912b925af474bf9",
+            "output": "validation/mgh17-ellipsoid-coverage-scope-v2.json",
+            "corrected_sha256": "939275f52ddb3a59eebe39ac15eeb379641fb98087405329d1cd1111822a0ab4",
+            "changed_json_pointer": "/limitations/0",
+            "all_other_original_fields_preserved": true
+          },
+          {
+            "id": "gauss1",
+            "protocol": "validation/gauss1-ellipsoid-coverage-protocol.json",
+            "protocol_sha256": "96d5b0c060200ecb4ac43ce126ec8d0753aaae0b84d8211a73a51d114f270058",
+            "source": "validation/gauss1-ellipsoid-coverage.json",
+            "source_sha256": "9a4b9674e25998225455382e825cde3d271ce873992127561c069529a97f4576",
+            "output": "validation/gauss1-ellipsoid-coverage-scope-v2.json",
+            "corrected_sha256": "5c48a5bc9dfed18d76e03d75f3d6c07586bbbc9c94147bb9ad3647664156e0ff",
+            "changed_json_pointer": "/limitations/0",
+            "all_other_original_fields_preserved": true
+          },
+          {
+            "id": "misra1a",
+            "protocol": "validation/misra1a-ellipsoid-coverage-protocol.json",
+            "protocol_sha256": "df65fbbac3b5044de8fd28f6ddf4d044247acf4d20ce27737b76437aaf60747f",
+            "source": "validation/misra1a-ellipsoid-coverage.json",
+            "source_sha256": "d61b26d81d4b567e306696c1a711c7f4c8b79ecdcabd5310724b505dec445c60",
+            "output": "validation/misra1a-ellipsoid-coverage-scope-v2.json",
+            "corrected_sha256": "abad45d95bd5e6c53efe9a3ca7abba870d0c310b615da4ba79c47ea4c82c64b4",
+            "changed_json_pointer": "/limitations/0",
+            "all_other_original_fields_preserved": true
+          }
+        ],
+        "amendmentRunnerSha256": "bdf258d5fbbe0916ba8da9204de79023c635c9287a203e9e7654f81a55f4bd06"
+      },
+      "scientificClaim": "MGH17、Gauss1、Misra1a 的三份修订副本分别使用各自原生模型族的限制文本；除 /limitations/0 和新增 scope_correction 溯源字段外，原文件所有字段保持不变。",
+      "limitations": "这是文档适用范围修订，不是重新拟合、数值结果升级或原冻结文件消失；原始文件及其历史错误文本保留用于审计，新证据叙述使用修订副本。",
+      "upstreamContribution": "提供原文件、原协议、修订副本、修订脚本和输出哈希的完整链条，阻止通用 Filip 文案继续传播，同时不重写科学结果。",
+      "snapshotFiles": [
+        "validation/external-scope-limitations-amendment-01.json",
+        "validation/external-scope-limitations-amendment-01-audit.json",
+        "validation/mgh17-ellipsoid-coverage-scope-v2.json",
+        "validation/gauss1-ellipsoid-coverage-scope-v2.json",
+        "validation/misra1a-ellipsoid-coverage-scope-v2.json"
       ]
     }
   ]
