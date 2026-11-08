@@ -665,6 +665,42 @@
       "sourceFiles": [
         "validation/rational-prediction-box-bounds.json"
       ]
+    },
+    {
+      "id": "claim-ellipsoid-all-369-tighter",
+      "kind": "claim",
+      "title": "同一半径下当前 369 个适用点的椭球上界全部小于独立盒",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/rational-ellipsoid-box-comparison.json"
+      ]
+    },
+    {
+      "id": "evidence-ellipsoid-box-comparison",
+      "kind": "evidence",
+      "title": "369 点全部收紧、中位比值 0.604836 与两个有根折不适用",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/rational-ellipsoid-box-comparison.json"
+      ]
+    },
+    {
+      "id": "experiment-ellipsoid-box-protocol",
+      "kind": "experiment",
+      "title": "完整协方差、同半径和精确支撑上界比较协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/rational-ellipsoid-box-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-ellipsoid-box-scope",
+      "kind": "limitation",
+      "title": "样本内全部收紧不等于永远更紧；盒与椭球是不同区域且不是置信区",
+      "status": "active",
+      "sourceFiles": [
+        "validation/rational-ellipsoid-box-comparison.json"
+      ]
     }
   ],
   "edges": [
@@ -941,6 +977,26 @@
     {
       "from": "track-formal",
       "to": "limitation-prediction-box-bounds",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "claim-ellipsoid-all-369-tighter",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "evidence-ellipsoid-box-comparison",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "experiment-ellipsoid-box-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "limitation-ellipsoid-box-scope",
       "relation": "contains"
     },
     {
@@ -1246,6 +1302,21 @@
     {
       "from": "limitation-prediction-box-bounds",
       "to": "claim-rootfree-box-useful-prediction-bound",
+      "relation": "limits"
+    },
+    {
+      "from": "experiment-ellipsoid-box-protocol",
+      "to": "claim-ellipsoid-all-369-tighter",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-ellipsoid-box-comparison",
+      "to": "claim-ellipsoid-all-369-tighter",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-ellipsoid-box-scope",
+      "to": "claim-ellipsoid-all-369-tighter",
       "relation": "limits"
     },
     {

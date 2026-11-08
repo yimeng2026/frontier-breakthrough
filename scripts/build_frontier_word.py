@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "prediction_bounds":
+    if REPORT_MODE == "ellipsoid_bounds":
+        replacements = {
+            "图：`papers/16_椭球与参数盒/fig16_ellipsoid_box_comparison.png`。": "![](papers/16_椭球与参数盒/fig16_ellipsoid_box_comparison.png)\n\n**图 16｜协方差椭球与独立参数盒逐点比较**  \n**插入位置**：§3「全部适用点的比较结果」之后；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "369 点全部收紧与相关结构边界"
+    elif REPORT_MODE == "prediction_bounds":
         replacements = {
             "图：`papers/15_参数盒预测界/fig15_prediction_box_bounds.png`。": "![](papers/15_参数盒预测界/fig15_prediction_box_bounds.png)\n\n**图 15｜认证参数盒内逐点预测与残差上界**  \n**插入位置**：§3「结果：13 折有界，但信息质量差异巨大」之后；顺序第 1 幅，共 1 幅。",
         }

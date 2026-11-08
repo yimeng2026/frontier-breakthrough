@@ -43,6 +43,7 @@ def build() -> dict:
     exactRoots = read("rational-exact-interval-roots.json")
     parameterBox = read("rational-parameter-box-stability.json")
     predictionBounds = read("rational-prediction-box-bounds.json")
+    ellipsoidComparison = read("rational-ellipsoid-box-comparison.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -232,6 +233,15 @@ def build() -> dict:
             "scientificClaim": "13 折共 369 个留出观测获得确定性预测平移与残差上界；无根盒并不保证有用的预测精度，极大有限上界明确保留。",
             "limitations": " ".join(predictionBounds["limitations"]), "upstreamContribution": "提供逐点精确有理上界和分母下界，区分定义域安全、预测界宽度和实际预测信息。",
             "snapshotFiles": ["validation/rational-prediction-box-protocol.json", "validation/rational-prediction-box-bounds.json"],
+        },
+        {
+            "id": "rational-ellipsoid-box-comparison", "domain": "math", "title": "协方差椭球与独立参数盒逐点比较",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml"],
+            "metrics": {"totals": ellipsoidComparison["totals"], "specialCases": [{"dataset": case["dataset"], "fold": case["fold"], "boxMaxShift": case["max_box_prediction_shift_upper_bound_float"], "ellipsoidMaxShift": case["max_ellipsoid_prediction_shift_upper_bound_float"]} for case in ellipsoidComparison["cases"] if (case["dataset"] == "hahn1" and case["fold"] == 5) or (case["dataset"] == "thurber" and case["fold"] == 2)]},
+            "scientificClaim": "同一半径下 369 个适用点的协方差椭球上界全部小于独立盒；中位比值 0.604836，最大 0.999351，两个有根折不适用。",
+            "limitations": " ".join(ellipsoidComparison["limitations"]), "upstreamContribution": "提供完整协方差方向、精确支撑上界和逐点比值，明确盒与椭球是不同区域，不把样本收紧称为永远更紧。",
+            "snapshotFiles": ["validation/rational-ellipsoid-box-protocol.json", "validation/rational-ellipsoid-box-comparison.json"],
         },
     ]
     packet = {

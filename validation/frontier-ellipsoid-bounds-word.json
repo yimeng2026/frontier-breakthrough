@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生协方差椭球预测界_图文完整版.docx",
+  "bytes": 116592,
+  "sha256": "2d888acd62c57fc90464ca05bf8187f59209b6d0a46220d8ee92fe9c91496fdb",
+  "native_math_objects": 10,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

@@ -895,6 +895,54 @@
         "validation/rational-prediction-box-protocol.json",
         "validation/rational-prediction-box-bounds.json"
       ]
+    },
+    {
+      "id": "rational-ellipsoid-box-comparison",
+      "domain": "math",
+      "title": "协方差椭球与独立参数盒逐点比较",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml"
+      ],
+      "metrics": {
+        "totals": {
+          "fold_count": 15,
+          "unavailable_rooted_fold_count": 2,
+          "point_count": 369,
+          "comparison_point_count": 369,
+          "unavailable_point_count": 0,
+          "tighter_point_count": 369,
+          "looser_point_count": 0,
+          "equal_point_count": 0,
+          "median_shift_ratio": 0.6048360566503915,
+          "max_shift_ratio": 0.9993513024095615,
+          "min_shift_ratio": 9.075122870015112e-08
+        },
+        "specialCases": [
+          {
+            "dataset": "hahn1",
+            "fold": 5,
+            "boxMaxShift": 294740279.1909954,
+            "ellipsoidMaxShift": 39.626080770918136
+          },
+          {
+            "dataset": "thurber",
+            "fold": 2,
+            "boxMaxShift": 403342293.0314304,
+            "ellipsoidMaxShift": 46.24433183998815
+          }
+        ]
+      },
+      "scientificClaim": "同一半径下 369 个适用点的协方差椭球上界全部小于独立盒；中位比值 0.604836，最大 0.999351，两个有根折不适用。",
+      "limitations": "The covariance defines a deterministic ellipsoid only; no probability, confidence or physical measurement model is implied Bounds are pointwise and do not prove root freedom for an ellipsoid over a continuous x interval Numerator perturbation and model-structure error are outside the comparison An unavailable ellipsoid bound is not zero and no preferred tighter direction is assumed Rational square-root upper bounds may be conservative and all ratio classes are preserved",
+      "upstreamContribution": "提供完整协方差方向、精确支撑上界和逐点比值，明确盒与椭球是不同区域，不把样本收紧称为永远更紧。",
+      "snapshotFiles": [
+        "validation/rational-ellipsoid-box-protocol.json",
+        "validation/rational-ellipsoid-box-comparison.json"
+      ]
     }
   ]
 }

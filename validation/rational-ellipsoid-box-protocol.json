@@ -1,0 +1,37 @@
+{
+  "status": "frozen_before_ellipsoid_box_comparison",
+  "frozen_at_local": "2026-11-09T01:28:05+08:00",
+  "scientific_question": "At the same certified radius and held-out observations, does a full-covariance denominator ellipsoid produce tighter or looser deterministic prediction bounds than the independent coefficient box?",
+  "inputs": {
+    "parameter_box": {"file": "validation/rational-parameter-box-stability.json", "sha256": "ed31e9389d7928c0e8ed0a0ef245c117970ad84019d2b5b4d94c6343d6da28be"},
+    "prediction_box": {"file": "validation/rational-prediction-box-bounds.json", "sha256": "00d8840ff692e50aa0c7de6a09dd8efc665f3e9dc4601c9e7d859e650c5c33d8"},
+    "hahn1": {"file": "validation/hahn1-fold1-identifiability.json", "sha256": "3ef5b98effcae91afe91d46446fa1392a584996375e827f103936b652fefddfb"},
+    "hahn1_grouped": {"file": "validation/grouped-stress.json", "sha256": "1e8bf9beeca449919182322cb9246d6079f10fbaf5d211be31d389d0360f721d"},
+    "thurber": {"file": "validation/thurber-prospective-gate.json", "sha256": "21212cb3bc61de0efb333af93078b0a222192460bfc93858e1cd14779dc190b0"},
+    "kirby2": {"file": "validation/kirby2-prospective-gate.json", "sha256": "c0575037cf587bbb12ecd7ad08febaf8f6eed6d50fef5009faa36f60448c92e0"}
+  },
+  "covariance_rule": {
+    "source": "Use the covariance from the successful attempt with the lowest training residual sum of squares in each frozen fold; extract the denominator block in published parameter order",
+    "validation": "Require exact symmetry and positive leading principal minors with rational arithmetic; no covariance refitting or shrinkage",
+    "ellipsoid": "Allow denominator perturbations satisfying delta^T Sigma^-1 delta <= rho^2, with the same certified lower radius used by the independent box",
+    "scope": "The covariance only defines a deterministic region; it does not create a confidence ellipsoid, probability distribution or physical measurement model"
+  },
+  "bound_rule": {
+    "support": "At x, compute the exact rational support variance z^T Sigma z and a rational upper bound for its square root, with z=(x,x^2,...)",
+    "pointwise_bound": "For R=rho*sqrt_upper(z^T Sigma z), require |D|-R>0 and compute |delta f| <= |N|*R/(|D|*(|D|-R)); observed residual bound adds |y-f_snapshot|",
+    "comparison": "Compute ellipsoid_shift/box_shift only when both are available and box_shift>0; smaller is tighter, larger is looser, no preferred direction is assumed",
+    "unavailable": "Record non-positive denominator lower bounds and rooted snapshots as unavailable rather than inventing a finite value",
+    "scope": "Pointwise deterministic bounds only; no continuous-x root-free proof, numerator perturbation or linearized prediction approximation"
+  },
+  "output_rule": {
+    "summary": "validation/rational-ellipsoid-box-comparison.json",
+    "figure": "papers/16_椭球与参数盒/fig16_ellipsoid_box_comparison.png",
+    "refuse_overwrite": true
+  },
+  "prohibitions": [
+    "No covariance refitting, radius retuning or deletion of unfavorable comparisons",
+    "No probability, confidence, calibration or physical-measurement interpretation",
+    "No claim that an ellipsoid is always tighter or that an unavailable bound is zero",
+    "No continuous-x root-free claim from pointwise ellipsoid bounds"
+  ]
+}
