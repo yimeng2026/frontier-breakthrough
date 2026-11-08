@@ -1,0 +1,83 @@
+{
+  "status": "frozen_before_roszman1_native_holdout",
+  "frozen_at_local": "2026-11-09T07:35:43+08:00",
+  "analysis_id": "roszman1_native_holdout",
+  "scientific_question": "Using identical held-out points, how does the native four-parameter arctangent model compare with the frozen cubic/cubic rational candidate and frozen cubic polynomial baseline on NIST Roszman1?",
+  "inputs": {
+    "data": {"file": "data/Roszman1.dat", "sha256": "fb526231ae6b02929e3de54e072e259b3d87424089abd4b1015ffb946b1e0ab0", "observations": 25},
+    "rational_candidate": {"file": "validation/roszman1-ellipsoid-coverage.json", "sha256": "c0b6014ad5ef0c2b60e702a9f7b8bffced92b81e32b9d8d2387e01ebc30c6647"}
+  },
+  "dataset_scope": {
+    "name": "NIST/ITL StRD Roszman1",
+    "dataset_page": "https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml",
+    "source_url": "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Roszman1.dat",
+    "observed_data": true,
+    "generated_data": false,
+    "response": "quantum defect",
+    "predictor": "excited state energy",
+    "angle_unit": "radians",
+    "independent_physical_experiment": false
+  },
+  "native_rule": {
+    "equation": "y = b1 - b2*x - arctan(b3/(x-b4))/pi + e",
+    "parameters": ["b1", "b2", "b3", "b4"],
+    "starts": [
+      {"b1": 0.1, "b2": -0.00001, "b3": 1000.0, "b4": -100.0},
+      {"b1": 0.2, "b2": -0.000005, "b3": 1200.0, "b4": -150.0}
+    ],
+    "singular_rule": "An exact x=b4 prediction is undefined and must be recorded as non-finite; do not replace it by a limit or certified full-data fit",
+    "optimizer": "scipy.optimize.curve_fit method=lm, maxfev=200000, full_output=true; run both frozen starts and select the lowest finite training RSS",
+    "failure_rule": "Retain every failed start, non-finite RSS, non-finite prediction and failed fold; no post-hoc start, bounds, scaling or fold changes",
+    "retuning": "No model, start, optimizer, fold or threshold changes after seeing outcomes"
+  },
+  "known_answer_rule": {
+    "purpose": "Fit all 25 observations only to verify the native equation and optimizer against the published NIST known answer; never use this fit as holdout evidence",
+    "certified_parameters": {"b1": 0.20196866396, "b2": -0.0000061953516256, "b3": 1204.4556708, "b4": -181.34269537},
+    "certified_rss": 0.00049484847331,
+    "parameter_relative_tolerance": 0.00001,
+    "parameter_absolute_tolerance": 0.00000001,
+    "rss_absolute_tolerance": 0.0000000001,
+    "evidence_class": "known_answer_reproduction_not_holdout"
+  },
+  "fold_rule": {
+    "count": 5,
+    "construction": "Reuse exactly the frozen rational-candidate test points; fit native parameters only on the other four groups",
+    "assignments": {
+      "1": [-4868.68, -4868.09, -4867.41, -3375.19, -3373.14],
+      "2": [-3372.03, -2473.74, -2472.35, -2469.45, -1894.65],
+      "3": [-1893.4, -1497.24, -1495.85, -1493.41, -1208.68],
+      "4": [-1206.18, -1206.04, -997.92, -996.61, -996.31],
+      "5": [-834.94, -834.66, -710.03, -530.16, -464.17]
+    }
+  },
+  "comparison_rule": {
+    "join": "Match native and rational predictions by fold and exact x; require observed y to match exactly",
+    "rational_metrics": "Reuse the frozen rational-candidate fold metrics and snapshot predictions without refitting",
+    "cubic_baseline_metrics": "Reuse the frozen cubic-baseline fold metrics without refitting; per-point baseline predictions are not available in the frozen result",
+    "metrics": "Recompute native RMSE, MAE and maximum absolute residual from the five held-out predictions in each fold",
+    "fold_winners": "Compare native RMSE with rational and cubic-baseline RMSE separately; preserve wins, losses, ties and failed fits without a single scalar ranking",
+    "pooled_metrics": "Compute native and rational RMSE, MAE and maximum absolute residual over all 25 held-out predictions only when every fold succeeds; do not fabricate pooled cubic-baseline metrics",
+    "bound_separation": "Do not transfer rational denominator, ellipsoid, box, residual-bound or continuous-safety claims to the native arctangent model"
+  },
+  "output_rule": {
+    "summary": "validation/roszman1-native-holdout.json",
+    "figure": "papers/39_Roszman1原生反正切对照/fig39_roszman1_native_holdout.png",
+    "refuse_overwrite": true
+  },
+  "decision": {
+    "native_physical_law_validated": false,
+    "native_probability_calibration_claimed": false,
+    "native_deterministic_bounds_claimed": false,
+    "rational_bounds_transferred_to_native": false,
+    "independent_physical_experiment_claimed": false,
+    "certified_full_fit_used_as_holdout": false,
+    "failed_fits_hidden": false
+  },
+  "prohibitions": [
+    "No use of the certified full-data fit as a held-out prediction",
+    "No transfer of rational-model proof regions or residual bounds to the native model",
+    "No hiding of optimizer failures, non-finite predictions or fold-level losses",
+    "No probability, confidence, physical-endogeneity or independent-experiment claim",
+    "No post-hoc start, fold, scaling or model changes after seeing results"
+  ]
+}
