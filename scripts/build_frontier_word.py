@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "gauss1_bound_mechanism":
+    if REPORT_MODE == "external_bound_decomposition":
+        replacements = {
+            "图：`papers/22_外部界组成对照/fig22_external_bound_decomposition.png`。": "![](papers/22_外部界组成对照/fig22_external_bound_decomposition.png)\n\n**图 22｜三数据同点界组成与平移占比分布（第 1 幅，共 1 幅）**  \n**插入位置**：§4「最大残差上界的同点组成」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "305 点算术一致性、60 点不可用与三数据机制异质性"
+    elif REPORT_MODE == "gauss1_bound_mechanism":
         replacements = {
             "图：`papers/21_Gauss1界失效机制/fig21_gauss1_bound_mechanism.png`。": "![](papers/21_Gauss1界失效机制/fig21_gauss1_bound_mechanism.png)\n\n**图 21｜Gauss1 分母可用性边界与残差上界（第 1 幅，共 1 幅）**  \n**插入位置**：§4「最大残差界位置的同点组成」；顺序第 1 幅，共 1 幅。",
         }
