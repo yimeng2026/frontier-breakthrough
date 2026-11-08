@@ -1,0 +1,79 @@
+{
+  "status": "frozen_before_any_roszman1_rational_fit",
+  "frozen_at_local": "2026-11-09T06:44:57+08:00",
+  "analysis_id": "roszman1",
+  "scientific_question": "On the untouched NIST Roszman1 quantum-defect dataset, can the frozen external coverage driver and scope-aware adapter evaluate a cubic/cubic candidate, continuous ellipsoid safety, pointwise residual bounds and bound composition without protocol drift or native-arctangent-model overclaim?",
+  "dataset_scope": {
+    "name": "NIST/ITL StRD Roszman1",
+    "dataset_page": "https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml",
+    "source_url": "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Roszman1.dat",
+    "file": "data/Roszman1.dat",
+    "sha256": "fb526231ae6b02929e3de54e072e259b3d87424089abd4b1015ffb946b1e0ab0",
+    "observations": 25,
+    "unique_predictor_values": 25,
+    "native_model": "Four-parameter arctangent class for quantum defects; the cubic/cubic rational candidate is an approximation stress test, not the native model",
+    "native_equation": "y = b1 - b2*x - arctan(b3/(x-b4))/pi + e",
+    "response": "quantum defect",
+    "predictor": "excited state energy",
+    "reference": "Roszman, L., NIST (19??), Quantum Defects for Sulfur I Atom",
+    "observed_data": true,
+    "generated_data": false,
+    "dataset_used_to_design_previous_regions": false,
+    "model_family_scope": "The native arctangent model differs from previous candidate families, but this reanalysis is not an independent physical experiment or validation of the native Roszman1 model"
+  },
+  "implementation_rule": {
+    "driver": "scripts/external_coverage.py",
+    "driver_sha256": "646cbfb7cfdf0dc578c8808e4ad6113b286a048038cfa9f07f47d776ad85aa6f",
+    "scope_adapter": "scripts/external_coverage_scoped.py",
+    "scope_adapter_sha256": "a6f53ffea1e743fdae839677b45938274652af0ac8bd70bd503e11afe74fb548",
+    "wrapper": "scripts/analyze_roszman1_ellipsoid_coverage.py",
+    "wrapper_sha256": "0082180d6cfa9522320a1b72815f1a52f04435aca62f0f01513d4d4d779605b1",
+    "changes_after_freeze": "No driver, scope adapter or wrapper change is permitted under this protocol; any implementation change requires a new protocol and preservation of this frozen analysis",
+    "scope_rule": "The adapter applies the frozen Roszman1-specific limitation and records both wrapper and adapter hashes; it does not alter fitting, certificates, bounds or thresholds"
+  },
+  "candidate_rule": {
+    "equation": "y = (b1+b2*x+b3*x^2+b4*x^3)/(1+b5*x+b6*x^2+b7*x^3) + e",
+    "starts_source": "validation/hahn1-high-temperature-protocol.json",
+    "starts": [
+      {"b1": 10, "b2": -1, "b3": 0.05, "b4": -0.00001, "b5": -0.05, "b6": 0.001, "b7": -0.000001},
+      {"b1": 1, "b2": -0.1, "b3": 0.005, "b4": -0.000001, "b5": -0.005, "b6": 0.0001, "b7": -0.0000001}
+    ],
+    "optimizer": "scipy.optimize.curve_fit method=lm, maxfev=200000, full_output=true; select lowest training RSS",
+    "scope_limitation": "The cubic/cubic candidate is only an approximation stress test and not the native Roszman1 four-parameter arctangent model for quantum defects; prediction and denominator certification are separate evidence axes",
+    "retuning": "No model, start, radius, fold or threshold changes after seeing outcomes"
+  },
+  "fold_rule": {
+    "count": 5,
+    "construction": "Sort unique x values into five contiguous, nearly equal groups; repeated x never crosses fitting and test sets; every observation is evaluated once",
+    "baseline": "Cubic polynomial fitted only on the other four groups; this is a candidate baseline, not the native four-parameter arctangent fit"
+  },
+  "ellipsoid_rule": {
+    "radius": 1,
+    "radius_scope": "Fixed before fitting; a deterministic scale only, not a confidence level",
+    "covariance": "Use denominator block from the best training attempt; require exact symmetry and positive definiteness",
+    "continuous_certificate": "Require exact D^2-rho^2*z^T*Sigma*z>0 and sign-consistent D over each closed held-out interval",
+    "pointwise_bound": "For R=rho*sqrt_upper(z^T Sigma z), require |D|-R>0 and compute prediction shift and observed residual upper bounds; compare with the independent box at the same radius",
+    "coverage": "Check actual |y-f_snapshot| against each available deterministic residual bound and record any violation; do not call this probability calibration",
+    "composition": "For each available point, preserve actual residual, prediction shift and residual upper bound so shift share can be audited without refitting"
+  },
+  "output_rule": {
+    "summary": "validation/roszman1-ellipsoid-coverage.json",
+    "figure": "papers/35_Roszman1椭球覆盖/fig35_roszman1_ellipsoid_coverage.png",
+    "refuse_overwrite": true
+  },
+  "decision": {
+    "native_physical_model_claimed": false,
+    "probability_calibration_claimed": false,
+    "independent_physical_experiment_claimed": false,
+    "independent_model_family_claimed": false,
+    "universal_external_validity_claimed": false
+  },
+  "prohibitions": [
+    "No claim that the native Roszman1 model is cubic/cubic or that the candidate is physically endogenous",
+    "No description of this reanalysis as a newly performed independent physical experiment or native model-family validation",
+    "No hiding of optimizer failures, non-positive covariance, unavailable bounds, coverage violations or prediction failures",
+    "No probability, confidence, RMSE-bound or continuous-x error-bound claim from pointwise bounds",
+    "No use of the original four-parameter certified fit as candidate holdout evidence",
+    "No retuning of starts, radius, folds or candidate degree after seeing candidate outcomes"
+  ]
+}
