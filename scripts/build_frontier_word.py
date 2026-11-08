@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "bound_comparison_v4":
+    if REPORT_MODE == "maximum_full_composition":
+        replacements = {
+            "图：`papers/34_最大界与全点组成/fig34_maximum_full_composition.png`。": "![](papers/34_最大界与全点组成/fig34_maximum_full_composition.png)\n\n**图 34｜最大界点类别、全点占比与界宽比三联审计（第 1 幅，共 1 幅）**  \n**插入位置**：§5「三联图与解释规则」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "8／9 组类别一致、6 组低于中位占比与最大界宽比审计"
+    elif REPORT_MODE == "bound_comparison_v4":
         replacements = {
             "图：`papers/32_外部六组界组成/fig32_external_bound_decomposition_v4.png`。": "![](papers/32_外部六组界组成/fig32_external_bound_decomposition_v4.png)\n\n**图 32｜六组外部数据同点界组成（第 1 幅，共 2 幅）**  \n**插入位置**：§4「九组内外部数据的界组成」；顺序第 1 幅，共 2 幅。",
             "图：`papers/33_九组界组成对照/fig33_internal_external_bound_comparison_v4.png`。": "![](papers/33_九组界组成对照/fig33_internal_external_bound_comparison_v4.png)\n\n**图 33｜九组内外部数据同点界组成对照（第 2 幅，共 2 幅）**  \n**插入位置**：图 32 之后；顺序第 2 幅，共 2 幅。",

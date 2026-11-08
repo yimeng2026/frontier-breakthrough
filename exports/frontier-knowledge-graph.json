@@ -1285,6 +1285,51 @@
         "validation/chwirut1-ellipsoid-coverage-protocol.json",
         "validation/enso-ellipsoid-coverage-protocol.json"
       ]
+    },
+    {
+      "id": "evidence-maximum-full-composition-audit",
+      "kind": "evidence",
+      "title": "九组中 8 组最大点类别与多数一致、6 组低于中位占比及最大界宽比审计",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/maximum-full-composition-audit.json"
+      ]
+    },
+    {
+      "id": "counterexample-gauss1-maximum-majority-mismatch",
+      "kind": "counterexample",
+      "title": "Gauss1 多数点由实际残差主导，但最大界点由平移主导且最大界宽为中位界宽的 82.994 倍",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/maximum-full-composition-audit.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-maximum-low-share-percentile",
+      "kind": "counterexample",
+      "title": "ENSO 最大点与多数一样由实际残差主导，但其平移占比只处于描述性第 13.33% 位置",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/maximum-full-composition-audit.json"
+      ]
+    },
+    {
+      "id": "experiment-maximum-full-composition-protocol",
+      "kind": "experiment",
+      "title": "冻结九组输入并分别计算类别、占比差、描述性百分位和界宽比的只读审计协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/maximum-full-composition-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-maximum-not-typical",
+      "kind": "limitation",
+      "title": "最大界点是极值而非典型点，描述性百分位和界宽比不是概率或物理因果",
+      "status": "active",
+      "sourceFiles": [
+        "exports/maximum-full-composition-audit.json"
+      ]
     }
   ],
   "edges": [
@@ -2616,6 +2661,66 @@
     {
       "from": "evidence-bound-comparison-v4",
       "to": "counterexample-enso-v4-maximum-composition",
+      "relation": "supports"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-maximum-full-composition-audit",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-gauss1-maximum-majority-mismatch",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-maximum-low-share-percentile",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-maximum-full-composition-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-maximum-not-typical",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-maximum-full-composition-audit",
+      "to": "counterexample-gauss1-maximum-majority-mismatch",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-maximum-full-composition-audit",
+      "to": "counterexample-enso-maximum-low-share-percentile",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-gauss1-maximum-majority-mismatch",
+      "to": "claim-uniform-external-bound-mechanism",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-enso-maximum-low-share-percentile",
+      "to": "claim-uniform-external-bound-mechanism",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-maximum-full-composition-protocol",
+      "to": "claim-uniform-external-bound-mechanism",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-maximum-not-typical",
+      "to": "evidence-maximum-full-composition-audit",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-maximum-full-composition-audit",
+      "to": "evidence-bound-comparison-v4",
       "relation": "supports"
     }
   ]

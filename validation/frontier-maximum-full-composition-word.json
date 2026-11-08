@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生最大界与全点组成审计_图文完整版.docx",
+  "bytes": 111104,
+  "sha256": "2238f851e15d046710f2ce52f19d2e4a934563cfa0f6b0958cc0c685275b3986",
+  "native_math_objects": 2,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

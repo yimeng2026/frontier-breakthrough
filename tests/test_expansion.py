@@ -112,8 +112,8 @@ class ExpansionTests(unittest.TestCase):
 
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
-        self.assertEqual(len(packet["items"]), 36)
-        self.assertEqual(len({i["id"] for i in packet["items"]}), 36)
+        self.assertEqual(len(packet["items"]), 37)
+        self.assertEqual(len({i["id"] for i in packet["items"]}), 37)
         for item in packet["items"]:
             self.assertEqual(item["status"], "verified")
             self.assertTrue(item["limitations"])
@@ -247,6 +247,21 @@ class ExpansionTests(unittest.TestCase):
         self.assertLess(item["metrics"]["ensoMaximumBound"]["shift_share"], 0.5)
         self.assertEqual(item["metrics"]["relatedDataset"]["name"], "Chwirut2")
         self.assertTrue(item["metrics"]["historicalPreservation"]["previousFilesPreserved"])
+
+    def test_maximum_full_composition_audit_preserves_three_evidence_axes(self):
+        packet = self.read("exports/frontier-evidence.json")
+        identifiers = {item["id"] for item in packet["items"]}
+        self.assertIn("maximum-full-composition-audit", identifiers)
+        item = next(item for item in packet["items"] if item["id"] == "maximum-full-composition-audit")
+        self.assertEqual(item["metrics"]["totals"]["maximum_matches_majority_count"], 8)
+        self.assertEqual(item["metrics"]["totals"]["maximum_majority_mismatch_dataset_ids"], ["gauss1"])
+        self.assertEqual(item["metrics"]["totals"]["maximum_share_below_median_count"], 6)
+        self.assertEqual(item["metrics"]["totals"]["largest_bound_to_median_ratio_dataset_id"], "gauss1")
+        self.assertAlmostEqual(item["metrics"]["totals"]["largest_bound_to_median_ratio"], 82.99437100729904, places=10)
+        self.assertEqual(len(item["metrics"]["datasets"]), 9)
+        self.assertFalse(item["metrics"]["decision"]["maximum_point_used_as_typical_claimed"])
+        enso = next(entry for entry in item["metrics"]["datasets"] if entry["id"] == "enso")
+        self.assertAlmostEqual(enso["maximum_share_descriptive_percentile"], 2 / 15, places=12)
 
     def test_new_agent_projects_have_primary_sources(self):
         projects = self.read("data/projects.json")["projects"]

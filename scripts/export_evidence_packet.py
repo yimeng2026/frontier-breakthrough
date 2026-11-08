@@ -62,6 +62,7 @@ def build() -> dict:
     combinedV3Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v3.json").read_text(encoding="utf-8"))
     externalV4Decomposition = json.loads((ROOT / "exports/external-bound-decomposition-v4.json").read_text(encoding="utf-8"))
     combinedV4Decomposition = json.loads((ROOT / "exports/internal-external-bound-comparison-v4.json").read_text(encoding="utf-8"))
+    maximumAudit = json.loads((ROOT / "exports/maximum-full-composition-audit.json").read_text(encoding="utf-8"))
     externalScopeAmendment = read("external-scope-limitations-amendment-01-audit.json")
     ensoCoverage = read("enso-ellipsoid-coverage.json")
     ensoProtocol = read("enso-ellipsoid-coverage-protocol.json")
@@ -442,6 +443,16 @@ def build() -> dict:
             "limitations": "这是新增周期数据后的事后范围汇总，不是合并成功率、证明能力改善或原生周期模型验证；Chwirut1 的同族边界与 ENSO 的子集比较范围必须保留。" + " ".join(combinedV4Decomposition["limitations"]),
             "upstreamContribution": "提供六外部与九组并存的新版范围接口，同时连接 ENSO 增量、最大界实际残差主导反例、数据亲缘和两类不可用边界，防止旧机制概括覆盖新证据。",
             "snapshotFiles": ["validation/external-bound-decomposition-v4-protocol.json", "validation/internal-external-bound-comparison-v4-protocol.json", "validation/enso-ellipsoid-coverage-protocol.json", "validation/frontier-bound-comparison-v4-word.json"],
+        },
+        {
+            "id": "maximum-full-composition-audit", "domain": "math", "title": "九组最大界点与全点组成的极值代表性审计",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml", "https://www.itl.nist.gov/div898/strd/lls/data/filip.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/misra1a.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml"],
+            "metrics": {"totals": maximumAudit["totals"], "datasets": maximumAudit["datasets"], "analysisScope": maximumAudit["analysis_scope"], "decision": maximumAudit["decision"]},
+            "scientificClaim": "九组中 8 组最大界点与多数主导项一致，Gauss1 唯一不一致；6 组最大点占比低于中位数。Gauss1 最大界宽为中位界宽的 82.994 倍，ENSO 最大点占比仅处于描述性第 13.33% 位置，类别一致不代表典型幅度。",
+            "limitations": "这是只读事后分布审计，最大点不是典型点；描述性百分位、占比和界宽比不是概率、方差分解或物理因果贡献。" + " ".join(maximumAudit["limitations"]),
+            "upstreamContribution": "提供最大点类别、全点中位占比、描述性百分位和最大／中位界宽比的联合验收接口，防止单个极值替代整体机制。",
+            "snapshotFiles": ["validation/maximum-full-composition-protocol.json", "validation/frontier-maximum-full-composition-word.json"],
         },
     ]
     packet = {

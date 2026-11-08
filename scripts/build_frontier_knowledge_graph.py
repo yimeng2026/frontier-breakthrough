@@ -51,6 +51,9 @@ def build_graph(root):
     combinedV3Decomposition = json.loads((root / "exports/internal-external-bound-comparison-v3.json").read_text(encoding="utf-8"))
     externalV4Decomposition = json.loads((root / "exports/external-bound-decomposition-v4.json").read_text(encoding="utf-8"))
     combinedV4Decomposition = json.loads((root / "exports/internal-external-bound-comparison-v4.json").read_text(encoding="utf-8"))
+    maximumAudit = json.loads((root / "exports/maximum-full-composition-audit.json").read_text(encoding="utf-8"))
+    if maximumAudit["totals"]["dataset_count"] != 9 or maximumAudit["totals"]["maximum_matches_majority_count"] != 8 or maximumAudit["totals"]["maximum_majority_mismatch_dataset_ids"] != ["gauss1"] or maximumAudit["totals"]["maximum_share_below_median_count"] != 6 or maximumAudit["totals"]["largest_bound_to_median_ratio_dataset_id"] != "gauss1" or maximumAudit["decision"]["maximum_point_used_as_typical_claimed"] or maximumAudit["decision"]["probability_representativeness_claimed"]:
+        raise ValueError("Expected maximum/full composition audit states are not present")
     if externalV4Decomposition["totals"]["point_count"] != 761 or externalV4Decomposition["totals"]["ellipsoid_available_point_count"] != 527 or externalV4Decomposition["totals"]["ellipsoid_unavailable_point_count"] != 234 or externalV4Decomposition["totals"]["prediction_shift_dominant_point_count"] != 250 or externalV4Decomposition["totals"]["snapshot_residual_dominant_point_count"] != 277 or len(externalV4Decomposition["datasets"]) != 6 or externalV4Decomposition["datasets"][-1]["id"] != "enso" or externalV4Decomposition["datasets"][-1]["prediction_shift_dominant_point_count"] != 33 or externalV4Decomposition["datasets"][-1]["snapshot_residual_dominant_point_count"] != 102 or externalV4Decomposition["datasets"][-1]["maximum_residual_upper_bound"]["dominant"] != "snapshot_residual_dominant" or externalV4Decomposition["datasets"][-1]["maximum_residual_upper_bound"]["shift_share"] >= 0.5 or combinedV4Decomposition["totals"]["ellipsoid_available_point_count"] != 896 or combinedV4Decomposition["totals"]["prediction_shift_dominant_point_count"] != 594 or combinedV4Decomposition["totals"]["snapshot_residual_dominant_point_count"] != 302 or len(combinedV4Decomposition["datasets"]) != 9 or combinedV4Decomposition["analysis_scope"]["chwirut1_independent_model_family_test"] or combinedV4Decomposition["analysis_scope"]["enso_native_periodic_model_claimed"]:
         raise ValueError("Expected v4 scope expansion and ENSO maximum-bound counterexample are not present")
     externalScopeAmendment = json.loads((root / "validation/external-scope-limitations-amendment-01-audit.json").read_text(encoding="utf-8"))
@@ -402,6 +405,27 @@ def build_graph(root):
         edge("limitation-bound-comparison-v4-scope", "claim-untouched-data-independent-model-family", "limits"),
         edge("counterexample-enso-v4-maximum-composition", "claim-wide-bounds-parameter-uncertainty", "contradicts"),
         edge("evidence-bound-comparison-v4", "counterexample-enso-v4-maximum-composition", "supports"),
+    ])
+    nodes.extend([
+        node("evidence-maximum-full-composition-audit", "evidence", "九组中 8 组最大点类别与多数一致、6 组低于中位占比及最大界宽比审计", "supported", ["exports/maximum-full-composition-audit.json"]),
+        node("counterexample-gauss1-maximum-majority-mismatch", "counterexample", "Gauss1 多数点由实际残差主导，但最大界点由平移主导且最大界宽为中位界宽的 82.994 倍", "supported", ["exports/maximum-full-composition-audit.json"]),
+        node("counterexample-enso-maximum-low-share-percentile", "counterexample", "ENSO 最大点与多数一样由实际残差主导，但其平移占比只处于描述性第 13.33% 位置", "supported", ["exports/maximum-full-composition-audit.json"]),
+        node("experiment-maximum-full-composition-protocol", "experiment", "冻结九组输入并分别计算类别、占比差、描述性百分位和界宽比的只读审计协议", "supported", ["validation/maximum-full-composition-protocol.json"]),
+        node("limitation-maximum-not-typical", "limitation", "最大界点是极值而非典型点，描述性百分位和界宽比不是概率或物理因果", "active", ["exports/maximum-full-composition-audit.json"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "evidence-maximum-full-composition-audit", "contains"),
+        edge("track-holdout", "counterexample-gauss1-maximum-majority-mismatch", "contains"),
+        edge("track-holdout", "counterexample-enso-maximum-low-share-percentile", "contains"),
+        edge("track-holdout", "experiment-maximum-full-composition-protocol", "contains"),
+        edge("track-holdout", "limitation-maximum-not-typical", "contains"),
+        edge("evidence-maximum-full-composition-audit", "counterexample-gauss1-maximum-majority-mismatch", "supports"),
+        edge("evidence-maximum-full-composition-audit", "counterexample-enso-maximum-low-share-percentile", "supports"),
+        edge("counterexample-gauss1-maximum-majority-mismatch", "claim-uniform-external-bound-mechanism", "contradicts"),
+        edge("counterexample-enso-maximum-low-share-percentile", "claim-uniform-external-bound-mechanism", "contradicts"),
+        edge("experiment-maximum-full-composition-protocol", "claim-uniform-external-bound-mechanism", "tests"),
+        edge("limitation-maximum-not-typical", "evidence-maximum-full-composition-audit", "limits"),
+        edge("evidence-maximum-full-composition-audit", "evidence-bound-comparison-v4", "supports"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

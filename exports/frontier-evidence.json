@@ -2360,6 +2360,318 @@
         "validation/enso-ellipsoid-coverage-protocol.json",
         "validation/frontier-bound-comparison-v4-word.json"
       ]
+    },
+    {
+      "id": "maximum-full-composition-audit",
+      "domain": "math",
+      "title": "九组最大界点与全点组成的极值代表性审计",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml",
+        "https://www.itl.nist.gov/div898/strd/lls/data/filip.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/misra1a.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml"
+      ],
+      "metrics": {
+        "totals": {
+          "dataset_count": 9,
+          "maximum_matches_majority_count": 8,
+          "maximum_majority_mismatch_dataset_ids": [
+            "gauss1"
+          ],
+          "maximum_prediction_shift_dominant_count": 8,
+          "maximum_snapshot_residual_dominant_count": 1,
+          "maximum_snapshot_residual_dominant_dataset_ids": [
+            "enso"
+          ],
+          "maximum_share_below_median_count": 6,
+          "maximum_share_below_median_dataset_ids": [
+            "hahn1",
+            "thurber",
+            "kirby2",
+            "misra1a",
+            "chwirut1",
+            "enso"
+          ],
+          "maximum_share_above_median_dataset_ids": [
+            "filip",
+            "mgh17",
+            "gauss1"
+          ],
+          "largest_bound_to_median_ratio_dataset_id": "gauss1",
+          "largest_bound_to_median_ratio": 82.99437100729904
+        },
+        "datasets": [
+          {
+            "id": "hahn1",
+            "scope": "internal",
+            "available_point_count": 189,
+            "prediction_shift_dominant_point_count": 189,
+            "snapshot_residual_dominant_point_count": 0,
+            "majority_dominant": "prediction_shift_dominant",
+            "maximum_dominant": "prediction_shift_dominant",
+            "maximum_matches_majority": true,
+            "median_shift_share": 0.9820853626447161,
+            "maximum_shift_share": 0.964747836686828,
+            "maximum_share_minus_median": -0.017337525957888178,
+            "share_less_than_or_equal_maximum_count": 31,
+            "maximum_share_descriptive_percentile": 0.164021164021164,
+            "median_residual_upper_bound": 3.2238911515787994,
+            "maximum_residual_upper_bound": 40.959098912254554,
+            "bound_max_to_median_ratio": 12.704864087050868,
+            "maximum_point": {
+              "fold": 5,
+              "x": 851.37,
+              "actual_absolute_residual": 1.443896844015164,
+              "prediction_shift": 39.51520206823939,
+              "residual_upper_bound": 40.959098912254554,
+              "shift_share": 0.964747836686828,
+              "dominant": "prediction_shift_dominant"
+            }
+          },
+          {
+            "id": "thurber",
+            "scope": "internal",
+            "available_point_count": 29,
+            "prediction_shift_dominant_point_count": 27,
+            "snapshot_residual_dominant_point_count": 2,
+            "majority_dominant": "prediction_shift_dominant",
+            "maximum_dominant": "prediction_shift_dominant",
+            "maximum_matches_majority": true,
+            "median_shift_share": 0.8980483989245494,
+            "maximum_shift_share": 0.8879638797882852,
+            "maximum_share_minus_median": -0.01008451913626418,
+            "share_less_than_or_equal_maximum_count": 14,
+            "maximum_share_descriptive_percentile": 0.4827586206896552,
+            "median_residual_upper_bound": 123.69674456952345,
+            "maximum_residual_upper_bound": 834.1771969723757,
+            "bound_max_to_median_ratio": 6.743727976636673,
+            "maximum_point": {
+              "fold": 5,
+              "x": 2.2,
+              "actual_absolute_residual": 93.4579767178684,
+              "prediction_shift": 740.7192202545073,
+              "residual_upper_bound": 834.1771969723757,
+              "shift_share": 0.8879638797882852,
+              "dominant": "prediction_shift_dominant"
+            }
+          },
+          {
+            "id": "kirby2",
+            "scope": "internal",
+            "available_point_count": 151,
+            "prediction_shift_dominant_point_count": 128,
+            "snapshot_residual_dominant_point_count": 23,
+            "majority_dominant": "prediction_shift_dominant",
+            "maximum_dominant": "prediction_shift_dominant",
+            "maximum_matches_majority": true,
+            "median_shift_share": 0.9444638134420068,
+            "maximum_shift_share": 0.8403623963402197,
+            "maximum_share_minus_median": -0.10410141710178711,
+            "share_less_than_or_equal_maximum_count": 30,
+            "maximum_share_descriptive_percentile": 0.1986754966887417,
+            "median_residual_upper_bound": 3.3841333872901003,
+            "maximum_residual_upper_bound": 7.698800201807761,
+            "bound_max_to_median_ratio": 2.2749694887093974,
+            "maximum_point": {
+              "fold": 5,
+              "x": 371.3,
+              "actual_absolute_residual": 1.2290180152720325,
+              "prediction_shift": 6.4697821865357374,
+              "residual_upper_bound": 7.698800201807761,
+              "shift_share": 0.8403623963402197,
+              "dominant": "prediction_shift_dominant"
+            }
+          },
+          {
+            "id": "filip",
+            "scope": "external",
+            "available_point_count": 82,
+            "prediction_shift_dominant_point_count": 82,
+            "snapshot_residual_dominant_point_count": 0,
+            "majority_dominant": "prediction_shift_dominant",
+            "maximum_dominant": "prediction_shift_dominant",
+            "maximum_matches_majority": true,
+            "median_shift_share": 0.9921094965998745,
+            "maximum_shift_share": 0.995974013310227,
+            "maximum_share_minus_median": 0.0038645167103524836,
+            "share_less_than_or_equal_maximum_count": 58,
+            "maximum_share_descriptive_percentile": 0.7073170731707317,
+            "median_residual_upper_bound": 0.5228957856494698,
+            "maximum_residual_upper_bound": 0.844282855158048,
+            "bound_max_to_median_ratio": 1.6146292977087109,
+            "maximum_point": {
+              "fold": 5,
+              "x": -4.517126416,
+              "actual_absolute_residual": 0.0033990715372703706,
+              "prediction_shift": 0.8408837836207781,
+              "residual_upper_bound": 0.844282855158048,
+              "shift_share": 0.995974013310227,
+              "dominant": "prediction_shift_dominant"
+            }
+          },
+          {
+            "id": "mgh17",
+            "scope": "external",
+            "available_point_count": 33,
+            "prediction_shift_dominant_point_count": 32,
+            "snapshot_residual_dominant_point_count": 1,
+            "majority_dominant": "prediction_shift_dominant",
+            "maximum_dominant": "prediction_shift_dominant",
+            "maximum_matches_majority": true,
+            "median_shift_share": 0.991413833021702,
+            "maximum_shift_share": 0.9966368570497309,
+            "maximum_share_minus_median": 0.0052230240280288776,
+            "share_less_than_or_equal_maximum_count": 27,
+            "maximum_share_descriptive_percentile": 0.8181818181818182,
+            "median_residual_upper_bound": 0.09769881627524976,
+            "maximum_residual_upper_bound": 0.46032595369644763,
+            "bound_max_to_median_ratio": 4.711684043331269,
+            "maximum_point": {
+              "fold": 1,
+              "x": 60.0,
+              "actual_absolute_residual": 0.0015481419860000623,
+              "prediction_shift": 0.4587778117104475,
+              "residual_upper_bound": 0.46032595369644763,
+              "shift_share": 0.9966368570497309,
+              "dominant": "prediction_shift_dominant"
+            }
+          },
+          {
+            "id": "gauss1",
+            "scope": "external",
+            "available_point_count": 190,
+            "prediction_shift_dominant_point_count": 24,
+            "snapshot_residual_dominant_point_count": 166,
+            "majority_dominant": "snapshot_residual_dominant",
+            "maximum_dominant": "prediction_shift_dominant",
+            "maximum_matches_majority": false,
+            "median_shift_share": 0.16947432232550075,
+            "maximum_shift_share": 0.9756102764135051,
+            "maximum_share_minus_median": 0.8061359540880043,
+            "share_less_than_or_equal_maximum_count": 189,
+            "maximum_share_descriptive_percentile": 0.9947368421052631,
+            "median_residual_upper_bound": 59.003610999241886,
+            "maximum_residual_upper_bound": 4896.967582041431,
+            "bound_max_to_median_ratio": 82.99437100729904,
+            "maximum_point": {
+              "fold": 2,
+              "x": 72.0,
+              "actual_absolute_residual": 119.43568573801466,
+              "prediction_shift": 4777.531896303414,
+              "residual_upper_bound": 4896.967582041431,
+              "shift_share": 0.9756102764135051,
+              "dominant": "prediction_shift_dominant"
+            }
+          },
+          {
+            "id": "misra1a",
+            "scope": "external",
+            "available_point_count": 4,
+            "prediction_shift_dominant_point_count": 4,
+            "snapshot_residual_dominant_point_count": 0,
+            "majority_dominant": "prediction_shift_dominant",
+            "maximum_dominant": "prediction_shift_dominant",
+            "maximum_matches_majority": true,
+            "median_shift_share": 0.9996118041945221,
+            "maximum_shift_share": 0.9995215897741051,
+            "maximum_share_minus_median": -9.021442041701189e-05,
+            "share_less_than_or_equal_maximum_count": 2,
+            "maximum_share_descriptive_percentile": 0.5,
+            "median_residual_upper_bound": 263.83685255349775,
+            "maximum_residual_upper_bound": 414.1323250556816,
+            "bound_max_to_median_ratio": 1.5696530679758192,
+            "maximum_point": {
+              "fold": 5,
+              "x": 689.1,
+              "actual_absolute_residual": 0.19812513918026298,
+              "prediction_shift": 413.9341999165013,
+              "residual_upper_bound": 414.1323250556816,
+              "shift_share": 0.9995215897741051,
+              "dominant": "prediction_shift_dominant"
+            }
+          },
+          {
+            "id": "chwirut1",
+            "scope": "external",
+            "available_point_count": 83,
+            "prediction_shift_dominant_point_count": 75,
+            "snapshot_residual_dominant_point_count": 8,
+            "majority_dominant": "prediction_shift_dominant",
+            "maximum_dominant": "prediction_shift_dominant",
+            "maximum_matches_majority": true,
+            "median_shift_share": 0.7635061269778911,
+            "maximum_shift_share": 0.5739514635550984,
+            "maximum_share_minus_median": -0.1895546634227927,
+            "share_less_than_or_equal_maximum_count": 13,
+            "maximum_share_descriptive_percentile": 0.1566265060240964,
+            "median_residual_upper_bound": 8.430035393517988,
+            "maximum_residual_upper_bound": 13.299029728904719,
+            "bound_max_to_median_ratio": 1.5775769742474144,
+            "maximum_point": {
+              "fold": 2,
+              "x": 1.5,
+              "actual_absolute_residual": 5.666032152137092,
+              "prediction_shift": 7.632997576767627,
+              "residual_upper_bound": 13.299029728904719,
+              "shift_share": 0.5739514635550984,
+              "dominant": "prediction_shift_dominant"
+            }
+          },
+          {
+            "id": "enso",
+            "scope": "external",
+            "available_point_count": 135,
+            "prediction_shift_dominant_point_count": 33,
+            "snapshot_residual_dominant_point_count": 102,
+            "majority_dominant": "snapshot_residual_dominant",
+            "maximum_dominant": "snapshot_residual_dominant",
+            "maximum_matches_majority": true,
+            "median_shift_share": 0.278229698347853,
+            "maximum_shift_share": 0.10814295260768458,
+            "maximum_share_minus_median": -0.1700867457401684,
+            "share_less_than_or_equal_maximum_count": 18,
+            "maximum_share_descriptive_percentile": 0.13333333333333333,
+            "median_residual_upper_bound": 3.102868256636901,
+            "maximum_residual_upper_bound": 11.509464378470858,
+            "bound_max_to_median_ratio": 3.7092984382603453,
+            "maximum_point": {
+              "fold": 4,
+              "x": 126.0,
+              "actual_absolute_residual": 10.26479691765005,
+              "prediction_shift": 1.244667460820808,
+              "residual_upper_bound": 11.509464378470858,
+              "shift_share": 0.10814295260768458,
+              "dominant": "snapshot_residual_dominant"
+            }
+          }
+        ],
+        "analysisScope": {
+          "post_hoc": true,
+          "refit": false,
+          "retuned": false,
+          "descriptive_not_probabilistic": true
+        },
+        "decision": {
+          "unified_mechanism_claimed": false,
+          "probability_representativeness_claimed": false,
+          "maximum_point_used_as_typical_claimed": false,
+          "single_scalar_ranking_claimed": false
+        }
+      },
+      "scientificClaim": "九组中 8 组最大界点与多数主导项一致，Gauss1 唯一不一致；6 组最大点占比低于中位数。Gauss1 最大界宽为中位界宽的 82.994 倍，ENSO 最大点占比仅处于描述性第 13.33% 位置，类别一致不代表典型幅度。",
+      "limitations": "这是只读事后分布审计，最大点不是典型点；描述性百分位、占比和界宽比不是概率、方差分解或物理因果贡献。Maximum-bound points are extremes and are not typical observations Descriptive percentiles, medians and ratios are not probabilities or physical causal contributions Class agreement between a maximum point and the majority does not imply representative magnitude Unavailable points remain excluded and no universal dataset ranking is established",
+      "upstreamContribution": "提供最大点类别、全点中位占比、描述性百分位和最大／中位界宽比的联合验收接口，防止单个极值替代整体机制。",
+      "snapshotFiles": [
+        "validation/maximum-full-composition-protocol.json",
+        "validation/frontier-maximum-full-composition-word.json"
+      ]
     }
   ]
 }
