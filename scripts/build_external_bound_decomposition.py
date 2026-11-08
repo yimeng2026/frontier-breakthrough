@@ -40,14 +40,16 @@ def maximum(records):
     return max(records, key=lambda item: item["residual_upper_bound"]) if records else None
 
 
-def analyze():
-    protocol = json.loads(PROTOCOL.read_text(encoding="utf-8"))
+def analyze(protocol_path=PROTOCOL):
+    protocol_path = Path(protocol_path)
+    protocol = json.loads(protocol_path.read_text(encoding="utf-8"))
     if protocol["status"] != "frozen_before_external_bound_decomposition":
         raise ValueError("Bound-decomposition protocol is not frozen")
     threshold = protocol["decomposition_rule"]["shift_dominant_threshold"]
     datasets = []
     input_hashes = {}
-    for dataset_id in ["filip", "mgh17", "gauss1"]:
+    dataset_ids = protocol.get("dataset_ids", ["filip", "mgh17", "gauss1"])
+    for dataset_id in dataset_ids:
         info = protocol["inputs"][dataset_id]
         path = ROOT / info["file"]
         input_hashes[dataset_id] = sha256(path)
@@ -107,7 +109,7 @@ def analyze():
     }
     return {
         "status": "computed_external_bound_decomposition",
-        "protocol_sha256": sha256(PROTOCOL),
+        "protocol_sha256": sha256(protocol_path),
         "input_sha256": input_hashes,
         "analysis_scope": {"post_hoc": True, "refit": False, "retuned": False, "shift_dominant_threshold": threshold},
         "datasets": datasets,

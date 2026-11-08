@@ -14,8 +14,9 @@ def sha256(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def analyze():
-    protocol = json.loads(PROTOCOL.read_text(encoding="utf-8"))
+def analyze(protocol_path=PROTOCOL):
+    protocol_path = Path(protocol_path)
+    protocol = json.loads(protocol_path.read_text(encoding="utf-8"))
     if protocol["status"] != "frozen_before_internal_external_bound_comparison":
         raise ValueError("Internal/external comparison protocol is not frozen")
     sources = {}
@@ -30,7 +31,8 @@ def analyze():
         totals = sources[scope]["totals"]
         if totals["bound_identity_mismatch_count"] or totals["undefined_zero_bound_count"]:
             raise ValueError(f"Source consistency failure in {scope}")
-    if sources["internal"]["totals"]["ellipsoid_available_point_count"] != 369 or sources["external"]["totals"]["ellipsoid_available_point_count"] != 305:
+    expected = protocol.get("expected", {"internal_available_point_count": 369, "external_available_point_count": 305})
+    if sources["internal"]["totals"]["ellipsoid_available_point_count"] != expected["internal_available_point_count"] or sources["external"]["totals"]["ellipsoid_available_point_count"] != expected["external_available_point_count"]:
         raise ValueError("Unexpected available point counts")
     datasets = []
     for scope in ["internal", "external"]:
@@ -59,14 +61,14 @@ def analyze():
     }
     return {
         "status": "computed_internal_external_bound_comparison",
-        "protocol_sha256": sha256(PROTOCOL),
+        "protocol_sha256": sha256(protocol_path),
         "input_sha256": input_hashes,
         "analysis_scope": {
             "post_hoc": True,
             "refit": False,
             "retuned": False,
-            "internal_available_point_count": 369,
-            "external_available_point_count": 305,
+            "internal_available_point_count": internal_totals["ellipsoid_available_point_count"],
+            "external_available_point_count": external_totals["ellipsoid_available_point_count"],
             "external_total_point_count": external_totals["point_count"],
             "shift_dominant_threshold": 0.5,
         },
@@ -79,8 +81,8 @@ def analyze():
             "scope_difference_erased": False,
         },
         "limitations": [
-            "The 674 available points are descriptive and not a universal sample or probability estimate",
-            "Two internal rooted unavailable folds and 60 external unavailable points remain separate",
+            f"The {totals['ellipsoid_available_point_count']} available points are descriptive and not a universal sample or probability estimate",
+            f"Two internal rooted unavailable folds and {totals['external_unavailable_point_count']} external unavailable points remain separate",
             "Arithmetic shares are not probabilities, variance decomposition or physical-mechanism attribution",
             "No universal internal-versus-external ranking or combined success rate is established",
         ],
@@ -137,7 +139,7 @@ def render_figure(summary):
     axes[1].axhline(0.5, color="#b44b4b", linestyle="--", linewidth=1, label="Frozen 0.5 threshold")
     axes[1].set_ylim(0, 1.02)
     axes[1].set_ylabel("Prediction shift / residual upper bound")
-    axes[1].set_title("Six distributions; arithmetic shares are not probabilities")
+    axes[1].set_title(f"{len(datasets)} distributions; arithmetic shares are not probabilities")
     axes[1].tick_params(axis="x", rotation=15)
     axes[1].grid(axis="y", alpha=0.2)
     axes[1].legend(frameon=False, fontsize=8)
