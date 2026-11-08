@@ -7,7 +7,8 @@ from fractions import Fraction
 from pathlib import Path
 
 from ellipsoid_bounds import pointwise_ellipsoid_bound, require_positive_definite
-from exact_roots import as_fraction, fraction_text
+from exact_roots import as_fraction
+from rational_format import bounded_text
 
 ROOT = Path(__file__).resolve().parents[1]
 PROTOCOL = ROOT / "validation/rational-ellipsoid-box-protocol.json"
@@ -85,15 +86,15 @@ def analyze():
                 record.update({
                     "ellipsoid_available": True,
                     "unavailable_reason": None,
-                    "covariance_support_variance_rational": fraction_text(bound["covariance_support_variance"]),
-                    "covariance_support_upper_bound_rational": fraction_text(bound["covariance_support_upper_bound"]),
-                    "denominator_lower_bound_rational": fraction_text(bound["denominator_lower_bound"]),
+                    "covariance_support_variance_rational": bounded_text(bound["covariance_support_variance"]),
+                    "covariance_support_upper_bound_rational": bounded_text(bound["covariance_support_upper_bound"]),
+                    "denominator_lower_bound_rational": bounded_text(bound["denominator_lower_bound"]),
                     "denominator_lower_bound_float": float(bound["denominator_lower_bound"]),
-                    "ellipsoid_prediction_shift_upper_bound_rational": fraction_text(ellipsoid_shift),
+                    "ellipsoid_prediction_shift_upper_bound_rational": bounded_text(ellipsoid_shift),
                     "ellipsoid_prediction_shift_upper_bound_float": float(ellipsoid_shift),
-                    "ellipsoid_absolute_residual_upper_bound_rational": fraction_text(bound["absolute_residual_upper_bound"]),
+                    "ellipsoid_absolute_residual_upper_bound_rational": bounded_text(bound["absolute_residual_upper_bound"]),
                     "ellipsoid_absolute_residual_upper_bound_float": float(bound["absolute_residual_upper_bound"]),
-                    "shift_ratio_ellipsoid_over_box_rational": fraction_text(ratio) if ratio is not None else None,
+                    "shift_ratio_ellipsoid_over_box_rational": bounded_text(ratio) if ratio is not None else None,
                     "shift_ratio_ellipsoid_over_box": float(ratio) if ratio is not None else None,
                 })
             except ValueError as error:

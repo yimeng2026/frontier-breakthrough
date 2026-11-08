@@ -4,7 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from exact_roots import fraction_text
+from rational_format import bounded_text
 from prediction_box_bounds import pointwise_prediction_bound
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -57,15 +57,15 @@ def analyze():
                 points.append({
                     "x": observation["x"],
                     "observed_y": observation["y"],
-                    "snapshot_prediction_rational": fraction_text(bound["snapshot_prediction"]),
+                    "snapshot_prediction_rational": bounded_text(bound["snapshot_prediction"]),
                     "snapshot_prediction_float": float(bound["snapshot_prediction"]),
-                    "snapshot_denominator_rational": fraction_text(bound["snapshot_denominator"]),
-                    "denominator_perturbation_bound_rational": fraction_text(bound["denominator_perturbation_bound"]),
-                    "denominator_lower_bound_rational": fraction_text(bound["denominator_lower_bound"]),
+                    "snapshot_denominator_rational": bounded_text(bound["snapshot_denominator"]),
+                    "denominator_perturbation_bound_rational": bounded_text(bound["denominator_perturbation_bound"]),
+                    "denominator_lower_bound_rational": bounded_text(bound["denominator_lower_bound"]),
                     "denominator_lower_bound_float": float(bound["denominator_lower_bound"]),
-                    "prediction_shift_upper_bound_rational": fraction_text(bound["prediction_shift_upper_bound"]),
+                    "prediction_shift_upper_bound_rational": bounded_text(bound["prediction_shift_upper_bound"]),
                     "prediction_shift_upper_bound_float": float(bound["prediction_shift_upper_bound"]),
-                    "absolute_residual_upper_bound_rational": fraction_text(bound["absolute_residual_upper_bound"]),
+                    "absolute_residual_upper_bound_rational": bounded_text(bound["absolute_residual_upper_bound"]),
                     "absolute_residual_upper_bound_float": float(bound["absolute_residual_upper_bound"]),
                 })
         points.sort(key=lambda point: point["x"])

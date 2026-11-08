@@ -737,6 +737,42 @@
       "sourceFiles": [
         "validation/rational-ellipsoid-interval-safety.json"
       ]
+    },
+    {
+      "id": "claim-filip-ellipsoid-covered",
+      "kind": "claim",
+      "title": "Filip 候选模型的 82 个适用点均由椭球上界覆盖实际残差",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/filip-ellipsoid-coverage.json"
+      ]
+    },
+    {
+      "id": "evidence-filip-ellipsoid-coverage",
+      "kind": "evidence",
+      "title": "Filip 五折连续安全、82 点无越界与独立盒连续安全为 0",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/filip-ellipsoid-coverage.json"
+      ]
+    },
+    {
+      "id": "experiment-filip-coverage-protocol",
+      "kind": "experiment",
+      "title": "未参与区域设计的 Filip 固定半径五折压力测试协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/filip-ellipsoid-coverage-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-filip-candidate-scope",
+      "kind": "limitation",
+      "title": "Filip 候选不是原生 11 参数模型，覆盖检查不是概率校准或物理内生证明",
+      "status": "active",
+      "sourceFiles": [
+        "validation/filip-ellipsoid-coverage.json"
+      ]
     }
   ],
   "edges": [
@@ -903,6 +939,26 @@
     {
       "from": "track-holdout",
       "to": "limitation-rational-cross-dataset",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-filip-ellipsoid-covered",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-filip-ellipsoid-coverage",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-filip-coverage-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-filip-candidate-scope",
       "relation": "contains"
     },
     {
@@ -1388,6 +1444,21 @@
     {
       "from": "limitation-ellipsoid-continuous-scope",
       "to": "claim-ellipsoid-continuous-gap",
+      "relation": "limits"
+    },
+    {
+      "from": "experiment-filip-coverage-protocol",
+      "to": "claim-filip-ellipsoid-covered",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-filip-ellipsoid-coverage",
+      "to": "claim-filip-ellipsoid-covered",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-filip-candidate-scope",
+      "to": "claim-filip-ellipsoid-covered",
       "relation": "limits"
     },
     {

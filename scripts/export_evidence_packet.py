@@ -45,6 +45,7 @@ def build() -> dict:
     predictionBounds = read("rational-prediction-box-bounds.json")
     ellipsoidComparison = read("rational-ellipsoid-box-comparison.json")
     ellipsoidInterval = read("rational-ellipsoid-interval-safety.json")
+    filipCoverage = read("filip-ellipsoid-coverage.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -252,6 +253,15 @@ def build() -> dict:
             "scientificClaim": "13 个无根快照的 D²-rho²z^TΣz 在整个留出闭区间均为正，未认证折为 0，有根快照折为 2。",
             "limitations": " ".join(ellipsoidInterval["limitations"]), "upstreamContribution": "提供精确平方支撑连续证明，覆盖观测点之间，不把逐点正分母当作连续安全。",
             "snapshotFiles": ["validation/rational-ellipsoid-interval-protocol.json", "validation/rational-ellipsoid-interval-safety.json"],
+        },
+        {
+            "id": "filip-external-ellipsoid-coverage", "domain": "physics", "title": "Filip 外部候选模型椭球覆盖压力测试",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/lls/data/filip.shtml", "https://www.itl.nist.gov/div898/strd/lls/data/LINKS/DATA/Filip.dat"],
+            "metrics": filipCoverage["totals"],
+            "scientificClaim": "候选 cubic/cubic 在 Filip 五折均优于三次基线且连续椭球安全；82／82 点未发生实际残差越界，独立盒连续安全为 0。",
+            "limitations": " ".join(filipCoverage["limitations"]), "upstreamContribution": "提供外部候选压力测试和逐点覆盖，区分候选近似、概率覆盖、界宽度及独立盒不可用。",
+            "snapshotFiles": ["validation/filip-ellipsoid-coverage-protocol.json", "validation/filip-ellipsoid-coverage.json"],
         },
     ]
     packet = {

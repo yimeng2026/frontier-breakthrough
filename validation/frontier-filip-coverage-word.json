@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生Filip外部覆盖_图文完整版.docx",
+  "bytes": 112860,
+  "sha256": "67f00a7d3b665cb7da50ed33a9d1d858e3197a030e4751d774b31d19d11e2ebc",
+  "native_math_objects": 2,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}
