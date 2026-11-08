@@ -1,0 +1,12 @@
+{
+  "status": "verified",
+  "result": "unsat",
+  "matches_z3": true,
+  "denominator_positive_within_0_to_900": true,
+  "domain": "0<=x<=900",
+  "input_file": "validation/cvc5-hahn1-denominator.smt2",
+  "log_file": "validation/cvc5-hahn1-denominator.log",
+  "raw_output": "unsat\n",
+  "binary_sha256": "6aecddf466552b83bb5883756c7955e0c9d5ddcc6d7f45b48c2f6e06a741b102",
+  "limitations": "The result applies only to the certified cubic denominator within 0<=x<=900; a positive root exists beyond the experimental range and no all-nonnegative-x claim is made"
+}

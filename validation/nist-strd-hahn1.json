@@ -1,0 +1,29 @@
+{
+  "id": "nist-strd-hahn1",
+  "status": "verified",
+  "project_entry": "data/projects.json#nist-strd-hahn1",
+  "evidenceClass": "preregistered_rational_high_temperature_extrapolation",
+  "source": "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml",
+  "raw_data": "data/Hahn1.dat",
+  "raw_sha256": "7e885af48e18a222033a66cb22b491f0f5bc761b652142c0d9b28132daf63956",
+  "protocol": "validation/hahn1-high-temperature-protocol.json",
+  "summary": "validation/hahn1-high-temperature.json",
+  "independent_verification": "validation/hahn1-high-temperature-verification.json",
+  "figure": "papers/07_有理模型外推/fig07_hahn1_high_temperature.png",
+  "metrics": {
+    "train_count": 219,
+    "holdout_count": 17,
+    "train_rmse": 0.07917307863870439,
+    "holdout_rmse": 0.10472647180563538,
+    "cubic_holdout_rmse": 12.343634840460306,
+    "linear_holdout_rmse": 6.2315242095461665
+  },
+  "denominator": {
+    "domain": "0<=x<=900",
+    "real_roots_within_domain": [],
+    "unbounded_root_exists": true,
+    "unbounded_model_x": "1931.2468223881?"
+  },
+  "limited_support": true,
+  "scope": "Limited to the frozen Hahn1 high-temperature protocol and independent prediction audit; not a universal rational law, independent thermal experiment or proof of parameter endogeneity"
+}

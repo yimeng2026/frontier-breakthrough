@@ -1,6 +1,6 @@
 # 全球前沿项目、模型与战略设施目录
 
-更新日期：2026-11-08　条目数：91
+更新日期：2026-11-08　条目数：92
 
 > 本目录是有来源、可持续维护的初始集合，不声称一次性穷尽全球所有项目。条目进入目录不代表其主张已被独立复现，也不代表我们已与相关机构建立合作。
 
@@ -19,12 +19,12 @@
 | AI for Math | 13 |
 | 通用 AI for Science 与科研代理 | 8 |
 | AI for Biology | 19 |
-| AI for Physics 与材料 | 28 |
+| AI for Physics 与材料 | 29 |
 | 公共科研基础设施 | 13 |
 
 | 采用策略 | 数量 |
 |---|---:|
-| P0_local | 7 |
+| P0_local | 8 |
 | P1_adapt | 35 |
 | P2_watch | 29 |
 | P3_external | 20 |
@@ -185,6 +185,7 @@
 | OpenMM | tool | official_artifact | P1_adapt / pending | 小分子/蛋白公开体系的能量与稳定性检查，连接 PDB 数据。 | [官方或注明来源](https://github.com/openmm/openmm) |
 | NIST StRD Chwirut 超声标定数据 | dataset | official_artifact | P0_local / verified | 冻结原始数据，执行预注册高距离留出、NIST 认证复现和逐点独立指标重算。 | [官方或注明来源](https://www.itl.nist.gov/div898/strd/nls/data/chwirut2.shtml) |
 | NIST StRD Eckerle 圆形干涉透射率数据 | dataset | official_artifact | P0_local / verified | 冻结独立数据，执行双尾外推、NIST 认证复现和35点独立指标重算。 | [官方或注明来源](https://www.itl.nist.gov/div898/strd/nls/data/eckerle4.shtml) |
+| NIST StRD Hahn1 铜热膨胀数据 | dataset | official_artifact | P0_local / verified | 冻结原始数据，执行最高温段有理模型外推、三次多项式基线、NIST 认证复现和分母双求解器审计。 | [官方或注明来源](https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml) |
 
 - **GNoME Materials Discovery**：计算候选不等于已合成材料。
 - **GraphCast**：气候/天气预测须注意资料泄漏与时空外推。
@@ -214,6 +215,7 @@
 - **OpenMM**：力场、溶剂和边界条件决定可解释范围。
 - **NIST StRD Chwirut 超声标定数据**：47 个训练观测与 7 个高距离留出观测；有限支持只适用于该切片，不宣称普适规律。
 - **NIST StRD Eckerle 圆形干涉透射率数据**：27 个中央训练观测、低尾 3 点和高尾 5 点；有限支持只适用于该双尾协议，不宣称普适高斯规律。
+- **NIST StRD Hahn1 铜热膨胀数据**：219 个训练观测与 17 个高温留出观测；分母在实验区间内无零根，但存在域外正根，有限支持不外推为普适有理规律。
 
 ## 公共科研基础设施
 

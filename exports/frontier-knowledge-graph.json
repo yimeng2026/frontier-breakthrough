@@ -297,6 +297,84 @@
         "validation/chwirut-holdout.json",
         "validation/eckerle4-two-tail.json"
       ]
+    },
+    {
+      "id": "claim-hahn1-high-temperature",
+      "kind": "claim",
+      "title": "Hahn1 七参数有理模型只在预注册高温切片获得有限支持",
+      "status": "limited_support",
+      "sourceFiles": [
+        "validation/hahn1-high-temperature.json"
+      ]
+    },
+    {
+      "id": "evidence-hahn1",
+      "kind": "evidence",
+      "title": "236 个 Hahn1 观测的逐点预测与独立指标复算",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/hahn1-high-temperature.json",
+        "validation/hahn1-high-temperature-verification.json"
+      ]
+    },
+    {
+      "id": "experiment-hahn1-protocol",
+      "kind": "experiment",
+      "title": "219 个训练观测与 17 个高温留出观测",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/hahn1-high-temperature-protocol.json"
+      ]
+    },
+    {
+      "id": "limitation-three-datasets",
+      "kind": "limitation",
+      "title": "三个 NIST 数据集的有限支持仍不是跨模型类别普适规律",
+      "status": "active",
+      "sourceFiles": [
+        "validation/chwirut-holdout.json",
+        "validation/eckerle4-two-tail.json",
+        "validation/hahn1-high-temperature.json"
+      ]
+    },
+    {
+      "id": "claim-hahn1-denominator",
+      "kind": "claim",
+      "title": "认证 Hahn1 分母在 0<=x<=900 内无零根",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/z3-hahn1-denominator.json",
+        "validation/cvc5-hahn1-denominator.json"
+      ]
+    },
+    {
+      "id": "evidence-hahn1-denominator",
+      "kind": "evidence",
+      "title": "Z3 与 cvc5 对 Hahn1 分母实验区间给出 unsat",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/z3-hahn1-denominator.json",
+        "validation/cvc5-hahn1-denominator.json",
+        "validation/cvc5-hahn1-denominator.smt2"
+      ]
+    },
+    {
+      "id": "claim-unbounded-denominator-safety",
+      "kind": "claim",
+      "title": "Hahn1 分母在所有非负温度都没有零根",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/z3-hahn1-denominator.json"
+      ]
+    },
+    {
+      "id": "counterexample-hahn1-outdomain-root",
+      "kind": "counterexample",
+      "title": "Hahn1 分母在约 1931 K 的域外正根",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/z3-hahn1-denominator.json"
+      ]
     }
   ],
   "edges": [
@@ -346,6 +424,26 @@
       "relation": "contains"
     },
     {
+      "from": "track-holdout",
+      "to": "claim-hahn1-high-temperature",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-hahn1",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-hahn1-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-three-datasets",
+      "relation": "contains"
+    },
+    {
       "from": "track-formal",
       "to": "claim-universal-identifiability",
       "relation": "contains"
@@ -373,6 +471,26 @@
     {
       "from": "track-formal",
       "to": "evidence-cvc5",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "claim-hahn1-denominator",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "evidence-hahn1-denominator",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "claim-unbounded-denominator-safety",
+      "relation": "contains"
+    },
+    {
+      "from": "track-formal",
+      "to": "counterexample-hahn1-outdomain-root",
       "relation": "contains"
     },
     {
@@ -524,6 +642,36 @@
       "from": "evidence-cvc5",
       "to": "counterexample-xzero",
       "relation": "supports"
+    },
+    {
+      "from": "evidence-hahn1",
+      "to": "claim-hahn1-high-temperature",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-hahn1-protocol",
+      "to": "claim-hahn1-high-temperature",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-three-datasets",
+      "to": "claim-hahn1-high-temperature",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-hahn1-denominator",
+      "to": "claim-hahn1-denominator",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-hahn1-denominator",
+      "to": "counterexample-hahn1-outdomain-root",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-hahn1-outdomain-root",
+      "to": "claim-unbounded-denominator-safety",
+      "relation": "contradicts"
     },
     {
       "from": "claim-knowledge-graph",

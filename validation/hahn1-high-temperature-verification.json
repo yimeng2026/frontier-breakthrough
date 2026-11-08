@@ -1,0 +1,19 @@
+{
+  "verification": "passed",
+  "prediction_count": 236,
+  "maximum_prediction_absolute_error": 0.0,
+  "maximum_metric_absolute_error": 0,
+  "metric_error_tolerance": 1e-10,
+  "decision_gate_recomputed": true,
+  "denominator_audits_recomputed": true,
+  "protocol_sha256": "2b305900050702f17096bcc5dc073aa372acf206da9deea5dca0db2c2e71e4c6",
+  "summary_sha256": "b77048df04c97868bbc485979b7986fccb63b3693cd1d571338147ba34df92f3",
+  "verification_runner_sha256": "902c96b80dc948c9108357400ccf16e3177c4660c86e7f2b25fbb687b78a2853",
+  "boundaries": [
+    "One high-temperature split on one NIST dataset; not random cross-validation or a universal rational-family test",
+    "No independent thermal-expansion measurements, measurement-covariance estimate or new physical mechanism was produced",
+    "NIST certified values are used only for known-answer reproduction, never as holdout evidence",
+    "The 17 highest-temperature observations were not used for fitting, start selection, model selection or threshold retuning",
+    "Seven coefficients are not automatically physically endogenous; denominator roots and multiple minima must be reviewed separately"
+  ]
+}

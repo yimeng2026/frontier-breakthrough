@@ -25,7 +25,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "continuation":
+    if REPORT_MODE == "rational":
+        replacements = {
+            "图：`papers/07_有理模型外推/fig07_hahn1_high_temperature.png`。": "![](papers/07_有理模型外推/fig07_hahn1_high_temperature.png)\n\n**图 07｜Hahn1 高温有理模型外推**  \n**插入位置**：§2.2「高温外推结果」之后；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "Hahn1 高温外推、三次多项式基线与分母边界"
+    elif REPORT_MODE == "continuation":
         replacements = {
             "图：`papers/06_第二真实数据外推/fig06_eckerle4_two_tail.png`。": "![](papers/06_第二真实数据外推/fig06_eckerle4_two_tail.png)\n\n**图 06｜Eckerle4 双尾外推检验**  \n**插入位置**：§2.2「双尾结果」之后；顺序第 1 幅，共 1 幅。",
         }

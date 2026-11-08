@@ -462,6 +462,45 @@
         "validation/cvc5-zero-denominator.smt2",
         "validation/cvc5-xzero-identifiability.smt2"
       ]
+    },
+    {
+      "id": "hahn1-rational-high-temperature",
+      "domain": "physics",
+      "title": "Hahn1 有理模型高温外推与分母边界",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Hahn1.dat",
+        "https://github.com/Z3Prover/z3",
+        "https://github.com/cvc5/cvc5/releases/tag/cvc5-1.4.2"
+      ],
+      "metrics": {
+        "trainCount": 219,
+        "holdoutCount": 17,
+        "trainRmse": 0.07917307863870439,
+        "holdoutRmse": 0.10472647180563538,
+        "cubicHoldoutRmse": 12.343634840460306,
+        "linearHoldoutRmse": 6.2315242095461665,
+        "limitedSupport": true,
+        "nistReproduction": true,
+        "denominatorDomain": "0<=x<=900",
+        "cvc5Result": "unsat",
+        "z3Result": "unsat",
+        "unboundedRootExists": true,
+        "unboundedModelX": "1931.2468223881?"
+      },
+      "scientificClaim": "七参数有理模型在预注册高温切片获得有限支持并优于三次多项式基线；分母在实验区间内无零根，但存在域外正根。",
+      "limitations": "One high-temperature split on one NIST dataset; not random cross-validation or a universal rational-family test No independent thermal-expansion measurements, measurement-covariance estimate or new physical mechanism was produced NIST certified values are used only for known-answer reproduction, never as holdout evidence The 17 highest-temperature observations were not used for fitting, start selection, model selection or threshold retuning Seven coefficients are not automatically physically endogenous; denominator roots and multiple minima must be reviewed separately The certified denominator has no zero root within 0<=x<=900, but a positive root exists beyond the experimental range; no positivity claim is made for every parameter triple or all x>=0",
+      "upstreamContribution": "提供有理模型、强基线、236点预测复算和双求解器分母边界审计。",
+      "snapshotFiles": [
+        "validation/hahn1-high-temperature-protocol.json",
+        "validation/hahn1-high-temperature.json",
+        "validation/hahn1-high-temperature-verification.json",
+        "validation/z3-hahn1-denominator.json",
+        "validation/cvc5-hahn1-denominator.json",
+        "validation/cvc5-hahn1-denominator.smt2"
+      ]
     }
   ]
 }

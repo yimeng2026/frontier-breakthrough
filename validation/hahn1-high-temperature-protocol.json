@@ -1,0 +1,69 @@
+{
+  "status": "frozen_before_any_rational_fit",
+  "frozen_at_local": "2026-11-08T22:55:00+08:00",
+  "scientific_question": "Can a seven-parameter cubic/cubic rational model trained below 700 K predict the highest-temperature observations of Hahn1, and does it outperform a cubic polynomial baseline?",
+  "data": {
+    "name": "NIST/ITL StRD Hahn1",
+    "source_url": "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Hahn1.dat",
+    "dataset_page": "https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml",
+    "reference": "Hahn, T., NIST (1979), Copper Thermal Expansion Study",
+    "file": "data/Hahn1.dat",
+    "sha256": "7e885af48e18a222033a66cb22b491f0f5bc761b652142c0d9b28132daf63956",
+    "observations": 236,
+    "units_as_published": "y is coefficient of thermal expansion; x is temperature in kelvin; no unit conversion or measurement uncertainty is invented"
+  },
+  "model": {
+    "class": "Rational cubic/cubic, seven parameters",
+    "equation": "y = (b1+b2*x+b3*x^2+b4*x^3)/(1+b5*x+b6*x^2+b7*x^3) + e",
+    "bounds": "Unbounded coefficients as in the NIST model; denominator validity is checked separately and is never silently assumed",
+    "starts": [
+      {"b1": 10, "b2": -1, "b3": 0.05, "b4": -0.00001, "b5": -0.05, "b6": 0.001, "b7": -0.000001},
+      {"b1": 1, "b2": -0.1, "b3": 0.005, "b4": -0.000001, "b5": -0.005, "b6": 0.0001, "b7": -0.0000001}
+    ],
+    "optimizer": "scipy.optimize.curve_fit with identical settings and two starts; select the lowest training residual sum of squares"
+  },
+  "holdout_rule": {
+    "train": "x < 700: 219 observations",
+    "holdout": "x >= 700: 17 observations",
+    "purpose": "Highest-temperature extrapolation with a stronger cubic-polynomial baseline, not only a linear baseline"
+  },
+  "full_fit_certification_rule": {
+    "purpose": "Separate known-answer reproduction against NIST, never used as holdout evidence",
+    "certified_parameters": {
+      "b1": 1.0776351733,
+      "b2": -0.12269296921,
+      "b3": 0.0040863750610,
+      "b4": -0.0000014262662514,
+      "b5": -0.0057609940901,
+      "b6": 0.00024053735503,
+      "b7": -0.00000012314450199
+    },
+    "certified_residual_standard_deviation": 0.081803852243,
+    "degrees_of_freedom": 229,
+    "relative_tolerance_parameters": 0.0001,
+    "relative_tolerance_residual_standard_deviation": 0.0001
+  },
+  "baselines": [
+    "Training-response mean",
+    "Ordinary least-squares linear response fitted only on x < 700",
+    "Ordinary least-squares cubic polynomial fitted only on x < 700"
+  ],
+  "metrics": [
+    "Training and holdout RMSE, MAE and maximum absolute residual",
+    "Holdout RMSE divided by training RMSE",
+    "Holdout RMSE compared with linear and cubic-polynomial baselines",
+    "Denominator signs and real roots over the experimental domain"
+  ],
+  "decision_gate": {
+    "limited_support": "Holdout RMSE < 3 * training RMSE AND holdout RMSE < cubic-polynomial holdout RMSE",
+    "negative_or_unresolved": "Otherwise report the rational model as not supported for this high-temperature task; do not retune on the 17 holdout points",
+    "interpretation": "Passing is limited evidence for this single split, not a universal rational law, independent experimental replication or proof of parameter endogeneity"
+  },
+  "output_rule": "Write validation/hahn1-high-temperature.json and papers/07_有理模型外推/fig07_hahn1_high_temperature.png; preserve all starts and negative results; refuse to overwrite existing results",
+  "prohibitions": [
+    "No fitting or parameter selection on the 17 high-temperature observations",
+    "No claim that a rational fit proves a universal law or all seven parameters are physically endogenous",
+    "No claim that NIST certification is our independent thermal-expansion experiment",
+    "No hiding of denominator singularities, multiple minima or negative results"
+  ]
+}

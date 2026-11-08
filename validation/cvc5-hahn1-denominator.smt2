@@ -1,0 +1,5 @@
+(set-logic QF_NRA)
+(declare-fun x () Real)
+(assert (and (>= x 0) (<= x 900)))
+(assert (= (+ 1.0 (* (- 0.0057609940901) x) (* 0.00024053735503 x x) (* (- 0.00000012314450199) x x x)) 0))
+(check-sat)

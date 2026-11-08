@@ -20,7 +20,10 @@ def build_graph(root):
     material = json.loads((root / "validation/material-crosscheck.json").read_text(encoding="utf-8"))
     eckerle = json.loads((root / "validation/eckerle4-two-tail.json").read_text(encoding="utf-8"))
     cvc5 = json.loads((root / "validation/cvc5-crosscheck.json").read_text(encoding="utf-8"))
-    if not chwirut["decision"]["limited_support"] or not aspirin["canonical_structure_identical"] or not material["structure_identity_confirmed"] or not eckerle["decision"]["limited_support"] or not cvc5["all_results_match_z3"]:
+    hahn1 = json.loads((root / "validation/hahn1-high-temperature.json").read_text(encoding="utf-8"))
+    z3Hahn1 = json.loads((root / "validation/z3-hahn1-denominator.json").read_text(encoding="utf-8"))
+    cvc5Hahn1 = json.loads((root / "validation/cvc5-hahn1-denominator.json").read_text(encoding="utf-8"))
+    if not chwirut["decision"]["limited_support"] or not aspirin["canonical_structure_identical"] or not material["structure_identity_confirmed"] or not eckerle["decision"]["limited_support"] or not cvc5["all_results_match_z3"] or not hahn1["decision"]["limited_support"] or cvc5Hahn1["result"] != "unsat" or z3Hahn1["result"] != "unsat":
         raise ValueError("Expected evidence states are not present")
 
     nodes = [
@@ -56,11 +59,19 @@ def build_graph(root):
         node("claim-solver-agreement", "claim", "cvc5 与 Z3 对三项定义域和可识别性检查给出一致结果", "supported", ["validation/cvc5-crosscheck.json"]),
         node("evidence-cvc5", "evidence", "cvc5 1.4.2 的 SMT-LIB 日志与精确有理数反例模型", "supported", ["validation/cvc5-crosscheck.json"]),
         node("limitation-two-datasets", "limitation", "两个 NIST 数据集的有限支持仍不是跨领域普适规律", "active", ["validation/chwirut-holdout.json", "validation/eckerle4-two-tail.json"]),
+        node("claim-hahn1-high-temperature", "claim", "Hahn1 七参数有理模型只在预注册高温切片获得有限支持", "limited_support", ["validation/hahn1-high-temperature.json"]),
+        node("evidence-hahn1", "evidence", "236 个 Hahn1 观测的逐点预测与独立指标复算", "supported", ["validation/hahn1-high-temperature.json", "validation/hahn1-high-temperature-verification.json"]),
+        node("experiment-hahn1-protocol", "experiment", "219 个训练观测与 17 个高温留出观测", "supported", ["validation/hahn1-high-temperature-protocol.json"]),
+        node("limitation-three-datasets", "limitation", "三个 NIST 数据集的有限支持仍不是跨模型类别普适规律", "active", ["validation/chwirut-holdout.json", "validation/eckerle4-two-tail.json", "validation/hahn1-high-temperature.json"]),
+        node("claim-hahn1-denominator", "claim", "认证 Hahn1 分母在 0<=x<=900 内无零根", "supported", ["validation/z3-hahn1-denominator.json", "validation/cvc5-hahn1-denominator.json"]),
+        node("evidence-hahn1-denominator", "evidence", "Z3 与 cvc5 对 Hahn1 分母实验区间给出 unsat", "supported", ["validation/z3-hahn1-denominator.json", "validation/cvc5-hahn1-denominator.json", "validation/cvc5-hahn1-denominator.smt2"]),
+        node("claim-unbounded-denominator-safety", "claim", "Hahn1 分母在所有非负温度都没有零根", "falsified", ["validation/z3-hahn1-denominator.json"]),
+        node("counterexample-hahn1-outdomain-root", "counterexample", "Hahn1 分母在约 1931 K 的域外正根", "supported", ["validation/z3-hahn1-denominator.json"]),
     ]
     edges = []
     for track, claims in {
-        "track-holdout": ["claim-chwirut-extrapolation", "claim-nist-reproduction", "evidence-chwirut", "experiment-chwirut-protocol", "limitation-single-split", "claim-eckerle4-two-tail", "evidence-eckerle4", "experiment-eckerle4-protocol", "limitation-two-datasets"],
-        "track-formal": ["claim-universal-identifiability", "claim-positive-denominator", "evidence-z3", "counterexample-xzero", "claim-solver-agreement", "evidence-cvc5"],
+        "track-holdout": ["claim-chwirut-extrapolation", "claim-nist-reproduction", "evidence-chwirut", "experiment-chwirut-protocol", "limitation-single-split", "claim-eckerle4-two-tail", "evidence-eckerle4", "experiment-eckerle4-protocol", "limitation-two-datasets", "claim-hahn1-high-temperature", "evidence-hahn1", "experiment-hahn1-protocol", "limitation-three-datasets"],
+        "track-formal": ["claim-universal-identifiability", "claim-positive-denominator", "evidence-z3", "counterexample-xzero", "claim-solver-agreement", "evidence-cvc5", "claim-hahn1-denominator", "evidence-hahn1-denominator", "claim-unbounded-denominator-safety", "counterexample-hahn1-outdomain-root"],
         "track-chemistry": ["claim-aspirin-identity", "claim-descriptor-fraud", "evidence-aspirin", "counterexample-descriptor", "limitation-public-records"],
         "track-materials": ["claim-material-identity", "claim-universal-bandgap", "evidence-material", "counterexample-bandgap", "experiment-material-protocol", "limitation-small-material-sample"],
         "track-knowledge": ["claim-knowledge-graph"],
@@ -85,6 +96,12 @@ def build_graph(root):
         edge("limitation-two-datasets", "claim-eckerle4-two-tail", "limits"),
         edge("evidence-cvc5", "claim-solver-agreement", "supports"),
         edge("evidence-cvc5", "counterexample-xzero", "supports"),
+        edge("evidence-hahn1", "claim-hahn1-high-temperature", "supports"),
+        edge("experiment-hahn1-protocol", "claim-hahn1-high-temperature", "tests"),
+        edge("limitation-three-datasets", "claim-hahn1-high-temperature", "limits"),
+        edge("evidence-hahn1-denominator", "claim-hahn1-denominator", "supports"),
+        edge("evidence-hahn1-denominator", "counterexample-hahn1-outdomain-root", "supports"),
+        edge("counterexample-hahn1-outdomain-root", "claim-unbounded-denominator-safety", "contradicts"),
         edge("claim-knowledge-graph", "track-holdout", "recommends"),
         edge("claim-knowledge-graph", "track-formal", "recommends"),
         edge("claim-knowledge-graph", "track-chemistry", "recommends"),

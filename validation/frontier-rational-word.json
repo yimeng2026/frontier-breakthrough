@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生有理模型与分母边界_图文完整版.docx",
+  "bytes": 135857,
+  "sha256": "777401e9d773a4127ad5b575339d8d363243a0927fa26429de2ecfdbfe862870",
+  "native_math_objects": 7,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

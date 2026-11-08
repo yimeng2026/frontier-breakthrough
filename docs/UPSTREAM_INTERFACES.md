@@ -27,7 +27,8 @@
 | Materials Project + OQMD + PyMatGen | Si、GaAs、SiO2 的结构、带隙、密度、稳定性对照；原生 entry_id 与 OPTIMADE 结构 ID 分开核验 | `validation/material-crosscheck.json`、`validation/oqmd-structure-*.json` | 结构身份和 DFT 差异分开；提供可复核的结构映射与本地派生量 |
 | NIST Eckerle4 | 27 个中央训练观测、低尾 3 点和高尾 5 点；35 点独立复算 | `validation/eckerle4-two-tail.json`、`validation/eckerle4-two-tail-verification.json` | 第二个独立真实数据双尾外推包；只支持该双尾协议 |
 | cvc5 + Z3 | 三类定义域与可识别性检查结果一致；精确有理数模型 | `validation/cvc5-crosscheck.json`、`validation/cvc5-*.smt2`、`validation/cvc5-*.log` | 双求解器 SMT-LIB 与日志，降低单求解器依赖 |
-| 主张—证据—反例—实验图谱 | 32 个节点、49 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| NIST Hahn1 + Z3 + cvc5 | 219 个训练观测与 17 个高温留出观测；三次多项式基线；分母区间内无零根、域外正根 | `validation/hahn1-high-temperature.json`、`validation/z3-hahn1-denominator.json`、`validation/cvc5-hahn1-denominator.json` | 有理模型外推与分母边界同时交付，不把拟合成功写成全域数学安全 |
+| 主张—证据—反例—实验图谱 | 40 个节点、63 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 与自动科学发现项目的配合
 

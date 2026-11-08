@@ -31,6 +31,9 @@ def build() -> dict:
     material = read("material-crosscheck.json")
     eckerle = read("eckerle4-two-tail.json")
     cvc5 = read("cvc5-crosscheck.json")
+    hahn1 = read("hahn1-high-temperature.json")
+    z3Hahn1 = read("z3-hahn1-denominator.json")
+    cvc5Hahn1 = read("cvc5-hahn1-denominator.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -139,6 +142,15 @@ def build() -> dict:
             "scientificClaim": "cvc5 与 Z3 对分母正性、零分母反例和 x=0 参数非识别性给出相同结果，并生成精确有理数反例模型。",
             "limitations": " ".join(cvc5["limitations"]), "upstreamContribution": "提供双求解器 SMT-LIB、原始日志、官方二进制哈希和精确模型，降低单求解器依赖。",
             "snapshotFiles": ["validation/cvc5-crosscheck.json", "validation/cvc5-positive-denominator.smt2", "validation/cvc5-zero-denominator.smt2", "validation/cvc5-xzero-identifiability.smt2"],
+        },
+        {
+            "id": "hahn1-rational-high-temperature", "domain": "physics", "title": "Hahn1 有理模型高温外推与分母边界",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Hahn1.dat", "https://github.com/Z3Prover/z3", "https://github.com/cvc5/cvc5/releases/tag/cvc5-1.4.2"],
+            "metrics": {"trainCount": hahn1["split"]["train_count"], "holdoutCount": hahn1["split"]["holdout_count"], "trainRmse": hahn1["train_fit"]["metrics"]["train_rmse"], "holdoutRmse": hahn1["train_fit"]["metrics"]["holdout_rmse"], "cubicHoldoutRmse": hahn1["baselines"]["cubic_polynomial"]["holdout_rmse"], "linearHoldoutRmse": hahn1["baselines"]["linear"]["holdout_rmse"], "limitedSupport": hahn1["decision"]["limited_support"], "nistReproduction": hahn1["full_fit_certification"]["matches_nist_within_frozen_tolerances"], "denominatorDomain": cvc5Hahn1["domain"], "cvc5Result": cvc5Hahn1["result"], "z3Result": z3Hahn1["result"], "unboundedRootExists": z3Hahn1["unbounded_root_exists"], "unboundedModelX": z3Hahn1["unbounded_model_x"]},
+            "scientificClaim": "七参数有理模型在预注册高温切片获得有限支持并优于三次多项式基线；分母在实验区间内无零根，但存在域外正根。",
+            "limitations": " ".join(hahn1["limitations"]) + " " + z3Hahn1["limitations"], "upstreamContribution": "提供有理模型、强基线、236点预测复算和双求解器分母边界审计。",
+            "snapshotFiles": ["validation/hahn1-high-temperature-protocol.json", "validation/hahn1-high-temperature.json", "validation/hahn1-high-temperature-verification.json", "validation/z3-hahn1-denominator.json", "validation/cvc5-hahn1-denominator.json", "validation/cvc5-hahn1-denominator.smt2"],
         },
     ]
     packet = {
