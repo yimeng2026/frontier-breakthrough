@@ -1,0 +1,40 @@
+{
+  "status": "frozen_before_maximum_full_composition_audit",
+  "frozen_at_local": "2026-11-09T06:01:17+08:00",
+  "analysis_type": "Read-only post-hoc comparison of maximum residual-bound points and full-point distributions; no refitting or new experiment",
+  "input": {
+    "file": "exports/internal-external-bound-comparison-v4.json",
+    "sha256": "376cde6fc6af8c96b8ac1f86d4a11a74c262d62abb1e435b799e012c7e388c12"
+  },
+  "rules": {
+    "majority": "Compare prediction-shift and snapshot-residual dominant counts; a tie would be retained as tie_no_single_majority rather than forcing a winner",
+    "maximum_share": "Use the stored maximum-bound point shift_share without recomputing the fitted model or changing the 0.5 threshold",
+    "median_gap": "maximum_shift_share minus median shift_share over all available points with a defined share",
+    "descriptive_percentile": "Count defined shares less than or equal to the maximum-point share and divide by available point count; this is a descriptive rank, not probability",
+    "bound_ratio": "maximum_residual_upper_bound divided by median residual_upper_bound; require positive median and retain the ratio separately from share class",
+    "scope": "Unavailable points remain excluded and are never converted to zero shares"
+  },
+  "expected": {
+    "dataset_count": 9,
+    "maximum_matches_majority_count": 8,
+    "maximum_majority_mismatch_dataset_ids": ["gauss1"],
+    "maximum_prediction_shift_dominant_count": 8,
+    "maximum_snapshot_residual_dominant_dataset_ids": ["enso"],
+    "maximum_share_below_median_count": 6,
+    "maximum_share_below_median_dataset_ids": ["hahn1", "thurber", "kirby2", "misra1a", "chwirut1", "enso"],
+    "maximum_share_above_median_dataset_ids": ["filip", "mgh17", "gauss1"],
+    "largest_bound_to_median_ratio_dataset_id": "gauss1",
+    "largest_bound_to_median_ratio": 82.99437100729904
+  },
+  "output_rule": {
+    "summary": "exports/maximum-full-composition-audit.json",
+    "figure": "papers/34_最大界与全点组成/fig34_maximum_full_composition.png",
+    "refuse_overwrite": true
+  },
+  "prohibitions": [
+    "No use of a maximum point as a typical or representative observation",
+    "No conversion of descriptive percentiles, shares or ratios into probabilities or physical causal contributions",
+    "No single mechanism or single scalar ranking across datasets",
+    "No erasure of Gauss1's majority mismatch, ENSO's actual-residual maximum or the six below-median maxima"
+  ]
+}
