@@ -111,6 +111,9 @@ def build_graph(root):
     ensoLipschitz = json.loads((root / "validation/enso-full-ellipsoid-lipschitz-intersection.json").read_text(encoding="utf-8"))
     if ensoLipschitz["totals"]["alternative_tighter_count"] != 13 or ensoLipschitz["totals"]["alternative_wider_count"] != 155 or ensoLipschitz["totals"]["alternative_equal_count"] != 0 or ensoLipschitz["totals"]["intersection_tightened_count"] != 13 or ensoLipschitz["totals"]["intersection_unchanged_count"] != 155 or ensoLipschitz["totals"]["nonempty_intersection_count"] != 168 or ensoLipschitz["totals"]["alternative_candidate_violation_count"] != 0 or ensoLipschitz["totals"]["intersection_candidate_violation_count"] != 0 or ensoLipschitz["totals"]["independent_candidate_violation_count"] != 0 or ensoLipschitz["totals"]["center_prediction_mismatch_count"] != 0 or ensoLipschitz["totals"]["median_alternative_to_independent_width_ratio"] != 2.3027937209620504 or ensoLipschitz["totals"]["median_intersection_to_independent_width_ratio"] != 1.0 or ensoLipschitz["totals"]["max_intersection_width_reduction"] != 8.086192176366756 or ensoLipschitz["totals"]["largest_intersection_tightening"]["x"] != 4.0 or not ensoLipschitz["independent_receipt_verified"] or not ensoLipschitz["slice_receipt_verified"] or ensoLipschitz["decision"]["intersection_is_global_optimum"] or ensoLipschitz["decision"]["candidate_checks_replace_analytic_proof"]:
         raise ValueError("Expected Lipschitz wider alternatives, local intersections and candidate boundaries are not present")
+    ensoPhase = json.loads((root / "validation/enso-phase-interval-triple-intersection.json").read_text(encoding="utf-8"))
+    if ensoPhase["totals"]["phase_tighter_than_lipschitz_count"] != 29 or ensoPhase["totals"]["phase_wider_than_lipschitz_count"] != 139 or ensoPhase["totals"]["triple_tightened_count"] != 37 or ensoPhase["totals"]["triple_unchanged_count"] != 131 or ensoPhase["totals"]["nonempty_triple_intersection_count"] != 168 or ensoPhase["totals"]["phase_candidate_violation_count"] != 0 or ensoPhase["totals"]["triple_candidate_violation_count"] != 0 or ensoPhase["totals"]["center_prediction_mismatch_count"] != 0 or ensoPhase["totals"]["median_phase_to_lipschitz_width_ratio"] != 1.5386143812259636 or ensoPhase["totals"]["median_triple_to_lipschitz_width_ratio"] != 1.0 or ensoPhase["totals"]["max_triple_width_reduction"] != 4.371401855122352 or ensoPhase["totals"]["largest_triple_tightening"]["x"] != 25.0 or not ensoPhase["independent_receipt_verified"] or not ensoPhase["slice_receipt_verified"] or not ensoPhase["lipschitz_receipt_verified"] or ensoPhase["decision"]["triple_intersection_is_global_optimum"] or ensoPhase["decision"]["candidate_checks_replace_interval_proof"]:
+        raise ValueError("Expected phase-width mismatch, local triple intersections and candidate boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -1273,6 +1276,50 @@ def build_graph(root):
         edge("counterexample-enso-lipschitz-wider-majority", "claim-finite-bound-high-information", "contradicts"),
         edge("experiment-enso-full-lipschitz-protocol", "claim-center-coverage-external-validation", "tests"),
         edge("limitation-enso-full-lipschitz-intersection-scope", "claim-center-coverage-external-validation", "limits"),
+    ])
+    nodes.extend([
+        node("claim-phase-alternative-always-tighter", "claim", "精确三角区间和乘积区间构造的相位替代界在所有月份都必然更紧", "falsified", ["validation/enso-phase-interval-triple-intersection.json"]),
+        node("claim-triple-intersection-global-optimum", "claim", "相位替代界、独立界和 Lipschitz 界的三重交集自动等于全局最优界", "falsified", ["validation/enso-phase-interval-triple-intersection.json"]),
+        node("evidence-enso-phase-interval-triple", "evidence", "相位替代界在 29 个月份更紧、139 个月份更宽；三重交集在 37 个月份进一步收紧、131 个月份保持，672 个候选全部通过", "supported", ["validation/enso-phase-interval-triple-intersection.json", "validation/enso-phase-interval-triple-check.json"]),
+        node("counterexample-enso-phase-wider-majority", "counterexample", "相位替代界宽度比中位数为 1.538614、最大为 2.679921，139 个月份比第五十一阶段交集更宽，精确三角区间不保证普遍收紧", "supported", ["validation/enso-phase-interval-triple-intersection.json"]),
+        node("evidence-enso-phase-triple-37-local-gains", "evidence", "三重交集在第 1 折收紧 29 个月、第 2 折收紧 8 个月；最大新增收紧在 x=25，宽度比 0.747409、减少 4.371402", "supported", ["validation/enso-phase-interval-triple-intersection.json", "docs/ENSO_PHASE_INTERVAL_TRIPLE_INTERSECTION_2026-11-09.md"]),
+        node("counterexample-enso-phase-width-vs-intersection-mismatch", "counterexample", "8 个月份的相位替代界更宽但三重交集仍收紧，说明上下界位置和宽度共同决定交集收益，替代宽度比不能直接当最终稳定性评分", "supported", ["validation/enso-phase-interval-triple-intersection.json", "docs/ENSO_PHASE_INTERVAL_TRIPLE_INTERSECTION_2026-11-09.md"]),
+        node("experiment-enso-phase-interval-triple-protocol", "experiment", "冻结周期相位区间、全部正弦余弦临界点、四端点乘积区间、三重交集和 672 次候选一致性门禁", "supported", ["validation/enso-phase-interval-triple-protocol.json", "scripts/analyze_enso_phase_interval_triple.py"]),
+        node("limitation-enso-phase-interval-triple-scope", "limitation", "精确三角区间和独立乘积区间不是联合全局最优，三重交集可以不变，候选检查只验证实现，不构成概率、物理周期或独立实验结论", "active", ["validation/enso-phase-interval-triple-intersection.json", "docs/ENSO_PHASE_INTERVAL_TRIPLE_INTERSECTION_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-phase-alternative-always-tighter", "contains"),
+        edge("track-holdout", "claim-triple-intersection-global-optimum", "contains"),
+        edge("track-holdout", "evidence-enso-phase-interval-triple", "contains"),
+        edge("track-holdout", "counterexample-enso-phase-wider-majority", "contains"),
+        edge("track-holdout", "evidence-enso-phase-triple-37-local-gains", "contains"),
+        edge("track-holdout", "counterexample-enso-phase-width-vs-intersection-mismatch", "contains"),
+        edge("track-holdout", "experiment-enso-phase-interval-triple-protocol", "contains"),
+        edge("track-holdout", "limitation-enso-phase-interval-triple-scope", "contains"),
+        edge("evidence-enso-phase-interval-triple", "claim-phase-alternative-always-tighter", "contradicts"),
+        edge("experiment-enso-phase-interval-triple-protocol", "claim-phase-alternative-always-tighter", "tests"),
+        edge("counterexample-enso-phase-wider-majority", "claim-phase-alternative-always-tighter", "contradicts"),
+        edge("evidence-enso-phase-interval-triple", "counterexample-enso-phase-wider-majority", "supports"),
+        edge("evidence-enso-phase-interval-triple", "claim-triple-intersection-global-optimum", "contradicts"),
+        edge("experiment-enso-phase-interval-triple-protocol", "claim-triple-intersection-global-optimum", "tests"),
+        edge("evidence-enso-phase-triple-37-local-gains", "evidence-enso-phase-interval-triple", "supports"),
+        edge("evidence-enso-phase-triple-37-local-gains", "limitation-enso-phase-interval-triple-scope", "supports"),
+        edge("counterexample-enso-phase-width-vs-intersection-mismatch", "limitation-enso-phase-interval-triple-scope", "supports"),
+        edge("counterexample-enso-phase-width-vs-intersection-mismatch", "claim-normalized-envelope-ratio-stability-score", "contradicts"),
+        edge("limitation-enso-phase-interval-triple-scope", "evidence-enso-phase-interval-triple", "limits"),
+        edge("limitation-enso-phase-interval-triple-scope", "claim-phase-alternative-always-tighter", "limits"),
+        edge("limitation-enso-phase-interval-triple-scope", "claim-triple-intersection-global-optimum", "limits"),
+        edge("evidence-enso-phase-interval-triple", "evidence-enso-full-lipschitz-intersection", "supports"),
+        edge("experiment-enso-phase-interval-triple-protocol", "experiment-enso-full-lipschitz-protocol", "supports"),
+        edge("evidence-enso-phase-interval-triple", "evidence-enso-conditional-period-slice", "supports"),
+        edge("evidence-enso-phase-interval-triple", "evidence-enso-native-ellipsoid-continuous", "supports"),
+        edge("evidence-enso-phase-interval-triple", "evidence-native-ellipsoid-cross-model", "supports"),
+        edge("evidence-enso-phase-interval-triple", "counterexample-enso-optimizer-mismatch", "supports"),
+        edge("experiment-enso-phase-interval-triple-protocol", "claim-independent-fourier-envelope-joint-optimum", "tests"),
+        edge("evidence-enso-phase-interval-triple", "claim-independent-fourier-envelope-joint-optimum", "contradicts"),
+        edge("limitation-enso-phase-interval-triple-scope", "claim-independent-fourier-envelope-joint-optimum", "limits"),
+        edge("experiment-enso-phase-interval-triple-protocol", "claim-center-coverage-external-validation", "tests"),
+        edge("limitation-enso-phase-interval-triple-scope", "claim-center-coverage-external-validation", "limits"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

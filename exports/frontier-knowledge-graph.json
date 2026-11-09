@@ -2719,6 +2719,83 @@
         "validation/enso-full-ellipsoid-lipschitz-intersection.json",
         "docs/ENSO_FULL_ELLIPSOID_LIPSCHITZ_INTERSECTION_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-phase-alternative-always-tighter",
+      "kind": "claim",
+      "title": "精确三角区间和乘积区间构造的相位替代界在所有月份都必然更紧",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/enso-phase-interval-triple-intersection.json"
+      ]
+    },
+    {
+      "id": "claim-triple-intersection-global-optimum",
+      "kind": "claim",
+      "title": "相位替代界、独立界和 Lipschitz 界的三重交集自动等于全局最优界",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/enso-phase-interval-triple-intersection.json"
+      ]
+    },
+    {
+      "id": "evidence-enso-phase-interval-triple",
+      "kind": "evidence",
+      "title": "相位替代界在 29 个月份更紧、139 个月份更宽；三重交集在 37 个月份进一步收紧、131 个月份保持，672 个候选全部通过",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-phase-interval-triple-intersection.json",
+        "validation/enso-phase-interval-triple-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-phase-wider-majority",
+      "kind": "counterexample",
+      "title": "相位替代界宽度比中位数为 1.538614、最大为 2.679921，139 个月份比第五十一阶段交集更宽，精确三角区间不保证普遍收紧",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-phase-interval-triple-intersection.json"
+      ]
+    },
+    {
+      "id": "evidence-enso-phase-triple-37-local-gains",
+      "kind": "evidence",
+      "title": "三重交集在第 1 折收紧 29 个月、第 2 折收紧 8 个月；最大新增收紧在 x=25，宽度比 0.747409、减少 4.371402",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-phase-interval-triple-intersection.json",
+        "docs/ENSO_PHASE_INTERVAL_TRIPLE_INTERSECTION_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "counterexample-enso-phase-width-vs-intersection-mismatch",
+      "kind": "counterexample",
+      "title": "8 个月份的相位替代界更宽但三重交集仍收紧，说明上下界位置和宽度共同决定交集收益，替代宽度比不能直接当最终稳定性评分",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-phase-interval-triple-intersection.json",
+        "docs/ENSO_PHASE_INTERVAL_TRIPLE_INTERSECTION_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "experiment-enso-phase-interval-triple-protocol",
+      "kind": "experiment",
+      "title": "冻结周期相位区间、全部正弦余弦临界点、四端点乘积区间、三重交集和 672 次候选一致性门禁",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-phase-interval-triple-protocol.json",
+        "scripts/analyze_enso_phase_interval_triple.py"
+      ]
+    },
+    {
+      "id": "limitation-enso-phase-interval-triple-scope",
+      "kind": "limitation",
+      "title": "精确三角区间和独立乘积区间不是联合全局最优，三重交集可以不变，候选检查只验证实现，不构成概率、物理周期或独立实验结论",
+      "status": "active",
+      "sourceFiles": [
+        "validation/enso-phase-interval-triple-intersection.json",
+        "docs/ENSO_PHASE_INTERVAL_TRIPLE_INTERSECTION_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -6729,6 +6806,166 @@
     },
     {
       "from": "limitation-enso-full-lipschitz-intersection-scope",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "limits"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-phase-alternative-always-tighter",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-triple-intersection-global-optimum",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-enso-phase-interval-triple",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-phase-wider-majority",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-enso-phase-triple-37-local-gains",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-phase-width-vs-intersection-mismatch",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-enso-phase-interval-triple-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-enso-phase-interval-triple-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-enso-phase-interval-triple",
+      "to": "claim-phase-alternative-always-tighter",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-phase-interval-triple-protocol",
+      "to": "claim-phase-alternative-always-tighter",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-enso-phase-wider-majority",
+      "to": "claim-phase-alternative-always-tighter",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-enso-phase-interval-triple",
+      "to": "counterexample-enso-phase-wider-majority",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-phase-interval-triple",
+      "to": "claim-triple-intersection-global-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-phase-interval-triple-protocol",
+      "to": "claim-triple-intersection-global-optimum",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-enso-phase-triple-37-local-gains",
+      "to": "evidence-enso-phase-interval-triple",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-phase-triple-37-local-gains",
+      "to": "limitation-enso-phase-interval-triple-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-enso-phase-width-vs-intersection-mismatch",
+      "to": "limitation-enso-phase-interval-triple-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-enso-phase-width-vs-intersection-mismatch",
+      "to": "claim-normalized-envelope-ratio-stability-score",
+      "relation": "contradicts"
+    },
+    {
+      "from": "limitation-enso-phase-interval-triple-scope",
+      "to": "evidence-enso-phase-interval-triple",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-enso-phase-interval-triple-scope",
+      "to": "claim-phase-alternative-always-tighter",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-enso-phase-interval-triple-scope",
+      "to": "claim-triple-intersection-global-optimum",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-enso-phase-interval-triple",
+      "to": "evidence-enso-full-lipschitz-intersection",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-phase-interval-triple-protocol",
+      "to": "experiment-enso-full-lipschitz-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-phase-interval-triple",
+      "to": "evidence-enso-conditional-period-slice",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-phase-interval-triple",
+      "to": "evidence-enso-native-ellipsoid-continuous",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-phase-interval-triple",
+      "to": "evidence-native-ellipsoid-cross-model",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-phase-interval-triple",
+      "to": "counterexample-enso-optimizer-mismatch",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-phase-interval-triple-protocol",
+      "to": "claim-independent-fourier-envelope-joint-optimum",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-enso-phase-interval-triple",
+      "to": "claim-independent-fourier-envelope-joint-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "limitation-enso-phase-interval-triple-scope",
+      "to": "claim-independent-fourier-envelope-joint-optimum",
+      "relation": "limits"
+    },
+    {
+      "from": "experiment-enso-phase-interval-triple-protocol",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-enso-phase-interval-triple-scope",
       "to": "claim-center-coverage-external-validation",
       "relation": "limits"
     }

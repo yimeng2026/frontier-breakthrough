@@ -117,6 +117,8 @@ def build() -> dict:
     ensoSliceCheck = read("enso-conditional-period-slice-check.json")
     ensoLipschitz = read("enso-full-ellipsoid-lipschitz-intersection.json")
     ensoLipschitzCheck = read("enso-full-ellipsoid-lipschitz-check.json")
+    ensoPhase = read("enso-phase-interval-triple-intersection.json")
+    ensoPhaseCheck = read("enso-phase-interval-triple-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -1359,6 +1361,66 @@ def build() -> dict:
             "limitations": "替代界由精确分解、边际支撑、三角不等式和 Lipschitz 余项构成，不是全域联合最优。交集可保持不变，候选检查只验证实现一致性；不隐藏更宽替代界、未收紧交集或历史基线。" + " ".join(ensoLipschitz["limitations"]),
             "upstreamContribution": "提供全椭球 Lipschitz 分解、周期余项、保守交集、逐月宽度比较和候选一致性接口，明确分开局部收紧、全域最优性与解析证明。",
             "snapshotFiles": ["validation/enso-full-ellipsoid-lipschitz-protocol.json", "validation/enso-full-ellipsoid-lipschitz-check.json", "validation/frontier-enso-full-ellipsoid-lipschitz-word.json"],
+        },
+        {
+            "id": "enso-phase-interval-triple-intersection", "domain": "physics", "title": "ENSO 精确三角区间余项与三重交集",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/ENSO.dat"],
+            "metrics": {
+                "totals": ensoPhase["totals"],
+                "folds": [{
+                    "fold": fold["fold"],
+                    "nativeTestRmse": fold["native_test_rmse"],
+                    "candidateEvaluationCount": fold["candidate_evaluation_count"],
+                    "phaseTighterThanIndependentCount": fold["phase_tighter_than_independent_count"],
+                    "phaseWiderThanIndependentCount": fold["phase_wider_than_independent_count"],
+                    "phaseEqualToIndependentCount": fold["phase_equal_to_independent_count"],
+                    "phaseTighterThanLipschitzCount": fold["phase_tighter_than_lipschitz_count"],
+                    "phaseWiderThanLipschitzCount": fold["phase_wider_than_lipschitz_count"],
+                    "phaseEqualToLipschitzCount": fold["phase_equal_to_lipschitz_count"],
+                    "tripleTightenedCount": fold["triple_tightened_count"],
+                    "tripleUnchangedCount": fold["triple_unchanged_count"],
+                    "tripleBoundChangedCount": fold["triple_bound_changed_count"],
+                    "nonemptyTripleIntersectionCount": fold["nonempty_triple_intersection_count"],
+                    "phaseCandidateViolationCount": fold["phase_candidate_violation_count"],
+                    "tripleCandidateViolationCount": fold["triple_candidate_violation_count"],
+                    "candidateFeasibilityFailureCount": fold["candidate_feasibility_failure_count"],
+                    "centerPredictionMismatchCount": fold["center_prediction_mismatch_count"],
+                    "minPhaseToIndependentWidthRatio": fold["min_phase_to_independent_width_ratio"],
+                    "medianPhaseToIndependentWidthRatio": fold["median_phase_to_independent_width_ratio"],
+                    "maxPhaseToIndependentWidthRatio": fold["max_phase_to_independent_width_ratio"],
+                    "minPhaseToLipschitzWidthRatio": fold["min_phase_to_lipschitz_width_ratio"],
+                    "medianPhaseToLipschitzWidthRatio": fold["median_phase_to_lipschitz_width_ratio"],
+                    "maxPhaseToLipschitzWidthRatio": fold["max_phase_to_lipschitz_width_ratio"],
+                    "minTripleToLipschitzWidthRatio": fold["min_triple_to_lipschitz_width_ratio"],
+                    "medianTripleToLipschitzWidthRatio": fold["median_triple_to_lipschitz_width_ratio"],
+                    "maxTripleToLipschitzWidthRatio": fold["max_triple_to_lipschitz_width_ratio"],
+                    "maxTripleWidthReduction": fold["max_triple_width_reduction"],
+                    "medianTripleWidthReduction": fold["median_triple_width_reduction"],
+                    "maxPhaseRemainderWidth": fold["max_phase_remainder_width"],
+                    "largestTripleTightening": fold["largest_triple_tightening"],
+                    "envelopes": fold["envelopes"],
+                } for fold in ensoPhase["folds"]],
+                "independentReceiptVerified": ensoPhase["independent_receipt_verified"],
+                "sliceReceiptVerified": ensoPhase["slice_receipt_verified"],
+                "lipschitzReceiptVerified": ensoPhase["lipschitz_receipt_verified"],
+                "fullEllipsoidJointNonlinearOptimum": ensoPhase["full_ellipsoid_joint_nonlinear_optimum"],
+                "analysisScope": ensoPhase["analysis_scope"],
+                "decision": ensoPhase["decision"],
+                "implementation": {
+                    "protocolSha256": ensoPhase["protocol_sha256"],
+                    "summarySha256": ensoPhaseCheck["summarySha256"],
+                    "analysisRunnerSha256": ensoPhaseCheck["analysisRunnerSha256"],
+                    "figureSha256": ensoPhaseCheck["figureSha256"],
+                    "reportSha256": ensoPhaseCheck["reportSha256"],
+                    "wordSha256": ensoPhaseCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "a7009e0"},
+            },
+            "scientificClaim": "通过端点和全部内部临界点构造相位区间后，替代界在 29 个月份更紧、139 个月份更宽；三重交集在 37 个月份进一步收紧、131 个月份保持。最大新增收紧在第 1 折 x=25，宽度比 0.747409、减少 4.371402；672 个候选全部在相位界和三重交集内。",
+            "limitations": "三角区间和独立乘积区间不是联合全局最优。替代界可以更宽，三重交集可以不变；另有 8 个月替代更宽但交集收紧，不能把替代宽度比当作最终稳定性评分。候选检查只验证实现一致性。" + " ".join(ensoPhase["limitations"]),
+            "upstreamContribution": "提供完整三角临界点枚举、乘积区间、三重交集、逐月收益和宽度—交集不一致反例接口，明确区分局部收紧、全局最优性与候选一致性。",
+            "snapshotFiles": ["validation/enso-phase-interval-triple-protocol.json", "validation/enso-phase-interval-triple-check.json", "validation/frontier-enso-phase-interval-triple-word.json"],
         },
     ]
     packet = {

@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "enso_full_ellipsoid_lipschitz":
+    if REPORT_MODE == "enso_phase_interval_triple":
+        replacements = {
+            "图：`papers/59_ENSO三角区间三重交集/fig59_enso_phase_interval_triple_intersection.png`。": "![](papers/59_ENSO三角区间三重交集/fig59_enso_phase_interval_triple_intersection.png)\n\n**图 59｜ENSO 精确三角区间余项与三重交集（第 1 幅，共 1 幅）**  \n**插入位置**：§6「四联图与证据边界」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "168 个相位替代界与三重交集、37 个新增收紧月份和 672 次候选复核"
+    elif REPORT_MODE == "enso_full_ellipsoid_lipschitz":
         replacements = {
             "图：`papers/58_ENSO全椭球Lipschitz交集/fig58_enso_full_ellipsoid_lipschitz_intersection.png`。": "![](papers/58_ENSO全椭球Lipschitz交集/fig58_enso_full_ellipsoid_lipschitz_intersection.png)\n\n**图 58｜ENSO 全椭球 Lipschitz 保守界与交集收紧（第 1 幅，共 1 幅）**  \n**插入位置**：§6「四联图与证据边界」；顺序第 1 幅，共 1 幅。",
         }

@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生ENSO三角区间三重交集_图文完整版.docx",
+  "bytes": 245682,
+  "sha256": "c6687266053a7273fce5ddc929c28abc78347c8252b657ecf8cced851233a194",
+  "native_math_objects": 4,
+  "embedded_images": 1,
+  "native_tables": 5,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}
