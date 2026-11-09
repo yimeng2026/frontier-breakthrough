@@ -93,6 +93,9 @@ def build_graph(root):
     radiusSensitivity = json.loads((root / "validation/chwirut1-native-ellipsoid-radius-sensitivity.json").read_text(encoding="utf-8"))
     if radiusSensitivity["totals"]["case_count"] != 25 or radiusSensitivity["totals"]["maximum_point_evaluations"] != 1070 or radiusSensitivity["totals"]["maximum_envelope_evaluations"] != 110 or radiusSensitivity["totals"]["actual_envelope_evaluation_count"] != 105 or radiusSensitivity["totals"]["unavailable_case_ids"] != ["chwirut1:1:r8"] or radiusSensitivity["totals"]["minimum_critical_radius"] != 7.415973756136996 or radiusSensitivity["totals"]["minimum_critical_radius_fold"] != 1 or radiusSensitivity["totals"]["center_prediction_envelope_mismatch_count"] != 0 or not radiusSensitivity["baseline"]["matches_frozen_baseline"] or radiusSensitivity["decision"]["optimal_radius_selected"] or radiusSensitivity["decision"]["grid_maximum_called_exact_safe_maximum"]:
         raise ValueError("Expected radius sensitivity, grid failure and baseline boundaries are not present")
+    roszman1Ellipsoid = json.loads((root / "validation/roszman1-native-ellipsoid-continuous-bounds.json").read_text(encoding="utf-8"))
+    if roszman1Ellipsoid["totals"]["fold_count"] != 5 or roszman1Ellipsoid["totals"]["held_out_point_count"] != 25 or roszman1Ellipsoid["totals"]["unique_x_count"] != 25 or roszman1Ellipsoid["totals"]["certified_fold_count"] != 4 or roszman1Ellipsoid["totals"]["certified_fold_ids"] != [1, 2, 3, 4] or roszman1Ellipsoid["totals"]["unavailable_fold_ids"] != [5] or roszman1Ellipsoid["totals"]["available_point_count"] != 20 or roszman1Ellipsoid["totals"]["covered_point_count"] != 20 or roszman1Ellipsoid["totals"]["violation_point_count"] != 0 or roszman1Ellipsoid["totals"]["unavailable_point_count"] != 5 or roszman1Ellipsoid["totals"]["center_prediction_envelope_mismatch_count"] != 0 or roszman1Ellipsoid["totals"]["minimum_critical_sign_radius"] != 2.828350890156889 or roszman1Ellipsoid["totals"]["minimum_critical_sign_radius_fold"] != 5 or roszman1Ellipsoid["totals"]["max_envelope_width"] != 0.867292251653464 or roszman1Ellipsoid["totals"]["median_envelope_width"] != 0.3543650116278472 or roszman1Ellipsoid["analysis_scope"]["probability_region"] or roszman1Ellipsoid["decision"]["center_consistency_used_as_external_validation"]:
+        raise ValueError("Expected Roszman1 singularity certificates, crossing and center-scope boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -997,6 +1000,46 @@ def build_graph(root):
         edge("experiment-chwirut1-radius-count-amendment-v2", "evidence-chwirut1-native-radius-sensitivity", "supports"),
         edge("experiment-chwirut1-radius-count-amendment-v2", "claim-knowledge-graph", "tests"),
         edge("counterexample-chwirut1-fold1-radius8-unavailable", "claim-critical-radius-probability-optimum", "contradicts"),
+    ])
+    nodes.extend([
+        node("claim-arctan-bounded-denominator-irrelevant", "claim", "arctan 有界所以 x-b4 跨零不构成分母或奇异性问题", "falsified", ["validation/roszman1-native-ellipsoid-continuous-bounds.json"]),
+        node("claim-roszman-fold5-low-rmse-singularity-safe", "claim", "Roszman1 第 5 折 RMSE 最低即可绕过奇异性检查", "falsified", ["validation/roszman1-native-ellipsoid-continuous-bounds.json"]),
+        node("evidence-roszman1-native-ellipsoid-continuous", "evidence", "前四折负号通过并生成 20 个包络，第 5 折临界半径 2.828351 且跨零，不生成有限界", "supported", ["validation/roszman1-native-ellipsoid-continuous-bounds.json", "validation/roszman1-native-ellipsoid-continuous-check.json"]),
+        node("counterexample-roszman1-fold5-crossing-singularity", "counterexample", "第 5 折临界半径 2.828351，半径 4 时右端 d_max=+103.088753，存在 x-b4 跨零", "supported", ["validation/roszman1-native-ellipsoid-continuous-bounds.json"]),
+        node("counterexample-roszman1-fold1-wide-envelope", "counterexample", "第 1 折最大包络宽度 0.867292、最大残差上界 0.443391，约为实际 RMSE 的 44 倍", "supported", ["validation/roszman1-native-ellipsoid-continuous-bounds.json"]),
+        node("counterexample-roszman1-center-consistency-not-probability", "counterexample", "20 点中心一致性通过但第 5 折 5 点不可用，中心在椭球内不等于概率覆盖或外部验证", "supported", ["validation/roszman1-native-ellipsoid-continuous-bounds.json"]),
+        node("experiment-roszman1-native-ellipsoid-continuous-protocol", "experiment", "冻结四维椭球、端点同号、解析奇异临界半径和原始 arctan 包络规则", "supported", ["validation/roszman1-native-ellipsoid-continuous-protocol.json", "scripts/analyze_roszman1_native_ellipsoid_continuous.py"]),
+        node("limitation-roszman1-native-ellipsoid-sign-scope", "limitation", "同号证书只覆盖所选椭球和区间，独立放松可能很宽，数值零区和跨零必须保留且不是精确有理证明", "active", ["validation/roszman1-native-ellipsoid-continuous-bounds.json", "docs/ROSZMAN1_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-arctan-bounded-denominator-irrelevant", "contains"),
+        edge("track-holdout", "claim-roszman-fold5-low-rmse-singularity-safe", "contains"),
+        edge("track-holdout", "evidence-roszman1-native-ellipsoid-continuous", "contains"),
+        edge("track-holdout", "counterexample-roszman1-fold5-crossing-singularity", "contains"),
+        edge("track-holdout", "counterexample-roszman1-fold1-wide-envelope", "contains"),
+        edge("track-holdout", "counterexample-roszman1-center-consistency-not-probability", "contains"),
+        edge("track-holdout", "experiment-roszman1-native-ellipsoid-continuous-protocol", "contains"),
+        edge("track-holdout", "limitation-roszman1-native-ellipsoid-sign-scope", "contains"),
+        edge("evidence-roszman1-native-ellipsoid-continuous", "claim-arctan-bounded-denominator-irrelevant", "contradicts"),
+        edge("experiment-roszman1-native-ellipsoid-continuous-protocol", "claim-arctan-bounded-denominator-irrelevant", "tests"),
+        edge("evidence-roszman1-native-ellipsoid-continuous", "claim-roszman-fold5-low-rmse-singularity-safe", "contradicts"),
+        edge("experiment-roszman1-native-ellipsoid-continuous-protocol", "claim-roszman-fold5-low-rmse-singularity-safe", "tests"),
+        edge("counterexample-roszman1-fold5-crossing-singularity", "claim-roszman-fold5-low-rmse-singularity-safe", "contradicts"),
+        edge("counterexample-roszman1-fold5-crossing-singularity", "claim-arctan-bounded-denominator-irrelevant", "contradicts"),
+        edge("counterexample-roszman1-fold1-wide-envelope", "claim-finite-bound-high-information", "contradicts"),
+        edge("evidence-roszman1-native-ellipsoid-continuous", "counterexample-roszman1-fold5-crossing-singularity", "supports"),
+        edge("evidence-roszman1-native-ellipsoid-continuous", "counterexample-roszman1-fold1-wide-envelope", "supports"),
+        edge("limitation-roszman1-native-ellipsoid-sign-scope", "evidence-roszman1-native-ellipsoid-continuous", "limits"),
+        edge("limitation-roszman1-native-ellipsoid-sign-scope", "claim-arctan-bounded-denominator-irrelevant", "limits"),
+        edge("limitation-roszman1-native-ellipsoid-sign-scope", "claim-roszman-fold5-low-rmse-singularity-safe", "limits"),
+        edge("evidence-roszman1-native-ellipsoid-continuous", "evidence-roszman1-native-identifiability", "supports"),
+        edge("experiment-roszman1-native-ellipsoid-continuous-protocol", "experiment-roszman1-native-identifiability-protocol", "supports"),
+        edge("evidence-roszman1-native-ellipsoid-continuous", "evidence-native-identifiability-cross-model", "supports"),
+        edge("experiment-roszman1-native-ellipsoid-continuous-protocol", "experiment-native-identifiability-cross-model-protocol", "supports"),
+        edge("counterexample-roszman1-fold5-crossing-singularity", "claim-prediction-stability-parameter-uniqueness", "contradicts"),
+        edge("counterexample-roszman1-fold1-wide-envelope", "limitation-roszman1-native-no-bounds", "supports"),
+        edge("counterexample-roszman1-center-consistency-not-probability", "claim-center-coverage-external-validation", "contradicts"),
+        edge("evidence-roszman1-native-ellipsoid-continuous", "counterexample-roszman1-center-consistency-not-probability", "supports"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

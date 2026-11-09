@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "chwirut1_native_ellipsoid_radius_sensitivity":
+    if REPORT_MODE == "roszman1_native_ellipsoid_continuous":
+        replacements = {
+            "图：`papers/53_Roszman1原生椭球奇异界/fig53_roszman1_native_ellipsoid_continuous_bounds.png`。": "![](papers/53_Roszman1原生椭球奇异界/fig53_roszman1_native_ellipsoid_continuous_bounds.png)\n\n**图 53｜Roszman1 原生反正切椭球奇异证书与预测界（第 1 幅，共 1 幅）**  \n**插入位置**：§5「中心一致性与四联组图」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "五折奇异临界半径、20 个可用包络与第 5 折跨零反例"
+    elif REPORT_MODE == "chwirut1_native_ellipsoid_radius_sensitivity":
         replacements = {
             "图：`papers/52_Chwirut1原生椭球半径敏感性/fig52_chwirut1_native_ellipsoid_radius_sensitivity.png`。": "![](papers/52_Chwirut1原生椭球半径敏感性/fig52_chwirut1_native_ellipsoid_radius_sensitivity.png)\n\n**图 52｜Chwirut1 原生椭球半径敏感性与临界半径（第 1 幅，共 1 幅）**  \n**插入位置**：§5「半径 4 基线完全复现」；顺序第 1 幅，共 1 幅。",
         }

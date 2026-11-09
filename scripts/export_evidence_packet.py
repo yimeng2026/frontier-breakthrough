@@ -105,6 +105,8 @@ def build() -> dict:
     radiusSensitivityCheck = read("chwirut1-native-ellipsoid-radius-sensitivity-check.json")
     radiusAmendment01 = read("chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json")
     radiusAmendment02 = read("chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-02.json")
+    roszman1Ellipsoid = read("roszman1-native-ellipsoid-continuous-bounds.json")
+    roszman1EllipsoidCheck = read("roszman1-native-ellipsoid-continuous-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -1055,6 +1057,45 @@ def build() -> dict:
             "limitations": "临界半径是几何量而非概率、最优值或全域上限，网格最大值不等于精确安全上限。不可用案例不生成有限界，包络宽度普遍随半径增加；中心一致性不是外部验证，Chwirut1 与 Chwirut2 同研究同模型族。" + " ".join(radiusSensitivity["limitations"]),
             "upstreamContribution": "提供解析临界半径、严格负例、完整网格状态、宽度敏感性和显式计数修订链，区分几何临界值、网格最大值、实际信息量与概率解释。",
             "snapshotFiles": ["validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol.json", "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json", "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-02.json", "validation/chwirut1-native-ellipsoid-radius-sensitivity-check.json", "validation/frontier-chwirut1-native-ellipsoid-radius-sensitivity-word.json"],
+        },
+        {
+            "id": "roszman1-native-ellipsoid-continuous-bounds", "domain": "physics", "title": "Roszman1 原生反正切椭球奇异证书与预测包络",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Roszman1.dat"],
+            "metrics": {
+                "totals": roszman1Ellipsoid["totals"],
+                "folds": [{
+                    "fold": fold["fold"],
+                    "nativeTestRmse": fold["native_test_rmse"],
+                    "criticalSign": fold["critical_sign"],
+                    "negativeControl": fold["negative_control"],
+                    "signCertificate": fold["sign_certificate"],
+                    "predictionEnvelopeAvailable": fold["prediction_envelope_available"],
+                    "unavailableReason": fold["unavailable_reason"],
+                    "envelopes": fold["envelopes"],
+                    "coverage": fold["coverage"],
+                    "maxEnvelopeWidth": fold["max_envelope_width"],
+                    "medianEnvelopeWidth": fold["median_envelope_width"],
+                    "maxResidualUpperBound": fold["max_residual_upper_bound"],
+                    "medianResidualUpperBound": fold["median_residual_upper_bound"],
+                } for fold in roszman1Ellipsoid["folds"]],
+                "parameterStability": roszman1Ellipsoid["parameter_stability"],
+                "analysisScope": roszman1Ellipsoid["analysis_scope"],
+                "decision": roszman1Ellipsoid["decision"],
+                "implementation": {
+                    "protocolSha256": roszman1Ellipsoid["protocol_sha256"],
+                    "summarySha256": roszman1EllipsoidCheck["summarySha256"],
+                    "analysisRunnerSha256": roszman1EllipsoidCheck["analysisRunnerSha256"],
+                    "figureSha256": roszman1EllipsoidCheck["figureSha256"],
+                    "reportSha256": roszman1EllipsoidCheck["reportSha256"],
+                    "wordSha256": roszman1EllipsoidCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "0e5c8e6"},
+            },
+            "scientificClaim": "前四折在半径 4 的显式椭球和连续区间内均通过 x-b4 负号检查，生成 20 个原始 arctan 包络；第 5 折临界半径为 2.828351，半径 4 时跨零，5 点不可用。最大包络宽度为 0.867292，中位宽度为 0.354365；20 点中心一致性通过但不是概率覆盖或外部验证。",
+            "limitations": "同号证书只覆盖所选椭球和区间，arctan 有界不消除分母不存在的问题。独立放松可能很宽，中心一致性不等于外部有效性；数值零区和跨零必须保留，高精度外向数值证书不是精确有理证明。" + " ".join(roszman1Ellipsoid["limitations"]),
+            "upstreamContribution": "提供四维反正切模型的同号支撑证书、奇异临界半径、原始非线性包络与宽度审计接口，区分 arctan 有界性、分母存在性、中心一致性和概率解释。",
+            "snapshotFiles": ["validation/roszman1-native-ellipsoid-continuous-protocol.json", "validation/roszman1-native-ellipsoid-continuous-check.json", "validation/frontier-roszman1-native-ellipsoid-continuous-word.json"],
         },
     ]
     packet = {

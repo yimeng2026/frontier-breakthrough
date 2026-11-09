@@ -112,8 +112,8 @@ class ExpansionTests(unittest.TestCase):
 
     def test_evidence_packet_is_current_and_bounded(self):
         packet = self.read("exports/frontier-evidence.json")
-        self.assertEqual(len(packet["items"]), 56)
-        self.assertEqual(len({i["id"] for i in packet["items"]}), 56)
+        self.assertEqual(len(packet["items"]), 57)
+        self.assertEqual(len({i["id"] for i in packet["items"]}), 57)
         for item in packet["items"]:
             self.assertEqual(item["status"], "verified")
             self.assertTrue(item["limitations"])

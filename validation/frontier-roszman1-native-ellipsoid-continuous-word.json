@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生Roszman1原生椭球奇异界_图文完整版.docx",
+  "bytes": 234025,
+  "sha256": "8343ee56a3046c59e10e460833b1b1c1f825ffa41149c83eca34c0c638f19f13",
+  "native_math_objects": 3,
+  "embedded_images": 1,
+  "native_tables": 5,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

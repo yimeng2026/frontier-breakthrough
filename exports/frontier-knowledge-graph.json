@@ -2253,6 +2253,81 @@
         "validation/chwirut1-native-ellipsoid-radius-sensitivity.json",
         "docs/CHWIRUT1_NATIVE_ELLIPSOID_RADIUS_SENSITIVITY_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-arctan-bounded-denominator-irrelevant",
+      "kind": "claim",
+      "title": "arctan 有界所以 x-b4 跨零不构成分母或奇异性问题",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-native-ellipsoid-continuous-bounds.json"
+      ]
+    },
+    {
+      "id": "claim-roszman-fold5-low-rmse-singularity-safe",
+      "kind": "claim",
+      "title": "Roszman1 第 5 折 RMSE 最低即可绕过奇异性检查",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-native-ellipsoid-continuous-bounds.json"
+      ]
+    },
+    {
+      "id": "evidence-roszman1-native-ellipsoid-continuous",
+      "kind": "evidence",
+      "title": "前四折负号通过并生成 20 个包络，第 5 折临界半径 2.828351 且跨零，不生成有限界",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-native-ellipsoid-continuous-bounds.json",
+        "validation/roszman1-native-ellipsoid-continuous-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-fold5-crossing-singularity",
+      "kind": "counterexample",
+      "title": "第 5 折临界半径 2.828351，半径 4 时右端 d_max=+103.088753，存在 x-b4 跨零",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-native-ellipsoid-continuous-bounds.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-fold1-wide-envelope",
+      "kind": "counterexample",
+      "title": "第 1 折最大包络宽度 0.867292、最大残差上界 0.443391，约为实际 RMSE 的 44 倍",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-native-ellipsoid-continuous-bounds.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-center-consistency-not-probability",
+      "kind": "counterexample",
+      "title": "20 点中心一致性通过但第 5 折 5 点不可用，中心在椭球内不等于概率覆盖或外部验证",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-native-ellipsoid-continuous-bounds.json"
+      ]
+    },
+    {
+      "id": "experiment-roszman1-native-ellipsoid-continuous-protocol",
+      "kind": "experiment",
+      "title": "冻结四维椭球、端点同号、解析奇异临界半径和原始 arctan 包络规则",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-native-ellipsoid-continuous-protocol.json",
+        "scripts/analyze_roszman1_native_ellipsoid_continuous.py"
+      ]
+    },
+    {
+      "id": "limitation-roszman1-native-ellipsoid-sign-scope",
+      "kind": "limitation",
+      "title": "同号证书只覆盖所选椭球和区间，独立放松可能很宽，数值零区和跨零必须保留且不是精确有理证明",
+      "status": "active",
+      "sourceFiles": [
+        "validation/roszman1-native-ellipsoid-continuous-bounds.json",
+        "docs/ROSZMAN1_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -5340,6 +5415,146 @@
       "from": "counterexample-chwirut1-fold1-radius8-unavailable",
       "to": "claim-critical-radius-probability-optimum",
       "relation": "contradicts"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-arctan-bounded-denominator-irrelevant",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-roszman-fold5-low-rmse-singularity-safe",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-roszman1-native-ellipsoid-continuous",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-fold5-crossing-singularity",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-fold1-wide-envelope",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-center-consistency-not-probability",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-roszman1-native-ellipsoid-continuous-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-roszman1-native-ellipsoid-sign-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-roszman1-native-ellipsoid-continuous",
+      "to": "claim-arctan-bounded-denominator-irrelevant",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-native-ellipsoid-continuous-protocol",
+      "to": "claim-arctan-bounded-denominator-irrelevant",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-roszman1-native-ellipsoid-continuous",
+      "to": "claim-roszman-fold5-low-rmse-singularity-safe",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-native-ellipsoid-continuous-protocol",
+      "to": "claim-roszman-fold5-low-rmse-singularity-safe",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-roszman1-fold5-crossing-singularity",
+      "to": "claim-roszman-fold5-low-rmse-singularity-safe",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-fold5-crossing-singularity",
+      "to": "claim-arctan-bounded-denominator-irrelevant",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-fold1-wide-envelope",
+      "to": "claim-finite-bound-high-information",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-roszman1-native-ellipsoid-continuous",
+      "to": "counterexample-roszman1-fold5-crossing-singularity",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-native-ellipsoid-continuous",
+      "to": "counterexample-roszman1-fold1-wide-envelope",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-roszman1-native-ellipsoid-sign-scope",
+      "to": "evidence-roszman1-native-ellipsoid-continuous",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-native-ellipsoid-sign-scope",
+      "to": "claim-arctan-bounded-denominator-irrelevant",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-native-ellipsoid-sign-scope",
+      "to": "claim-roszman-fold5-low-rmse-singularity-safe",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-roszman1-native-ellipsoid-continuous",
+      "to": "evidence-roszman1-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-native-ellipsoid-continuous-protocol",
+      "to": "experiment-roszman1-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-native-ellipsoid-continuous",
+      "to": "evidence-native-identifiability-cross-model",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-native-ellipsoid-continuous-protocol",
+      "to": "experiment-native-identifiability-cross-model-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-roszman1-fold5-crossing-singularity",
+      "to": "claim-prediction-stability-parameter-uniqueness",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-fold1-wide-envelope",
+      "to": "limitation-roszman1-native-no-bounds",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-roszman1-center-consistency-not-probability",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-roszman1-native-ellipsoid-continuous",
+      "to": "counterexample-roszman1-center-consistency-not-probability",
+      "relation": "supports"
     }
   ]
 }
