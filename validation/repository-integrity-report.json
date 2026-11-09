@@ -1,0 +1,54 @@
+{
+  "status": "passed",
+  "error_count": 0,
+  "errors": [],
+  "groups": {
+    "readme_local_links": {
+      "count": 84,
+      "errors": []
+    },
+    "document_figure_links": {
+      "count": 44,
+      "errors": []
+    },
+    "word_manifests": {
+      "count": 36,
+      "errors": []
+    },
+    "evidence_snapshots": {
+      "count": 161,
+      "errors": []
+    },
+    "knowledge_graph": {
+      "nodes": 184,
+      "edges": 407,
+      "errors": []
+    },
+    "protocol_inputs": {
+      "count": 10,
+      "recordsChecked": 24,
+      "errors": []
+    },
+    "corpus_v2": {
+      "documents": 23,
+      "hashMatchedDocuments": 22,
+      "unchangedOriginals": 10,
+      "errors": []
+    },
+    "dynamic_counts": {
+      "evidenceItems": 47,
+      "graphNodes": 184,
+      "graphEdges": 407,
+      "readme_consistent": true,
+      "errors": []
+    }
+  },
+  "decision": {
+    "external_web_checked": false,
+    "visual_qa_claimed": false,
+    "scientific_truth_claimed": false,
+    "historical_text_rewritten": false
+  },
+  "rules_sha256": "b5980c2c98f12c7924e2a255fdcbe3642d6c8fcf1245b56947ed00378b717331",
+  "analysis_runner_sha256": "a70a8da3016350bfd01d1405dac6a44ad68ee5d3dc0aa45df95042c532fd3c20"
+}
