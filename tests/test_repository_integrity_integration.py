@@ -17,9 +17,9 @@ class RepositoryIntegrityIntegrationTests(unittest.TestCase):
         metrics = item["metrics"]
         self.assertEqual(metrics["errorCount"], 0)
         self.assertGreaterEqual(metrics["groups"]["readme_local_links"]["count"], 84)
-        self.assertEqual(metrics["groups"]["document_figure_links"]["count"], 52)
-        self.assertEqual(metrics["groups"]["word_manifests"]["count"], 44)
-        self.assertEqual(metrics["groups"]["protocol_inputs"]["count"], 17)
+        self.assertEqual(metrics["groups"]["document_figure_links"]["count"], 53)
+        self.assertEqual(metrics["groups"]["word_manifests"]["count"], 45)
+        self.assertEqual(metrics["groups"]["protocol_inputs"]["count"], 20)
         self.assertEqual(metrics["groups"]["corpus_v2"]["documents"], 23)
         self.assertTrue(metrics["groups"]["dynamic_counts"]["readme_consistent"])
         self.assertFalse(metrics["decision"]["external_web_checked"])
@@ -31,8 +31,8 @@ class RepositoryIntegrityIntegrationTests(unittest.TestCase):
         nodes = {node["id"]: node for node in graph["nodes"]}
         identifier = "experiment-repository-integrity-audit"
         self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 232)
-        self.assertEqual(len(graph["edges"]), 590)
+        self.assertEqual(len(graph["nodes"]), 240)
+        self.assertEqual(len(graph["edges"]), 617)
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}
         self.assertIn(("track-knowledge", identifier, "contains"), edges)
         self.assertIn((identifier, "claim-knowledge-graph", "tests"), edges)

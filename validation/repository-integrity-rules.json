@@ -37,7 +37,10 @@
     "validation/enso-native-identifiability-protocol.json",
     "validation/native-identifiability-cross-model-protocol.json",
     "validation/native-sensitivity-threshold-coverage-protocol.json",
-    "validation/chwirut1-native-ellipsoid-continuous-protocol.json"
+    "validation/chwirut1-native-ellipsoid-continuous-protocol.json",
+    "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol.json",
+    "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json",
+    "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-02.json"
   ],
   "decision": {
     "external_web_checked": false,

@@ -101,6 +101,10 @@ def build() -> dict:
     sensitivityCoverageCheck = read("native-sensitivity-threshold-coverage-check.json")
     nativeEllipsoid = read("chwirut1-native-ellipsoid-continuous-bounds.json")
     nativeEllipsoidCheck = read("chwirut1-native-ellipsoid-continuous-check.json")
+    radiusSensitivity = read("chwirut1-native-ellipsoid-radius-sensitivity.json")
+    radiusSensitivityCheck = read("chwirut1-native-ellipsoid-radius-sensitivity-check.json")
+    radiusAmendment01 = read("chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json")
+    radiusAmendment02 = read("chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-02.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -999,6 +1003,58 @@ def build() -> dict:
             "limitations": "证书仅覆盖所选椭球和连续区间，协方差只定义区域而不定义概率。独立分子和分母放松可能很宽，中心一致性不等于外部有效性；高精度外向数值证书不是精确有理证明，Chwirut1 与 Chwirut2 同研究同模型族。" + " ".join(nativeEllipsoid["limitations"]),
             "upstreamContribution": "提供原生指数模型的连续分母支撑证书、原始非线性包络和宽度审计接口，把区域证明、中心一致性、实际信息量与概率解释明确分开。",
             "snapshotFiles": ["validation/chwirut1-native-ellipsoid-continuous-protocol.json", "validation/chwirut1-native-ellipsoid-continuous-check.json", "validation/frontier-chwirut1-native-ellipsoid-continuous-word.json"],
+        },
+        {
+            "id": "chwirut1-native-ellipsoid-radius-sensitivity", "domain": "physics", "title": "Chwirut1 原生椭球临界半径与固定网格敏感性",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Chwirut1.dat"],
+            "metrics": {
+                "totals": radiusSensitivity["totals"],
+                "folds": [{
+                    "fold": fold["fold"],
+                    "critical": fold["critical"],
+                    "negativeControl": fold["negative_control"],
+                    "maxCertifiedGridRadius": fold["max_certified_grid_radius"],
+                    "cases": [{
+                        "caseId": case["case_id"],
+                        "radius": case["radius"],
+                        "analyticRelation": case["analytic_relation"],
+                        "continuousDenominator": case["continuous_denominator"],
+                        "predictionEnvelopeAvailable": case["prediction_envelope_available"],
+                        "unavailableReason": case["unavailable_reason"],
+                        "coverage": case["coverage"],
+                        "maxEnvelopeWidth": case["max_envelope_width"],
+                        "medianEnvelopeWidth": case["median_envelope_width"],
+                        "maxResidualUpperBound": case["max_residual_upper_bound"],
+                        "medianResidualUpperBound": case["median_residual_upper_bound"],
+                    } for case in fold["cases"]],
+                } for fold in radiusSensitivity["folds"]],
+                "baseline": radiusSensitivity["baseline"],
+                "countHistory": {
+                    "originalProtocolValue": radiusAmendment02["correction"]["original_protocol_value"],
+                    "supersededIncorrectValue": radiusAmendment01["correction"]["corrected_maximum_point_evaluations"],
+                    "finalMaximumPointEvaluations": radiusAmendment02["correction"]["corrected_value"],
+                    "amendment01PreservedNotUsed": True,
+                    "amendment01File": "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json",
+                    "amendment02File": "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-02.json",
+                },
+                "analysisScope": radiusSensitivity["analysis_scope"],
+                "decision": radiusSensitivity["decision"],
+                "implementation": {
+                    "protocolSha256": radiusSensitivity["protocol_sha256"],
+                    "metadataAmendmentSha256": radiusSensitivity["metadata_amendment_sha256"],
+                    "summarySha256": radiusSensitivityCheck["summarySha256"],
+                    "analysisRunnerSha256": radiusSensitivityCheck["analysisRunnerSha256"],
+                    "figureSha256": radiusSensitivityCheck["figureSha256"],
+                    "reportSha256": radiusSensitivityCheck["reportSha256"],
+                    "wordSha256": radiusSensitivityCheck["wordSha256"],
+                },
+                "protocolCommits": {"originalProtocol": "7051c2e", "amendment01": "c08c41a", "amendment02": "8eed8db"},
+            },
+            "scientificClaim": "五折解析临界半径分别为 7.415974、15.580527、16.542845、14.649239、12.015926。第 1 折半径 8 不可用，其余 24 个案例通过，实际生成 105 个包络。半径 4 基线完全复现；首份 5350 计数修订被第二份纠正，最终逐点判定数为 1070，首份仅作历史保留。",
+            "limitations": "临界半径是几何量而非概率、最优值或全域上限，网格最大值不等于精确安全上限。不可用案例不生成有限界，包络宽度普遍随半径增加；中心一致性不是外部验证，Chwirut1 与 Chwirut2 同研究同模型族。" + " ".join(radiusSensitivity["limitations"]),
+            "upstreamContribution": "提供解析临界半径、严格负例、完整网格状态、宽度敏感性和显式计数修订链，区分几何临界值、网格最大值、实际信息量与概率解释。",
+            "snapshotFiles": ["validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol.json", "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json", "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-02.json", "validation/chwirut1-native-ellipsoid-radius-sensitivity-check.json", "validation/frontier-chwirut1-native-ellipsoid-radius-sensitivity-word.json"],
         },
     ]
     packet = {

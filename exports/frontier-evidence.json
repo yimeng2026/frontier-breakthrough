@@ -4548,29 +4548,29 @@
         "errorCount": 0,
         "groups": {
           "readme_local_links": {
-            "count": 100,
+            "count": 102,
             "errors": []
           },
           "document_figure_links": {
-            "count": 52,
+            "count": 53,
             "errors": []
           },
           "word_manifests": {
-            "count": 44,
+            "count": 45,
             "errors": []
           },
           "evidence_snapshots": {
-            "count": 186,
+            "count": 191,
             "errors": []
           },
           "knowledge_graph": {
-            "nodes": 232,
-            "edges": 590,
+            "nodes": 240,
+            "edges": 617,
             "errors": []
           },
           "protocol_inputs": {
-            "count": 17,
-            "recordsChecked": 44,
+            "count": 20,
+            "recordsChecked": 48,
             "errors": []
           },
           "corpus_v2": {
@@ -4580,9 +4580,9 @@
             "errors": []
           },
           "dynamic_counts": {
-            "evidenceItems": 55,
-            "graphNodes": 232,
-            "graphEdges": 590,
+            "evidenceItems": 56,
+            "graphNodes": 240,
+            "graphEdges": 617,
             "readme_consistent": true,
             "errors": []
           }
@@ -4593,7 +4593,7 @@
           "scientific_truth_claimed": false,
           "historical_text_rewritten": false
         },
-        "rulesSha256": "e440f8df6a093fb6a414ed64dee231f94e7ab3dbba2edc9ec3a51cffe6be44ce",
+        "rulesSha256": "c64fb8e9a9790a393fc7d160adcb057e8edac350a9c715681b6c29d20a1e838d",
         "analysisRunnerSha256": "403aabb3f22e6fa26eca8595777df16c1f5be34f6f948de7f1c8e7f8f20effdf",
         "previousReceiptPreserved": true,
         "protocolCommits": {
@@ -4601,7 +4601,7 @@
           "audit": "24dc02f"
         }
       },
-      "scientificClaim": "当前范围内 100 个 README 本地链接、52 个报告图片路径、44 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 17 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
+      "scientificClaim": "当前范围内 102 个 README 本地链接、53 个报告图片路径、45 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 20 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
       "limitations": "审计只验证本地结构、路径、哈希和计数，不检查外部网页，不进行视觉渲染验收，不证明科学理论为真，也不把历史旧计数误判为错误。",
       "upstreamContribution": "提供可重复的负例门禁、动态 JSON/README 计数核对和显式 --refresh 历史收据保留机制，防止链接、Word、图谱和协议在持续研究中漂移。",
       "snapshotFiles": [
@@ -9193,6 +9193,1313 @@
         "validation/chwirut1-native-ellipsoid-continuous-protocol.json",
         "validation/chwirut1-native-ellipsoid-continuous-check.json",
         "validation/frontier-chwirut1-native-ellipsoid-continuous-word.json"
+      ]
+    },
+    {
+      "id": "chwirut1-native-ellipsoid-radius-sensitivity",
+      "domain": "physics",
+      "title": "Chwirut1 原生椭球临界半径与固定网格敏感性",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Chwirut1.dat"
+      ],
+      "metrics": {
+        "totals": {
+          "fold_count": 5,
+          "radius_count": 5,
+          "case_count": 25,
+          "held_out_point_count_per_case": 214,
+          "unique_distance_count": 22,
+          "maximum_point_evaluations": 1070,
+          "maximum_envelope_evaluations": 110,
+          "actual_envelope_evaluation_count": 105,
+          "unavailable_case_count": 1,
+          "unavailable_case_ids": [
+            "chwirut1:1:r8"
+          ],
+          "center_prediction_envelope_mismatch_count": 0,
+          "minimum_critical_radius": 7.415973756136996,
+          "minimum_critical_radius_fold": 1
+        },
+        "folds": [
+          {
+            "fold": 1,
+            "critical": {
+              "radius": 7.415973756136996,
+              "left_radius": 7.415973756136996,
+              "right_radius": 36.66991104538986,
+              "limiting_endpoint": "left",
+              "endpoint_results": [
+                {
+                  "endpoint": "left",
+                  "x": 0.5,
+                  "center": 0.009384279096904605,
+                  "unit_support": 0.001265414280779886,
+                  "radius": 7.415973756136996
+                },
+                {
+                  "endpoint": "right",
+                  "x": 1.0,
+                  "center": 0.017420393800989333,
+                  "unit_support": 0.00047505961439138613,
+                  "radius": 36.66991104538986
+                }
+              ],
+              "strict_rule": "positive denominator requires radius < critical radius; exact critical radius is rejected"
+            },
+            "negativeControl": {
+              "half_radius_accepted": true,
+              "exact_radius_rejected": true
+            },
+            "maxCertifiedGridRadius": 4,
+            "cases": [
+              {
+                "caseId": "chwirut1:1:r0.5",
+                "radius": 0.5,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    0.5,
+                    1.0
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 0.5,
+                      "minimum": 0.008751571956514659,
+                      "maximum": 0.010016986237294549
+                    },
+                    {
+                      "x": 1.0,
+                      "minimum": 0.017182863993793637,
+                      "maximum": 0.01765792360818503
+                    }
+                  ],
+                  "minimum": 0.008751571956514659,
+                  "maximum": 0.01765792360818503,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 57,
+                  "covered_point_count": 57,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 15.128153480867482,
+                "medianEnvelopeWidth": 5.506045252961971,
+                "maxResidualUpperBound": 42.64069905676701,
+                "medianResidualUpperBound": 10.95784894250187
+              },
+              {
+                "caseId": "chwirut1:1:r1",
+                "radius": 1,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    0.5,
+                    1.0
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 0.5,
+                      "minimum": 0.008118864816124716,
+                      "maximum": 0.010649693377684491
+                    },
+                    {
+                      "x": 1.0,
+                      "minimum": 0.016945334186597945,
+                      "maximum": 0.017895453415380725
+                    }
+                  ],
+                  "minimum": 0.008118864816124716,
+                  "maximum": 0.017895453415380725,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 57,
+                  "covered_point_count": 57,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 30.678633782235995,
+                "medianEnvelopeWidth": 11.042211249532922,
+                "maxResidualUpperBound": 51.981671233884676,
+                "medianResidualUpperBound": 13.99081856701026
+              },
+              {
+                "caseId": "chwirut1:1:r2",
+                "radius": 2,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    0.5,
+                    1.0
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 0.5,
+                      "minimum": 0.0068534505353448315,
+                      "maximum": 0.011915107658464378
+                    },
+                    {
+                      "x": 1.0,
+                      "minimum": 0.016470274572206556,
+                      "maximum": 0.01837051302977211
+                    }
+                  ],
+                  "minimum": 0.0068534505353448315,
+                  "maximum": 0.01837051302977211,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 57,
+                  "covered_point_count": 57,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 64.984326949516,
+                "medianEnvelopeWidth": 22.32855661526929,
+                "maxResidualUpperBound": 75.85806095532601,
+                "medianResidualUpperBound": 20.856890373104665
+              },
+              {
+                "caseId": "chwirut1:1:r4",
+                "radius": 4,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    0.5,
+                    1.0
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 0.5,
+                      "minimum": 0.004322621973785059,
+                      "maximum": 0.01444593622002415
+                    },
+                    {
+                      "x": 1.0,
+                      "minimum": 0.015520155343423788,
+                      "maximum": 0.019320632258554883
+                    }
+                  ],
+                  "minimum": 0.004322621973785059,
+                  "maximum": 0.019320632258554883,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 57,
+                  "covered_point_count": 57,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 170.14630922307612,
+                "medianEnvelopeWidth": 46.71740877538136,
+                "maxResidualUpperBound": 165.679601537622,
+                "medianResidualUpperBound": 37.410991511226065
+              },
+              {
+                "caseId": "chwirut1:1:r8",
+                "radius": 8,
+                "analyticRelation": "at_or_above_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    0.5,
+                    1.0
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 0.5,
+                      "minimum": -0.0007390351493344833,
+                      "maximum": 0.019507593343143694
+                    },
+                    {
+                      "x": 1.0,
+                      "minimum": 0.013619916885858244,
+                      "maximum": 0.021220870716120426
+                    }
+                  ],
+                  "minimum": -0.0007390351493344833,
+                  "maximum": 0.021220870716120426,
+                  "positive_certified": false,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": "denominator positivity cannot be certified at one or both endpoints"
+                },
+                "predictionEnvelopeAvailable": false,
+                "unavailableReason": "denominator positivity cannot be certified at one or both endpoints",
+                "coverage": {
+                  "available_point_count": 0,
+                  "covered_point_count": 0,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 57,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": null,
+                "medianEnvelopeWidth": null,
+                "maxResidualUpperBound": null,
+                "medianResidualUpperBound": null
+              }
+            ]
+          },
+          {
+            "fold": 2,
+            "critical": {
+              "radius": 15.580526803821487,
+              "left_radius": 22.434059641413313,
+              "right_radius": 15.580526803821487,
+              "limiting_endpoint": "right",
+              "endpoint_results": [
+                {
+                  "endpoint": "left",
+                  "x": 1.25,
+                  "center": 0.018676362115778857,
+                  "unit_support": 0.00083250033272187,
+                  "radius": 22.434059641413313
+                },
+                {
+                  "endpoint": "right",
+                  "x": 2.25,
+                  "center": 0.02840172551684343,
+                  "unit_support": 0.001822898922126128,
+                  "radius": 15.580526803821487
+                }
+              ],
+              "strict_rule": "positive denominator requires radius < critical radius; exact critical radius is rejected"
+            },
+            "negativeControl": {
+              "half_radius_accepted": true,
+              "exact_radius_rejected": true
+            },
+            "maxCertifiedGridRadius": 8,
+            "cases": [
+              {
+                "caseId": "chwirut1:2:r0.5",
+                "radius": 0.5,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    1.25,
+                    2.25
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 1.25,
+                      "minimum": 0.01826011194941792,
+                      "maximum": 0.019092612282139796
+                    },
+                    {
+                      "x": 2.25,
+                      "minimum": 0.027490276055780364,
+                      "maximum": 0.029313174977906496
+                    }
+                  ],
+                  "minimum": 0.01826011194941792,
+                  "maximum": 0.029313174977906496,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 54,
+                  "covered_point_count": 54,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 3.2125835507898906,
+                "medianEnvelopeWidth": 3.0471788921596463,
+                "maxResidualUpperBound": 7.64333193373144,
+                "medianResidualUpperBound": 2.93674345725062
+              },
+              {
+                "caseId": "chwirut1:2:r1",
+                "radius": 1,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    1.25,
+                    2.25
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 1.25,
+                      "minimum": 0.017843861783056983,
+                      "maximum": 0.01950886244850073
+                    },
+                    {
+                      "x": 2.25,
+                      "minimum": 0.0265788265947173,
+                      "maximum": 0.03022462443896956
+                    }
+                  ],
+                  "minimum": 0.017843861783056983,
+                  "maximum": 0.03022462443896956,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 54,
+                  "covered_point_count": 54,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 6.436600209464141,
+                "medianEnvelopeWidth": 6.112269053949338,
+                "maxResidualUpperBound": 9.373231367985527,
+                "medianResidualUpperBound": 4.6442685426428705
+              },
+              {
+                "caseId": "chwirut1:2:r2",
+                "radius": 2,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    1.25,
+                    2.25
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 1.25,
+                      "minimum": 0.017011361450335112,
+                      "maximum": 0.020341362781222602
+                    },
+                    {
+                      "x": 2.25,
+                      "minimum": 0.02475592767259117,
+                      "maximum": 0.03204752336109569
+                    }
+                  ],
+                  "minimum": 0.017011361450335112,
+                  "maximum": 0.03204752336109569,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 54,
+                  "covered_point_count": 54,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 12.965356770805082,
+                "medianEnvelopeWidth": 12.369573495690911,
+                "maxResidualUpperBound": 13.175389170557262,
+                "medianResidualUpperBound": 8.273750269842541
+              },
+              {
+                "caseId": "chwirut1:2:r4",
+                "radius": 4,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    1.25,
+                    2.25
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 1.25,
+                      "minimum": 0.015346360784891374,
+                      "maximum": 0.02200636344666634
+                    },
+                    {
+                      "x": 2.25,
+                      "minimum": 0.021110129828338917,
+                      "maximum": 0.03569332120534795
+                    }
+                  ],
+                  "minimum": 0.015346360784891374,
+                  "maximum": 0.03569332120534795,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 54,
+                  "covered_point_count": 54,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 26.690807283354367,
+                "medianEnvelopeWidth": 25.95822231061138,
+                "maxResidualUpperBound": 22.467128841573885,
+                "medianResidualUpperBound": 17.296254087641984
+              },
+              {
+                "caseId": "chwirut1:2:r8",
+                "radius": 8,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    1.25,
+                    2.25
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 1.25,
+                      "minimum": 0.012016359454003894,
+                      "maximum": 0.02533636477755382
+                    },
+                    {
+                      "x": 2.25,
+                      "minimum": 0.013818534139834405,
+                      "maximum": 0.04298491689385246
+                    }
+                  ],
+                  "minimum": 0.012016359454003894,
+                  "maximum": 0.04298491689385246,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 54,
+                  "covered_point_count": 54,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 64.39876636248856,
+                "medianEnvelopeWidth": 64.02316942633828,
+                "maxResidualUpperBound": 55.81842355691035,
+                "medianResidualUpperBound": 49.67183537903556
+              }
+            ]
+          },
+          {
+            "fold": 3,
+            "critical": {
+              "radius": 16.542844789379,
+              "left_radius": 18.024450621637964,
+              "right_radius": 16.542844789379,
+              "limiting_endpoint": "right",
+              "endpoint_results": [
+                {
+                  "endpoint": "left",
+                  "x": 2.5,
+                  "center": 0.032801508805101326,
+                  "unit_support": 0.0018198340406405413,
+                  "radius": 18.024450621637964
+                },
+                {
+                  "endpoint": "right",
+                  "x": 3.25,
+                  "center": 0.04081494376302324,
+                  "unit_support": 0.002467226422218968,
+                  "radius": 16.542844789379
+                }
+              ],
+              "strict_rule": "positive denominator requires radius < critical radius; exact critical radius is rejected"
+            },
+            "negativeControl": {
+              "half_radius_accepted": true,
+              "exact_radius_rejected": true
+            },
+            "maxCertifiedGridRadius": 8,
+            "cases": [
+              {
+                "caseId": "chwirut1:3:r0.5",
+                "radius": 0.5,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    2.5,
+                    3.25
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 2.5,
+                      "minimum": 0.03189159178478105,
+                      "maximum": 0.0337114258254216
+                    },
+                    {
+                      "x": 3.25,
+                      "minimum": 0.03958133055191375,
+                      "maximum": 0.042048556974132734
+                    }
+                  ],
+                  "minimum": 0.03189159178478105,
+                  "maximum": 0.042048556974132734,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 51,
+                  "covered_point_count": 51,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 2.2955485122425334,
+                "medianEnvelopeWidth": 2.107691038919109,
+                "maxResidualUpperBound": 11.63924058846071,
+                "medianResidualUpperBound": 2.743064937065079
+              },
+              {
+                "caseId": "chwirut1:3:r1",
+                "radius": 1,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    2.5,
+                    3.25
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 2.5,
+                      "minimum": 0.03098167476446078,
+                      "maximum": 0.03462134284574187
+                    },
+                    {
+                      "x": 3.25,
+                      "minimum": 0.03834771734080426,
+                      "maximum": 0.04328217018524222
+                    }
+                  ],
+                  "minimum": 0.03098167476446078,
+                  "maximum": 0.04328217018524222,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 51,
+                  "covered_point_count": 51,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 4.606225409364887,
+                "medianEnvelopeWidth": 4.231450815474579,
+                "maxResidualUpperBound": 12.54682622611356,
+                "medianResidualUpperBound": 3.882652463278156
+              },
+              {
+                "caseId": "chwirut1:3:r2",
+                "radius": 2,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    2.5,
+                    3.25
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 2.5,
+                      "minimum": 0.029161840723820238,
+                      "maximum": 0.03644117688638241
+                    },
+                    {
+                      "x": 3.25,
+                      "minimum": 0.0358804909185853,
+                      "maximum": 0.04574939660746118
+                    }
+                  ],
+                  "minimum": 0.029161840723820238,
+                  "maximum": 0.04574939660746118,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 51,
+                  "covered_point_count": 51,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 9.334933145712457,
+                "medianEnvelopeWidth": 8.593172074570463,
+                "maxResidualUpperBound": 14.164234320527768,
+                "medianResidualUpperBound": 6.109264642138162
+              },
+              {
+                "caseId": "chwirut1:3:r4",
+                "radius": 4,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    2.5,
+                    3.25
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 2.5,
+                      "minimum": 0.025522172642539157,
+                      "maximum": 0.040080844967663495
+                    },
+                    {
+                      "x": 3.25,
+                      "minimum": 0.030946038074147364,
+                      "maximum": 0.05068384945189912
+                    }
+                  ],
+                  "minimum": 0.025522172642539157,
+                  "maximum": 0.05068384945189912,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 51,
+                  "covered_point_count": 51,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 19.698670099658763,
+                "medianEnvelopeWidth": 18.286682002491247,
+                "maxResidualUpperBound": 16.756706087980074,
+                "medianResidualUpperBound": 12.96110754732285
+              },
+              {
+                "caseId": "chwirut1:3:r8",
+                "radius": 8,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    2.5,
+                    3.25
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 2.5,
+                      "minimum": 0.01824283647997699,
+                      "maximum": 0.04736018113022566
+                    },
+                    {
+                      "x": 3.25,
+                      "minimum": 0.021077132385271494,
+                      "maximum": 0.060552755140774996
+                    }
+                  ],
+                  "minimum": 0.01824283647997699,
+                  "maximum": 0.060552755140774996,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 51,
+                  "covered_point_count": 51,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 49.57266514671543,
+                "medianEnvelopeWidth": 47.747000515057366,
+                "maxResidualUpperBound": 41.28892573988988,
+                "medianResidualUpperBound": 38.55992322991732
+              }
+            ]
+          },
+          {
+            "fold": 4,
+            "critical": {
+              "radius": 14.649238809436648,
+              "left_radius": 15.443417442049762,
+              "right_radius": 14.649238809436648,
+              "limiting_endpoint": "right",
+              "endpoint_results": [
+                {
+                  "endpoint": "left",
+                  "x": 3.75,
+                  "center": 0.046253307737989115,
+                  "unit_support": 0.0029950176449967184,
+                  "radius": 15.443417442049762
+                },
+                {
+                  "endpoint": "right",
+                  "x": 4.75,
+                  "center": 0.05696851474522503,
+                  "unit_support": 0.0038888378765815084,
+                  "radius": 14.649238809436648
+                }
+              ],
+              "strict_rule": "positive denominator requires radius < critical radius; exact critical radius is rejected"
+            },
+            "negativeControl": {
+              "half_radius_accepted": true,
+              "exact_radius_rejected": true
+            },
+            "maxCertifiedGridRadius": 8,
+            "cases": [
+              {
+                "caseId": "chwirut1:4:r0.5",
+                "radius": 0.5,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    3.75,
+                    4.75
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 3.75,
+                      "minimum": 0.044755798915490745,
+                      "maximum": 0.04775081656048748
+                    },
+                    {
+                      "x": 4.75,
+                      "minimum": 0.05502409580693427,
+                      "maximum": 0.05891293368351579
+                    }
+                  ],
+                  "minimum": 0.044755798915490745,
+                  "maximum": 0.05891293368351579,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 23,
+                  "covered_point_count": 23,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 1.7384259708850072,
+                "medianEnvelopeWidth": 1.5967212352949751,
+                "maxResidualUpperBound": 4.246278832380101,
+                "medianResidualUpperBound": 1.5112788323801
+              },
+              {
+                "caseId": "chwirut1:4:r1",
+                "radius": 1,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    3.75,
+                    4.75
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 3.75,
+                      "minimum": 0.04325829009299239,
+                      "maximum": 0.04924832538298584
+                    },
+                    {
+                      "x": 4.75,
+                      "minimum": 0.05307967686864352,
+                      "maximum": 0.06085735262180655
+                    }
+                  ],
+                  "minimum": 0.04325829009299239,
+                  "maximum": 0.06085735262180655,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 23,
+                  "covered_point_count": 23,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 3.4949778154275184,
+                "medianEnvelopeWidth": 3.2117755969162127,
+                "maxResidualUpperBound": 5.14818286622784,
+                "medianResidualUpperBound": 2.3720705881175594
+              },
+              {
+                "caseId": "chwirut1:4:r2",
+                "radius": 2,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    3.75,
+                    4.75
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 3.75,
+                      "minimum": 0.04026327244799567,
+                      "maximum": 0.05224334302798256
+                    },
+                    {
+                      "x": 4.75,
+                      "minimum": 0.04919083899206201,
+                      "maximum": 0.06474619049838806
+                    }
+                  ],
+                  "minimum": 0.04026327244799567,
+                  "maximum": 0.06474619049838806,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 23,
+                  "covered_point_count": 23,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 7.137423901984211,
+                "medianEnvelopeWidth": 6.572858975393313,
+                "maxResidualUpperBound": 7.320272098640182,
+                "medianResidualUpperBound": 4.482361029214793
+              },
+              {
+                "caseId": "chwirut1:4:r4",
+                "radius": 4,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    3.75,
+                    4.75
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 3.75,
+                      "minimum": 0.034273237158002234,
+                      "maximum": 0.058233378317975995
+                    },
+                    {
+                      "x": 4.75,
+                      "minimum": 0.041413163238898994,
+                      "maximum": 0.07252386625155108
+                    }
+                  ],
+                  "minimum": 0.034273237158002234,
+                  "maximum": 0.07252386625155108,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 23,
+                  "covered_point_count": 23,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 15.538951621570023,
+                "medianEnvelopeWidth": 14.43106924517799,
+                "maxResidualUpperBound": 13.669825480326374,
+                "medianResidualUpperBound": 10.450767127245195
+              },
+              {
+                "caseId": "chwirut1:4:r8",
+                "radius": 8,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    3.75,
+                    4.75
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 3.75,
+                      "minimum": 0.022293166578015364,
+                      "maximum": 0.07021344889796287
+                    },
+                    {
+                      "x": 4.75,
+                      "minimum": 0.025857811732572962,
+                      "maximum": 0.08807921775787711
+                    }
+                  ],
+                  "minimum": 0.022293166578015364,
+                  "maximum": 0.08807921775787711,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 23,
+                  "covered_point_count": 23,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 44.868293628304706,
+                "medianEnvelopeWidth": 43.17729304879687,
+                "maxResidualUpperBound": 40.44732405986048,
+                "medianResidualUpperBound": 36.89380389571685
+              }
+            ]
+          },
+          {
+            "fold": 5,
+            "critical": {
+              "radius": 12.01592552947813,
+              "left_radius": 12.437624699147307,
+              "right_radius": 12.01592552947813,
+              "limiting_endpoint": "right",
+              "endpoint_results": [
+                {
+                  "endpoint": "left",
+                  "x": 5.0,
+                  "center": 0.05321980012467512,
+                  "unit_support": 0.00427893600361842,
+                  "radius": 12.437624699147307
+                },
+                {
+                  "endpoint": "right",
+                  "x": 6.0,
+                  "center": 0.06255503823622759,
+                  "unit_support": 0.005206010813129969,
+                  "radius": 12.01592552947813
+                }
+              ],
+              "strict_rule": "positive denominator requires radius < critical radius; exact critical radius is rejected"
+            },
+            "negativeControl": {
+              "half_radius_accepted": true,
+              "exact_radius_rejected": true
+            },
+            "maxCertifiedGridRadius": 8,
+            "cases": [
+              {
+                "caseId": "chwirut1:5:r0.5",
+                "radius": 0.5,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    5.0,
+                    6.0
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 5.0,
+                      "minimum": 0.051080332122865904,
+                      "maximum": 0.05535926812648434
+                    },
+                    {
+                      "x": 6.0,
+                      "minimum": 0.05995203282966259,
+                      "maximum": 0.06515804364279258
+                    }
+                  ],
+                  "minimum": 0.051080332122865904,
+                  "maximum": 0.06515804364279258,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 29,
+                  "covered_point_count": 29,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 1.3435164191860103,
+                "medianEnvelopeWidth": 1.1819970278745369,
+                "maxResidualUpperBound": 6.77042716832718,
+                "medianResidualUpperBound": 2.10670173713367
+              },
+              {
+                "caseId": "chwirut1:5:r1",
+                "radius": 1,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    5.0,
+                    6.0
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 5.0,
+                      "minimum": 0.04894086412105669,
+                      "maximum": 0.05749873612829355
+                    },
+                    {
+                      "x": 6.0,
+                      "minimum": 0.05734902742309761,
+                      "maximum": 0.06776104904935756
+                    }
+                  ],
+                  "minimum": 0.04894086412105669,
+                  "maximum": 0.06776104904935756,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 29,
+                  "covered_point_count": 29,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 2.7123820027246954,
+                "medianEnvelopeWidth": 2.3886708332886233,
+                "maxResidualUpperBound": 7.325651216378552,
+                "medianResidualUpperBound": 2.669057931809696
+              },
+              {
+                "caseId": "chwirut1:5:r2",
+                "radius": 2,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    5.0,
+                    6.0
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 5.0,
+                      "minimum": 0.04466192811743828,
+                      "maximum": 0.061777672131911966
+                    },
+                    {
+                      "x": 6.0,
+                      "minimum": 0.05214301660996764,
+                      "maximum": 0.07296705986248754
+                    }
+                  ],
+                  "minimum": 0.04466192811743828,
+                  "maximum": 0.07296705986248754,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 29,
+                  "covered_point_count": 29,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 5.6331658327245755,
+                "medianEnvelopeWidth": 4.980560979728496,
+                "maxResidualUpperBound": 8.252221099870031,
+                "medianResidualUpperBound": 3.6272047425489506
+              },
+              {
+                "caseId": "chwirut1:5:r4",
+                "radius": 4,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    5.0,
+                    6.0
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 5.0,
+                      "minimum": 0.036104056110201434,
+                      "maximum": 0.07033554413914882
+                    },
+                    {
+                      "x": 6.0,
+                      "minimum": 0.0417309949837077,
+                      "maximum": 0.08337908148874748
+                    }
+                  ],
+                  "minimum": 0.036104056110201434,
+                  "maximum": 0.08337908148874748,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 29,
+                  "covered_point_count": 29,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 13.133600947691978,
+                "medianEnvelopeWidth": 11.794939953611312,
+                "maxResidualUpperBound": 10.619553467148037,
+                "medianResidualUpperBound": 7.090184997280081
+              },
+              {
+                "caseId": "chwirut1:5:r8",
+                "radius": 8,
+                "analyticRelation": "below_critical",
+                "continuousDenominator": {
+                  "interval": [
+                    5.0,
+                    6.0
+                  ],
+                  "endpoint_results": [
+                    {
+                      "x": 5.0,
+                      "minimum": 0.018988312095727756,
+                      "maximum": 0.08745128815362249
+                    },
+                    {
+                      "x": 6.0,
+                      "minimum": 0.020906951731187826,
+                      "maximum": 0.10420312474126735
+                    }
+                  ],
+                  "minimum": 0.018988312095727756,
+                  "maximum": 0.10420312474126735,
+                  "positive_certified": true,
+                  "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 29,
+                  "covered_point_count": 29,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 52.09438897556696,
+                "medianEnvelopeWidth": 49.916635201497755,
+                "maxResidualUpperBound": 47.92666911996345,
+                "medianResidualUpperBound": 43.461669119963446
+              }
+            ]
+          }
+        ],
+        "baseline": {
+          "radius": 4,
+          "certified_fold_count": 5,
+          "available_point_count": 214,
+          "covered_point_count": 214,
+          "violation_point_count": 0,
+          "unavailable_point_count": 0,
+          "center_prediction_envelope_mismatch_count": 0,
+          "max_envelope_width": 170.14630922307612,
+          "median_envelope_width": 19.222110234669167,
+          "max_residual_upper_bound": 165.679601537622,
+          "median_residual_upper_bound": 15.050994997990879,
+          "matches_frozen_baseline": true
+        },
+        "countHistory": {
+          "originalProtocolValue": 1070,
+          "supersededIncorrectValue": 5350,
+          "finalMaximumPointEvaluations": 1070,
+          "amendment01PreservedNotUsed": true,
+          "amendment01File": "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json",
+          "amendment02File": "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-02.json"
+        },
+        "analysisScope": {
+          "refit": false,
+          "changed_center_or_covariance": false,
+          "radii_frozen_before_results": [
+            0.5,
+            1,
+            2,
+            4,
+            8
+          ],
+          "radius_optimization": false,
+          "critical_radius_is_geometric_only": true,
+          "critical_radius_is_probability": false,
+          "grid_maximum_is_exact_safe_maximum": false,
+          "original_nonlinear_model": true,
+          "high_precision_decimal_digits": 80,
+          "outward_relative_margin": 1e-24,
+          "exact_rational_certificate": false,
+          "related_prior_dataset": {
+            "name": "Chwirut2",
+            "same_study": true,
+            "same_native_model_family": true,
+            "independent_model_family_or_laboratory_replication": false
+          }
+        },
+        "decision": {
+          "refit": false,
+          "probability_region_claimed": false,
+          "optimal_radius_selected": false,
+          "critical_radius_is_confidence_level": false,
+          "critical_radius_is_universal_maximum": false,
+          "grid_maximum_called_exact_safe_maximum": false,
+          "exact_critical_radius_accepted": false,
+          "unavailable_cases_given_bounds": false,
+          "center_consistency_used_as_external_validation": false,
+          "exact_rational_certificate_claimed": false,
+          "independent_model_family_claimed": false,
+          "failed_cases_hidden": false
+        },
+        "implementation": {
+          "protocolSha256": "3cff6b5096eb9dea0ec90750cb73f2d07cacc322c7c449fa510c7d1248adde3a",
+          "metadataAmendmentSha256": "e28d75ed2a83e3b2b97f83a88082190ea5ef1d28c814cba04efeb3b42327b462",
+          "summarySha256": "5f4c75b3662bb5af6c45ea5dd47dd55fc4081e41368eea15d0d68ff06f82740c",
+          "analysisRunnerSha256": "870d75e234a2442d6de733f4422084a645492c2f0a2c20d0c7297f3644256452",
+          "figureSha256": "d89298497c8a17e5b5e94543868bf3852d22f308507971881180b209a911f5ce",
+          "reportSha256": "eb733602244130914bd534074e761de9195bd6f9af244eb46e211e65d4b6294d",
+          "wordSha256": "a786b0cdbd233bb1e92ae5786699e60a6a341ce2586af6bfdce76c4bc00df28a"
+        },
+        "protocolCommits": {
+          "originalProtocol": "7051c2e",
+          "amendment01": "c08c41a",
+          "amendment02": "8eed8db"
+        }
+      },
+      "scientificClaim": "五折解析临界半径分别为 7.415974、15.580527、16.542845、14.649239、12.015926。第 1 折半径 8 不可用，其余 24 个案例通过，实际生成 105 个包络。半径 4 基线完全复现；首份 5350 计数修订被第二份纠正，最终逐点判定数为 1070，首份仅作历史保留。",
+      "limitations": "临界半径是几何量而非概率、最优值或全域上限，网格最大值不等于精确安全上限。不可用案例不生成有限界，包络宽度普遍随半径增加；中心一致性不是外部验证，Chwirut1 与 Chwirut2 同研究同模型族。Critical radii are geometric properties of the selected ellipsoids and continuous intervals, not probabilities, optima or universal maxima The largest certified grid radius is reported separately from the analytic critical radius and is never called the exact safe maximum Exact critical radii are rejected because denominator positivity is strict; unavailable cases receive no finite envelope Center-prediction containment and actual-residual coverage are arithmetic consistency checks, not probability coverage or external validation Envelope widths can grow rapidly with radius and must be reported alongside any positive certificate Chwirut1 shares its study and native model family with Chwirut2 and is not independent replication",
+      "upstreamContribution": "提供解析临界半径、严格负例、完整网格状态、宽度敏感性和显式计数修订链，区分几何临界值、网格最大值、实际信息量与概率解释。",
+      "snapshotFiles": [
+        "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol.json",
+        "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json",
+        "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-02.json",
+        "validation/chwirut1-native-ellipsoid-radius-sensitivity-check.json",
+        "validation/frontier-chwirut1-native-ellipsoid-radius-sensitivity-word.json"
       ]
     }
   ]

@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "chwirut1_native_ellipsoid_continuous":
+    if REPORT_MODE == "chwirut1_native_ellipsoid_radius_sensitivity":
+        replacements = {
+            "图：`papers/52_Chwirut1原生椭球半径敏感性/fig52_chwirut1_native_ellipsoid_radius_sensitivity.png`。": "![](papers/52_Chwirut1原生椭球半径敏感性/fig52_chwirut1_native_ellipsoid_radius_sensitivity.png)\n\n**图 52｜Chwirut1 原生椭球半径敏感性与临界半径（第 1 幅，共 1 幅）**  \n**插入位置**：§5「半径 4 基线完全复现」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "五折解析临界半径、25 个案例与包络宽度敏感性"
+    elif REPORT_MODE == "chwirut1_native_ellipsoid_continuous":
         replacements = {
             "图：`papers/51_Chwirut1原生椭球连续界/fig51_chwirut1_native_ellipsoid_continuous_bounds.png`。": "![](papers/51_Chwirut1原生椭球连续界/fig51_chwirut1_native_ellipsoid_continuous_bounds.png)\n\n**图 51｜Chwirut1 原生椭球连续分母与保守预测界（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联组图与读图顺序」；顺序第 1 幅，共 1 幅。",
         }

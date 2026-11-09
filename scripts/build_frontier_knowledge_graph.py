@@ -90,6 +90,9 @@ def build_graph(root):
     nativeEllipsoid = json.loads((root / "validation/chwirut1-native-ellipsoid-continuous-bounds.json").read_text(encoding="utf-8"))
     if nativeEllipsoid["totals"]["fold_count"] != 5 or nativeEllipsoid["totals"]["held_out_point_count"] != 214 or nativeEllipsoid["totals"]["unique_distance_count"] != 22 or nativeEllipsoid["totals"]["certified_fold_count"] != 5 or nativeEllipsoid["totals"]["unavailable_fold_ids"] or nativeEllipsoid["totals"]["available_point_count"] != 214 or nativeEllipsoid["totals"]["covered_point_count"] != 214 or nativeEllipsoid["totals"]["violation_point_count"] != 0 or nativeEllipsoid["totals"]["center_prediction_envelope_mismatch_count"] != 0 or nativeEllipsoid["totals"]["max_envelope_width"] != 170.14630922307612 or nativeEllipsoid["totals"]["median_envelope_width"] != 19.222110234669167 or nativeEllipsoid["analysis_scope"]["probability_region"] or nativeEllipsoid["analysis_scope"]["taylor_prediction_approximation"] or nativeEllipsoid["decision"]["center_consistency_used_as_external_validation"]:
         raise ValueError("Expected native ellipsoid continuous certificates, width and center-scope boundaries are not present")
+    radiusSensitivity = json.loads((root / "validation/chwirut1-native-ellipsoid-radius-sensitivity.json").read_text(encoding="utf-8"))
+    if radiusSensitivity["totals"]["case_count"] != 25 or radiusSensitivity["totals"]["maximum_point_evaluations"] != 1070 or radiusSensitivity["totals"]["maximum_envelope_evaluations"] != 110 or radiusSensitivity["totals"]["actual_envelope_evaluation_count"] != 105 or radiusSensitivity["totals"]["unavailable_case_ids"] != ["chwirut1:1:r8"] or radiusSensitivity["totals"]["minimum_critical_radius"] != 7.415973756136996 or radiusSensitivity["totals"]["minimum_critical_radius_fold"] != 1 or radiusSensitivity["totals"]["center_prediction_envelope_mismatch_count"] != 0 or not radiusSensitivity["baseline"]["matches_frozen_baseline"] or radiusSensitivity["decision"]["optimal_radius_selected"] or radiusSensitivity["decision"]["grid_maximum_called_exact_safe_maximum"]:
+        raise ValueError("Expected radius sensitivity, grid failure and baseline boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -955,6 +958,45 @@ def build_graph(root):
         edge("counterexample-chwirut1-fold1-wide-native-envelope", "limitation-chwirut1-native-local-and-related-scope", "supports"),
         edge("counterexample-chwirut1-center-consistency-not-probability", "claim-center-coverage-external-validation", "contradicts"),
         edge("evidence-chwirut1-native-ellipsoid-continuous", "counterexample-chwirut1-center-consistency-not-probability", "supports"),
+    ])
+    nodes.extend([
+        node("claim-grid-max-exact-safe-max", "claim", "固定网格中最大的通过半径就是精确或全域安全上限", "falsified", ["validation/chwirut1-native-ellipsoid-radius-sensitivity.json"]),
+        node("claim-critical-radius-probability-optimum", "claim", "解析临界半径是概率水平、最优半径或物理常数", "falsified", ["validation/chwirut1-native-ellipsoid-radius-sensitivity.json"]),
+        node("evidence-chwirut1-native-radius-sensitivity", "evidence", "五折临界半径为 7.415974 至 16.542845；第 1 折半径 8 不可用，其余 24 案例通过，实际生成 105 个包络", "supported", ["validation/chwirut1-native-ellipsoid-radius-sensitivity.json", "validation/chwirut1-native-ellipsoid-radius-sensitivity-check.json"]),
+        node("counterexample-chwirut1-fold1-radius8-unavailable", "counterexample", "第 1 折临界半径 7.415974，半径 8 时 d_min=-0.000739035，不能生成有限预测界", "supported", ["validation/chwirut1-native-ellipsoid-radius-sensitivity.json"]),
+        node("counterexample-chwirut1-radius-width-tradeoff", "counterexample", "半径增大时包络普遍变宽，第 1 折半径 4 最大宽度已达 170.146309，更大区域不等于更高信息量", "supported", ["validation/chwirut1-native-ellipsoid-radius-sensitivity.json"]),
+        node("experiment-chwirut1-native-radius-sensitivity-protocol", "experiment", "冻结五档半径、解析临界值、半临界接受与临界拒绝负例及半径 4 基线复核", "supported", ["validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol.json", "scripts/analyze_chwirut1_native_ellipsoid_radius_sensitivity.py"]),
+        node("experiment-chwirut1-radius-count-amendment-v2", "experiment", "第二份计数修订恢复正确的 1070，首份 5350 误改仅作历史保留，原协议和修订文件均保存", "supported", ["validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-02.json", "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json"]),
+        node("limitation-chwirut1-native-radius-grid-scope", "limitation", "临界半径是椭球几何量，网格最大值不是全域上限；中心一致性不是概率覆盖，Chwirut1 与 Chwirut2 同族", "active", ["validation/chwirut1-native-ellipsoid-radius-sensitivity.json", "docs/CHWIRUT1_NATIVE_ELLIPSOID_RADIUS_SENSITIVITY_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-grid-max-exact-safe-max", "contains"),
+        edge("track-holdout", "claim-critical-radius-probability-optimum", "contains"),
+        edge("track-holdout", "evidence-chwirut1-native-radius-sensitivity", "contains"),
+        edge("track-holdout", "counterexample-chwirut1-fold1-radius8-unavailable", "contains"),
+        edge("track-holdout", "counterexample-chwirut1-radius-width-tradeoff", "contains"),
+        edge("track-holdout", "experiment-chwirut1-native-radius-sensitivity-protocol", "contains"),
+        edge("track-holdout", "experiment-chwirut1-radius-count-amendment-v2", "contains"),
+        edge("track-holdout", "limitation-chwirut1-native-radius-grid-scope", "contains"),
+        edge("evidence-chwirut1-native-radius-sensitivity", "claim-grid-max-exact-safe-max", "contradicts"),
+        edge("experiment-chwirut1-native-radius-sensitivity-protocol", "claim-grid-max-exact-safe-max", "tests"),
+        edge("evidence-chwirut1-native-radius-sensitivity", "claim-critical-radius-probability-optimum", "contradicts"),
+        edge("experiment-chwirut1-native-radius-sensitivity-protocol", "claim-critical-radius-probability-optimum", "tests"),
+        edge("counterexample-chwirut1-fold1-radius8-unavailable", "claim-grid-max-exact-safe-max", "contradicts"),
+        edge("counterexample-chwirut1-radius-width-tradeoff", "claim-finite-bound-high-information", "contradicts"),
+        edge("evidence-chwirut1-native-radius-sensitivity", "counterexample-chwirut1-fold1-radius8-unavailable", "supports"),
+        edge("evidence-chwirut1-native-radius-sensitivity", "counterexample-chwirut1-radius-width-tradeoff", "supports"),
+        edge("limitation-chwirut1-native-radius-grid-scope", "evidence-chwirut1-native-radius-sensitivity", "limits"),
+        edge("limitation-chwirut1-native-radius-grid-scope", "claim-critical-radius-probability-optimum", "limits"),
+        edge("limitation-chwirut1-native-radius-grid-scope", "claim-grid-max-exact-safe-max", "limits"),
+        edge("evidence-chwirut1-native-radius-sensitivity", "evidence-chwirut1-native-ellipsoid-continuous", "supports"),
+        edge("experiment-chwirut1-native-radius-sensitivity-protocol", "experiment-chwirut1-native-ellipsoid-continuous-protocol", "supports"),
+        edge("evidence-chwirut1-native-radius-sensitivity", "evidence-chwirut1-native-identifiability", "supports"),
+        edge("experiment-chwirut1-native-radius-sensitivity-protocol", "experiment-chwirut1-native-identifiability-protocol", "supports"),
+        edge("experiment-chwirut1-radius-count-amendment-v2", "experiment-chwirut1-native-radius-sensitivity-protocol", "supports"),
+        edge("experiment-chwirut1-radius-count-amendment-v2", "evidence-chwirut1-native-radius-sensitivity", "supports"),
+        edge("experiment-chwirut1-radius-count-amendment-v2", "claim-knowledge-graph", "tests"),
+        edge("counterexample-chwirut1-fold1-radius8-unavailable", "claim-critical-radius-probability-optimum", "contradicts"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

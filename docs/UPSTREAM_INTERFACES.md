@@ -71,7 +71,8 @@
 | 三模型局部可识别性受限综合 | 15 折、407 点全部局部满秩；三个折的敏感度高于 RMSE，最大比值 2.697264；ENSO 比值均小于 1 仍不证明周期安全 | `validation/native-identifiability-cross-model-protocol.json`、`exports/native-identifiability-cross-model-synthesis.json`、`docs/NATIVE_IDENTIFIABILITY_CROSS_MODEL_2026-11-09.md` | 提供共同审计接口与逐折比值，保留原生单位、专有病征与已知答案分层，不合成误差池、概率覆盖率或稳定性评分 |
 | 三模型局部敏感度固定阈值覆盖审计 | 407 点、1221 次判定；1、2、4 倍分别覆盖 85、181、283 点；最大逐点比值 25.724483，Roszman1 第 5 折折级比值 2.697264 但 1 倍已全覆盖 | `validation/native-sensitivity-threshold-coverage-protocol.json`、`exports/native-sensitivity-threshold-coverage.json`、`docs/NATIVE_SENSITIVITY_THRESHOLD_COVERAGE_2026-11-09.md` | 提供逐点违规 ID 和两类聚合反例，不把固定计数称为概率覆盖，也不把局部标准差当作确定性残差界 |
 | Chwirut1 原生椭球连续分母与保守预测界 | 五折连续分母均为正并生成 22 个原生包络；最大宽度 170.146309，中位宽度 19.222110；214 点中心一致性通过但不是概率覆盖 | `validation/chwirut1-native-ellipsoid-continuous-protocol.json`、`validation/chwirut1-native-ellipsoid-continuous-bounds.json`、`docs/CHWIRUT1_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md` | 提供端点凹凸性和原始非线性包络接口，区分区域证书、信息宽度、中心一致性与外部有效性 |
-| 主张—证据—反例—实验图谱 | 232 个节点、590 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| Chwirut1 原生椭球半径敏感性与临界半径 | 五折临界半径为 7.415974 至 16.542845；第 1 折半径 8 不可用，其余 24 案例通过并生成 105 个包络；第二份修订恢复 1070 计数 | `validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol.json`、`validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-02.json`、`validation/chwirut1-native-ellipsoid-radius-sensitivity.json` | 区分几何临界值、网格最大值与信息宽度，保留不可用案例和计数修订链，不选择最优半径或宣称概率覆盖 |
+| 主张—证据—反例—实验图谱 | 240 个节点、617 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 范围感知外部分析适配层
 

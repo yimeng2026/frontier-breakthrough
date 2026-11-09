@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "errorCount": 0,
+  "caseCount": 25,
+  "maximumPointEvaluations": 1070,
+  "maximumEnvelopeEvaluations": 110,
+  "actualEnvelopeEvaluations": 105,
+  "unavailableCaseIds": [
+    "chwirut1:1:r8"
+  ],
+  "minimumCriticalRadius": 7.415973756136996,
+  "minimumCriticalRadiusFold": 1,
+  "baselineMatches": true,
+  "protocolSha256": "3cff6b5096eb9dea0ec90750cb73f2d07cacc322c7c449fa510c7d1248adde3a",
+  "amendmentSha256": "e28d75ed2a83e3b2b97f83a88082190ea5ef1d28c814cba04efeb3b42327b462",
+  "summarySha256": "5f4c75b3662bb5af6c45ea5dd47dd55fc4081e41368eea15d0d68ff06f82740c",
+  "analysisRunnerSha256": "870d75e234a2442d6de733f4422084a645492c2f0a2c20d0c7297f3644256452",
+  "figureSha256": "d89298497c8a17e5b5e94543868bf3852d22f308507971881180b209a911f5ce",
+  "reportSha256": "eb733602244130914bd534074e761de9195bd6f9af244eb46e211e65d4b6294d",
+  "wordSha256": "a786b0cdbd233bb1e92ae5786699e60a6a341ce2586af6bfdce76c4bc00df28a",
+  "wordManifestSha256": "17407d0fcdb94a5b1d0ef49c5ed1572e6ddff62ac4e7de970e8963f35e6c74a7",
+  "optimalRadiusSelected": false,
+  "gridMaximumCalledExactSafeMaximum": false,
+  "centerConsistencyUsedAsExternalValidation": false,
+  "visualQaClaimed": false,
+  "scientificTruthClaimed": false
+}
