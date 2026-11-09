@@ -1,0 +1,121 @@
+{
+  "status": "frozen_before_native_ellipsoid_cross_model_synthesis",
+  "frozen_at_local": "2026-11-09T13:01:12+08:00",
+  "analysis_type": "Deterministic recomputation and bounded synthesis of three frozen native-model ellipsoid prediction-envelope results at baseline radius 4; within-dataset normalization only, with no refitting, cross-unit pooled error, probability coverage or unified stability score",
+  "inputs": {
+    "chwirut1_bounds": {
+      "file": "validation/chwirut1-native-ellipsoid-continuous-bounds.json",
+      "sha256": "5795bb98f399366f8b7f35ebd754683742e6dc61e38bc6f1bccb4fcf6ccb91d2"
+    },
+    "chwirut1_receipt": {
+      "file": "validation/chwirut1-native-ellipsoid-continuous-check.json",
+      "sha256": "33d4d3a4fb88cd6270e19d4eafef697dc4967c0345e1f05c7d36644a6ed3047d"
+    },
+    "roszman1_bounds": {
+      "file": "validation/roszman1-native-ellipsoid-continuous-bounds.json",
+      "sha256": "50c672fc3022b34465557daf98a12ce1f975b358e6ba5c9590202a2bdc4660a9"
+    },
+    "roszman1_receipt": {
+      "file": "validation/roszman1-native-ellipsoid-continuous-check.json",
+      "sha256": "e711e4f452234dd816334709cdf73901c8131bafdf72fcd524a94be2f209f3e3"
+    },
+    "enso_bounds": {
+      "file": "validation/enso-native-ellipsoid-continuous-bounds.json",
+      "sha256": "d6eab927eaafc9dc8d469fa42e830660b0e673bde52031b1cd2bd78f795f61ea"
+    },
+    "enso_receipt": {
+      "file": "validation/enso-native-ellipsoid-continuous-check.json",
+      "sha256": "e1b0b71432fab1d071682bb5646828edbf83d5137f5ba7db1942ec37f30cab73"
+    }
+  },
+  "baseline_rule": {
+    "radius": 4,
+    "input_scope": "Use only the three frozen native-model continuous ellipsoid results at radius 4. Later radius-sensitivity grids are contextual studies and are not mixed into this baseline",
+    "region_scope": "Each covariance matrix defines a model-specific arithmetic ellipsoid. The common numerical radius does not make the regions, parameters, units or scientific meanings comparable",
+    "historical_preservation": "Do not rewrite any input summary, receipt, protocol, report, figure or Word manifest"
+  },
+  "recomputation_rule": {
+    "fold_metrics": "For every dataset and fold, recompute available, covered, violation, unavailable and center-mismatch counts from its point records; recompute maximum and median envelope widths and residual upper bounds from its available envelopes and points",
+    "source_consistency": "Require every recomputed fold aggregate and dataset total to match its frozen source exactly, and require each receipt to have status passed and its summarySha256 to match the corresponding bounds file",
+    "unavailable_preservation": "Roszman1 fold 5 retains five unavailable points and null bounds. No unavailable point may be dropped, assigned a zero width or replaced by a fitted value",
+    "normalization_inputs": "Compute dataset medians only from that dataset's available envelope widths or residual upper bounds; require positive finite medians before normalization",
+    "structure_counts": "Count actual envelope records, not the number of points that could theoretically receive an envelope"
+  },
+  "normalization_rule": {
+    "fold_width_ratio": "For each available fold, divide its maximum envelope width by the median envelope width of the same dataset only",
+    "fold_residual_ratio": "For each available fold, divide its maximum residual upper bound by the median residual upper bound of the same dataset only",
+    "scope": "These ratios are dimensionless descriptions of within-dataset dispersion. They are not probabilities, calibrated uncertainties, stability scores, physical-effect sizes or cross-model winners",
+    "raw_values": "Retain raw values in model-specific units in each dataset section and table; never pool raw widths, residual bounds, RMSE values, parameters or covariances across datasets",
+    "failure_handling": "Unavailable folds have null ratios and remain visible. Zero or non-finite denominators cause failure rather than silent epsilon substitution"
+  },
+  "interpretation_rule": {
+    "availability": "Availability counts describe the frozen arithmetic certificates only; covered counts are center-consistency arithmetic and are not probability coverage or external validation",
+    "chwirut1": "Positive denominators and wide envelopes coexist. Chwirut1 shares its study and native model family with Chwirut2 and is not independent replication",
+    "roszman1": "Fold 5 crosses the x-b4 denominator zero despite low held-out RMSE. Its five unavailable points must remain separate from the 20 available points",
+    "enso": "Positive b4 and b7 periods do not prove physical or unique periods. The optimizer mismatch and certified forward pass remain known-answer diagnostics, not holdout evidence",
+    "joint_optimum": "All three prediction envelopes use model-specific conservative relaxations and are not certified joint nonlinear optima"
+  },
+  "analysis_scope": {
+    "within_dataset_normalization_only": true,
+    "cross_dataset_raw_width_pooling": false,
+    "new_model_evaluation": false,
+    "new_physics_or_external_experiment": false,
+    "baseline_radius_sensitivity_grids_mixed": false,
+    "full_point_and_fold_accounting": true
+  },
+  "expected_structure": {
+    "dataset_count": 3,
+    "fold_count": 15,
+    "held_out_point_count": 407,
+    "certified_fold_count": 14,
+    "available_point_count": 402,
+    "covered_point_count": 402,
+    "violation_point_count": 0,
+    "unavailable_point_count": 5,
+    "unique_envelope_count": 210,
+    "center_prediction_envelope_mismatch_count": 0,
+    "refit_count": 0,
+    "baseline_radius": 4,
+    "per_dataset": {
+      "chwirut1": {"folds": 5, "points": 214, "available": 214, "unavailable": 0, "envelopes": 22},
+      "roszman1": {"folds": 5, "points": 25, "available": 20, "unavailable": 5, "envelopes": 20},
+      "enso": {"folds": 5, "points": 168, "available": 168, "unavailable": 0, "envelopes": 168}
+    }
+  },
+  "output_rule": {
+    "summary": "exports/native-ellipsoid-cross-model-synthesis.json",
+    "figure": "papers/56_三模型原生椭球包络综合/fig56_native_ellipsoid_cross_model_synthesis.png",
+    "report": "docs/NATIVE_ELLIPSOID_CROSS_MODEL_SYNTHESIS_2026-11-09.md",
+    "word": "papers/前沿共生三模型原生椭球包络综合_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "decision": {
+    "refit": false,
+    "probability_coverage_claimed": false,
+    "cross_dataset_pooled_error_metrics_claimed": false,
+    "cross_dataset_raw_widths_pooled": false,
+    "universal_stability_score_claimed": false,
+    "universal_model_ranking_claimed": false,
+    "certificates_transferred_between_models": false,
+    "native_global_safety_claimed": false,
+    "independent_model_family_replication_claimed": false,
+    "chwirut1_called_independent_of_chwirut2": false,
+    "physical_periods_proved": false,
+    "joint_nonlinear_optimum_claimed": false,
+    "center_consistency_used_as_external_validation": false,
+    "unavailable_points_dropped": false,
+    "historical_files_rewritten": false,
+    "independent_physical_experiment_claimed": false
+  },
+  "prohibitions": [
+    "No refitting, new folds, changed centers or covariance matrices, changed baseline results or post-hoc normalization choices",
+    "No pooling or ranking of raw widths, residual bounds, RMSE values, parameters or covariances across different datasets",
+    "No probability coverage, calibrated uncertainty, universal stability score or unified winner",
+    "No transfer of denominator, sign or period certificates between models",
+    "No description of Chwirut1 as independent of Chwirut2 or ENSO positive periods as physical-period evidence",
+    "No dropping of Roszman1 fold-5 unavailable points or assigning them zero or fitted bounds",
+    "No claim of joint nonlinear optimality, new physics or independent physical experiment",
+    "No rewriting of historical files or hiding of model-specific limitations"
+  ]
+}
