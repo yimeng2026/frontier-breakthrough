@@ -2471,6 +2471,81 @@
         "validation/enso-native-ellipsoid-radius-sensitivity.json",
         "docs/ENSO_NATIVE_ELLIPSOID_RADIUS_SENSITIVITY_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-cross-model-envelope-width-direct-ranking",
+      "kind": "claim",
+      "title": "不同数据集和量纲的原始包络宽度可以直接合并并排出模型稳定性优劣",
+      "status": "falsified",
+      "sourceFiles": [
+        "exports/native-ellipsoid-cross-model-synthesis.json"
+      ]
+    },
+    {
+      "id": "claim-normalized-envelope-ratio-stability-score",
+      "kind": "claim",
+      "title": "折内最大宽度与本数据集中位数之比可以作为概率、物理效应或统一稳定性评分",
+      "status": "falsified",
+      "sourceFiles": [
+        "exports/native-ellipsoid-cross-model-synthesis.json"
+      ]
+    },
+    {
+      "id": "evidence-native-ellipsoid-cross-model",
+      "kind": "evidence",
+      "title": "三模型 15 折 407 点中有 14 折、402 点可用并生成 210 个包络；Roszman1 第 5 折 5 点不可用，三份收据和全部源指标一致",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-ellipsoid-cross-model-synthesis.json",
+        "validation/native-ellipsoid-cross-model-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman-fold5-low-rmse-no-envelope",
+      "kind": "counterexample",
+      "title": "Roszman1 第 5 折原生 RMSE 仅 0.006228，但分母跨零导致 5 点全部无有限包络，低 RMSE 不能替代定义域检查",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-ellipsoid-cross-model-synthesis.json"
+      ]
+    },
+    {
+      "id": "counterexample-chwirut-fold1-relative-width",
+      "kind": "counterexample",
+      "title": "Chwirut1 第 1 折最大宽度为本数据集中位数的 8.851594 倍，最大残差上界为中位数的 11.007884 倍，有限界的信息量有限",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-ellipsoid-cross-model-synthesis.json"
+      ]
+    },
+    {
+      "id": "counterexample-envelope-count-not-point-count",
+      "kind": "counterexample",
+      "title": "407 个留出点只有 210 个实际包络：Chwirut1 的 214 点对应 22 个唯一距离，Roszman1 第 5 折 5 点不可用，不能按点数推算包络数",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-ellipsoid-cross-model-synthesis.json"
+      ]
+    },
+    {
+      "id": "experiment-native-ellipsoid-cross-model-protocol",
+      "kind": "experiment",
+      "title": "冻结三份原生半径 4 结果和收据，逐点复算计数、包络与残差上界，只在各自数据集内部归一化",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/native-ellipsoid-cross-model-synthesis-protocol.json",
+        "scripts/analyze_native_ellipsoid_cross_model.py"
+      ]
+    },
+    {
+      "id": "limitation-native-ellipsoid-cross-model-normalization",
+      "kind": "limitation",
+      "title": "受限综合不合并原始误差或宽度，不生成概率、统一评分或模型赢家；中心一致性不是外部验证，包络不是联合非线性最优",
+      "status": "active",
+      "sourceFiles": [
+        "exports/native-ellipsoid-cross-model-synthesis.json",
+        "docs/NATIVE_ELLIPSOID_CROSS_MODEL_SYNTHESIS_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -5988,6 +6063,166 @@
       "from": "experiment-enso-native-radius-count-amendment",
       "to": "claim-knowledge-graph",
       "relation": "tests"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-cross-model-envelope-width-direct-ranking",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-normalized-envelope-ratio-stability-score",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-native-ellipsoid-cross-model",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman-fold5-low-rmse-no-envelope",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-chwirut-fold1-relative-width",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-envelope-count-not-point-count",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-native-ellipsoid-cross-model-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-native-ellipsoid-cross-model-normalization",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-native-ellipsoid-cross-model",
+      "to": "claim-cross-model-envelope-width-direct-ranking",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-native-ellipsoid-cross-model-protocol",
+      "to": "claim-cross-model-envelope-width-direct-ranking",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-native-ellipsoid-cross-model",
+      "to": "claim-normalized-envelope-ratio-stability-score",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-native-ellipsoid-cross-model-protocol",
+      "to": "claim-normalized-envelope-ratio-stability-score",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-chwirut-fold1-relative-width",
+      "to": "claim-cross-model-envelope-width-direct-ranking",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-chwirut-fold1-relative-width",
+      "to": "claim-finite-bound-high-information",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-envelope-count-not-point-count",
+      "to": "limitation-native-ellipsoid-cross-model-normalization",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-roszman-fold5-low-rmse-no-envelope",
+      "to": "claim-roszman-fold5-low-rmse-singularity-safe",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman-fold5-low-rmse-no-envelope",
+      "to": "counterexample-roszman1-fold5-crossing-singularity",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-ellipsoid-cross-model",
+      "to": "counterexample-roszman-fold5-low-rmse-no-envelope",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-ellipsoid-cross-model",
+      "to": "counterexample-chwirut-fold1-relative-width",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-ellipsoid-cross-model",
+      "to": "counterexample-envelope-count-not-point-count",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-native-ellipsoid-cross-model-normalization",
+      "to": "evidence-native-ellipsoid-cross-model",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-native-ellipsoid-cross-model-normalization",
+      "to": "claim-cross-model-envelope-width-direct-ranking",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-native-ellipsoid-cross-model-normalization",
+      "to": "claim-normalized-envelope-ratio-stability-score",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-native-ellipsoid-cross-model",
+      "to": "evidence-chwirut1-native-ellipsoid-continuous",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-ellipsoid-cross-model",
+      "to": "evidence-roszman1-native-ellipsoid-continuous",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-ellipsoid-cross-model",
+      "to": "evidence-enso-native-ellipsoid-continuous",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-native-ellipsoid-cross-model-protocol",
+      "to": "experiment-native-identifiability-cross-model-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-ellipsoid-cross-model",
+      "to": "evidence-native-identifiability-cross-model",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-native-ellipsoid-cross-model-protocol",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-native-ellipsoid-cross-model",
+      "to": "claim-finite-bound-high-information",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-native-ellipsoid-cross-model-protocol",
+      "to": "claim-finite-bound-high-information",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-native-ellipsoid-cross-model-normalization",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "limits"
     }
   ]
 }

@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "errorCount": 0,
+  "datasetCount": 3,
+  "foldCount": 15,
+  "heldOutPointCount": 407,
+  "certifiedFoldCount": 14,
+  "availablePointCount": 402,
+  "coveredPointCount": 402,
+  "violationPointCount": 0,
+  "unavailablePointCount": 5,
+  "uniqueEnvelopeCount": 210,
+  "sourceReceiptVerifiedCount": 3,
+  "sourceProjectionMismatchCount": 0,
+  "unavailableFoldIds": [
+    "roszman1:5"
+  ],
+  "protocolSha256": "a7eef4c01194a9e7414b507e467a6fff6a72bf6653e22622b7e36d510a388b21",
+  "summarySha256": "7f57379de453f91589ffca27d212d97150ef651c265e8ce32b9be0edd5018aae",
+  "analysisRunnerSha256": "faf9fe7d2b9248b49cbf43008868aad9c851d5499a4896a1fa279ac0c56aea81",
+  "figureSha256": "4b0d2a1b4ac975812362517ed22fd10290b61ff442ca684b3405fed2a4e59f68",
+  "reportSha256": "40a9d18fe8ebe9e41379b4266e000c80ee8b59a82c5a1a903f900f248e237f08",
+  "wordSha256": "a6105c31d15e4ea8218111e47db0efc0cc5bf42c073ba68a06cd7f4a9dcf0d43",
+  "wordManifestSha256": "718665551e7210f6dcd63eeddc87a57869f1d36482c531ae06e182190c25173e",
+  "crossDatasetPooledErrorMetrics": null,
+  "crossDatasetPooledEnvelopeWidths": null,
+  "crossDatasetStabilityScore": null,
+  "universalModelWinner": null,
+  "probabilityCoverageClaimed": false,
+  "jointNonlinearOptimumClaimed": false,
+  "visualQaClaimed": false,
+  "scientificTruthClaimed": false
+}

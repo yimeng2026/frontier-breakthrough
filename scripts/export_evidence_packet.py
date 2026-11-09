@@ -111,6 +111,8 @@ def build() -> dict:
     ensoEllipsoidCheck = read("enso-native-ellipsoid-continuous-check.json")
     ensoRadius = read("enso-native-ellipsoid-radius-sensitivity.json")
     ensoRadiusCheck = read("enso-native-ellipsoid-radius-sensitivity-check.json")
+    nativeEllipsoidCross = json.loads((ROOT / "exports/native-ellipsoid-cross-model-synthesis.json").read_text(encoding="utf-8"))
+    nativeEllipsoidCrossCheck = read("native-ellipsoid-cross-model-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -1187,6 +1189,62 @@ def build() -> dict:
             "limitations": "这是事后固定网格敏感性审计，不是概率区域、独立验证或半径优化。网格最大可用半径不是精确上限；不可用案例不补界，独立系数放松不是联合最优，中心一致性不是外部验证。原协议的 5040 计数在结果生成前修正为 1008，原文件保持不变。" + " ".join(ensoRadius["limitations"]),
             "upstreamContribution": "提供 Fourier 正周期临界半径的固定网格压力测试、逐折完整基线复现、不可用反例、包络宽度敏感性和显式计数修正链与复现接口。",
             "snapshotFiles": ["validation/enso-native-ellipsoid-radius-sensitivity-protocol.json", "validation/enso-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json", "validation/enso-native-ellipsoid-radius-sensitivity-check.json", "validation/frontier-enso-native-ellipsoid-radius-sensitivity-word.json"],
+        },
+        {
+            "id": "native-ellipsoid-cross-model-synthesis", "domain": "physics", "title": "三模型原生椭球包络受限综合",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml"],
+            "metrics": {
+                "totals": nativeEllipsoidCross["totals"],
+                "datasets": [{
+                    "id": dataset["id"],
+                    "certificate": dataset["certificate"],
+                    "unitScope": dataset["unit_scope"],
+                    "sourceFile": dataset["source_file"],
+                    "sourceSha256": dataset["source_sha256"],
+                    "sourceReceiptVerified": dataset["source_receipt_verified"],
+                    "recomputedSourceMismatchCount": dataset["recomputed_source_mismatch_count"],
+                    "totals": dataset["totals"],
+                    "folds": [{
+                        "fold": fold["fold"],
+                        "pointCount": fold["point_count"],
+                        "nativeTestRmse": fold["native_test_rmse"],
+                        "predictionEnvelopeAvailable": fold["prediction_envelope_available"],
+                        "coverage": fold["coverage"],
+                        "envelopeCount": fold["envelope_count"],
+                        "maxEnvelopeWidth": fold["max_envelope_width"],
+                        "medianEnvelopeWidth": fold["median_envelope_width"],
+                        "maxResidualUpperBound": fold["max_residual_upper_bound"],
+                        "medianResidualUpperBound": fold["median_residual_upper_bound"],
+                        "normalization": fold["normalization"],
+                    } for fold in dataset["folds"]],
+                    "scopeSpecific": dataset["scope_specific"],
+                    "knownAnswer": dataset["known_answer"],
+                } for dataset in nativeEllipsoidCross["datasets"]],
+                "forbiddenAggregates": {
+                    "crossDatasetPooledErrorMetrics": nativeEllipsoidCross["cross_dataset_pooled_error_metrics"],
+                    "crossDatasetPooledEnvelopeWidths": nativeEllipsoidCross["cross_dataset_pooled_envelope_widths"],
+                    "crossDatasetPooledResidualUpperBounds": nativeEllipsoidCross["cross_dataset_pooled_residual_upper_bounds"],
+                    "crossDatasetStabilityScore": nativeEllipsoidCross["cross_dataset_stability_score"],
+                    "universalModelWinner": nativeEllipsoidCross["universal_model_winner"],
+                    "probabilityCoverage": nativeEllipsoidCross["probability_coverage"],
+                },
+                "analysisScope": nativeEllipsoidCross["analysis_scope"],
+                "decision": nativeEllipsoidCross["decision"],
+                "implementation": {
+                    "protocolSha256": nativeEllipsoidCross["protocol_sha256"],
+                    "summarySha256": nativeEllipsoidCrossCheck["summarySha256"],
+                    "analysisRunnerSha256": nativeEllipsoidCrossCheck["analysisRunnerSha256"],
+                    "figureSha256": nativeEllipsoidCrossCheck["figureSha256"],
+                    "reportSha256": nativeEllipsoidCrossCheck["reportSha256"],
+                    "wordSha256": nativeEllipsoidCrossCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "4fbfd66"},
+            },
+            "scientificClaim": "三模型 15 折 407 个留出点中，14 折、402 点可构造包络，实际生成 210 个包络；Roszman1 第 5 折 RMSE 仅 0.006228 但 5 点全部无有限界。Chwirut1 第 1 折最大宽度为本数据集中位数的 8.851594 倍。三份收据和全部源指标一致，未生成跨模型误差池或统一评分。",
+            "limitations": "原始宽度、残差、RMSE、参数和协方差保留模型特有单位，归一化只在各自数据集内部进行。可用性与中心一致性是算术诊断，不是概率覆盖或外部验证；包络不是联合非线性最优，Roszman1 不可用点不删除。" + " ".join(nativeEllipsoidCross["limitations"]),
+            "upstreamContribution": "提供跨模型只读复算、源收据核对、全点状态、实际包络计数和数据集内部归一化接口，明确禁止跨单位误差合并、统一评分和证书移植。",
+            "snapshotFiles": ["validation/native-ellipsoid-cross-model-synthesis-protocol.json", "validation/native-ellipsoid-cross-model-check.json", "validation/frontier-native-ellipsoid-cross-model-word.json"],
         },
     ]
     packet = {

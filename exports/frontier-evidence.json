@@ -4548,29 +4548,29 @@
         "errorCount": 0,
         "groups": {
           "readme_local_links": {
-            "count": 108,
+            "count": 110,
             "errors": []
           },
           "document_figure_links": {
-            "count": 56,
+            "count": 57,
             "errors": []
           },
           "word_manifests": {
-            "count": 48,
+            "count": 49,
             "errors": []
           },
           "evidence_snapshots": {
-            "count": 201,
+            "count": 204,
             "errors": []
           },
           "knowledge_graph": {
-            "nodes": 263,
-            "edges": 703,
+            "nodes": 271,
+            "edges": 735,
             "errors": []
           },
           "protocol_inputs": {
-            "count": 24,
-            "recordsChecked": 54,
+            "count": 25,
+            "recordsChecked": 60,
             "errors": []
           },
           "corpus_v2": {
@@ -4580,9 +4580,9 @@
             "errors": []
           },
           "dynamic_counts": {
-            "evidenceItems": 59,
-            "graphNodes": 263,
-            "graphEdges": 703,
+            "evidenceItems": 60,
+            "graphNodes": 271,
+            "graphEdges": 735,
             "readme_consistent": true,
             "errors": []
           }
@@ -4593,7 +4593,7 @@
           "scientific_truth_claimed": false,
           "historical_text_rewritten": false
         },
-        "rulesSha256": "72f3339effb0f8faacb841cf1be5d57ce3c967bf52a565b7c7a86c7bcb9da165",
+        "rulesSha256": "52b348eed5ebd4ac068d4dd6101a061f3f7be03f93fb372976ba28e87e06c083",
         "analysisRunnerSha256": "403aabb3f22e6fa26eca8595777df16c1f5be34f6f948de7f1c8e7f8f20effdf",
         "previousReceiptPreserved": true,
         "protocolCommits": {
@@ -4601,7 +4601,7 @@
           "audit": "24dc02f"
         }
       },
-      "scientificClaim": "当前范围内 108 个 README 本地链接、56 个报告图片路径、48 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 24 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
+      "scientificClaim": "当前范围内 110 个 README 本地链接、57 个报告图片路径、49 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 25 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
       "limitations": "审计只验证本地结构、路径、哈希和计数，不检查外部网页，不进行视觉渲染验收，不证明科学理论为真，也不把历史旧计数误判为错误。",
       "upstreamContribution": "提供可重复的负例门禁、动态 JSON/README 计数核对和显式 --refresh 历史收据保留机制，防止链接、Word、图谱和协议在持续研究中漂移。",
       "snapshotFiles": [
@@ -24005,6 +24005,563 @@
         "validation/enso-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json",
         "validation/enso-native-ellipsoid-radius-sensitivity-check.json",
         "validation/frontier-enso-native-ellipsoid-radius-sensitivity-word.json"
+      ]
+    },
+    {
+      "id": "native-ellipsoid-cross-model-synthesis",
+      "domain": "physics",
+      "title": "三模型原生椭球包络受限综合",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml"
+      ],
+      "metrics": {
+        "totals": {
+          "dataset_count": 3,
+          "fold_count": 15,
+          "held_out_point_count": 407,
+          "certified_fold_count": 14,
+          "available_point_count": 402,
+          "covered_point_count": 402,
+          "violation_point_count": 0,
+          "unavailable_point_count": 5,
+          "unique_envelope_count": 210,
+          "center_prediction_envelope_mismatch_count": 0,
+          "source_receipt_verified_count": 3,
+          "source_projection_mismatch_count": 0,
+          "unavailable_fold_ids": [
+            "roszman1:5"
+          ],
+          "refit_count": 0,
+          "baseline_radius": 4
+        },
+        "datasets": [
+          {
+            "id": "chwirut1",
+            "certificate": "positive exponential denominator over each frozen interval",
+            "unitScope": "Model-specific response units; raw values are never pooled across datasets",
+            "sourceFile": "validation/chwirut1-native-ellipsoid-continuous-bounds.json",
+            "sourceSha256": "5795bb98f399366f8b7f35ebd754683742e6dc61e38bc6f1bccb4fcf6ccb91d2",
+            "sourceReceiptVerified": true,
+            "recomputedSourceMismatchCount": 0,
+            "totals": {
+              "fold_count": 5,
+              "held_out_point_count": 214,
+              "certified_fold_count": 5,
+              "certified_fold_ids": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "unavailable_fold_ids": [],
+              "available_point_count": 214,
+              "covered_point_count": 214,
+              "violation_point_count": 0,
+              "unavailable_point_count": 0,
+              "center_prediction_envelope_mismatch_count": 0,
+              "unique_envelope_count": 22,
+              "max_envelope_width": 170.14630922307612,
+              "median_envelope_width": 19.222110234669167,
+              "max_residual_upper_bound": 165.679601537622,
+              "median_residual_upper_bound": 15.050994997990879
+            },
+            "folds": [
+              {
+                "fold": 1,
+                "pointCount": 57,
+                "nativeTestRmse": 14.465526570336303,
+                "predictionEnvelopeAvailable": true,
+                "coverage": {
+                  "available_point_count": 57,
+                  "covered_point_count": 57,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "envelopeCount": 5,
+                "maxEnvelopeWidth": 170.14630922307612,
+                "medianEnvelopeWidth": 46.71740877538136,
+                "maxResidualUpperBound": 165.679601537622,
+                "medianResidualUpperBound": 37.410991511226065,
+                "normalization": {
+                  "max_width_to_dataset_median": 8.85159366718222,
+                  "max_residual_to_dataset_median": 11.007883635582775
+                }
+              },
+              {
+                "fold": 2,
+                "pointCount": 54,
+                "nativeTestRmse": 2.622277550680226,
+                "predictionEnvelopeAvailable": true,
+                "coverage": {
+                  "available_point_count": 54,
+                  "covered_point_count": 54,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "envelopeCount": 5,
+                "maxEnvelopeWidth": 26.690807283354367,
+                "medianEnvelopeWidth": 25.95822231061138,
+                "maxResidualUpperBound": 22.467128841573885,
+                "medianResidualUpperBound": 17.296254087641984,
+                "normalization": {
+                  "max_width_to_dataset_median": 1.388547196822053,
+                  "max_residual_to_dataset_median": 1.492733792322233
+                }
+              },
+              {
+                "fold": 3,
+                "pointCount": 51,
+                "nativeTestRmse": 2.775494469668534,
+                "predictionEnvelopeAvailable": true,
+                "coverage": {
+                  "available_point_count": 51,
+                  "covered_point_count": 51,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "envelopeCount": 4,
+                "maxEnvelopeWidth": 19.698670099658763,
+                "medianEnvelopeWidth": 18.286682002491247,
+                "maxResidualUpperBound": 16.756706087980074,
+                "medianResidualUpperBound": 12.96110754732285,
+                "normalization": {
+                  "max_width_to_dataset_median": 1.0247922761430255,
+                  "max_residual_to_dataset_median": 1.113328792562677
+                }
+              },
+              {
+                "fold": 4,
+                "pointCount": 23,
+                "nativeTestRmse": 1.3682100460705144,
+                "predictionEnvelopeAvailable": true,
+                "coverage": {
+                  "available_point_count": 23,
+                  "covered_point_count": 23,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "envelopeCount": 4,
+                "maxEnvelopeWidth": 15.538951621570023,
+                "medianEnvelopeWidth": 14.43106924517799,
+                "maxResidualUpperBound": 13.669825480326374,
+                "medianResidualUpperBound": 10.450767127245195,
+                "normalization": {
+                  "max_width_to_dataset_median": 0.8083894760703138,
+                  "max_residual_to_dataset_median": 0.9082340059345662
+                }
+              },
+              {
+                "fold": 5,
+                "pointCount": 29,
+                "nativeTestRmse": 2.7237923197301117,
+                "predictionEnvelopeAvailable": true,
+                "coverage": {
+                  "available_point_count": 29,
+                  "covered_point_count": 29,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "envelopeCount": 4,
+                "maxEnvelopeWidth": 13.133600947691978,
+                "medianEnvelopeWidth": 11.794939953611312,
+                "maxResidualUpperBound": 10.619553467148037,
+                "medianResidualUpperBound": 7.090184997280081,
+                "normalization": {
+                  "max_width_to_dataset_median": 0.6832548969573642,
+                  "max_residual_to_dataset_median": 0.7055715232491683
+                }
+              }
+            ],
+            "scopeSpecific": {
+              "related_prior_dataset": "Chwirut2",
+              "same_study": true,
+              "same_native_model_family": true,
+              "independent_model_family_test": false
+            },
+            "knownAnswer": null
+          },
+          {
+            "id": "roszman1",
+            "certificate": "negative x-b4 denominator at both endpoints; crossing is unavailable",
+            "unitScope": "Model-specific response units; raw values are never pooled across datasets",
+            "sourceFile": "validation/roszman1-native-ellipsoid-continuous-bounds.json",
+            "sourceSha256": "50c672fc3022b34465557daf98a12ce1f975b358e6ba5c9590202a2bdc4660a9",
+            "sourceReceiptVerified": true,
+            "recomputedSourceMismatchCount": 0,
+            "totals": {
+              "fold_count": 5,
+              "held_out_point_count": 25,
+              "certified_fold_count": 4,
+              "certified_fold_ids": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "unavailable_fold_ids": [
+                5
+              ],
+              "available_point_count": 20,
+              "covered_point_count": 20,
+              "violation_point_count": 0,
+              "unavailable_point_count": 5,
+              "center_prediction_envelope_mismatch_count": 0,
+              "unique_envelope_count": 20,
+              "max_envelope_width": 0.867292251653464,
+              "median_envelope_width": 0.3543650116278472,
+              "max_residual_upper_bound": 0.4433913282171526,
+              "median_residual_upper_bound": 0.1853990741468824
+            },
+            "folds": [
+              {
+                "fold": 1,
+                "pointCount": 5,
+                "nativeTestRmse": 0.010044543789192596,
+                "predictionEnvelopeAvailable": true,
+                "coverage": {
+                  "available_point_count": 5,
+                  "covered_point_count": 5,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "envelopeCount": 5,
+                "maxEnvelopeWidth": 0.867292251653464,
+                "medianEnvelopeWidth": 0.8672082004535576,
+                "maxResidualUpperBound": 0.4433913282171526,
+                "medianResidualUpperBound": 0.4426917970132303,
+                "normalization": {
+                  "max_width_to_dataset_median": 2.447454526250721,
+                  "max_residual_to_dataset_median": 2.3915509301080755
+                }
+              },
+              {
+                "fold": 2,
+                "pointCount": 5,
+                "nativeTestRmse": 0.005867985323301031,
+                "predictionEnvelopeAvailable": true,
+                "coverage": {
+                  "available_point_count": 5,
+                  "covered_point_count": 5,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "envelopeCount": 5,
+                "maxEnvelopeWidth": 0.404403084218167,
+                "medianEnvelopeWidth": 0.39754949973295267,
+                "maxResidualUpperBound": 0.21001114572257565,
+                "medianResidualUpperBound": 0.20471150874637292,
+                "normalization": {
+                  "max_width_to_dataset_median": 1.1412048902922436,
+                  "max_residual_to_dataset_median": 1.1327518580604903
+                }
+              },
+              {
+                "fold": 3,
+                "pointCount": 5,
+                "nativeTestRmse": 0.007531095882129697,
+                "predictionEnvelopeAvailable": true,
+                "coverage": {
+                  "available_point_count": 5,
+                  "covered_point_count": 5,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "envelopeCount": 5,
+                "maxEnvelopeWidth": 0.2816503441601685,
+                "medianEnvelopeWidth": 0.277012375905324,
+                "maxResidualUpperBound": 0.15305785387651213,
+                "medianResidualUpperBound": 0.14866878312106538,
+                "normalization": {
+                  "max_width_to_dataset_median": 0.794802914842949,
+                  "max_residual_to_dataset_median": 0.8255588900905302
+                }
+              },
+              {
+                "fold": 4,
+                "pointCount": 5,
+                "nativeTestRmse": 0.0074538301584031715,
+                "predictionEnvelopeAvailable": true,
+                "coverage": {
+                  "available_point_count": 5,
+                  "covered_point_count": 5,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "envelopeCount": 5,
+                "maxEnvelopeWidth": 0.31120298047119344,
+                "medianEnvelopeWidth": 0.3111970376788305,
+                "maxResidualUpperBound": 0.16684734364672357,
+                "medianResidualUpperBound": 0.16197826397069534,
+                "normalization": {
+                  "max_width_to_dataset_median": 0.8781989481456415,
+                  "max_residual_to_dataset_median": 0.8999362289939958
+                }
+              },
+              {
+                "fold": 5,
+                "pointCount": 5,
+                "nativeTestRmse": 0.006228106060478816,
+                "predictionEnvelopeAvailable": false,
+                "coverage": {
+                  "available_point_count": 0,
+                  "covered_point_count": 0,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 5,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "envelopeCount": 0,
+                "maxEnvelopeWidth": null,
+                "medianEnvelopeWidth": null,
+                "maxResidualUpperBound": null,
+                "medianResidualUpperBound": null,
+                "normalization": {
+                  "max_width_to_dataset_median": null,
+                  "max_residual_to_dataset_median": null
+                }
+              }
+            ],
+            "scopeSpecific": {
+              "minimum_critical_sign_radius": 2.828350890156889,
+              "minimum_critical_sign_radius_fold": 5,
+              "fold5_native_test_rmse": 0.006228106060478816,
+              "fold5_unavailable_point_count": 5
+            },
+            "knownAnswer": null
+          },
+          {
+            "id": "enso",
+            "certificate": "strictly positive b4 and b7 Fourier periods in the selected ellipsoid",
+            "unitScope": "Model-specific response units; raw values are never pooled across datasets",
+            "sourceFile": "validation/enso-native-ellipsoid-continuous-bounds.json",
+            "sourceSha256": "d6eab927eaafc9dc8d469fa42e830660b0e673bde52031b1cd2bd78f795f61ea",
+            "sourceReceiptVerified": true,
+            "recomputedSourceMismatchCount": 0,
+            "totals": {
+              "fold_count": 5,
+              "held_out_point_count": 168,
+              "certified_fold_count": 5,
+              "certified_fold_ids": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "unavailable_fold_ids": [],
+              "available_point_count": 168,
+              "covered_point_count": 168,
+              "violation_point_count": 0,
+              "unavailable_point_count": 0,
+              "center_prediction_envelope_mismatch_count": 0,
+              "unique_envelope_count": 168,
+              "max_envelope_width": 17.64192935677042,
+              "median_envelope_width": 13.164436414771593,
+              "max_residual_upper_bound": 14.576765863967406,
+              "median_residual_upper_bound": 8.516811559710845
+            },
+            "folds": [
+              {
+                "fold": 1,
+                "pointCount": 34,
+                "nativeTestRmse": 3.448449143701017,
+                "predictionEnvelopeAvailable": true,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "envelopeCount": 34,
+                "maxEnvelopeWidth": 17.64192935677042,
+                "medianEnvelopeWidth": 16.255306223856632,
+                "maxResidualUpperBound": 14.576765863967406,
+                "medianResidualUpperBound": 10.700904625060378,
+                "normalization": {
+                  "max_width_to_dataset_median": 1.3401203667917532,
+                  "max_residual_to_dataset_median": 1.7115285176583503
+                }
+              },
+              {
+                "fold": 2,
+                "pointCount": 34,
+                "nativeTestRmse": 2.8418857472529337,
+                "predictionEnvelopeAvailable": true,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "envelopeCount": 34,
+                "maxEnvelopeWidth": 15.612570054747557,
+                "medianEnvelopeWidth": 13.777309170796425,
+                "maxResidualUpperBound": 13.64069640404774,
+                "medianResidualUpperBound": 8.788161237877732,
+                "normalization": {
+                  "max_width_to_dataset_median": 1.1859657005315438,
+                  "max_residual_to_dataset_median": 1.6016200791121948
+                }
+              },
+              {
+                "fold": 3,
+                "pointCount": 34,
+                "nativeTestRmse": 2.4893584593736207,
+                "predictionEnvelopeAvailable": true,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "envelopeCount": 34,
+                "maxEnvelopeWidth": 13.747438502096275,
+                "medianEnvelopeWidth": 12.457327902644366,
+                "maxResidualUpperBound": 11.640301140493067,
+                "medianResidualUpperBound": 7.722456822912964,
+                "normalization": {
+                  "max_width_to_dataset_median": 1.0442861410056647,
+                  "max_residual_to_dataset_median": 1.3667440049464084
+                }
+              },
+              {
+                "fold": 4,
+                "pointCount": 33,
+                "nativeTestRmse": 2.409878120632471,
+                "predictionEnvelopeAvailable": true,
+                "coverage": {
+                  "available_point_count": 33,
+                  "covered_point_count": 33,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "envelopeCount": 33,
+                "maxEnvelopeWidth": 14.202988723393771,
+                "medianEnvelopeWidth": 12.787950536212714,
+                "maxResidualUpperBound": 12.791026579921116,
+                "medianResidualUpperBound": 8.076431624274585,
+                "normalization": {
+                  "max_width_to_dataset_median": 1.0788907535347914,
+                  "max_residual_to_dataset_median": 1.5018562393031725
+                }
+              },
+              {
+                "fold": 5,
+                "pointCount": 33,
+                "nativeTestRmse": 2.3729570605012986,
+                "predictionEnvelopeAvailable": true,
+                "coverage": {
+                  "available_point_count": 33,
+                  "covered_point_count": 33,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "envelopeCount": 33,
+                "maxEnvelopeWidth": 14.255436278087718,
+                "medianEnvelopeWidth": 12.75932330509976,
+                "maxResidualUpperBound": 11.267101676671821,
+                "medianResidualUpperBound": 8.226006551560063,
+                "normalization": {
+                  "max_width_to_dataset_median": 1.0828747869595035,
+                  "max_residual_to_dataset_median": 1.322924852531826
+                }
+              }
+            ],
+            "scopeSpecific": {
+              "minimum_critical_period_radius": 26.76683884611663,
+              "minimum_critical_period_radius_fold": 4,
+              "minimum_critical_period_parameter": "b4"
+            },
+            "knownAnswer": {
+              "optimizer_within_certified_tolerances": false,
+              "certified_forward_rss_check_passed": true,
+              "original_tolerances_relaxed": false,
+              "optimizer_mismatch_hidden": false,
+              "used_as_holdout": false,
+              "certified_reference_periods": {
+                "b4": 44.3110887,
+                "b7": 26.88761444
+              }
+            }
+          }
+        ],
+        "forbiddenAggregates": {
+          "crossDatasetPooledErrorMetrics": null,
+          "crossDatasetPooledEnvelopeWidths": null,
+          "crossDatasetPooledResidualUpperBounds": null,
+          "crossDatasetStabilityScore": null,
+          "universalModelWinner": null,
+          "probabilityCoverage": null
+        },
+        "analysisScope": {
+          "within_dataset_normalization_only": true,
+          "cross_dataset_raw_width_pooling": false,
+          "new_model_evaluation": false,
+          "new_physics_or_external_experiment": false,
+          "baseline_radius_sensitivity_grids_mixed": false,
+          "full_point_and_fold_accounting": true,
+          "refit": false,
+          "post_hoc": true,
+          "all_frozen_folds_and_points_retained": true,
+          "source_receipts_verified": true,
+          "normalization_is_probability": false,
+          "joint_nonlinear_optimum": false
+        },
+        "decision": {
+          "refit": false,
+          "probability_coverage_claimed": false,
+          "cross_dataset_pooled_error_metrics_claimed": false,
+          "cross_dataset_raw_widths_pooled": false,
+          "universal_stability_score_claimed": false,
+          "universal_model_ranking_claimed": false,
+          "certificates_transferred_between_models": false,
+          "native_global_safety_claimed": false,
+          "independent_model_family_replication_claimed": false,
+          "chwirut1_called_independent_of_chwirut2": false,
+          "physical_periods_proved": false,
+          "joint_nonlinear_optimum_claimed": false,
+          "center_consistency_used_as_external_validation": false,
+          "unavailable_points_dropped": false,
+          "historical_files_rewritten": false,
+          "independent_physical_experiment_claimed": false
+        },
+        "implementation": {
+          "protocolSha256": "a7eef4c01194a9e7414b507e467a6fff6a72bf6653e22622b7e36d510a388b21",
+          "summarySha256": "7f57379de453f91589ffca27d212d97150ef651c265e8ce32b9be0edd5018aae",
+          "analysisRunnerSha256": "faf9fe7d2b9248b49cbf43008868aad9c851d5499a4896a1fa279ac0c56aea81",
+          "figureSha256": "4b0d2a1b4ac975812362517ed22fd10290b61ff442ca684b3405fed2a4e59f68",
+          "reportSha256": "40a9d18fe8ebe9e41379b4266e000c80ee8b59a82c5a1a903f900f248e237f08",
+          "wordSha256": "a6105c31d15e4ea8218111e47db0efc0cc5bf42c073ba68a06cd7f4a9dcf0d43"
+        },
+        "protocolCommits": {
+          "protocol": "4fbfd66"
+        }
+      },
+      "scientificClaim": "三模型 15 折 407 个留出点中，14 折、402 点可构造包络，实际生成 210 个包络；Roszman1 第 5 折 RMSE 仅 0.006228 但 5 点全部无有限界。Chwirut1 第 1 折最大宽度为本数据集中位数的 8.851594 倍。三份收据和全部源指标一致，未生成跨模型误差池或统一评分。",
+      "limitations": "原始宽度、残差、RMSE、参数和协方差保留模型特有单位，归一化只在各自数据集内部进行。可用性与中心一致性是算术诊断，不是概率覆盖或外部验证；包络不是联合非线性最优，Roszman1 不可用点不删除。Three datasets provide fifteen related diagnostic folds, not independent probability samples or a universal model ranking Availability and center-consistency counts are arithmetic diagnostics, not probability coverage or external scientific validation Raw widths, residual bounds, RMSE values, parameters and covariance matrices remain in model-specific units and are never pooled Within-dataset normalization describes relative dispersion only and is not a calibrated uncertainty, physical effect size or stability score Roszman1 fold 5 retains five unavailable points and null bounds; low RMSE does not remove its denominator crossing Chwirut1 shares its study and native model family with Chwirut2; positive denominators do not make wide bounds highly informative ENSO positive periods do not establish unique or physical periods; optimizer mismatch and certified forward evaluation remain separate from holdout evidence The envelopes are conservative model-specific relaxations, not joint nonlinear optima or independent physical experiments",
+      "upstreamContribution": "提供跨模型只读复算、源收据核对、全点状态、实际包络计数和数据集内部归一化接口，明确禁止跨单位误差合并、统一评分和证书移植。",
+      "snapshotFiles": [
+        "validation/native-ellipsoid-cross-model-synthesis-protocol.json",
+        "validation/native-ellipsoid-cross-model-check.json",
+        "validation/frontier-native-ellipsoid-cross-model-word.json"
       ]
     }
   ]

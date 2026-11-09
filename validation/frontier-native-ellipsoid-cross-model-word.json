@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生三模型原生椭球包络综合_图文完整版.docx",
+  "bytes": 287398,
+  "sha256": "a6105c31d15e4ea8218111e47db0efc0cc5bf42c073ba68a06cd7f4a9dcf0d43",
+  "native_math_objects": 2,
+  "embedded_images": 1,
+  "native_tables": 5,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

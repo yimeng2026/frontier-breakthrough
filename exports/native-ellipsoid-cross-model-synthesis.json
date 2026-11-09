@@ -1,0 +1,579 @@
+{
+  "status": "computed_native_ellipsoid_cross_model_synthesis",
+  "protocol_sha256": "a7eef4c01194a9e7414b507e467a6fff6a72bf6653e22622b7e36d510a388b21",
+  "analysis_scope": {
+    "within_dataset_normalization_only": true,
+    "cross_dataset_raw_width_pooling": false,
+    "new_model_evaluation": false,
+    "new_physics_or_external_experiment": false,
+    "baseline_radius_sensitivity_grids_mixed": false,
+    "full_point_and_fold_accounting": true,
+    "refit": false,
+    "post_hoc": true,
+    "all_frozen_folds_and_points_retained": true,
+    "source_receipts_verified": true,
+    "normalization_is_probability": false,
+    "joint_nonlinear_optimum": false
+  },
+  "datasets": [
+    {
+      "id": "chwirut1",
+      "label": "Chwirut1 native exponential",
+      "certificate": "positive exponential denominator over each frozen interval",
+      "unit_scope": "Model-specific response units; raw values are never pooled across datasets",
+      "source_file": "validation/chwirut1-native-ellipsoid-continuous-bounds.json",
+      "source_sha256": "5795bb98f399366f8b7f35ebd754683742e6dc61e38bc6f1bccb4fcf6ccb91d2",
+      "receipt_file": "validation/chwirut1-native-ellipsoid-continuous-check.json",
+      "receipt_sha256": "33d4d3a4fb88cd6270e19d4eafef697dc4967c0345e1f05c7d36644a6ed3047d",
+      "source_receipt_verified": true,
+      "recomputed_source_mismatch_count": 0,
+      "folds": [
+        {
+          "fold": 1,
+          "fold_id": "chwirut1:1",
+          "point_count": 57,
+          "native_test_rmse": 14.465526570336303,
+          "prediction_envelope_available": true,
+          "coverage": {
+            "available_point_count": 57,
+            "covered_point_count": 57,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0
+          },
+          "envelope_count": 5,
+          "max_envelope_width": 170.14630922307612,
+          "median_envelope_width": 46.71740877538136,
+          "max_residual_upper_bound": 165.679601537622,
+          "median_residual_upper_bound": 37.410991511226065,
+          "recomputed_source_mismatch_count": 0,
+          "normalization": {
+            "max_width_to_dataset_median": 8.85159366718222,
+            "max_residual_to_dataset_median": 11.007883635582775
+          }
+        },
+        {
+          "fold": 2,
+          "fold_id": "chwirut1:2",
+          "point_count": 54,
+          "native_test_rmse": 2.622277550680226,
+          "prediction_envelope_available": true,
+          "coverage": {
+            "available_point_count": 54,
+            "covered_point_count": 54,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0
+          },
+          "envelope_count": 5,
+          "max_envelope_width": 26.690807283354367,
+          "median_envelope_width": 25.95822231061138,
+          "max_residual_upper_bound": 22.467128841573885,
+          "median_residual_upper_bound": 17.296254087641984,
+          "recomputed_source_mismatch_count": 0,
+          "normalization": {
+            "max_width_to_dataset_median": 1.388547196822053,
+            "max_residual_to_dataset_median": 1.492733792322233
+          }
+        },
+        {
+          "fold": 3,
+          "fold_id": "chwirut1:3",
+          "point_count": 51,
+          "native_test_rmse": 2.775494469668534,
+          "prediction_envelope_available": true,
+          "coverage": {
+            "available_point_count": 51,
+            "covered_point_count": 51,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0
+          },
+          "envelope_count": 4,
+          "max_envelope_width": 19.698670099658763,
+          "median_envelope_width": 18.286682002491247,
+          "max_residual_upper_bound": 16.756706087980074,
+          "median_residual_upper_bound": 12.96110754732285,
+          "recomputed_source_mismatch_count": 0,
+          "normalization": {
+            "max_width_to_dataset_median": 1.0247922761430255,
+            "max_residual_to_dataset_median": 1.113328792562677
+          }
+        },
+        {
+          "fold": 4,
+          "fold_id": "chwirut1:4",
+          "point_count": 23,
+          "native_test_rmse": 1.3682100460705144,
+          "prediction_envelope_available": true,
+          "coverage": {
+            "available_point_count": 23,
+            "covered_point_count": 23,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0
+          },
+          "envelope_count": 4,
+          "max_envelope_width": 15.538951621570023,
+          "median_envelope_width": 14.43106924517799,
+          "max_residual_upper_bound": 13.669825480326374,
+          "median_residual_upper_bound": 10.450767127245195,
+          "recomputed_source_mismatch_count": 0,
+          "normalization": {
+            "max_width_to_dataset_median": 0.8083894760703138,
+            "max_residual_to_dataset_median": 0.9082340059345662
+          }
+        },
+        {
+          "fold": 5,
+          "fold_id": "chwirut1:5",
+          "point_count": 29,
+          "native_test_rmse": 2.7237923197301117,
+          "prediction_envelope_available": true,
+          "coverage": {
+            "available_point_count": 29,
+            "covered_point_count": 29,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0
+          },
+          "envelope_count": 4,
+          "max_envelope_width": 13.133600947691978,
+          "median_envelope_width": 11.794939953611312,
+          "max_residual_upper_bound": 10.619553467148037,
+          "median_residual_upper_bound": 7.090184997280081,
+          "recomputed_source_mismatch_count": 0,
+          "normalization": {
+            "max_width_to_dataset_median": 0.6832548969573642,
+            "max_residual_to_dataset_median": 0.7055715232491683
+          }
+        }
+      ],
+      "totals": {
+        "fold_count": 5,
+        "held_out_point_count": 214,
+        "certified_fold_count": 5,
+        "certified_fold_ids": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "unavailable_fold_ids": [],
+        "available_point_count": 214,
+        "covered_point_count": 214,
+        "violation_point_count": 0,
+        "unavailable_point_count": 0,
+        "center_prediction_envelope_mismatch_count": 0,
+        "unique_envelope_count": 22,
+        "max_envelope_width": 170.14630922307612,
+        "median_envelope_width": 19.222110234669167,
+        "max_residual_upper_bound": 165.679601537622,
+        "median_residual_upper_bound": 15.050994997990879
+      },
+      "normalization_scope": "Each fold maximum is divided only by this dataset's available-point median; descriptive, not a score",
+      "scope_specific": {
+        "related_prior_dataset": "Chwirut2",
+        "same_study": true,
+        "same_native_model_family": true,
+        "independent_model_family_test": false
+      },
+      "known_answer": null
+    },
+    {
+      "id": "roszman1",
+      "label": "Roszman1 native arctangent",
+      "certificate": "negative x-b4 denominator at both endpoints; crossing is unavailable",
+      "unit_scope": "Model-specific response units; raw values are never pooled across datasets",
+      "source_file": "validation/roszman1-native-ellipsoid-continuous-bounds.json",
+      "source_sha256": "50c672fc3022b34465557daf98a12ce1f975b358e6ba5c9590202a2bdc4660a9",
+      "receipt_file": "validation/roszman1-native-ellipsoid-continuous-check.json",
+      "receipt_sha256": "e711e4f452234dd816334709cdf73901c8131bafdf72fcd524a94be2f209f3e3",
+      "source_receipt_verified": true,
+      "recomputed_source_mismatch_count": 0,
+      "folds": [
+        {
+          "fold": 1,
+          "fold_id": "roszman1:1",
+          "point_count": 5,
+          "native_test_rmse": 0.010044543789192596,
+          "prediction_envelope_available": true,
+          "coverage": {
+            "available_point_count": 5,
+            "covered_point_count": 5,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0
+          },
+          "envelope_count": 5,
+          "max_envelope_width": 0.867292251653464,
+          "median_envelope_width": 0.8672082004535576,
+          "max_residual_upper_bound": 0.4433913282171526,
+          "median_residual_upper_bound": 0.4426917970132303,
+          "recomputed_source_mismatch_count": 0,
+          "normalization": {
+            "max_width_to_dataset_median": 2.447454526250721,
+            "max_residual_to_dataset_median": 2.3915509301080755
+          }
+        },
+        {
+          "fold": 2,
+          "fold_id": "roszman1:2",
+          "point_count": 5,
+          "native_test_rmse": 0.005867985323301031,
+          "prediction_envelope_available": true,
+          "coverage": {
+            "available_point_count": 5,
+            "covered_point_count": 5,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0
+          },
+          "envelope_count": 5,
+          "max_envelope_width": 0.404403084218167,
+          "median_envelope_width": 0.39754949973295267,
+          "max_residual_upper_bound": 0.21001114572257565,
+          "median_residual_upper_bound": 0.20471150874637292,
+          "recomputed_source_mismatch_count": 0,
+          "normalization": {
+            "max_width_to_dataset_median": 1.1412048902922436,
+            "max_residual_to_dataset_median": 1.1327518580604903
+          }
+        },
+        {
+          "fold": 3,
+          "fold_id": "roszman1:3",
+          "point_count": 5,
+          "native_test_rmse": 0.007531095882129697,
+          "prediction_envelope_available": true,
+          "coverage": {
+            "available_point_count": 5,
+            "covered_point_count": 5,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0
+          },
+          "envelope_count": 5,
+          "max_envelope_width": 0.2816503441601685,
+          "median_envelope_width": 0.277012375905324,
+          "max_residual_upper_bound": 0.15305785387651213,
+          "median_residual_upper_bound": 0.14866878312106538,
+          "recomputed_source_mismatch_count": 0,
+          "normalization": {
+            "max_width_to_dataset_median": 0.794802914842949,
+            "max_residual_to_dataset_median": 0.8255588900905302
+          }
+        },
+        {
+          "fold": 4,
+          "fold_id": "roszman1:4",
+          "point_count": 5,
+          "native_test_rmse": 0.0074538301584031715,
+          "prediction_envelope_available": true,
+          "coverage": {
+            "available_point_count": 5,
+            "covered_point_count": 5,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0
+          },
+          "envelope_count": 5,
+          "max_envelope_width": 0.31120298047119344,
+          "median_envelope_width": 0.3111970376788305,
+          "max_residual_upper_bound": 0.16684734364672357,
+          "median_residual_upper_bound": 0.16197826397069534,
+          "recomputed_source_mismatch_count": 0,
+          "normalization": {
+            "max_width_to_dataset_median": 0.8781989481456415,
+            "max_residual_to_dataset_median": 0.8999362289939958
+          }
+        },
+        {
+          "fold": 5,
+          "fold_id": "roszman1:5",
+          "point_count": 5,
+          "native_test_rmse": 0.006228106060478816,
+          "prediction_envelope_available": false,
+          "coverage": {
+            "available_point_count": 0,
+            "covered_point_count": 0,
+            "violation_point_count": 0,
+            "unavailable_point_count": 5,
+            "center_prediction_envelope_mismatch_count": 0
+          },
+          "envelope_count": 0,
+          "max_envelope_width": null,
+          "median_envelope_width": null,
+          "max_residual_upper_bound": null,
+          "median_residual_upper_bound": null,
+          "recomputed_source_mismatch_count": 0,
+          "normalization": {
+            "max_width_to_dataset_median": null,
+            "max_residual_to_dataset_median": null
+          }
+        }
+      ],
+      "totals": {
+        "fold_count": 5,
+        "held_out_point_count": 25,
+        "certified_fold_count": 4,
+        "certified_fold_ids": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "unavailable_fold_ids": [
+          5
+        ],
+        "available_point_count": 20,
+        "covered_point_count": 20,
+        "violation_point_count": 0,
+        "unavailable_point_count": 5,
+        "center_prediction_envelope_mismatch_count": 0,
+        "unique_envelope_count": 20,
+        "max_envelope_width": 0.867292251653464,
+        "median_envelope_width": 0.3543650116278472,
+        "max_residual_upper_bound": 0.4433913282171526,
+        "median_residual_upper_bound": 0.1853990741468824
+      },
+      "normalization_scope": "Each fold maximum is divided only by this dataset's available-point median; descriptive, not a score",
+      "scope_specific": {
+        "minimum_critical_sign_radius": 2.828350890156889,
+        "minimum_critical_sign_radius_fold": 5,
+        "fold5_native_test_rmse": 0.006228106060478816,
+        "fold5_unavailable_point_count": 5
+      },
+      "known_answer": null
+    },
+    {
+      "id": "enso",
+      "label": "ENSO native Fourier",
+      "certificate": "strictly positive b4 and b7 Fourier periods in the selected ellipsoid",
+      "unit_scope": "Model-specific response units; raw values are never pooled across datasets",
+      "source_file": "validation/enso-native-ellipsoid-continuous-bounds.json",
+      "source_sha256": "d6eab927eaafc9dc8d469fa42e830660b0e673bde52031b1cd2bd78f795f61ea",
+      "receipt_file": "validation/enso-native-ellipsoid-continuous-check.json",
+      "receipt_sha256": "e1b0b71432fab1d071682bb5646828edbf83d5137f5ba7db1942ec37f30cab73",
+      "source_receipt_verified": true,
+      "recomputed_source_mismatch_count": 0,
+      "folds": [
+        {
+          "fold": 1,
+          "fold_id": "enso:1",
+          "point_count": 34,
+          "native_test_rmse": 3.448449143701017,
+          "prediction_envelope_available": true,
+          "coverage": {
+            "available_point_count": 34,
+            "covered_point_count": 34,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0
+          },
+          "envelope_count": 34,
+          "max_envelope_width": 17.64192935677042,
+          "median_envelope_width": 16.255306223856632,
+          "max_residual_upper_bound": 14.576765863967406,
+          "median_residual_upper_bound": 10.700904625060378,
+          "recomputed_source_mismatch_count": 0,
+          "normalization": {
+            "max_width_to_dataset_median": 1.3401203667917532,
+            "max_residual_to_dataset_median": 1.7115285176583503
+          }
+        },
+        {
+          "fold": 2,
+          "fold_id": "enso:2",
+          "point_count": 34,
+          "native_test_rmse": 2.8418857472529337,
+          "prediction_envelope_available": true,
+          "coverage": {
+            "available_point_count": 34,
+            "covered_point_count": 34,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0
+          },
+          "envelope_count": 34,
+          "max_envelope_width": 15.612570054747557,
+          "median_envelope_width": 13.777309170796425,
+          "max_residual_upper_bound": 13.64069640404774,
+          "median_residual_upper_bound": 8.788161237877732,
+          "recomputed_source_mismatch_count": 0,
+          "normalization": {
+            "max_width_to_dataset_median": 1.1859657005315438,
+            "max_residual_to_dataset_median": 1.6016200791121948
+          }
+        },
+        {
+          "fold": 3,
+          "fold_id": "enso:3",
+          "point_count": 34,
+          "native_test_rmse": 2.4893584593736207,
+          "prediction_envelope_available": true,
+          "coverage": {
+            "available_point_count": 34,
+            "covered_point_count": 34,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0
+          },
+          "envelope_count": 34,
+          "max_envelope_width": 13.747438502096275,
+          "median_envelope_width": 12.457327902644366,
+          "max_residual_upper_bound": 11.640301140493067,
+          "median_residual_upper_bound": 7.722456822912964,
+          "recomputed_source_mismatch_count": 0,
+          "normalization": {
+            "max_width_to_dataset_median": 1.0442861410056647,
+            "max_residual_to_dataset_median": 1.3667440049464084
+          }
+        },
+        {
+          "fold": 4,
+          "fold_id": "enso:4",
+          "point_count": 33,
+          "native_test_rmse": 2.409878120632471,
+          "prediction_envelope_available": true,
+          "coverage": {
+            "available_point_count": 33,
+            "covered_point_count": 33,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0
+          },
+          "envelope_count": 33,
+          "max_envelope_width": 14.202988723393771,
+          "median_envelope_width": 12.787950536212714,
+          "max_residual_upper_bound": 12.791026579921116,
+          "median_residual_upper_bound": 8.076431624274585,
+          "recomputed_source_mismatch_count": 0,
+          "normalization": {
+            "max_width_to_dataset_median": 1.0788907535347914,
+            "max_residual_to_dataset_median": 1.5018562393031725
+          }
+        },
+        {
+          "fold": 5,
+          "fold_id": "enso:5",
+          "point_count": 33,
+          "native_test_rmse": 2.3729570605012986,
+          "prediction_envelope_available": true,
+          "coverage": {
+            "available_point_count": 33,
+            "covered_point_count": 33,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0
+          },
+          "envelope_count": 33,
+          "max_envelope_width": 14.255436278087718,
+          "median_envelope_width": 12.75932330509976,
+          "max_residual_upper_bound": 11.267101676671821,
+          "median_residual_upper_bound": 8.226006551560063,
+          "recomputed_source_mismatch_count": 0,
+          "normalization": {
+            "max_width_to_dataset_median": 1.0828747869595035,
+            "max_residual_to_dataset_median": 1.322924852531826
+          }
+        }
+      ],
+      "totals": {
+        "fold_count": 5,
+        "held_out_point_count": 168,
+        "certified_fold_count": 5,
+        "certified_fold_ids": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "unavailable_fold_ids": [],
+        "available_point_count": 168,
+        "covered_point_count": 168,
+        "violation_point_count": 0,
+        "unavailable_point_count": 0,
+        "center_prediction_envelope_mismatch_count": 0,
+        "unique_envelope_count": 168,
+        "max_envelope_width": 17.64192935677042,
+        "median_envelope_width": 13.164436414771593,
+        "max_residual_upper_bound": 14.576765863967406,
+        "median_residual_upper_bound": 8.516811559710845
+      },
+      "normalization_scope": "Each fold maximum is divided only by this dataset's available-point median; descriptive, not a score",
+      "scope_specific": {
+        "minimum_critical_period_radius": 26.76683884611663,
+        "minimum_critical_period_radius_fold": 4,
+        "minimum_critical_period_parameter": "b4"
+      },
+      "known_answer": {
+        "optimizer_within_certified_tolerances": false,
+        "certified_forward_rss_check_passed": true,
+        "original_tolerances_relaxed": false,
+        "optimizer_mismatch_hidden": false,
+        "used_as_holdout": false,
+        "certified_reference_periods": {
+          "b4": 44.3110887,
+          "b7": 26.88761444
+        }
+      }
+    }
+  ],
+  "totals": {
+    "dataset_count": 3,
+    "fold_count": 15,
+    "held_out_point_count": 407,
+    "certified_fold_count": 14,
+    "available_point_count": 402,
+    "covered_point_count": 402,
+    "violation_point_count": 0,
+    "unavailable_point_count": 5,
+    "unique_envelope_count": 210,
+    "center_prediction_envelope_mismatch_count": 0,
+    "source_receipt_verified_count": 3,
+    "source_projection_mismatch_count": 0,
+    "unavailable_fold_ids": [
+      "roszman1:5"
+    ],
+    "refit_count": 0,
+    "baseline_radius": 4
+  },
+  "cross_dataset_pooled_error_metrics": null,
+  "cross_dataset_pooled_envelope_widths": null,
+  "cross_dataset_pooled_residual_upper_bounds": null,
+  "cross_dataset_stability_score": null,
+  "universal_model_winner": null,
+  "probability_coverage": null,
+  "decision": {
+    "refit": false,
+    "probability_coverage_claimed": false,
+    "cross_dataset_pooled_error_metrics_claimed": false,
+    "cross_dataset_raw_widths_pooled": false,
+    "universal_stability_score_claimed": false,
+    "universal_model_ranking_claimed": false,
+    "certificates_transferred_between_models": false,
+    "native_global_safety_claimed": false,
+    "independent_model_family_replication_claimed": false,
+    "chwirut1_called_independent_of_chwirut2": false,
+    "physical_periods_proved": false,
+    "joint_nonlinear_optimum_claimed": false,
+    "center_consistency_used_as_external_validation": false,
+    "unavailable_points_dropped": false,
+    "historical_files_rewritten": false,
+    "independent_physical_experiment_claimed": false
+  },
+  "limitations": [
+    "Three datasets provide fifteen related diagnostic folds, not independent probability samples or a universal model ranking",
+    "Availability and center-consistency counts are arithmetic diagnostics, not probability coverage or external scientific validation",
+    "Raw widths, residual bounds, RMSE values, parameters and covariance matrices remain in model-specific units and are never pooled",
+    "Within-dataset normalization describes relative dispersion only and is not a calibrated uncertainty, physical effect size or stability score",
+    "Roszman1 fold 5 retains five unavailable points and null bounds; low RMSE does not remove its denominator crossing",
+    "Chwirut1 shares its study and native model family with Chwirut2; positive denominators do not make wide bounds highly informative",
+    "ENSO positive periods do not establish unique or physical periods; optimizer mismatch and certified forward evaluation remain separate from holdout evidence",
+    "The envelopes are conservative model-specific relaxations, not joint nonlinear optima or independent physical experiments"
+  ],
+  "analysis_runner_sha256": "faf9fe7d2b9248b49cbf43008868aad9c851d5499a4896a1fa279ac0c56aea81"
+}

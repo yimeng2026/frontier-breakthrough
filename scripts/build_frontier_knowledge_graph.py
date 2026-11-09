@@ -102,6 +102,9 @@ def build_graph(root):
     ensoRadius = json.loads((root / "validation/enso-native-ellipsoid-radius-sensitivity.json").read_text(encoding="utf-8"))
     if ensoRadius["totals"]["case_count"] != 30 or ensoRadius["totals"]["maximum_point_evaluations"] != 1008 or ensoRadius["totals"]["maximum_envelope_evaluations"] != 1008 or ensoRadius["totals"]["actual_envelope_evaluation_count"] != 942 or ensoRadius["totals"]["certified_case_count"] != 28 or ensoRadius["totals"]["available_point_count"] != 942 or ensoRadius["totals"]["covered_point_count"] != 942 or ensoRadius["totals"]["violation_point_count"] != 0 or ensoRadius["totals"]["unavailable_point_count"] != 66 or ensoRadius["totals"]["unavailable_case_ids"] != ["enso:4:r32", "enso:5:r32"] or ensoRadius["totals"]["fold_held_out_point_counts"] != [34, 34, 34, 33, 33] or ensoRadius["totals"]["center_prediction_envelope_mismatch_count"] != 0 or ensoRadius["totals"]["max_envelope_width"] != 141.13543485416332 or ensoRadius["totals"]["max_residual_upper_bound"] != 75.54732074215885 or ensoRadius["totals"]["minimum_critical_period_radius"] != 26.76683884611663 or ensoRadius["totals"]["minimum_critical_period_radius_fold"] != 4 or not ensoRadius["baseline"]["matches_frozen_baseline"] or ensoRadius["baseline"]["exact_fold_projection_match_count"] != 5 or ensoRadius["analysis_scope"]["count_correction"]["corrected_maximum_evaluations"] != 1008 or not ensoRadius["analysis_scope"]["count_correction"]["original_protocol_preserved"] or ensoRadius["decision"]["optimal_radius_selected"] or ensoRadius["decision"]["unavailable_cases_given_bounds"] or [fold["max_certified_grid_radius"] for fold in ensoRadius["folds"]] != [32, 32, 32, 16, 16]:
         raise ValueError("Expected ENSO radius-grid failures, width, baseline and count-correction boundaries are not present")
+    nativeEllipsoidCross = json.loads((root / "exports/native-ellipsoid-cross-model-synthesis.json").read_text(encoding="utf-8"))
+    if nativeEllipsoidCross["totals"]["dataset_count"] != 3 or nativeEllipsoidCross["totals"]["fold_count"] != 15 or nativeEllipsoidCross["totals"]["held_out_point_count"] != 407 or nativeEllipsoidCross["totals"]["certified_fold_count"] != 14 or nativeEllipsoidCross["totals"]["available_point_count"] != 402 or nativeEllipsoidCross["totals"]["covered_point_count"] != 402 or nativeEllipsoidCross["totals"]["violation_point_count"] != 0 or nativeEllipsoidCross["totals"]["unavailable_point_count"] != 5 or nativeEllipsoidCross["totals"]["unique_envelope_count"] != 210 or nativeEllipsoidCross["totals"]["center_prediction_envelope_mismatch_count"] != 0 or nativeEllipsoidCross["totals"]["source_receipt_verified_count"] != 3 or nativeEllipsoidCross["totals"]["source_projection_mismatch_count"] != 0 or nativeEllipsoidCross["totals"]["unavailable_fold_ids"] != ["roszman1:5"] or nativeEllipsoidCross["cross_dataset_pooled_error_metrics"] is not None or nativeEllipsoidCross["cross_dataset_stability_score"] is not None or nativeEllipsoidCross["decision"]["universal_stability_score_claimed"] or nativeEllipsoidCross["decision"]["unavailable_points_dropped"]:
+        raise ValueError("Expected native ellipsoid counts, unavailable fold and no-pooling boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -1127,6 +1130,50 @@ def build_graph(root):
         edge("experiment-enso-native-radius-count-amendment", "experiment-enso-native-radius-sensitivity-protocol", "supports"),
         edge("experiment-enso-native-radius-count-amendment", "evidence-enso-native-ellipsoid-radius-sensitivity", "supports"),
         edge("experiment-enso-native-radius-count-amendment", "claim-knowledge-graph", "tests"),
+    ])
+    nodes.extend([
+        node("claim-cross-model-envelope-width-direct-ranking", "claim", "不同数据集和量纲的原始包络宽度可以直接合并并排出模型稳定性优劣", "falsified", ["exports/native-ellipsoid-cross-model-synthesis.json"]),
+        node("claim-normalized-envelope-ratio-stability-score", "claim", "折内最大宽度与本数据集中位数之比可以作为概率、物理效应或统一稳定性评分", "falsified", ["exports/native-ellipsoid-cross-model-synthesis.json"]),
+        node("evidence-native-ellipsoid-cross-model", "evidence", "三模型 15 折 407 点中有 14 折、402 点可用并生成 210 个包络；Roszman1 第 5 折 5 点不可用，三份收据和全部源指标一致", "supported", ["exports/native-ellipsoid-cross-model-synthesis.json", "validation/native-ellipsoid-cross-model-check.json"]),
+        node("counterexample-roszman-fold5-low-rmse-no-envelope", "counterexample", "Roszman1 第 5 折原生 RMSE 仅 0.006228，但分母跨零导致 5 点全部无有限包络，低 RMSE 不能替代定义域检查", "supported", ["exports/native-ellipsoid-cross-model-synthesis.json"]),
+        node("counterexample-chwirut-fold1-relative-width", "counterexample", "Chwirut1 第 1 折最大宽度为本数据集中位数的 8.851594 倍，最大残差上界为中位数的 11.007884 倍，有限界的信息量有限", "supported", ["exports/native-ellipsoid-cross-model-synthesis.json"]),
+        node("counterexample-envelope-count-not-point-count", "counterexample", "407 个留出点只有 210 个实际包络：Chwirut1 的 214 点对应 22 个唯一距离，Roszman1 第 5 折 5 点不可用，不能按点数推算包络数", "supported", ["exports/native-ellipsoid-cross-model-synthesis.json"]),
+        node("experiment-native-ellipsoid-cross-model-protocol", "experiment", "冻结三份原生半径 4 结果和收据，逐点复算计数、包络与残差上界，只在各自数据集内部归一化", "supported", ["validation/native-ellipsoid-cross-model-synthesis-protocol.json", "scripts/analyze_native_ellipsoid_cross_model.py"]),
+        node("limitation-native-ellipsoid-cross-model-normalization", "limitation", "受限综合不合并原始误差或宽度，不生成概率、统一评分或模型赢家；中心一致性不是外部验证，包络不是联合非线性最优", "active", ["exports/native-ellipsoid-cross-model-synthesis.json", "docs/NATIVE_ELLIPSOID_CROSS_MODEL_SYNTHESIS_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-cross-model-envelope-width-direct-ranking", "contains"),
+        edge("track-holdout", "claim-normalized-envelope-ratio-stability-score", "contains"),
+        edge("track-holdout", "evidence-native-ellipsoid-cross-model", "contains"),
+        edge("track-holdout", "counterexample-roszman-fold5-low-rmse-no-envelope", "contains"),
+        edge("track-holdout", "counterexample-chwirut-fold1-relative-width", "contains"),
+        edge("track-holdout", "counterexample-envelope-count-not-point-count", "contains"),
+        edge("track-holdout", "experiment-native-ellipsoid-cross-model-protocol", "contains"),
+        edge("track-holdout", "limitation-native-ellipsoid-cross-model-normalization", "contains"),
+        edge("evidence-native-ellipsoid-cross-model", "claim-cross-model-envelope-width-direct-ranking", "contradicts"),
+        edge("experiment-native-ellipsoid-cross-model-protocol", "claim-cross-model-envelope-width-direct-ranking", "tests"),
+        edge("evidence-native-ellipsoid-cross-model", "claim-normalized-envelope-ratio-stability-score", "contradicts"),
+        edge("experiment-native-ellipsoid-cross-model-protocol", "claim-normalized-envelope-ratio-stability-score", "tests"),
+        edge("counterexample-chwirut-fold1-relative-width", "claim-cross-model-envelope-width-direct-ranking", "contradicts"),
+        edge("counterexample-chwirut-fold1-relative-width", "claim-finite-bound-high-information", "contradicts"),
+        edge("counterexample-envelope-count-not-point-count", "limitation-native-ellipsoid-cross-model-normalization", "supports"),
+        edge("counterexample-roszman-fold5-low-rmse-no-envelope", "claim-roszman-fold5-low-rmse-singularity-safe", "contradicts"),
+        edge("counterexample-roszman-fold5-low-rmse-no-envelope", "counterexample-roszman1-fold5-crossing-singularity", "supports"),
+        edge("evidence-native-ellipsoid-cross-model", "counterexample-roszman-fold5-low-rmse-no-envelope", "supports"),
+        edge("evidence-native-ellipsoid-cross-model", "counterexample-chwirut-fold1-relative-width", "supports"),
+        edge("evidence-native-ellipsoid-cross-model", "counterexample-envelope-count-not-point-count", "supports"),
+        edge("limitation-native-ellipsoid-cross-model-normalization", "evidence-native-ellipsoid-cross-model", "limits"),
+        edge("limitation-native-ellipsoid-cross-model-normalization", "claim-cross-model-envelope-width-direct-ranking", "limits"),
+        edge("limitation-native-ellipsoid-cross-model-normalization", "claim-normalized-envelope-ratio-stability-score", "limits"),
+        edge("evidence-native-ellipsoid-cross-model", "evidence-chwirut1-native-ellipsoid-continuous", "supports"),
+        edge("evidence-native-ellipsoid-cross-model", "evidence-roszman1-native-ellipsoid-continuous", "supports"),
+        edge("evidence-native-ellipsoid-cross-model", "evidence-enso-native-ellipsoid-continuous", "supports"),
+        edge("experiment-native-ellipsoid-cross-model-protocol", "experiment-native-identifiability-cross-model-protocol", "supports"),
+        edge("evidence-native-ellipsoid-cross-model", "evidence-native-identifiability-cross-model", "supports"),
+        edge("experiment-native-ellipsoid-cross-model-protocol", "claim-center-coverage-external-validation", "tests"),
+        edge("evidence-native-ellipsoid-cross-model", "claim-finite-bound-high-information", "contradicts"),
+        edge("experiment-native-ellipsoid-cross-model-protocol", "claim-finite-bound-high-information", "tests"),
+        edge("limitation-native-ellipsoid-cross-model-normalization", "claim-center-coverage-external-validation", "limits"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

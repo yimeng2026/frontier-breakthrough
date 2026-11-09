@@ -44,7 +44,8 @@
     "validation/roszman1-native-ellipsoid-continuous-protocol.json",
     "validation/enso-native-ellipsoid-continuous-protocol.json",
     "validation/enso-native-ellipsoid-radius-sensitivity-protocol.json",
-    "validation/enso-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json"
+    "validation/enso-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json",
+    "validation/native-ellipsoid-cross-model-synthesis-protocol.json"
   ],
   "decision": {
     "external_web_checked": false,

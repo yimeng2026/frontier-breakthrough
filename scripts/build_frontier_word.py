@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "enso_native_ellipsoid_radius_sensitivity":
+    if REPORT_MODE == "native_ellipsoid_cross_model":
+        replacements = {
+            "图：`papers/56_三模型原生椭球包络综合/fig56_native_ellipsoid_cross_model_synthesis.png`。": "![](papers/56_三模型原生椭球包络综合/fig56_native_ellipsoid_cross_model_synthesis.png)\n\n**图 56｜三模型原生椭球包络受限综合（第 1 幅，共 1 幅）**  \n**插入位置**：§5「中心一致性、模型病征与四联图」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "三模型、15 折、407 点、210 个包络与仅限数据集内部的归一化审计"
+    elif REPORT_MODE == "enso_native_ellipsoid_radius_sensitivity":
         replacements = {
             "图：`papers/55_ENSO原生椭球半径敏感性/fig55_enso_native_ellipsoid_radius_sensitivity.png`。": "![](papers/55_ENSO原生椭球半径敏感性/fig55_enso_native_ellipsoid_radius_sensitivity.png)\n\n**图 55｜ENSO 原生椭球半径敏感性与正周期失效边界（第 1 幅，共 1 幅）**  \n**插入位置**：§5「半径 4 基线完整复现与四联图」；顺序第 1 幅，共 1 幅。",
         }
