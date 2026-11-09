@@ -1,0 +1,174 @@
+{
+  "status": "frozen_before_roszman1_whitened_cover_grid",
+  "frozen_at_local": "2026-11-09T16:32:00+08:00",
+  "analysis_type": "Exact Cholesky whitening of the frozen covariance ellipsoid, complete whitened-box grids and affine native interval arithmetic with explicit outside-ball and unresolved-denominator classification; no exact-global-optimum, guaranteed tightening or fold-5 finite-bound claim",
+  "inputs": {
+    "native_identifiability": {
+      "file": "validation/roszman1-native-identifiability.json",
+      "sha256": "9888145d181c157da33b3bf0f93980ef0db15e4d3b368a96330c775363bc4322"
+    },
+    "ratio_bounds": {
+      "file": "validation/roszman1-ratio-denominator-intersection.json",
+      "sha256": "7e4a70116617e408ada047597e1ff2609224e64cb0c6e7cd230dd6d4c4b0c103"
+    },
+    "ratio_receipt": {
+      "file": "validation/roszman1-ratio-denominator-check.json",
+      "sha256": "d43372719b626a3ccc233b493e42b806e316761c283b0d1c60eb2781a170dc65"
+    },
+    "native_model_runner": {
+      "file": "scripts/analyze_roszman1_native_holdout.py",
+      "sha256": "fa1c255122d0b8db9c3866e3dc9b8ac9565289667d1531230f499416b389ee0d"
+    },
+    "interval_runner": {
+      "file": "scripts/analyze_roszman1_native_ellipsoid_continuous.py",
+      "sha256": "c3b84888aba9326ccb82e052401d7827e7c38b623855cc8e76cebd4d5505295e"
+    }
+  },
+  "receipt_gate": {
+    "stage56": "Require status=passed and summarySha256 to match the frozen ratio-denominator result",
+    "fold_order": "Require identical fold ids and available x positions in native and stage-56 records",
+    "mismatch_policy": "Stop before whitening or creating cells if a source hash, receipt, fold order or x inventory differs"
+  },
+  "whitening_rule": {
+    "symmetric_quadratic": "Use C_s=(C+C^T)/2 for the actual quadratic form, preserving the stored matrix and the stage-56 treatment of its tiny triangular storage asymmetry",
+    "cholesky": "Compute a high-precision Cholesky factor of C_s and verify L*L^T against C_s within the frozen numerical tolerance",
+    "transform": "C=L*L^T; u=L^-1*(theta-theta_center); ||u||<=r; theta=theta_center+L*u",
+    "radius": 4,
+    "whitened_box": "[-r,r]^4",
+    "cover_proof": "The whitened ellipsoid is exactly the radius-r Euclidean ball, which is contained in the cube [-r,r]^4. Every frozen grid partitions this complete cube",
+    "subdivisions_per_dimension": [1, 2, 4],
+    "cells_per_grid": [1, 16, 256],
+    "primary_grid": 4,
+    "outside_rule": "Discard a cell only when its minimum Euclidean distance to the whitened origin is strictly greater than r",
+    "outside_distance": "For each coordinate interval, use zero when it contains zero and otherwise the smaller absolute endpoint; sum the squared distances and compare with r^2",
+    "outside_count_reason": "For the frozen 1,2,4 grids, the maximum cell-wise minimum norm is at most r, so no cell can be discarded by the strict outside test",
+    "crossing_rule": "If a cell may intersect the ball and its denominator interval contains zero, preserve it as unresolved and make the grid union unbounded; never drop it or assign a finite native interval",
+    "union_representation": "Represent an unbounded union by union_bounded=false and null numerical endpoints. An unbounded union still covers all finite candidate predictions but is not a finite certificate; its intersection with stage 56 remains the stage-56 interval",
+    "fixed_sign_cells": "A cell with a strictly negative or strictly positive denominator interval may be evaluated by reciprocal and arctangent interval arithmetic. A zero-containing interval must not be evaluated as a finite reciprocal interval",
+    "known_answer": {
+      "covariance": "diag(4,1,1,1)",
+      "cholesky_diagonal": [2, 1, 1, 1],
+      "center": "b1=1,b2=0.1,b3=1,b4=2,x=0,r=1",
+      "whitened_coordinate_bounds": [[-1, 1], [-1, 1], [-1, 1], [-1, 1]],
+      "native_b1_bounds": [-1, 3],
+      "natural_prediction_minimum": -1.0,
+      "natural_prediction_maximum": 3.25,
+      "ratio_witness": "delta3=0.6,delta4=-0.8 has whitened norm one and must reconstruct to the same native point",
+      "outside_minimum_norm": 1.5,
+      "outside_cell": "All four coordinates are in [0.75,1.25], so minimum norm 1.5>1 and the cell is wholly outside the unit ball",
+      "possible_ball_minimum_norm": 0.5,
+      "possible_ball_cell": "All four coordinates are in [0.25,0.75], so minimum norm 0.5<1 and the cell cannot be discarded even though parts may be outside",
+      "crossing_control": "A denominator interval [-1,0.5] with possible ball intersection must produce an unresolved cell and an unbounded union, never a finite reciprocal bound"
+    }
+  },
+  "native_interval_rule": {
+    "affine_transform": "For each cell use exact affine forms b1-b2*x=l0+a_L^T*L*u, b3=c3+L_row3*u and d=d0-L_row4*u. This is an exact change of coordinates, not a Taylor approximation",
+    "form_interval": "Evaluate each affine form over the whitened cell by summing the minimum and maximum of every coefficient times the corresponding endpoint",
+    "native_interval": "After the denominator classification, form the linear, reciprocal and increasing-arctangent intervals and subtract the arctangent interval divided by pi from the linear interval",
+    "cell_statuses": ["evaluated", "outside_ball", "unresolved_denominator"],
+    "accounting": "For every grid require partition cells = evaluated cells + outside cells + unresolved cells; native_cell_evaluation_count=5460-unresolved_cell_count because outside_cell_count=0",
+    "union_bound": "If any unresolved cell exists, the grid union is unbounded. Otherwise take the minimum evaluated lower and maximum evaluated upper over all non-outside cells",
+    "intersection": "Intersect every grid union with the stage-56 final intersection. An unbounded union therefore leaves the stage-56 interval unchanged; bounded unions may tighten or remain unchanged",
+    "nested_property": "Require every finer-grid union and intersection to remain conservative with respect to the preceding coarser grid, allowing an unbounded coarser union",
+    "no_assumed_tightening": "Do not assume whitening or a finer grid tightens any case; retain every unbounded union and unchanged intersection"
+  },
+  "candidate_rule": {
+    "source": "Reuse the 160 stage-56 full-covariance support candidates and 40 algebraic extremizers without changing their parameters",
+    "transform_witnesses": "For every candidate compute u=L^-1*(theta-theta_center), require ||u||<=r within the frozen high-precision tolerance, reconstruct theta_center+L*u and compare with the original parameters",
+    "original_model_evaluations": "Evaluate all 200 candidates with the frozen native_model implementation and require negative denominator and finite prediction",
+    "grid_containment": "Check each candidate prediction against all three grid unions and intersections, yielding 600 checks. If a union is unbounded, record that containment separately from a finite-interval check",
+    "scope": "Candidate transformations and predictions are witnesses only. The cover proof comes from exact whitening and complete cell classification, not from the candidate set"
+  },
+  "comparison_rule": {
+    "baseline": "The stage-56 final intersection at the same fold and x",
+    "report": "For every grid record evaluated, outside and unresolved cells, bounded status, union and intersection widths when finite, width ratio, reduction, tightened and unchanged outcomes",
+    "primary_grid": "Grid 4 is frozen for primary reporting before seeing outcomes; all three grids and all failures remain visible",
+    "point_accounting": "Retain all 25 observations. The first four folds have 20 available points; fold 5 retains five unavailable points with no cells, candidates or finite residual bounds",
+    "historical_preservation": "Do not rewrite stage-56, stage-57 or earlier protocols, summaries, receipts, reports, figures or Word documents"
+  },
+  "numerical_rule": {
+    "engine": "Use 80-digit mpmath arithmetic for the symmetric covariance, Cholesky factor, forward and inverse transforms, affine forms and native interval arithmetic",
+    "outward_rounding": "Apply the frozen 1e-24 relative margin and nextafter conversion to whitened-box endpoints and evaluated native bounds",
+    "transform_tolerance": "Require candidate whitened norm not to exceed r beyond 1e-10 relative plus absolute tolerance and reconstruction residuals to remain within 1e-10 relative plus absolute tolerance",
+    "certificate_class": "Deterministic conservative cover with high-precision outward-rounded evaluated cells and explicit unresolved cells; not exact rational arithmetic or probability",
+    "empty_intersection": "An empty intersection or uncovered center is a construction failure, not a cell or point to delete"
+  },
+  "analysis_scope": {
+    "whole_ellipsoid_conservative": true,
+    "exact_affine_whitening": true,
+    "symmetric_quadratic_form": true,
+    "unresolved_cells_preserved": true,
+    "original_native_model": true,
+    "crossing_fold_receives_no_bound": true,
+    "candidate_checks_are_consistency_not_proof": true,
+    "refit": false,
+    "retrospective_bound_construction": true,
+    "independent_physical_experiment": false
+  },
+  "expected_structure": {
+    "fold_count": 5,
+    "held_out_point_count": 25,
+    "available_point_count": 20,
+    "unavailable_point_count": 5,
+    "unavailable_fold_ids": [5],
+    "grid_cover_count": 60,
+    "partition_cell_count": 5460,
+    "outside_cell_count": 0,
+    "nonempty_intersection_count": 60,
+    "candidate_direction_count": 32,
+    "algebraic_extremizer_count": 40,
+    "candidate_evaluation_count": 200,
+    "candidate_grid_containment_check_count": 600,
+    "transform_witness_count": 200,
+    "transform_violation_count": 0,
+    "grid_candidate_violation_count": 0,
+    "intersection_candidate_violation_count": 0,
+    "candidate_feasibility_failure_count": 0,
+    "center_prediction_mismatch_count": 0,
+    "point_grid_consistency_check_count": 60,
+    "covered_point_count": 20,
+    "violation_point_count": 0,
+    "refit_count": 0
+  },
+  "output_rule": {
+    "summary": "validation/roszman1-whitened-cover-grid.json",
+    "figure": "papers/65_Roszman1协方差白化覆盖/fig65_roszman1_whitened_cover_grid.png",
+    "report": "docs/ROSZMAN1_WHITENED_COVER_GRID_2026-11-09.md",
+    "word": "papers/前沿共生Roszman1协方差白化覆盖_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "decision": {
+    "refit": false,
+    "linear_fractional_shortcut_used": false,
+    "exact_global_optimum_claimed": false,
+    "grid_union_is_exact_prediction_image": false,
+    "whitening_always_tighter_claimed": false,
+    "grid_always_tighter_claimed": false,
+    "primary_grid_selected_after_results": false,
+    "crossing_cells_given_finite_native_intervals": false,
+    "unproven_cells_discarded": false,
+    "unbounded_unions_hidden": false,
+    "fold5_given_finite_bound": false,
+    "candidate_checks_replace_cover_proof": false,
+    "candidate_directions_called_global_optimizers": false,
+    "probability_region_claimed": false,
+    "exact_rational_certificate_claimed": false,
+    "independent_model_family_replication_claimed": false,
+    "independent_physical_experiment_claimed": false,
+    "unavailable_points_hidden": false,
+    "unchanged_intersections_hidden": false,
+    "candidate_violations_hidden": false,
+    "historical_baseline_replaced": false
+  },
+  "prohibitions": [
+    "No refitting, changed centers, covariance matrices, folds, grids, historical results or post-hoc grid selection",
+    "No whitening with a nonsymmetric substitute for the actual quadratic form and no hiding of triangular storage asymmetry",
+    "No discarding a cell unless its minimum whitened distance proves it wholly outside the ball",
+    "No finite reciprocal, arctangent or prediction interval for a zero-containing denominator cell",
+    "No hiding unresolved cells, unbounded unions, unchanged intersections or candidate violations",
+    "No cells, candidates or finite residual bounds for fold 5",
+    "No exact-global-optimum, guaranteed-tightening, probability or independent-experiment claim",
+    "No replacement of stage-56 or stage-57 baselines and no candidate-based substitute for the cover proof"
+  ]
+}
