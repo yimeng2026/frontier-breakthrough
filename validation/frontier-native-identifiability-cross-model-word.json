@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生三模型局部可识别性综合_图文完整版.docx",
+  "bytes": 326096,
+  "sha256": "179f290a5d52d4a73c8886e947068755088ed74f8cdf88173bd2f6a0e79bf2d3",
+  "native_math_objects": 1,
+  "embedded_images": 1,
+  "native_tables": 5,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

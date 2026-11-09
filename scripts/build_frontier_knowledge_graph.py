@@ -81,6 +81,9 @@ def build_graph(root):
     ensoNativeIdentifiability = json.loads((root / "validation/enso-native-identifiability.json").read_text(encoding="utf-8"))
     if ensoNativeIdentifiability["totals"]["fold_count"] != 5 or ensoNativeIdentifiability["totals"]["held_out_point_count"] != 168 or ensoNativeIdentifiability["totals"]["full_numerical_rank_fold_count"] != 5 or ensoNativeIdentifiability["totals"]["local_diagnostic_failure_count"] != 0 or ensoNativeIdentifiability["totals"]["max_scaled_condition_number"] != 6.896240781966828 or ensoNativeIdentifiability["totals"]["max_absolute_off_diagonal_parameter_correlation"] != 0.9187090249098154 or ensoNativeIdentifiability["totals"]["max_local_prediction_standard_deviation"] != 1.0603474415430074 or ensoNativeIdentifiability["totals"]["max_cross_harmonic_block_absolute_correlation"] != 0.5591238742033899 or ensoNativeIdentifiability["totals"]["max_annual_long_block_absolute_correlation"] != 0.15212841448706105 or ensoNativeIdentifiability["folds"][3]["training_jacobian"]["parameters"][3]["absolute_relative_standard_error"] != 0.037359660053584605 or ensoNativeIdentifiability["folds"][3]["training_jacobian"]["parameters"][6]["absolute_relative_standard_error"] != 0.025260794231141546 or ensoNativeIdentifiability["analysis_scope"]["refit"] or ensoNativeIdentifiability["decision"]["new_physical_periods_proved"] or ensoNativeIdentifiability["known_answer"]["optimizer_within_certified_tolerances"] or not ensoNativeIdentifiability["known_answer"]["certified_forward_rss_check_passed"]:
         raise ValueError("Expected ENSO native period compensation, fold-4 and known-answer boundaries are not present")
+    nativeIdentifiabilityCross = json.loads((root / "exports/native-identifiability-cross-model-synthesis.json").read_text(encoding="utf-8"))
+    if nativeIdentifiabilityCross["totals"]["dataset_count"] != 3 or nativeIdentifiabilityCross["totals"]["fold_count"] != 15 or nativeIdentifiabilityCross["totals"]["held_out_point_count"] != 407 or nativeIdentifiabilityCross["totals"]["full_numerical_rank_fold_count"] != 15 or nativeIdentifiabilityCross["totals"]["local_diagnostic_failure_count"] != 0 or nativeIdentifiabilityCross["totals"]["sensitivity_exceeds_rmse_fold_ids"] != ["roszman1:1", "roszman1:5", "chwirut1:1"] or nativeIdentifiabilityCross["totals"]["sensitivity_equals_rmse_fold_ids"] or nativeIdentifiabilityCross["totals"]["max_sensitivity_to_rmse_ratio"] != 2.6972635478072906 or nativeIdentifiabilityCross["cross_model_pooled_error_metrics"] is not None or nativeIdentifiabilityCross["cross_model_stability_score"] is not None or nativeIdentifiabilityCross["decision"]["universal_stability_score_claimed"] or nativeIdentifiabilityCross["decision"]["calibrated_coverage_claimed"]:
+        raise ValueError("Expected cross-model sensitivity ratios and no-score boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -824,6 +827,47 @@ def build_graph(root):
         edge("evidence-enso-native-identifiability", "evidence-roszman1-native-identifiability", "supports"),
         edge("experiment-enso-native-identifiability-protocol", "experiment-roszman1-native-identifiability-protocol", "supports"),
         edge("counterexample-enso-period-amplitude-dominant-correlation", "limitation-enso-native-period-and-bounds", "supports"),
+    ])
+    nodes.extend([
+        node("claim-sensitivity-rmse-ratio-calibrated-coverage", "claim", "局部敏感度与 RMSE 的比值可以直接作为概率覆盖率或校准分数", "falsified", ["exports/native-identifiability-cross-model-synthesis.json"]),
+        node("evidence-native-identifiability-cross-model", "evidence", "三模型 15 折全部局部满秩，三个折的敏感度高于 RMSE，最大比值 2.697264；不合并误差或稳定性评分", "supported", ["exports/native-identifiability-cross-model-synthesis.json", "validation/native-identifiability-cross-model-check.json"]),
+        node("counterexample-roszman1-fold5-sensitivity-rmse", "counterexample", "Roszman1 第 5 折 RMSE 为 0.006228106，但最大局部敏感度为 0.016798843，比值 2.697264", "supported", ["exports/native-identifiability-cross-model-synthesis.json"]),
+        node("counterexample-chwirut1-fold1-sensitivity-rmse", "counterexample", "Chwirut1 第 1 折最大局部敏感度 14.836682 高于实际 RMSE 14.465527，比值 1.025658", "supported", ["exports/native-identifiability-cross-model-synthesis.json"]),
+        node("counterexample-enso-fold4-ratio-not-period-safety", "counterexample", "ENSO 比值均小于 1，但第 4 折低 RMSE 与最高周期相对标准误并存，比值不能证明周期安全", "supported", ["exports/native-identifiability-cross-model-synthesis.json"]),
+        node("experiment-native-identifiability-cross-model-protocol", "experiment", "冻结三份局部诊断、15 折、407 点和敏感度比值规则，不重估拟合或协方差", "supported", ["validation/native-identifiability-cross-model-protocol.json", "scripts/analyze_native_identifiability_cross_model.py"]),
+        node("limitation-native-identifiability-cross-model-no-score", "limitation", "跨模型局部诊断不能合成统一误差、协方差、概率覆盖率或稳定性评分，也不证明全局识别", "active", ["exports/native-identifiability-cross-model-synthesis.json", "docs/NATIVE_IDENTIFIABILITY_CROSS_MODEL_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-sensitivity-rmse-ratio-calibrated-coverage", "contains"),
+        edge("track-holdout", "evidence-native-identifiability-cross-model", "contains"),
+        edge("track-holdout", "counterexample-roszman1-fold5-sensitivity-rmse", "contains"),
+        edge("track-holdout", "counterexample-chwirut1-fold1-sensitivity-rmse", "contains"),
+        edge("track-holdout", "counterexample-enso-fold4-ratio-not-period-safety", "contains"),
+        edge("track-holdout", "experiment-native-identifiability-cross-model-protocol", "contains"),
+        edge("track-holdout", "limitation-native-identifiability-cross-model-no-score", "contains"),
+        edge("evidence-native-identifiability-cross-model", "claim-local-rank-global-identifiability", "contradicts"),
+        edge("experiment-native-identifiability-cross-model-protocol", "claim-local-rank-global-identifiability", "tests"),
+        edge("evidence-native-identifiability-cross-model", "claim-sensitivity-rmse-ratio-calibrated-coverage", "contradicts"),
+        edge("experiment-native-identifiability-cross-model-protocol", "claim-sensitivity-rmse-ratio-calibrated-coverage", "tests"),
+        edge("counterexample-roszman1-fold5-sensitivity-rmse", "claim-sensitivity-rmse-ratio-calibrated-coverage", "contradicts"),
+        edge("counterexample-roszman1-fold5-sensitivity-rmse", "claim-prediction-stability-parameter-uniqueness", "contradicts"),
+        edge("counterexample-chwirut1-fold1-sensitivity-rmse", "claim-sensitivity-rmse-ratio-calibrated-coverage", "contradicts"),
+        edge("counterexample-chwirut1-fold1-sensitivity-rmse", "claim-local-rank-global-identifiability", "contradicts"),
+        edge("counterexample-enso-fold4-ratio-not-period-safety", "claim-period-rmse-period-uniqueness", "contradicts"),
+        edge("counterexample-enso-fold4-ratio-not-period-safety", "claim-sensitivity-rmse-ratio-calibrated-coverage", "contradicts"),
+        edge("evidence-native-identifiability-cross-model", "counterexample-roszman1-fold5-sensitivity-rmse", "supports"),
+        edge("evidence-native-identifiability-cross-model", "counterexample-chwirut1-fold1-sensitivity-rmse", "supports"),
+        edge("evidence-native-identifiability-cross-model", "counterexample-enso-fold4-ratio-not-period-safety", "supports"),
+        edge("limitation-native-identifiability-cross-model-no-score", "evidence-native-identifiability-cross-model", "limits"),
+        edge("limitation-native-identifiability-cross-model-no-score", "claim-sensitivity-rmse-ratio-calibrated-coverage", "limits"),
+        edge("limitation-native-identifiability-cross-model-no-score", "claim-local-rank-global-identifiability", "limits"),
+        edge("evidence-native-identifiability-cross-model", "evidence-roszman1-native-identifiability", "supports"),
+        edge("experiment-native-identifiability-cross-model-protocol", "experiment-roszman1-native-identifiability-protocol", "supports"),
+        edge("evidence-native-identifiability-cross-model", "evidence-chwirut1-native-identifiability", "supports"),
+        edge("experiment-native-identifiability-cross-model-protocol", "experiment-chwirut1-native-identifiability-protocol", "supports"),
+        edge("evidence-native-identifiability-cross-model", "evidence-enso-native-identifiability", "supports"),
+        edge("experiment-native-identifiability-cross-model-protocol", "experiment-enso-native-identifiability-protocol", "supports"),
+        edge("counterexample-enso-fold4-ratio-not-period-safety", "limitation-enso-native-local-period-scope", "supports"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

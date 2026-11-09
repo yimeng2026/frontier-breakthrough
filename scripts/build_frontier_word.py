@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "enso_native_identifiability":
+    if REPORT_MODE == "native_identifiability_cross_model":
+        replacements = {
+            "图：`papers/49_三模型局部可识别性综合/fig49_native_identifiability_cross_model.png`。": "![](papers/49_三模型局部可识别性综合/fig49_native_identifiability_cross_model.png)\n\n**图 49｜三模型局部可识别性受限综合（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联组图与读图顺序」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "15 折、407 个留出观测、敏感度比值与模型专有病征"
+    elif REPORT_MODE == "enso_native_identifiability":
         replacements = {
             "图：`papers/48_ENSO原生参数可识别性/fig48_enso_native_identifiability.png`。": "![](papers/48_ENSO原生参数可识别性/fig48_enso_native_identifiability.png)\n\n**图 48｜ENSO 原生 Fourier 周期参数与谐波补偿六联诊断（第 1 幅，共 1 幅）**  \n**插入位置**：§6「六联图与证据边界」；顺序第 1 幅，共 1 幅。",
         }

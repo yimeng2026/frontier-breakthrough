@@ -68,7 +68,8 @@
 | Roszman1 第 4 折误差贡献分解 | D1 为 +0.000461975122、D2 为 -1.317350031e-5；五点逐点方向全部一致；移除第 4 或第 5 点反转 MAE，五次移除均不反转 RMSE | `validation/roszman1-native-fold4-error-decomposition-protocol.json`、`validation/roszman1-native-fold4-error-decomposition.json`、`docs/ROSZMAN1_NATIVE_FOLD4_ERROR_DECOMPOSITION_2026-11-09.md` | 用残差权重恒等式定位汇总反向，不把五点算术、单点贡献移除当作显著性、因果机制或重新拟合 |
 | Chwirut1 原生参数可识别性与分母诊断 | 五折局部秩均为 3，最大条件数 28.674083，第 1 折 b2 相对标准误 1.710628、最大敏感度 14.836682；五折极点均在观测范围外 | `validation/chwirut1-native-identifiability-protocol.json`、`validation/chwirut1-native-identifiability.json`、`docs/CHWIRUT1_NATIVE_IDENTIFIABILITY_2026-11-09.md` | 使用逐折自由度、解析雅可比和原生分母诊断，不把满秩、局部协方差或观测点极点写成全局识别、概率区间或独立复现 |
 | ENSO 原生周期参数可识别性与谐波补偿 | 五折局部秩均为 9，最大相关 0.918709 来自周期与自身振幅；第 4 折 RMSE 较低但 b4、b7 相对标准误均最高，周期范围为 3.126309、1.946067 个月 | `validation/enso-native-identifiability-protocol.json`、`validation/enso-native-identifiability.json`、`docs/ENSO_NATIVE_IDENTIFIABILITY_2026-11-09.md` | 分离周期间、周期与自身振幅、跨谐波块相关，不把低 RMSE 或局部相关写成周期唯一、物理耦合、新周期或概率区间 |
-| 主张—证据—反例—实验图谱 | 210 个节点、502 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| 三模型局部可识别性受限综合 | 15 折、407 点全部局部满秩；三个折的敏感度高于 RMSE，最大比值 2.697264；ENSO 比值均小于 1 仍不证明周期安全 | `validation/native-identifiability-cross-model-protocol.json`、`exports/native-identifiability-cross-model-synthesis.json`、`docs/NATIVE_IDENTIFIABILITY_CROSS_MODEL_2026-11-09.md` | 提供共同审计接口与逐折比值，保留原生单位、专有病征与已知答案分层，不合成误差池、概率覆盖率或稳定性评分 |
+| 主张—证据—反例—实验图谱 | 217 个节点、532 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 范围感知外部分析适配层
 

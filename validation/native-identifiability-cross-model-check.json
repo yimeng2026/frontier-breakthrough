@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "errorCount": 0,
+  "datasetCount": 3,
+  "foldCount": 15,
+  "heldOutPointCount": 407,
+  "fullRankFoldCount": 15,
+  "sensitivityExceedsRmseFoldIds": [
+    "roszman1:1",
+    "roszman1:5",
+    "chwirut1:1"
+  ],
+  "protocolSha256": "38b81e957e3c82cb4bd1ca47890886cfd6df3cbdd50833706b6cf24d8ed5cf01",
+  "summarySha256": "5f92ce6cdfc81b5e532f30f3bbd9d61e74be7d1173e65a80b9f6443ad72e178d",
+  "analysisRunnerSha256": "7dca465a105709907dc3954a92402e4e71449b79b037fa790ff7de805e516a19",
+  "figureSha256": "c9e760b7e8b000c25e63e15cdd799e205315b1b62dd2d78ba5a2336dd737bdf2",
+  "reportSha256": "cd745b7323f8596ef3b46fe2d74845f62e1acbdbb3a97469c85f0b6f38f1806c",
+  "wordSha256": "179f290a5d52d4a73c8886e947068755088ed74f8cdf88173bd2f6a0e79bf2d3",
+  "wordManifestSha256": "0426fc212c72752f6a07c451af155324e0a06b76dcf0bad4ef045c993f963dc5",
+  "crossModelPooledErrorMetrics": null,
+  "crossModelStabilityScore": null,
+  "calibratedCoverageClaimed": false,
+  "globalIdentifiabilityClaimed": false,
+  "visualQaClaimed": false,
+  "scientificTruthClaimed": false
+}

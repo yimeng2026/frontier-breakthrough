@@ -1970,6 +1970,72 @@
         "validation/enso-native-identifiability.json",
         "docs/ENSO_NATIVE_IDENTIFIABILITY_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-sensitivity-rmse-ratio-calibrated-coverage",
+      "kind": "claim",
+      "title": "局部敏感度与 RMSE 的比值可以直接作为概率覆盖率或校准分数",
+      "status": "falsified",
+      "sourceFiles": [
+        "exports/native-identifiability-cross-model-synthesis.json"
+      ]
+    },
+    {
+      "id": "evidence-native-identifiability-cross-model",
+      "kind": "evidence",
+      "title": "三模型 15 折全部局部满秩，三个折的敏感度高于 RMSE，最大比值 2.697264；不合并误差或稳定性评分",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-identifiability-cross-model-synthesis.json",
+        "validation/native-identifiability-cross-model-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-fold5-sensitivity-rmse",
+      "kind": "counterexample",
+      "title": "Roszman1 第 5 折 RMSE 为 0.006228106，但最大局部敏感度为 0.016798843，比值 2.697264",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-identifiability-cross-model-synthesis.json"
+      ]
+    },
+    {
+      "id": "counterexample-chwirut1-fold1-sensitivity-rmse",
+      "kind": "counterexample",
+      "title": "Chwirut1 第 1 折最大局部敏感度 14.836682 高于实际 RMSE 14.465527，比值 1.025658",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-identifiability-cross-model-synthesis.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-fold4-ratio-not-period-safety",
+      "kind": "counterexample",
+      "title": "ENSO 比值均小于 1，但第 4 折低 RMSE 与最高周期相对标准误并存，比值不能证明周期安全",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-identifiability-cross-model-synthesis.json"
+      ]
+    },
+    {
+      "id": "experiment-native-identifiability-cross-model-protocol",
+      "kind": "experiment",
+      "title": "冻结三份局部诊断、15 折、407 点和敏感度比值规则，不重估拟合或协方差",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/native-identifiability-cross-model-protocol.json",
+        "scripts/analyze_native_identifiability_cross_model.py"
+      ]
+    },
+    {
+      "id": "limitation-native-identifiability-cross-model-no-score",
+      "kind": "limitation",
+      "title": "跨模型局部诊断不能合成统一误差、协方差、概率覆盖率或稳定性评分，也不证明全局识别",
+      "status": "active",
+      "sourceFiles": [
+        "exports/native-identifiability-cross-model-synthesis.json",
+        "docs/NATIVE_IDENTIFIABILITY_CROSS_MODEL_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -4481,6 +4547,156 @@
     {
       "from": "counterexample-enso-period-amplitude-dominant-correlation",
       "to": "limitation-enso-native-period-and-bounds",
+      "relation": "supports"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-sensitivity-rmse-ratio-calibrated-coverage",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-native-identifiability-cross-model",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-fold5-sensitivity-rmse",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-chwirut1-fold1-sensitivity-rmse",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-fold4-ratio-not-period-safety",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-native-identifiability-cross-model-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-native-identifiability-cross-model-no-score",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-native-identifiability-cross-model",
+      "to": "claim-local-rank-global-identifiability",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-native-identifiability-cross-model-protocol",
+      "to": "claim-local-rank-global-identifiability",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-native-identifiability-cross-model",
+      "to": "claim-sensitivity-rmse-ratio-calibrated-coverage",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-native-identifiability-cross-model-protocol",
+      "to": "claim-sensitivity-rmse-ratio-calibrated-coverage",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-roszman1-fold5-sensitivity-rmse",
+      "to": "claim-sensitivity-rmse-ratio-calibrated-coverage",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-fold5-sensitivity-rmse",
+      "to": "claim-prediction-stability-parameter-uniqueness",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-chwirut1-fold1-sensitivity-rmse",
+      "to": "claim-sensitivity-rmse-ratio-calibrated-coverage",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-chwirut1-fold1-sensitivity-rmse",
+      "to": "claim-local-rank-global-identifiability",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-enso-fold4-ratio-not-period-safety",
+      "to": "claim-period-rmse-period-uniqueness",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-enso-fold4-ratio-not-period-safety",
+      "to": "claim-sensitivity-rmse-ratio-calibrated-coverage",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-native-identifiability-cross-model",
+      "to": "counterexample-roszman1-fold5-sensitivity-rmse",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-identifiability-cross-model",
+      "to": "counterexample-chwirut1-fold1-sensitivity-rmse",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-identifiability-cross-model",
+      "to": "counterexample-enso-fold4-ratio-not-period-safety",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-native-identifiability-cross-model-no-score",
+      "to": "evidence-native-identifiability-cross-model",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-native-identifiability-cross-model-no-score",
+      "to": "claim-sensitivity-rmse-ratio-calibrated-coverage",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-native-identifiability-cross-model-no-score",
+      "to": "claim-local-rank-global-identifiability",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-native-identifiability-cross-model",
+      "to": "evidence-roszman1-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-native-identifiability-cross-model-protocol",
+      "to": "experiment-roszman1-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-identifiability-cross-model",
+      "to": "evidence-chwirut1-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-native-identifiability-cross-model-protocol",
+      "to": "experiment-chwirut1-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-identifiability-cross-model",
+      "to": "evidence-enso-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-native-identifiability-cross-model-protocol",
+      "to": "experiment-enso-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-enso-fold4-ratio-not-period-safety",
+      "to": "limitation-enso-native-local-period-scope",
       "relation": "supports"
     }
   ]

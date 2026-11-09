@@ -34,7 +34,8 @@
     "validation/native-cross-dataset-synthesis-protocol.json",
     "validation/roszman1-native-fold4-error-decomposition-protocol.json",
     "validation/chwirut1-native-identifiability-protocol.json",
-    "validation/enso-native-identifiability-protocol.json"
+    "validation/enso-native-identifiability-protocol.json",
+    "validation/native-identifiability-cross-model-protocol.json"
   ],
   "decision": {
     "external_web_checked": false,

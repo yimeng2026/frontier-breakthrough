@@ -95,6 +95,8 @@ def build() -> dict:
     chwirut1NativeIdentifiabilityCheck = read("chwirut1-native-identifiability-check.json")
     ensoNativeIdentifiability = read("enso-native-identifiability.json")
     ensoNativeIdentifiabilityCheck = read("enso-native-identifiability-check.json")
+    nativeIdentifiabilityCross = json.loads((ROOT / "exports/native-identifiability-cross-model-synthesis.json").read_text(encoding="utf-8"))
+    nativeIdentifiabilityCrossCheck = read("native-identifiability-cross-model-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -897,6 +899,32 @@ def build() -> dict:
             "limitations": "局部满秩、谐波相关和 Delta-method 不证明全局周期识别、物理耦合、新周期或概率校准。较低 RMSE 不等于周期唯一，参数变号和周期变化必须保留；默认优化器未达原容差与认证前向通过继续分层。" + " ".join(ensoNativeIdentifiability["limitations"]),
             "upstreamContribution": "提供九参数非线性周期解析雅可比和分块相关接口，把周期间、周期与自身振幅、跨谐波块和年周期—长周期补偿分开，阻止用低 RMSE 或单一相关系数宣称周期唯一或物理耦合。",
             "snapshotFiles": ["validation/enso-native-identifiability-protocol.json", "validation/enso-native-identifiability-check.json", "validation/frontier-enso-native-identifiability-word.json"],
+        },
+        {
+            "id": "native-identifiability-cross-model-synthesis", "domain": "math", "title": "三模型局部可识别性、敏感度比值与结构差异综合",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml"],
+            "metrics": {
+                "totals": nativeIdentifiabilityCross["totals"],
+                "datasets": nativeIdentifiabilityCross["datasets"],
+                "crossModelPooledErrorMetrics": nativeIdentifiabilityCross["cross_model_pooled_error_metrics"],
+                "crossModelStabilityScore": nativeIdentifiabilityCross["cross_model_stability_score"],
+                "analysisScope": nativeIdentifiabilityCross["analysis_scope"],
+                "decision": nativeIdentifiabilityCross["decision"],
+                "implementation": {
+                    "protocolSha256": nativeIdentifiabilityCross["protocol_sha256"],
+                    "summarySha256": nativeIdentifiabilityCrossCheck["summarySha256"],
+                    "analysisRunnerSha256": nativeIdentifiabilityCrossCheck["analysisRunnerSha256"],
+                    "figureSha256": nativeIdentifiabilityCrossCheck["figureSha256"],
+                    "reportSha256": nativeIdentifiabilityCrossCheck["reportSha256"],
+                    "wordSha256": nativeIdentifiabilityCrossCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "71969ad"},
+            },
+            "scientificClaim": "三份局部诊断共 15 折、407 个留出点，全部达到各自参数量的局部数值满秩，局部协方差失败数为 0。Roszman1 第 1、5 折和 Chwirut1 第 1 折的最大局部敏感度高于实际 RMSE，最大比值为 Roszman1 第 5 折的 2.697264；ENSO 比值均小于 1，但低 RMSE 仍不证明周期安全。",
+            "limitations": "敏感度比值不是概率覆盖率或校准分数，条件数不能用于跨模型质量排名。不同模型的原生参数、误差和协方差不合并；局部满秩不证明全局识别，Chwirut1 同族边界和 ENSO 已知答案分层继续保留。" + " ".join(nativeIdentifiabilityCross["limitations"]),
+            "upstreamContribution": "提供统一的三模型局部诊断检索接口和逐折敏感度—误差比值，完整保留 Roszman1 参数变化、Chwirut1 分母病征和 ENSO 周期补偿，同时禁止统一误差池与稳定性评分。",
+            "snapshotFiles": ["validation/native-identifiability-cross-model-protocol.json", "validation/native-identifiability-cross-model-check.json", "validation/frontier-native-identifiability-cross-model-word.json"],
         },
     ]
     packet = {

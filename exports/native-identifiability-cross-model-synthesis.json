@@ -1,0 +1,645 @@
+{
+  "status": "computed_native_identifiability_cross_model_synthesis",
+  "protocol_sha256": "38b81e957e3c82cb4bd1ca47890886cfd6df3cbdd50833706b6cf24d8ed5cf01",
+  "analysis_scope": {
+    "refit": false,
+    "retuned": false,
+    "covariance_recomputed": false,
+    "post_hoc": true,
+    "all_frozen_folds_retained": true,
+    "cross_model_error_pooling": false,
+    "cross_model_parameter_pooling": false,
+    "condition_number_used_as_quality_score": false,
+    "global_identifiability": false,
+    "calibrated_coverage": false
+  },
+  "datasets": [
+    {
+      "id": "roszman1",
+      "label": "Roszman1 native arctangent",
+      "source_file": "validation/roszman1-native-identifiability.json",
+      "source_sha256": "9888145d181c157da33b3bf0f93980ef0db15e4d3b368a96330c775363bc4322",
+      "parameter_count": 4,
+      "held_out_point_count": 25,
+      "folds": [
+        {
+          "fold": 1,
+          "fold_id": "roszman1:1",
+          "train_count": 20,
+          "test_count": 5,
+          "residual_degrees_of_freedom": 16,
+          "numerical_rank": 4,
+          "scaled_condition_number": 85.77567173387834,
+          "max_absolute_off_diagonal_parameter_correlation": 0.9875352588520016,
+          "max_local_prediction_standard_deviation": 0.01563809649639307,
+          "native_test_rmse": 0.010044543789192596,
+          "sensitivity_to_rmse_ratio": 1.5568747396192193,
+          "sensitivity_exceeds_rmse": true,
+          "sensitivity_equals_rmse": false,
+          "local_covariance_valid": true
+        },
+        {
+          "fold": 2,
+          "fold_id": "roszman1:2",
+          "train_count": 20,
+          "test_count": 5,
+          "residual_degrees_of_freedom": 16,
+          "numerical_rank": 4,
+          "scaled_condition_number": 50.84552232985348,
+          "max_absolute_off_diagonal_parameter_correlation": 0.9847518097638676,
+          "max_local_prediction_standard_deviation": 0.0029457967916287835,
+          "native_test_rmse": 0.005867985323301031,
+          "sensitivity_to_rmse_ratio": 0.5020116154570795,
+          "sensitivity_exceeds_rmse": false,
+          "sensitivity_equals_rmse": false,
+          "local_covariance_valid": true
+        },
+        {
+          "fold": 3,
+          "fold_id": "roszman1:3",
+          "train_count": 20,
+          "test_count": 5,
+          "residual_degrees_of_freedom": 16,
+          "numerical_rank": 4,
+          "scaled_condition_number": 37.717786882235735,
+          "max_absolute_off_diagonal_parameter_correlation": 0.9713440114219671,
+          "max_local_prediction_standard_deviation": 0.0016907357099819765,
+          "native_test_rmse": 0.007531095882129697,
+          "sensitivity_to_rmse_ratio": 0.22450062201357315,
+          "sensitivity_exceeds_rmse": false,
+          "sensitivity_equals_rmse": false,
+          "local_covariance_valid": true
+        },
+        {
+          "fold": 4,
+          "fold_id": "roszman1:4",
+          "train_count": 20,
+          "test_count": 5,
+          "residual_degrees_of_freedom": 16,
+          "numerical_rank": 4,
+          "scaled_condition_number": 44.56588222583884,
+          "max_absolute_off_diagonal_parameter_correlation": 0.977737125658543,
+          "max_local_prediction_standard_deviation": 0.0017948499204863961,
+          "native_test_rmse": 0.0074538301584031715,
+          "sensitivity_to_rmse_ratio": 0.24079565570231687,
+          "sensitivity_exceeds_rmse": false,
+          "sensitivity_equals_rmse": false,
+          "local_covariance_valid": true
+        },
+        {
+          "fold": 5,
+          "fold_id": "roszman1:5",
+          "train_count": 20,
+          "test_count": 5,
+          "residual_degrees_of_freedom": 16,
+          "numerical_rank": 4,
+          "scaled_condition_number": 90.74335888809009,
+          "max_absolute_off_diagonal_parameter_correlation": 0.9874906983854851,
+          "max_local_prediction_standard_deviation": 0.01679884344880718,
+          "native_test_rmse": 0.006228106060478816,
+          "sensitivity_to_rmse_ratio": 2.6972635478072906,
+          "sensitivity_exceeds_rmse": true,
+          "sensitivity_equals_rmse": false,
+          "local_covariance_valid": true
+        }
+      ],
+      "summary": {
+        "min_scaled_condition_number": 37.717786882235735,
+        "median_scaled_condition_number": 50.84552232985348,
+        "max_scaled_condition_number": 90.74335888809009,
+        "median_fold_max_parameter_correlation": 0.9847518097638676,
+        "max_absolute_off_diagonal_parameter_correlation": 0.9875352588520016,
+        "min_sensitivity_to_rmse_ratio": 0.22450062201357315,
+        "median_sensitivity_to_rmse_ratio": 0.5020116154570795,
+        "max_sensitivity_to_rmse_ratio": 2.6972635478072906,
+        "max_local_prediction_standard_deviation": 0.01679884344880718,
+        "native_test_rmse_minimum": 0.005867985323301031,
+        "native_test_rmse_maximum": 0.010044543789192596,
+        "full_numerical_rank_fold_count": 5,
+        "local_diagnostic_failure_count": 0,
+        "sensitivity_exceeds_rmse_fold_count": 2
+      },
+      "parameter_stability": {
+        "b1": {
+          "values": [
+            0.2292803516874329,
+            0.22569167309144791,
+            0.2056999448813056,
+            0.18803336453718733,
+            0.17774808044705184
+          ],
+          "minimum": 0.17774808044705184,
+          "maximum": 0.2292803516874329,
+          "median": 0.2056999448813056,
+          "range": 0.05153227124038107,
+          "median_local_standard_error": 0.025726823900685633
+        },
+        "b2": {
+          "values": [
+            -1.3342061270380534e-05,
+            -9.960102385755828e-06,
+            -6.15679942414781e-06,
+            -4.328307495973435e-06,
+            -2.9302024880012e-06
+          ],
+          "minimum": -1.3342061270380534e-05,
+          "maximum": -2.9302024880012e-06,
+          "median": -6.15679942414781e-06,
+          "range": 1.0411858782379334e-05,
+          "median_local_standard_error": 4.19602303663106e-06
+        },
+        "b3": {
+          "values": [
+            1152.3164257098174,
+            1132.43327873089,
+            1151.3052953439342,
+            1273.760984384406,
+            1333.5131337016676
+          ],
+          "minimum": 1132.43327873089,
+          "maximum": 1333.5131337016676,
+          "median": 1152.3164257098174,
+          "range": 201.07985497077766,
+          "median_local_standard_error": 95.67680907393209
+        },
+        "b4": {
+          "values": [
+            -103.07849289822492,
+            -118.23961841798726,
+            -186.57680096243791,
+            -214.41043744014524,
+            -215.31463429171575
+          ],
+          "minimum": -215.31463429171575,
+          "maximum": -103.07849289822492,
+          "median": -186.57680096243791,
+          "range": 112.23614139349083,
+          "median_local_standard_error": 60.8327180819764
+        }
+      },
+      "scope_specific": {
+        "max_condition_fold_id": "roszman1:5",
+        "max_sensitivity_ratio_fold_id": "roszman1:5",
+        "parameter_scope": "Raw arctangent parameter ranges are preserved; stable RMSE does not imply parameter uniqueness"
+      },
+      "known_answer": null
+    },
+    {
+      "id": "chwirut1",
+      "label": "Chwirut1 native exponential",
+      "source_file": "validation/chwirut1-native-identifiability.json",
+      "source_sha256": "e8e76516b05e8fd83f60df0ad93215ce41984ca562cc9e5140291f5f6ba72cc8",
+      "parameter_count": 3,
+      "held_out_point_count": 214,
+      "folds": [
+        {
+          "fold": 1,
+          "fold_id": "chwirut1:1",
+          "train_count": 157,
+          "test_count": 57,
+          "residual_degrees_of_freedom": 154,
+          "numerical_rank": 3,
+          "scaled_condition_number": 28.674083116404475,
+          "max_absolute_off_diagonal_parameter_correlation": 0.9794131139106378,
+          "max_local_prediction_standard_deviation": 14.836682306268235,
+          "native_test_rmse": 14.465526570336303,
+          "sensitivity_to_rmse_ratio": 1.0256579485113968,
+          "sensitivity_exceeds_rmse": true,
+          "sensitivity_equals_rmse": false,
+          "local_covariance_valid": true
+        },
+        {
+          "fold": 2,
+          "fold_id": "chwirut1:2",
+          "train_count": 160,
+          "test_count": 54,
+          "residual_degrees_of_freedom": 157,
+          "numerical_rank": 3,
+          "scaled_condition_number": 15.606198010974579,
+          "max_absolute_off_diagonal_parameter_correlation": 0.9612386590346687,
+          "max_local_prediction_standard_deviation": 0.6643994418772533,
+          "native_test_rmse": 2.622277550680226,
+          "sensitivity_to_rmse_ratio": 0.2533673225036405,
+          "sensitivity_exceeds_rmse": false,
+          "sensitivity_equals_rmse": false,
+          "local_covariance_valid": true
+        },
+        {
+          "fold": 3,
+          "fold_id": "chwirut1:3",
+          "train_count": 163,
+          "test_count": 51,
+          "residual_degrees_of_freedom": 160,
+          "numerical_rank": 3,
+          "scaled_condition_number": 14.870684225433935,
+          "max_absolute_off_diagonal_parameter_correlation": 0.9419983973258718,
+          "max_local_prediction_standard_deviation": 0.42768770306988163,
+          "native_test_rmse": 2.775494469668534,
+          "sensitivity_to_rmse_ratio": 0.15409423716883092,
+          "sensitivity_exceeds_rmse": false,
+          "sensitivity_equals_rmse": false,
+          "local_covariance_valid": true
+        },
+        {
+          "fold": 4,
+          "fold_id": "chwirut1:4",
+          "train_count": 191,
+          "test_count": 23,
+          "residual_degrees_of_freedom": 188,
+          "numerical_rank": 3,
+          "scaled_condition_number": 15.897471299436486,
+          "max_absolute_off_diagonal_parameter_correlation": 0.9542148217761333,
+          "max_local_prediction_standard_deviation": 0.42716519816135806,
+          "native_test_rmse": 1.3682100460705144,
+          "sensitivity_to_rmse_ratio": 0.312207324736558,
+          "sensitivity_exceeds_rmse": false,
+          "sensitivity_equals_rmse": false,
+          "local_covariance_valid": true
+        },
+        {
+          "fold": 5,
+          "fold_id": "chwirut1:5",
+          "train_count": 185,
+          "test_count": 29,
+          "residual_degrees_of_freedom": 182,
+          "numerical_rank": 3,
+          "scaled_condition_number": 17.693024070313964,
+          "max_absolute_off_diagonal_parameter_correlation": 0.9644587629911029,
+          "max_local_prediction_standard_deviation": 0.41778526902643276,
+          "native_test_rmse": 2.7237923197301117,
+          "sensitivity_to_rmse_ratio": 0.1533836724628951,
+          "sensitivity_exceeds_rmse": false,
+          "sensitivity_equals_rmse": false,
+          "local_covariance_valid": true
+        }
+      ],
+      "summary": {
+        "min_scaled_condition_number": 14.870684225433935,
+        "median_scaled_condition_number": 15.897471299436486,
+        "max_scaled_condition_number": 28.674083116404475,
+        "median_fold_max_parameter_correlation": 0.9612386590346687,
+        "max_absolute_off_diagonal_parameter_correlation": 0.9794131139106378,
+        "min_sensitivity_to_rmse_ratio": 0.1533836724628951,
+        "median_sensitivity_to_rmse_ratio": 0.2533673225036405,
+        "max_sensitivity_to_rmse_ratio": 1.0256579485113968,
+        "max_local_prediction_standard_deviation": 14.836682306268235,
+        "native_test_rmse_minimum": 1.3682100460705144,
+        "native_test_rmse_maximum": 14.465526570336303,
+        "full_numerical_rank_fold_count": 5,
+        "local_diagnostic_failure_count": 0,
+        "sensitivity_exceeds_rmse_fold_count": 1
+      },
+      "parameter_stability": {
+        "b1": {
+          "values": [
+            0.10197290606900491,
+            0.20155053784283966,
+            0.1838307841658672,
+            0.1837998732874438,
+            0.23070636104144254
+          ],
+          "minimum": 0.10197290606900491,
+          "maximum": 0.23070636104144254,
+          "median": 0.1838307841658672,
+          "range": 0.12873345497243763,
+          "median_local_standard_error": 0.02605552864954041
+        },
+        "b2": {
+          "values": [
+            0.0013481643928198739,
+            0.0065196578644481406,
+            0.006090058945361599,
+            0.006071281460854413,
+            0.006543609566912807
+          ],
+          "minimum": 0.0013481643928198739,
+          "maximum": 0.006543609566912807,
+          "median": 0.006090058945361599,
+          "range": 0.005195445174092934,
+          "median_local_standard_error": 0.0003796026582320257
+        },
+        "b3": {
+          "values": [
+            0.01607222940816946,
+            0.009725363401064573,
+            0.01068457994389589,
+            0.01071520700723592,
+            0.009335238111552463
+          ],
+          "minimum": 0.009335238111552463,
+          "maximum": 0.01607222940816946,
+          "median": 0.01068457994389589,
+          "range": 0.006736991296616998,
+          "median_local_standard_error": 0.0009273461921302365
+        }
+      },
+      "scope_specific": {
+        "minimum_absolute_denominator": 0.009384279096904605,
+        "pole_inside_observed_range_fold_count": 0,
+        "fold1_b2_absolute_relative_standard_error": 1.7106283204180401,
+        "fold1_native_test_rmse": 14.465526570336303,
+        "related_prior_dataset": {
+          "name": "Chwirut2",
+          "same_study": true,
+          "same_native_model_family": true,
+          "independent_model_family_or_laboratory_replication": false
+        }
+      },
+      "known_answer": null
+    },
+    {
+      "id": "enso",
+      "label": "ENSO native Fourier",
+      "source_file": "validation/enso-native-identifiability.json",
+      "source_sha256": "19656ed9f5930bed7e9bbdcd1072f50b5e68a8836c1975ab550dc1d828011d7e",
+      "parameter_count": 9,
+      "held_out_point_count": 168,
+      "folds": [
+        {
+          "fold": 1,
+          "fold_id": "enso:1",
+          "train_count": 134,
+          "test_count": 34,
+          "residual_degrees_of_freedom": 125,
+          "numerical_rank": 9,
+          "scaled_condition_number": 6.896240781966828,
+          "max_absolute_off_diagonal_parameter_correlation": 0.9187090249098154,
+          "max_local_prediction_standard_deviation": 1.0226998025680685,
+          "native_test_rmse": 3.448449143701017,
+          "sensitivity_to_rmse_ratio": 0.2965680397044989,
+          "sensitivity_exceeds_rmse": false,
+          "sensitivity_equals_rmse": false,
+          "local_covariance_valid": true
+        },
+        {
+          "fold": 2,
+          "fold_id": "enso:2",
+          "train_count": 134,
+          "test_count": 34,
+          "residual_degrees_of_freedom": 125,
+          "numerical_rank": 9,
+          "scaled_condition_number": 6.6011098799786705,
+          "max_absolute_off_diagonal_parameter_correlation": 0.9058417980535756,
+          "max_local_prediction_standard_deviation": 0.8095673281628353,
+          "native_test_rmse": 2.8418857472529337,
+          "sensitivity_to_rmse_ratio": 0.2848697661211016,
+          "sensitivity_exceeds_rmse": false,
+          "sensitivity_equals_rmse": false,
+          "local_covariance_valid": true
+        },
+        {
+          "fold": 3,
+          "fold_id": "enso:3",
+          "train_count": 134,
+          "test_count": 34,
+          "residual_degrees_of_freedom": 125,
+          "numerical_rank": 9,
+          "scaled_condition_number": 4.175832191988253,
+          "max_absolute_off_diagonal_parameter_correlation": 0.8568173033449638,
+          "max_local_prediction_standard_deviation": 0.5276256518277567,
+          "native_test_rmse": 2.4893584593736207,
+          "sensitivity_to_rmse_ratio": 0.21195246102102921,
+          "sensitivity_exceeds_rmse": false,
+          "sensitivity_equals_rmse": false,
+          "local_covariance_valid": true
+        },
+        {
+          "fold": 4,
+          "fold_id": "enso:4",
+          "train_count": 135,
+          "test_count": 33,
+          "residual_degrees_of_freedom": 126,
+          "numerical_rank": 9,
+          "scaled_condition_number": 5.576292346967393,
+          "max_absolute_off_diagonal_parameter_correlation": 0.8337203286590962,
+          "max_local_prediction_standard_deviation": 0.894841852704016,
+          "native_test_rmse": 2.409878120632471,
+          "sensitivity_to_rmse_ratio": 0.3713224519707931,
+          "sensitivity_exceeds_rmse": false,
+          "sensitivity_equals_rmse": false,
+          "local_covariance_valid": true
+        },
+        {
+          "fold": 5,
+          "fold_id": "enso:5",
+          "train_count": 135,
+          "test_count": 33,
+          "residual_degrees_of_freedom": 126,
+          "numerical_rank": 9,
+          "scaled_condition_number": 4.1727932427888454,
+          "max_absolute_off_diagonal_parameter_correlation": 0.8679766282332443,
+          "max_local_prediction_standard_deviation": 1.0603474415430074,
+          "native_test_rmse": 2.3729570605012986,
+          "sensitivity_to_rmse_ratio": 0.4468464512876621,
+          "sensitivity_exceeds_rmse": false,
+          "sensitivity_equals_rmse": false,
+          "local_covariance_valid": true
+        }
+      ],
+      "summary": {
+        "min_scaled_condition_number": 4.1727932427888454,
+        "median_scaled_condition_number": 5.576292346967393,
+        "max_scaled_condition_number": 6.896240781966828,
+        "median_fold_max_parameter_correlation": 0.8679766282332443,
+        "max_absolute_off_diagonal_parameter_correlation": 0.9187090249098154,
+        "min_sensitivity_to_rmse_ratio": 0.21195246102102921,
+        "median_sensitivity_to_rmse_ratio": 0.2965680397044989,
+        "max_sensitivity_to_rmse_ratio": 0.4468464512876621,
+        "max_local_prediction_standard_deviation": 1.0603474415430074,
+        "native_test_rmse_minimum": 2.3729570605012986,
+        "native_test_rmse_maximum": 3.448449143701017,
+        "full_numerical_rank_fold_count": 5,
+        "local_diagnostic_failure_count": 0,
+        "sensitivity_exceeds_rmse_fold_count": 0
+      },
+      "parameter_stability": {
+        "b1": {
+          "values": [
+            10.636780147585267,
+            10.700728373625111,
+            10.40646281797939,
+            10.50298183086932,
+            10.337282088797057
+          ],
+          "minimum": 10.337282088797057,
+          "maximum": 10.700728373625111,
+          "median": 10.50298183086932,
+          "range": 0.3634462848280542,
+          "median_local_standard_error": 0.19695868738984706
+        },
+        "b2": {
+          "values": [
+            3.1860367980401487,
+            3.0855119737037002,
+            3.01748201361537,
+            3.0428638659424654,
+            3.030790865557193
+          ],
+          "minimum": 3.01748201361537,
+          "maximum": 3.1860367980401487,
+          "median": 3.0428638659424654,
+          "range": 0.16855478442477878,
+          "median_local_standard_error": 0.2699898377880351
+        },
+        "b3": {
+          "values": [
+            0.4195644391804964,
+            0.6309741929348597,
+            0.41599042971366773,
+            0.5065770932736197,
+            0.7431701746373754
+          ],
+          "minimum": 0.41599042971366773,
+          "maximum": 0.7431701746373754,
+          "median": 0.5065770932736197,
+          "range": 0.3271797449237077,
+          "median_local_standard_error": 0.27232405863068043
+        },
+        "b4": {
+          "values": [
+            42.116470838575566,
+            43.918424073564054,
+            44.78523847913697,
+            44.680828945207466,
+            45.24277937834114
+          ],
+          "minimum": 42.116470838575566,
+          "maximum": 45.24277937834114,
+          "median": 44.680828945207466,
+          "range": 3.1263085397655743,
+          "median_local_standard_error": 0.9937084765893951
+        },
+        "b5": {
+          "values": [
+            -1.7063250272000787,
+            -2.1044677796978015,
+            -1.372454301757267,
+            -1.1025730391786117,
+            -1.51694149812131
+          ],
+          "minimum": -2.1044677796978015,
+          "maximum": -1.1025730391786117,
+          "median": -1.51694149812131,
+          "range": 1.0018947405191898,
+          "median_local_standard_error": 0.34370520364816887
+        },
+        "b6": {
+          "values": [
+            -1.2151684552165138,
+            0.41912144914748467,
+            0.8570534766707871,
+            0.4073732417736275,
+            0.7929333281583997
+          ],
+          "minimum": -1.2151684552165138,
+          "maximum": 0.8570534766707871,
+          "median": 0.41912144914748467,
+          "range": 2.072221931887301,
+          "median_local_standard_error": 0.5131610515685414
+        },
+        "b7": {
+          "values": [
+            28.57836553967075,
+            26.75943493527534,
+            26.91348111218918,
+            27.010212104540663,
+            26.63229865677676
+          ],
+          "minimum": 26.63229865677676,
+          "maximum": 28.57836553967075,
+          "median": 26.91348111218918,
+          "range": 1.9460668828939873,
+          "median_local_standard_error": 0.6084699776188209
+        },
+        "b8": {
+          "values": [
+            1.2440366002937084,
+            -0.06919429717906879,
+            0.28333555504202107,
+            0.10264401268498552,
+            0.10791389255306194
+          ],
+          "minimum": -0.06919429717906879,
+          "maximum": 1.2440366002937084,
+          "median": 0.10791389255306194,
+          "range": 1.3132308974727773,
+          "median_local_standard_error": 0.5378413079388433
+        },
+        "b9": {
+          "values": [
+            -0.7342702758976144,
+            2.056782902235909,
+            1.8047164014710093,
+            1.158646201252193,
+            1.3118273277884078
+          ],
+          "minimum": -0.7342702758976144,
+          "maximum": 2.056782902235909,
+          "median": 1.3118273277884078,
+          "range": 2.7910531781335237,
+          "median_local_standard_error": 0.2794751372749193
+        }
+      },
+      "scope_specific": {
+        "fold4_b4_absolute_relative_standard_error": 0.037359660053584605,
+        "fold4_b7_absolute_relative_standard_error": 0.025260794231141546,
+        "fold4_native_test_rmse": 2.409878120632471,
+        "max_cross_harmonic_block_absolute_correlation": 0.5591238742033899,
+        "max_annual_long_block_absolute_correlation": 0.15212841448706105,
+        "max_b4_own_amplitude_absolute_correlation": 0.9043681838935033,
+        "max_b7_own_amplitude_absolute_correlation": 0.9187090249098154
+      },
+      "known_answer": {
+        "optimizer_within_certified_tolerances": false,
+        "certified_forward_rss_check_passed": true,
+        "original_tolerances_relaxed": false,
+        "optimizer_mismatch_hidden": false,
+        "used_as_holdout": false,
+        "certified_reference_periods": {
+          "b4": 44.3110887,
+          "b7": 26.88761444
+        }
+      }
+    }
+  ],
+  "totals": {
+    "dataset_count": 3,
+    "fold_count": 15,
+    "held_out_point_count": 407,
+    "full_numerical_rank_fold_count": 15,
+    "local_diagnostic_failure_count": 0,
+    "sensitivity_exceeds_rmse_fold_count": 3,
+    "sensitivity_exceeds_rmse_fold_ids": [
+      "roszman1:1",
+      "roszman1:5",
+      "chwirut1:1"
+    ],
+    "sensitivity_equals_rmse_fold_ids": [],
+    "max_sensitivity_to_rmse_ratio": 2.6972635478072906,
+    "max_sensitivity_to_rmse_ratio_fold_id": "roszman1:5"
+  },
+  "cross_model_pooled_error_metrics": null,
+  "cross_model_stability_score": null,
+  "decision": {
+    "universal_stability_score_claimed": false,
+    "condition_number_quality_ranking_claimed": false,
+    "global_identifiability_claimed": false,
+    "physical_endogeneity_claimed": false,
+    "calibrated_coverage_claimed": false,
+    "cross_model_pooled_metric_claimed": false,
+    "new_physical_periods_claimed": false,
+    "independent_experiment_claimed": false,
+    "independent_model_family_replication_claimed": false,
+    "rational_bounds_transferred_to_native": false,
+    "failed_folds_hidden": false
+  },
+  "limitations": [
+    "Fifteen folds are three groups of related diagnostics, not independent probability samples or a universal model-quality ranking",
+    "Condition numbers depend on parameterization, design and scaling and cannot be compared as a single physical stability score",
+    "Sensitivity/RMSE ratios are descriptive dimensionless comparisons, not calibrated coverage or error probabilities",
+    "Raw parameter ranges, covariance matrices and residual errors retain their native units and are never pooled across models",
+    "Chwirut1 shares its study and native model family with Chwirut2; ENSO optimizer mismatch remains separate from certified forward evaluation",
+    "Local full rank and finite covariance do not prove global identifiability, physical endogeneity, new periods or native deterministic bounds"
+  ],
+  "analysis_runner_sha256": "7dca465a105709907dc3954a92402e4e71449b79b037fa790ff7de805e516a19"
+}
