@@ -1,0 +1,42 @@
+{
+  "status": "frozen_before_roszman1_whitened_grid_convergence_results",
+  "frozen_at_local": "2026-11-09T17:45:52+08:00",
+  "amendment": "02",
+  "previous_amendment": {
+    "file": "validation/roszman1-whitened-grid-convergence-protocol-amendment-01.json",
+    "sha256": "ed85e6979a0eedaab8c2cd6cddc37dc769351432bfa4c911c8c879761f56e81f"
+  },
+  "reason": "The corrected stage-58 envelopes preserve reconstructed candidate values but do not contain the original algebraic_extremizers exact_parameters records. Grid-8 requires the original stage-56 algebraic endpoints and baseline fields directly rather than substituting reconstructed floats",
+  "additional_inputs": {
+    "ratio_bounds": {
+      "file": "validation/roszman1-ratio-denominator-intersection.json",
+      "sha256": "7e4a70116617e408ada047597e1ff2609224e64cb0c6e7cd230dd6d4c4b0c103"
+    },
+    "ratio_receipt": {
+      "file": "validation/roszman1-ratio-denominator-check.json",
+      "sha256": "d43372719b626a3ccc233b493e42b806e316761c283b0d1c60eb2781a170dc65"
+    }
+  },
+  "rule": {
+    "algebraic_source": "Use exact_parameters from the stage-56 algebraic_extremizers, not reconstructed floats from the corrected whitened candidate evaluations",
+    "baseline_source": "Use stage-56 intersection_minimum, intersection_maximum and intersection_width for grid-8 intersections and for every algebraic candidate containment check",
+    "grid4_source": "Continue to use the corrected grid-4 union and final intersection from amendment 01 for incremental grid-8/grid-4 comparisons",
+    "receipt": "Require the stage-56 receipt to be passed and its summarySha256 to match the stage-56 bounds file",
+    "fold_order": "Require identical fold ids and available x positions in native, corrected stage-58 and stage-56 records"
+  },
+  "historical_preservation": {
+    "previous_amendment_unchanged": true,
+    "original_results_used_only_for_error_identity": true,
+    "original_protocol_unchanged": true,
+    "stage56_files_unchanged": true,
+    "convergence_result_not_yet_written": true
+  },
+  "decision": {
+    "reconstructed_parameters_substituted_for_original": false,
+    "previous_amendment_rewritten": false,
+    "original_whitened_cover_used": false,
+    "plateau_called_convergence_proof": false,
+    "exact_global_optimum_claimed": false,
+    "fold5_given_finite_bound": false
+  }
+}
