@@ -70,7 +70,8 @@
 | ENSO 原生周期参数可识别性与谐波补偿 | 五折局部秩均为 9，最大相关 0.918709 来自周期与自身振幅；第 4 折 RMSE 较低但 b4、b7 相对标准误均最高，周期范围为 3.126309、1.946067 个月 | `validation/enso-native-identifiability-protocol.json`、`validation/enso-native-identifiability.json`、`docs/ENSO_NATIVE_IDENTIFIABILITY_2026-11-09.md` | 分离周期间、周期与自身振幅、跨谐波块相关，不把低 RMSE 或局部相关写成周期唯一、物理耦合、新周期或概率区间 |
 | 三模型局部可识别性受限综合 | 15 折、407 点全部局部满秩；三个折的敏感度高于 RMSE，最大比值 2.697264；ENSO 比值均小于 1 仍不证明周期安全 | `validation/native-identifiability-cross-model-protocol.json`、`exports/native-identifiability-cross-model-synthesis.json`、`docs/NATIVE_IDENTIFIABILITY_CROSS_MODEL_2026-11-09.md` | 提供共同审计接口与逐折比值，保留原生单位、专有病征与已知答案分层，不合成误差池、概率覆盖率或稳定性评分 |
 | 三模型局部敏感度固定阈值覆盖审计 | 407 点、1221 次判定；1、2、4 倍分别覆盖 85、181、283 点；最大逐点比值 25.724483，Roszman1 第 5 折折级比值 2.697264 但 1 倍已全覆盖 | `validation/native-sensitivity-threshold-coverage-protocol.json`、`exports/native-sensitivity-threshold-coverage.json`、`docs/NATIVE_SENSITIVITY_THRESHOLD_COVERAGE_2026-11-09.md` | 提供逐点违规 ID 和两类聚合反例，不把固定计数称为概率覆盖，也不把局部标准差当作确定性残差界 |
-| 主张—证据—反例—实验图谱 | 225 个节点、565 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| Chwirut1 原生椭球连续分母与保守预测界 | 五折连续分母均为正并生成 22 个原生包络；最大宽度 170.146309，中位宽度 19.222110；214 点中心一致性通过但不是概率覆盖 | `validation/chwirut1-native-ellipsoid-continuous-protocol.json`、`validation/chwirut1-native-ellipsoid-continuous-bounds.json`、`docs/CHWIRUT1_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md` | 提供端点凹凸性和原始非线性包络接口，区分区域证书、信息宽度、中心一致性与外部有效性 |
+| 主张—证据—反例—实验图谱 | 232 个节点、590 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 范围感知外部分析适配层
 

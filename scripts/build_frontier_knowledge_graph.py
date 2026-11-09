@@ -87,6 +87,9 @@ def build_graph(root):
     sensitivityCoverage = json.loads((root / "exports/native-sensitivity-threshold-coverage.json").read_text(encoding="utf-8"))
     if sensitivityCoverage["totals"]["point_count"] != 407 or sensitivityCoverage["totals"]["fold_count"] != 15 or sensitivityCoverage["totals"]["evaluation_count"] != 1221 or sensitivityCoverage["totals"]["thresholds"]["1"]["covered_count"] != 85 or sensitivityCoverage["totals"]["thresholds"]["1"]["violation_count"] != 322 or sensitivityCoverage["totals"]["thresholds"]["2"]["covered_count"] != 181 or sensitivityCoverage["totals"]["thresholds"]["2"]["violation_count"] != 226 or sensitivityCoverage["totals"]["thresholds"]["4"]["covered_count"] != 283 or sensitivityCoverage["totals"]["thresholds"]["4"]["violation_count"] != 124 or sensitivityCoverage["totals"]["max_ratio_point_id"] != "chwirut1:3:30" or sensitivityCoverage["totals"]["zero_sensitivity_point_count"] != 0 or sensitivityCoverage["cross_model_probability_coverage_score"] is not None or sensitivityCoverage["decision"]["probability_coverage_claimed"] or sensitivityCoverage["decision"]["native_deterministic_bounds_claimed"]:
         raise ValueError("Expected sensitivity-threshold counts, violations and no-probability boundaries are not present")
+    nativeEllipsoid = json.loads((root / "validation/chwirut1-native-ellipsoid-continuous-bounds.json").read_text(encoding="utf-8"))
+    if nativeEllipsoid["totals"]["fold_count"] != 5 or nativeEllipsoid["totals"]["held_out_point_count"] != 214 or nativeEllipsoid["totals"]["unique_distance_count"] != 22 or nativeEllipsoid["totals"]["certified_fold_count"] != 5 or nativeEllipsoid["totals"]["unavailable_fold_ids"] or nativeEllipsoid["totals"]["available_point_count"] != 214 or nativeEllipsoid["totals"]["covered_point_count"] != 214 or nativeEllipsoid["totals"]["violation_point_count"] != 0 or nativeEllipsoid["totals"]["center_prediction_envelope_mismatch_count"] != 0 or nativeEllipsoid["totals"]["max_envelope_width"] != 170.14630922307612 or nativeEllipsoid["totals"]["median_envelope_width"] != 19.222110234669167 or nativeEllipsoid["analysis_scope"]["probability_region"] or nativeEllipsoid["analysis_scope"]["taylor_prediction_approximation"] or nativeEllipsoid["decision"]["center_consistency_used_as_external_validation"]:
+        raise ValueError("Expected native ellipsoid continuous certificates, width and center-scope boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -916,6 +919,42 @@ def build_graph(root):
         edge("experiment-native-sensitivity-threshold-coverage-protocol", "experiment-enso-native-identifiability-protocol", "supports"),
         edge("counterexample-roszman1-fold5-aggregate-point-divergence", "limitation-native-identifiability-cross-model-no-score", "supports"),
         edge("counterexample-chwirut1-fold3-point-extreme", "claim-sensitivity-rmse-ratio-calibrated-coverage", "contradicts"),
+    ])
+    nodes.extend([
+        node("claim-center-coverage-external-validation", "claim", "冻结中心落入包络且实际残差不超过上界即可构成外部科学验证或概率覆盖", "falsified", ["validation/chwirut1-native-ellipsoid-continuous-bounds.json"]),
+        node("claim-finite-bound-high-information", "claim", "存在有限预测或残差上界就等于具有高信息量和高精度", "falsified", ["validation/chwirut1-native-ellipsoid-continuous-bounds.json"]),
+        node("evidence-chwirut1-native-ellipsoid-continuous", "evidence", "五折连续分母均为正并生成 22 个原生包络；最大宽度 170.146309，中心一致性不是外部验证", "supported", ["validation/chwirut1-native-ellipsoid-continuous-bounds.json", "validation/chwirut1-native-ellipsoid-continuous-check.json"]),
+        node("counterexample-chwirut1-fold1-wide-native-envelope", "counterexample", "第 1 折 x=0.5 的包络为 62.233292 至 232.379602，宽度 170.146309，有限上界的信息量有限", "supported", ["validation/chwirut1-native-ellipsoid-continuous-bounds.json"]),
+        node("counterexample-chwirut1-center-consistency-not-probability", "counterexample", "214 点中心预测均在包络内且残差不越界，但中心本就在椭球内，不能当作概率覆盖或外部验证", "supported", ["validation/chwirut1-native-ellipsoid-continuous-bounds.json"]),
+        node("experiment-chwirut1-native-ellipsoid-continuous-protocol", "experiment", "冻结半径 4 椭球、端点凹凸性、80 位精度和原始非线性包络规则，不重新拟合或优化半径", "supported", ["validation/chwirut1-native-ellipsoid-continuous-protocol.json", "scripts/analyze_chwirut1_native_ellipsoid_continuous.py"]),
+        node("limitation-chwirut1-native-ellipsoid-region-scope", "limitation", "证书仅覆盖所选椭球和连续区间，数值外向舍入不是精确有理证明，宽界和 Chwirut2 同族边界必须保留", "active", ["validation/chwirut1-native-ellipsoid-continuous-bounds.json", "docs/CHWIRUT1_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-center-coverage-external-validation", "contains"),
+        edge("track-holdout", "claim-finite-bound-high-information", "contains"),
+        edge("track-holdout", "evidence-chwirut1-native-ellipsoid-continuous", "contains"),
+        edge("track-holdout", "counterexample-chwirut1-fold1-wide-native-envelope", "contains"),
+        edge("track-holdout", "counterexample-chwirut1-center-consistency-not-probability", "contains"),
+        edge("track-holdout", "experiment-chwirut1-native-ellipsoid-continuous-protocol", "contains"),
+        edge("track-holdout", "limitation-chwirut1-native-ellipsoid-region-scope", "contains"),
+        edge("evidence-chwirut1-native-ellipsoid-continuous", "claim-center-coverage-external-validation", "contradicts"),
+        edge("experiment-chwirut1-native-ellipsoid-continuous-protocol", "claim-center-coverage-external-validation", "tests"),
+        edge("evidence-chwirut1-native-ellipsoid-continuous", "claim-finite-bound-high-information", "contradicts"),
+        edge("experiment-chwirut1-native-ellipsoid-continuous-protocol", "claim-finite-bound-high-information", "tests"),
+        edge("counterexample-chwirut1-fold1-wide-native-envelope", "claim-finite-bound-high-information", "contradicts"),
+        edge("evidence-chwirut1-native-ellipsoid-continuous", "claim-native-pole-free-observations-global-safety", "contradicts"),
+        edge("experiment-chwirut1-native-ellipsoid-continuous-protocol", "claim-native-pole-free-observations-global-safety", "tests"),
+        edge("evidence-chwirut1-native-ellipsoid-continuous", "counterexample-chwirut1-fold1-wide-native-envelope", "supports"),
+        edge("limitation-chwirut1-native-ellipsoid-region-scope", "evidence-chwirut1-native-ellipsoid-continuous", "limits"),
+        edge("limitation-chwirut1-native-ellipsoid-region-scope", "claim-center-coverage-external-validation", "limits"),
+        edge("limitation-chwirut1-native-ellipsoid-region-scope", "claim-finite-bound-high-information", "limits"),
+        edge("evidence-chwirut1-native-ellipsoid-continuous", "evidence-chwirut1-native-identifiability", "supports"),
+        edge("experiment-chwirut1-native-ellipsoid-continuous-protocol", "experiment-chwirut1-native-identifiability-protocol", "supports"),
+        edge("evidence-chwirut1-native-ellipsoid-continuous", "evidence-native-identifiability-cross-model", "supports"),
+        edge("experiment-chwirut1-native-ellipsoid-continuous-protocol", "experiment-native-identifiability-cross-model-protocol", "supports"),
+        edge("counterexample-chwirut1-fold1-wide-native-envelope", "limitation-chwirut1-native-local-and-related-scope", "supports"),
+        edge("counterexample-chwirut1-center-consistency-not-probability", "claim-center-coverage-external-validation", "contradicts"),
+        edge("evidence-chwirut1-native-ellipsoid-continuous", "counterexample-chwirut1-center-consistency-not-probability", "supports"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

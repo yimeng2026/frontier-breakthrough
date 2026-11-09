@@ -99,6 +99,8 @@ def build() -> dict:
     nativeIdentifiabilityCrossCheck = read("native-identifiability-cross-model-check.json")
     sensitivityCoverage = json.loads((ROOT / "exports/native-sensitivity-threshold-coverage.json").read_text(encoding="utf-8"))
     sensitivityCoverageCheck = read("native-sensitivity-threshold-coverage-check.json")
+    nativeEllipsoid = read("chwirut1-native-ellipsoid-continuous-bounds.json")
+    nativeEllipsoidCheck = read("chwirut1-native-ellipsoid-continuous-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -960,6 +962,43 @@ def build() -> dict:
             "limitations": "固定阈值计数不是概率覆盖率、置信区间或校准分数，局部标准差不是确定性残差界。Chwirut1 和 ENSO 每折均有违规，少数完全覆盖折不能推广到全模型；没有优化阈值或隐藏违规。" + " ".join(sensitivityCoverage["limitations"]),
             "upstreamContribution": "提供完整的固定阈值逐点判定、违规 ID、最大比值和零违规折接口，直接揭示最大敏感度与最大残差位置不同所造成的两类聚合错觉。",
             "snapshotFiles": ["validation/native-sensitivity-threshold-coverage-protocol.json", "validation/native-sensitivity-threshold-coverage-check.json", "validation/frontier-native-sensitivity-threshold-coverage-word.json"],
+        },
+        {
+            "id": "chwirut1-native-ellipsoid-continuous-bounds", "domain": "physics", "title": "Chwirut1 原生椭球连续分母证书与保守预测包络",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Chwirut1.dat"],
+            "metrics": {
+                "totals": nativeEllipsoid["totals"],
+                "folds": [{
+                    "fold": fold["fold"],
+                    "nativeTestRmse": fold["native_test_rmse"],
+                    "continuousDenominator": fold["continuous_denominator"],
+                    "predictionEnvelopeAvailable": fold["prediction_envelope_available"],
+                    "unavailableReason": fold["unavailable_reason"],
+                    "envelopes": fold["envelopes"],
+                    "coverage": fold["coverage"],
+                    "maxEnvelopeWidth": fold["max_envelope_width"],
+                    "medianEnvelopeWidth": fold["median_envelope_width"],
+                    "maxResidualUpperBound": fold["max_residual_upper_bound"],
+                    "medianResidualUpperBound": fold["median_residual_upper_bound"],
+                } for fold in nativeEllipsoid["folds"]],
+                "parameterStability": nativeEllipsoid["parameter_stability"],
+                "analysisScope": nativeEllipsoid["analysis_scope"],
+                "decision": nativeEllipsoid["decision"],
+                "implementation": {
+                    "protocolSha256": nativeEllipsoid["protocol_sha256"],
+                    "summarySha256": nativeEllipsoidCheck["summarySha256"],
+                    "analysisRunnerSha256": nativeEllipsoidCheck["analysisRunnerSha256"],
+                    "figureSha256": nativeEllipsoidCheck["figureSha256"],
+                    "reportSha256": nativeEllipsoidCheck["reportSha256"],
+                    "wordSha256": nativeEllipsoidCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "aa28fc7"},
+            },
+            "scientificClaim": "五折在半径 4 的显式椭球和连续留出区间内均通过分母正性检查，生成 22 个原始指数模型包络。最大包络宽度为 170.146309，中位宽度为 19.222110；214 点中心一致性全部通过，但这只是构造检查，不是概率覆盖或外部验证。",
+            "limitations": "证书仅覆盖所选椭球和连续区间，协方差只定义区域而不定义概率。独立分子和分母放松可能很宽，中心一致性不等于外部有效性；高精度外向数值证书不是精确有理证明，Chwirut1 与 Chwirut2 同研究同模型族。" + " ".join(nativeEllipsoid["limitations"]),
+            "upstreamContribution": "提供原生指数模型的连续分母支撑证书、原始非线性包络和宽度审计接口，把区域证明、中心一致性、实际信息量与概率解释明确分开。",
+            "snapshotFiles": ["validation/chwirut1-native-ellipsoid-continuous-protocol.json", "validation/chwirut1-native-ellipsoid-continuous-check.json", "validation/frontier-chwirut1-native-ellipsoid-continuous-word.json"],
         },
     ]
     packet = {

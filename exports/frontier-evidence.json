@@ -4548,29 +4548,29 @@
         "errorCount": 0,
         "groups": {
           "readme_local_links": {
-            "count": 98,
+            "count": 100,
             "errors": []
           },
           "document_figure_links": {
-            "count": 51,
+            "count": 52,
             "errors": []
           },
           "word_manifests": {
-            "count": 43,
+            "count": 44,
             "errors": []
           },
           "evidence_snapshots": {
-            "count": 183,
+            "count": 186,
             "errors": []
           },
           "knowledge_graph": {
-            "nodes": 225,
-            "edges": 565,
+            "nodes": 232,
+            "edges": 590,
             "errors": []
           },
           "protocol_inputs": {
-            "count": 16,
-            "recordsChecked": 43,
+            "count": 17,
+            "recordsChecked": 44,
             "errors": []
           },
           "corpus_v2": {
@@ -4580,9 +4580,9 @@
             "errors": []
           },
           "dynamic_counts": {
-            "evidenceItems": 54,
-            "graphNodes": 225,
-            "graphEdges": 565,
+            "evidenceItems": 55,
+            "graphNodes": 232,
+            "graphEdges": 590,
             "readme_consistent": true,
             "errors": []
           }
@@ -4593,7 +4593,7 @@
           "scientific_truth_claimed": false,
           "historical_text_rewritten": false
         },
-        "rulesSha256": "82aeee763e13440df108543cfa68323e3e36742fc0ce1060a6fe319bce2896da",
+        "rulesSha256": "e440f8df6a093fb6a414ed64dee231f94e7ab3dbba2edc9ec3a51cffe6be44ce",
         "analysisRunnerSha256": "403aabb3f22e6fa26eca8595777df16c1f5be34f6f948de7f1c8e7f8f20effdf",
         "previousReceiptPreserved": true,
         "protocolCommits": {
@@ -4601,7 +4601,7 @@
           "audit": "24dc02f"
         }
       },
-      "scientificClaim": "当前范围内 98 个 README 本地链接、51 个报告图片路径、43 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 16 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
+      "scientificClaim": "当前范围内 100 个 README 本地链接、52 个报告图片路径、44 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 17 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
       "limitations": "审计只验证本地结构、路径、哈希和计数，不检查外部网页，不进行视觉渲染验收，不证明科学理论为真，也不把历史旧计数误判为错误。",
       "upstreamContribution": "提供可重复的负例门禁、动态 JSON/README 计数核对和显式 --refresh 历史收据保留机制，防止链接、Word、图谱和协议在持续研究中漂移。",
       "snapshotFiles": [
@@ -8560,6 +8560,639 @@
         "validation/native-sensitivity-threshold-coverage-protocol.json",
         "validation/native-sensitivity-threshold-coverage-check.json",
         "validation/frontier-native-sensitivity-threshold-coverage-word.json"
+      ]
+    },
+    {
+      "id": "chwirut1-native-ellipsoid-continuous-bounds",
+      "domain": "physics",
+      "title": "Chwirut1 原生椭球连续分母证书与保守预测包络",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Chwirut1.dat"
+      ],
+      "metrics": {
+        "totals": {
+          "fold_count": 5,
+          "held_out_point_count": 214,
+          "unique_distance_count": 22,
+          "unique_envelope_count": 22,
+          "certified_fold_count": 5,
+          "certified_fold_ids": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "unavailable_fold_ids": [],
+          "available_point_count": 214,
+          "covered_point_count": 214,
+          "violation_point_count": 0,
+          "unavailable_point_count": 0,
+          "center_prediction_envelope_mismatch_count": 0,
+          "max_envelope_width": 170.14630922307612,
+          "median_envelope_width": 19.222110234669167,
+          "max_residual_upper_bound": 165.679601537622,
+          "median_residual_upper_bound": 15.050994997990879
+        },
+        "folds": [
+          {
+            "fold": 1,
+            "nativeTestRmse": 14.465526570336303,
+            "continuousDenominator": {
+              "interval": [
+                0.5,
+                1.0
+              ],
+              "endpoint_results": [
+                {
+                  "x": 0.5,
+                  "minimum": 0.004322621973785059,
+                  "maximum": 0.01444593622002415
+                },
+                {
+                  "x": 1.0,
+                  "minimum": 0.015520155343423788,
+                  "maximum": 0.019320632258554883
+                }
+              ],
+              "minimum": 0.004322621973785059,
+              "maximum": 0.019320632258554883,
+              "positive_certified": true,
+              "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+              "unavailable_reason": null
+            },
+            "predictionEnvelopeAvailable": true,
+            "unavailableReason": null,
+            "envelopes": [
+              {
+                "envelope_id": "chwirut1:1:0.5",
+                "x": 0.5,
+                "prediction_minimum": 62.233292314545906,
+                "prediction_maximum": 232.379601537622,
+                "envelope_width": 170.14630922307612,
+                "b1_minimum": -0.008958251178016392,
+                "b1_maximum": 0.21290406331602624,
+                "numerator_minimum": 0.8990181715380494,
+                "numerator_maximum": 1.004489171865941,
+                "denominator_minimum": 0.004322621973785059,
+                "denominator_maximum": 0.01444593622002415
+              },
+              {
+                "envelope_id": "chwirut1:1:0.625",
+                "x": 0.625,
+                "prediction_minimum": 56.59375704267528,
+                "prediction_maximum": 137.4103145833437,
+                "envelope_width": 80.81655754066844,
+                "b1_minimum": -0.008958251178016392,
+                "b1_maximum": 0.21290406331602624,
+                "numerator_minimum": 0.8754081540850597,
+                "numerator_maximum": 1.00561461015917,
+                "denominator_minimum": 0.007318334240107085,
+                "denominator_maximum": 0.01546828130574449
+              },
+              {
+                "envelope_id": "chwirut1:1:0.75",
+                "x": 0.75,
+                "prediction_minimum": 51.49358273584471,
+                "prediction_maximum": 98.21099151122606,
+                "envelope_width": 46.71740877538136,
+                "b1_minimum": -0.008958251178016392,
+                "b1_maximum": 0.21290406331602624,
+                "numerator_minimum": 0.8524181829690387,
+                "numerator_maximum": 1.0067413094031263,
+                "denominator_minimum": 0.010250800790337713,
+                "denominator_maximum": 0.016553872107556225
+              },
+              {
+                "envelope_id": "chwirut1:1:0.875",
+                "x": 0.875,
+                "prediction_minimum": 46.68887289995581,
+                "prediction_maximum": 77.26220513004361,
+                "envelope_width": 30.573332230087804,
+                "b1_minimum": -0.008958251178016392,
+                "b1_maximum": 0.21290406331602624,
+                "numerator_minimum": 0.8300319745315455,
+                "numerator_maximum": 1.00786927101059,
+                "denominator_minimum": 0.013044790390258711,
+                "denominator_maximum": 0.017777939859677593
+              },
+              {
+                "envelope_id": "chwirut1:1:1.0",
+                "x": 1.0,
+                "prediction_minimum": 41.83267203368791,
+                "prediction_maximum": 65.01213899405059,
+                "envelope_width": 23.179466960362685,
+                "b1_minimum": -0.008958251178016392,
+                "b1_maximum": 0.21290406331602624,
+                "numerator_minimum": 0.8082336727556176,
+                "numerator_maximum": 1.008998496395924,
+                "denominator_minimum": 0.015520155343423788,
+                "denominator_maximum": 0.019320632258554883
+              }
+            ],
+            "coverage": {
+              "available_point_count": 57,
+              "covered_point_count": 57,
+              "violation_point_count": 0,
+              "unavailable_point_count": 0,
+              "center_prediction_envelope_mismatch_count": 0
+            },
+            "maxEnvelopeWidth": 170.14630922307612,
+            "medianEnvelopeWidth": 46.71740877538136,
+            "maxResidualUpperBound": 165.679601537622,
+            "medianResidualUpperBound": 37.410991511226065
+          },
+          {
+            "fold": 2,
+            "nativeTestRmse": 2.622277550680226,
+            "continuousDenominator": {
+              "interval": [
+                1.25,
+                2.25
+              ],
+              "endpoint_results": [
+                {
+                  "x": 1.25,
+                  "minimum": 0.015346360784891374,
+                  "maximum": 0.02200636344666634
+                },
+                {
+                  "x": 2.25,
+                  "minimum": 0.021110129828338917,
+                  "maximum": 0.03569332120534795
+                }
+              ],
+              "minimum": 0.015346360784891374,
+              "maximum": 0.03569332120534795,
+              "positive_certified": true,
+              "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+              "unavailable_reason": null
+            },
+            "predictionEnvelopeAvailable": true,
+            "unavailableReason": null,
+            "envelopes": [
+              {
+                "envelope_id": "chwirut1:2:1.25",
+                "x": 1.25,
+                "prediction_minimum": 31.006839349258488,
+                "prediction_maximum": 57.69764663261285,
+                "envelope_width": 26.690807283354367,
+                "b1_minimum": 0.09732842324467801,
+                "b1_maximum": 0.3057726524410013,
+                "numerator_minimum": 0.6823477760521776,
+                "numerator_maximum": 0.8854489016632496,
+                "denominator_minimum": 0.015346360784891374,
+                "denominator_maximum": 0.02200636344666634
+              },
+              {
+                "envelope_id": "chwirut1:2:1.5",
+                "x": 1.5,
+                "prediction_minimum": 24.862759050431553,
+                "prediction_maximum": 51.46712884157388,
+                "envelope_width": 26.604369791142332,
+                "b1_minimum": 0.09732842324467801,
+                "b1_maximum": 0.3057726524410013,
+                "numerator_minimum": 0.6321307782307725,
+                "numerator_maximum": 0.8641640678444833,
+                "denominator_minimum": 0.016790601832570713,
+                "denominator_maximum": 0.025424804099519287
+              },
+              {
+                "envelope_id": "chwirut1:2:1.75",
+                "x": 1.75,
+                "prediction_minimum": 20.301050590988613,
+                "prediction_maximum": 46.25927290159999,
+                "envelope_width": 25.95822231061138,
+                "b1_minimum": 0.09732842324467801,
+                "b1_maximum": 0.3057726524410013,
+                "numerator_minimum": 0.5856094719008601,
+                "numerator_maximum": 0.843390888791838,
+                "denominator_minimum": 0.018231823284076465,
+                "denominator_maximum": 0.028846264348545824
+              },
+              {
+                "envelope_id": "chwirut1:2:2.0",
+                "x": 2.0,
+                "prediction_minimum": 16.812001855189443,
+                "prediction_maximum": 41.843235273683966,
+                "envelope_width": 25.031233418494526,
+                "b1_minimum": 0.09732842324467801,
+                "b1_maximum": 0.3057726524410013,
+                "numerator_minimum": 0.5425118747418551,
+                "numerator_maximum": 0.8231170651093246,
+                "denominator_minimum": 0.019671448914634935,
+                "denominator_maximum": 0.03226932041851965
+              },
+              {
+                "envelope_id": "chwirut1:2:2.25",
+                "x": 2.25,
+                "prediction_minimum": 14.080674026562496,
+                "prediction_maximum": 38.05427060809247,
+                "envelope_width": 23.97359658152998,
+                "b1_minimum": 0.09732842324467801,
+                "b1_maximum": 0.3057726524410013,
+                "numerator_minimum": 0.5025860208178953,
+                "numerator_maximum": 0.8033305930595737,
+                "denominator_minimum": 0.021110129828338917,
+                "denominator_maximum": 0.03569332120534795
+              }
+            ],
+            "coverage": {
+              "available_point_count": 54,
+              "covered_point_count": 54,
+              "violation_point_count": 0,
+              "unavailable_point_count": 0,
+              "center_prediction_envelope_mismatch_count": 0
+            },
+            "maxEnvelopeWidth": 26.690807283354367,
+            "medianEnvelopeWidth": 25.95822231061138,
+            "maxResidualUpperBound": 22.467128841573885,
+            "medianResidualUpperBound": 17.296254087641984
+          },
+          {
+            "fold": 3,
+            "nativeTestRmse": 2.775494469668534,
+            "continuousDenominator": {
+              "interval": [
+                2.5,
+                3.25
+              ],
+              "endpoint_results": [
+                {
+                  "x": 2.5,
+                  "minimum": 0.025522172642539157,
+                  "maximum": 0.040080844967663495
+                },
+                {
+                  "x": 3.25,
+                  "minimum": 0.030946038074147364,
+                  "maximum": 0.05068384945189912
+                }
+              ],
+              "minimum": 0.025522172642539157,
+              "maximum": 0.05068384945189912,
+              "positive_certified": true,
+              "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+              "unavailable_reason": null
+            },
+            "predictionEnvelopeAvailable": true,
+            "unavailableReason": null,
+            "envelopes": [
+              {
+                "envelope_id": "chwirut1:3:2.5",
+                "x": 2.5,
+                "prediction_minimum": 12.216867205664675,
+                "prediction_maximum": 31.915537305323433,
+                "envelope_width": 19.698670099658763,
+                "b1_minimum": 0.08204589406263811,
+                "b1_maximum": 0.28561567426909634,
+                "numerator_minimum": 0.48966236046077827,
+                "numerator_maximum": 0.8145538530858635,
+                "denominator_minimum": 0.025522172642539157,
+                "denominator_maximum": 0.040080844967663495
+              },
+              {
+                "envelope_id": "chwirut1:3:2.75",
+                "x": 2.75,
+                "prediction_minimum": 10.453261652128779,
+                "prediction_maximum": 29.19881202180835,
+                "envelope_width": 18.745550369679574,
+                "b1_minimum": 0.08204589406263811,
+                "b1_maximum": 0.28561567426909634,
+                "numerator_minimum": 0.4559176379827936,
+                "numerator_maximum": 0.7980163375095759,
+                "denominator_minimum": 0.027330438543648427,
+                "denominator_maximum": 0.04361486903850217
+              },
+              {
+                "envelope_id": "chwirut1:3:3.0",
+                "x": 3.0,
+                "prediction_minimum": 9.003293912019933,
+                "prediction_maximum": 26.831107547322848,
+                "envelope_width": 17.827813635302917,
+                "b1_minimum": 0.08204589406263811,
+                "b1_maximum": 0.28561567426909634,
+                "numerator_minimum": 0.4244984083077369,
+                "numerator_maximum": 0.78181457557364,
+                "denominator_minimum": 0.029138363900734612,
+                "denominator_maximum": 0.04714923365336393
+              },
+              {
+                "envelope_id": "chwirut1:3:3.25",
+                "x": 3.25,
+                "prediction_minimum": 7.798231903825551,
+                "prediction_maximum": 24.750882448658906,
+                "envelope_width": 16.952650544833357,
+                "b1_minimum": 0.08204589406263811,
+                "b1_maximum": 0.28561567426909634,
+                "numerator_minimum": 0.3952444118044909,
+                "numerator_maximum": 0.7659417506249441,
+                "denominator_minimum": 0.030946038074147364,
+                "denominator_maximum": 0.05068384945189912
+              }
+            ],
+            "coverage": {
+              "available_point_count": 51,
+              "covered_point_count": 51,
+              "violation_point_count": 0,
+              "unavailable_point_count": 0,
+              "center_prediction_envelope_mismatch_count": 0
+            },
+            "maxEnvelopeWidth": 19.698670099658763,
+            "medianEnvelopeWidth": 18.286682002491247,
+            "maxResidualUpperBound": 16.756706087980074,
+            "medianResidualUpperBound": 12.96110754732285
+          },
+          {
+            "fold": 4,
+            "nativeTestRmse": 1.3682100460705144,
+            "continuousDenominator": {
+              "interval": [
+                3.75,
+                4.75
+              ],
+              "endpoint_results": [
+                {
+                  "x": 3.75,
+                  "minimum": 0.034273237158002234,
+                  "maximum": 0.058233378317975995
+                },
+                {
+                  "x": 4.75,
+                  "minimum": 0.041413163238898994,
+                  "maximum": 0.07252386625155108
+                }
+              ],
+              "minimum": 0.034273237158002234,
+              "maximum": 0.07252386625155108,
+              "positive_certified": true,
+              "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+              "unavailable_reason": null
+            },
+            "predictionEnvelopeAvailable": true,
+            "unavailableReason": null,
+            "envelopes": [
+              {
+                "envelope_id": "chwirut1:4:3.75",
+                "x": 3.75,
+                "prediction_minimum": 5.890873858756349,
+                "prediction_maximum": 21.42982548032637,
+                "envelope_width": 15.538951621570023,
+                "b1_minimum": 0.08229515237604529,
+                "b1_maximum": 0.28530459419884235,
+                "numerator_minimum": 0.3430454860404336,
+                "numerator_maximum": 0.7344694909418247,
+                "denominator_minimum": 0.034273237158002234,
+                "denominator_maximum": 0.058233378317975995
+              },
+              {
+                "envelope_id": "chwirut1:4:4.0",
+                "x": 4.0,
+                "prediction_minimum": 5.168271121682289,
+                "prediction_maximum": 19.954143313215067,
+                "envelope_width": 14.78587219153278,
+                "b1_minimum": 0.08229515237604529,
+                "b1_maximum": 0.28530459419884235,
+                "numerator_minimum": 0.3194295990214265,
+                "numerator_maximum": 0.7195130541152299,
+                "denominator_minimum": 0.03605832847951517,
+                "denominator_maximum": 0.061805890500081014
+              },
+              {
+                "envelope_id": "chwirut1:4:4.25",
+                "x": 4.25,
+                "prediction_minimum": 4.549500828421997,
+                "prediction_maximum": 18.625767127245194,
+                "envelope_width": 14.0762662988232,
+                "b1_minimum": 0.08229515237604529,
+                "b1_maximum": 0.28530459419884235,
+                "numerator_minimum": 0.29743947343170335,
+                "numerator_maximum": 0.7048611840613966,
+                "denominator_minimum": 0.037843337095648945,
+                "denominator_maximum": 0.0653784853875652
+              },
+              {
+                "envelope_id": "chwirut1:4:4.75",
+                "x": 4.75,
+                "prediction_minimum": 3.556022906118238,
+                "prediction_maximum": 16.334093060524943,
+                "envelope_width": 12.778070154406707,
+                "b1_minimum": 0.08229515237604529,
+                "b1_maximum": 0.28530459419884235,
+                "numerator_minimum": 0.2578965296307711,
+                "numerator_maximum": 0.6764464622748866,
+                "denominator_minimum": 0.041413163238898994,
+                "denominator_maximum": 0.07252386625155108
+              }
+            ],
+            "coverage": {
+              "available_point_count": 23,
+              "covered_point_count": 23,
+              "violation_point_count": 0,
+              "unavailable_point_count": 0,
+              "center_prediction_envelope_mismatch_count": 0
+            },
+            "maxEnvelopeWidth": 15.538951621570023,
+            "medianEnvelopeWidth": 14.43106924517799,
+            "maxResidualUpperBound": 13.669825480326374,
+            "medianResidualUpperBound": 10.450767127245195
+          },
+          {
+            "fold": 5,
+            "nativeTestRmse": 2.7237923197301117,
+            "continuousDenominator": {
+              "interval": [
+                5.0,
+                6.0
+              ],
+              "endpoint_results": [
+                {
+                  "x": 5.0,
+                  "minimum": 0.036104056110201434,
+                  "maximum": 0.07033554413914882
+                },
+                {
+                  "x": 6.0,
+                  "minimum": 0.0417309949837077,
+                  "maximum": 0.08337908148874748
+                }
+              ],
+              "minimum": 0.036104056110201434,
+              "maximum": 0.08337908148874748,
+              "positive_certified": true,
+              "concavity_rule": "d_min concave; d_max convex; endpoint extrema",
+              "unavailable_reason": null
+            },
+            "predictionEnvelopeAvailable": true,
+            "unavailableReason": null,
+            "envelopes": [
+              {
+                "envelope_id": "chwirut1:5:5.0",
+                "x": 5.0,
+                "prediction_minimum": 2.5065840495881035,
+                "prediction_maximum": 15.64018499728008,
+                "envelope_width": 13.133600947691978,
+                "b1_minimum": 0.1143012997627672,
+                "b1_maximum": 0.34711142232011793,
+                "numerator_minimum": 0.17630195305829047,
+                "numerator_maximum": 0.5646741167157306,
+                "denominator_minimum": 0.036104056110201434,
+                "denominator_maximum": 0.07033554413914882
+              },
+              {
+                "envelope_id": "chwirut1:5:5.25",
+                "x": 5.25,
+                "prediction_minimum": 2.1964103789878746,
+                "prediction_maximum": 14.629553467148035,
+                "envelope_width": 12.433143088160163,
+                "b1_minimum": 0.1143012997627672,
+                "b1_maximum": 0.34711142232011793,
+                "numerator_minimum": 0.16164786746746834,
+                "numerator_maximum": 0.5487667321025644,
+                "denominator_minimum": 0.03751083266723547,
+                "denominator_maximum": 0.073596386637891
+              },
+              {
+                "envelope_id": "chwirut1:5:5.75",
+                "x": 5.75,
+                "prediction_minimum": 1.6961518465068848,
+                "prediction_maximum": 12.852888665569342,
+                "envelope_width": 11.15673681906246,
+                "b1_minimum": 0.1143012997627672,
+                "b1_maximum": 0.34711142232011793,
+                "numerator_minimum": 0.13589256368538596,
+                "numerator_maximum": 0.5182837153478699,
+                "denominator_minimum": 0.04032429820513906,
+                "denominator_maximum": 0.08011815921153988
+              },
+              {
+                "envelope_id": "chwirut1:5:6.0",
+                "x": 6.0,
+                "prediction_minimum": 1.4943469499554927,
+                "prediction_maximum": 12.069762315190758,
+                "envelope_width": 10.575415365235267,
+                "b1_minimum": 0.1143012997627672,
+                "b1_maximum": 0.34711142232011793,
+                "numerator_minimum": 0.1245972761128003,
+                "numerator_maximum": 0.5036831906297697,
+                "denominator_minimum": 0.0417309949837077,
+                "denominator_maximum": 0.08337908148874748
+              }
+            ],
+            "coverage": {
+              "available_point_count": 29,
+              "covered_point_count": 29,
+              "violation_point_count": 0,
+              "unavailable_point_count": 0,
+              "center_prediction_envelope_mismatch_count": 0
+            },
+            "maxEnvelopeWidth": 13.133600947691978,
+            "medianEnvelopeWidth": 11.794939953611312,
+            "maxResidualUpperBound": 10.619553467148037,
+            "medianResidualUpperBound": 7.090184997280081
+          }
+        ],
+        "parameterStability": {
+          "b1": {
+            "values": [
+              0.10197290606900491,
+              0.20155053784283966,
+              0.1838307841658672,
+              0.1837998732874438,
+              0.23070636104144254
+            ],
+            "minimum": 0.10197290606900491,
+            "maximum": 0.23070636104144254,
+            "median": 0.1838307841658672,
+            "range": 0.12873345497243763,
+            "median_local_standard_error": 0.02605552864954041
+          },
+          "b2": {
+            "values": [
+              0.0013481643928198739,
+              0.0065196578644481406,
+              0.006090058945361599,
+              0.006071281460854413,
+              0.006543609566912807
+            ],
+            "minimum": 0.0013481643928198739,
+            "maximum": 0.006543609566912807,
+            "median": 0.006090058945361599,
+            "range": 0.005195445174092934,
+            "median_local_standard_error": 0.0003796026582320257
+          },
+          "b3": {
+            "values": [
+              0.01607222940816946,
+              0.009725363401064573,
+              0.01068457994389589,
+              0.01071520700723592,
+              0.009335238111552463
+            ],
+            "minimum": 0.009335238111552463,
+            "maximum": 0.01607222940816946,
+            "median": 0.01068457994389589,
+            "range": 0.006736991296616998,
+            "median_local_standard_error": 0.0009273461921302365
+          }
+        },
+        "analysisScope": {
+          "refit": false,
+          "changed_center_or_covariance": false,
+          "radius": 4,
+          "radius_is_probability": false,
+          "taylor_prediction_approximation": false,
+          "original_nonlinear_model": true,
+          "continuous_interval_certificate": true,
+          "high_precision_decimal_digits": 80,
+          "outward_rounding": true,
+          "outward_relative_margin": 1e-24,
+          "exact_rational_certificate": false,
+          "probability_region": false,
+          "actual_coverage_is_external_validation": false,
+          "related_prior_dataset": {
+            "name": "Chwirut2",
+            "same_study": true,
+            "same_native_model_family": true,
+            "independent_model_family_or_laboratory_replication": false
+          }
+        },
+        "decision": {
+          "refit": false,
+          "probability_region_claimed": false,
+          "confidence_interval_claimed": false,
+          "exact_rational_certificate_claimed": false,
+          "all_parameters_or_all_x_certified": false,
+          "uncertified_folds_given_bounds": false,
+          "actual_coverage_used_as_probability": false,
+          "center_consistency_used_as_external_validation": false,
+          "rational_bounds_transferred_to_native": false,
+          "independent_model_family_claimed": false,
+          "independent_physical_experiment_claimed": false,
+          "failed_folds_hidden": false
+        },
+        "implementation": {
+          "protocolSha256": "f552cf2d476ca65cc63dbf245ea4993546af616426def2a862dbf22eab8fd2e9",
+          "summarySha256": "5795bb98f399366f8b7f35ebd754683742e6dc61e38bc6f1bccb4fcf6ccb91d2",
+          "analysisRunnerSha256": "4ad6f6e2d5877efaef45e23fc588521a920ad2a91c597d551f79d7d0769ea5e8",
+          "figureSha256": "d4841c5a591151b89635790a9246d0e196497baaec484afb61aa9104396e7b30",
+          "reportSha256": "7742d426330d038cdca9a352f6ae5e2c82e796cd8ff9b28094dad38605f62752",
+          "wordSha256": "c209e704dcd46c551e3cc0be259559e83d6e3d051c1ae1fffd854a2baa861b54"
+        },
+        "protocolCommits": {
+          "protocol": "aa28fc7"
+        }
+      },
+      "scientificClaim": "五折在半径 4 的显式椭球和连续留出区间内均通过分母正性检查，生成 22 个原始指数模型包络。最大包络宽度为 170.146309，中位宽度为 19.222110；214 点中心一致性全部通过，但这只是构造检查，不是概率覆盖或外部验证。",
+      "limitations": "证书仅覆盖所选椭球和连续区间，协方差只定义区域而不定义概率。独立分子和分母放松可能很宽，中心一致性不等于外部有效性；高精度外向数值证书不是精确有理证明，Chwirut1 与 Chwirut2 同研究同模型族。The ellipsoid is a chosen arithmetic region based on frozen local covariance, not a confidence or posterior region Certificates apply only to the defined ellipsoid and closed held-out interval, not all parameters, all x or physical reality Independent numerator and denominator relaxations are conservative and may produce very wide envelopes Center-prediction containment and actual-residual coverage are arithmetic consistency checks, not probability coverage or external scientific validation High-precision outward-rounded numerical certificates are not exact rational-algebra proofs Unavailable folds have no finite prediction or residual bound and are never silently dropped Chwirut1 shares its study and native model family with Chwirut2 and is not independent replication",
+      "upstreamContribution": "提供原生指数模型的连续分母支撑证书、原始非线性包络和宽度审计接口，把区域证明、中心一致性、实际信息量与概率解释明确分开。",
+      "snapshotFiles": [
+        "validation/chwirut1-native-ellipsoid-continuous-protocol.json",
+        "validation/chwirut1-native-ellipsoid-continuous-check.json",
+        "validation/frontier-chwirut1-native-ellipsoid-continuous-word.json"
       ]
     }
   ]

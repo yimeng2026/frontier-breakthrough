@@ -2111,6 +2111,72 @@
         "exports/native-sensitivity-threshold-coverage.json",
         "docs/NATIVE_SENSITIVITY_THRESHOLD_COVERAGE_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-center-coverage-external-validation",
+      "kind": "claim",
+      "title": "冻结中心落入包络且实际残差不超过上界即可构成外部科学验证或概率覆盖",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/chwirut1-native-ellipsoid-continuous-bounds.json"
+      ]
+    },
+    {
+      "id": "claim-finite-bound-high-information",
+      "kind": "claim",
+      "title": "存在有限预测或残差上界就等于具有高信息量和高精度",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/chwirut1-native-ellipsoid-continuous-bounds.json"
+      ]
+    },
+    {
+      "id": "evidence-chwirut1-native-ellipsoid-continuous",
+      "kind": "evidence",
+      "title": "五折连续分母均为正并生成 22 个原生包络；最大宽度 170.146309，中心一致性不是外部验证",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-native-ellipsoid-continuous-bounds.json",
+        "validation/chwirut1-native-ellipsoid-continuous-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-chwirut1-fold1-wide-native-envelope",
+      "kind": "counterexample",
+      "title": "第 1 折 x=0.5 的包络为 62.233292 至 232.379602，宽度 170.146309，有限上界的信息量有限",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-native-ellipsoid-continuous-bounds.json"
+      ]
+    },
+    {
+      "id": "counterexample-chwirut1-center-consistency-not-probability",
+      "kind": "counterexample",
+      "title": "214 点中心预测均在包络内且残差不越界，但中心本就在椭球内，不能当作概率覆盖或外部验证",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-native-ellipsoid-continuous-bounds.json"
+      ]
+    },
+    {
+      "id": "experiment-chwirut1-native-ellipsoid-continuous-protocol",
+      "kind": "experiment",
+      "title": "冻结半径 4 椭球、端点凹凸性、80 位精度和原始非线性包络规则，不重新拟合或优化半径",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-native-ellipsoid-continuous-protocol.json",
+        "scripts/analyze_chwirut1_native_ellipsoid_continuous.py"
+      ]
+    },
+    {
+      "id": "limitation-chwirut1-native-ellipsoid-region-scope",
+      "kind": "limitation",
+      "title": "证书仅覆盖所选椭球和连续区间，数值外向舍入不是精确有理证明，宽界和 Chwirut2 同族边界必须保留",
+      "status": "active",
+      "sourceFiles": [
+        "validation/chwirut1-native-ellipsoid-continuous-bounds.json",
+        "docs/CHWIRUT1_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -4938,6 +5004,131 @@
       "from": "counterexample-chwirut1-fold3-point-extreme",
       "to": "claim-sensitivity-rmse-ratio-calibrated-coverage",
       "relation": "contradicts"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-finite-bound-high-information",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-chwirut1-native-ellipsoid-continuous",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-chwirut1-fold1-wide-native-envelope",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-chwirut1-center-consistency-not-probability",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-chwirut1-native-ellipsoid-continuous-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-chwirut1-native-ellipsoid-region-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-chwirut1-native-ellipsoid-continuous",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-chwirut1-native-ellipsoid-continuous-protocol",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-chwirut1-native-ellipsoid-continuous",
+      "to": "claim-finite-bound-high-information",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-chwirut1-native-ellipsoid-continuous-protocol",
+      "to": "claim-finite-bound-high-information",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-chwirut1-fold1-wide-native-envelope",
+      "to": "claim-finite-bound-high-information",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-chwirut1-native-ellipsoid-continuous",
+      "to": "claim-native-pole-free-observations-global-safety",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-chwirut1-native-ellipsoid-continuous-protocol",
+      "to": "claim-native-pole-free-observations-global-safety",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-chwirut1-native-ellipsoid-continuous",
+      "to": "counterexample-chwirut1-fold1-wide-native-envelope",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-chwirut1-native-ellipsoid-region-scope",
+      "to": "evidence-chwirut1-native-ellipsoid-continuous",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-chwirut1-native-ellipsoid-region-scope",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-chwirut1-native-ellipsoid-region-scope",
+      "to": "claim-finite-bound-high-information",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-chwirut1-native-ellipsoid-continuous",
+      "to": "evidence-chwirut1-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-chwirut1-native-ellipsoid-continuous-protocol",
+      "to": "experiment-chwirut1-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-chwirut1-native-ellipsoid-continuous",
+      "to": "evidence-native-identifiability-cross-model",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-chwirut1-native-ellipsoid-continuous-protocol",
+      "to": "experiment-native-identifiability-cross-model-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-chwirut1-fold1-wide-native-envelope",
+      "to": "limitation-chwirut1-native-local-and-related-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-chwirut1-center-consistency-not-probability",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-chwirut1-native-ellipsoid-continuous",
+      "to": "counterexample-chwirut1-center-consistency-not-probability",
+      "relation": "supports"
     }
   ]
 }

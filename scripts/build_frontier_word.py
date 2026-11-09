@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "native_sensitivity_threshold_coverage":
+    if REPORT_MODE == "chwirut1_native_ellipsoid_continuous":
+        replacements = {
+            "图：`papers/51_Chwirut1原生椭球连续界/fig51_chwirut1_native_ellipsoid_continuous_bounds.png`。": "![](papers/51_Chwirut1原生椭球连续界/fig51_chwirut1_native_ellipsoid_continuous_bounds.png)\n\n**图 51｜Chwirut1 原生椭球连续分母与保守预测界（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联组图与读图顺序」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "五折连续分母证书、22 个原生包络与宽度信息审计"
+    elif REPORT_MODE == "native_sensitivity_threshold_coverage":
         replacements = {
             "图：`papers/50_三模型敏感度阈值覆盖/fig50_native_sensitivity_threshold_coverage.png`。": "![](papers/50_三模型敏感度阈值覆盖/fig50_native_sensitivity_threshold_coverage.png)\n\n**图 50｜三模型局部敏感度固定阈值覆盖审计（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联组图与读图顺序」；顺序第 1 幅，共 1 幅。",
         }

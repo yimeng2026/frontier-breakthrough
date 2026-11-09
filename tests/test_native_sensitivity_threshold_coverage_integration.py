@@ -14,7 +14,7 @@ class NativeSensitivityThresholdCoverageIntegrationTests(unittest.TestCase):
         packet = json.loads((ROOT / "exports/frontier-evidence.json").read_text(encoding="utf-8"))
         identifiers = {item["id"] for item in packet["items"]}
         self.assertIn("native-sensitivity-threshold-coverage", identifiers)
-        self.assertEqual(len(packet["items"]), 54)
+        self.assertEqual(len(packet["items"]), 55)
         item = next(item for item in packet["items"] if item["id"] == "native-sensitivity-threshold-coverage")
         metrics = item["metrics"]
         self.assertEqual(metrics["totals"]["point_count"], 407)
@@ -55,8 +55,8 @@ class NativeSensitivityThresholdCoverageIntegrationTests(unittest.TestCase):
         ]
         for identifier in identifiers:
             self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 225)
-        self.assertEqual(len(graph["edges"]), 565)
+        self.assertEqual(len(graph["nodes"]), 232)
+        self.assertEqual(len(graph["edges"]), 590)
         self.assertEqual(nodes["claim-local-sd-deterministic-residual-bound"]["status"], "falsified")
         self.assertEqual(nodes["claim-fold-ratio-pointwise-coverage"]["status"], "falsified")
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}
