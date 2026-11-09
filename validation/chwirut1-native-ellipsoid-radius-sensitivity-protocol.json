@@ -1,0 +1,91 @@
+{
+  "status": "frozen_before_chwirut1_native_ellipsoid_radius_sensitivity",
+  "frozen_at_local": "2026-11-09T11:25:18+08:00",
+  "analysis_type": "High-precision analytic critical-radius and fixed-grid sensitivity audit for native Chwirut1 exponential denominator certificates and conservative prediction envelopes; no refitting, radius optimization or probability-region claim",
+  "inputs": {
+    "native_identifiability": {
+      "file": "validation/chwirut1-native-identifiability.json",
+      "sha256": "e8e76516b05e8fd83f60df0ad93215ce41984ca562cc9e5140291f5f6ba72cc8"
+    },
+    "baseline_bounds": {
+      "file": "validation/chwirut1-native-ellipsoid-continuous-bounds.json",
+      "sha256": "5795bb98f399366f8b7f35ebd754683742e6dc61e38bc6f1bccb4fcf6ccb91d2",
+      "baseline_radius": 4
+    }
+  },
+  "critical_radius_rule": {
+    "unit_support": "For each endpoint x, compute s(x)=sqrt(C_b2b2+2*C_b2b3*x+C_b3b3*x^2) using the frozen covariance matrix",
+    "endpoint_radius": "When d_hat(x)>0, rho(x)=d_hat(x)/s(x); when d_hat(x)<=0, no positive denominator-safe radius exists at that endpoint",
+    "fold_radius": "rho_fold=min(rho_left,rho_right); record the limiting endpoint and both endpoint values",
+    "strict_rule": "Positive denominator certification requires radius < rho_fold; radius = rho_fold gives d_min = 0 and is not strictly positive, so no finite prediction envelope is generated",
+    "geometric_scope": "The critical radius is a geometric property of the selected ellipsoid and continuous interval, not a confidence level, optimal radius, physical parameter estimate or universal maximum",
+    "negative_control": "For every fold, verify that half the analytic critical radius is accepted and the exact critical radius is rejected by the same outward-rounded denominator implementation"
+  },
+  "grid_rule": {
+    "radii": [0.5, 1, 2, 4, 8],
+    "selection": "All five radii are frozen before inspecting case outcomes and are reported without selecting a preferred or optimal radius",
+    "case_count": 25,
+    "case_evaluation": "For each fold and radius, evaluate the continuous denominator at both endpoints and record certified or unavailable status, limiting reason and analytic radius relation",
+    "envelope_evaluation": "Only certified cases generate original nonlinear prediction envelopes at the fold's unique held-out distances and residual upper bounds for all observations",
+    "width_audit": "Report maximum and median envelope widths and residual upper bounds per case; unavailable cases retain null bounds rather than fabricated values",
+    "center_consistency": "Require every available center prediction to remain inside its envelope and actual residual not to exceed its upper bound; this is arithmetic consistency, not probability coverage or external validation",
+    "grid_maximum": "Report the largest certified radius within the fixed grid separately from the analytic critical radius; never call the grid maximum the exact safe maximum",
+    "maximum_point_evaluations": 1070,
+    "maximum_envelope_evaluations": 110
+  },
+  "baseline_rule": {
+    "radius": 4,
+    "preservation": "Recompute the radius-4 case and require certified_fold_count=5, available_point_count=214, covered_point_count=214, violation_point_count=0, unavailable_point_count=0 and center_prediction_envelope_mismatch_count=0, matching the frozen baseline totals",
+    "baseline_totals": "Require max_envelope_width=170.14630922307612, median_envelope_width=19.222110234669167, max_residual_upper_bound=165.679601537622 and median_residual_upper_bound=15.050994997990879",
+    "historical_preservation": "Do not rewrite the baseline bounds file or its report"
+  },
+  "numerical_rule": {
+    "engine": "Reuse the frozen 80-digit mpmath support, denominator and original nonlinear envelope implementation",
+    "outward_rounding": "Retain the 1e-24 relative margin and nextafter outward conversion",
+    "certificate_class": "High-precision numerical interval certificate, not exact rational algebra",
+    "failure_preservation": "Non-positive centers, non-positive-definite matrices, exact critical radii and unavailable cases are retained explicitly"
+  },
+  "expected_structure": {
+    "fold_count": 5,
+    "radius_count": 5,
+    "case_count": 25,
+    "held_out_point_count_per_case": 214,
+    "unique_distance_count": 22,
+    "maximum_point_evaluations": 1070,
+    "maximum_envelope_evaluations": 110,
+    "refit_count": 0
+  },
+  "output_rule": {
+    "summary": "validation/chwirut1-native-ellipsoid-radius-sensitivity.json",
+    "figure": "papers/52_Chwirut1原生椭球半径敏感性/fig52_chwirut1_native_ellipsoid_radius_sensitivity.png",
+    "report": "docs/CHWIRUT1_NATIVE_ELLIPSOID_RADIUS_SENSITIVITY_2026-11-09.md",
+    "word": "papers/前沿共生Chwirut1原生椭球半径敏感性_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "decision": {
+    "refit": false,
+    "probability_region_claimed": false,
+    "optimal_radius_selected": false,
+    "critical_radius_is_confidence_level": false,
+    "critical_radius_is_universal_maximum": false,
+    "grid_maximum_called_exact_safe_maximum": false,
+    "exact_critical_radius_accepted": false,
+    "unavailable_cases_given_bounds": false,
+    "center_consistency_used_as_external_validation": false,
+    "exact_rational_certificate_claimed": false,
+    "independent_model_family_claimed": false,
+    "failed_cases_hidden": false
+  },
+  "prohibitions": [
+    "No refitting, changed centers, changed covariance matrices, changed folds or post-hoc radius selection",
+    "No acceptance of the exact critical radius as strictly denominator-positive",
+    "No finite prediction or residual bound for unavailable or exact-critical cases",
+    "No probability, confidence, posterior, calibrated-coverage, optimal-radius or physical-endogeneity claim",
+    "No use of center-prediction containment or actual-residual coverage as independent scientific validation",
+    "No calling the largest certified grid radius the exact or universal safe maximum",
+    "No exact rational-certificate claim for the high-precision numerical intervals",
+    "No description of Chwirut1 as independent of the Chwirut2 study or native model family",
+    "No hiding of unavailable cases, limiting endpoints, wide envelopes or numerical failures"
+  ]
+}
