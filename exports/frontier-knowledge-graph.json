@@ -1541,6 +1541,61 @@
       "sourceFiles": [
         "validation/roszman1-native-holdout.json"
       ]
+    },
+    {
+      "id": "claim-local-rank-global-identifiability",
+      "kind": "claim",
+      "title": "五折局部数值满秩即可证明全局结构可识别性",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-native-identifiability.json"
+      ]
+    },
+    {
+      "id": "claim-prediction-stability-parameter-uniqueness",
+      "kind": "claim",
+      "title": "留出预测稳定即可证明参数唯一、恒定或物理内生",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-native-identifiability.json"
+      ]
+    },
+    {
+      "id": "evidence-roszman1-native-identifiability",
+      "kind": "evidence",
+      "title": "五折局部数值秩均为 4，最大条件数 90.743359、最大相关绝对值 0.987535，参数逐折变化明显",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-native-identifiability.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-native-parameter-variation",
+      "kind": "counterexample",
+      "title": "原生 RMSE 约为 0.006—0.010，但 b2 范围为 0.000010411859、b4 范围为 112.236141",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-native-identifiability.json"
+      ]
+    },
+    {
+      "id": "experiment-roszman1-native-identifiability-protocol",
+      "kind": "experiment",
+      "title": "在计算前冻结解析雅可比、SVD、局部协方差和 Delta-method 规则的只读诊断协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-native-identifiability-protocol.json",
+        "scripts/analyze_roszman1_native_identifiability.py"
+      ]
+    },
+    {
+      "id": "limitation-roszman1-native-local-linearization",
+      "kind": "limitation",
+      "title": "局部秩、标准误和敏感度不是全局可识别性、概率区间、物理内生性或原生确定性界",
+      "status": "active",
+      "sourceFiles": [
+        "validation/roszman1-native-identifiability.json"
+      ]
     }
   ],
   "edges": [
@@ -3262,6 +3317,96 @@
     {
       "from": "experiment-roszman1-native-holdout-protocol",
       "to": "claim-nist-reproduction",
+      "relation": "tests"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-local-rank-global-identifiability",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-prediction-stability-parameter-uniqueness",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-roszman1-native-identifiability",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-native-parameter-variation",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-roszman1-native-identifiability-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-roszman1-native-local-linearization",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-roszman1-native-identifiability",
+      "to": "claim-local-rank-global-identifiability",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-native-identifiability-protocol",
+      "to": "claim-local-rank-global-identifiability",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-roszman1-native-local-linearization",
+      "to": "claim-local-rank-global-identifiability",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-roszman1-native-identifiability",
+      "to": "claim-prediction-stability-parameter-uniqueness",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-native-parameter-variation",
+      "to": "claim-prediction-stability-parameter-uniqueness",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-roszman1-native-identifiability",
+      "to": "counterexample-roszman1-native-parameter-variation",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-roszman1-native-local-linearization",
+      "to": "evidence-roszman1-native-identifiability",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-roszman1-native-identifiability",
+      "to": "evidence-roszman1-native-holdout",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-native-identifiability-protocol",
+      "to": "experiment-roszman1-native-holdout-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-native-identifiability",
+      "to": "limitation-roszman1-native-no-bounds",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-native-identifiability",
+      "to": "claim-rational-bounds-transfer-native",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-native-identifiability-protocol",
+      "to": "claim-prediction-stability-parameter-uniqueness",
       "relation": "tests"
     }
   ]

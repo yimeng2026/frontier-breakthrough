@@ -66,6 +66,10 @@ def build_graph(root):
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
     nativeProtocol = json.loads((root / "validation/roszman1-native-holdout-protocol.json").read_text(encoding="utf-8"))
+    nativeIdentifiability = json.loads((root / "validation/roszman1-native-identifiability.json").read_text(encoding="utf-8"))
+    nativeIdentifiabilityProtocol = json.loads((root / "validation/roszman1-native-identifiability-protocol.json").read_text(encoding="utf-8"))
+    if nativeIdentifiability["totals"]["fold_count"] != 5 or nativeIdentifiability["totals"]["full_numerical_rank_fold_count"] != 5 or nativeIdentifiability["totals"]["local_diagnostic_failure_count"] != 0 or nativeIdentifiability["totals"]["max_scaled_condition_number"] != 90.74335888809009 or nativeIdentifiability["totals"]["max_absolute_off_diagonal_parameter_correlation"] != 0.9875352588520016 or nativeIdentifiability["parameter_stability"]["b2"]["range"] <= 1.0e-5 or nativeIdentifiability["parameter_stability"]["b4"]["range"] <= 112 or nativeIdentifiability["analysis_scope"]["refit"] or nativeIdentifiability["analysis_scope"]["global_identifiability"] or nativeIdentifiability["decision"]["prediction_stability_equals_parameter_uniqueness"] or nativeIdentifiability["decision"]["calibrated_prediction_intervals_produced"]:
+        raise ValueError("Expected native local-identifiability and parameter-stability boundaries are not present")
     if len(nativeHoldout["folds"]) != 5 or nativeHoldout["totals"]["point_count"] != 25 or nativeHoldout["totals"]["native_optimizer_failure_count"] != 0 or nativeHoldout["totals"]["native_better_than_rational_fold_count"] != 3 or nativeHoldout["totals"]["rational_better_than_native_fold_count"] != 2 or not nativeHoldout["known_answer"]["within_certified_tolerances"] or not nativeHoldout["analysis_scope"]["same_holdout_points"] or nativeHoldout["decision"]["rational_bounds_transferred_to_native"] or nativeHoldout["decision"]["certified_full_fit_used_as_holdout"] or nativeHoldout["folds"][0]["native_test_metrics"]["rmse"] <= nativeHoldout["folds"][0]["rational_candidate_test_metrics"]["rmse"] or nativeHoldout["folds"][4]["native_test_metrics"]["rmse"] >= nativeHoldout["folds"][4]["rational_candidate_test_metrics"]["rmse"] or nativeHoldout["pooled"]["native"]["rmse"] >= nativeHoldout["pooled"]["rational_candidate"]["rmse"]:
         raise ValueError("Expected native Roszman1 fold-specific comparison and proof separation are not present")
     if roszman1Coverage["totals"]["point_count"] != 25 or roszman1Coverage["totals"]["ellipsoid_available_point_count"] != 5 or roszman1Coverage["totals"]["continuous_safe_fold_count"] != 1 or roszman1Coverage["totals"]["independent_box_continuous_safe_fold_count"] != 0 or roszman1Coverage["totals"]["tighter_point_count"] != 4 or roszman1Coverage["totals"]["looser_point_count"] != 0 or any(point.get("ellipsoid_available", False) for point in roszman1Coverage["folds"][0]["point_results"]) or any(point.get("ellipsoid_available", False) for point in roszman1Coverage["folds"][3]["point_results"]) or any(point.get("ellipsoid_available", False) for point in roszman1Coverage["folds"][4]["point_results"]) or roszman1Coverage["folds"][0]["test_metrics"]["rmse"] >= roszman1Coverage["folds"][0]["baseline_test_metrics"]["rmse"] or roszman1Coverage["folds"][3]["test_metrics"]["rmse"] >= roszman1Coverage["folds"][3]["baseline_test_metrics"]["rmse"] or roszman1Coverage["folds"][4]["test_metrics"]["rmse"] <= roszman1Coverage["folds"][4]["baseline_test_metrics"]["rmse"] or roszman1Coverage["analysis_scope"]["scope_adapter_sha256"] != roszman1Protocol["implementation_rule"]["scope_adapter_sha256"]:
@@ -556,6 +560,34 @@ def build_graph(root):
         edge("experiment-roszman1-native-holdout-protocol", "experiment-roszman1-scoped-prospective-protocol", "supports"),
         edge("evidence-roszman1-native-holdout", "claim-nist-reproduction", "supports"),
         edge("experiment-roszman1-native-holdout-protocol", "claim-nist-reproduction", "tests"),
+    ])
+    nodes.extend([
+        node("claim-local-rank-global-identifiability", "claim", "五折局部数值满秩即可证明全局结构可识别性", "falsified", ["validation/roszman1-native-identifiability.json"]),
+        node("claim-prediction-stability-parameter-uniqueness", "claim", "留出预测稳定即可证明参数唯一、恒定或物理内生", "falsified", ["validation/roszman1-native-identifiability.json"]),
+        node("evidence-roszman1-native-identifiability", "evidence", "五折局部数值秩均为 4，最大条件数 90.743359、最大相关绝对值 0.987535，参数逐折变化明显", "supported", ["validation/roszman1-native-identifiability.json"]),
+        node("counterexample-roszman1-native-parameter-variation", "counterexample", "原生 RMSE 约为 0.006—0.010，但 b2 范围为 0.000010411859、b4 范围为 112.236141", "supported", ["validation/roszman1-native-identifiability.json"]),
+        node("experiment-roszman1-native-identifiability-protocol", "experiment", "在计算前冻结解析雅可比、SVD、局部协方差和 Delta-method 规则的只读诊断协议", "supported", ["validation/roszman1-native-identifiability-protocol.json", "scripts/analyze_roszman1_native_identifiability.py"]),
+        node("limitation-roszman1-native-local-linearization", "limitation", "局部秩、标准误和敏感度不是全局可识别性、概率区间、物理内生性或原生确定性界", "active", ["validation/roszman1-native-identifiability.json"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-local-rank-global-identifiability", "contains"),
+        edge("track-holdout", "claim-prediction-stability-parameter-uniqueness", "contains"),
+        edge("track-holdout", "evidence-roszman1-native-identifiability", "contains"),
+        edge("track-holdout", "counterexample-roszman1-native-parameter-variation", "contains"),
+        edge("track-holdout", "experiment-roszman1-native-identifiability-protocol", "contains"),
+        edge("track-holdout", "limitation-roszman1-native-local-linearization", "contains"),
+        edge("evidence-roszman1-native-identifiability", "claim-local-rank-global-identifiability", "contradicts"),
+        edge("experiment-roszman1-native-identifiability-protocol", "claim-local-rank-global-identifiability", "tests"),
+        edge("limitation-roszman1-native-local-linearization", "claim-local-rank-global-identifiability", "limits"),
+        edge("evidence-roszman1-native-identifiability", "claim-prediction-stability-parameter-uniqueness", "contradicts"),
+        edge("counterexample-roszman1-native-parameter-variation", "claim-prediction-stability-parameter-uniqueness", "contradicts"),
+        edge("evidence-roszman1-native-identifiability", "counterexample-roszman1-native-parameter-variation", "supports"),
+        edge("limitation-roszman1-native-local-linearization", "evidence-roszman1-native-identifiability", "limits"),
+        edge("evidence-roszman1-native-identifiability", "evidence-roszman1-native-holdout", "supports"),
+        edge("experiment-roszman1-native-identifiability-protocol", "experiment-roszman1-native-holdout-protocol", "supports"),
+        edge("evidence-roszman1-native-identifiability", "limitation-roszman1-native-no-bounds", "supports"),
+        edge("evidence-roszman1-native-identifiability", "claim-rational-bounds-transfer-native", "contradicts"),
+        edge("experiment-roszman1-native-identifiability-protocol", "claim-prediction-stability-parameter-uniqueness", "tests"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

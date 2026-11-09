@@ -45,7 +45,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "roszman1_native_holdout":
+    if REPORT_MODE == "roszman1_native_identifiability":
+        replacements = {
+            "图：`papers/40_Roszman1原生参数可识别性/fig40_roszman1_native_identifiability.png`。": "![](papers/40_Roszman1原生参数可识别性/fig40_roszman1_native_identifiability.png)\n\n**图 40｜Roszman1 原生参数局部可识别性与稳定性（第 1 幅，共 1 幅）**  \n**插入位置**：§5「图件与解释边界」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "五折解析雅可比、参数稳定性与局部预测敏感度"
+    elif REPORT_MODE == "roszman1_native_holdout":
         replacements = {
             "图：`papers/39_Roszman1原生反正切对照/fig39_roszman1_native_holdout.png`。": "![](papers/39_Roszman1原生反正切对照/fig39_roszman1_native_holdout.png)\n\n**图 39｜Roszman1 原生反正切与有理候选同折对照（第 1 幅，共 1 幅）**  \n**插入位置**：§5「图件与模型族解释」；顺序第 1 幅，共 1 幅。",
         }

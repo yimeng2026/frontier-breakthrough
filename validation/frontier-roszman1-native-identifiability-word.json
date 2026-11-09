@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生Roszman1原生参数可识别性_图文完整版.docx",
+  "bytes": 232762,
+  "sha256": "f3e25f378ee8713a2a755314c17e3a51742025321315e11c2c17fc7918d189c2",
+  "native_math_objects": 2,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

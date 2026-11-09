@@ -3698,6 +3698,230 @@
         "validation/roszman1-native-holdout.json",
         "validation/frontier-roszman1-native-holdout-word.json"
       ]
+    },
+    {
+      "id": "roszman1-native-identifiability",
+      "domain": "physics",
+      "title": "Roszman1 原生参数局部可识别性与逐折稳定性审计",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Roszman1.dat"
+      ],
+      "metrics": {
+        "totals": {
+          "fold_count": 5,
+          "training_point_count_per_fold": 20,
+          "held_out_point_count": 25,
+          "full_numerical_rank_fold_count": 5,
+          "local_diagnostic_failure_count": 0,
+          "max_scaled_condition_number": 90.74335888809009,
+          "max_absolute_off_diagonal_parameter_correlation": 0.9875352588520016,
+          "max_local_prediction_standard_deviation": 0.01679884344880718,
+          "native_test_rmse_minimum": 0.005867985323301031,
+          "native_test_rmse_maximum": 0.010044543789192596
+        },
+        "folds": [
+          {
+            "fold": 1,
+            "trainCount": 20,
+            "testCount": 5,
+            "nativeParameters": {
+              "b1": 0.2292803516874329,
+              "b2": -1.3342061270380534e-05,
+              "b3": 1152.3164257098174,
+              "b4": -103.07849289822492
+            },
+            "testMetrics": {
+              "rmse": 0.010044543789192596,
+              "mae": 0.0093813545812638,
+              "max_absolute_residual": 0.012589427867938652
+            },
+            "numericalRank": 4,
+            "scaledConditionNumber": 85.77567173387834,
+            "maxAbsoluteOffDiagonalParameterCorrelation": 0.9875352588520016,
+            "maxLocalPredictionStandardDeviation": 0.01563809649639307
+          },
+          {
+            "fold": 2,
+            "trainCount": 20,
+            "testCount": 5,
+            "nativeParameters": {
+              "b1": 0.22569167309144791,
+              "b2": -9.960102385755828e-06,
+              "b3": 1132.43327873089,
+              "b4": -118.23961841798726
+            },
+            "testMetrics": {
+              "rmse": 0.005867985323301031,
+              "mae": 0.005147725604337072,
+              "max_absolute_residual": 0.010149328860668216
+            },
+            "numericalRank": 4,
+            "scaledConditionNumber": 50.84552232985348,
+            "maxAbsoluteOffDiagonalParameterCorrelation": 0.9847518097638676,
+            "maxLocalPredictionStandardDeviation": 0.0029457967916287835
+          },
+          {
+            "fold": 3,
+            "trainCount": 20,
+            "testCount": 5,
+            "nativeParameters": {
+              "b1": 0.2056999448813056,
+              "b2": -6.15679942414781e-06,
+              "b3": 1151.3052953439342,
+              "b4": -186.57680096243791
+            },
+            "testMetrics": {
+              "rmse": 0.007531095882129697,
+              "mae": 0.006346510698175445,
+              "max_absolute_residual": 0.012957070974358664
+            },
+            "numericalRank": 4,
+            "scaledConditionNumber": 37.717786882235735,
+            "maxAbsoluteOffDiagonalParameterCorrelation": 0.9713440114219671,
+            "maxLocalPredictionStandardDeviation": 0.0016907357099819765
+          },
+          {
+            "fold": 4,
+            "trainCount": 20,
+            "testCount": 5,
+            "nativeParameters": {
+              "b1": 0.18803336453718733,
+              "b2": -4.328307495973435e-06,
+              "b3": 1273.760984384406,
+              "b4": -214.41043744014524
+            },
+            "testMetrics": {
+              "rmse": 0.0074538301584031715,
+              "mae": 0.0064379793156427055,
+              "max_absolute_residual": 0.011108454833014147
+            },
+            "numericalRank": 4,
+            "scaledConditionNumber": 44.56588222583884,
+            "maxAbsoluteOffDiagonalParameterCorrelation": 0.977737125658543,
+            "maxLocalPredictionStandardDeviation": 0.0017948499204863961
+          },
+          {
+            "fold": 5,
+            "trainCount": 20,
+            "testCount": 5,
+            "nativeParameters": {
+              "b1": 0.17774808044705184,
+              "b2": -2.9302024880012e-06,
+              "b3": 1333.5131337016676,
+              "b4": -215.31463429171575
+            },
+            "testMetrics": {
+              "rmse": 0.006228106060478816,
+              "mae": 0.005369437785870512,
+              "max_absolute_residual": 0.010493518518655431
+            },
+            "numericalRank": 4,
+            "scaledConditionNumber": 90.74335888809009,
+            "maxAbsoluteOffDiagonalParameterCorrelation": 0.9874906983854851,
+            "maxLocalPredictionStandardDeviation": 0.01679884344880718
+          }
+        ],
+        "parameterStability": {
+          "b1": {
+            "values": [
+              0.2292803516874329,
+              0.22569167309144791,
+              0.2056999448813056,
+              0.18803336453718733,
+              0.17774808044705184
+            ],
+            "minimum": 0.17774808044705184,
+            "maximum": 0.2292803516874329,
+            "median": 0.2056999448813056,
+            "range": 0.05153227124038107,
+            "median_local_standard_error": 0.025726823900685633
+          },
+          "b2": {
+            "values": [
+              -1.3342061270380534e-05,
+              -9.960102385755828e-06,
+              -6.15679942414781e-06,
+              -4.328307495973435e-06,
+              -2.9302024880012e-06
+            ],
+            "minimum": -1.3342061270380534e-05,
+            "maximum": -2.9302024880012e-06,
+            "median": -6.15679942414781e-06,
+            "range": 1.0411858782379334e-05,
+            "median_local_standard_error": 4.19602303663106e-06
+          },
+          "b3": {
+            "values": [
+              1152.3164257098174,
+              1132.43327873089,
+              1151.3052953439342,
+              1273.760984384406,
+              1333.5131337016676
+            ],
+            "minimum": 1132.43327873089,
+            "maximum": 1333.5131337016676,
+            "median": 1152.3164257098174,
+            "range": 201.07985497077766,
+            "median_local_standard_error": 95.67680907393209
+          },
+          "b4": {
+            "values": [
+              -103.07849289822492,
+              -118.23961841798726,
+              -186.57680096243791,
+              -214.41043744014524,
+              -215.31463429171575
+            ],
+            "minimum": -215.31463429171575,
+            "maximum": -103.07849289822492,
+            "median": -186.57680096243791,
+            "range": 112.23614139349083,
+            "median_local_standard_error": 60.8327180819764
+          }
+        },
+        "analysisScope": {
+          "post_hoc": true,
+          "refit": false,
+          "new_model_or_parameters": false,
+          "new_holdout_selection": false,
+          "analytic_jacobian": true,
+          "local_linearization": true,
+          "calibrated_interval": false,
+          "global_identifiability": false,
+          "independent_validation": false
+        },
+        "decision": {
+          "refit": false,
+          "global_structural_identifiability_proved": false,
+          "physical_parameter_endogeneity_proved": false,
+          "calibrated_prediction_intervals_produced": false,
+          "rational_bounds_transferred_to_native": false,
+          "independent_physical_experiment_claimed": false,
+          "prediction_stability_equals_parameter_uniqueness": false,
+          "rank_deficiency_hidden": false
+        },
+        "implementation": {
+          "protocolSha256": "84df1ef78ff2a703fbdb7268467ab7fcbd1dd3b81bb31bb024d4bce9fdd6df7e",
+          "nativeHoldoutSha256": "c8678e4635a23a9bf7a59233259c48c4307911df4dd50cf6e102cc8cb975e90e",
+          "dataSha256": "fb526231ae6b02929e3de54e072e259b3d87424089abd4b1015ffb946b1e0ab0",
+          "analysisRunnerSha256": "297799a25420e090d5df642b9c809e8bce9f1fb5e28bfb87e758373ee6ab7f30"
+        },
+        "protocolCommits": {
+          "protocol": "d5f7753",
+          "results": "bc80dc5"
+        }
+      },
+      "scientificClaim": "五折局部数值秩均为 4，最大缩放条件数为 90.743359，最大参数相关绝对值为 0.987535。b2 和 b4 在五折中的范围分别为 0.000010411859 和 112.236141；预测较稳定并不冻结参数，局部满秩也不证明全局可识别。",
+      "limitations": "解析雅可比、局部标准误、相关矩阵和 Delta-method 敏感度只描述冻结拟合附近，不是全局可识别性、概率区间、物理内生性或独立实验。Local Jacobians, numerical ranks, covariances and delta-method sensitivities do not prove global structural identifiability or calibrated uncertainty Column-normalized condition numbers reduce unit-scale dominance but do not remove nonlinear parameter compensation Stable held-out RMSE does not imply unique, invariant or physically endogenous parameters Parameter variation across folds is descriptive and is not a posterior distribution or independent physical estimate No rational denominator, ellipsoid, box or continuous-safety claim is transferred to the native arctangent model",
+      "upstreamContribution": "将解析雅可比、局部秩、条件数、参数补偿、逐折参数范围和留出敏感度连接到原生预测对照，阻止把预测稳定升级为参数唯一性证明。",
+      "snapshotFiles": [
+        "validation/roszman1-native-identifiability-protocol.json",
+        "validation/roszman1-native-identifiability.json",
+        "validation/frontier-roszman1-native-identifiability-word.json"
+      ]
     }
   ]
 }

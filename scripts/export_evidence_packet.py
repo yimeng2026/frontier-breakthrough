@@ -73,6 +73,8 @@ def build() -> dict:
     roszman1Protocol = read("roszman1-ellipsoid-coverage-protocol.json")
     nativeHoldout = read("roszman1-native-holdout.json")
     nativeProtocol = read("roszman1-native-holdout-protocol.json")
+    nativeIdentifiability = read("roszman1-native-identifiability.json")
+    nativeIdentifiabilityProtocol = read("roszman1-native-identifiability-protocol.json")
     externalScopeAmendment = read("external-scope-limitations-amendment-01-audit.json")
     ensoCoverage = read("enso-ellipsoid-coverage.json")
     ensoProtocol = read("enso-ellipsoid-coverage-protocol.json")
@@ -630,6 +632,24 @@ def build() -> dict:
             "limitations": "原生模型没有继承有理分母、椭球、参数盒或连续安全证书；全数据认证拟合不是留出证据，25 点描述性汇总不是概率校准、物理内生或独立实验。" + " ".join(nativeHoldout["limitations"]),
             "upstreamContribution": "把原生公式已知答案、逐折胜负、25 点汇总、优化失败保留和证明区域分离接入同一可复核接口，防止模型族混淆和全域排名。",
             "snapshotFiles": ["validation/roszman1-native-holdout-protocol.json", "validation/roszman1-native-holdout.json", "validation/frontier-roszman1-native-holdout-word.json"],
+        },
+        {
+            "id": "roszman1-native-identifiability", "domain": "physics", "title": "Roszman1 原生参数局部可识别性与逐折稳定性审计",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Roszman1.dat"],
+            "metrics": {
+                "totals": nativeIdentifiability["totals"],
+                "folds": [{"fold": case["fold"], "trainCount": case["train_count"], "testCount": case["test_count"], "nativeParameters": case["native_parameters"], "testMetrics": case["test_metrics"], "numericalRank": case["training_jacobian"]["numerical_rank"], "scaledConditionNumber": case["training_jacobian"]["scaled_condition_number"], "maxAbsoluteOffDiagonalParameterCorrelation": case["training_jacobian"]["max_absolute_off_diagonal_parameter_correlation"], "maxLocalPredictionStandardDeviation": case["held_out_prediction_sensitivity"]["max_local_standard_deviation"]} for case in nativeIdentifiability["folds"]],
+                "parameterStability": nativeIdentifiability["parameter_stability"],
+                "analysisScope": nativeIdentifiability["analysis_scope"],
+                "decision": nativeIdentifiability["decision"],
+                "implementation": {"protocolSha256": nativeIdentifiability["protocol_sha256"], "nativeHoldoutSha256": nativeIdentifiability["native_holdout_sha256"], "dataSha256": nativeIdentifiability["data_sha256"], "analysisRunnerSha256": nativeIdentifiability["analysis_runner_sha256"]},
+                "protocolCommits": {"protocol": "d5f7753", "results": "bc80dc5"},
+            },
+            "scientificClaim": "五折局部数值秩均为 4，最大缩放条件数为 90.743359，最大参数相关绝对值为 0.987535。b2 和 b4 在五折中的范围分别为 0.000010411859 和 112.236141；预测较稳定并不冻结参数，局部满秩也不证明全局可识别。",
+            "limitations": "解析雅可比、局部标准误、相关矩阵和 Delta-method 敏感度只描述冻结拟合附近，不是全局可识别性、概率区间、物理内生性或独立实验。" + " ".join(nativeIdentifiability["limitations"]),
+            "upstreamContribution": "将解析雅可比、局部秩、条件数、参数补偿、逐折参数范围和留出敏感度连接到原生预测对照，阻止把预测稳定升级为参数唯一性证明。",
+            "snapshotFiles": ["validation/roszman1-native-identifiability-protocol.json", "validation/roszman1-native-identifiability.json", "validation/frontier-roszman1-native-identifiability-word.json"],
         },
     ]
     packet = {
