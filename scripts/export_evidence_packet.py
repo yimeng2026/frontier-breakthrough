@@ -121,6 +121,8 @@ def build() -> dict:
     ensoPhaseCheck = read("enso-phase-interval-triple-check.json")
     chwirutLog = read("chwirut1-log-support-intersection.json")
     chwirutLogCheck = read("chwirut1-log-support-check.json")
+    roszmanJoint = read("roszman1-joint-linear-arctan-intersection.json")
+    roszmanJointCheck = read("roszman1-joint-linear-arctan-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -1481,6 +1483,65 @@ def build() -> dict:
             "limitations": "分母割线与三条切线的支撑不是全局非线性最优，交集也不是全局最优；候选只验证实现一致性。Chwirut1 与 Chwirut2 同研究同模型族，不是独立复现；高精度数值区间不是概率区域。" + " ".join(chwirutLog["limitations"]),
             "upstreamContribution": "提供正分母对数割线切线、全协方差支撑、指数化交集和原生候选接口，展示独立极值组合的保守性以及模型专属的收紧方式。",
             "snapshotFiles": ["validation/chwirut1-log-support-protocol.json", "validation/chwirut1-log-support-check.json", "validation/frontier-chwirut1-log-support-word.json"],
+        },
+        {
+            "id": "roszman1-joint-linear-arctan-intersection", "domain": "physics", "title": "Roszman1 联合线性支撑与反正切交集",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Roszman1.dat"],
+            "metrics": {
+                "totals": roszmanJoint["totals"],
+                "folds": [{
+                    "fold": fold["fold"],
+                    "nativeTestRmse": fold["native_test_rmse"],
+                    "predictionEnvelopeAvailable": fold["prediction_envelope_available"],
+                    "unavailableReason": fold["unavailable_reason"],
+                    "candidateDirections": fold["candidate_directions"],
+                    "candidateEvaluationCount": fold["candidate_evaluation_count"],
+                    "alternativeTighterCount": fold["alternative_tighter_count"],
+                    "alternativeWiderCount": fold["alternative_wider_count"],
+                    "alternativeEqualCount": fold["alternative_equal_count"],
+                    "intersectionTightenedCount": fold["intersection_tightened_count"],
+                    "intersectionUnchangedCount": fold["intersection_unchanged_count"],
+                    "intersectionBoundChangedCount": fold["intersection_bound_changed_count"],
+                    "nonemptyIntersectionCount": fold["nonempty_intersection_count"],
+                    "alternativeCandidateViolationCount": fold["alternative_candidate_violation_count"],
+                    "intersectionCandidateViolationCount": fold["intersection_candidate_violation_count"],
+                    "independentCandidateViolationCount": fold["independent_candidate_violation_count"],
+                    "candidateFeasibilityFailureCount": fold["candidate_feasibility_failure_count"],
+                    "centerPredictionMismatchCount": fold["center_prediction_mismatch_count"],
+                    "coveredPointCount": fold["covered_point_count"],
+                    "violationPointCount": fold["violation_point_count"],
+                    "unavailablePointCount": fold["unavailable_point_count"],
+                    "minAlternativeToIndependentWidthRatio": fold["min_alternative_to_independent_width_ratio"],
+                    "medianAlternativeToIndependentWidthRatio": fold["median_alternative_to_independent_width_ratio"],
+                    "maxAlternativeToIndependentWidthRatio": fold["max_alternative_to_independent_width_ratio"],
+                    "minIntersectionToIndependentWidthRatio": fold["min_intersection_to_independent_width_ratio"],
+                    "medianIntersectionToIndependentWidthRatio": fold["median_intersection_to_independent_width_ratio"],
+                    "maxIntersectionToIndependentWidthRatio": fold["max_intersection_to_independent_width_ratio"],
+                    "maxIntersectionWidthReduction": fold["max_intersection_width_reduction"],
+                    "medianIntersectionWidthReduction": fold["median_intersection_width_reduction"],
+                    "largestIntersectionTightening": fold["largest_intersection_tightening"],
+                    "envelopes": fold["envelopes"],
+                    "points": fold["points"],
+                } for fold in roszmanJoint["folds"]],
+                "knownAnswer": roszmanJoint["known_answer"],
+                "fullNonlinearGlobalOptimum": roszmanJoint["full_nonlinear_global_optimum"],
+                "analysisScope": roszmanJoint["analysis_scope"],
+                "decision": roszmanJoint["decision"],
+                "implementation": {
+                    "protocolSha256": roszmanJoint["protocol_sha256"],
+                    "summarySha256": roszmanJointCheck["summarySha256"],
+                    "analysisRunnerSha256": roszmanJointCheck["analysisRunnerSha256"],
+                    "figureSha256": roszmanJointCheck["figureSha256"],
+                    "reportSha256": roszmanJointCheck["reportSha256"],
+                    "wordSha256": roszmanJointCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "1d6304d"},
+            },
+            "scientificClaim": "前四折 20 个 Roszman1 可用点的联合替代界与交集全部收紧，宽度比中位数为 0.690796；第 1 折 x=-4868.68 最大减少 0.700859。32 个协方差支撑方向的 160 次候选全部通过，20 个可用观测点全部一致；第 5 折 5 个点仍无有限包络。",
+            "limitations": "只对线性 b1-b2x 部分联合支撑，反正切参数相关性未完全联合求解，不是完整非线性最优。候选只验证实现一致性；第 5 折继续不可用，中心和残差一致性不是概率覆盖或独立实验。" + " ".join(roszmanJoint["limitations"]),
+            "upstreamContribution": "提供线性联合支撑与反正切区间交集接口，展示独立线性角点的保守性，同时保留第 5 折奇异不可用反例和全协方差候选记录。",
+            "snapshotFiles": ["validation/roszman1-joint-linear-arctan-protocol.json", "validation/roszman1-joint-linear-arctan-check.json", "validation/frontier-roszman1-joint-linear-arctan-word.json"],
         },
     ]
     packet = {

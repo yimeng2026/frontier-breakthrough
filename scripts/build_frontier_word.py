@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "chwirut1_log_support":
+    if REPORT_MODE == "roszman1_joint_linear_arctan":
+        replacements = {
+            "图：`papers/61_Roszman1联合线性反正切交集/fig61_roszman1_joint_linear_arctan_intersection.png`。": "![](papers/61_Roszman1联合线性反正切交集/fig61_roszman1_joint_linear_arctan_intersection.png)\n\n**图 61｜Roszman1 联合线性支撑与反正切交集（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联图与证据边界」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "20 个收紧点、160 次候选复核与第 5 折奇异不可用反例"
+    elif REPORT_MODE == "chwirut1_log_support":
         replacements = {
             "图：`papers/60_Chwirut1对数支撑交集/fig60_chwirut1_log_support_intersection.png`。": "![](papers/60_Chwirut1对数支撑交集/fig60_chwirut1_log_support_intersection.png)\n\n**图 60｜Chwirut1 对数支撑与保守交集（第 1 幅，共 1 幅）**  \n**插入位置**：§6「四联图与证据边界」；顺序第 1 幅，共 1 幅。",
         }

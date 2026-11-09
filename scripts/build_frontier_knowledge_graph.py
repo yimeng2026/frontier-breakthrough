@@ -117,6 +117,9 @@ def build_graph(root):
     chwirutLog = json.loads((root / "validation/chwirut1-log-support-intersection.json").read_text(encoding="utf-8"))
     if chwirutLog["totals"]["held_out_point_count"] != 214 or chwirutLog["totals"]["unique_distance_count"] != 22 or chwirutLog["totals"]["log_alternative_bound_count"] != 22 or chwirutLog["totals"]["intersection_bound_count"] != 22 or chwirutLog["totals"]["candidate_direction_count"] != 30 or chwirutLog["totals"]["candidate_evaluation_count"] != 132 or chwirutLog["totals"]["alternative_tighter_count"] != 22 or chwirutLog["totals"]["alternative_wider_count"] != 0 or chwirutLog["totals"]["intersection_tightened_count"] != 22 or chwirutLog["totals"]["intersection_unchanged_count"] != 0 or chwirutLog["totals"]["nonempty_intersection_count"] != 22 or chwirutLog["totals"]["alternative_candidate_violation_count"] != 0 or chwirutLog["totals"]["intersection_candidate_violation_count"] != 0 or chwirutLog["totals"]["independent_candidate_violation_count"] != 0 or chwirutLog["totals"]["covered_point_count"] != 214 or chwirutLog["totals"]["violation_point_count"] != 0 or chwirutLog["totals"]["median_intersection_to_independent_width_ratio"] != 0.25654045819729265 or chwirutLog["totals"]["max_intersection_width_reduction"] != 20.935447900396312 or chwirutLog["totals"]["largest_intersection_tightening"]["x"] != 1.5 or not chwirutLog["independent_receipt_verified"] or chwirutLog["decision"]["log_alternative_is_global_optimum"] or chwirutLog["decision"]["candidate_checks_replace_log_proof"]:
         raise ValueError("Expected Chwirut1 log-support tightening, candidates and related-model boundaries are not present")
+    roszmanJoint = json.loads((root / "validation/roszman1-joint-linear-arctan-intersection.json").read_text(encoding="utf-8"))
+    if roszmanJoint["totals"]["held_out_point_count"] != 25 or roszmanJoint["totals"]["available_point_count"] != 20 or roszmanJoint["totals"]["unavailable_point_count"] != 5 or roszmanJoint["totals"]["unavailable_fold_ids"] != [5] or roszmanJoint["totals"]["joint_alternative_bound_count"] != 20 or roszmanJoint["totals"]["intersection_bound_count"] != 20 or roszmanJoint["totals"]["candidate_direction_count"] != 32 or roszmanJoint["totals"]["candidate_evaluation_count"] != 160 or roszmanJoint["totals"]["alternative_tighter_count"] != 20 or roszmanJoint["totals"]["alternative_wider_count"] != 0 or roszmanJoint["totals"]["intersection_tightened_count"] != 20 or roszmanJoint["totals"]["intersection_unchanged_count"] != 0 or roszmanJoint["totals"]["nonempty_intersection_count"] != 20 or roszmanJoint["totals"]["alternative_candidate_violation_count"] != 0 or roszmanJoint["totals"]["intersection_candidate_violation_count"] != 0 or roszmanJoint["totals"]["independent_candidate_violation_count"] != 0 or roszmanJoint["totals"]["covered_point_count"] != 20 or roszmanJoint["totals"]["violation_point_count"] != 0 or roszmanJoint["totals"]["median_intersection_to_independent_width_ratio"] != 0.690796188558053 or roszmanJoint["totals"]["max_intersection_width_reduction"] != 0.7008593776977347 or roszmanJoint["totals"]["largest_intersection_tightening"]["x"] != -4868.68 or not roszmanJoint["independent_receipt_verified"] or roszmanJoint["decision"]["fold5_given_finite_bound"] or roszmanJoint["decision"]["joint_alternative_is_global_optimum"]:
+        raise ValueError("Expected Roszman1 joint-linear tightening, unavailable fold and candidate boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -1367,6 +1370,50 @@ def build_graph(root):
         edge("experiment-chwirut1-log-support-protocol", "experiment-chwirut1-native-radius-sensitivity-protocol", "supports"),
         edge("experiment-chwirut1-log-support-protocol", "claim-knowledge-graph", "tests"),
         edge("limitation-chwirut1-log-support-scope", "claim-chwirut-extrapolation", "limits"),
+    ])
+    nodes.extend([
+        node("claim-independent-linear-corners-tightest", "claim", "独立 b1、b2 线性角点与反正切区间的组合已经给出 Roszman1 最紧有效包络", "falsified", ["validation/roszman1-joint-linear-arctan-intersection.json"]),
+        node("claim-joint-linear-arctan-global-optimum", "claim", "线性联合支撑与原有反正切区间的交集就是完整非线性全局最优界", "falsified", ["validation/roszman1-joint-linear-arctan-intersection.json"]),
+        node("evidence-roszman1-joint-linear-arctan", "evidence", "前四折 20 个可用点的联合替代界与交集全部收紧，宽度比中位数 0.690796，160 个候选和 20 个观测点全部一致", "supported", ["validation/roszman1-joint-linear-arctan-intersection.json", "validation/roszman1-joint-linear-arctan-check.json"]),
+        node("evidence-roszman1-fold1-joint-tightening", "evidence", "第 1 折 x=-4868.68 的包络从 -0.190962—0.676330 收紧到 0.159467—0.325900，宽度减少 0.700859", "supported", ["validation/roszman1-joint-linear-arctan-intersection.json", "docs/ROSZMAN1_JOINT_LINEAR_ARCTAN_INTERSECTION_2026-11-09.md"]),
+        node("counterexample-roszman1-fold5-still-unavailable", "counterexample", "第 5 折 x-b4 跨零，5 个点仍无有限包络，未生成替代界、交集或有限残差上界，不能因前四折收紧而隐藏", "supported", ["validation/roszman1-joint-linear-arctan-intersection.json", "docs/ROSZMAN1_JOINT_LINEAR_ARCTAN_INTERSECTION_2026-11-09.md"]),
+        node("experiment-roszman1-joint-linear-protocol", "experiment", "冻结 b1-b2x 联合支撑、原有反正切区间、交集及前四折 32 个候选方向的 160 次原生评价", "supported", ["validation/roszman1-joint-linear-arctan-protocol.json", "scripts/analyze_roszman1_joint_linear_arctan.py"]),
+        node("counterexample-roszman1-candidate-not-global-proof", "counterexample", "160 个候选全部包含只验证实现一致性，候选方向不是全局优化器，线性联合与反正切区间之和也不是完整非线性最优", "supported", ["validation/roszman1-joint-linear-arctan-intersection.json"]),
+        node("limitation-roszman1-joint-linear-arctan-scope", "limitation", "只对线性部分联合支撑，反正切相关性未完全联合求解；第 5 折继续不可用，候选和中心一致性不是概率覆盖或独立实验", "active", ["validation/roszman1-joint-linear-arctan-intersection.json", "docs/ROSZMAN1_JOINT_LINEAR_ARCTAN_INTERSECTION_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-independent-linear-corners-tightest", "contains"),
+        edge("track-holdout", "claim-joint-linear-arctan-global-optimum", "contains"),
+        edge("track-holdout", "evidence-roszman1-joint-linear-arctan", "contains"),
+        edge("track-holdout", "evidence-roszman1-fold1-joint-tightening", "contains"),
+        edge("track-holdout", "counterexample-roszman1-fold5-still-unavailable", "contains"),
+        edge("track-holdout", "experiment-roszman1-joint-linear-protocol", "contains"),
+        edge("track-holdout", "counterexample-roszman1-candidate-not-global-proof", "contains"),
+        edge("track-holdout", "limitation-roszman1-joint-linear-arctan-scope", "contains"),
+        edge("evidence-roszman1-joint-linear-arctan", "claim-independent-linear-corners-tightest", "contradicts"),
+        edge("experiment-roszman1-joint-linear-protocol", "claim-independent-linear-corners-tightest", "tests"),
+        edge("evidence-roszman1-fold1-joint-tightening", "claim-independent-linear-corners-tightest", "contradicts"),
+        edge("evidence-roszman1-joint-linear-arctan", "evidence-roszman1-fold1-joint-tightening", "supports"),
+        edge("evidence-roszman1-joint-linear-arctan", "claim-joint-linear-arctan-global-optimum", "contradicts"),
+        edge("experiment-roszman1-joint-linear-protocol", "claim-joint-linear-arctan-global-optimum", "tests"),
+        edge("counterexample-roszman1-fold5-still-unavailable", "claim-roszman-fold5-low-rmse-singularity-safe", "contradicts"),
+        edge("counterexample-roszman1-fold5-still-unavailable", "counterexample-roszman1-fold5-crossing-singularity", "supports"),
+        edge("evidence-roszman1-joint-linear-arctan", "counterexample-roszman1-fold5-still-unavailable", "supports"),
+        edge("counterexample-roszman1-candidate-not-global-proof", "limitation-roszman1-joint-linear-arctan-scope", "supports"),
+        edge("limitation-roszman1-joint-linear-arctan-scope", "evidence-roszman1-joint-linear-arctan", "limits"),
+        edge("limitation-roszman1-joint-linear-arctan-scope", "claim-independent-linear-corners-tightest", "limits"),
+        edge("limitation-roszman1-joint-linear-arctan-scope", "claim-joint-linear-arctan-global-optimum", "limits"),
+        edge("evidence-roszman1-joint-linear-arctan", "evidence-roszman1-native-ellipsoid-continuous", "supports"),
+        edge("experiment-roszman1-joint-linear-protocol", "experiment-roszman1-native-ellipsoid-continuous-protocol", "supports"),
+        edge("evidence-roszman1-joint-linear-arctan", "evidence-native-ellipsoid-cross-model", "supports"),
+        edge("experiment-roszman1-joint-linear-protocol", "experiment-native-ellipsoid-cross-model-protocol", "supports"),
+        edge("evidence-roszman1-joint-linear-arctan", "evidence-native-identifiability-cross-model", "supports"),
+        edge("experiment-roszman1-joint-linear-protocol", "claim-center-coverage-external-validation", "tests"),
+        edge("limitation-roszman1-joint-linear-arctan-scope", "claim-center-coverage-external-validation", "limits"),
+        edge("evidence-roszman1-joint-linear-arctan", "evidence-roszman1-native-identifiability", "supports"),
+        edge("experiment-roszman1-joint-linear-protocol", "experiment-roszman1-native-identifiability-protocol", "supports"),
+        edge("experiment-roszman1-joint-linear-protocol", "claim-knowledge-graph", "tests"),
+        edge("limitation-roszman1-joint-linear-arctan-scope", "claim-prediction-stability-parameter-uniqueness", "limits"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

@@ -4548,29 +4548,29 @@
         "errorCount": 0,
         "groups": {
           "readme_local_links": {
-            "count": 118,
+            "count": 120,
             "errors": []
           },
           "document_figure_links": {
-            "count": 61,
+            "count": 62,
             "errors": []
           },
           "word_manifests": {
-            "count": 53,
+            "count": 54,
             "errors": []
           },
           "evidence_snapshots": {
-            "count": 217,
+            "count": 220,
             "errors": []
           },
           "knowledge_graph": {
-            "nodes": 305,
-            "edges": 866,
+            "nodes": 313,
+            "edges": 898,
             "errors": []
           },
           "protocol_inputs": {
-            "count": 30,
-            "recordsChecked": 88,
+            "count": 31,
+            "recordsChecked": 93,
             "errors": []
           },
           "corpus_v2": {
@@ -4580,9 +4580,9 @@
             "errors": []
           },
           "dynamic_counts": {
-            "evidenceItems": 64,
-            "graphNodes": 305,
-            "graphEdges": 866,
+            "evidenceItems": 65,
+            "graphNodes": 313,
+            "graphEdges": 898,
             "readme_consistent": true,
             "errors": []
           }
@@ -4593,7 +4593,7 @@
           "scientific_truth_claimed": false,
           "historical_text_rewritten": false
         },
-        "rulesSha256": "09883afec8f6846db340a7e6b9185e9df8b56b09b90facb1ab4666cdec92d56d",
+        "rulesSha256": "a39a7d821555d99f9abebe0a79aaaaafe816eb8cba2e365d587707d22489e425",
         "analysisRunnerSha256": "403aabb3f22e6fa26eca8595777df16c1f5be34f6f948de7f1c8e7f8f20effdf",
         "previousReceiptPreserved": true,
         "protocolCommits": {
@@ -4601,7 +4601,7 @@
           "audit": "24dc02f"
         }
       },
-      "scientificClaim": "当前范围内 118 个 README 本地链接、61 个报告图片路径、53 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 30 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
+      "scientificClaim": "当前范围内 120 个 README 本地链接、62 个报告图片路径、54 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 31 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
       "limitations": "审计只验证本地结构、路径、哈希和计数，不检查外部网页，不进行视觉渲染验收，不证明科学理论为真，也不把历史旧计数误判为错误。",
       "upstreamContribution": "提供可重复的负例门禁、动态 JSON/README 计数核对和显式 --refresh 历史收据保留机制，防止链接、Word、图谱和协议在持续研究中漂移。",
       "snapshotFiles": [
@@ -60052,6 +60052,3608 @@
         "validation/chwirut1-log-support-protocol.json",
         "validation/chwirut1-log-support-check.json",
         "validation/frontier-chwirut1-log-support-word.json"
+      ]
+    },
+    {
+      "id": "roszman1-joint-linear-arctan-intersection",
+      "domain": "physics",
+      "title": "Roszman1 联合线性支撑与反正切交集",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Roszman1.dat"
+      ],
+      "metrics": {
+        "totals": {
+          "fold_count": 5,
+          "held_out_point_count": 25,
+          "available_point_count": 20,
+          "unavailable_point_count": 5,
+          "unavailable_fold_ids": [
+            5
+          ],
+          "joint_alternative_bound_count": 20,
+          "intersection_bound_count": 20,
+          "candidate_direction_count": 32,
+          "candidate_evaluation_count": 160,
+          "alternative_tighter_count": 20,
+          "alternative_wider_count": 0,
+          "alternative_equal_count": 0,
+          "intersection_tightened_count": 20,
+          "intersection_unchanged_count": 0,
+          "intersection_bound_changed_count": 20,
+          "nonempty_intersection_count": 20,
+          "alternative_candidate_violation_count": 0,
+          "intersection_candidate_violation_count": 0,
+          "independent_candidate_violation_count": 0,
+          "candidate_feasibility_failure_count": 0,
+          "center_prediction_mismatch_count": 0,
+          "covered_point_count": 20,
+          "violation_point_count": 0,
+          "min_alternative_to_independent_width_ratio": 0.19187755106005555,
+          "median_alternative_to_independent_width_ratio": 0.690796188558053,
+          "max_alternative_to_independent_width_ratio": 0.8481295584778804,
+          "min_intersection_to_independent_width_ratio": 0.19187755106005555,
+          "median_intersection_to_independent_width_ratio": 0.690796188558053,
+          "max_intersection_to_independent_width_ratio": 0.8481295584778804,
+          "max_intersection_width_reduction": 0.7008593776977347,
+          "median_intersection_width_reduction": 0.1044602805149246,
+          "largest_intersection_tightening": {
+            "x": -4868.68,
+            "intersection_to_independent_width_ratio": 0.19189941295847002,
+            "intersection_width_reduction": 0.7008593776977347,
+            "independent_minimum": -0.19096232821715256,
+            "independent_maximum": 0.6763299234363114,
+            "joint_alternative_minimum": 0.15946736063171463,
+            "joint_alternative_maximum": 0.325900234587444,
+            "intersection_minimum": 0.15946736063171463,
+            "intersection_maximum": 0.325900234587444
+          },
+          "refit_count": 0
+        },
+        "folds": [
+          {
+            "fold": 1,
+            "nativeTestRmse": 0.010044543789192596,
+            "predictionEnvelopeAvailable": true,
+            "unavailableReason": null,
+            "candidateDirections": [
+              {
+                "direction": "b1_minus",
+                "parameter": "b1",
+                "sign": -1,
+                "displacement_vector": [
+                  0.1864181915943531,
+                  -4.15303679439165e-05,
+                  -506.78505040310836,
+                  471.81052177781646
+                ],
+                "parameters": {
+                  "b1": 0.042862160093079804,
+                  "b2": 2.8188306673535967e-05,
+                  "b3": 1659.1014761129259,
+                  "b4": -574.8890146760414
+                },
+                "exact_parameters": {
+                  "b1": "0.042862160093079804258543101132907761269056795959454888047699018234624574436253089",
+                  "b2": "0.000028188306673535967395786332618885602411639776136416493122622185413031047987586",
+                  "b3": "1659.1014761129257555435975633848449156934297280495313421229577665359930700575158",
+                  "b4": "-574.88901467604135518878870074129227860464293129682843176458726173825297786885805"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b1_plus",
+                "parameter": "b1",
+                "sign": 1,
+                "displacement_vector": [
+                  0.1864181915943531,
+                  -4.15303679439165e-05,
+                  -506.78505040310836,
+                  471.81052177781646
+                ],
+                "parameters": {
+                  "b1": 0.415698543281786,
+                  "b2": -5.487242921429704e-05,
+                  "b3": 645.531375306709,
+                  "b4": 368.7320288795915
+                },
+                "exact_parameters": {
+                  "b1": "0.41569854328178599574145689886709223873094320404054511195230098176537542556374691",
+                  "b2": "-0.000054872429214297035395786332618885602411639776136416493122622185413031047987586",
+                  "b3": "645.53137530670904445640243661515508430657027195046865787704223346400692994248416",
+                  "b4": "368.73202887959151518878870074129227860464293129682843176458726173825297786885805"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b2_minus",
+                "parameter": "b2",
+                "sign": -1,
+                "displacement_vector": [
+                  -0.1830803772373873,
+                  4.228752532181254e-05,
+                  467.13473786178815,
+                  -475.3473561816832
+                ],
+                "parameters": {
+                  "b1": 0.4123607289248202,
+                  "b2": -5.562958659219308e-05,
+                  "b3": 685.1816878480292,
+                  "b4": 372.2688632834583
+                },
+                "exact_parameters": {
+                  "b1": "0.41236072892482019112039814521488566129942791344309098193652811546739831893111952",
+                  "b2": "-0.000055629586592193078201117071699089400348249260889283212899094963652844957830560953",
+                  "b3": "685.18168784802923613900174978037355921285675755287278838218499748519861177263052",
+                  "b4": "372.26886328345830520407441153833718489056410210819704090391738152215790194371643"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b2_plus",
+                "parameter": "b2",
+                "sign": 1,
+                "displacement_vector": [
+                  -0.1830803772373873,
+                  4.228752532181254e-05,
+                  467.13473786178815,
+                  -475.3473561816832
+                ],
+                "parameters": {
+                  "b1": 0.04619997445004561,
+                  "b2": 2.894546405143201e-05,
+                  "b3": 1619.4511635716055,
+                  "b4": -578.4258490799082
+                },
+                "exact_parameters": {
+                  "b1": "0.046199974450045608879601854785114338700572086556909018063471884532601681068880479",
+                  "b2": "0.000028945464051432010201117071699089400348249260889283212899094963652844957830560953",
+                  "b3": "1619.4511635716055638609982502196264407871432424471272116178150025148013882273695",
+                  "b4": "-578.42584907990814520407441153833718489056410210819704090391738152215790194371643"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b3_minus",
+                "parameter": "b3",
+                "sign": -1,
+                "displacement_vector": [
+                  -0.1751621644035511,
+                  3.6625423249746736e-05,
+                  539.3513658894092,
+                  -413.8534764228239
+                ],
+                "parameters": {
+                  "b1": 0.404442516090984,
+                  "b2": -4.996748452012727e-05,
+                  "b3": 612.9650598204082,
+                  "b4": 310.774983524599
+                },
+                "exact_parameters": {
+                  "b1": "0.40444251609098398241826009324948837954558852716898901420703003992971933597394324",
+                  "b2": "-0.000049967484520127271429868854127805713451875596279530669539295674227210972719732908",
+                  "b3": "612.96505982040819807005654697625445791062004548350575109079078006977095273166443",
+                  "b4": "310.77498352459901374279027923777629844973972926425777698898954246058446524666269"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b3_plus",
+                "parameter": "b3",
+                "sign": 1,
+                "displacement_vector": [
+                  -0.1751621644035511,
+                  3.6625423249746736e-05,
+                  539.3513658894092,
+                  -413.8534764228239
+                ],
+                "parameters": {
+                  "b1": 0.05411818728388182,
+                  "b2": 2.3283361979366204e-05,
+                  "b3": 1691.6677915992266,
+                  "b4": -516.9319693210489
+                },
+                "exact_parameters": {
+                  "b1": "0.054118187283881817581739906750511620454411472831010985792969960070280664026056761",
+                  "b2": "0.000023283361979366203429868854127805713451875596279530669539295674227210972719732908",
+                  "b3": "1691.6677915992266019299434530237455420893799545164942489092092199302290472683356",
+                  "b4": "-516.93196932104885374279027923777629844973972926425777698898954246058446524666269"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b4_minus",
+                "parameter": "b4",
+                "sign": -1,
+                "displacement_vector": [
+                  0.1827247768852262,
+                  -4.176042226488671e-05,
+                  -463.72436842681054,
+                  481.3472247403795
+                ],
+                "parameters": {
+                  "b1": 0.046555574802206706,
+                  "b2": 2.841836099450618e-05,
+                  "b3": 1616.040794136628,
+                  "b4": -584.4257176386044
+                },
+                "exact_parameters": {
+                  "b1": "0.04655557480220670290322388951321041381928921486936853499772454135874311500711885",
+                  "b2": "0.000028418360994506181231295866902786958343484593643001469208290063392994681947258955",
+                  "b3": "1616.0407941366279157520121858069276056359165878654716349970902194894447652408178",
+                  "b4": "-584.42571763860440066761700552193247589947308362871035703850087419560815118826759"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b4_plus",
+                "parameter": "b4",
+                "sign": 1,
+                "displacement_vector": [
+                  0.1827247768852262,
+                  -4.176042226488671e-05,
+                  -463.72436842681054,
+                  481.3472247403795
+                ],
+                "parameters": {
+                  "b1": 0.4120051285726591,
+                  "b2": -5.510248353526725e-05,
+                  "b3": 688.5920572830069,
+                  "b4": 378.2687318421546
+                },
+                "exact_parameters": {
+                  "b1": "0.41200512857265909709677611048678958618071078513063146500227545864125688499288115",
+                  "b2": "-0.000055102483535267249231295866902786958343484593643001469208290063392994681947258955",
+                  "b3": "688.5920572830068842479878141930723943640834121345283650029097805105552347591822",
+                  "b4": "378.26873184215456066761700552193247589947308362871035703850087419560815118826759"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              }
+            ],
+            "candidateEvaluationCount": 40,
+            "alternativeTighterCount": 5,
+            "alternativeWiderCount": 0,
+            "alternativeEqualCount": 0,
+            "intersectionTightenedCount": 5,
+            "intersectionUnchangedCount": 0,
+            "intersectionBoundChangedCount": 5,
+            "nonemptyIntersectionCount": 5,
+            "alternativeCandidateViolationCount": 0,
+            "intersectionCandidateViolationCount": 0,
+            "independentCandidateViolationCount": 0,
+            "candidateFeasibilityFailureCount": 0,
+            "centerPredictionMismatchCount": 0,
+            "coveredPointCount": 5,
+            "violationPointCount": 0,
+            "unavailablePointCount": 0,
+            "minAlternativeToIndependentWidthRatio": 0.19187755106005555,
+            "medianAlternativeToIndependentWidthRatio": 0.19189941295847002,
+            "maxAlternativeToIndependentWidthRatio": 0.29370482310967394,
+            "minIntersectionToIndependentWidthRatio": 0.19187755106005555,
+            "medianIntersectionToIndependentWidthRatio": 0.19189941295847002,
+            "maxIntersectionToIndependentWidthRatio": 0.29370482310967394,
+            "maxIntersectionWidthReduction": 0.7008593776977347,
+            "medianIntersectionWidthReduction": 0.7008104146913312,
+            "largestIntersectionTightening": {
+              "x": -4868.68,
+              "intersection_to_independent_width_ratio": 0.19189941295847002,
+              "intersection_width_reduction": 0.7008593776977347,
+              "independent_minimum": -0.19096232821715256,
+              "independent_maximum": 0.6763299234363114,
+              "joint_alternative_minimum": 0.15946736063171463,
+              "joint_alternative_maximum": 0.325900234587444,
+              "intersection_minimum": 0.15946736063171463,
+              "intersection_maximum": 0.325900234587444
+            },
+            "envelopes": [
+              {
+                "x": -4868.68,
+                "center_prediction": 0.23983957213206136,
+                "linear_minimum": 0.12244919329226835,
+                "linear_maximum": 0.20619505635084487,
+                "linear_support": 0.04187293152928824,
+                "argument_minimum": -0.39485699963327425,
+                "argument_maximum": -0.11682314639373303,
+                "arctan_minimum": -0.3760649085447564,
+                "arctan_maximum": -0.11629600256296217,
+                "joint_alternative_minimum": 0.15946736063171463,
+                "joint_alternative_maximum": 0.325900234587444,
+                "joint_alternative_width": 0.1664328739557294,
+                "alternative_comparison": "tighter",
+                "independent_minimum": -0.19096232821715256,
+                "independent_maximum": 0.6763299234363114,
+                "independent_width": 0.867292251653464,
+                "intersection_minimum": 0.15946736063171463,
+                "intersection_maximum": 0.325900234587444,
+                "intersection_width": 0.1664328739557294,
+                "intersection_to_independent_width_ratio": 0.19189941295847002,
+                "intersection_width_reduction": 0.7008593776977347,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.29747037838207757,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.18757829659516342,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.18289800554616395,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.30201574061092085,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.19866295466709968,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.285492667829914,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.2997305389650616,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.185265320429059,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              },
+              {
+                "x": -4868.09,
+                "center_prediction": 0.23985644746279822,
+                "linear_minimum": 0.1224706474837777,
+                "linear_maximum": 0.20618934579163456,
+                "linear_support": 0.041859349153928416,
+                "argument_minimum": -0.39491138429426254,
+                "argument_maximum": -0.11683628420223896,
+                "arctan_minimum": -0.37611195680471576,
+                "arctan_maximum": -0.11630896346574211,
+                "joint_alternative_minimum": 0.15949294040671272,
+                "joint_alternative_maximum": 0.32590949995450647,
+                "joint_alternative_width": 0.16641655954779377,
+                "alternative_comparison": "tighter",
+                "independent_minimum": -0.19092538117757446,
+                "independent_maximum": 0.6763278215387938,
+                "independent_width": 0.8672532027163683,
+                "intersection_minimum": 0.15949294040671272,
+                "intersection_maximum": 0.32590949995450647,
+                "intersection_width": 0.16641655954779377,
+                "intersection_to_independent_width_ratio": 0.19188924183450914,
+                "intersection_width_reduction": 0.7008366431685745,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.29746845384627174,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.1876150253063437,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.18293543355338487,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.3020131273615797,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.19869666779956877,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.28549350612481184,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.2997282492624201,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.1853024491962409,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              },
+              {
+                "x": -4867.41,
+                "center_prediction": 0.2398758996097973,
+                "linear_minimum": 0.12249536136403875,
+                "linear_maximum": 0.20618277711470123,
+                "linear_support": 0.04184370787533122,
+                "argument_minimum": -0.3949740835066846,
+                "argument_maximum": -0.11685142974913934,
+                "arctan_minimum": -0.37616619582724664,
+                "arctan_maximum": -0.11632390502322425,
+                "joint_alternative_minimum": 0.1595224103324353,
+                "joint_alternative_maximum": 0.32592019609466166,
+                "joint_alternative_width": 0.16639778576222639,
+                "alternative_comparison": "tighter",
+                "independent_minimum": -0.19088279701323022,
+                "independent_maximum": 0.6763254034403273,
+                "independent_width": 0.8672082004535576,
+                "intersection_minimum": 0.1595224103324353,
+                "intersection_maximum": 0.32592019609466166,
+                "intersection_width": 0.16639778576222639,
+                "intersection_to_independent_width_ratio": 0.19187755106005555,
+                "intersection_width_reduction": 0.7008104146913312,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.2974662401003624,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.1876573579011862,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.18297857218286812,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.3020101198015169,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.19873552479308979,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.28549447655514393,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.2997256146142113,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.18534524294051274,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              },
+              {
+                "x": -3375.19,
+                "center_prediction": 0.2920282205515499,
+                "linear_minimum": 0.13075446245559647,
+                "linear_maximum": 0.23774225736091797,
+                "linear_support": 0.05349389745266073,
+                "argument_minimum": -0.6061664907678367,
+                "argument_maximum": -0.16330672683846764,
+                "arctan_minimum": -0.5449413520092165,
+                "arctan_maximum": -0.1618777762623693,
+                "joint_alternative_minimum": 0.18228175899335636,
+                "joint_alternative_maximum": 0.41120247709581276,
+                "joint_alternative_width": 0.22892071810245643,
+                "alternative_comparison": "tighter",
+                "independent_minimum": -0.09337096773926451,
+                "independent_maximum": 0.6868552038284338,
+                "independent_width": 0.7802261715676985,
+                "intersection_minimum": 0.18228175899335636,
+                "intersection_maximum": 0.41120247709581276,
+                "intersection_width": 0.22892071810245643,
+                "intersection_to_independent_width_ratio": 0.29340302394943885,
+                "intersection_width_reduction": 0.5513054534652421,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.30825625911549204,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.28484265159351363,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.28216393821458696,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.31096727553175263,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.2882467353877173,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.30281108963934456,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.30954925442658804,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.28377722694050855,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              },
+              {
+                "x": -3373.14,
+                "center_prediction": 0.2921180873374742,
+                "linear_minimum": 0.13071639118257095,
+                "linear_maximum": 0.23783503108515205,
+                "linear_support": 0.053559319951290534,
+                "argument_minimum": -0.606612087261509,
+                "argument_maximum": -0.16339596765810355,
+                "arctan_minimum": -0.5452671499894194,
+                "arctan_maximum": -0.16196469769964442,
+                "joint_alternative_minimum": 0.1822713556731368,
+                "joint_alternative_maximum": 0.4113989555380441,
+                "joint_alternative_width": 0.22912759986490736,
+                "alternative_comparison": "tighter",
+                "independent_minimum": -0.09322925913394454,
+                "independent_maximum": 0.6868995703451257,
+                "independent_width": 0.7801288294790704,
+                "intersection_minimum": 0.1822713556731368,
+                "intersection_maximum": 0.4113989555380441,
+                "intersection_width": 0.22912759986490736,
+                "intersection_to_independent_width_ratio": 0.29370482310967394,
+                "intersection_width_reduction": 0.551001229614163,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.30830071757623423,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.2849843395979424,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.2823088025712757,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.3110091703405456,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.28837783196465233,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.30286347855219137,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.30959244955079795,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.28392105842758353,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              }
+            ],
+            "points": [
+              {
+                "point_index": 1,
+                "x": -4868.68,
+                "observed_y": 0.252429,
+                "native_prediction": 0.23983957213206136,
+                "actual_absolute_residual": 0.012589427867938652,
+                "intersection_minimum": 0.15946736063171463,
+                "intersection_maximum": 0.325900234587444,
+                "residual_upper_bound": 0.0929616393682854,
+                "covered": true,
+                "center_prediction_inside": true
+              },
+              {
+                "point_index": 2,
+                "x": -4868.09,
+                "observed_y": 0.252141,
+                "native_prediction": 0.23985644746279822,
+                "actual_absolute_residual": 0.012284552537201787,
+                "intersection_minimum": 0.15949294040671272,
+                "intersection_maximum": 0.32590949995450647,
+                "residual_upper_bound": 0.0926480595932873,
+                "covered": true,
+                "center_prediction_inside": true
+              },
+              {
+                "point_index": 3,
+                "x": -4867.41,
+                "observed_y": 0.251809,
+                "native_prediction": 0.23987589960979733,
+                "actual_absolute_residual": 0.011933100390202678,
+                "intersection_minimum": 0.1595224103324353,
+                "intersection_maximum": 0.32592019609466166,
+                "residual_upper_bound": 0.09228658966756471,
+                "covered": true,
+                "center_prediction_inside": true
+              },
+              {
+                "point_index": 4,
+                "x": -3375.19,
+                "observed_y": 0.297989,
+                "native_prediction": 0.2920282205515499,
+                "actual_absolute_residual": 0.005960779448450082,
+                "intersection_minimum": 0.18228175899335636,
+                "intersection_maximum": 0.41120247709581276,
+                "residual_upper_bound": 0.11570724100664366,
+                "covered": true,
+                "center_prediction_inside": true
+              },
+              {
+                "point_index": 5,
+                "x": -3373.14,
+                "observed_y": 0.296257,
+                "native_prediction": 0.2921180873374742,
+                "actual_absolute_residual": 0.004138912662525807,
+                "intersection_minimum": 0.1822713556731368,
+                "intersection_maximum": 0.4113989555380441,
+                "residual_upper_bound": 0.11514195553804414,
+                "covered": true,
+                "center_prediction_inside": true
+              }
+            ]
+          },
+          {
+            "fold": 2,
+            "nativeTestRmse": 0.005867985323301031,
+            "predictionEnvelopeAvailable": true,
+            "unavailableReason": null,
+            "candidateDirections": [
+              {
+                "direction": "b1_minus",
+                "parameter": "b1",
+                "sign": -1,
+                "displacement_vector": [
+                  0.10290729560274253,
+                  -1.652816511653326e-05,
+                  -363.26010378105093,
+                  230.95023060608676
+                ],
+                "parameters": {
+                  "b1": 0.12278437748870537,
+                  "b2": 6.568062730777432e-06,
+                  "b3": 1495.6933825119409,
+                  "b4": -349.189849024074
+                },
+                "exact_parameters": {
+                  "b1": "0.12278437748870537247289157947751761717869992066518404628003085414508332976153043",
+                  "b2": "0.000006568062730777432124986349497128973199140669463222304622632253793163575767146534",
+                  "b3": "1495.6933825119409358413182161859063501136384525593843692914706464075636472200783",
+                  "b4": "-349.18984902407402928119043229388301694402165238632345216440553804646783312805224"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b1_plus",
+                "parameter": "b1",
+                "sign": 1,
+                "displacement_vector": [
+                  0.10290729560274253,
+                  -1.652816511653326e-05,
+                  -363.26010378105093,
+                  230.95023060608676
+                ],
+                "parameters": {
+                  "b1": 0.3285989686941905,
+                  "b2": -2.648826750228909e-05,
+                  "b3": 769.1731749498391,
+                  "b4": 112.7106121880995
+                },
+                "exact_parameters": {
+                  "b1": "0.32859896869419044752710842052248238282130007933481595371996914585491667023846957",
+                  "b2": "-0.000026488267502289088124986349497128973199140669463222304622632253793163575767146534",
+                  "b3": "769.17317494983906415868178381409364988636154744061563070852935359243635277992167",
+                  "b4": "112.71061218809950928119043229388301694402165238632345216440553804646783312805224"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b2_minus",
+                "parameter": "b2",
+                "sign": -1,
+                "displacement_vector": [
+                  -0.10133814558270601,
+                  1.678409214652424e-05,
+                  342.5633326740842,
+                  -234.69447355049175
+                ],
+                "parameters": {
+                  "b1": 0.3270298186741539,
+                  "b2": -2.674419453228007e-05,
+                  "b3": 789.8699460568058,
+                  "b4": 116.45485513250448
+                },
+                "exact_parameters": {
+                  "b1": "0.3270298186741539159964012601080576810939286654331161764658821884183860494443934",
+                  "b2": "-0.000026744194532280069005430820975672236455686681193303643306160413375427533086948103",
+                  "b3": "789.86994605680577288548536796679138568803082386482189702022678893061499898122131",
+                  "b4": "116.45485513250447913280736765283691342639250840323801206282008455392981072744605"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b2_plus",
+                "parameter": "b2",
+                "sign": 1,
+                "displacement_vector": [
+                  -0.10133814558270601,
+                  1.678409214652424e-05,
+                  342.5633326740842,
+                  -234.69447355049175
+                ],
+                "parameters": {
+                  "b1": 0.1243535275087419,
+                  "b2": 6.823989760768413e-06,
+                  "b3": 1474.9966114049741,
+                  "b4": -352.934091968479
+                },
+                "exact_parameters": {
+                  "b1": "0.1243535275087419040035987398919423189060713345668838235341178115816139505556066",
+                  "b2": "0.0000068239897607684130054308209756722364556866811933036433061604133754275330869481035",
+                  "b3": "1474.9966114049742271145146320332086143119691761351781029797732110693850010187787",
+                  "b4": "-352.93409196847899913280736765283691342639250840323801206282008455392981072744605"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b3_minus",
+                "parameter": "b3",
+                "sign": -1,
+                "displacement_vector": [
+                  -0.09767809786484767,
+                  1.5023532340996507e-05,
+                  382.70723629572836,
+                  -197.2563936715603
+                ],
+                "parameters": {
+                  "b1": 0.3233697709562956,
+                  "b2": -2.4983634726752336e-05,
+                  "b3": 749.7260424351616,
+                  "b4": 79.01677525357303
+                },
+                "exact_parameters": {
+                  "b1": "0.32336977095629557682962809360870929797319014169024765380603467199085966772054428",
+                  "b2": "-0.000024983634726752334771437263632640191465444545507460264837135912009436366494783596",
+                  "b3": "749.72604243516163818697076318230095989010059606805784250306398256170028716828762",
+                  "b4": "79.016775253573028560531654925664024557748175627665436877298455210296659882321195"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b3_plus",
+                "parameter": "b3",
+                "sign": 1,
+                "displacement_vector": [
+                  -0.09767809786484767,
+                  1.5023532340996507e-05,
+                  382.70723629572836,
+                  -197.2563936715603
+                ],
+                "parameters": {
+                  "b1": 0.12801357522660026,
+                  "b2": 5.0634299552406785e-06,
+                  "b3": 1515.1405150266185,
+                  "b4": -315.49601208954755
+                },
+                "exact_parameters": {
+                  "b1": "0.12801357522660024317037190639129070202680985830975234619396532800914033227945572",
+                  "b2": "0.000005063429955240678771437263632640191465444545507460264837135912009436366494783596",
+                  "b3": "1515.1405150266183618130292368176990401098994039319421574969360174382997128317124",
+                  "b4": "-315.49601208954754856053165492566402455774817562766543687729845521029665988232119"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b4_minus",
+                "parameter": "b4",
+                "sign": -1,
+                "displacement_vector": [
+                  0.09767138638485269,
+                  -1.6188384287889238e-05,
+                  -310.24197029127885,
+                  243.3308723279056
+                ],
+                "parameters": {
+                  "b1": 0.1280202867065952,
+                  "b2": 6.228281902133412e-06,
+                  "b3": 1442.6752490221688,
+                  "b4": -361.57049074589287
+                },
+                "exact_parameters": {
+                  "b1": "0.12802028670659521601291127756629934674836777976545030184626665204646355680211462",
+                  "b2": "0.0000062282819021334118249345947166920882826600674090021517402444865739554752422477815",
+                  "b3": "1442.6752490221688523670711481770486654234703479446668535233030684908417487384247",
+                  "b4": "-361.57049074589285821048501947221880583146258718818961945914339443667311512429887"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b4_plus",
+                "parameter": "b4",
+                "sign": 1,
+                "displacement_vector": [
+                  0.09767138638485269,
+                  -1.6188384287889238e-05,
+                  -310.24197029127885,
+                  243.3308723279056
+                ],
+                "parameters": {
+                  "b1": 0.3233630594763006,
+                  "b2": -2.6148486673645066e-05,
+                  "b3": 822.1913084396111,
+                  "b4": 125.09125390991834
+                },
+                "exact_parameters": {
+                  "b1": "0.32336305947630060398708872243370065325163222023454969815373334795353644319788538",
+                  "b2": "-0.000026148486673645067824934594716692088282660067409002151740244486573955475242247781",
+                  "b3": "822.19130843961114763292885182295133457652965205533314647669693150915825126157528",
+                  "b4": "125.09125390991833821048501947221880583146258718818961945914339443667311512429887"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              }
+            ],
+            "candidateEvaluationCount": 40,
+            "alternativeTighterCount": 5,
+            "alternativeWiderCount": 0,
+            "alternativeEqualCount": 0,
+            "intersectionTightenedCount": 5,
+            "intersectionUnchangedCount": 0,
+            "intersectionBoundChangedCount": 5,
+            "nonemptyIntersectionCount": 5,
+            "alternativeCandidateViolationCount": 0,
+            "intersectionCandidateViolationCount": 0,
+            "independentCandidateViolationCount": 0,
+            "candidateFeasibilityFailureCount": 0,
+            "centerPredictionMismatchCount": 0,
+            "coveredPointCount": 5,
+            "violationPointCount": 0,
+            "unavailablePointCount": 0,
+            "minAlternativeToIndependentWidthRatio": 0.4437186475428245,
+            "medianAlternativeToIndependentWidthRatio": 0.5877537464131363,
+            "maxAlternativeToIndependentWidthRatio": 0.6889160818275057,
+            "minIntersectionToIndependentWidthRatio": 0.4437186475428245,
+            "medianIntersectionToIndependentWidthRatio": 0.5877537464131363,
+            "maxIntersectionToIndependentWidthRatio": 0.6889160818275057,
+            "maxIntersectionWidthReduction": 0.22262681292169348,
+            "medianIntersectionWidthReduction": 0.16388201586014717,
+            "largestIntersectionTightening": {
+              "x": -3372.03,
+              "intersection_to_independent_width_ratio": 0.4437186475428245,
+              "intersection_width_reduction": 0.22262681292169348,
+              "independent_minimum": 0.09982508762571429,
+              "independent_maximum": 0.5000305087463729,
+              "joint_alternative_minimum": 0.21113849408656088,
+              "joint_alternative_maximum": 0.38871710228552603,
+              "intersection_minimum": 0.21113849408656088,
+              "intersection_maximum": 0.38871710228552603
+            },
+            "envelopes": [
+              {
+                "x": -3372.03,
+                "center_prediction": 0.29871530185908507,
+                "linear_minimum": 0.14391555766086758,
+                "linear_maximum": 0.24029626042634777,
+                "linear_support": 0.04819035138274007,
+                "argument_minimum": -0.5032921088521869,
+                "argument_maximum": -0.2143837711080044,
+                "arctan_minimum": -0.46627782642440674,
+                "arctan_maximum": -0.2111870832276919,
+                "joint_alternative_minimum": 0.21113849408656088,
+                "joint_alternative_maximum": 0.38871710228552603,
+                "joint_alternative_width": 0.17757860819896518,
+                "alternative_comparison": "tighter",
+                "independent_minimum": 0.09982508762571429,
+                "independent_maximum": 0.5000305087463729,
+                "independent_width": 0.40020542112065866,
+                "intersection_minimum": 0.21113849408656088,
+                "intersection_maximum": 0.38871710228552603,
+                "intersection_width": 0.17757860819896518,
+                "intersection_to_independent_width_ratio": 0.4437186475428245,
+                "intersection_width_reduction": 0.22262681292169348,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.291188107937694,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.3084302575309936,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.30772488180966756,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.2920202650192102,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.3072176652518563,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.29157575148076603,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.2912706661267748,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.3086910325741416,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              },
+              {
+                "x": -2473.74,
+                "center_prediction": 0.34369987880535163,
+                "linear_minimum": 0.13861288231232868,
+                "linear_maximum": 0.26349305651908794,
+                "linear_support": 0.062440087103379574,
+                "argument_minimum": -0.7173385035567893,
+                "argument_maximum": -0.28848584967077223,
+                "arctan_minimum": -0.622268010261171,
+                "arctan_maximum": -0.28086016814601206,
+                "joint_alternative_minimum": 0.22801345046844607,
+                "joint_alternative_maximum": 0.4615671160411352,
+                "joint_alternative_width": 0.23355366557268917,
+                "alternative_comparison": "tighter",
+                "independent_minimum": 0.1460267618625402,
+                "independent_maximum": 0.5435538046470412,
+                "independent_width": 0.397527042784501,
+                "intersection_minimum": 0.22801345046844607,
+                "intersection_maximum": 0.4615671160411352,
+                "intersection_width": 0.23355366557268917,
+                "intersection_to_independent_width_ratio": 0.5875164213653217,
+                "intersection_width_reduction": 0.16397337721181185,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.33428609693440403,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.35508343702163203,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.3550876515599945,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.33466862641467787,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.35249524802528936,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.33537141640244633,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.33417327110800893,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.3562106693698868,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              },
+              {
+                "x": -2472.35,
+                "center_prediction": 0.34378710964995945,
+                "linear_minimum": 0.1386043760668962,
+                "linear_maximum": 0.26352925184915277,
+                "linear_support": 0.06246243789112824,
+                "argument_minimum": -0.7178108885290577,
+                "argument_maximum": -0.2886402305756103,
+                "arctan_minimum": -0.6225798333399741,
+                "arctan_maximum": -0.2810026821085083,
+                "joint_alternative_minimum": 0.22805030782619537,
+                "joint_alternative_maximum": 0.46170256773992335,
+                "joint_alternative_width": 0.233652259913728,
+                "alternative_comparison": "tighter",
+                "independent_minimum": 0.14610929989612187,
+                "independent_maximum": 0.543643575669997,
+                "independent_width": 0.3975342757738752,
+                "intersection_minimum": 0.22805030782619537,
+                "intersection_maximum": 0.46170256773992335,
+                "intersection_width": 0.233652259913728,
+                "intersection_to_independent_width_ratio": 0.5877537464131363,
+                "intersection_width_reduction": 0.16388201586014717,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.3343750385278818,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.35516701753128077,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.3551725077067351,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.33475697703519214,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.35257686033473135,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.3354608258037033,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.3342622205612273,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.35629600094858394,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              },
+              {
+                "x": -2469.45,
+                "center_prediction": 0.34396932886066817,
+                "linear_minimum": 0.13858662692027948,
+                "linear_maximum": 0.2636047695896069,
+                "linear_support": 0.06250907133466367,
+                "argument_minimum": -0.7187984457246163,
+                "argument_maximum": -0.28896285279925304,
+                "arctan_minimum": -0.6232312728078802,
+                "arctan_maximum": -0.28130046717102686,
+                "joint_alternative_minimum": 0.22812734660893616,
+                "joint_alternative_maximum": 0.4619854451032623,
+                "joint_alternative_width": 0.23385809849432615,
+                "alternative_comparison": "tighter",
+                "independent_minimum": 0.146281645989623,
+                "independent_maximum": 0.5438311457225756,
+                "independent_width": 0.39754949973295267,
+                "intersection_minimum": 0.22812734660893616,
+                "intersection_maximum": 0.4619854451032623,
+                "intersection_width": 0.23385809849432615,
+                "intersection_to_independent_width_ratio": 0.5882490071083386,
+                "intersection_width_reduction": 0.16369140123862652,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.3345608766614189,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.35534154302235965,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.3553496966750768,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.33494158425209003,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.3527472821791232,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.3356476316109482,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.33444808090104144,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.3564741844366097,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              },
+              {
+                "x": -1894.65,
+                "center_prediction": 0.3874699911533791,
+                "linear_minimum": 0.13501513729793516,
+                "linear_maximum": 0.2786263929146161,
+                "linear_support": 0.07180562780834043,
+                "argument_minimum": -0.9882987189384483,
+                "argument_maximum": -0.37119905383117924,
+                "arctan_minimum": -0.7795131593659942,
+                "arctan_maximum": -0.35543417689946954,
+                "joint_alternative_minimum": 0.2481533496926346,
+                "joint_alternative_maximum": 0.526753137951173,
+                "joint_alternative_width": 0.27859978825853843,
+                "alternative_comparison": "tighter",
+                "independent_minimum": 0.18525170171282035,
+                "independent_maximum": 0.5896547859309873,
+                "independent_width": 0.404403084218167,
+                "intersection_minimum": 0.2481533496926346,
+                "intersection_maximum": 0.526753137951173,
+                "intersection_width": 0.27859978825853843,
+                "intersection_to_independent_width_ratio": 0.6889160818275057,
+                "intersection_width_reduction": 0.12580329595962858,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.3800200600456174,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.394888819550023,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.3954846428503129,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.38024382823496633,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.39159013444345864,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.38102287992775685,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.38015333128593326,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.3968771325053076,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              }
+            ],
+            "points": [
+              {
+                "point_index": 1,
+                "x": -3372.03,
+                "observed_y": 0.295319,
+                "native_prediction": 0.29871530185908507,
+                "actual_absolute_residual": 0.0033963018590850713,
+                "intersection_minimum": 0.21113849408656088,
+                "intersection_maximum": 0.38871710228552603,
+                "residual_upper_bound": 0.09339810228552604,
+                "covered": true,
+                "center_prediction_inside": true
+              },
+              {
+                "point_index": 2,
+                "x": -2473.74,
+                "observed_y": 0.339603,
+                "native_prediction": 0.3436998788053517,
+                "actual_absolute_residual": 0.0040968788053517,
+                "intersection_minimum": 0.22801345046844607,
+                "intersection_maximum": 0.4615671160411352,
+                "residual_upper_bound": 0.12196411604113523,
+                "covered": true,
+                "center_prediction_inside": true
+              },
+              {
+                "point_index": 3,
+                "x": -2472.35,
+                "observed_y": 0.337731,
+                "native_prediction": 0.3437871096499595,
+                "actual_absolute_residual": 0.006056109649959507,
+                "intersection_minimum": 0.22805030782619537,
+                "intersection_maximum": 0.46170256773992335,
+                "residual_upper_bound": 0.12397156773992336,
+                "covered": true,
+                "center_prediction_inside": true
+              },
+              {
+                "point_index": 4,
+                "x": -2469.45,
+                "observed_y": 0.33382,
+                "native_prediction": 0.3439693288606682,
+                "actual_absolute_residual": 0.010149328860668216,
+                "intersection_minimum": 0.22812734660893616,
+                "intersection_maximum": 0.4619854451032623,
+                "residual_upper_bound": 0.1281654451032623,
+                "covered": true,
+                "center_prediction_inside": true
+              },
+              {
+                "point_index": 5,
+                "x": -1894.65,
+                "observed_y": 0.38951,
+                "native_prediction": 0.38746999115337916,
+                "actual_absolute_residual": 0.0020400088466208666,
+                "intersection_minimum": 0.2481533496926346,
+                "intersection_maximum": 0.526753137951173,
+                "residual_upper_bound": 0.14135665030736544,
+                "covered": true,
+                "center_prediction_inside": true
+              }
+            ]
+          },
+          {
+            "fold": 3,
+            "nativeTestRmse": 0.007531095882129697,
+            "predictionEnvelopeAvailable": true,
+            "unavailableReason": null,
+            "candidateDirections": [
+              {
+                "direction": "b1_minus",
+                "parameter": "b1",
+                "sign": -1,
+                "displacement_vector": [
+                  0.0665413917930228,
+                  -1.0886934230639987e-05,
+                  -239.13037110430642,
+                  151.26696707872586
+                ],
+                "parameters": {
+                  "b1": 0.1391585530882828,
+                  "b2": 4.730134806492177e-06,
+                  "b3": 1390.4356664482407,
+                  "b4": -337.84376804116374
+                },
+                "exact_parameters": {
+                  "b1": "0.1391585530882827913010142447790741044410967762444315348560785625544613141622359",
+                  "b2": "0.0000047301348064921770465098316031401502980414616776378383812591471732950105871113857",
+                  "b3": "1390.4356664482406167629459601111498931012084331965458329315415864200857949461807",
+                  "b4": "-337.8437680411637530448473742141300797307196702201462541102489845021485855897569"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b1_plus",
+                "parameter": "b1",
+                "sign": 1,
+                "displacement_vector": [
+                  0.0665413917930228,
+                  -1.0886934230639987e-05,
+                  -239.13037110430642,
+                  151.26696707872586
+                ],
+                "parameters": {
+                  "b1": 0.2722413366743284,
+                  "b2": -1.7043733654787796e-05,
+                  "b3": 912.1749242396278,
+                  "b4": -35.309833883712066
+                },
+                "exact_parameters": {
+                  "b1": "0.2722413366743284086989857552209258955589032237555684651439214374455386858377641",
+                  "b2": "-0.000017043733654787797046509831603140150298041461677637838381259147173295010587111386",
+                  "b3": "912.17492423962778323705403988885010689879156680345416706845841357991420505381929",
+                  "b4": "-35.309833883712066955152625785869920269280329779853745889751015497851414410243097"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b2_minus",
+                "parameter": "b2",
+                "sign": -1,
+                "displacement_vector": [
+                  -0.06463458242983554,
+                  1.1208113812018481e-05,
+                  211.14829600808957,
+                  -155.50469669954416
+                ],
+                "parameters": {
+                  "b1": 0.27033452731114116,
+                  "b2": -1.736491323616629e-05,
+                  "b3": 940.1569993358446,
+                  "b4": -31.07210426289376
+                },
+                "exact_parameters": {
+                  "b1": "0.27033452731114113891161828949432595586877400383705464107208035089997896363945428",
+                  "b2": "-0.000017364913236166290748096799325307822929167961865029587565611028003150922314198344",
+                  "b3": "940.15699933584461498585327910797187177231399712956328144075836652848863213607301",
+                  "b4": "-31.072104262893760432398647815028688279121279940386495893703757529299070423872933"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b2_plus",
+                "parameter": "b2",
+                "sign": 1,
+                "displacement_vector": [
+                  -0.06463458242983554,
+                  1.1208113812018481e-05,
+                  211.14829600808957,
+                  -155.50469669954416
+                ],
+                "parameters": {
+                  "b1": 0.14106536245147006,
+                  "b2": 5.051314387870671e-06,
+                  "b3": 1362.4535913520238,
+                  "b4": -342.08149766198204
+                },
+                "exact_parameters": {
+                  "b1": "0.14106536245147006108838171050567404413122599616294535892791964910002103636054572",
+                  "b2": "0.0000050513143878706707480967993253078229291679618650295875656110280031509223141983444",
+                  "b3": "1362.453591352023785014146720892028128227686002870436718559241633471511367863927",
+                  "b4": "-342.08149766198205956760135218497131172087872005961350410629624247070092957612707"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b3_minus",
+                "parameter": "b3",
+                "sign": -1,
+                "displacement_vector": [
+                  -0.060389547671588474,
+                  8.981632305167251e-06,
+                  263.4904271811388,
+                  -115.28987107232572
+                ],
+                "parameters": {
+                  "b1": 0.2660894925528941,
+                  "b2": -1.5138431729315062e-05,
+                  "b3": 887.8148681627954,
+                  "b4": -71.28692989011219
+                },
+                "exact_parameters": {
+                  "b1": "0.26608949255289407659075755174059944693971850186967452598802880322234700135517006",
+                  "b2": "-0.000015138431729315061604034905908561244989442484617138671691521233107848918966635317",
+                  "b3": "887.81486816279540104244103048151150937698861454629370142221960479036733080991636",
+                  "b4": "-71.286929890112192367810279863859577175049804008680931694756526654633977807537909"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b3_plus",
+                "parameter": "b3",
+                "sign": 1,
+                "displacement_vector": [
+                  -0.060389547671588474,
+                  8.981632305167251e-06,
+                  263.4904271811388,
+                  -115.28987107232572
+                ],
+                "parameters": {
+                  "b1": 0.1453103972097171,
+                  "b2": 2.8248328810194417e-06,
+                  "b3": 1414.795722525073,
+                  "b4": -301.8666720347636
+                },
+                "exact_parameters": {
+                  "b1": "0.14531039720971712340924244825940055306028149813032547401197119677765299864482994",
+                  "b2": "0.000002824832881019441604034905908561244989442484617138671691521233107848918966635317",
+                  "b3": "1414.7957225250729989575589695184884906230113854537062985777803952096326691900836",
+                  "b4": "-301.86667203476362763218972013614042282495019599131906830524347334536602219246209"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b4_minus",
+                "parameter": "b4",
+                "sign": -1,
+                "displacement_vector": [
+                  0.06195992454813574,
+                  -1.0728794906582536e-05,
+                  -186.99538808962743,
+                  162.45201386434923
+                ],
+                "parameters": {
+                  "b1": 0.14374002033316985,
+                  "b2": 4.571995482434727e-06,
+                  "b3": 1338.3006834335617,
+                  "b4": -349.02881482678714
+                },
+                "exact_parameters": {
+                  "b1": "0.14374002033316986045128507460712396656012737862067118979518249411184382933790561",
+                  "b2": "0.0000045719954824347265398262913319712440523852224519417542010667976695602853299055318",
+                  "b3": "1338.3006834335616321758804393006267041143024814820705305594385493458897097302739",
+                  "b4": "-349.02881482678713740200336295481878330309515348016841094814197832082236062984211"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b4_plus",
+                "parameter": "b4",
+                "sign": 1,
+                "displacement_vector": [
+                  0.06195992454813574,
+                  -1.0728794906582536e-05,
+                  -186.99538808962743,
+                  162.45201386434923
+                ],
+                "parameters": {
+                  "b1": 0.26765986942944137,
+                  "b2": -1.6885594330730347e-05,
+                  "b3": 964.3099072543067,
+                  "b4": -24.12478709808868
+                },
+                "exact_parameters": {
+                  "b1": "0.26765986942944133954871492539287603343987262137932881020481750588815617066209439",
+                  "b2": "-0.000016885594330730346539826291331971244052385222451941754201066797669560285329905532",
+                  "b3": "964.30990725430676782411956069937329588569751851792946944056145065411029026972611",
+                  "b4": "-24.124787098088682597996637045181216696904846519831589051858021679177639370157889"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              }
+            ],
+            "candidateEvaluationCount": 40,
+            "alternativeTighterCount": 5,
+            "alternativeWiderCount": 0,
+            "alternativeEqualCount": 0,
+            "intersectionTightenedCount": 5,
+            "intersectionUnchangedCount": 0,
+            "intersectionBoundChangedCount": 5,
+            "nonemptyIntersectionCount": 5,
+            "alternativeCandidateViolationCount": 0,
+            "intersectionCandidateViolationCount": 0,
+            "independentCandidateViolationCount": 0,
+            "candidateFeasibilityFailureCount": 0,
+            "centerPredictionMismatchCount": 0,
+            "coveredPointCount": 5,
+            "violationPointCount": 0,
+            "unavailablePointCount": 0,
+            "minAlternativeToIndependentWidthRatio": 0.6926762952886003,
+            "medianAlternativeToIndependentWidthRatio": 0.7625149710132566,
+            "maxAlternativeToIndependentWidthRatio": 0.8110506334279283,
+            "minIntersectionToIndependentWidthRatio": 0.6926762952886003,
+            "medianIntersectionToIndependentWidthRatio": 0.7625149710132566,
+            "maxIntersectionToIndependentWidthRatio": 0.8110506334279283,
+            "maxIntersectionWidthReduction": 0.08311726507022063,
+            "medianIntersectionWidthReduction": 0.06578629212156253,
+            "largestIntersectionTightening": {
+              "x": -1893.4,
+              "intersection_to_independent_width_ratio": 0.6926762952886003,
+              "intersection_width_reduction": 0.08311726507022063,
+              "independent_minimum": 0.24742119205082067,
+              "independent_maximum": 0.5178762978431775,
+              "joint_alternative_minimum": 0.2889798245859309,
+              "joint_alternative_maximum": 0.4763176653080671,
+              "intersection_minimum": 0.2889798245859309,
+              "intersection_maximum": 0.4763176653080671
+            },
+            "envelopes": [
+              {
+                "x": -1893.4,
+                "center_prediction": 0.3829364858929843,
+                "linear_minimum": 0.14783845890203576,
+                "linear_maximum": 0.24024686280121252,
+                "linear_support": 0.046204201949588346,
+                "argument_minimum": -0.9160982386280366,
+                "argument_maximum": -0.4749513940135804,
+                "arctan_minimum": -0.741638298882581,
+                "arctan_maximum": -0.4434086775501557,
+                "joint_alternative_minimum": 0.2889798245859309,
+                "joint_alternative_maximum": 0.4763176653080671,
+                "joint_alternative_width": 0.1873378407221362,
+                "alternative_comparison": "tighter",
+                "independent_minimum": 0.24742119205082067,
+                "independent_maximum": 0.5178762978431775,
+                "independent_width": 0.2704551057923568,
+                "intersection_minimum": 0.2889798245859309,
+                "intersection_maximum": 0.4763176653080671,
+                "intersection_width": 0.1873378407221362,
+                "intersection_to_independent_width_ratio": 0.6926762952886003,
+                "intersection_width_reduction": 0.08311726507022063,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.38029221508509065,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.3852339380282704,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.38626671851231464,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.3800261294106913,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.38174534072479893,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.3819674851559496,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.37968059807975896,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.38728878837929753,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              },
+              {
+                "x": -1497.24,
+                "center_prediction": 0.4259069290256413,
+                "linear_minimum": 0.14608262830697613,
+                "linear_maximum": 0.24688084871601293,
+                "linear_support": 0.050399110204518364,
+                "argument_minimum": -1.2321737854449182,
+                "argument_maximum": -0.6026785008987012,
+                "arctan_minimum": -0.8890379052339419,
+                "arctan_maximum": -0.5423866591100385,
+                "joint_alternative_minimum": 0.3187296640358989,
+                "joint_alternative_maximum": 0.5298704031441047,
+                "joint_alternative_width": 0.21114073910820583,
+                "alternative_comparison": "tighter",
+                "independent_minimum": 0.28580614612348787,
+                "independent_maximum": 0.5627939210565158,
+                "independent_width": 0.276987774933028,
+                "intersection_minimum": 0.3187296640358989,
+                "intersection_maximum": 0.5298704031441047,
+                "intersection_width": 0.21114073910820583,
+                "intersection_to_independent_width_ratio": 0.7622745774944648,
+                "intersection_width_reduction": 0.06584703582482218,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.42500410947925643,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.4242905698461459,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.42583164757815456,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.4247783962271433,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.4206840182532421,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.4262356249510969,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.4248723905460052,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.42687249722462295,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              },
+              {
+                "x": -1495.85,
+                "center_prediction": 0.4260829676513474,
+                "linear_minimum": 0.1460763936847446,
+                "linear_maximum": 0.2469041992406436,
+                "linear_support": 0.050413902777949486,
+                "argument_minimum": -1.2336672367204193,
+                "argument_maximum": -0.6032477125347493,
+                "arctan_minimum": -0.8896305228234616,
+                "arctan_maximum": -0.5428041029738473,
+                "joint_alternative_minimum": 0.31885630592244446,
+                "joint_alternative_maximum": 0.5300823897062059,
+                "joint_alternative_width": 0.21122608378376148,
+                "alternative_comparison": "tighter",
+                "independent_minimum": 0.28596315986166326,
+                "independent_maximum": 0.5629755357669872,
+                "independent_width": 0.277012375905324,
+                "intersection_minimum": 0.31885630592244446,
+                "intersection_maximum": 0.5300823897062059,
+                "intersection_width": 0.21122608378376148,
+                "intersection_to_independent_width_ratio": 0.7625149710132566,
+                "intersection_width_reduction": 0.06578629212156253,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.4251853301083755,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.4244502753348818,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.4259930014924064,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.42496040161413384,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.42084437751252957,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.42641425751772943,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.4250565638613168,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.4270336929898769,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              },
+              {
+                "x": -1493.41,
+                "center_prediction": 0.42639247054430207,
+                "linear_minimum": 0.14606544831017793,
+                "linear_maximum": 0.24694518979640012,
+                "linear_support": 0.05043987074311107,
+                "argument_minimum": -1.236297608572559,
+                "argument_maximum": -0.6042495087861917,
+                "arctan_minimum": -0.8906721796765599,
+                "arctan_maximum": -0.5435382819133396,
+                "joint_alternative_minimum": 0.3190790569625461,
+                "joint_alternative_maximum": 0.5304549499363148,
+                "joint_alternative_width": 0.21137589297376871,
+                "alternative_comparison": "tighter",
+                "independent_minimum": 0.28623922666462787,
+                "independent_maximum": 0.5632947802342332,
+                "independent_width": 0.2770555535696054,
+                "intersection_minimum": 0.3190790569625461,
+                "intersection_maximum": 0.5304549499363148,
+                "intersection_width": 0.21137589297376871,
+                "intersection_to_independent_width_ratio": 0.7629368559856867,
+                "intersection_width_reduction": 0.06567966059583666,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.4255038908563346,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.4247310725873037,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.42627668800500784,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.4252803534234767,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.42112634558225165,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.4267282562373927,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.42538033417277904,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.42731709599974366,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              },
+              {
+                "x": -1208.68,
+                "center_prediction": 0.46715859339484767,
+                "linear_minimum": 0.14477875681992816,
+                "linear_maximum": 0.25173793228672514,
+                "linear_support": 0.05347958773339844,
+                "argument_minimum": -1.6457788309103576,
+                "argument_maximum": -0.749492179421367,
+                "arctan_minimum": -1.0247963253711037,
+                "arctan_maximum": -0.643176024393825,
+                "joint_alternative_minimum": 0.34950804394086954,
+                "joint_alternative_maximum": 0.5779407339771682,
+                "joint_alternative_width": 0.22843269003629865,
+                "alternative_comparison": "tighter",
+                "independent_minimum": 0.32289921687893464,
+                "independent_maximum": 0.6045495610391031,
+                "independent_width": 0.2816503441601685,
+                "intersection_minimum": 0.34950804394086954,
+                "intersection_maximum": 0.5779407339771682,
+                "intersection_width": 0.22843269003629865,
+                "intersection_to_independent_width_ratio": 0.8110506334279283,
+                "intersection_width_reduction": 0.053217654123869834,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.4667696475989341,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.4619820390296445,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.46380437538251307,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.4668446945048682,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.45876157851869864,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.4672922651785071,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.4675190356637033,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.46473933244558974,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              }
+            ],
+            "points": [
+              {
+                "point_index": 1,
+                "x": -1893.4,
+                "observed_y": 0.386998,
+                "native_prediction": 0.3829364858929843,
+                "actual_absolute_residual": 0.004061514107015718,
+                "intersection_minimum": 0.2889798245859309,
+                "intersection_maximum": 0.4763176653080671,
+                "residual_upper_bound": 0.09801817541406911,
+                "covered": true,
+                "center_prediction_inside": true
+              },
+              {
+                "point_index": 2,
+                "x": -1497.24,
+                "observed_y": 0.438864,
+                "native_prediction": 0.4259069290256413,
+                "actual_absolute_residual": 0.012957070974358664,
+                "intersection_minimum": 0.3187296640358989,
+                "intersection_maximum": 0.5298704031441047,
+                "residual_upper_bound": 0.12013433596410107,
+                "covered": true,
+                "center_prediction_inside": true
+              },
+              {
+                "point_index": 3,
+                "x": -1495.85,
+                "observed_y": 0.434887,
+                "native_prediction": 0.42608296765134746,
+                "actual_absolute_residual": 0.008804032348652568,
+                "intersection_minimum": 0.31885630592244446,
+                "intersection_maximum": 0.5300823897062059,
+                "residual_upper_bound": 0.11603069407755558,
+                "covered": true,
+                "center_prediction_inside": true
+              },
+              {
+                "point_index": 4,
+                "x": -1493.41,
+                "observed_y": 0.427893,
+                "native_prediction": 0.42639247054430207,
+                "actual_absolute_residual": 0.001500529455697952,
+                "intersection_minimum": 0.3190790569625461,
+                "intersection_maximum": 0.5304549499363148,
+                "residual_upper_bound": 0.10881394303745391,
+                "covered": true,
+                "center_prediction_inside": true
+              },
+              {
+                "point_index": 5,
+                "x": -1208.68,
+                "observed_y": 0.471568,
+                "native_prediction": 0.46715859339484767,
+                "actual_absolute_residual": 0.004409406605152322,
+                "intersection_minimum": 0.34950804394086954,
+                "intersection_maximum": 0.5779407339771682,
+                "residual_upper_bound": 0.12205995605913046,
+                "covered": true,
+                "center_prediction_inside": true
+              }
+            ]
+          },
+          {
+            "fold": 4,
+            "nativeTestRmse": 0.0074538301584031715,
+            "predictionEnvelopeAvailable": true,
+            "unavailableReason": null,
+            "candidateDirections": [
+              {
+                "direction": "b1_minus",
+                "parameter": "b1",
+                "sign": -1,
+                "displacement_vector": [
+                  0.07393003146205795,
+                  -1.175083410777764e-05,
+                  -265.63131259276645,
+                  206.3954263312652
+                ],
+                "parameters": {
+                  "b1": 0.11410333307512938,
+                  "b2": 7.422526611804205e-06,
+                  "b3": 1539.3922969771725,
+                  "b4": -420.8058637714105
+                },
+                "exact_parameters": {
+                  "b1": "0.1141033330751293764026151462225347554372625678009603923513921310185599839460929",
+                  "b2": "0.0000074225266118042051730159140234596152818162661433984173040960287059020776183344646",
+                  "b3": "1539.392296977172467147823605683175191743999588410790660364722164812473712540946",
+                  "b4": "-420.80586377141046126733303252481470083836307300932450219667183318279462992123019"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b1_plus",
+                "parameter": "b1",
+                "sign": 1,
+                "displacement_vector": [
+                  0.07393003146205795,
+                  -1.175083410777764e-05,
+                  -265.63131259276645,
+                  206.3954263312652
+                ],
+                "parameters": {
+                  "b1": 0.2619633959992453,
+                  "b2": -1.6079141603751074e-05,
+                  "b3": 1008.1296717916396,
+                  "b4": -8.015011108880019
+                },
+                "exact_parameters": {
+                  "b1": "0.2619633959992452835973848537774652445627374321990396076486078689814400160539071",
+                  "b2": "-0.000016079141603751075173015914023459615281816266143398417304096028705902077618334465",
+                  "b3": "1008.129671791639532852176394316824808256000411589209339635277835187526287459054",
+                  "b4": "-8.0150111088800187326669674751852991616369269906754978033281668172053700787698099"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b2_minus",
+                "parameter": "b2",
+                "sign": -1,
+                "displacement_vector": [
+                  -0.07228413646155817,
+                  1.2018398196614461e-05,
+                  242.63200294512535,
+                  -207.4164219802473
+                ],
+                "parameters": {
+                  "b1": 0.2603175009987455,
+                  "b2": -1.6346705692587898e-05,
+                  "b3": 1031.1289814392806,
+                  "b4": -6.994015459897941
+                },
+                "exact_parameters": {
+                  "b1": "0.26031750099874550170806608879707548960340604847991080723421864098930018571821258",
+                  "b2": "-0.000016346705692587896650494245151738517422845099338793478723737249277103054055417851",
+                  "b3": "1031.1289814392806611850391935755166204606442581017011531132274174471121973575304",
+                  "b4": "-6.9940154598979412433823659237926872947714252103813187781914078269543530755007949"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b2_plus",
+                "parameter": "b2",
+                "sign": 1,
+                "displacement_vector": [
+                  -0.07228413646155817,
+                  1.2018398196614461e-05,
+                  242.63200294512535,
+                  -207.4164219802473
+                ],
+                "parameters": {
+                  "b1": 0.11574922807562915,
+                  "b2": 7.690090700641026e-06,
+                  "b3": 1516.3929873295313,
+                  "b4": -421.82685942039257
+                },
+                "exact_parameters": {
+                  "b1": "0.11574922807562915829193391120292451039659395152008919276578135901069981428178742",
+                  "b2": "0.0000076900907006410266504942451517385174228450993387934787237372492771030540554178511",
+                  "b3": "1516.3929873295313388149608064244833795393557418982988468867725825528878026424696",
+                  "b4": "-421.8268594203925387566176340762073127052285747896186812218085921730456469244992"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b3_minus",
+                "parameter": "b3",
+                "sign": -1,
+                "displacement_vector": [
+                  -0.06908571122901737,
+                  1.0258473621976239e-05,
+                  284.2574962019436,
+                  -177.74501843492584
+                ],
+                "parameters": {
+                  "b1": 0.2571190757662047,
+                  "b2": -1.4586781117949674e-05,
+                  "b3": 989.5034881824624,
+                  "b4": -36.66541900521941
+                },
+                "exact_parameters": {
+                  "b1": "0.25711907576620470038402389220582408519573285113833016949853818518993707485703568",
+                  "b2": "-0.000014586781117949673916982509368351794645001442628929173075197781657071322990105968",
+                  "b3": "989.50348818246242142288696043486330537003322646142071207684623168006199400408089",
+                  "b4": "-36.665419005219411683422729479769396994047764884351644379439981123241431887747692"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b3_plus",
+                "parameter": "b3",
+                "sign": 1,
+                "displacement_vector": [
+                  -0.06908571122901737,
+                  1.0258473621976239e-05,
+                  284.2574962019436,
+                  -177.74501843492584
+                ],
+                "parameters": {
+                  "b1": 0.11894765330816996,
+                  "b2": 5.930166126002804e-06,
+                  "b3": 1558.0184805863496,
+                  "b4": -392.1554558750711
+                },
+                "exact_parameters": {
+                  "b1": "0.11894765330816995961597610779417591480426714886166983050146181481006292514296432",
+                  "b2": "0.0000059301661260028039169825093683517946450014426289291730751977816570713229901059676",
+                  "b3": "1558.0184805863495785771130395651366946299667735385792879231537683199380059959191",
+                  "b4": "-392.15545587507106831657727052023060300595223511564835562056001887675856811225231"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b4_minus",
+                "parameter": "b4",
+                "sign": -1,
+                "displacement_vector": [
+                  0.07167331750395532,
+                  -1.1709174383749114e-05,
+                  -237.32632315502136,
+                  212.89401542566014
+                ],
+                "parameters": {
+                  "b1": 0.11636004703323201,
+                  "b2": 7.380866887775678e-06,
+                  "b3": 1511.0873075394275,
+                  "b4": -427.3044528658054
+                },
+                "exact_parameters": {
+                  "b1": "0.11636004703323200506849987179684493363111073427302584924030348648699350972550086",
+                  "b2": "0.0000073808668877756780300913266752682726476524939886639194071491249247904250669155228",
+                  "b3": "1511.0873075394273485313515217597680418168807171428541773216883996102381519574833",
+                  "b4": "-427.30445286580538741845476233725818813234567444869912315294119867874979358396056"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              },
+              {
+                "direction": "b4_plus",
+                "parameter": "b4",
+                "sign": 1,
+                "displacement_vector": [
+                  0.07167331750395532,
+                  -1.1709174383749114e-05,
+                  -237.32632315502136,
+                  212.89401542566014
+                ],
+                "parameters": {
+                  "b1": 0.25970668204114267,
+                  "b2": -1.603748187972255e-05,
+                  "b3": 1036.4346612293846,
+                  "b4": -1.5164220144850926
+                },
+                "exact_parameters": {
+                  "b1": "0.25970668204114265493150012820315506636888926572697415075969651351300649027449914",
+                  "b2": "-0.000016037481879722548030091326675268272647652493988663919407149124924790425066915523",
+                  "b3": "1036.4346612293846514686484782402319581831192828571458226783116003897618480425167",
+                  "b4": "-1.5164220144850925815452376627418118676543255513008768470588013212502064160394354"
+                },
+                "ellipsoid_quadratic": 16.0,
+                "feasible": true
+              }
+            ],
+            "candidateEvaluationCount": 40,
+            "alternativeTighterCount": 5,
+            "alternativeWiderCount": 0,
+            "alternativeEqualCount": 0,
+            "intersectionTightenedCount": 5,
+            "intersectionUnchangedCount": 0,
+            "intersectionBoundChangedCount": 5,
+            "nonemptyIntersectionCount": 5,
+            "alternativeCandidateViolationCount": 0,
+            "intersectionCandidateViolationCount": 0,
+            "independentCandidateViolationCount": 0,
+            "candidateFeasibilityFailureCount": 0,
+            "centerPredictionMismatchCount": 0,
+            "coveredPointCount": 5,
+            "violationPointCount": 0,
+            "unavailablePointCount": 0,
+            "minAlternativeToIndependentWidthRatio": 0.8157722816951907,
+            "medianAlternativeToIndependentWidthRatio": 0.8478876727043867,
+            "maxAlternativeToIndependentWidthRatio": 0.8481295584778804,
+            "minIntersectionToIndependentWidthRatio": 0.8157722816951907,
+            "medianIntersectionToIndependentWidthRatio": 0.8478876727043867,
+            "maxIntersectionToIndependentWidthRatio": 0.8481295584778804,
+            "maxIntersectionWidthReduction": 0.057185205573019426,
+            "medianIntersectionWidthReduction": 0.04733780962080453,
+            "largestIntersectionTightening": {
+              "x": -1206.18,
+              "intersection_to_independent_width_ratio": 0.8157722816951907,
+              "intersection_width_reduction": 0.057185205573019426,
+              "independent_minimum": 0.31327226031969707,
+              "independent_maximum": 0.6236772639706953,
+              "joint_alternative_minimum": 0.34186486310620673,
+              "joint_alternative_maximum": 0.5950846611841856,
+              "intersection_minimum": 0.34186486310620673,
+              "intersection_maximum": 0.5950846611841856
+            },
+            "envelopes": [
+              {
+                "x": -1206.18,
+                "center_prediction": 0.47223006663115286,
+                "linear_minimum": 0.12297886638935335,
+                "linear_maximum": 0.24264642681403487,
+                "linear_support": 0.05983378021234073,
+                "argument_minimum": -2.0003432978720994,
+                "argument_maximum": -0.821394044167209,
+                "arctan_minimum": -1.107217367941423,
+                "arctan_maximum": -0.6876506392593464,
+                "joint_alternative_minimum": 0.34186486310620673,
+                "joint_alternative_maximum": 0.5950846611841856,
+                "joint_alternative_width": 0.2532197980779789,
+                "alternative_comparison": "tighter",
+                "independent_minimum": 0.31327226031969707,
+                "independent_maximum": 0.6236772639706953,
+                "independent_width": 0.3104050036509983,
+                "intersection_minimum": 0.34186486310620673,
+                "intersection_maximum": 0.5950846611841856,
+                "intersection_width": 0.2532197980779789,
+                "intersection_to_independent_width_ratio": 0.8157722816951907,
+                "intersection_width_reduction": 0.057185205573019426,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.4728897283187286,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.46521949536665436,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.4666606263648177,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.4730791299697801,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.46304651108194417,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.4728454516231457,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.4737715321064377,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.4665132643055021,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              },
+              {
+                "x": -1206.04,
+                "center_prediction": 0.47225245483301415,
+                "linear_minimum": 0.12297784731015704,
+                "linear_maximum": 0.24264865781933004,
+                "linear_support": 0.05983540525458647,
+                "argument_minimum": -2.000702916824557,
+                "argument_maximum": -0.8214895135862266,
+                "arctan_minimum": -1.1072892616418224,
+                "arctan_maximum": -0.6877076438707754,
+                "joint_alternative_minimum": 0.34188198915838636,
+                "joint_alternative_maximum": 0.5951097766650723,
+                "joint_alternative_width": 0.25322778750668595,
+                "alternative_comparison": "tighter",
+                "independent_minimum": 0.31329269398987,
+                "independent_maximum": 0.6236990718335886,
+                "independent_width": 0.3104063778437187,
+                "intersection_minimum": 0.34188198915838636,
+                "intersection_maximum": 0.5951097766650723,
+                "intersection_width": 0.25322778750668595,
+                "intersection_to_independent_width_ratio": 0.8157944088190718,
+                "intersection_width_reduction": 0.057178590337032764,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.47291165990327205,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.4652400703134462,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.4666812870136499,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.47310123897941164,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.46306734357088625,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.47286709125216847,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.4737938001552616,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.4665337996918313,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              },
+              {
+                "x": -997.92,
+                "center_prediction": 0.5081790672021843,
+                "linear_minimum": 0.12145953334078428,
+                "linear_maximum": 0.24596858650082676,
+                "linear_support": 0.062254526580021216,
+                "argument_minimum": -2.730417158121952,
+                "argument_maximum": -0.9930750049924519,
+                "arctan_minimum": -1.219723804899565,
+                "arctan_maximum": -0.7819236493307788,
+                "joint_alternative_minimum": 0.3703535611636787,
+                "joint_alternative_maximum": 0.6342187320140675,
+                "joint_alternative_width": 0.2638651708503889,
+                "alternative_comparison": "tighter",
+                "independent_minimum": 0.34668465635327644,
+                "independent_maximum": 0.6578876368244698,
+                "independent_width": 0.31120298047119344,
+                "intersection_minimum": 0.3703535611636787,
+                "intersection_maximum": 0.6342187320140675,
+                "intersection_width": 0.2638651708503889,
+                "intersection_to_independent_width_ratio": 0.8478876727043867,
+                "intersection_width_reduction": 0.04733780962080453,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.5073388088409773,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.4988210199492079,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.5003326786069437,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.5078550223382701,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.4971717551260959,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.5068304637446447,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.5087950165482664,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.49996997409730826,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              },
+              {
+                "x": -996.61,
+                "center_prediction": 0.5084223491095651,
+                "linear_minimum": 0.12144995583873149,
+                "linear_maximum": 0.24598950416851903,
+                "linear_support": 0.06226977416489375,
+                "argument_minimum": -2.7366999819854203,
+                "argument_maximum": -0.9943823476236582,
+                "arctan_minimum": -1.2204653743135283,
+                "arctan_maximum": -0.7825814329313645,
+                "joint_alternative_minimum": 0.3705533626846619,
+                "joint_alternative_maximum": 0.6344756985575158,
+                "joint_alternative_width": 0.263922335872854,
+                "alternative_comparison": "tighter",
+                "independent_minimum": 0.3469154495607697,
+                "independent_maximum": 0.658113611681408,
+                "independent_width": 0.3111981621206384,
+                "intersection_minimum": 0.3705533626846619,
+                "intersection_maximum": 0.6344756985575158,
+                "intersection_width": 0.263922335872854,
+                "intersection_to_independent_width_ratio": 0.8480844940547639,
+                "intersection_width_reduction": 0.04727582624778437,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.5075666489575655,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.49905280461542795,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.5005644621754691,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.5080853193923502,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.4974078131078906,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.507055254165864,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.5090269289818337,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.5002001985743956,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              },
+              {
+                "x": -996.31,
+                "center_prediction": 0.5084780932066658,
+                "linear_minimum": 0.12144776248287689,
+                "linear_maximum": 0.2459942945088712,
+                "linear_support": 0.062273266012997125,
+                "argument_minimum": -2.7381428677336013,
+                "argument_maximum": -0.9946822236088763,
+                "arctan_minimum": -1.2206352559748164,
+                "arctan_maximum": -0.7827321929838861,
+                "joint_alternative_minimum": 0.3705991577439665,
+                "joint_alternative_maximum": 0.6345345639101373,
+                "joint_alternative_width": 0.26393540616617084,
+                "alternative_comparison": "tighter",
+                "independent_minimum": 0.3469683419876367,
+                "independent_maximum": 0.6581653796664672,
+                "independent_width": 0.3111970376788305,
+                "intersection_minimum": 0.3705991577439665,
+                "intersection_maximum": 0.6345345639101373,
+                "intersection_width": 0.26393540616617084,
+                "intersection_to_independent_width_ratio": 0.8481295584778804,
+                "intersection_width_reduction": 0.04726163151265966,
+                "intersection_tightened": true,
+                "intersection_bound_changed": true,
+                "intersection_nonempty": true,
+                "candidate_evaluations": [
+                  {
+                    "direction": "b1_minus",
+                    "prediction": 0.5076188447649921,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b1_plus",
+                    "prediction": 0.49910592361177386,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_minus",
+                    "prediction": 0.5006175799734262,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b2_plus",
+                    "prediction": 0.5081380785571767,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_minus",
+                    "prediction": 0.4974619126016386,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b3_plus",
+                    "prediction": 0.5071067514566193,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_minus",
+                    "prediction": 0.5090800581581815,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  },
+                  {
+                    "direction": "b4_plus",
+                    "prediction": 0.5002529589314411,
+                    "ellipsoid_quadratic": 16.0,
+                    "feasible": true,
+                    "denominator_sign_preserved": true,
+                    "inside_independent": true,
+                    "inside_joint_alternative": true,
+                    "inside_intersection": true
+                  }
+                ]
+              }
+            ],
+            "points": [
+              {
+                "point_index": 1,
+                "x": -1206.18,
+                "observed_y": 0.461699,
+                "native_prediction": 0.47223006663115286,
+                "actual_absolute_residual": 0.01053106663115283,
+                "intersection_minimum": 0.34186486310620673,
+                "intersection_maximum": 0.5950846611841856,
+                "residual_upper_bound": 0.13338566118418557,
+                "covered": true,
+                "center_prediction_inside": true
+              },
+              {
+                "point_index": 2,
+                "x": -1206.04,
+                "observed_y": 0.461144,
+                "native_prediction": 0.47225245483301415,
+                "actual_absolute_residual": 0.011108454833014147,
+                "intersection_minimum": 0.34188198915838636,
+                "intersection_maximum": 0.5951097766650723,
+                "residual_upper_bound": 0.13396577666507228,
+                "covered": true,
+                "center_prediction_inside": true
+              },
+              {
+                "point_index": 3,
+                "x": -997.92,
+                "observed_y": 0.513532,
+                "native_prediction": 0.5081790672021843,
+                "actual_absolute_residual": 0.005352932797815679,
+                "intersection_minimum": 0.3703535611636787,
+                "intersection_maximum": 0.6342187320140675,
+                "residual_upper_bound": 0.14317843883632134,
+                "covered": true,
+                "center_prediction_inside": true
+              },
+              {
+                "point_index": 4,
+                "x": -996.61,
+                "observed_y": 0.506641,
+                "native_prediction": 0.5084223491095651,
+                "actual_absolute_residual": 0.0017813491095650669,
+                "intersection_minimum": 0.3705533626846619,
+                "intersection_maximum": 0.6344756985575158,
+                "residual_upper_bound": 0.13608763731533816,
+                "covered": true,
+                "center_prediction_inside": true
+              },
+              {
+                "point_index": 5,
+                "x": -996.31,
+                "observed_y": 0.505062,
+                "native_prediction": 0.5084780932066658,
+                "actual_absolute_residual": 0.0034160932066658045,
+                "intersection_minimum": 0.3705991577439665,
+                "intersection_maximum": 0.6345345639101373,
+                "residual_upper_bound": 0.13446284225603353,
+                "covered": true,
+                "center_prediction_inside": true
+              }
+            ]
+          },
+          {
+            "fold": 5,
+            "nativeTestRmse": 0.006228106060478816,
+            "predictionEnvelopeAvailable": false,
+            "unavailableReason": "x-b4 has no certified nonzero sign over the ellipsoid and interval",
+            "candidateDirections": [],
+            "candidateEvaluationCount": 0,
+            "alternativeTighterCount": 0,
+            "alternativeWiderCount": 0,
+            "alternativeEqualCount": 0,
+            "intersectionTightenedCount": 0,
+            "intersectionUnchangedCount": 0,
+            "intersectionBoundChangedCount": 0,
+            "nonemptyIntersectionCount": 0,
+            "alternativeCandidateViolationCount": 0,
+            "intersectionCandidateViolationCount": 0,
+            "independentCandidateViolationCount": 0,
+            "candidateFeasibilityFailureCount": 0,
+            "centerPredictionMismatchCount": 0,
+            "coveredPointCount": 0,
+            "violationPointCount": 0,
+            "unavailablePointCount": 5,
+            "minAlternativeToIndependentWidthRatio": null,
+            "medianAlternativeToIndependentWidthRatio": null,
+            "maxAlternativeToIndependentWidthRatio": null,
+            "minIntersectionToIndependentWidthRatio": null,
+            "medianIntersectionToIndependentWidthRatio": null,
+            "maxIntersectionToIndependentWidthRatio": null,
+            "maxIntersectionWidthReduction": null,
+            "medianIntersectionWidthReduction": null,
+            "largestIntersectionTightening": null,
+            "envelopes": [],
+            "points": [
+              {
+                "point_index": 1,
+                "x": -834.94,
+                "observed_y": 0.535648,
+                "native_prediction": 0.536844664630465,
+                "actual_absolute_residual": 0.001196664630464972,
+                "intersection_minimum": null,
+                "intersection_maximum": null,
+                "residual_upper_bound": null,
+                "covered": null,
+                "center_prediction_inside": null
+              },
+              {
+                "point_index": 2,
+                "x": -834.66,
+                "observed_y": 0.533726,
+                "native_prediction": 0.5369004576355019,
+                "actual_absolute_residual": 0.0031744576355018372,
+                "intersection_minimum": null,
+                "intersection_maximum": null,
+                "residual_upper_bound": null,
+                "covered": null,
+                "center_prediction_inside": null
+              },
+              {
+                "point_index": 3,
+                "x": -710.03,
+                "observed_y": 0.568064,
+                "native_prediction": 0.5625888058941655,
+                "actual_absolute_residual": 0.005475194105834524,
+                "intersection_minimum": null,
+                "intersection_maximum": null,
+                "residual_upper_bound": null,
+                "covered": null,
+                "center_prediction_inside": null
+              },
+              {
+                "point_index": 4,
+                "x": -530.16,
+                "observed_y": 0.612886,
+                "native_prediction": 0.6023924814813446,
+                "actual_absolute_residual": 0.010493518518655431,
+                "intersection_minimum": null,
+                "intersection_maximum": null,
+                "residual_upper_bound": null,
+                "covered": null,
+                "center_prediction_inside": null
+              },
+              {
+                "point_index": 5,
+                "x": -464.17,
+                "observed_y": 0.624169,
+                "native_prediction": 0.6176616459611042,
+                "actual_absolute_residual": 0.006507354038895796,
+                "intersection_minimum": null,
+                "intersection_maximum": null,
+                "residual_upper_bound": null,
+                "covered": null,
+                "center_prediction_inside": null
+              }
+            ]
+          }
+        ],
+        "knownAnswer": null,
+        "fullNonlinearGlobalOptimum": null,
+        "analysisScope": {
+          "joint_linear_not_full_nonlinear_optimum": true,
+          "candidate_checks_are_consistency_not_proof": true,
+          "crossing_fold_receives_no_bound": true,
+          "full_covariance_support_not_coordinate_only": true,
+          "refit": false,
+          "retrospective_bound_construction": true,
+          "independent_physical_experiment": false,
+          "baseline_radius": 4,
+          "high_precision_decimal_digits": 80,
+          "outward_rounding": true,
+          "outward_relative_margin": 1e-24,
+          "exact_rational_certificate": false,
+          "historical_baseline_replaced": false,
+          "probability_region": false
+        },
+        "decision": {
+          "refit": false,
+          "joint_alternative_is_global_optimum": false,
+          "intersection_is_global_optimum": false,
+          "alternative_always_tighter_claimed": false,
+          "intersection_always_tighter_claimed": false,
+          "fold5_given_finite_bound": false,
+          "candidate_checks_replace_support_proof": false,
+          "candidate_directions_called_global_optimizers": false,
+          "coordinate_only_support_directions_used": false,
+          "probability_region_claimed": false,
+          "exact_rational_certificate_claimed": false,
+          "independent_model_family_replication_claimed": false,
+          "independent_physical_experiment_claimed": false,
+          "unavailable_points_hidden": false,
+          "wider_alternatives_hidden": false,
+          "unchanged_intersections_hidden": false,
+          "candidate_violations_hidden": false,
+          "historical_baseline_replaced": false
+        },
+        "implementation": {
+          "protocolSha256": "eb57b609c911b2f315418d07d37cc19fd0ff90ac1dfb47a74fccfcdd6b25da1b",
+          "summarySha256": "45852e2534f51098ae390e62092d1b8df04c609d37aba5211121f637599c3b35",
+          "analysisRunnerSha256": "4500bf97a1c7bb18d3cca8d2d67af664185a7afa98f2806a61c14602dcbd8053",
+          "figureSha256": "a8cbd52a1cc6ff2c7057d3ea848d36e76bedb7fb5ee942a1a21abd9b44ecdf22",
+          "reportSha256": "65fa63ed8ab9dfd44231f150bd2f55bf74080676494e805195fd31d22f25e030",
+          "wordSha256": "55a7adb19eaf4636bcc4c5c89d3251727fce63f99b7ab285d5e2bdde6fa0466e"
+        },
+        "protocolCommits": {
+          "protocol": "1d6304d"
+        }
+      },
+      "scientificClaim": "前四折 20 个 Roszman1 可用点的联合替代界与交集全部收紧，宽度比中位数为 0.690796；第 1 折 x=-4868.68 最大减少 0.700859。32 个协方差支撑方向的 160 次候选全部通过，20 个可用观测点全部一致；第 5 折 5 个点仍无有限包络。",
+      "limitations": "只对线性 b1-b2x 部分联合支撑，反正切参数相关性未完全联合求解，不是完整非线性最优。候选只验证实现一致性；第 5 折继续不可用，中心和残差一致性不是概率覆盖或独立实验。Only the linear b1-b2*x part is jointly supported; the argument relaxation and their sum are not a joint full nonlinear optimum The independent stage-46 argument interval is reused and is not claimed to encode all parameter correlations The alternative may be wider than the independent envelope and every such case is retained Intersections may remain unchanged and are not global optima; historical baselines are not replaced Fold 5 crosses x-b4 and receives no finite alternative, intersection or residual bound Candidate checks are implementation-consistency tests, not the analytic support proof or a global optimizer High-precision outward-rounded numerical intervals are not exact rational-algebra certificates or probability regions",
+      "upstreamContribution": "提供线性联合支撑与反正切区间交集接口，展示独立线性角点的保守性，同时保留第 5 折奇异不可用反例和全协方差候选记录。",
+      "snapshotFiles": [
+        "validation/roszman1-joint-linear-arctan-protocol.json",
+        "validation/roszman1-joint-linear-arctan-check.json",
+        "validation/frontier-roszman1-joint-linear-arctan-word.json"
       ]
     }
   ]

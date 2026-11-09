@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生Roszman1联合线性反正切交集_图文完整版.docx",
+  "bytes": 197597,
+  "sha256": "55a7adb19eaf4636bcc4c5c89d3251727fce63f99b7ab285d5e2bdde6fa0466e",
+  "native_math_objects": 3,
+  "embedded_images": 1,
+  "native_tables": 5,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

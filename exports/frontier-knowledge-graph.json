@@ -2873,6 +2873,83 @@
         "validation/chwirut1-log-support-intersection.json",
         "docs/CHWIRUT1_LOG_SUPPORT_INTERSECTION_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-independent-linear-corners-tightest",
+      "kind": "claim",
+      "title": "独立 b1、b2 线性角点与反正切区间的组合已经给出 Roszman1 最紧有效包络",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-joint-linear-arctan-intersection.json"
+      ]
+    },
+    {
+      "id": "claim-joint-linear-arctan-global-optimum",
+      "kind": "claim",
+      "title": "线性联合支撑与原有反正切区间的交集就是完整非线性全局最优界",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-joint-linear-arctan-intersection.json"
+      ]
+    },
+    {
+      "id": "evidence-roszman1-joint-linear-arctan",
+      "kind": "evidence",
+      "title": "前四折 20 个可用点的联合替代界与交集全部收紧，宽度比中位数 0.690796，160 个候选和 20 个观测点全部一致",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-joint-linear-arctan-intersection.json",
+        "validation/roszman1-joint-linear-arctan-check.json"
+      ]
+    },
+    {
+      "id": "evidence-roszman1-fold1-joint-tightening",
+      "kind": "evidence",
+      "title": "第 1 折 x=-4868.68 的包络从 -0.190962—0.676330 收紧到 0.159467—0.325900，宽度减少 0.700859",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-joint-linear-arctan-intersection.json",
+        "docs/ROSZMAN1_JOINT_LINEAR_ARCTAN_INTERSECTION_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-fold5-still-unavailable",
+      "kind": "counterexample",
+      "title": "第 5 折 x-b4 跨零，5 个点仍无有限包络，未生成替代界、交集或有限残差上界，不能因前四折收紧而隐藏",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-joint-linear-arctan-intersection.json",
+        "docs/ROSZMAN1_JOINT_LINEAR_ARCTAN_INTERSECTION_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "experiment-roszman1-joint-linear-protocol",
+      "kind": "experiment",
+      "title": "冻结 b1-b2x 联合支撑、原有反正切区间、交集及前四折 32 个候选方向的 160 次原生评价",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-joint-linear-arctan-protocol.json",
+        "scripts/analyze_roszman1_joint_linear_arctan.py"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-candidate-not-global-proof",
+      "kind": "counterexample",
+      "title": "160 个候选全部包含只验证实现一致性，候选方向不是全局优化器，线性联合与反正切区间之和也不是完整非线性最优",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-joint-linear-arctan-intersection.json"
+      ]
+    },
+    {
+      "id": "limitation-roszman1-joint-linear-arctan-scope",
+      "kind": "limitation",
+      "title": "只对线性部分联合支撑，反正切相关性未完全联合求解；第 5 折继续不可用，候选和中心一致性不是概率覆盖或独立实验",
+      "status": "active",
+      "sourceFiles": [
+        "validation/roszman1-joint-linear-arctan-intersection.json",
+        "docs/ROSZMAN1_JOINT_LINEAR_ARCTAN_INTERSECTION_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -7204,6 +7281,166 @@
     {
       "from": "limitation-chwirut1-log-support-scope",
       "to": "claim-chwirut-extrapolation",
+      "relation": "limits"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-independent-linear-corners-tightest",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-joint-linear-arctan-global-optimum",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-roszman1-joint-linear-arctan",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-roszman1-fold1-joint-tightening",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-fold5-still-unavailable",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-roszman1-joint-linear-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-candidate-not-global-proof",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-roszman1-joint-linear-arctan-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-roszman1-joint-linear-arctan",
+      "to": "claim-independent-linear-corners-tightest",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-joint-linear-protocol",
+      "to": "claim-independent-linear-corners-tightest",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-roszman1-fold1-joint-tightening",
+      "to": "claim-independent-linear-corners-tightest",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-roszman1-joint-linear-arctan",
+      "to": "evidence-roszman1-fold1-joint-tightening",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-joint-linear-arctan",
+      "to": "claim-joint-linear-arctan-global-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-joint-linear-protocol",
+      "to": "claim-joint-linear-arctan-global-optimum",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-roszman1-fold5-still-unavailable",
+      "to": "claim-roszman-fold5-low-rmse-singularity-safe",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-fold5-still-unavailable",
+      "to": "counterexample-roszman1-fold5-crossing-singularity",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-joint-linear-arctan",
+      "to": "counterexample-roszman1-fold5-still-unavailable",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-roszman1-candidate-not-global-proof",
+      "to": "limitation-roszman1-joint-linear-arctan-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-roszman1-joint-linear-arctan-scope",
+      "to": "evidence-roszman1-joint-linear-arctan",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-joint-linear-arctan-scope",
+      "to": "claim-independent-linear-corners-tightest",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-joint-linear-arctan-scope",
+      "to": "claim-joint-linear-arctan-global-optimum",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-roszman1-joint-linear-arctan",
+      "to": "evidence-roszman1-native-ellipsoid-continuous",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-joint-linear-protocol",
+      "to": "experiment-roszman1-native-ellipsoid-continuous-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-joint-linear-arctan",
+      "to": "evidence-native-ellipsoid-cross-model",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-joint-linear-protocol",
+      "to": "experiment-native-ellipsoid-cross-model-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-joint-linear-arctan",
+      "to": "evidence-native-identifiability-cross-model",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-joint-linear-protocol",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-roszman1-joint-linear-arctan-scope",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-roszman1-joint-linear-arctan",
+      "to": "evidence-roszman1-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-joint-linear-protocol",
+      "to": "experiment-roszman1-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-joint-linear-protocol",
+      "to": "claim-knowledge-graph",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-roszman1-joint-linear-arctan-scope",
+      "to": "claim-prediction-stability-parameter-uniqueness",
       "relation": "limits"
     }
   ]
