@@ -1,0 +1,38 @@
+{
+  "status": "frozen_before_enso_native_holdout_diagnostic_amendment",
+  "frozen_at_local": "2026-11-09T08:15:25+08:00",
+  "amendment_id": "enso-native-holdout-amendment-01",
+  "original_protocol": {
+    "file": "validation/enso-native-holdout-protocol.json",
+    "sha256": "94d91a09b48ecc2c8904ce51e0507a4ad0d85e4f330d5b78374734c3b4eb8cc4"
+  },
+  "trigger": {
+    "observed_after_running_frozen_starts": "Both starts optimized successfully, but the best full-data fit did not meet the original NIST parameter and RSS tolerances",
+    "best_training_rss": 788.5397879128823,
+    "certified_rss": 788.53978668,
+    "rss_absolute_difference": 0.0000012328822565078735,
+    "b8_relative_difference_approx": 0.000634,
+    "original_tolerances_relaxed": false,
+    "optimizer_or_starts_changed": false
+  },
+  "preservation_rule": {
+    "optimizer_mismatch_retained": true,
+    "original_parameters_starts_folds_and_tolerances_unchanged": true,
+    "no_new_start_period_bound_scaling_or_fold": true,
+    "original_protocol_file_unchanged": true,
+    "known_answer_optimizer_within_original_tolerances_must_not_be_overwritten": true
+  },
+  "certified_forward_rule": {
+    "purpose": "Evaluate the native Fourier equation directly at the NIST certified parameters on all 168 observations to distinguish formula correctness from optimizer reproduction; no fitting is performed for this check",
+    "parameters_source": "original_protocol.known_answer_rule.certified_parameters",
+    "rss_rule": "Sum squared residuals from direct certified-parameter predictions and compare with certified_rss using the original rss_absolute_tolerance=0.000001",
+    "evidence_class": "known_answer_forward_evaluation_not_optimizer_or_holdout",
+    "validation": "The forward RSS check must pass; the original optimizer mismatch must remain recorded separately"
+  },
+  "decision": {
+    "optimizer_mismatch_hidden": false,
+    "original_tolerances_relaxed": false,
+    "certified_forward_used_as_holdout": false,
+    "certified_forward_used_as_optimizer_reproduction": false
+  }
+}
