@@ -1,0 +1,44 @@
+{
+  "status": "frozen_before_roszman1_whitened_cover_grid_results",
+  "frozen_at_local": "2026-11-09T16:43:03+08:00",
+  "amendment": "01",
+  "original_protocol": {
+    "file": "validation/roszman1-whitened-cover-grid-protocol.json",
+    "sha256": "1ad14ef93dbd9a4d531841cd7ff1475bb8b10b5b1be9b6a7b79426b15ab87184"
+  },
+  "reason": "Binary-rounded outer-box boundaries can make a mathematically boundary-touching corner cell have a computed minimum squared norm of 16.000000000000007 at radius 4. A strict bare floating comparison would incorrectly classify such boundary-uncertain cells as wholly outside the ball",
+  "observed_before_correction": {
+    "result_file_written": false,
+    "outside_cell_count": 320,
+    "grid4_outside_cells_per_x": 16,
+    "grid1_and_grid2_outside_cells_per_x": 0,
+    "example_indices": [0, 0, 0, 0],
+    "example_minimum_norm_squared": 16.000000000000007,
+    "example_difference_from_radius_squared": 7.105427357601002e-15,
+    "interpretation": "The corner cells are boundary-uncertain, not evidence of a substantive outside-ball region; they must be retained"
+  },
+  "correction": {
+    "outside_distance_tolerance": "1e-12*(1+r^2)",
+    "rule": "Discard a cell only when minimum_norm_squared > r^2 + 1e-12*(1+r^2); otherwise retain it for denominator classification",
+    "expected_outside_cell_count": 0,
+    "boundary_uncertain_cells_retained": true,
+    "denominator_gate_unchanged": true,
+    "scope": "This tolerance is used only for the outside-ball classification and makes the cover more conservative by retaining more cells. It never creates a finite interval for an unresolved denominator and never relaxes the negative-denominator gate",
+    "structural_expectation": "The original outside_cell_count=0 remains unchanged; the new numerical tolerance prevents spurious boundary exclusion",
+    "implementation": "Record the tolerance in every grid and in analysis_scope, and include this amendment's hash in the result"
+  },
+  "historical_preservation": {
+    "original_protocol_unchanged": true,
+    "no_result_files_rewritten": true,
+    "native_data_and_covariance_unchanged": true,
+    "stage56_and_stage57_unchanged": true
+  },
+  "decision": {
+    "boundary_cells_given_finite_intervals": false,
+    "denominator_gate_relaxed": false,
+    "original_protocol_rewritten": false,
+    "existing_results_modified": false,
+    "outside_ball_proof_replaced_by_candidates": false,
+    "probability_or_global_optimum_claimed": false
+  }
+}
