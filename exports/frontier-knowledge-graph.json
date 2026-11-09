@@ -2950,6 +2950,84 @@
         "validation/roszman1-joint-linear-arctan-intersection.json",
         "docs/ROSZMAN1_JOINT_LINEAR_ARCTAN_INTERSECTION_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-conservative-synthesis-unified-score",
+      "kind": "claim",
+      "title": "三模型局部收紧数量、宽度比或候选评价可以合成统一稳定性评分并直接排名",
+      "status": "falsified",
+      "sourceFiles": [
+        "exports/native-conservative-support-synthesis.json"
+      ]
+    },
+    {
+      "id": "claim-local-tightening-global-optimum",
+      "kind": "claim",
+      "title": "三个模型各自取得局部收紧即可证明各自构造是完整非线性全局最优界",
+      "status": "falsified",
+      "sourceFiles": [
+        "exports/native-conservative-support-synthesis.json"
+      ]
+    },
+    {
+      "id": "evidence-native-conservative-support-synthesis",
+      "kind": "evidence",
+      "title": "407 点中 402 点可用、5 点不可用；210 个包络中 79 个收紧、131 个保持；964 次候选检查无违规，三份源收据全部通过",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-conservative-support-synthesis.json",
+        "validation/native-conservative-support-synthesis-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-fold5-inventory-unavailable",
+      "kind": "counterexample",
+      "title": "综合清单继续保留 Roszman1 第 5 折 5 个不可用点，不能因其他 79 个包络收紧就补出有限包络或有限残差上界",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-conservative-support-synthesis.json",
+        "docs/NATIVE_CONSERVATIVE_SUPPORT_SYNTHESIS_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "counterexample-conservative-width-ratio-not-ranking",
+      "kind": "counterexample",
+      "title": "Chwirut1、Roszman1、ENSO 的宽度比中位数分别针对三个不同基线；ENSO 有 131 个保持案例，1.0 不能解释为较差或统一评分",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-conservative-support-synthesis.json",
+        "docs/NATIVE_CONSERVATIVE_SUPPORT_SYNTHESIS_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "experiment-native-conservative-support-synthesis-protocol",
+      "kind": "experiment",
+      "title": "冻结三份最新结果及收据，只聚合清单数量，保留模型专属基线、不可用折和禁止聚合字段",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/native-conservative-support-synthesis-protocol.json",
+        "scripts/analyze_native_conservative_support_synthesis.py"
+      ]
+    },
+    {
+      "id": "counterexample-conservative-candidate-not-global-proof",
+      "kind": "counterexample",
+      "title": "964 次候选全部通过仅是实现一致性检查，不是全局优化器、全局最优证明或独立物理实验",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-conservative-support-synthesis.json",
+        "validation/native-conservative-support-synthesis-check.json"
+      ]
+    },
+    {
+      "id": "limitation-native-conservative-support-synthesis-scope",
+      "kind": "limitation",
+      "title": "综合不合并原始宽度、RMSE、参数、协方差或残差，不生成概率覆盖、统一评分或独立模型族复现结论",
+      "status": "active",
+      "sourceFiles": [
+        "exports/native-conservative-support-synthesis.json",
+        "docs/NATIVE_CONSERVATIVE_SUPPORT_SYNTHESIS_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -7442,6 +7520,166 @@
       "from": "limitation-roszman1-joint-linear-arctan-scope",
       "to": "claim-prediction-stability-parameter-uniqueness",
       "relation": "limits"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-conservative-synthesis-unified-score",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-local-tightening-global-optimum",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-native-conservative-support-synthesis",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-fold5-inventory-unavailable",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-conservative-width-ratio-not-ranking",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-native-conservative-support-synthesis-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-conservative-candidate-not-global-proof",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-native-conservative-support-synthesis-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-native-conservative-support-synthesis",
+      "to": "claim-conservative-synthesis-unified-score",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-native-conservative-support-synthesis-protocol",
+      "to": "claim-conservative-synthesis-unified-score",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-conservative-width-ratio-not-ranking",
+      "to": "claim-conservative-synthesis-unified-score",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-native-conservative-support-synthesis",
+      "to": "claim-local-tightening-global-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-native-conservative-support-synthesis-protocol",
+      "to": "claim-local-tightening-global-optimum",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-conservative-candidate-not-global-proof",
+      "to": "claim-local-tightening-global-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-fold5-inventory-unavailable",
+      "to": "claim-roszman-fold5-low-rmse-singularity-safe",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-fold5-inventory-unavailable",
+      "to": "counterexample-roszman1-fold5-crossing-singularity",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-conservative-support-synthesis",
+      "to": "counterexample-roszman1-fold5-inventory-unavailable",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-conservative-support-synthesis",
+      "to": "counterexample-conservative-width-ratio-not-ranking",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-conservative-candidate-not-global-proof",
+      "to": "limitation-native-conservative-support-synthesis-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-native-conservative-support-synthesis-scope",
+      "to": "evidence-native-conservative-support-synthesis",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-native-conservative-support-synthesis-scope",
+      "to": "claim-conservative-synthesis-unified-score",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-native-conservative-support-synthesis-scope",
+      "to": "claim-local-tightening-global-optimum",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-native-conservative-support-synthesis-scope",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-native-conservative-support-synthesis",
+      "to": "evidence-chwirut1-log-support",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-conservative-support-synthesis",
+      "to": "evidence-roszman1-joint-linear-arctan",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-conservative-support-synthesis",
+      "to": "evidence-enso-phase-interval-triple",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-native-conservative-support-synthesis-protocol",
+      "to": "experiment-chwirut1-log-support-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-native-conservative-support-synthesis-protocol",
+      "to": "experiment-roszman1-joint-linear-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-native-conservative-support-synthesis-protocol",
+      "to": "experiment-enso-phase-interval-triple-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-conservative-support-synthesis",
+      "to": "evidence-native-ellipsoid-cross-model",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-native-conservative-support-synthesis-protocol",
+      "to": "experiment-native-ellipsoid-cross-model-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-native-conservative-support-synthesis-protocol",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "tests"
     }
   ]
 }

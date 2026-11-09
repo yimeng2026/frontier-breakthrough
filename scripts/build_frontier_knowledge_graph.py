@@ -120,6 +120,9 @@ def build_graph(root):
     roszmanJoint = json.loads((root / "validation/roszman1-joint-linear-arctan-intersection.json").read_text(encoding="utf-8"))
     if roszmanJoint["totals"]["held_out_point_count"] != 25 or roszmanJoint["totals"]["available_point_count"] != 20 or roszmanJoint["totals"]["unavailable_point_count"] != 5 or roszmanJoint["totals"]["unavailable_fold_ids"] != [5] or roszmanJoint["totals"]["joint_alternative_bound_count"] != 20 or roszmanJoint["totals"]["intersection_bound_count"] != 20 or roszmanJoint["totals"]["candidate_direction_count"] != 32 or roszmanJoint["totals"]["candidate_evaluation_count"] != 160 or roszmanJoint["totals"]["alternative_tighter_count"] != 20 or roszmanJoint["totals"]["alternative_wider_count"] != 0 or roszmanJoint["totals"]["intersection_tightened_count"] != 20 or roszmanJoint["totals"]["intersection_unchanged_count"] != 0 or roszmanJoint["totals"]["nonempty_intersection_count"] != 20 or roszmanJoint["totals"]["alternative_candidate_violation_count"] != 0 or roszmanJoint["totals"]["intersection_candidate_violation_count"] != 0 or roszmanJoint["totals"]["independent_candidate_violation_count"] != 0 or roszmanJoint["totals"]["covered_point_count"] != 20 or roszmanJoint["totals"]["violation_point_count"] != 0 or roszmanJoint["totals"]["median_intersection_to_independent_width_ratio"] != 0.690796188558053 or roszmanJoint["totals"]["max_intersection_width_reduction"] != 0.7008593776977347 or roszmanJoint["totals"]["largest_intersection_tightening"]["x"] != -4868.68 or not roszmanJoint["independent_receipt_verified"] or roszmanJoint["decision"]["fold5_given_finite_bound"] or roszmanJoint["decision"]["joint_alternative_is_global_optimum"]:
         raise ValueError("Expected Roszman1 joint-linear tightening, unavailable fold and candidate boundaries are not present")
+    conservativeSynthesis = json.loads((root / "exports/native-conservative-support-synthesis.json").read_text(encoding="utf-8"))
+    if conservativeSynthesis["totals"]["dataset_count"] != 3 or conservativeSynthesis["totals"]["held_out_point_count"] != 407 or conservativeSynthesis["totals"]["available_point_count"] != 402 or conservativeSynthesis["totals"]["unavailable_point_count"] != 5 or conservativeSynthesis["totals"]["unavailable_fold_ids"] != ["roszman1:5"] or conservativeSynthesis["totals"]["unique_envelope_count"] != 210 or conservativeSynthesis["totals"]["tightened_envelope_count"] != 79 or conservativeSynthesis["totals"]["unchanged_envelope_count"] != 131 or conservativeSynthesis["totals"]["nonempty_intersection_count"] != 210 or conservativeSynthesis["totals"]["candidate_evaluation_count"] != 964 or conservativeSynthesis["totals"]["candidate_violation_count"] != 0 or conservativeSynthesis["totals"]["center_prediction_mismatch_count"] != 0 or conservativeSynthesis["totals"]["source_receipt_verified_count"] != 3 or conservativeSynthesis["totals"]["source_projection_mismatch_count"] != 0 or [dataset["ratio_summary"]["median"] for dataset in conservativeSynthesis["datasets"]] != [0.25654045819729265, 0.690796188558053, 1.0] or any(conservativeSynthesis[key] is not None for key in ["cross_dataset_pooled_error_metrics", "cross_dataset_raw_widths", "unified_stability_score", "probability_coverage", "global_optimum"]) or any(conservativeSynthesis["decision"].values()):
+        raise ValueError("Expected conservative-support synthesis counts, model-specific baselines and unavailable-fold boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -1414,6 +1417,50 @@ def build_graph(root):
         edge("experiment-roszman1-joint-linear-protocol", "experiment-roszman1-native-identifiability-protocol", "supports"),
         edge("experiment-roszman1-joint-linear-protocol", "claim-knowledge-graph", "tests"),
         edge("limitation-roszman1-joint-linear-arctan-scope", "claim-prediction-stability-parameter-uniqueness", "limits"),
+    ])
+    nodes.extend([
+        node("claim-conservative-synthesis-unified-score", "claim", "三模型局部收紧数量、宽度比或候选评价可以合成统一稳定性评分并直接排名", "falsified", ["exports/native-conservative-support-synthesis.json"]),
+        node("claim-local-tightening-global-optimum", "claim", "三个模型各自取得局部收紧即可证明各自构造是完整非线性全局最优界", "falsified", ["exports/native-conservative-support-synthesis.json"]),
+        node("evidence-native-conservative-support-synthesis", "evidence", "407 点中 402 点可用、5 点不可用；210 个包络中 79 个收紧、131 个保持；964 次候选检查无违规，三份源收据全部通过", "supported", ["exports/native-conservative-support-synthesis.json", "validation/native-conservative-support-synthesis-check.json"]),
+        node("counterexample-roszman1-fold5-inventory-unavailable", "counterexample", "综合清单继续保留 Roszman1 第 5 折 5 个不可用点，不能因其他 79 个包络收紧就补出有限包络或有限残差上界", "supported", ["exports/native-conservative-support-synthesis.json", "docs/NATIVE_CONSERVATIVE_SUPPORT_SYNTHESIS_2026-11-09.md"]),
+        node("counterexample-conservative-width-ratio-not-ranking", "counterexample", "Chwirut1、Roszman1、ENSO 的宽度比中位数分别针对三个不同基线；ENSO 有 131 个保持案例，1.0 不能解释为较差或统一评分", "supported", ["exports/native-conservative-support-synthesis.json", "docs/NATIVE_CONSERVATIVE_SUPPORT_SYNTHESIS_2026-11-09.md"]),
+        node("experiment-native-conservative-support-synthesis-protocol", "experiment", "冻结三份最新结果及收据，只聚合清单数量，保留模型专属基线、不可用折和禁止聚合字段", "supported", ["validation/native-conservative-support-synthesis-protocol.json", "scripts/analyze_native_conservative_support_synthesis.py"]),
+        node("counterexample-conservative-candidate-not-global-proof", "counterexample", "964 次候选全部通过仅是实现一致性检查，不是全局优化器、全局最优证明或独立物理实验", "supported", ["exports/native-conservative-support-synthesis.json", "validation/native-conservative-support-synthesis-check.json"]),
+        node("limitation-native-conservative-support-synthesis-scope", "limitation", "综合不合并原始宽度、RMSE、参数、协方差或残差，不生成概率覆盖、统一评分或独立模型族复现结论", "active", ["exports/native-conservative-support-synthesis.json", "docs/NATIVE_CONSERVATIVE_SUPPORT_SYNTHESIS_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-conservative-synthesis-unified-score", "contains"),
+        edge("track-holdout", "claim-local-tightening-global-optimum", "contains"),
+        edge("track-holdout", "evidence-native-conservative-support-synthesis", "contains"),
+        edge("track-holdout", "counterexample-roszman1-fold5-inventory-unavailable", "contains"),
+        edge("track-holdout", "counterexample-conservative-width-ratio-not-ranking", "contains"),
+        edge("track-holdout", "experiment-native-conservative-support-synthesis-protocol", "contains"),
+        edge("track-holdout", "counterexample-conservative-candidate-not-global-proof", "contains"),
+        edge("track-holdout", "limitation-native-conservative-support-synthesis-scope", "contains"),
+        edge("evidence-native-conservative-support-synthesis", "claim-conservative-synthesis-unified-score", "contradicts"),
+        edge("experiment-native-conservative-support-synthesis-protocol", "claim-conservative-synthesis-unified-score", "tests"),
+        edge("counterexample-conservative-width-ratio-not-ranking", "claim-conservative-synthesis-unified-score", "contradicts"),
+        edge("evidence-native-conservative-support-synthesis", "claim-local-tightening-global-optimum", "contradicts"),
+        edge("experiment-native-conservative-support-synthesis-protocol", "claim-local-tightening-global-optimum", "tests"),
+        edge("counterexample-conservative-candidate-not-global-proof", "claim-local-tightening-global-optimum", "contradicts"),
+        edge("counterexample-roszman1-fold5-inventory-unavailable", "claim-roszman-fold5-low-rmse-singularity-safe", "contradicts"),
+        edge("counterexample-roszman1-fold5-inventory-unavailable", "counterexample-roszman1-fold5-crossing-singularity", "supports"),
+        edge("evidence-native-conservative-support-synthesis", "counterexample-roszman1-fold5-inventory-unavailable", "supports"),
+        edge("evidence-native-conservative-support-synthesis", "counterexample-conservative-width-ratio-not-ranking", "supports"),
+        edge("counterexample-conservative-candidate-not-global-proof", "limitation-native-conservative-support-synthesis-scope", "supports"),
+        edge("limitation-native-conservative-support-synthesis-scope", "evidence-native-conservative-support-synthesis", "limits"),
+        edge("limitation-native-conservative-support-synthesis-scope", "claim-conservative-synthesis-unified-score", "limits"),
+        edge("limitation-native-conservative-support-synthesis-scope", "claim-local-tightening-global-optimum", "limits"),
+        edge("limitation-native-conservative-support-synthesis-scope", "claim-center-coverage-external-validation", "limits"),
+        edge("evidence-native-conservative-support-synthesis", "evidence-chwirut1-log-support", "supports"),
+        edge("evidence-native-conservative-support-synthesis", "evidence-roszman1-joint-linear-arctan", "supports"),
+        edge("evidence-native-conservative-support-synthesis", "evidence-enso-phase-interval-triple", "supports"),
+        edge("experiment-native-conservative-support-synthesis-protocol", "experiment-chwirut1-log-support-protocol", "supports"),
+        edge("experiment-native-conservative-support-synthesis-protocol", "experiment-roszman1-joint-linear-protocol", "supports"),
+        edge("experiment-native-conservative-support-synthesis-protocol", "experiment-enso-phase-interval-triple-protocol", "supports"),
+        edge("evidence-native-conservative-support-synthesis", "evidence-native-ellipsoid-cross-model", "supports"),
+        edge("experiment-native-conservative-support-synthesis-protocol", "experiment-native-ellipsoid-cross-model-protocol", "supports"),
+        edge("experiment-native-conservative-support-synthesis-protocol", "claim-center-coverage-external-validation", "tests"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

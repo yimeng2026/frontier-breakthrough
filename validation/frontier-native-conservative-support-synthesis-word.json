@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生三模型保守支撑综合_图文完整版.docx",
+  "bytes": 215059,
+  "sha256": "ea2d312bbfa77a9c13b892abb0f8e2b0ab11aac663aaf251d10855632f1f7b8a",
+  "native_math_objects": 3,
+  "embedded_images": 1,
+  "native_tables": 5,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

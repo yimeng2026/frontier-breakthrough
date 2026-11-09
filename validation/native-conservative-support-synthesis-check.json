@@ -1,0 +1,95 @@
+{
+  "status": "passed",
+  "errorCount": 0,
+  "datasetCount": 3,
+  "heldOutPointCount": 407,
+  "availablePointCount": 402,
+  "unavailablePointCount": 5,
+  "unavailableFoldIds": [
+    "roszman1:5"
+  ],
+  "uniqueEnvelopeCount": 210,
+  "tightenedEnvelopeCount": 79,
+  "unchangedEnvelopeCount": 131,
+  "nonemptyIntersectionCount": 210,
+  "candidateEvaluationCount": 964,
+  "candidateViolationCount": 0,
+  "centerPredictionMismatchCount": 0,
+  "sourceReceiptVerifiedCount": 3,
+  "sourceProjectionMismatchCount": 0,
+  "refitCount": 0,
+  "withinDatasetRatioMedians": {
+    "chwirut1": 0.25654045819729265,
+    "roszman1": 0.690796188558053,
+    "enso": 1.0
+  },
+  "largestTighteningCases": {
+    "chwirut1": {
+      "x": 1.5,
+      "intersection_to_independent_width_ratio": 0.2130823595991901,
+      "intersection_width_reduction": 20.935447900396312,
+      "tangent_winner": "d_max",
+      "independent_minimum": 24.862759050431553,
+      "independent_maximum": 51.46712884157388,
+      "log_alternative_minimum": 32.80669104691126,
+      "log_alternative_maximum": 38.47561293765728,
+      "intersection_minimum": 32.80669104691126,
+      "intersection_maximum": 38.47561293765728
+    },
+    "roszman1": {
+      "x": -4868.68,
+      "intersection_to_independent_width_ratio": 0.19189941295847002,
+      "intersection_width_reduction": 0.7008593776977347,
+      "independent_minimum": -0.19096232821715256,
+      "independent_maximum": 0.6763299234363114,
+      "joint_alternative_minimum": 0.15946736063171463,
+      "joint_alternative_maximum": 0.325900234587444,
+      "intersection_minimum": 0.15946736063171463,
+      "intersection_maximum": 0.325900234587444
+    },
+    "enso": {
+      "x": 25.0,
+      "triple_to_lipschitz_width_ratio": 0.7474092252857671,
+      "triple_width_reduction": 4.371401855122352,
+      "phase_minimum": 9.8077307268988,
+      "phase_maximum": 22.742589799428746,
+      "lipschitz_intersection_minimum": 8.444818492960925,
+      "lipschitz_intersection_maximum": 25.75107942061322,
+      "triple_minimum": 9.8077307268988,
+      "triple_maximum": 22.742589799428746
+    }
+  },
+  "sourceReceipts": {
+    "chwirut1": {
+      "file": "validation/chwirut1-log-support-check.json",
+      "sha256": "057e5e2055695cc27cdba636175e9513c54acdc2146c15301f10dd128529aaa3",
+      "summarySha256": "5ec99a6a2ed22d87e72a0e49c715630e0c214bd0f91ec5742a41ec8176dd8788"
+    },
+    "roszman1": {
+      "file": "validation/roszman1-joint-linear-arctan-check.json",
+      "sha256": "5f0eb06cc99161eaaabbdc033ffa49998f97a9c8bb795b8cf09edf888d9e4ff5",
+      "summarySha256": "45852e2534f51098ae390e62092d1b8df04c609d37aba5211121f637599c3b35"
+    },
+    "enso": {
+      "file": "validation/enso-phase-interval-triple-check.json",
+      "sha256": "473a271f6dbbeabab0647d69511c95acc55f367356c9533b75394ff38877d1e5",
+      "summarySha256": "26e116c94f476a8f75cbbb5af1e0f377f959fe99b82c9cc551e485bc1a87f263"
+    }
+  },
+  "protocolSha256": "d08bc11d8c9f904428af345e6302ef9ab9e923e52b2edb28cde5a94cf3a1a185",
+  "summarySha256": "23b09bb3174eed479e835ce5741e4be090dedfd8c36369de83a7d5bd90c87fc8",
+  "analysisRunnerSha256": "cc4909acab5d3b5faade249f6b9ceeb56ff417f44e285dd27d70960e3849622e",
+  "figureSha256": "db576032217d5aee8a3e264665375a751262972e47dd55b40ce3b5b70446e301",
+  "reportSha256": "499b5f94697f95e93081006ba80a016b13d89fb09d8e44262649bc3154af0cbd",
+  "wordSha256": "ea2d312bbfa77a9c13b892abb0f8e2b0ab11aac663aaf251d10855632f1f7b8a",
+  "wordManifestSha256": "4bce8858cef58c39adbf25ed6d2d7aa899c8fa24df965ce6d40e0dbc22b0da0a",
+  "crossDatasetPooledErrorMetrics": null,
+  "crossDatasetRawWidths": null,
+  "unifiedStabilityScore": null,
+  "probabilityCoverage": null,
+  "globalOptimum": null,
+  "fold5GivenFiniteBound": false,
+  "candidateChecksReplaceSupportProof": false,
+  "visualQaClaimed": false,
+  "scientificTruthClaimed": false
+}

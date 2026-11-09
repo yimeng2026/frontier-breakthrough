@@ -81,7 +81,8 @@
 | ENSO 精确三角区间余项与三重交集 | 相位替代界 29 个月更紧、139 个月更宽；三重交集 37 个月进一步收紧、131 个月保持；最大新增收紧 x=25 的 4.371402 | `validation/enso-phase-interval-triple-protocol.json`、`validation/enso-phase-interval-triple-intersection.json`、`docs/ENSO_PHASE_INTERVAL_TRIPLE_INTERSECTION_2026-11-09.md` | 提供完整临界点枚举、乘积区间和三重交集接口；不隐藏替代更宽与宽度—收益不一致，不把交集称为全局最优 |
 | Chwirut1 对数支撑与保守交集 | 22 个唯一距离全部收紧，宽度比中位数 0.256540；132 个候选和 214 个观测点全部一致，最大减少 20.935448 | `validation/chwirut1-log-support-protocol.json`、`validation/chwirut1-log-support-intersection.json`、`docs/CHWIRUT1_LOG_SUPPORT_INTERSECTION_2026-11-09.md` | 提供分母割线切线、全协方差支撑和指数化交集接口；不宣称全局最优或脱离 Chwirut2 的独立复现 |
 | Roszman1 联合线性反正切交集 | 前四折 20 个可用点全部收紧，宽度比中位数 0.690796；160 个候选通过，第 5 折 5 点继续无有限包络 | `validation/roszman1-joint-linear-arctan-protocol.json`、`validation/roszman1-joint-linear-arctan-intersection.json`、`docs/ROSZMAN1_JOINT_LINEAR_ARCTAN_INTERSECTION_2026-11-09.md` | 提供线性联合支撑与反正切区间交集接口；不把部分联合当作完整非线性最优，也不隐藏第 5 折奇异失败 |
-| 主张—证据—反例—实验图谱 | 313 个节点、898 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| 三模型保守支撑与局部收紧综合 | 407 点中 402 可用、5 不可用；210 个包络、79 个收紧、131 个保持；964 次候选检查无违规 | `validation/native-conservative-support-synthesis-protocol.json`、`exports/native-conservative-support-synthesis.json`、`docs/NATIVE_CONSERVATIVE_SUPPORT_SYNTHESIS_2026-11-09.md` | 提供三份冻结收据驱动的模型专属基线和完整折级接口；不合并原始宽度、统一评分或把局部收紧称为全局最优 |
+| 主张—证据—反例—实验图谱 | 321 个节点、930 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 范围感知外部分析适配层
 

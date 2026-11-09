@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "roszman1_joint_linear_arctan":
+    if REPORT_MODE == "native_conservative_support_synthesis":
+        replacements = {
+            "图：`papers/62_三模型保守支撑综合/fig62_native_conservative_support_synthesis.png`。": "![](papers/62_三模型保守支撑综合/fig62_native_conservative_support_synthesis.png)\n\n**图 62｜三模型保守支撑与局部收紧综合（第 1 幅，共 1 幅）**  \n**插入位置**：§6「四联图与证据边界」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "210 个包络、79 个收紧、131 个保持与 964 次候选复核"
+    elif REPORT_MODE == "roszman1_joint_linear_arctan":
         replacements = {
             "图：`papers/61_Roszman1联合线性反正切交集/fig61_roszman1_joint_linear_arctan_intersection.png`。": "![](papers/61_Roszman1联合线性反正切交集/fig61_roszman1_joint_linear_arctan_intersection.png)\n\n**图 61｜Roszman1 联合线性支撑与反正切交集（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联图与证据边界」；顺序第 1 幅，共 1 幅。",
         }

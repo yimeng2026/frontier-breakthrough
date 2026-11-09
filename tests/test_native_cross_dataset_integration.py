@@ -14,7 +14,7 @@ class NativeCrossDatasetIntegrationTests(unittest.TestCase):
         packet = json.loads((ROOT / "exports/frontier-evidence.json").read_text(encoding="utf-8"))
         identifiers = {item["id"] for item in packet["items"]}
         self.assertIn("native-cross-dataset-synthesis", identifiers)
-        self.assertEqual(len(packet["items"]), 65)
+        self.assertEqual(len(packet["items"]), 66)
         item = next(item for item in packet["items"] if item["id"] == "native-cross-dataset-synthesis")
         metrics = item["metrics"]
         self.assertEqual(metrics["totals"]["fold_count"], 15)
@@ -47,8 +47,8 @@ class NativeCrossDatasetIntegrationTests(unittest.TestCase):
         ]
         for identifier in identifiers:
             self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 313)
-        self.assertEqual(len(graph["edges"]), 898)
+        self.assertEqual(len(graph["nodes"]), 321)
+        self.assertEqual(len(graph["edges"]), 930)
         self.assertEqual(nodes["claim-single-error-metric-sufficient"]["status"], "falsified")
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}
         self.assertIn(("evidence-native-cross-dataset-synthesis", "claim-model-family-fold-independent-winner", "contradicts"), edges)

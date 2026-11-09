@@ -123,6 +123,8 @@ def build() -> dict:
     chwirutLogCheck = read("chwirut1-log-support-check.json")
     roszmanJoint = read("roszman1-joint-linear-arctan-intersection.json")
     roszmanJointCheck = read("roszman1-joint-linear-arctan-check.json")
+    conservativeSynthesis = json.loads((ROOT / "exports/native-conservative-support-synthesis.json").read_text(encoding="utf-8"))
+    conservativeSynthesisCheck = read("native-conservative-support-synthesis-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -1542,6 +1544,51 @@ def build() -> dict:
             "limitations": "只对线性 b1-b2x 部分联合支撑，反正切参数相关性未完全联合求解，不是完整非线性最优。候选只验证实现一致性；第 5 折继续不可用，中心和残差一致性不是概率覆盖或独立实验。" + " ".join(roszmanJoint["limitations"]),
             "upstreamContribution": "提供线性联合支撑与反正切区间交集接口，展示独立线性角点的保守性，同时保留第 5 折奇异不可用反例和全协方差候选记录。",
             "snapshotFiles": ["validation/roszman1-joint-linear-arctan-protocol.json", "validation/roszman1-joint-linear-arctan-check.json", "validation/frontier-roszman1-joint-linear-arctan-word.json"],
+        },
+        {
+            "id": "native-conservative-support-synthesis", "domain": "math", "title": "三模型保守支撑与局部收紧综合",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml"],
+            "metrics": {
+                "totals": conservativeSynthesis["totals"],
+                "datasets": [{
+                    "id": dataset["id"],
+                    "baseline": dataset["baseline"],
+                    "method": dataset["method"],
+                    "totals": dataset["totals"],
+                    "ratioSummary": dataset["ratio_summary"],
+                    "largestTightening": dataset["largest_tightening"],
+                    "relatedPriorDataset": dataset["related_prior_dataset"],
+                    "knownAnswer": dataset["known_answer"],
+                    "sourceFile": dataset["source_file"],
+                    "sourceSha256": dataset["source_sha256"],
+                    "sourceReceiptVerified": dataset["source_receipt_verified"],
+                    "sourceProjectionMismatchCount": dataset["source_projection_mismatch_count"],
+                    "folds": dataset["folds"],
+                } for dataset in conservativeSynthesis["datasets"]],
+                "forbiddenAggregates": {
+                    "crossDatasetPooledErrorMetrics": conservativeSynthesis["cross_dataset_pooled_error_metrics"],
+                    "crossDatasetRawWidths": conservativeSynthesis["cross_dataset_raw_widths"],
+                    "unifiedStabilityScore": conservativeSynthesis["unified_stability_score"],
+                    "probabilityCoverage": conservativeSynthesis["probability_coverage"],
+                    "globalOptimum": conservativeSynthesis["global_optimum"],
+                },
+                "analysisScope": conservativeSynthesis["analysis_scope"],
+                "decision": conservativeSynthesis["decision"],
+                "implementation": {
+                    "protocolSha256": conservativeSynthesis["protocol_sha256"],
+                    "summarySha256": conservativeSynthesisCheck["summarySha256"],
+                    "analysisRunnerSha256": conservativeSynthesisCheck["analysisRunnerSha256"],
+                    "figureSha256": conservativeSynthesisCheck["figureSha256"],
+                    "reportSha256": conservativeSynthesisCheck["reportSha256"],
+                    "wordSha256": conservativeSynthesisCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "40df981"},
+            },
+            "scientificClaim": "冻结三份模型专属结果后，407 个留出观测中 402 个可用、5 个不可用；共 210 个唯一包络，79 个收紧、131 个保持、964 次候选评价无违规。Chwirut1、Roszman1 和 ENSO 的各自基线下宽度比中位数分别为 0.256540、0.690796 和 1.0。",
+            "limitations": "三个基线不能互换，不能合并原始宽度、RMSE、参数、协方差或残差，也不建立统一稳定性评分、概率覆盖率、全局最优或模型赢家。964 次候选只验证实现一致性；Roszman1 第 5 折 5 点继续不可用，Chwirut1 同族边界与 ENSO 已知答案分层保持。" + " ".join(conservativeSynthesis["limitations"]),
+            "upstreamContribution": "提供三份冻结收据驱动的受限综合接口、逐模型基线和完整折级证据；把收紧、保持、不可用和候选检查分别登记，禁止跨模型宽度池和统一评分。",
+            "snapshotFiles": ["validation/native-conservative-support-synthesis-protocol.json", "validation/native-conservative-support-synthesis-check.json", "validation/frontier-native-conservative-support-synthesis-word.json"],
         },
     ]
     packet = {

@@ -41,8 +41,8 @@ class BoundComparisonV5IntegrationTests(unittest.TestCase):
         ]
         for identifier in identifiers:
             self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 313)
-        self.assertEqual(len(graph["edges"]), 898)
+        self.assertEqual(len(graph["nodes"]), 321)
+        self.assertEqual(len(graph["edges"]), 930)
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}
         self.assertIn(("evidence-bound-comparison-v5", "claim-new-data-overwrite-history", "contradicts"), edges)
         self.assertIn(("counterexample-roszman1-v5-small-sample-scope", "claim-small-rmse-useful-proof", "contradicts"), edges)
