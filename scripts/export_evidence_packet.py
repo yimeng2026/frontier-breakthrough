@@ -93,6 +93,8 @@ def build() -> dict:
     fold4DecompositionCheck = read("roszman1-native-fold4-error-decomposition-check.json")
     chwirut1NativeIdentifiability = read("chwirut1-native-identifiability.json")
     chwirut1NativeIdentifiabilityCheck = read("chwirut1-native-identifiability-check.json")
+    ensoNativeIdentifiability = read("enso-native-identifiability.json")
+    ensoNativeIdentifiabilityCheck = read("enso-native-identifiability-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -857,6 +859,44 @@ def build() -> dict:
             "limitations": "局部满秩、协方差和 Delta-method 不证明全局可识别或概率校准，观测点分母与极点不证明全域安全。第 1 折高误差和局部不稳定必须保留，Chwirut1 与 Chwirut2 同研究同模型族。" + " ".join(chwirut1NativeIdentifiability["limitations"]),
             "upstreamContribution": "将逐折自由度、重复距离、解析雅可比、局部相关、原生分母与极点统一到五折诊断接口，明确区分预测误差、参数补偿、局部敏感度和全域证明义务。",
             "snapshotFiles": ["validation/chwirut1-native-identifiability-protocol.json", "validation/chwirut1-native-identifiability-check.json", "validation/frontier-chwirut1-native-identifiability-word.json"],
+        },
+        {
+            "id": "enso-native-identifiability", "domain": "physics", "title": "ENSO 原生 Fourier 周期参数可识别性与谐波补偿诊断",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/ENSO.dat"],
+            "metrics": {
+                "totals": ensoNativeIdentifiability["totals"],
+                "residualDegreesOfFreedom": [fold["train_count"] - 9 for fold in ensoNativeIdentifiability["folds"]],
+                "folds": [{
+                    "fold": fold["fold"],
+                    "trainCount": fold["train_count"],
+                    "testCount": fold["test_count"],
+                    "numericalRank": fold["training_jacobian"]["numerical_rank"],
+                    "scaledConditionNumber": fold["training_jacobian"]["scaled_condition_number"],
+                    "maxAbsoluteOffDiagonalParameterCorrelation": fold["training_jacobian"]["max_absolute_off_diagonal_parameter_correlation"],
+                    "maxLocalPredictionStandardDeviation": fold["held_out_prediction_sensitivity"]["max_local_standard_deviation"],
+                    "testMetrics": fold["test_metrics"],
+                    "parameters": fold["training_jacobian"]["parameters"],
+                    "periodDiagnostics": fold["period_diagnostics"],
+                } for fold in ensoNativeIdentifiability["folds"]],
+                "parameterStability": ensoNativeIdentifiability["parameter_stability"],
+                "knownAnswer": ensoNativeIdentifiability["known_answer"],
+                "analysisScope": ensoNativeIdentifiability["analysis_scope"],
+                "decision": ensoNativeIdentifiability["decision"],
+                "implementation": {
+                    "protocolSha256": ensoNativeIdentifiability["protocol_sha256"],
+                    "summarySha256": ensoNativeIdentifiabilityCheck["summarySha256"],
+                    "analysisRunnerSha256": ensoNativeIdentifiabilityCheck["analysisRunnerSha256"],
+                    "figureSha256": ensoNativeIdentifiabilityCheck["figureSha256"],
+                    "reportSha256": ensoNativeIdentifiabilityCheck["reportSha256"],
+                    "wordSha256": ensoNativeIdentifiabilityCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "4103263"},
+            },
+            "scientificClaim": "五折局部数值秩均为 9，最大缩放条件数 6.896241、最大相关绝对值 0.918709。主导相关来自 b7 与自身振幅，第 1 折为 b7–b9，第 2—5 折为 b7–b8；跨谐波块和年周期—长周期最大相关分别为 0.559124 和 0.152128。第 4 折 RMSE 为 2.409878，但 b4、b7 相对标准误均为五折最高；b4、b7 范围分别为 3.126309 和 1.946067 个月。",
+            "limitations": "局部满秩、谐波相关和 Delta-method 不证明全局周期识别、物理耦合、新周期或概率校准。较低 RMSE 不等于周期唯一，参数变号和周期变化必须保留；默认优化器未达原容差与认证前向通过继续分层。" + " ".join(ensoNativeIdentifiability["limitations"]),
+            "upstreamContribution": "提供九参数非线性周期解析雅可比和分块相关接口，把周期间、周期与自身振幅、跨谐波块和年周期—长周期补偿分开，阻止用低 RMSE 或单一相关系数宣称周期唯一或物理耦合。",
+            "snapshotFiles": ["validation/enso-native-identifiability-protocol.json", "validation/enso-native-identifiability-check.json", "validation/frontier-enso-native-identifiability-word.json"],
         },
     ]
     packet = {

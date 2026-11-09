@@ -1904,6 +1904,72 @@
         "validation/chwirut1-native-identifiability.json",
         "docs/CHWIRUT1_NATIVE_IDENTIFIABILITY_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-period-rmse-period-uniqueness",
+      "kind": "claim",
+      "title": "较低留出 RMSE 即可证明 Fourier 周期参数唯一、稳定或物理内生",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/enso-native-identifiability.json"
+      ]
+    },
+    {
+      "id": "claim-harmonic-correlation-physical-coupling",
+      "kind": "claim",
+      "title": "局部谐波参数相关即可证明物理耦合或新周期机制",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/enso-native-identifiability.json"
+      ]
+    },
+    {
+      "id": "evidence-enso-native-identifiability",
+      "kind": "evidence",
+      "title": "五折局部秩均为 9，最大条件数 6.896241，周期—振幅相关主导，第 4 折低 RMSE 与最高周期相对标准误并存",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-identifiability.json",
+        "validation/enso-native-identifiability-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-fold4-low-rmse-high-period-se",
+      "kind": "counterexample",
+      "title": "第 4 折 RMSE 为 2.409878，但 b4、b7 局部相对标准误分别为五折最高的 0.037360 和 0.025261",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-identifiability.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-period-amplitude-dominant-correlation",
+      "kind": "counterexample",
+      "title": "最大相关 0.918709 来自 b7 与自身振幅而非两个周期或物理耦合，主导配对还随折改变",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-identifiability.json"
+      ]
+    },
+    {
+      "id": "experiment-enso-native-identifiability-protocol",
+      "kind": "experiment",
+      "title": "冻结九参数非线性周期雅可比、逐折自由度、谐波相关块和已知答案分层规则",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-identifiability-protocol.json",
+        "scripts/analyze_enso_native_identifiability.py"
+      ]
+    },
+    {
+      "id": "limitation-enso-native-local-period-scope",
+      "kind": "limitation",
+      "title": "局部周期—振幅相关与 Delta-method 不是全局识别、物理耦合、新周期、概率区间或独立实验",
+      "status": "active",
+      "sourceFiles": [
+        "validation/enso-native-identifiability.json",
+        "docs/ENSO_NATIVE_IDENTIFIABILITY_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -4276,6 +4342,146 @@
       "from": "counterexample-chwirut1-native-low-rmse-parameter-uniqueness",
       "to": "claim-low-rmse-independent-replication",
       "relation": "contradicts"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-period-rmse-period-uniqueness",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-harmonic-correlation-physical-coupling",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-enso-native-identifiability",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-fold4-low-rmse-high-period-se",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-period-amplitude-dominant-correlation",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-enso-native-identifiability-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-enso-native-local-period-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-enso-native-identifiability",
+      "to": "claim-local-rank-global-identifiability",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-native-identifiability-protocol",
+      "to": "claim-local-rank-global-identifiability",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-enso-native-identifiability",
+      "to": "claim-period-rmse-period-uniqueness",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-native-identifiability-protocol",
+      "to": "claim-period-rmse-period-uniqueness",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-enso-native-identifiability",
+      "to": "claim-harmonic-correlation-physical-coupling",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-enso-period-amplitude-dominant-correlation",
+      "to": "claim-harmonic-correlation-physical-coupling",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-native-identifiability-protocol",
+      "to": "claim-harmonic-correlation-physical-coupling",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-enso-fold4-low-rmse-high-period-se",
+      "to": "claim-period-rmse-period-uniqueness",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-enso-fold4-low-rmse-high-period-se",
+      "to": "claim-prediction-stability-parameter-uniqueness",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-enso-native-identifiability",
+      "to": "counterexample-enso-fold4-low-rmse-high-period-se",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-native-identifiability",
+      "to": "counterexample-enso-period-amplitude-dominant-correlation",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-enso-native-local-period-scope",
+      "to": "evidence-enso-native-identifiability",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-enso-native-local-period-scope",
+      "to": "claim-period-rmse-period-uniqueness",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-enso-native-local-period-scope",
+      "to": "claim-harmonic-correlation-physical-coupling",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-enso-native-identifiability",
+      "to": "evidence-enso-native-holdout",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-native-identifiability-protocol",
+      "to": "experiment-enso-native-holdout-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-native-identifiability",
+      "to": "evidence-chwirut1-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-native-identifiability-protocol",
+      "to": "experiment-chwirut1-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-native-identifiability",
+      "to": "evidence-roszman1-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-native-identifiability-protocol",
+      "to": "experiment-roszman1-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-enso-period-amplitude-dominant-correlation",
+      "to": "limitation-enso-native-period-and-bounds",
+      "relation": "supports"
     }
   ]
 }

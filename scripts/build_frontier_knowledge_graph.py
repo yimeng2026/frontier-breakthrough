@@ -78,6 +78,9 @@ def build_graph(root):
     chwirut1NativeIdentifiability = json.loads((root / "validation/chwirut1-native-identifiability.json").read_text(encoding="utf-8"))
     if chwirut1NativeIdentifiability["totals"]["fold_count"] != 5 or chwirut1NativeIdentifiability["totals"]["held_out_point_count"] != 214 or chwirut1NativeIdentifiability["totals"]["full_numerical_rank_fold_count"] != 5 or chwirut1NativeIdentifiability["totals"]["local_diagnostic_failure_count"] != 0 or chwirut1NativeIdentifiability["totals"]["max_scaled_condition_number"] != 28.674083116404475 or chwirut1NativeIdentifiability["totals"]["max_absolute_off_diagonal_parameter_correlation"] != 0.9794131139106378 or chwirut1NativeIdentifiability["totals"]["max_local_prediction_standard_deviation"] != 14.836682306268235 or chwirut1NativeIdentifiability["totals"]["minimum_absolute_denominator"] != 0.009384279096904605 or chwirut1NativeIdentifiability["totals"]["pole_inside_observed_range_fold_count"] != 0 or chwirut1NativeIdentifiability["folds"][0]["training_jacobian"]["parameters"][1]["absolute_relative_standard_error"] != 1.7106283204180401 or chwirut1NativeIdentifiability["analysis_scope"]["refit"] or chwirut1NativeIdentifiability["decision"]["global_structural_identifiability_proved"] or chwirut1NativeIdentifiability["decision"]["independent_model_family_claimed"]:
         raise ValueError("Expected Chwirut1 native local-identifiability, denominator and related-study boundaries are not present")
+    ensoNativeIdentifiability = json.loads((root / "validation/enso-native-identifiability.json").read_text(encoding="utf-8"))
+    if ensoNativeIdentifiability["totals"]["fold_count"] != 5 or ensoNativeIdentifiability["totals"]["held_out_point_count"] != 168 or ensoNativeIdentifiability["totals"]["full_numerical_rank_fold_count"] != 5 or ensoNativeIdentifiability["totals"]["local_diagnostic_failure_count"] != 0 or ensoNativeIdentifiability["totals"]["max_scaled_condition_number"] != 6.896240781966828 or ensoNativeIdentifiability["totals"]["max_absolute_off_diagonal_parameter_correlation"] != 0.9187090249098154 or ensoNativeIdentifiability["totals"]["max_local_prediction_standard_deviation"] != 1.0603474415430074 or ensoNativeIdentifiability["totals"]["max_cross_harmonic_block_absolute_correlation"] != 0.5591238742033899 or ensoNativeIdentifiability["totals"]["max_annual_long_block_absolute_correlation"] != 0.15212841448706105 or ensoNativeIdentifiability["folds"][3]["training_jacobian"]["parameters"][3]["absolute_relative_standard_error"] != 0.037359660053584605 or ensoNativeIdentifiability["folds"][3]["training_jacobian"]["parameters"][6]["absolute_relative_standard_error"] != 0.025260794231141546 or ensoNativeIdentifiability["analysis_scope"]["refit"] or ensoNativeIdentifiability["decision"]["new_physical_periods_proved"] or ensoNativeIdentifiability["known_answer"]["optimizer_within_certified_tolerances"] or not ensoNativeIdentifiability["known_answer"]["certified_forward_rss_check_passed"]:
+        raise ValueError("Expected ENSO native period compensation, fold-4 and known-answer boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -782,6 +785,45 @@ def build_graph(root):
         edge("evidence-chwirut1-native-identifiability", "evidence-roszman1-native-identifiability", "supports"),
         edge("experiment-chwirut1-native-identifiability-protocol", "experiment-roszman1-native-identifiability-protocol", "supports"),
         edge("counterexample-chwirut1-native-low-rmse-parameter-uniqueness", "claim-low-rmse-independent-replication", "contradicts"),
+    ])
+    nodes.extend([
+        node("claim-period-rmse-period-uniqueness", "claim", "较低留出 RMSE 即可证明 Fourier 周期参数唯一、稳定或物理内生", "falsified", ["validation/enso-native-identifiability.json"]),
+        node("claim-harmonic-correlation-physical-coupling", "claim", "局部谐波参数相关即可证明物理耦合或新周期机制", "falsified", ["validation/enso-native-identifiability.json"]),
+        node("evidence-enso-native-identifiability", "evidence", "五折局部秩均为 9，最大条件数 6.896241，周期—振幅相关主导，第 4 折低 RMSE 与最高周期相对标准误并存", "supported", ["validation/enso-native-identifiability.json", "validation/enso-native-identifiability-check.json"]),
+        node("counterexample-enso-fold4-low-rmse-high-period-se", "counterexample", "第 4 折 RMSE 为 2.409878，但 b4、b7 局部相对标准误分别为五折最高的 0.037360 和 0.025261", "supported", ["validation/enso-native-identifiability.json"]),
+        node("counterexample-enso-period-amplitude-dominant-correlation", "counterexample", "最大相关 0.918709 来自 b7 与自身振幅而非两个周期或物理耦合，主导配对还随折改变", "supported", ["validation/enso-native-identifiability.json"]),
+        node("experiment-enso-native-identifiability-protocol", "experiment", "冻结九参数非线性周期雅可比、逐折自由度、谐波相关块和已知答案分层规则", "supported", ["validation/enso-native-identifiability-protocol.json", "scripts/analyze_enso_native_identifiability.py"]),
+        node("limitation-enso-native-local-period-scope", "limitation", "局部周期—振幅相关与 Delta-method 不是全局识别、物理耦合、新周期、概率区间或独立实验", "active", ["validation/enso-native-identifiability.json", "docs/ENSO_NATIVE_IDENTIFIABILITY_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-period-rmse-period-uniqueness", "contains"),
+        edge("track-holdout", "claim-harmonic-correlation-physical-coupling", "contains"),
+        edge("track-holdout", "evidence-enso-native-identifiability", "contains"),
+        edge("track-holdout", "counterexample-enso-fold4-low-rmse-high-period-se", "contains"),
+        edge("track-holdout", "counterexample-enso-period-amplitude-dominant-correlation", "contains"),
+        edge("track-holdout", "experiment-enso-native-identifiability-protocol", "contains"),
+        edge("track-holdout", "limitation-enso-native-local-period-scope", "contains"),
+        edge("evidence-enso-native-identifiability", "claim-local-rank-global-identifiability", "contradicts"),
+        edge("experiment-enso-native-identifiability-protocol", "claim-local-rank-global-identifiability", "tests"),
+        edge("evidence-enso-native-identifiability", "claim-period-rmse-period-uniqueness", "contradicts"),
+        edge("experiment-enso-native-identifiability-protocol", "claim-period-rmse-period-uniqueness", "tests"),
+        edge("evidence-enso-native-identifiability", "claim-harmonic-correlation-physical-coupling", "contradicts"),
+        edge("counterexample-enso-period-amplitude-dominant-correlation", "claim-harmonic-correlation-physical-coupling", "contradicts"),
+        edge("experiment-enso-native-identifiability-protocol", "claim-harmonic-correlation-physical-coupling", "tests"),
+        edge("counterexample-enso-fold4-low-rmse-high-period-se", "claim-period-rmse-period-uniqueness", "contradicts"),
+        edge("counterexample-enso-fold4-low-rmse-high-period-se", "claim-prediction-stability-parameter-uniqueness", "contradicts"),
+        edge("evidence-enso-native-identifiability", "counterexample-enso-fold4-low-rmse-high-period-se", "supports"),
+        edge("evidence-enso-native-identifiability", "counterexample-enso-period-amplitude-dominant-correlation", "supports"),
+        edge("limitation-enso-native-local-period-scope", "evidence-enso-native-identifiability", "limits"),
+        edge("limitation-enso-native-local-period-scope", "claim-period-rmse-period-uniqueness", "limits"),
+        edge("limitation-enso-native-local-period-scope", "claim-harmonic-correlation-physical-coupling", "limits"),
+        edge("evidence-enso-native-identifiability", "evidence-enso-native-holdout", "supports"),
+        edge("experiment-enso-native-identifiability-protocol", "experiment-enso-native-holdout-protocol", "supports"),
+        edge("evidence-enso-native-identifiability", "evidence-chwirut1-native-identifiability", "supports"),
+        edge("experiment-enso-native-identifiability-protocol", "experiment-chwirut1-native-identifiability-protocol", "supports"),
+        edge("evidence-enso-native-identifiability", "evidence-roszman1-native-identifiability", "supports"),
+        edge("experiment-enso-native-identifiability-protocol", "experiment-roszman1-native-identifiability-protocol", "supports"),
+        edge("counterexample-enso-period-amplitude-dominant-correlation", "limitation-enso-native-period-and-bounds", "supports"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

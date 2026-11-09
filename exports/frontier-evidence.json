@@ -4548,29 +4548,29 @@
         "errorCount": 0,
         "groups": {
           "readme_local_links": {
-            "count": 92,
+            "count": 94,
             "errors": []
           },
           "document_figure_links": {
-            "count": 48,
+            "count": 49,
             "errors": []
           },
           "word_manifests": {
-            "count": 40,
+            "count": 41,
             "errors": []
           },
           "evidence_snapshots": {
-            "count": 174,
+            "count": 177,
             "errors": []
           },
           "knowledge_graph": {
-            "nodes": 203,
-            "edges": 474,
+            "nodes": 210,
+            "edges": 502,
             "errors": []
           },
           "protocol_inputs": {
-            "count": 13,
-            "recordsChecked": 33,
+            "count": 14,
+            "recordsChecked": 37,
             "errors": []
           },
           "corpus_v2": {
@@ -4580,9 +4580,9 @@
             "errors": []
           },
           "dynamic_counts": {
-            "evidenceItems": 51,
-            "graphNodes": 203,
-            "graphEdges": 474,
+            "evidenceItems": 52,
+            "graphNodes": 210,
+            "graphEdges": 502,
             "readme_consistent": true,
             "errors": []
           }
@@ -4593,7 +4593,7 @@
           "scientific_truth_claimed": false,
           "historical_text_rewritten": false
         },
-        "rulesSha256": "895f28e2bcae7d3593d73ad0ce749215160998d66478f76d60506ae0071a9c39",
+        "rulesSha256": "6dcbacea57e187fb8e948fe46c1fb4ecaf6d37d7b0acb2654476f11dba2df707",
         "analysisRunnerSha256": "403aabb3f22e6fa26eca8595777df16c1f5be34f6f948de7f1c8e7f8f20effdf",
         "previousReceiptPreserved": true,
         "protocolCommits": {
@@ -4601,7 +4601,7 @@
           "audit": "24dc02f"
         }
       },
-      "scientificClaim": "当前范围内 92 个 README 本地链接、48 个报告图片路径、40 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 13 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
+      "scientificClaim": "当前范围内 94 个 README 本地链接、49 个报告图片路径、41 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 14 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
       "limitations": "审计只验证本地结构、路径、哈希和计数，不检查外部网页，不进行视觉渲染验收，不证明科学理论为真，也不把历史旧计数误判为错误。",
       "upstreamContribution": "提供可重复的负例门禁、动态 JSON/README 计数核对和显式 --refresh 历史收据保留机制，防止链接、Word、图谱和协议在持续研究中漂移。",
       "snapshotFiles": [
@@ -5735,6 +5735,632 @@
         "validation/chwirut1-native-identifiability-protocol.json",
         "validation/chwirut1-native-identifiability-check.json",
         "validation/frontier-chwirut1-native-identifiability-word.json"
+      ]
+    },
+    {
+      "id": "enso-native-identifiability",
+      "domain": "physics",
+      "title": "ENSO 原生 Fourier 周期参数可识别性与谐波补偿诊断",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/ENSO.dat"
+      ],
+      "metrics": {
+        "totals": {
+          "fold_count": 5,
+          "held_out_point_count": 168,
+          "full_numerical_rank_fold_count": 5,
+          "local_diagnostic_failure_count": 0,
+          "max_scaled_condition_number": 6.896240781966828,
+          "max_absolute_off_diagonal_parameter_correlation": 0.9187090249098154,
+          "max_local_prediction_standard_deviation": 1.0603474415430074,
+          "native_test_rmse_minimum": 2.3729570605012986,
+          "native_test_rmse_maximum": 3.448449143701017,
+          "max_b4_b7_absolute_correlation": 0.554759714593918,
+          "max_cross_harmonic_block_absolute_correlation": 0.5591238742033899,
+          "max_annual_long_block_absolute_correlation": 0.15212841448706105,
+          "max_b4_own_amplitude_absolute_correlation": 0.9043681838935033,
+          "max_b7_own_amplitude_absolute_correlation": 0.9187090249098154
+        },
+        "residualDegreesOfFreedom": [
+          125,
+          125,
+          125,
+          126,
+          126
+        ],
+        "folds": [
+          {
+            "fold": 1,
+            "trainCount": 134,
+            "testCount": 34,
+            "numericalRank": 9,
+            "scaledConditionNumber": 6.896240781966828,
+            "maxAbsoluteOffDiagonalParameterCorrelation": 0.9187090249098154,
+            "maxLocalPredictionStandardDeviation": 1.0226998025680685,
+            "testMetrics": {
+              "rmse": 3.448449143701017,
+              "mae": 2.830487378999104,
+              "max_absolute_residual": 7.009181768878449
+            },
+            "parameters": [
+              {
+                "name": "b1",
+                "value": 10.636780147585267,
+                "local_standard_error": 0.1930830004993123,
+                "absolute_relative_standard_error": 0.01815239177836589
+              },
+              {
+                "name": "b2",
+                "value": 3.1860367980401487,
+                "local_standard_error": 0.2699898377880351,
+                "absolute_relative_standard_error": 0.08474159430742169
+              },
+              {
+                "name": "b3",
+                "value": 0.4195644391804964,
+                "local_standard_error": 0.27351239587257875,
+                "absolute_relative_standard_error": 0.6518960386795647
+              },
+              {
+                "name": "b4",
+                "value": 42.116470838575566,
+                "local_standard_error": 0.9519416273199588,
+                "absolute_relative_standard_error": 0.022602597234905323
+              },
+              {
+                "name": "b5",
+                "value": -1.7063250272000787,
+                "local_standard_error": 0.48826861167198177,
+                "absolute_relative_standard_error": 0.2861521714143672
+              },
+              {
+                "name": "b6",
+                "value": -1.2151684552165138,
+                "local_standard_error": 0.6568441090950006,
+                "absolute_relative_standard_error": 0.5405374919627639
+              },
+              {
+                "name": "b7",
+                "value": 28.57836553967075,
+                "local_standard_error": 0.6665935739195895,
+                "absolute_relative_standard_error": 0.023325111892570093
+              },
+              {
+                "name": "b8",
+                "value": 1.2440366002937084,
+                "local_standard_error": 0.4740247651254781,
+                "absolute_relative_standard_error": 0.381037635881102
+              },
+              {
+                "name": "b9",
+                "value": -0.7342702758976144,
+                "local_standard_error": 0.6980533983510151,
+                "absolute_relative_standard_error": 0.9506763670879559
+              }
+            ],
+            "periodDiagnostics": {
+              "b4_b7_ratio": 1.4737186694638658,
+              "b4_b7_absolute_correlation": 0.2846945394403844,
+              "max_b4_own_amplitude_absolute_correlation": 0.9043681838935033,
+              "max_b7_own_amplitude_absolute_correlation": 0.9187090249098154,
+              "max_cross_harmonic_block_absolute_correlation": 0.2846945394403844,
+              "max_annual_long_block_absolute_correlation": 0.07273861592315692,
+              "new_physical_period_proved": false,
+              "interpretation": "Local harmonic parameter correlations only; not posterior dependence, causal coupling or new physical periods"
+            }
+          },
+          {
+            "fold": 2,
+            "trainCount": 134,
+            "testCount": 34,
+            "numericalRank": 9,
+            "scaledConditionNumber": 6.6011098799786705,
+            "maxAbsoluteOffDiagonalParameterCorrelation": 0.9058417980535756,
+            "maxLocalPredictionStandardDeviation": 0.8095673281628353,
+            "testMetrics": {
+              "rmse": 2.8418857472529337,
+              "mae": 2.3028059624241055,
+              "max_absolute_residual": 6.892665475500698
+            },
+            "parameters": [
+              {
+                "name": "b1",
+                "value": 10.700728373625111,
+                "local_standard_error": 0.18877444057620152,
+                "absolute_relative_standard_error": 0.017641270200025642
+              },
+              {
+                "name": "b2",
+                "value": 3.0855119737037002,
+                "local_standard_error": 0.26107441363478395,
+                "absolute_relative_standard_error": 0.08461299643618066
+              },
+              {
+                "name": "b3",
+                "value": 0.6309741929348597,
+                "local_standard_error": 0.2614308448260211,
+                "absolute_relative_standard_error": 0.41432890243897913
+              },
+              {
+                "name": "b4",
+                "value": 43.918424073564054,
+                "local_standard_error": 0.8174480420209601,
+                "absolute_relative_standard_error": 0.018612872826486708
+              },
+              {
+                "name": "b5",
+                "value": -2.1044677796978015,
+                "local_standard_error": 0.29678275309951185,
+                "absolute_relative_standard_error": 0.14102508765524052
+              },
+              {
+                "name": "b6",
+                "value": 0.41912144914748467,
+                "local_standard_error": 0.6162900478068277,
+                "absolute_relative_standard_error": 1.4704330906003367
+              },
+              {
+                "name": "b7",
+                "value": 26.75943493527534,
+                "local_standard_error": 0.33727334644722523,
+                "absolute_relative_standard_error": 0.012603903903913092
+              },
+              {
+                "name": "b8",
+                "value": -0.06919429717906879,
+                "local_standard_error": 0.6691838487706524,
+                "absolute_relative_standard_error": 9.671083832802914
+              },
+              {
+                "name": "b9",
+                "value": 2.056782902235909,
+                "local_standard_error": 0.2725382864060616,
+                "absolute_relative_standard_error": 0.13250707505871806
+              }
+            ],
+            "periodDiagnostics": {
+              "b4_b7_ratio": 1.6412313705349981,
+              "b4_b7_absolute_correlation": 0.5050323514691022,
+              "max_b4_own_amplitude_absolute_correlation": 0.8993407358410006,
+              "max_b7_own_amplitude_absolute_correlation": 0.9058417980535756,
+              "max_cross_harmonic_block_absolute_correlation": 0.5591238742033899,
+              "max_annual_long_block_absolute_correlation": 0.15212841448706105,
+              "new_physical_period_proved": false,
+              "interpretation": "Local harmonic parameter correlations only; not posterior dependence, causal coupling or new physical periods"
+            }
+          },
+          {
+            "fold": 3,
+            "trainCount": 134,
+            "testCount": 34,
+            "numericalRank": 9,
+            "scaledConditionNumber": 4.175832191988253,
+            "maxAbsoluteOffDiagonalParameterCorrelation": 0.8568173033449638,
+            "maxLocalPredictionStandardDeviation": 0.5276256518277567,
+            "testMetrics": {
+              "rmse": 2.4893584593736207,
+              "mae": 1.9156112599963635,
+              "max_absolute_residual": 5.806808398409309
+            },
+            "parameters": [
+              {
+                "name": "b1",
+                "value": 10.40646281797939,
+                "local_standard_error": 0.19914858174925112,
+                "absolute_relative_standard_error": 0.019137009878628437
+              },
+              {
+                "name": "b2",
+                "value": 3.01748201361537,
+                "local_standard_error": 0.2666216353619934,
+                "absolute_relative_standard_error": 0.08835898081875988
+              },
+              {
+                "name": "b3",
+                "value": 0.41599042971366773,
+                "local_standard_error": 0.2668416875538121,
+                "absolute_relative_standard_error": 0.6414611214433061
+              },
+              {
+                "name": "b4",
+                "value": 44.78523847913697,
+                "local_standard_error": 0.9937084765893951,
+                "absolute_relative_standard_error": 0.022188303787916867
+              },
+              {
+                "name": "b5",
+                "value": -1.372454301757267,
+                "local_standard_error": 0.34603914306639516,
+                "absolute_relative_standard_error": 0.252131632086644
+              },
+              {
+                "name": "b6",
+                "value": 0.8570534766707871,
+                "local_standard_error": 0.4522753374545962,
+                "absolute_relative_standard_error": 0.5277095884511824
+              },
+              {
+                "name": "b7",
+                "value": 26.91348111218918,
+                "local_standard_error": 0.3367388098628745,
+                "absolute_relative_standard_error": 0.012511900948791224
+              },
+              {
+                "name": "b8",
+                "value": 0.28333555504202107,
+                "local_standard_error": 0.5148626435046213,
+                "absolute_relative_standard_error": 1.817148022344964
+              },
+              {
+                "name": "b9",
+                "value": 1.8047164014710093,
+                "local_standard_error": 0.2793503273165689,
+                "absolute_relative_standard_error": 0.15478904446641742
+              }
+            ],
+            "periodDiagnostics": {
+              "b4_b7_ratio": 1.6640448068553133,
+              "b4_b7_absolute_correlation": 0.3176725848842532,
+              "max_b4_own_amplitude_absolute_correlation": 0.8003187855148715,
+              "max_b7_own_amplitude_absolute_correlation": 0.8568173033449638,
+              "max_cross_harmonic_block_absolute_correlation": 0.3176725848842532,
+              "max_annual_long_block_absolute_correlation": 0.04721937601333197,
+              "new_physical_period_proved": false,
+              "interpretation": "Local harmonic parameter correlations only; not posterior dependence, causal coupling or new physical periods"
+            }
+          },
+          {
+            "fold": 4,
+            "trainCount": 135,
+            "testCount": 33,
+            "numericalRank": 9,
+            "scaledConditionNumber": 5.576292346967393,
+            "maxAbsoluteOffDiagonalParameterCorrelation": 0.8337203286590962,
+            "maxLocalPredictionStandardDeviation": 0.894841852704016,
+            "testMetrics": {
+              "rmse": 2.409878120632471,
+              "mae": 1.9016745867101326,
+              "max_absolute_residual": 5.901572223356699
+            },
+            "parameters": [
+              {
+                "name": "b1",
+                "value": 10.50298183086932,
+                "local_standard_error": 0.19695868738984706,
+                "absolute_relative_standard_error": 0.018752644778549047
+              },
+              {
+                "name": "b2",
+                "value": 3.0428638659424654,
+                "local_standard_error": 0.274426124686515,
+                "absolute_relative_standard_error": 0.09018679006907103
+              },
+              {
+                "name": "b3",
+                "value": 0.5065770932736197,
+                "local_standard_error": 0.2755662244833652,
+                "absolute_relative_standard_error": 0.5439768756668246
+              },
+              {
+                "name": "b4",
+                "value": 44.680828945207466,
+                "local_standard_error": 1.6692605803053142,
+                "absolute_relative_standard_error": 0.037359660053584605
+              },
+              {
+                "name": "b5",
+                "value": -1.1025730391786117,
+                "local_standard_error": 0.34066480223765994,
+                "absolute_relative_standard_error": 0.3089725488766226
+              },
+              {
+                "name": "b6",
+                "value": 0.4073732417736275,
+                "local_standard_error": 0.4887374471455531,
+                "absolute_relative_standard_error": 1.1997288899429943
+              },
+              {
+                "name": "b7",
+                "value": 27.010212104540663,
+                "local_standard_error": 0.6822994101122903,
+                "absolute_relative_standard_error": 0.025260794231141546
+              },
+              {
+                "name": "b8",
+                "value": 0.10264401268498552,
+                "local_standard_error": 0.5378413079388433,
+                "absolute_relative_standard_error": 5.239870245422676
+              },
+              {
+                "name": "b9",
+                "value": 1.158646201252193,
+                "local_standard_error": 0.2905795118104292,
+                "absolute_relative_standard_error": 0.25079227075218374
+              }
+            ],
+            "periodDiagnostics": {
+              "b4_b7_ratio": 1.6542198473775114,
+              "b4_b7_absolute_correlation": 0.554759714593918,
+              "max_b4_own_amplitude_absolute_correlation": 0.7942888395271545,
+              "max_b7_own_amplitude_absolute_correlation": 0.8337203286590962,
+              "max_cross_harmonic_block_absolute_correlation": 0.554759714593918,
+              "max_annual_long_block_absolute_correlation": 0.11887978835834787,
+              "new_physical_period_proved": false,
+              "interpretation": "Local harmonic parameter correlations only; not posterior dependence, causal coupling or new physical periods"
+            }
+          },
+          {
+            "fold": 5,
+            "trainCount": 135,
+            "testCount": 33,
+            "numericalRank": 9,
+            "scaledConditionNumber": 4.1727932427888454,
+            "maxAbsoluteOffDiagonalParameterCorrelation": 0.8679766282332443,
+            "maxLocalPredictionStandardDeviation": 1.0603474415430074,
+            "testMetrics": {
+              "rmse": 2.3729570605012986,
+              "mae": 1.9745291462436527,
+              "max_absolute_residual": 5.009586368025545
+            },
+            "parameters": [
+              {
+                "name": "b1",
+                "value": 10.337282088797057,
+                "local_standard_error": 0.19904327143265071,
+                "absolute_relative_standard_error": 0.01925489405463378
+              },
+              {
+                "name": "b2",
+                "value": 3.030790865557193,
+                "local_standard_error": 0.27405092675629256,
+                "absolute_relative_standard_error": 0.0904222491464814
+              },
+              {
+                "name": "b3",
+                "value": 0.7431701746373754,
+                "local_standard_error": 0.27232405863068043,
+                "absolute_relative_standard_error": 0.366435666990483
+              },
+              {
+                "name": "b4",
+                "value": 45.24277937834114,
+                "local_standard_error": 1.4143238563968554,
+                "absolute_relative_standard_error": 0.031260764166799355
+              },
+              {
+                "name": "b5",
+                "value": -1.51694149812131,
+                "local_standard_error": 0.34370520364816887,
+                "absolute_relative_standard_error": 0.22657775799121999
+              },
+              {
+                "name": "b6",
+                "value": 0.7929333281583997,
+                "local_standard_error": 0.5131610515685414,
+                "absolute_relative_standard_error": 0.6471679690401791
+              },
+              {
+                "name": "b7",
+                "value": 26.63229865677676,
+                "local_standard_error": 0.6084699776188209,
+                "absolute_relative_standard_error": 0.022847069472315032
+              },
+              {
+                "name": "b8",
+                "value": 0.10791389255306194,
+                "local_standard_error": 0.5587774393090287,
+                "absolute_relative_standard_error": 5.177993547348636
+              },
+              {
+                "name": "b9",
+                "value": 1.3118273277884078,
+                "local_standard_error": 0.2794751372749193,
+                "absolute_relative_standard_error": 0.21304262485984546
+              }
+            ],
+            "periodDiagnostics": {
+              "b4_b7_ratio": 1.6987936325514592,
+              "b4_b7_absolute_correlation": 0.06831412361670706,
+              "max_b4_own_amplitude_absolute_correlation": 0.8437086928779287,
+              "max_b7_own_amplitude_absolute_correlation": 0.8679766282332443,
+              "max_cross_harmonic_block_absolute_correlation": 0.11835868983588263,
+              "max_annual_long_block_absolute_correlation": 0.0763614230785211,
+              "new_physical_period_proved": false,
+              "interpretation": "Local harmonic parameter correlations only; not posterior dependence, causal coupling or new physical periods"
+            }
+          }
+        ],
+        "parameterStability": {
+          "b1": {
+            "values": [
+              10.636780147585267,
+              10.700728373625111,
+              10.40646281797939,
+              10.50298183086932,
+              10.337282088797057
+            ],
+            "minimum": 10.337282088797057,
+            "maximum": 10.700728373625111,
+            "median": 10.50298183086932,
+            "range": 0.3634462848280542,
+            "median_local_standard_error": 0.19695868738984706
+          },
+          "b2": {
+            "values": [
+              3.1860367980401487,
+              3.0855119737037002,
+              3.01748201361537,
+              3.0428638659424654,
+              3.030790865557193
+            ],
+            "minimum": 3.01748201361537,
+            "maximum": 3.1860367980401487,
+            "median": 3.0428638659424654,
+            "range": 0.16855478442477878,
+            "median_local_standard_error": 0.2699898377880351
+          },
+          "b3": {
+            "values": [
+              0.4195644391804964,
+              0.6309741929348597,
+              0.41599042971366773,
+              0.5065770932736197,
+              0.7431701746373754
+            ],
+            "minimum": 0.41599042971366773,
+            "maximum": 0.7431701746373754,
+            "median": 0.5065770932736197,
+            "range": 0.3271797449237077,
+            "median_local_standard_error": 0.27232405863068043
+          },
+          "b4": {
+            "values": [
+              42.116470838575566,
+              43.918424073564054,
+              44.78523847913697,
+              44.680828945207466,
+              45.24277937834114
+            ],
+            "minimum": 42.116470838575566,
+            "maximum": 45.24277937834114,
+            "median": 44.680828945207466,
+            "range": 3.1263085397655743,
+            "median_local_standard_error": 0.9937084765893951
+          },
+          "b5": {
+            "values": [
+              -1.7063250272000787,
+              -2.1044677796978015,
+              -1.372454301757267,
+              -1.1025730391786117,
+              -1.51694149812131
+            ],
+            "minimum": -2.1044677796978015,
+            "maximum": -1.1025730391786117,
+            "median": -1.51694149812131,
+            "range": 1.0018947405191898,
+            "median_local_standard_error": 0.34370520364816887
+          },
+          "b6": {
+            "values": [
+              -1.2151684552165138,
+              0.41912144914748467,
+              0.8570534766707871,
+              0.4073732417736275,
+              0.7929333281583997
+            ],
+            "minimum": -1.2151684552165138,
+            "maximum": 0.8570534766707871,
+            "median": 0.41912144914748467,
+            "range": 2.072221931887301,
+            "median_local_standard_error": 0.5131610515685414
+          },
+          "b7": {
+            "values": [
+              28.57836553967075,
+              26.75943493527534,
+              26.91348111218918,
+              27.010212104540663,
+              26.63229865677676
+            ],
+            "minimum": 26.63229865677676,
+            "maximum": 28.57836553967075,
+            "median": 26.91348111218918,
+            "range": 1.9460668828939873,
+            "median_local_standard_error": 0.6084699776188209
+          },
+          "b8": {
+            "values": [
+              1.2440366002937084,
+              -0.06919429717906879,
+              0.28333555504202107,
+              0.10264401268498552,
+              0.10791389255306194
+            ],
+            "minimum": -0.06919429717906879,
+            "maximum": 1.2440366002937084,
+            "median": 0.10791389255306194,
+            "range": 1.3132308974727773,
+            "median_local_standard_error": 0.5378413079388433
+          },
+          "b9": {
+            "values": [
+              -0.7342702758976144,
+              2.056782902235909,
+              1.8047164014710093,
+              1.158646201252193,
+              1.3118273277884078
+            ],
+            "minimum": -0.7342702758976144,
+            "maximum": 2.056782902235909,
+            "median": 1.3118273277884078,
+            "range": 2.7910531781335237,
+            "median_local_standard_error": 0.2794751372749193
+          }
+        },
+        "knownAnswer": {
+          "optimizer_within_certified_tolerances": false,
+          "certified_forward_rss_check_passed": true,
+          "original_tolerances_relaxed": false,
+          "optimizer_mismatch_hidden": false,
+          "used_as_holdout": false,
+          "certified_reference_periods": {
+            "b4": 44.3110887,
+            "b7": 26.88761444
+          }
+        },
+        "analysisScope": {
+          "post_hoc": true,
+          "refit": false,
+          "new_model_or_parameters": false,
+          "new_holdout_selection": false,
+          "analytic_jacobian": true,
+          "nonlinear_period_derivatives": true,
+          "local_linearization": true,
+          "fold_specific_residual_degrees_of_freedom": true,
+          "calibrated_interval": false,
+          "global_identifiability": false,
+          "new_period_mechanism": false,
+          "independent_validation": false,
+          "certified_full_fit_used_as_holdout": false
+        },
+        "decision": {
+          "refit": false,
+          "global_structural_identifiability_proved": false,
+          "physical_parameter_endogeneity_proved": false,
+          "new_physical_periods_proved": false,
+          "calibrated_prediction_intervals_produced": false,
+          "rational_bounds_transferred_to_native": false,
+          "independent_physical_experiment_claimed": false,
+          "prediction_stability_equals_parameter_uniqueness": false,
+          "rank_deficiency_hidden": false,
+          "period_singularities_hidden": false,
+          "native_deterministic_bounds_claimed": false,
+          "optimizer_known_answer_mismatch_hidden": false,
+          "original_tolerances_relaxed": false
+        },
+        "implementation": {
+          "protocolSha256": "9c89f2b8ca0f02c31338ec81b7ab05c9305467d96db096df2537cbc6fde7368d",
+          "summarySha256": "19656ed9f5930bed7e9bbdcd1072f50b5e68a8836c1975ab550dc1d828011d7e",
+          "analysisRunnerSha256": "5cbd0cb5c1f8503be14d11c20094c5e4170a6216aa5ace9898c83ad1c76f5c1e",
+          "figureSha256": "e669d3fa9d5201169508d257f8b59416b7f3a182ce1e01470564720f36b3f66d",
+          "reportSha256": "c232511e213c88925560ad646ab80cdd967397c912bf8e549a8b3fa787022766",
+          "wordSha256": "0b4730c1852f3b10ff634026c926d9c2c19f9ba7cb5efbd8e1bbd2dcd25eb9cd"
+        },
+        "protocolCommits": {
+          "protocol": "4103263"
+        }
+      },
+      "scientificClaim": "五折局部数值秩均为 9，最大缩放条件数 6.896241、最大相关绝对值 0.918709。主导相关来自 b7 与自身振幅，第 1 折为 b7–b9，第 2—5 折为 b7–b8；跨谐波块和年周期—长周期最大相关分别为 0.559124 和 0.152128。第 4 折 RMSE 为 2.409878，但 b4、b7 相对标准误均为五折最高；b4、b7 范围分别为 3.126309 和 1.946067 个月。",
+      "limitations": "局部满秩、谐波相关和 Delta-method 不证明全局周期识别、物理耦合、新周期或概率校准。较低 RMSE 不等于周期唯一，参数变号和周期变化必须保留；默认优化器未达原容差与认证前向通过继续分层。Local Jacobians, numerical ranks, covariances and delta-method sensitivities do not prove global structural identifiability or calibrated uncertainty Column-normalized condition numbers reduce unit-scale dominance but do not remove nonlinear period-amplitude compensation Harmonic correlations are local parameter diagnostics, not posterior dependence, causal coupling or new physical cycles Lower held-out RMSE does not imply unique, invariant or physically endogenous periods or amplitudes Parameter variation across folds is descriptive and is not a posterior distribution or independent physical estimate The full-data optimizer mismatch and certified forward pass remain separate from all five-fold diagnostics and are not holdout evidence No rational denominator, ellipsoid, box or continuous-safety claim is transferred to the native Fourier model",
+      "upstreamContribution": "提供九参数非线性周期解析雅可比和分块相关接口，把周期间、周期与自身振幅、跨谐波块和年周期—长周期补偿分开，阻止用低 RMSE 或单一相关系数宣称周期唯一或物理耦合。",
+      "snapshotFiles": [
+        "validation/enso-native-identifiability-protocol.json",
+        "validation/enso-native-identifiability-check.json",
+        "validation/frontier-enso-native-identifiability-word.json"
       ]
     }
   ]

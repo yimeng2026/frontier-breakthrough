@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "chwirut1_native_identifiability":
+    if REPORT_MODE == "enso_native_identifiability":
+        replacements = {
+            "图：`papers/48_ENSO原生参数可识别性/fig48_enso_native_identifiability.png`。": "![](papers/48_ENSO原生参数可识别性/fig48_enso_native_identifiability.png)\n\n**图 48｜ENSO 原生 Fourier 周期参数与谐波补偿六联诊断（第 1 幅，共 1 幅）**  \n**插入位置**：§6「六联图与证据边界」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "五折九参数解析雅可比、周期—振幅补偿与局部敏感度"
+    elif REPORT_MODE == "chwirut1_native_identifiability":
         replacements = {
             "图：`papers/47_Chwirut1原生参数可识别性/fig47_chwirut1_native_identifiability.png`。": "![](papers/47_Chwirut1原生参数可识别性/fig47_chwirut1_native_identifiability.png)\n\n**图 47｜Chwirut1 原生指数模型局部可识别性与分母六联诊断（第 1 幅，共 1 幅）**  \n**插入位置**：§6「六联图与读图顺序」；顺序第 1 幅，共 1 幅。",
         }

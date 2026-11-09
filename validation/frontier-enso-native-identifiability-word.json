@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生ENSO原生参数可识别性_图文完整版.docx",
+  "bytes": 296694,
+  "sha256": "0b4730c1852f3b10ff634026c926d9c2c19f9ba7cb5efbd8e1bbd2dcd25eb9cd",
+  "native_math_objects": 2,
+  "embedded_images": 1,
+  "native_tables": 6,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}
