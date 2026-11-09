@@ -1,0 +1,104 @@
+{
+  "status": "frozen_before_native_conservative_support_synthesis",
+  "frozen_at_local": "2026-11-09T15:10:27+08:00",
+  "analysis_type": "Read-only bounded synthesis of the latest Chwirut1 log-support, Roszman1 joint-linear arctangent and ENSO phase-interval triple-intersection results; model-specific baselines and units only, no cross-dataset pooled width, unified score or global optimum claim",
+  "inputs": {
+    "chwirut1_bounds": {
+      "file": "validation/chwirut1-log-support-intersection.json",
+      "sha256": "5ec99a6a2ed22d87e72a0e49c715630e0c214bd0f91ec5742a41ec8176dd8788"
+    },
+    "chwirut1_receipt": {
+      "file": "validation/chwirut1-log-support-check.json",
+      "sha256": "057e5e2055695cc27cdba636175e9513c54acdc2146c15301f10dd128529aaa3"
+    },
+    "roszman1_bounds": {
+      "file": "validation/roszman1-joint-linear-arctan-intersection.json",
+      "sha256": "45852e2534f51098ae390e62092d1b8df04c609d37aba5211121f637599c3b35"
+    },
+    "roszman1_receipt": {
+      "file": "validation/roszman1-joint-linear-arctan-check.json",
+      "sha256": "5f0eb06cc99161eaaabbdc033ffa49998f97a9c8bb795b8cf09edf888d9e4ff5"
+    },
+    "enso_bounds": {
+      "file": "validation/enso-phase-interval-triple-intersection.json",
+      "sha256": "26e116c94f476a8f75cbbb5af1e0f377f959fe99b82c9cc551e485bc1a87f263"
+    },
+    "enso_receipt": {
+      "file": "validation/enso-phase-interval-triple-check.json",
+      "sha256": "473a271f6dbbeabab0647d69511c95acc55f367356c9533b75394ff38877d1e5"
+    }
+  },
+  "recomputation_rule": {
+    "receipt_gate": "Require every receipt to have status passed and its summarySha256 to match the corresponding frozen bounds file",
+    "chwirut1": "Use held_out_point_count=214, unique_distance_count=22, alternative_tighter_count=22, intersection_tightened_count=22, candidate_evaluation_count=132, nonempty_intersection_count=22 and all zero violation fields",
+    "roszman1": "Use held_out_point_count=25, available_point_count=20, unavailable_point_count=5, unavailable_fold_ids=[5], alternative_tighter_count=20, intersection_tightened_count=20, candidate_evaluation_count=160, nonempty_intersection_count=20 and all zero violation fields",
+    "enso": "Use held_out_point_count=168, phase_alternative_bound_count=168, triple_intersection_bound_count=168, triple_tightened_count=37, triple_unchanged_count=131, candidate_evaluation_count=672, nonempty_triple_intersection_count=168 and all zero violation fields",
+    "aggregate_counts": "Sum only inventory quantities: 407 held-out observations, 402 available observations, 5 unavailable observations, 210 unique envelopes, 79 tightened envelopes, 131 unchanged envelopes, 210 nonempty intersections and 964 candidate evaluations",
+    "unavailable_preservation": "Roszman1 fold 5 retains five unavailable points and is not counted as an available or tightened envelope",
+    "source_consistency": "Recompute all aggregate fields from the frozen records and reject any mismatch rather than editing source results"
+  },
+  "comparison_rule": {
+    "model_specific_baselines": "Chwirut1 uses its stage-44 independent envelope, Roszman1 uses its stage-46 independent envelope, and ENSO uses its stage-51 Lipschitz intersection. These baselines are not interchangeable",
+    "ratio_scope": "Width ratios remain within each model and baseline. Do not rank models or methods by raw widths, RMSE, covariance, parameters or residual bounds",
+    "inventory_scope": "Counts of envelopes, tightened cases, unchanged cases and candidates are inventory descriptions, not probabilities, calibrated coverage or a unified stability score",
+    "method_scope": "Log secants/tangents, joint linear support and exact trigonometric interval arithmetic are model-specific constructions and are not a single global optimizer",
+    "candidate_scope": "All 964 candidate evaluations are implementation-consistency checks, not a global optimality proof or independent physical experiment",
+    "historical_preservation": "Do not rewrite the three source summaries, receipts, earlier reports or historical baselines"
+  },
+  "analysis_scope": {
+    "model_specific_baselines_only": true,
+    "candidate_checks_are_consistency_not_proof": true,
+    "cross_dataset_raw_width_pooling": false,
+    "unified_stability_score": false,
+    "unavailable_points_preserved": true,
+    "refit": false,
+    "retrospective_read_only_synthesis": true,
+    "independent_physical_experiment": false
+  },
+  "expected_structure": {
+    "dataset_count": 3,
+    "held_out_point_count": 407,
+    "available_point_count": 402,
+    "unavailable_point_count": 5,
+    "unavailable_fold_ids": ["roszman1:5"],
+    "unique_envelope_count": 210,
+    "tightened_envelope_count": 79,
+    "unchanged_envelope_count": 131,
+    "nonempty_intersection_count": 210,
+    "candidate_evaluation_count": 964,
+    "candidate_violation_count": 0,
+    "center_prediction_mismatch_count": 0,
+    "refit_count": 0
+  },
+  "output_rule": {
+    "summary": "exports/native-conservative-support-synthesis.json",
+    "figure": "papers/62_三模型保守支撑综合/fig62_native_conservative_support_synthesis.png",
+    "report": "docs/NATIVE_CONSERVATIVE_SUPPORT_SYNTHESIS_2026-11-09.md",
+    "word": "papers/前沿共生三模型保守支撑综合_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "decision": {
+    "refit": false,
+    "global_optimum_claimed": false,
+    "cross_dataset_pooled_error_metrics_claimed": false,
+    "cross_dataset_raw_widths_pooled": false,
+    "unified_stability_score_claimed": false,
+    "universal_model_ranking_claimed": false,
+    "candidate_checks_replace_support_proof": false,
+    "probability_coverage_claimed": false,
+    "unavailable_points_dropped": false,
+    "historical_files_rewritten": false,
+    "independent_model_family_replication_claimed": false,
+    "independent_physical_experiment_claimed": false
+  },
+  "prohibitions": [
+    "No refitting or modification of source results, baselines, receipts or historical reports",
+    "No pooling or ranking of raw widths, RMSE, parameters, covariances or residual bounds across datasets",
+    "No unified stability score, probability coverage, universal model winner or global optimum claim",
+    "No treating candidate checks as the analytic proof or a global optimizer",
+    "No dropping of Roszman1 fold-5 unavailable points or assigning them finite bounds",
+    "No independent-model-family or independent-physical-experiment claim",
+    "No hiding of unchanged intersections, source-specific limitations or unavailable cases"
+  ]
+}
