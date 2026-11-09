@@ -1,0 +1,62 @@
+{
+  "status": "frozen_before_native_sensitivity_threshold_coverage",
+  "frozen_at_local": "2026-11-09T10:46:44+08:00",
+  "analysis_type": "Read-only post-hoc arithmetic audit of fixed local-sensitivity multiples at all frozen held-out points; no refitting, covariance recomputation or probability calibration",
+  "inputs": {
+    "roszman1": {
+      "file": "validation/roszman1-native-identifiability.json",
+      "sha256": "9888145d181c157da33b3bf0f93980ef0db15e4d3b368a96330c775363bc4322",
+      "held_out_point_count": 25
+    },
+    "chwirut1": {
+      "file": "validation/chwirut1-native-identifiability.json",
+      "sha256": "e8e76516b05e8fd83f60df0ad93215ce41984ca562cc9e5140291f5f6ba72cc8",
+      "held_out_point_count": 214
+    },
+    "enso": {
+      "file": "validation/enso-native-identifiability.json",
+      "sha256": "19656ed9f5930bed7e9bbdcd1072f50b5e68a8836c1975ab550dc1d828011d7e",
+      "held_out_point_count": 168
+    }
+  },
+  "rules": {
+    "thresholds": [1, 2, 4],
+    "threshold_selection": "All three multipliers are frozen before inspecting point-level coverage outcomes; no threshold optimization or post-hoc selection",
+    "coverage": "A point is covered at multiplier k when absolute held-out residual is less than or equal to k times its stored local linearized prediction standard deviation",
+    "residual": "Use the absolute value of each stored held-out residual and retain its original sign, x and prediction for traceability",
+    "zero_standard_deviation": "When local standard deviation is zero, zero residual is covered and nonzero residual is a violation; do not divide by zero",
+    "residual_sensitivity_ratio": "When local standard deviation is positive, compute absolute residual divided by it; zero-deviation cases remain separate",
+    "violation_details": "Retain every violating point, its dataset, fold, point index, x, residual, local standard deviation, ratio when defined and failed multipliers",
+    "nested_check": "Coverage counts must be nondecreasing from multiplier 1 to 2 to 4 at every fold, dataset and total",
+    "fold_summary": "For every fold and multiplier report point count, covered count, violation count, zero-violation indicator and maximum residual/sensitivity ratio",
+    "dataset_summary": "Aggregate raw counts only within each dataset and preserve all fifteen fold summaries",
+    "descriptive_totals": "Overall counts are arithmetic inventories across 407 points and 1221 evaluations, not probabilities, confidence levels, calibration scores or expected coverage",
+    "source_preservation": "Do not rerun optimizers, SVD, covariance, period fitting or native prediction fitting; use stored predictions, residuals and local standard deviations only",
+    "scope_specific_evidence": "Keep Roszman1 parameter variation, Chwirut1 related-study and denominator scope, and ENSO period/known-answer boundaries separate from the threshold counts"
+  },
+  "expected_structure": {
+    "dataset_count": 3,
+    "total_fold_count": 15,
+    "total_point_count": 407,
+    "threshold_count": 3,
+    "total_evaluation_count": 1221,
+    "missing_residual_count": 0,
+    "missing_standard_deviation_count": 0
+  },
+  "output_rule": {
+    "summary": "exports/native-sensitivity-threshold-coverage.json",
+    "figure": "papers/50_三模型敏感度阈值覆盖/fig50_native_sensitivity_threshold_coverage.png",
+    "report": "docs/NATIVE_SENSITIVITY_THRESHOLD_COVERAGE_2026-11-09.md",
+    "word": "papers/前沿共生三模型敏感度阈值覆盖_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "prohibitions": [
+    "No refitting, retuning, covariance recomputation, changed folds or new local standard deviations",
+    "No conversion of fixed-threshold counts into probabilities, confidence intervals, credible intervals, calibration scores or expected coverage",
+    "No post-hoc threshold selection, hidden violations or removal of zero-deviation cases",
+    "No pooled physical interpretation across different response units and model structures",
+    "No claim of global identifiability, physical endogeneity, new periods, independent experiment or native deterministic error bounds",
+    "No rewriting of the three frozen local-identifiability inputs"
+  ]
+}
