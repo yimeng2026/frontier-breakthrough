@@ -1654,6 +1654,63 @@
       "sourceFiles": [
         "validation/enso-native-holdout.json"
       ]
+    },
+    {
+      "id": "claim-low-rmse-independent-replication",
+      "kind": "claim",
+      "title": "较低留出 RMSE 即可构成独立模型族或独立实验室复现",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/chwirut1-native-holdout.json"
+      ]
+    },
+    {
+      "id": "evidence-chwirut1-native-holdout",
+      "kind": "evidence",
+      "title": "Chwirut1 原生在第 1、3、4、5 折 RMSE 更低，第 2 折有理更低；214 点汇总 RMSE 为 7.778996 对 9.456158",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-native-holdout.json"
+      ]
+    },
+    {
+      "id": "counterexample-chwirut1-native-fold2-rational-better",
+      "kind": "counterexample",
+      "title": "Chwirut1 第 2 折原生 RMSE 为 2.622278，高于有理候选的 2.449395，不能写成所有折原生更优",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-native-holdout.json"
+      ]
+    },
+    {
+      "id": "counterexample-chwirut1-native-fold1-error-and-parameters",
+      "kind": "counterexample",
+      "title": "Chwirut1 第 1 折原生 RMSE 仍有 14.465527，b2 逐折范围为 0.005195445，低相对误差和参数稳定都不能过度解释",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-native-holdout.json"
+      ]
+    },
+    {
+      "id": "experiment-chwirut1-native-holdout-protocol",
+      "kind": "experiment",
+      "title": "冻结三参数起点、22 个距离分组和重复观测规则，并以独立修订纠正折级计数",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-native-holdout-protocol.json",
+        "validation/chwirut1-native-holdout-protocol-amendment-01.json",
+        "scripts/analyze_chwirut1_native_holdout.py"
+      ]
+    },
+    {
+      "id": "limitation-chwirut1-native-related-study-and-bounds",
+      "kind": "limitation",
+      "title": "Chwirut1 与 Chwirut2 同研究同模型族，预测优势不构成独立复现、原生误差界或概率校准",
+      "status": "active",
+      "sourceFiles": [
+        "validation/chwirut1-native-holdout.json",
+        "validation/chwirut1-ellipsoid-coverage-protocol.json"
+      ]
     }
   ],
   "edges": [
@@ -3570,6 +3627,111 @@
     {
       "from": "limitation-enso-native-period-and-bounds",
       "to": "evidence-enso-prediction-proof-dissociation",
+      "relation": "limits"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-low-rmse-independent-replication",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-chwirut1-native-holdout",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-chwirut1-native-fold2-rational-better",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-chwirut1-native-fold1-error-and-parameters",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-chwirut1-native-holdout-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-chwirut1-native-related-study-and-bounds",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-chwirut1-native-holdout",
+      "to": "claim-model-family-fold-independent-winner",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-chwirut1-native-fold2-rational-better",
+      "to": "claim-model-family-fold-independent-winner",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-chwirut1-native-holdout",
+      "to": "counterexample-chwirut1-native-fold2-rational-better",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-chwirut1-native-holdout-protocol",
+      "to": "claim-model-family-fold-independent-winner",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-chwirut1-native-holdout",
+      "to": "claim-low-rmse-independent-replication",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-chwirut1-native-fold1-error-and-parameters",
+      "to": "claim-low-rmse-independent-replication",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-chwirut1-native-holdout",
+      "to": "counterexample-chwirut1-native-fold1-error-and-parameters",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-chwirut1-native-holdout-protocol",
+      "to": "claim-low-rmse-independent-replication",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-chwirut1-native-related-study-and-bounds",
+      "to": "evidence-chwirut1-native-holdout",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-chwirut1-native-holdout",
+      "to": "evidence-chwirut1-prediction-proof-dissociation",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-chwirut1-native-holdout",
+      "to": "claim-nist-reproduction",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-chwirut1-native-holdout-protocol",
+      "to": "claim-nist-reproduction",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-chwirut1-native-holdout",
+      "to": "evidence-roszman1-native-holdout",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-chwirut1-native-holdout",
+      "to": "evidence-enso-native-holdout",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-chwirut1-native-related-study-and-bounds",
+      "to": "claim-untouched-data-independent-model-family",
       "relation": "limits"
     }
   ]

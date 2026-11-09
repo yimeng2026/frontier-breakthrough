@@ -88,6 +88,11 @@ def build_graph(root):
     ensoNativeHoldout = json.loads((root / "validation/enso-native-holdout.json").read_text(encoding="utf-8"))
     ensoNativeProtocol = json.loads((root / "validation/enso-native-holdout-protocol.json").read_text(encoding="utf-8"))
     ensoNativeAmendment = json.loads((root / "validation/enso-native-holdout-protocol-amendment-01.json").read_text(encoding="utf-8"))
+    chwirut1NativeHoldout = json.loads((root / "validation/chwirut1-native-holdout.json").read_text(encoding="utf-8"))
+    chwirut1NativeProtocol = json.loads((root / "validation/chwirut1-native-holdout-protocol.json").read_text(encoding="utf-8"))
+    chwirut1NativeAmendment = json.loads((root / "validation/chwirut1-native-holdout-protocol-amendment-01.json").read_text(encoding="utf-8"))
+    if chwirut1NativeHoldout["totals"]["point_count"] != 214 or chwirut1NativeHoldout["totals"]["unique_distance_count"] != 22 or [len(case["point_results"]) for case in chwirut1NativeHoldout["folds"]] != chwirut1NativeAmendment["correction"]["corrected_observation_counts"] or chwirut1NativeHoldout["totals"]["native_optimizer_failure_count"] != 0 or chwirut1NativeHoldout["totals"]["native_better_than_rational_fold_count"] != 4 or chwirut1NativeHoldout["totals"]["rational_better_than_native_fold_count"] != 1 or not chwirut1NativeHoldout["known_answer"]["within_certified_tolerances"] or not chwirut1NativeHoldout["analysis_scope"]["repeated_x_never_crosses_fitting_and_test"] or not chwirut1NativeHoldout["analysis_scope"]["related_prior_dataset"]["same_native_model_family"] or chwirut1NativeHoldout["folds"][1]["native_test_metrics"]["rmse"] <= chwirut1NativeHoldout["folds"][1]["rational_candidate_test_metrics"]["rmse"] or chwirut1NativeHoldout["folds"][0]["native_test_metrics"]["rmse"] <= 14 or chwirut1NativeHoldout["decision"]["independent_model_family_claimed"] or chwirut1NativeHoldout["decision"]["rational_bounds_transferred_to_native"]:
+        raise ValueError("Expected Chwirut1 native fold results, metadata correction and related-study scope are not present")
     if ensoNativeHoldout["totals"]["point_count"] != 168 or ensoNativeHoldout["totals"]["native_optimizer_failure_count"] != 0 or ensoNativeHoldout["totals"]["native_better_than_rational_fold_count"] != 4 or ensoNativeHoldout["totals"]["rational_better_than_native_fold_count"] != 1 or ensoNativeHoldout["known_answer"]["within_certified_tolerances"] or not ensoNativeHoldout["known_answer"]["certified_forward_rss_check_passed"] or ensoNativeHoldout["known_answer"]["original_tolerances_relaxed"] or ensoNativeHoldout["known_answer"]["optimizer_mismatch_hidden"] or ensoNativeHoldout["folds"][0]["native_test_metrics"]["rmse"] <= ensoNativeHoldout["folds"][0]["rational_candidate_test_metrics"]["rmse"] or ensoNativeHoldout["folds"][4]["native_test_metrics"]["rmse"] >= ensoNativeHoldout["folds"][4]["rational_candidate_test_metrics"]["rmse"] or ensoNativeHoldout["decision"]["rational_bounds_transferred_to_native"]:
         raise ValueError("Expected ENSO native fold comparison and optimizer/forward evidence separation are not present")
     if ensoCoverage["totals"]["point_count"] != 168 or ensoCoverage["totals"]["ellipsoid_available_point_count"] != 135 or ensoCoverage["totals"]["coverage_violation_count"] != 0 or ensoCoverage["totals"]["continuous_safe_fold_count"] != 4 or ensoCoverage["totals"]["independent_box_continuous_safe_fold_count"] != 3 or ensoCoverage["totals"]["tighter_point_count"] != 131 or ensoCoverage["totals"]["looser_point_count"] != 0 or ensoCoverage["folds"][4]["test_metrics"]["rmse"] >= ensoCoverage["folds"][4]["baseline_test_metrics"]["rmse"] or any(point.get("ellipsoid_available", False) for point in ensoCoverage["folds"][4]["point_results"]) or not ensoCoverage["analysis_scope"]["dataset_specific_scope_text"] or ensoCoverage["analysis_scope"]["scope_adapter_sha256"] != ensoProtocol["implementation_rule"]["scope_adapter_sha256"]:
@@ -624,6 +629,37 @@ def build_graph(root):
         edge("experiment-enso-native-holdout-protocol", "claim-nist-reproduction", "tests"),
         edge("evidence-enso-native-holdout", "evidence-roszman1-native-holdout", "supports"),
         edge("limitation-enso-native-period-and-bounds", "evidence-enso-prediction-proof-dissociation", "limits"),
+    ])
+    nodes.extend([
+        node("claim-low-rmse-independent-replication", "claim", "较低留出 RMSE 即可构成独立模型族或独立实验室复现", "falsified", ["validation/chwirut1-native-holdout.json"]),
+        node("evidence-chwirut1-native-holdout", "evidence", "Chwirut1 原生在第 1、3、4、5 折 RMSE 更低，第 2 折有理更低；214 点汇总 RMSE 为 7.778996 对 9.456158", "supported", ["validation/chwirut1-native-holdout.json"]),
+        node("counterexample-chwirut1-native-fold2-rational-better", "counterexample", "Chwirut1 第 2 折原生 RMSE 为 2.622278，高于有理候选的 2.449395，不能写成所有折原生更优", "supported", ["validation/chwirut1-native-holdout.json"]),
+        node("counterexample-chwirut1-native-fold1-error-and-parameters", "counterexample", "Chwirut1 第 1 折原生 RMSE 仍有 14.465527，b2 逐折范围为 0.005195445，低相对误差和参数稳定都不能过度解释", "supported", ["validation/chwirut1-native-holdout.json"]),
+        node("experiment-chwirut1-native-holdout-protocol", "experiment", "冻结三参数起点、22 个距离分组和重复观测规则，并以独立修订纠正折级计数", "supported", ["validation/chwirut1-native-holdout-protocol.json", "validation/chwirut1-native-holdout-protocol-amendment-01.json", "scripts/analyze_chwirut1_native_holdout.py"]),
+        node("limitation-chwirut1-native-related-study-and-bounds", "limitation", "Chwirut1 与 Chwirut2 同研究同模型族，预测优势不构成独立复现、原生误差界或概率校准", "active", ["validation/chwirut1-native-holdout.json", "validation/chwirut1-ellipsoid-coverage-protocol.json"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-low-rmse-independent-replication", "contains"),
+        edge("track-holdout", "evidence-chwirut1-native-holdout", "contains"),
+        edge("track-holdout", "counterexample-chwirut1-native-fold2-rational-better", "contains"),
+        edge("track-holdout", "counterexample-chwirut1-native-fold1-error-and-parameters", "contains"),
+        edge("track-holdout", "experiment-chwirut1-native-holdout-protocol", "contains"),
+        edge("track-holdout", "limitation-chwirut1-native-related-study-and-bounds", "contains"),
+        edge("evidence-chwirut1-native-holdout", "claim-model-family-fold-independent-winner", "contradicts"),
+        edge("counterexample-chwirut1-native-fold2-rational-better", "claim-model-family-fold-independent-winner", "contradicts"),
+        edge("evidence-chwirut1-native-holdout", "counterexample-chwirut1-native-fold2-rational-better", "supports"),
+        edge("experiment-chwirut1-native-holdout-protocol", "claim-model-family-fold-independent-winner", "tests"),
+        edge("evidence-chwirut1-native-holdout", "claim-low-rmse-independent-replication", "contradicts"),
+        edge("counterexample-chwirut1-native-fold1-error-and-parameters", "claim-low-rmse-independent-replication", "contradicts"),
+        edge("evidence-chwirut1-native-holdout", "counterexample-chwirut1-native-fold1-error-and-parameters", "supports"),
+        edge("experiment-chwirut1-native-holdout-protocol", "claim-low-rmse-independent-replication", "tests"),
+        edge("limitation-chwirut1-native-related-study-and-bounds", "evidence-chwirut1-native-holdout", "limits"),
+        edge("evidence-chwirut1-native-holdout", "evidence-chwirut1-prediction-proof-dissociation", "supports"),
+        edge("evidence-chwirut1-native-holdout", "claim-nist-reproduction", "supports"),
+        edge("experiment-chwirut1-native-holdout-protocol", "claim-nist-reproduction", "tests"),
+        edge("evidence-chwirut1-native-holdout", "evidence-roszman1-native-holdout", "supports"),
+        edge("evidence-chwirut1-native-holdout", "evidence-enso-native-holdout", "supports"),
+        edge("limitation-chwirut1-native-related-study-and-bounds", "claim-untouched-data-independent-model-family", "limits"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

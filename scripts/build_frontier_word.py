@@ -45,7 +45,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "enso_native_holdout":
+    if REPORT_MODE == "chwirut1_native_holdout":
+        replacements = {
+            "图：`papers/42_Chwirut1原生指数对照/fig42_chwirut1_native_holdout.png`。": "![](papers/42_Chwirut1原生指数对照/fig42_chwirut1_native_holdout.png)\n\n**图 42｜Chwirut1 原生指数与有理候选同折对照（第 1 幅，共 1 幅）**  \n**插入位置**：§5「图件与三类原生模型比较」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "214 个相同留出观测、22 个距离分组与同族模型边界"
+    elif REPORT_MODE == "enso_native_holdout":
         replacements = {
             "图：`papers/41_ENSO原生周期对照/fig41_enso_native_holdout.png`。": "![](papers/41_ENSO原生周期对照/fig41_enso_native_holdout.png)\n\n**图 41｜ENSO 原生 Fourier 与有理候选同折对照（第 1 幅，共 1 幅）**  \n**插入位置**：§5「图件与跨模型比较」；顺序第 1 幅，共 1 幅。",
         }

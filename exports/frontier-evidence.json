@@ -4171,6 +4171,314 @@
         "validation/enso-native-holdout.json",
         "validation/frontier-enso-native-holdout-word.json"
       ]
+    },
+    {
+      "id": "chwirut1-native-holdout-comparison",
+      "domain": "physics",
+      "title": "Chwirut1 原生指数模型同折预测与同族边界审计",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Chwirut1.dat"
+      ],
+      "metrics": {
+        "totals": {
+          "fold_count": 5,
+          "point_count": 214,
+          "unique_distance_count": 22,
+          "native_optimizer_failure_count": 0,
+          "native_better_than_rational_fold_count": 4,
+          "rational_better_than_native_fold_count": 1,
+          "native_rational_tie_fold_count": 0,
+          "native_better_than_cubic_baseline_fold_count": 5,
+          "cubic_baseline_better_than_native_fold_count": 0,
+          "known_answer_within_certified_tolerances": true
+        },
+        "foldObservationCounts": [
+          57,
+          54,
+          51,
+          23,
+          29
+        ],
+        "folds": [
+          {
+            "fold": 1,
+            "optimizerSuccess": true,
+            "nativeTestMetrics": {
+              "rmse": 14.465526570336303,
+              "mae": 11.383831417263481,
+              "max_absolute_residual": 34.56420305694451
+            },
+            "rationalCandidateTestMetrics": {
+              "rmse": 16.138743756819224,
+              "mae": 12.451908690910388,
+              "max_absolute_residual": 37.82681992868282
+            },
+            "cubicBaselineTestMetrics": {
+              "rmse": 15.10811245428186,
+              "mae": 13.269199276663242,
+              "max_absolute_residual": 34.12463998281645
+            },
+            "nativeBetterThanRational": true,
+            "nativeBetterThanCubicBaseline": true,
+            "nativeParameters": {
+              "b1": 0.10197290606900491,
+              "b2": 0.0013481643928198739,
+              "b3": 0.01607222940816946
+            }
+          },
+          {
+            "fold": 2,
+            "optimizerSuccess": true,
+            "nativeTestMetrics": {
+              "rmse": 2.622277550680226,
+              "mae": 2.0710655171961916,
+              "max_absolute_residual": 6.015521299119683
+            },
+            "rationalCandidateTestMetrics": {
+              "rmse": 2.4493945003433435,
+              "mae": 1.8982662764265905,
+              "max_absolute_residual": 5.666032152137092
+            },
+            "cubicBaselineTestMetrics": {
+              "rmse": 3.9559114550296703,
+              "mae": 3.351443590190748,
+              "max_absolute_residual": 9.116486109506553
+            },
+            "nativeBetterThanRational": false,
+            "nativeBetterThanCubicBaseline": true,
+            "nativeParameters": {
+              "b1": 0.20155053784283966,
+              "b2": 0.0065196578644481406,
+              "b3": 0.009725363401064573
+            }
+          },
+          {
+            "fold": 3,
+            "optimizerSuccess": true,
+            "nativeTestMetrics": {
+              "rmse": 2.775494469668534,
+              "mae": 1.9399903435006307,
+              "max_absolute_residual": 10.656904385302195
+            },
+            "rationalCandidateTestMetrics": {
+              "rmse": 8.488618909338863,
+              "mae": 7.054072837219897,
+              "max_absolute_residual": 13.294895218818718
+            },
+            "cubicBaselineTestMetrics": {
+              "rmse": 4.820903500712885,
+              "mae": 3.949654004996008,
+              "max_absolute_residual": 14.956808396664083
+            },
+            "nativeBetterThanRational": true,
+            "nativeBetterThanCubicBaseline": true,
+            "nativeParameters": {
+              "b1": 0.1838307841658672,
+              "b2": 0.006090058945361599,
+              "b3": 0.01068457994389589
+            }
+          },
+          {
+            "fold": 4,
+            "optimizerSuccess": true,
+            "nativeTestMetrics": {
+              "rmse": 1.3682100460705144,
+              "mae": 1.0180138615537278,
+              "max_absolute_residual": 3.4317556610176885
+            },
+            "rationalCandidateTestMetrics": {
+              "rmse": 1.5342121863881184,
+              "mae": 1.1454983658325952,
+              "max_absolute_residual": 3.849447215721919
+            },
+            "cubicBaselineTestMetrics": {
+              "rmse": 3.9849289449012026,
+              "mae": 3.53943966588298,
+              "max_absolute_residual": 7.684483455842288
+            },
+            "nativeBetterThanRational": true,
+            "nativeBetterThanCubicBaseline": true,
+            "nativeParameters": {
+              "b1": 0.1837998732874438,
+              "b2": 0.006071281460854413,
+              "b3": 0.01071520700723592
+            }
+          },
+          {
+            "fold": 5,
+            "optimizerSuccess": true,
+            "nativeTestMetrics": {
+              "rmse": 2.7237923197301117,
+              "mae": 2.2471386159021938,
+              "max_absolute_residual": 6.141371148820718
+            },
+            "rationalCandidateTestMetrics": {
+              "rmse": 2.8556168919034737,
+              "mae": 2.3836555779486264,
+              "max_absolute_residual": 6.419912022396314
+            },
+            "cubicBaselineTestMetrics": {
+              "rmse": 28.747338380862608,
+              "mae": 25.633277258458364,
+              "max_absolute_residual": 41.98985876888701
+            },
+            "nativeBetterThanRational": true,
+            "nativeBetterThanCubicBaseline": true,
+            "nativeParameters": {
+              "b1": 0.23070636104144254,
+              "b2": 0.006543609566912807,
+              "b3": 0.009335238111552463
+            }
+          }
+        ],
+        "pooled": {
+          "native": {
+            "rmse": 7.778996285751361,
+            "mae": 4.4310129668600196,
+            "max_absolute_residual": 34.56420305694451
+          },
+          "rational_candidate": {
+            "rmse": 9.456157887519154,
+            "mae": 5.9228755288869275,
+            "max_absolute_residual": 37.82681992868282
+          },
+          "cubic_baseline": null,
+          "scope": "All 214 held-out predictions; per-point cubic-baseline predictions were not present in the frozen input"
+        },
+        "parameterStability": {
+          "b1": {
+            "folds": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "values": [
+              0.10197290606900491,
+              0.20155053784283966,
+              0.1838307841658672,
+              0.1837998732874438,
+              0.23070636104144254
+            ],
+            "minimum": 0.10197290606900491,
+            "maximum": 0.23070636104144254,
+            "median": 0.1838307841658672,
+            "range": 0.12873345497243763,
+            "missing_fold_numbers": []
+          },
+          "b2": {
+            "folds": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "values": [
+              0.0013481643928198739,
+              0.0065196578644481406,
+              0.006090058945361599,
+              0.006071281460854413,
+              0.006543609566912807
+            ],
+            "minimum": 0.0013481643928198739,
+            "maximum": 0.006543609566912807,
+            "median": 0.006090058945361599,
+            "range": 0.005195445174092934,
+            "missing_fold_numbers": []
+          },
+          "b3": {
+            "folds": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "values": [
+              0.01607222940816946,
+              0.009725363401064573,
+              0.01068457994389589,
+              0.01071520700723592,
+              0.009335238111552463
+            ],
+            "minimum": 0.009335238111552463,
+            "maximum": 0.01607222940816946,
+            "median": 0.01068457994389589,
+            "range": 0.006736991296616998,
+            "missing_fold_numbers": []
+          }
+        },
+        "knownAnswer": {
+          "parameters": {
+            "b1": 0.19027791208642128,
+            "b2": 0.006131396883579946,
+            "b3": 0.010530917706545346
+          },
+          "certifiedParameters": {
+            "b1": 0.1902781837,
+            "b2": 0.0061314004477,
+            "b3": 0.010530908399
+          },
+          "rss": 2384.4771393110395,
+          "certifiedRss": 2384.4771393,
+          "withinCertifiedTolerances": true,
+          "evidenceClass": "known_answer_reproduction_not_holdout"
+        },
+        "analysisScope": {
+          "native_model": true,
+          "candidate_results_frozen_before_native_fit": true,
+          "same_holdout_points": true,
+          "repeated_x_never_crosses_fitting_and_test": true,
+          "post_hoc_model_family_comparison": true,
+          "known_answer_is_holdout": false,
+          "native_deterministic_bounds_computed": false,
+          "rational_bounds_transferred_to_native": false,
+          "independent_physical_experiment": false,
+          "independent_model_family_test": false,
+          "related_prior_dataset": {
+            "name": "Chwirut2",
+            "same_study": true,
+            "same_native_model_family": true,
+            "scope": "Chwirut1 observations were not used to design previous candidates or regions, but Chwirut2 was analyzed previously; this is not an independent model-family or laboratory replication test"
+          }
+        },
+        "decision": {
+          "independent_model_family_claimed": false,
+          "independent_physical_experiment_claimed": false,
+          "certified_full_fit_used_as_holdout": false,
+          "rational_bounds_transferred_to_native": false,
+          "native_deterministic_bounds_claimed": false,
+          "native_probability_calibration_claimed": false,
+          "native_physical_law_validated": false,
+          "failed_fits_hidden": false
+        },
+        "implementation": {
+          "protocolSha256": "735228da3c0eb4729b922d8e312b59844030a63ba360d502068bca28da695237",
+          "dataSha256": "d9a055dfe5af71a8754c00f073ef00f8fed2e3fd1c6fd20cea8fd62d7cc3ed84",
+          "candidateInputSha256": "e6c6816d4c4616a1efbd739fcf92d4b782049e38201ebdd4db37479ca156ed33",
+          "analysisRunnerSha256": "c3419658e1eb51acea67dee86518dd46ff7af25182a19bd407d5cb90a346b1ab",
+          "metadataAmendmentSha256": "4754a0cea606b86edf65be49054161bedec53e6a63f1ba9aa0b9139c1f3696d2"
+        },
+        "protocolCommits": {
+          "protocol": "3a721c7",
+          "metadataAmendment": "29f3e88",
+          "results": "1a6fcf0"
+        }
+      },
+      "scientificClaim": "原生指数模型在第 1、3、4、5 折 RMSE 更低，第 2 折有理候选更低；214 点汇总 RMSE 分别为 7.778996 和 9.456158。第 1 折原生 RMSE 仍有 14.465527，b2 逐折范围为 0.005195445。Chwirut1 与 Chwirut2 同研究、同模型族，不能称为独立复现。",
+      "limitations": "多数折更低不是全域排名或独立模型族复现，参数变化不是后验分布，原生模型没有继承有理证明区域。重复距离与计数修订必须保留。The full-data NIST certified-fit reproduction checks implementation only and is not holdout evidence Chwirut1 shares its study and native model family with Chwirut2; this is not an independent model-family or laboratory replication test Native and rational fold-level RMSE comparisons are descriptive and do not establish a universal model ranking No rational denominator, ellipsoid, box or continuous-safety claim is transferred to the native exponential model Parameter variation across folds is descriptive and is not a posterior distribution or independent physical estimate Optimizer failures, non-finite predictions, repeated observations and fold-level losses are retained rather than hidden",
+      "upstreamContribution": "把原生指数模型逐折胜负、重复距离、计数修订、参数变化和 Chwirut2 同族边界接入同一接口，并与 Roszman1、ENSO 形成受限的跨原生模型对照。",
+      "snapshotFiles": [
+        "validation/chwirut1-native-holdout-protocol.json",
+        "validation/chwirut1-native-holdout-protocol-amendment-01.json",
+        "validation/chwirut1-native-holdout.json",
+        "validation/frontier-chwirut1-native-holdout-word.json"
+      ]
     }
   ]
 }

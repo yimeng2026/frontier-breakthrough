@@ -61,7 +61,8 @@
 | Roszman1 原生反正切同折对照 | 原生在第 3、4、5 折 RMSE 更低，第 1、2 折有理候选更低；五折全部成功，25 点 RMSE 分别为 0.007568255 和 0.219326962 | `validation/roszman1-native-holdout-protocol.json`、`validation/roszman1-native-holdout.json`、`docs/ROSZMAN1_NATIVE_HOLDOUT_2026-11-09.md` | 分开全数据已知答案与留出证据，保留逐折胜负，不移植有理证明区域或宣称绝对模型排名 |
 | Roszman1 原生参数局部可识别性 | 五折数值秩均为 4，最大条件数 90.743359、最大相关绝对值 0.987535；b2、b4 逐折范围分别为 0.000010411859、112.236141 | `validation/roszman1-native-identifiability-protocol.json`、`validation/roszman1-native-identifiability.json`、`docs/ROSZMAN1_NATIVE_IDENTIFIABILITY_2026-11-09.md` | 使用解析雅可比且不重拟合，不把局部满秩、预测稳定或 Delta-method 敏感度写成全局可识别性、参数唯一性或概率区间 |
 | ENSO 原生 Fourier 同折对照 | 原生在第 2—5 折 RMSE 更低，第 1 折有理候选更低；默认 LM 未达原容差而认证前向通过；b4、b7 范围为 3.126309、1.946067 个月 | `validation/enso-native-holdout-protocol.json`、`validation/enso-native-holdout-protocol-amendment-01.json`、`validation/enso-native-holdout.json`、`docs/ENSO_NATIVE_HOLDOUT_2026-11-09.md` | 分开优化器复现与认证前向，保留逐折胜负和周期变化，不移植有理证明区域或宣称全域模型排名 |
-| 主张—证据—反例—实验图谱 | 177 个节点、383 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| Chwirut1 原生指数同折对照 | 原生在第 1、3、4、5 折 RMSE 更低，第 2 折有理候选更低；214 点汇总 RMSE 为 7.778996 对 9.456158；22 个距离分组与同族边界完整保留 | `validation/chwirut1-native-holdout-protocol.json`、`validation/chwirut1-native-holdout-protocol-amendment-01.json`、`validation/chwirut1-native-holdout.json`、`docs/CHWIRUT1_NATIVE_HOLDOUT_2026-11-09.md` | 保留重复观测、计数修订和参数变化，不把预测优势写成独立模型族复现、原生误差界或概率校准 |
+| 主张—证据—反例—实验图谱 | 183 个节点、404 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 范围感知外部分析适配层
 

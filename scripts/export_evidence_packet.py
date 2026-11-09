@@ -81,6 +81,9 @@ def build() -> dict:
     ensoNativeHoldout = read("enso-native-holdout.json")
     ensoNativeProtocol = read("enso-native-holdout-protocol.json")
     ensoNativeAmendment = read("enso-native-holdout-protocol-amendment-01.json")
+    chwirut1NativeHoldout = read("chwirut1-native-holdout.json")
+    chwirut1NativeProtocol = read("chwirut1-native-holdout-protocol.json")
+    chwirut1NativeAmendment = read("chwirut1-native-holdout-protocol-amendment-01.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -673,6 +676,27 @@ def build() -> dict:
             "limitations": "多数折更低不是全域模型排名；认证前向通过不等于优化器复现达标，周期变化不等于新周期机制。原生模型没有继承有理证明区域或概率校准。" + " ".join(ensoNativeHoldout["limitations"]),
             "upstreamContribution": "把原生周期模型逐折胜负、优化器未达标、认证前向复核、周期变化和证明区域分离接入同一接口，并与 Roszman1 形成跨模型对照。",
             "snapshotFiles": ["validation/enso-native-holdout-protocol.json", "validation/enso-native-holdout-protocol-amendment-01.json", "validation/enso-native-holdout.json", "validation/frontier-enso-native-holdout-word.json"],
+        },
+        {
+            "id": "chwirut1-native-holdout-comparison", "domain": "physics", "title": "Chwirut1 原生指数模型同折预测与同族边界审计",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Chwirut1.dat"],
+            "metrics": {
+                "totals": chwirut1NativeHoldout["totals"],
+                "foldObservationCounts": chwirut1NativeAmendment["correction"]["corrected_observation_counts"],
+                "folds": [{"fold": case["fold"], "optimizerSuccess": case["optimizer_success"], "nativeTestMetrics": case["native_test_metrics"], "rationalCandidateTestMetrics": case["rational_candidate_test_metrics"], "cubicBaselineTestMetrics": case["cubic_baseline_test_metrics"], "nativeBetterThanRational": case["native_better_than_rational"], "nativeBetterThanCubicBaseline": case["native_better_than_cubic_baseline"], "nativeParameters": case["native_parameters"]} for case in chwirut1NativeHoldout["folds"]],
+                "pooled": chwirut1NativeHoldout["pooled"],
+                "parameterStability": chwirut1NativeHoldout["parameter_stability"],
+                "knownAnswer": {"parameters": chwirut1NativeHoldout["known_answer"]["parameters"], "certifiedParameters": chwirut1NativeHoldout["known_answer"]["certified_parameters"], "rss": chwirut1NativeHoldout["known_answer"]["rss"], "certifiedRss": chwirut1NativeHoldout["known_answer"]["certified_rss"], "withinCertifiedTolerances": chwirut1NativeHoldout["known_answer"]["within_certified_tolerances"], "evidenceClass": chwirut1NativeHoldout["known_answer"]["evidence_class"]},
+                "analysisScope": chwirut1NativeHoldout["analysis_scope"],
+                "decision": chwirut1NativeHoldout["decision"],
+                "implementation": {"protocolSha256": chwirut1NativeHoldout["protocol_sha256"], "dataSha256": chwirut1NativeHoldout["data_sha256"], "candidateInputSha256": chwirut1NativeHoldout["candidate_input_sha256"], "analysisRunnerSha256": chwirut1NativeHoldout["analysis_runner_sha256"], "metadataAmendmentSha256": chwirut1NativeHoldout["metadata_amendment_sha256"]},
+                "protocolCommits": {"protocol": "3a721c7", "metadataAmendment": "29f3e88", "results": "1a6fcf0"},
+            },
+            "scientificClaim": "原生指数模型在第 1、3、4、5 折 RMSE 更低，第 2 折有理候选更低；214 点汇总 RMSE 分别为 7.778996 和 9.456158。第 1 折原生 RMSE 仍有 14.465527，b2 逐折范围为 0.005195445。Chwirut1 与 Chwirut2 同研究、同模型族，不能称为独立复现。",
+            "limitations": "多数折更低不是全域排名或独立模型族复现，参数变化不是后验分布，原生模型没有继承有理证明区域。重复距离与计数修订必须保留。" + " ".join(chwirut1NativeHoldout["limitations"]),
+            "upstreamContribution": "把原生指数模型逐折胜负、重复距离、计数修订、参数变化和 Chwirut2 同族边界接入同一接口，并与 Roszman1、ENSO 形成受限的跨原生模型对照。",
+            "snapshotFiles": ["validation/chwirut1-native-holdout-protocol.json", "validation/chwirut1-native-holdout-protocol-amendment-01.json", "validation/chwirut1-native-holdout.json", "validation/frontier-chwirut1-native-holdout-word.json"],
         },
     ]
     packet = {

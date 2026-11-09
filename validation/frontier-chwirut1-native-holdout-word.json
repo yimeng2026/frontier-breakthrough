@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生Chwirut1原生指数同折对照_图文完整版.docx",
+  "bytes": 244106,
+  "sha256": "1bc21b2dcba5f54fe3ecc663ef3f7a7f10f2721f077fd6bd270a8fbbc4e18998",
+  "native_math_objects": 2,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}
