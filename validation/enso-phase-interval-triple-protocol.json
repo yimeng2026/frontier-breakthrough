@@ -1,0 +1,137 @@
+{
+  "status": "frozen_before_enso_phase_interval_triple_intersection",
+  "frozen_at_local": "2026-11-09T14:09:21+08:00",
+  "analysis_type": "Conservative native Fourier bounds using exact trigonometric interval arithmetic over frozen period intervals, with phase-remainder product intervals and a triple intersection against stage-47 independent and stage-51 Lipschitz bounds; no global optimizer or probability claim",
+  "inputs": {
+    "native_identifiability": {
+      "file": "validation/enso-native-identifiability.json",
+      "sha256": "19656ed9f5930bed7e9bbdcd1072f50b5e68a8836c1975ab550dc1d828011d7e"
+    },
+    "independent_bounds": {
+      "file": "validation/enso-native-ellipsoid-continuous-bounds.json",
+      "sha256": "d6eab927eaafc9dc8d469fa42e830660b0e673bde52031b1cd2bd78f795f61ea"
+    },
+    "independent_receipt": {
+      "file": "validation/enso-native-ellipsoid-continuous-check.json",
+      "sha256": "e1b0b71432fab1d071682bb5646828edbf83d5137f5ba7db1942ec37f30cab73"
+    },
+    "slice_witnesses": {
+      "file": "validation/enso-conditional-period-slice-bounds.json",
+      "sha256": "db09ed73e33b554f9386962252be45153739c9600d0b0bb8b4298e87793ceda3"
+    },
+    "slice_receipt": {
+      "file": "validation/enso-conditional-period-slice-check.json",
+      "sha256": "829e76b9def8fe4fe7bac4050c555980f303c8bbcdbed88a960b1f6339b487af"
+    },
+    "lipschitz_bounds": {
+      "file": "validation/enso-full-ellipsoid-lipschitz-intersection.json",
+      "sha256": "ca97d6c31dadc8e4d70ffe194400b8f140a3a4376ae7c818574a475365e68e95"
+    },
+    "lipschitz_receipt": {
+      "file": "validation/enso-full-ellipsoid-lipschitz-check.json",
+      "sha256": "78a1938551a75f44bc3b4dac57a39b675364a028a75d8cef31dd50ad0ce59c91"
+    },
+    "native_model_runner": {
+      "file": "scripts/analyze_enso_native_holdout.py",
+      "sha256": "1b0b195170bf98c542c74544850db8c0a76d05698bbcbdb6063ae24ba6061a92"
+    },
+    "support_runner": {
+      "file": "scripts/analyze_roszman1_native_ellipsoid_continuous.py",
+      "sha256": "c3b84888aba9326ccb82e052401d7827e7c38b623855cc8e76cebd4d5505295e"
+    }
+  },
+  "phase_interval_rule": {
+    "baseline_radius": 4,
+    "period_bounds": "For each period p in {b4,b7}, use the frozen stage-47 p_min and p_max with p_min>0. For x>0, the phase interval is [2*pi*x/p_max,2*pi*x/p_min]; for x<0 reverse the endpoints; for x=0 use the singleton zero",
+    "full_cover": "If the phase-interval width is at least 2*pi, both sine and cosine ranges are [-1,1]",
+    "critical_points": "Otherwise enumerate both endpoints and every interior critical point of the relevant function: 2*pi*k and pi+2*pi*k for cosine, pi/2+2*pi*k and -pi/2+2*pi*k for sine. Evaluate all candidates and take exact interval minima and maxima",
+    "center_difference": "Subtract the center-period sine or cosine value from the corresponding interval to obtain each trigonometric difference interval; do not replace it with a Lipschitz scalar cap",
+    "interval_scope": "These are conservative ranges over the frozen period interval, not point estimates, posterior distributions or a global nonlinear optimizer"
+  },
+  "remainder_rule": {
+    "decomposition": "Use f(theta,x)=f_c(x)+v_c(x)^T delta_c+R(theta,x), with the same exact center-period decomposition as stage 51",
+    "linear_support": "Use radius*sqrt(v_c^T*C_cc*v_c) for the full linear-support term, not the fixed-period Schur slice matrix",
+    "coefficient_intervals": "Use each harmonic coefficient's frozen independent ellipsoid minimum and maximum from stage 47",
+    "product_bounds": "For each coefficient interval and trigonometric-difference interval, evaluate all four endpoint products and take their minimum and maximum",
+    "remainder_bounds": "Sum the four product minima for R_min and the four product maxima for R_max over b5,b6,b8,b9",
+    "phase_alternative": "Use lower=f_c-linear_support+R_min and upper=f_c+linear_support+R_max, with high-precision outward rounding. This is a conservative alternative, not a joint global optimum"
+  },
+  "triple_intersection_rule": {
+    "inputs": "Intersect the phase alternative with both the stage-47 independent envelope and the stage-51 Lipschitz alternative. Equivalently, intersect it with the already validated stage-51 intersection",
+    "bounds": "Take the maximum of all lower bounds and the minimum of all upper bounds. Require a nonempty interval and center-prediction containment",
+    "candidate_checks": "Require all 672 stage-50 candidates to lie inside the phase alternative and the triple intersection, while preserving their feasibility and independent/Lipschitz containment",
+    "comparison": "Compare the phase alternative with stage-47 and stage-51 intersections, and compare the triple intersection with the stage-51 intersection. Preserve tighter, wider and equal cases",
+    "historical_preservation": "Do not replace or rewrite stage-47, stage-50 or stage-51 files"
+  },
+  "comparison_rule": {
+    "phase_alternative_assumed_tighter_everywhere": false,
+    "triple_intersection_may_be_unchanged": true,
+    "alternative_comparison": "Report alternative width ratios and tighter, wider or equal status against both baselines without selecting only favorable months",
+    "triple_comparison": "Report triple-intersection width ratio and reduction relative to stage 51. The triple intersection may remain unchanged and is not a global optimum",
+    "failure_handling": "Any empty intersection, center mismatch or candidate violation invalidates the implementation; never widen a bound silently to hide the error"
+  },
+  "numerical_rule": {
+    "engine": "Use 80-digit mpmath arithmetic, explicit critical-point enumeration and the frozen support and outward-rounding implementations",
+    "outward_rounding": "Apply the 1e-24 relative margin and nextafter outward conversion for certified lower and upper values",
+    "certificate_class": "High-precision numerical interval arithmetic, not exact rational algebra or a probability region",
+    "period_gate": "Reject non-positive period minima rather than evaluating invalid phase intervals"
+  },
+  "analysis_scope": {
+    "phase_intervals_are_conservative_not_point_estimates": true,
+    "candidate_checks_are_consistency_not_proof": true,
+    "triple_intersection_never_wider_than_lipschitz_intersection": true,
+    "all_trigonometric_critical_points_enumerated": true,
+    "product_interval_relaxation_not_joint_optimum": true,
+    "refit": false,
+    "retrospective_bound_construction": true
+  },
+  "expected_structure": {
+    "fold_count": 5,
+    "held_out_point_count": 168,
+    "phase_alternative_bound_count": 168,
+    "triple_intersection_bound_count": 168,
+    "candidate_evaluation_count": 672,
+    "nonempty_triple_intersection_count": 168,
+    "phase_candidate_violation_count": 0,
+    "triple_candidate_violation_count": 0,
+    "center_prediction_mismatch_count": 0,
+    "refit_count": 0
+  },
+  "output_rule": {
+    "summary": "validation/enso-phase-interval-triple-intersection.json",
+    "figure": "papers/59_ENSO三角区间三重交集/fig59_enso_phase_interval_triple_intersection.png",
+    "report": "docs/ENSO_PHASE_INTERVAL_TRIPLE_INTERSECTION_2026-11-09.md",
+    "word": "papers/前沿共生ENSO三角区间三重交集_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "decision": {
+    "refit": false,
+    "phase_alternative_is_global_optimum": false,
+    "triple_intersection_is_global_optimum": false,
+    "phase_alternative_always_tighter_claimed": false,
+    "triple_intersection_always_tighter_claimed": false,
+    "candidate_checks_replace_interval_proof": false,
+    "candidate_directions_called_global_optimizers": false,
+    "critical_points_omitted": false,
+    "product_intervals_called_joint_optimum": false,
+    "probability_region_claimed": false,
+    "physical_periods_proved": false,
+    "exact_rational_certificate_claimed": false,
+    "wider_alternatives_hidden": false,
+    "unchanged_intersections_hidden": false,
+    "candidate_violations_hidden": false,
+    "historical_baselines_replaced": false,
+    "independent_physical_experiment_claimed": false
+  },
+  "prohibitions": [
+    "No refitting, changed centers, covariance matrices, folds, period bounds or post-hoc candidate directions",
+    "No omission of relevant sine or cosine critical points or use of a point phase estimate as the full interval",
+    "No calling independent product-interval relaxations a joint nonlinear optimum",
+    "No assumption that the phase alternative or triple intersection is tighter everywhere",
+    "No hiding of wider alternatives, unchanged intersections or candidate violations",
+    "No probability, confidence, posterior, calibrated-coverage, physical-period or independent-experiment claim",
+    "No exact rational-certificate claim for high-precision numerical intervals",
+    "No replacement or rewriting of historical baselines"
+  ]
+}
