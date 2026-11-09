@@ -1,0 +1,162 @@
+{
+  "status": "frozen_before_roszman1_ellipsoid_cover_grid",
+  "frozen_at_local": "2026-11-09T16:08:42+08:00",
+  "analysis_type": "Certified coordinate-support covering boxes and nested 1,2,4-per-dimension grids for the original Roszman1 arctangent prediction over the full parameter ellipsoid, intersected with stage 56; no exact-global-optimum, probability or fold-5 finite-bound claim",
+  "inputs": {
+    "native_identifiability": {
+      "file": "validation/roszman1-native-identifiability.json",
+      "sha256": "9888145d181c157da33b3bf0f93980ef0db15e4d3b368a96330c775363bc4322"
+    },
+    "ratio_bounds": {
+      "file": "validation/roszman1-ratio-denominator-intersection.json",
+      "sha256": "7e4a70116617e408ada047597e1ff2609224e64cb0c6e7cd230dd6d4c4b0c103"
+    },
+    "ratio_receipt": {
+      "file": "validation/roszman1-ratio-denominator-check.json",
+      "sha256": "d43372719b626a3ccc233b493e42b806e316761c283b0d1c60eb2781a170dc65"
+    },
+    "native_model_runner": {
+      "file": "scripts/analyze_roszman1_native_holdout.py",
+      "sha256": "fa1c255122d0b8db9c3866e3dc9b8ac9565289667d1531230f499416b389ee0d"
+    },
+    "interval_runner": {
+      "file": "scripts/analyze_roszman1_native_ellipsoid_continuous.py",
+      "sha256": "c3b84888aba9326ccb82e052401d7827e7c38b623855cc8e76cebd4d5505295e"
+    }
+  },
+  "receipt_gate": {
+    "stage56": "Require status=passed and summarySha256 to match the frozen ratio-denominator result",
+    "fold_order": "Require identical fold ids and available x positions in the native and stage-56 records",
+    "mismatch_policy": "Stop before creating any covering box if a source hash, receipt, fold order or x inventory differs"
+  },
+  "rejected_shortcut": {
+    "candidate": "Combining b1-b2*x and an affine arctangent secant or tangent directly into one affine-over-affine support",
+    "reason": "The product of the varying linear prediction term and the varying denominator contains quadratic displacement terms, so the numerator is not affine and the previous linear-fractional closed form cannot be used",
+    "action": "Do not freeze or implement that invalid shortcut; use a complete covering-box partition and original-model interval arithmetic instead"
+  },
+  "cover_rule": {
+    "ellipsoid": "theta=theta_center+delta with delta^T*C^-1*delta<=r^2, r=4 and the frozen full covariance",
+    "coordinate_support": "For each coordinate i, compute center_i-r*sqrt(C_ii) and center_i+r*sqrt(C_ii) with outward rounding; these four coordinate intervals form one box containing the entire ellipsoid",
+    "coverage_proof": "Every ellipsoid point lies in every coordinate support interval and therefore in their Cartesian product. Each grid partitions that complete box with shared endpoints, so the union of cells covers the whole ellipsoid",
+    "cover_candidate_checks": "Evaluate the original model and full ellipsoid quadratic for the frozen support candidates and algebraic extremizers; require each candidate to lie in the coordinate covering box and in every grid union bound",
+    "sign_gate": "Require x-b4<0 at every corner of every evaluated cell. A cell with zero or positive denominator is a construction failure, not a point to discard",
+    "scope": "The box and every grid are deterministic outer covers, not samples from the ellipsoid, probability regions or exact images of the nonlinear prediction"
+  },
+  "grid_rule": {
+    "subdivisions_per_dimension": [1, 2, 4],
+    "cells_per_grid": [1, 16, 256],
+    "primary_grid": 4,
+    "partition": "For divisions n in {1,2,4}, split each of the four coordinate intervals at lower+j*(upper-lower)/n for j=0,...,n; evaluate all n^4 cells at each available held-out x",
+    "nested_property": "Every finer cell is contained in a coarser cell. Record all three grids, not only the most favorable result",
+    "native_interval": "For each cell compute b1-b2*x by interval arithmetic; form all four b3/(x-b4) corners after the negative-denominator gate; take their minimum and maximum, apply increasing arctan, and subtract the arctangent interval divided by pi from the linear interval",
+    "union_bound": "The grid prediction lower is the minimum cell lower and the upper is the maximum cell upper. This is a conservative bound for the original native prediction over the full ellipsoid",
+    "intersection": "Intersect every grid union bound with the frozen stage-56 final intersection. Require a nonempty intersection and center containment; retain all unchanged and tightened outcomes",
+    "no_grid_winner_selection": "Grid 4 is frozen as the primary reporting grid before seeing outcomes; grids 1 and 2 remain sensitivity records and are not hidden",
+    "known_answer": {
+      "center": "b1=1,b2=0.1,b3=1,b4=2,x=0,C=I,r=1",
+      "coordinate_bounds": [[0.0, 2.0], [-0.9, 1.1], [0.0, 2.0], [1.0, 3.0]],
+      "natural_prediction_minimum": 0.0,
+      "natural_prediction_maximum": 2.25,
+      "feasible_ratio_witness": "b3=1.6,b4=1.2 has ellipsoid quadratic one and must lie inside the native cover",
+      "nested_check": "Grid-2 and grid-4 bounds must be subsets of the preceding coarser-grid bound",
+      "singular_control_b4_upper": 1.5,
+      "singular_control_denominator_maximum": 0.5,
+      "singular_control": "b4 center 0.5 with unit variance and radius 1 gives denominator x-b4 in [-1.5,0.5], so the cell must be rejected before reciprocal or arctangent evaluation"
+    }
+  },
+  "candidate_rule": {
+    "source": "Reuse the eight stage-56 full-covariance support candidates per available fold and the two algebraic extremizers per available x",
+    "original_model_evaluations": "Re-evaluate the 160 support candidates and 40 algebraic extremizers with the original native_model implementation, for 200 evaluations",
+    "grid_containment": "Check each candidate prediction against all three grid union bounds and their stage-56 intersections, yielding 600 candidate-grid containment checks",
+    "feasibility": "Require full ellipsoid quadratic 16, coordinate-cover inclusion and negative denominator for every candidate; do not use candidates to prove the cover",
+    "scope": "Candidates are witnesses only. The cover proof comes from coordinate support and exhaustive grid partition, not from the 200 candidate checks"
+  },
+  "comparison_rule": {
+    "baseline": "The stage-56 final intersection at the same fold and x",
+    "report": "For every grid record union width, intersection width, ratio to stage 56, reduction, tightened and unchanged inventory",
+    "nested_check": "Require each finer grid union and intersection to be contained in the preceding coarser grid union and intersection up to the frozen outward-rounding tolerance",
+    "no_assumed_tightening": "Do not assume any grid tightens the stage-56 baseline; retain wider union bounds and unchanged intersections",
+    "point_accounting": "Retain all 25 observations and all five fold-5 unavailable points. Fold 5 receives no cells, grid bounds, candidates or finite residual bound",
+    "historical_preservation": "Do not rewrite stage-56 or earlier protocols, summaries, receipts, reports, figures or Word documents"
+  },
+  "numerical_rule": {
+    "engine": "Use 80-digit mpmath arithmetic for coordinate support, grid boundaries and native interval arithmetic",
+    "outward_rounding": "Apply the frozen 1e-24 relative margin and nextafter conversion to support endpoints, native cell bounds, union bounds and intersections",
+    "certificate_class": "Deterministic conservative cover evaluated with high-precision outward-rounded floating-point intervals; not exact rational arithmetic or probability",
+    "native_crosscheck": "Cross-check center and candidate predictions against the frozen native_model implementation",
+    "empty_intersection": "An empty intersection or uncovered center is a failure to report, not a cell or point to delete"
+  },
+  "analysis_scope": {
+    "whole_ellipsoid_conservative": true,
+    "nested_grid_cover": true,
+    "original_native_model": true,
+    "crossing_fold_receives_no_bound": true,
+    "candidate_checks_are_consistency_not_proof": true,
+    "refit": false,
+    "retrospective_bound_construction": true,
+    "independent_physical_experiment": false
+  },
+  "expected_structure": {
+    "fold_count": 5,
+    "held_out_point_count": 25,
+    "available_point_count": 20,
+    "unavailable_point_count": 5,
+    "unavailable_fold_ids": [5],
+    "grid_cover_count": 60,
+    "cell_evaluation_count": 5460,
+    "nonempty_intersection_count": 60,
+    "candidate_direction_count": 32,
+    "algebraic_extremizer_count": 40,
+    "candidate_evaluation_count": 200,
+    "candidate_grid_containment_check_count": 600,
+    "grid_candidate_violation_count": 0,
+    "intersection_candidate_violation_count": 0,
+    "cover_box_candidate_violation_count": 0,
+    "candidate_feasibility_failure_count": 0,
+    "center_prediction_mismatch_count": 0,
+    "point_grid_consistency_check_count": 60,
+    "covered_point_count": 20,
+    "violation_point_count": 0,
+    "refit_count": 0
+  },
+  "output_rule": {
+    "summary": "validation/roszman1-ellipsoid-cover-grid.json",
+    "figure": "papers/64_Roszman1椭球覆盖盒细分/fig64_roszman1_ellipsoid_cover_grid.png",
+    "report": "docs/ROSZMAN1_ELLIPSOID_COVER_GRID_2026-11-09.md",
+    "word": "papers/前沿共生Roszman1椭球覆盖盒细分_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "decision": {
+    "refit": false,
+    "linear_fractional_shortcut_used": false,
+    "charnes_cooper_relaxation_used": false,
+    "exact_global_optimum_claimed": false,
+    "grid_union_is_exact_prediction_image": false,
+    "primary_grid_selected_after_results": false,
+    "grid_always_tighter_claimed": false,
+    "intersection_always_tighter_claimed": false,
+    "fold5_given_finite_bound": false,
+    "candidate_checks_replace_cover_proof": false,
+    "candidate_directions_called_global_optimizers": false,
+    "probability_region_claimed": false,
+    "exact_rational_certificate_claimed": false,
+    "independent_model_family_replication_claimed": false,
+    "independent_physical_experiment_claimed": false,
+    "unavailable_points_hidden": false,
+    "wider_unions_hidden": false,
+    "unchanged_intersections_hidden": false,
+    "candidate_violations_hidden": false,
+    "historical_baseline_replaced": false
+  },
+  "prohibitions": [
+    "No refitting, changed centers, covariance matrices, folds, grids, historical results or post-hoc grid selection",
+    "No using the rejected affine-over-affine shortcut when the linear prediction term and denominator both vary",
+    "No treating coordinate boxes or grid unions as exact ellipsoid images or exact global optima",
+    "No dropping cells with singular denominators, uncovered centers, empty intersections or candidate violations",
+    "No cells, grid bounds, candidates or finite residual bounds for fold 5",
+    "No candidate-based substitute for the complete coordinate-support and grid-partition cover proof",
+    "No probability, confidence, posterior, calibrated-coverage, independent-model-family or independent-experiment claim",
+    "No exact rational-certificate claim or replacement of historical baselines"
+  ]
+}
