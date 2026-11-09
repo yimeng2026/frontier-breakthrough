@@ -1,0 +1,78 @@
+{
+  "status": "frozen_before_enso_native_holdout",
+  "frozen_at_local": "2026-11-09T08:10:55+08:00",
+  "analysis_id": "enso_native_holdout",
+  "scientific_question": "Using identical held-out months, how does the native nine-parameter Fourier model compare with the frozen cubic/cubic rational candidate and frozen cubic polynomial baseline on NIST ENSO?",
+  "inputs": {
+    "data": {"file": "data/ENSO.dat", "sha256": "0c644f45b0e586cb1bb0613bad68f63c704efadacd086e768468d33d83f3e5d9", "observations": 168},
+    "rational_candidate": {"file": "validation/enso-ellipsoid-coverage.json", "sha256": "6d930ad31dbb4affbd41dd7a362814a6e1614b19246e3133eca1edf33cf37ba7"}
+  },
+  "dataset_scope": {
+    "name": "NIST/ITL StRD ENSO",
+    "dataset_page": "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml",
+    "source_url": "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/ENSO.dat",
+    "observed_data": true,
+    "generated_data": false,
+    "response": "monthly averaged atmospheric pressure difference between Easter Island and Darwin, Australia",
+    "predictor": "time in months",
+    "angle_unit": "radians",
+    "independent_physical_experiment": false
+  },
+  "native_rule": {
+    "parameters": ["b1", "b2", "b3", "b4", "b5", "b6", "b7", "b8", "b9"],
+    "equation": "y=b1+b2*cos(2*pi*x/12)+b3*sin(2*pi*x/12)+b5*cos(2*pi*x/b4)+b6*sin(2*pi*x/b4)+b8*cos(2*pi*x/b7)+b9*sin(2*pi*x/b7)+e",
+    "starts": [
+      {"b1": 11.0, "b2": 3.0, "b3": 0.5, "b4": 40.0, "b5": -0.7, "b6": -1.3, "b7": 25.0, "b8": -0.3, "b9": 1.4},
+      {"b1": 10.0, "b2": 3.0, "b3": 0.5, "b4": 44.0, "b5": -1.5, "b6": 0.5, "b7": 26.0, "b8": -0.1, "b9": 1.5}
+    ],
+    "optimizer": "scipy.optimize.curve_fit method=lm,maxfev=200000,full_output=true; select lowest finite training RSS",
+    "singular_rule": "b4=0 or b7=0 returns non-finite predictions; no replacement by certified fits or post-hoc bounds",
+    "failure_rule": "Retain every failed start, non-finite RSS, non-finite prediction and failed fold; no post-hoc start, period bounds, scaling or fold changes",
+    "retuning": "No model, start, optimizer, period constraint, fold or threshold changes after seeing outcomes"
+  },
+  "known_answer_rule": {
+    "purpose": "Fit all 168 observations only to verify the native Fourier equation and optimizer against the NIST known answer; never use this fit as holdout evidence",
+    "certified_parameters": {"b1": 10.510749193, "b2": 3.0762128085, "b3": 0.53280138227, "b4": 44.311088700, "b5": -1.6231428586, "b6": 0.52554493756, "b7": 26.887614440, "b8": 0.21232288488, "b9": 1.4966870418},
+    "certified_rss": 788.53978668,
+    "parameter_relative_tolerance": 0.00001,
+    "parameter_absolute_tolerance": 0.00000001,
+    "rss_absolute_tolerance": 0.000001,
+    "evidence_class": "known_answer_reproduction_not_holdout"
+  },
+  "fold_rule": {
+    "count": 5,
+    "ranges": {"1": [1, 34], "2": [35, 68], "3": [69, 102], "4": [103, 135], "5": [136, 168]},
+    "construction": "Inclusive integer month ranges identical to the frozen rational folds; fit native parameters only on the other four ranges"
+  },
+  "comparison_rule": {
+    "join": "Match native and rational predictions by fold and exact x; require observed y to match exactly",
+    "rational_metrics": "Reuse the frozen rational-candidate fold metrics and snapshot predictions without refitting",
+    "cubic_baseline_metrics": "Reuse the frozen cubic-baseline fold metrics without refitting; per-point baseline predictions are not available in the frozen result",
+    "metrics": "Recompute native RMSE, MAE and maximum absolute residual from held-out predictions in each fold",
+    "fold_winners": "Compare native RMSE with rational and cubic-baseline RMSE separately; preserve wins, losses, ties and failed fits without a single scalar ranking",
+    "pooled_metrics": "Compute native and rational RMSE, MAE and maximum absolute residual over all 168 held-out predictions only when every fold succeeds; do not fabricate pooled cubic-baseline metrics",
+    "parameter_stability": "Report minimum, median, maximum and range for all nine parameters, especially b4 and b7, without converting fold variation into a probability distribution",
+    "bound_separation": "Do not transfer rational denominator, ellipsoid, box, residual-bound or continuous-safety claims to the native Fourier model"
+  },
+  "output_rule": {
+    "summary": "validation/enso-native-holdout.json",
+    "figure": "papers/41_ENSO原生周期对照/fig41_enso_native_holdout.png",
+    "refuse_overwrite": true
+  },
+  "decision": {
+    "certified_full_fit_used_as_holdout": false,
+    "rational_bounds_transferred_to_native": false,
+    "native_deterministic_bounds_claimed": false,
+    "native_probability_calibration_claimed": false,
+    "native_physical_law_validated": false,
+    "independent_physical_experiment_claimed": false,
+    "failed_fits_hidden": false
+  },
+  "prohibitions": [
+    "No use of the certified full-data fit as a held-out prediction",
+    "No transfer of rational-model proof regions or residual bounds to the native Fourier model",
+    "No hiding of optimizer failures, non-finite predictions, fold-level losses or period variation",
+    "No probability, confidence, physical-endogeneity, absolute-ranking or independent-experiment claim",
+    "No post-hoc start, period constraint, fold, scaling or model changes after seeing results"
+  ]
+}
