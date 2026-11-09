@@ -1,6 +1,6 @@
 # 全球前沿项目、模型与战略设施目录
 
-更新日期：2026-11-08　条目数：92
+更新日期：2026-11-09　条目数：96
 
 > 本目录是有来源、可持续维护的初始集合，不声称一次性穷尽全球所有项目。条目进入目录不代表其主张已被独立复现，也不代表我们已与相关机构建立合作。
 
@@ -16,17 +16,17 @@
 | 维度 | 数量 |
 |---|---:|
 | 国家与国际计划 | 10 |
-| AI for Math | 13 |
+| AI for Math | 16 |
 | 通用 AI for Science 与科研代理 | 8 |
-| AI for Biology | 19 |
+| AI for Biology | 20 |
 | AI for Physics 与材料 | 29 |
 | 公共科研基础设施 | 13 |
 
 | 采用策略 | 数量 |
 |---|---:|
 | P0_local | 8 |
-| P1_adapt | 35 |
-| P2_watch | 29 |
+| P1_adapt | 37 |
+| P2_watch | 31 |
 | P3_external | 20 |
 
 ## 国家与国际计划
@@ -45,14 +45,14 @@
 | HPC+AI for Science 观察计划 | program | watch | P2_watch / external | 算力协作：共享轻量基准和性能可复现方法，不复制大型算力设施。 | [官方或注明来源](https://news.sciencenet.cn/htmlnews/2026/10/573239.shtm) |
 
 - **中国科学院科学前沿极限突破计划**：官方列举新元素合成、暗物质暗能量、化学键微观测量、人工合成细胞等首批示例；未获得完整逐项名单。
-- **下一代人工智能方法重大研究计划**：以官方指南实际资助范围为准，不把申报方向写成我们的已获项目。
-- **Genesis Mission**：连接美国国家实验室的科学 AI 平台；只使用公开可用成果。
-- **Genesis 国家科技挑战框架**：官方框架页面列出33项挑战；与 Genesis 主条目保持关联，不重复计算资源。
+- **下一代人工智能方法重大研究计划**：以官方指南实际资助范围为准，不把申报方向写成我们的已获项目。2026年度项目指南（国科金发计〔2026〕6号，2026-01-26 发布）申请期 2026-03-01 至 03-18 已过；方向含几何对称性先验、智能体驱动数据治理平台（以 Lean 数学形式化推理等任务验证）、物理约束生成建模、量子多体计算、仿星器优化设计与耐受极端环境生物元件平台。
+- **Genesis Mission**：连接美国国家实验室的科学 AI 平台；只使用公开可用成果。2026-07 公布首批 RFA 资助 278 项、342 家机构；2026-06-04 宣布 10 亿美元日美战略伙伴（日本为首个国际伙伴）；另宣布 Quantum Genesis 量子计划。
+- **Genesis 国家科技挑战框架**：SCAC《Genesis Mission Frameworks》报告（2026-09-25）表述为33项国家科技挑战；DOE 早前公告口径为26项挑战，两者并存、以各官方页面原文为准。与 Genesis 主条目保持关联，不重复计算资源。
 - **AMP2 生物技术平台**：自动化生物实验能力不能由本地计算验证替代。
 - **NSF X-Labs**：跟踪公开资助成果与团队，不声称参与。
-- **European AI in Science Strategy / RAISE**：RAISE pilot 官方预算为1.07亿欧元；不将经费等同研究产出。
+- **European AI in Science Strategy / RAISE**：RAISE pilot 官方预算为1.07亿欧元；不将经费等同研究产出。2026-10-15 在都柏林 AI in Science Summit 启动 RAISE Pledging Initiative（AI in Science Enablers），并上线 RAISE Hub／Forum／Observatory 社区入口。
 - **UK AI for Science Strategy（观察项）**：当前来源是 techUK 解读，不冒充英国政府原文。
-- **日本 AI for Science 相关计划**：具体项目边界以日文原件为准。
+- **日本 AI for Science 相关计划**：具体项目边界以日文原件为准。FY2026 预算请求中 AI for Science 约 355 亿日元；已启动 ARiSE（每项 10–30 亿日元、3 年）与 SPReAD（每件 500 万日元、约 1000 件）项目；2026-06 日美 Genesis 10 亿美元伙伴中日方计划 5 年投入 5 亿美元（视拨款而定）。
 - **HPC+AI for Science 观察计划**：科学网为报道来源，后续补计划发起方原始页面。
 
 ## AI for Math
@@ -72,6 +72,9 @@
 | DeepSeek-Prover-V2 | model | official_artifact | P2_watch / deferred | 外部基准：优先使用公开结果，资源足够时做小模型复现。 | [官方或注明来源](https://github.com/deepseek-ai/DeepSeek-Prover-V2) |
 | Goedel-Prover | model | official_artifact | P2_watch / deferred | 同一证明基准横向比较，反馈真实失败而非只报成功率。 | [官方或注明来源](https://github.com/Goedel-LM/Goedel-Prover) |
 | miniF2F | benchmark | official_artifact | P1_adapt / pending | 共享基准：记录 Lean 版本和可复核结果，不自建不兼容评分。 | [官方或注明来源](https://github.com/openai/miniF2F) |
+| miniF2F-Dafny | benchmark | preprint | P1_adapt / pending | SMT 背书验证基线：与我们 Z3/cvc5 精确区间检查互补，比较自动主动验证可直接 discharge 的常规片段。 | [官方或注明来源](https://arxiv.org/abs/2512.10187) |
+| Prove2Me | platform | preprint | P2_watch / external | 多智能体形式化流程参照：借鉴定理依赖 DAG 分工、防重复劳动与状态同步机制，用于我们的证明义务分解。 | [官方或注明来源](https://arxiv.org/abs/2608.28433) |
+| Anthropic FLT Lean 形式化工件 | dataset | official_artifact | P1_adapt / pending | 语句级复核：核对最终定理陈述、公理守卫与工具链固定；不本地重建全量证明（官方报告约需 96 核、230 GB 内存）。 | [官方或注明来源](https://github.com/anthropics/fermats-last-theorem) |
 
 - **OpenAI Math Research Materials**：仓库自述为原始研究材料，结果验证阶段不一；ETH 单独立项审查。
 - **AlphaProof Nexus**：Science 论文入口：https://www.science.org/doi/abs/10.1126/science.aej2213；公开结果不等于模型权重完整可用。
@@ -86,6 +89,9 @@
 - **DeepSeek-Prover-V2**：大模型权重不盲目下载。
 - **Goedel-Prover**：需明确模型、数据和硬件成本。
 - **miniF2F**：测试集成绩不能直接外推为一般数学研究能力。
+- **miniF2F-Dafny**：把数学推理基准搬到 Dafny 自动主动验证范式；作者明示 Dafny 不替代 Lean 的表达力与库，二者为互补设计点。
+- **Prove2Me**：arXiv 2608.28433（2026-08 v2）；Anthropic FLT 形式化运行使用该平台；平台任务开放协作，参与前需评估接口与数据政策。
+- **Anthropic FLT Lean 形式化工件**：2026-09-04 发布；钉住 Lean 4.33.1；自述为不维护的研究工件；形式化的是既定 Wiles/Taylor–Wiles 路线，不是新数学证明。2026-11-09 我们完成 FinalCheck.lean 语句级复核：公理守卫仅限 propext、Classical.choice、Quot.sound，定理形式与标准 FLT 陈述一致。
 
 ## 通用 AI for Science 与科研代理
 
@@ -97,7 +103,7 @@
 | OpenEvolve | tool | official_artifact | P1_adapt / pending | 与 AlphaEvolve 公开结果配合，提供可复现程序进化基线。 | [官方或注明来源](https://github.com/algorithmicsuperintelligence/openevolve) |
 | LLM4AD | platform | official_artifact | P1_adapt / pending | 算法发现平台对接：贡献科学约束、评价器和失败档案。 | [官方或注明来源](https://github.com/Optima-CityU/LLM4AD) |
 | Google AI Co-Scientist | agent | preprint | P2_watch / external | 借鉴生成—批评—改进的假设链，我们提供可追溯反例、验证义务和外部数据接口。 | [官方或注明来源](https://arxiv.org/abs/2502.18864) |
-| Robin | agent | official_artifact | P1_adapt / pending | 复用公开轨迹与专业代理分工，提供跨学科假设的结构化验证和失败档案。 | [官方或注明来源](https://www.futurehouse.org/research/demonstrating-end-to-end-scientific-discovery-with-robin-a-multi-agent-system) |
+| Robin | agent | peer_reviewed | P1_adapt / pending | 复用公开轨迹与专业代理分工，提供跨学科假设的结构化验证和失败档案。 | [官方或注明来源](https://www.futurehouse.org/research/demonstrating-end-to-end-scientific-discovery-with-robin-a-multi-agent-system) |
 | Kosmos | agent | preprint | P2_watch / external | 借鉴结构化世界模型和代码/原始文献双引用，我们提供可重放小型验证与准确性分层。 | [官方或注明来源](https://arxiv.org/abs/2511.02824) |
 
 - **AI-Scientist**：自动论文生成不等于自动科学发现。
@@ -106,7 +112,7 @@
 - **OpenEvolve**：先在低成本、可判定任务验证。
 - **LLM4AD**：不能将算法搜索分数直接解释为物理真实性。
 - **Google AI Co-Scientist**：预印本报告部分生物医学候选有体外实验；不能把局部验证外推为通用自动发现能力。
-- **Robin**：官网记录湿实验由研究人员执行；2026-05-19 更新称已发表 Nature，后续补原始论文链接。
+- **Robin**：2026-05-19 已在 Nature 发表：DOI 10.1038/s41586-026-10652-y，PMID 42156546，PMCID PMC13346116；官网记录湿实验由研究人员执行，代理提名不等于独立实验验证。
 - **Kosmos**：预印本自报报告陈述准确率79.4%，不是全部正确的证明；长运行成本不等于发现质量。
 
 ## AI for Biology
@@ -114,6 +120,7 @@
 | 项目 | 类型 | 证据 | 策略 / 本地状态 | 我们的互补角色 | 来源 |
 |---|---|---|---|---|---|
 | CZI–NVIDIA Virtual Cell | program | official_artifact | P3_external / external | 模型与实验协作：提供公开数据上的外部评价、扰动预测反例与可解释报告。 | [官方或注明来源](https://chanzuckerberg.com/newsroom/nvidia-partnership-virtual-cell-model/) |
+| Arc Virtual Cell Challenge 2026 | benchmark | official_artifact | P2_watch / external | 评价基准观察：跟踪六指标聚合评分与 cell-eval v2 口径，为虚拟细胞模型外部评价提供参照，不参赛不提交。 | [官方或注明来源](https://arcinstitute.org/news/virtual-cell-challenge-2026) |
 | AlphaFold 3 | model | official_artifact | P2_watch / deferred | 结构复核：用公开 PDB 结构做范围明确的评价，保留预测不确定性。 | [官方或注明来源](https://github.com/google-deepmind/alphafold3) |
 | Evolutionary Scale Modeling | model | official_artifact | P2_watch / deferred | 序列表征复用：小规模基线和外部蛋白族留出评价。 | [官方或注明来源](https://github.com/facebookresearch/esm) |
 | OpenFold | model | official_artifact | P2_watch / deferred | 开放复现基线：与实验结构对照，不重复训练大模型。 | [官方或注明来源](https://github.com/aqlaboratory/openfold) |
@@ -134,6 +141,7 @@
 | TranscriptFormer | model | official_artifact | P2_watch / deferred | 跨数据集外部评价，与虚拟细胞计划保持引用关系。 | [官方或注明来源](https://github.com/czi-ai/transcriptformer) |
 
 - **CZI–NVIDIA Virtual Cell**：虚拟细胞预测不能替代独立实验。
+- **Arc Virtual Cell Challenge 2026**：2026-08-20 开放提交，2026-11-05 截止，预计 11 月中下旬公布结果；官方称今年改用六项指标聚合以避免单一指标被刷分。
 - **AlphaFold 3**：权重、依赖和硬件另审；结构预测不等同功能验证。
 - **Evolutionary Scale Modeling**：仓库包含多种模型与不同资源需求。
 - **OpenFold**：优先复用公开权重和标准评价。
