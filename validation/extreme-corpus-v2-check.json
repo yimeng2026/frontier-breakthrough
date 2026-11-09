@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "document_count": 23,
+  "companion_required_count": 12,
+  "complete_count": 4,
+  "descriptive_only_count": 7,
+  "hash_matched_document_count": 22,
+  "unchanged_original_count": 10,
+  "error_count": 0,
+  "errors": [],
+  "corpus_document": "docs/EXTREME_REPORTING_CORPUS_V2_AUDIT.md",
+  "corpus_document_sha256": "64ccdee92b881933f28af3935765ae2ec46af29de51486c089852433712c5b0b",
+  "spec_file": "validation\\extreme-corpus-v2-audit.json",
+  "spec_sha256": "041f79f3af78c13c85b8fa63b952af26312a3b850b123b10897923a49bb2b349",
+  "validator_sha256": "10abc646733c868411d263bfbb4ae2eeb71c075860877ec3679d03faf7bb9895",
+  "previous_spec_file": "validation/extreme-corpus-audit.json",
+  "previous_spec_sha256": "a592ddf56e6dfb590c2beaf6bc407fd94fd09be71f58929f6719cda045472c6f",
+  "previous_check_file": "validation/extreme-corpus-check.json",
+  "previous_check_sha256": "79d095887b24939c44e9cfb9afce8c4875cb2a05f007d120e472ab84a3b2e4ef",
+  "previous_files_preserved": true
+}
