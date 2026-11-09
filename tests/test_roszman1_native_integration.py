@@ -41,8 +41,8 @@ class Roszman1NativeIntegrationTests(unittest.TestCase):
         ]
         for identifier in identifiers:
             self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 217)
-        self.assertEqual(len(graph["edges"]), 532)
+        self.assertEqual(len(graph["nodes"]), 225)
+        self.assertEqual(len(graph["edges"]), 565)
         self.assertEqual(nodes["claim-model-family-fold-independent-winner"]["status"], "falsified")
         self.assertEqual(nodes["claim-rational-bounds-transfer-native"]["status"], "falsified")
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}

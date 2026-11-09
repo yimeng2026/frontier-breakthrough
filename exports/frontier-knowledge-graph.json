@@ -2036,6 +2036,81 @@
         "exports/native-identifiability-cross-model-synthesis.json",
         "docs/NATIVE_IDENTIFIABILITY_CROSS_MODEL_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-local-sd-deterministic-residual-bound",
+      "kind": "claim",
+      "title": "局部线性化预测标准差可以直接作为确定性残差上界",
+      "status": "falsified",
+      "sourceFiles": [
+        "exports/native-sensitivity-threshold-coverage.json"
+      ]
+    },
+    {
+      "id": "claim-fold-ratio-pointwise-coverage",
+      "kind": "claim",
+      "title": "折级最大敏感度与 RMSE 的比值可以决定逐点覆盖结论",
+      "status": "falsified",
+      "sourceFiles": [
+        "exports/native-sensitivity-threshold-coverage.json"
+      ]
+    },
+    {
+      "id": "evidence-native-sensitivity-threshold-coverage",
+      "kind": "evidence",
+      "title": "407 点、1221 次固定阈值判定：1、2、4 倍分别覆盖 85、181、283 点，全部违规明细保留",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-sensitivity-threshold-coverage.json",
+        "validation/native-sensitivity-threshold-coverage-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-fold5-aggregate-point-divergence",
+      "kind": "counterexample",
+      "title": "Roszman1 第 5 折折级比值为 2.697264，但最大逐点比值仅 0.739369，1 倍阈值覆盖 5／5",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-sensitivity-threshold-coverage.json"
+      ]
+    },
+    {
+      "id": "counterexample-chwirut1-fold3-point-extreme",
+      "kind": "counterexample",
+      "title": "Chwirut1 第 3 折折级比值仅 0.154094，但第 30 点残差／敏感度达 25.724483，4 倍阈值仍违规 26／51",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-sensitivity-threshold-coverage.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-all-folds-threshold-violations",
+      "kind": "counterexample",
+      "title": "ENSO 折级比值最大仅 0.446846，但五折在三个固定阈值下均有违规，最大逐点比值 11.958800",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-sensitivity-threshold-coverage.json"
+      ]
+    },
+    {
+      "id": "experiment-native-sensitivity-threshold-coverage-protocol",
+      "kind": "experiment",
+      "title": "冻结 1、2、4 倍阈值、407 点、零标准差规则与全部违规明细，不重新拟合或优化阈值",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/native-sensitivity-threshold-coverage-protocol.json",
+        "scripts/analyze_native_sensitivity_threshold_coverage.py"
+      ]
+    },
+    {
+      "id": "limitation-native-sensitivity-threshold-not-probability",
+      "kind": "limitation",
+      "title": "固定阈值计数不是概率覆盖率、置信区间、校准分数或确定性残差界",
+      "status": "active",
+      "sourceFiles": [
+        "exports/native-sensitivity-threshold-coverage.json",
+        "docs/NATIVE_SENSITIVITY_THRESHOLD_COVERAGE_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -4698,6 +4773,171 @@
       "from": "counterexample-enso-fold4-ratio-not-period-safety",
       "to": "limitation-enso-native-local-period-scope",
       "relation": "supports"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-local-sd-deterministic-residual-bound",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-fold-ratio-pointwise-coverage",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-native-sensitivity-threshold-coverage",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-fold5-aggregate-point-divergence",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-chwirut1-fold3-point-extreme",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-all-folds-threshold-violations",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-native-sensitivity-threshold-coverage-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-native-sensitivity-threshold-not-probability",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-native-sensitivity-threshold-coverage",
+      "to": "claim-local-sd-deterministic-residual-bound",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-native-sensitivity-threshold-coverage-protocol",
+      "to": "claim-local-sd-deterministic-residual-bound",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-native-sensitivity-threshold-coverage",
+      "to": "claim-fold-ratio-pointwise-coverage",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-native-sensitivity-threshold-coverage-protocol",
+      "to": "claim-fold-ratio-pointwise-coverage",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-roszman1-fold5-aggregate-point-divergence",
+      "to": "claim-fold-ratio-pointwise-coverage",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-chwirut1-fold3-point-extreme",
+      "to": "claim-local-sd-deterministic-residual-bound",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-chwirut1-fold3-point-extreme",
+      "to": "claim-fold-ratio-pointwise-coverage",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-enso-all-folds-threshold-violations",
+      "to": "claim-local-sd-deterministic-residual-bound",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-enso-all-folds-threshold-violations",
+      "to": "claim-fold-ratio-pointwise-coverage",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-native-sensitivity-threshold-coverage",
+      "to": "counterexample-roszman1-fold5-aggregate-point-divergence",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-sensitivity-threshold-coverage",
+      "to": "counterexample-chwirut1-fold3-point-extreme",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-sensitivity-threshold-coverage",
+      "to": "counterexample-enso-all-folds-threshold-violations",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-native-sensitivity-threshold-not-probability",
+      "to": "evidence-native-sensitivity-threshold-coverage",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-native-sensitivity-threshold-not-probability",
+      "to": "claim-local-sd-deterministic-residual-bound",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-native-sensitivity-threshold-not-probability",
+      "to": "claim-fold-ratio-pointwise-coverage",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-native-sensitivity-threshold-coverage",
+      "to": "evidence-native-identifiability-cross-model",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-native-sensitivity-threshold-coverage-protocol",
+      "to": "experiment-native-identifiability-cross-model-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-sensitivity-threshold-coverage",
+      "to": "evidence-roszman1-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-native-sensitivity-threshold-coverage-protocol",
+      "to": "experiment-roszman1-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-sensitivity-threshold-coverage",
+      "to": "evidence-chwirut1-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-native-sensitivity-threshold-coverage-protocol",
+      "to": "experiment-chwirut1-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-sensitivity-threshold-coverage",
+      "to": "evidence-enso-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-native-sensitivity-threshold-coverage-protocol",
+      "to": "experiment-enso-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-roszman1-fold5-aggregate-point-divergence",
+      "to": "limitation-native-identifiability-cross-model-no-score",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-chwirut1-fold3-point-extreme",
+      "to": "claim-sensitivity-rmse-ratio-calibrated-coverage",
+      "relation": "contradicts"
     }
   ]
 }

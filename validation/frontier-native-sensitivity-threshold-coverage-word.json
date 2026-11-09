@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生三模型敏感度阈值覆盖_图文完整版.docx",
+  "bytes": 291529,
+  "sha256": "121c1efd50c7fbbf1b71cc2c59ed99bdca740891c3fe943b688eb38ca09b80fd",
+  "native_math_objects": 1,
+  "embedded_images": 1,
+  "native_tables": 4,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

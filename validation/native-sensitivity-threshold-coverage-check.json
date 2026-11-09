@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "errorCount": 0,
+  "pointCount": 407,
+  "foldCount": 15,
+  "evaluationCount": 1221,
+  "coveredCounts": {
+    "1": 85,
+    "2": 181,
+    "4": 283
+  },
+  "violationCounts": {
+    "1": 322,
+    "2": 226,
+    "4": 124
+  },
+  "maxRatioPointId": "chwirut1:3:30",
+  "protocolSha256": "91d6b7b145cd28f026ecd0c46c176411bfb0ccfa57d504ab3eebbe69859011ea",
+  "summarySha256": "8e1a1337248bab15b6cb7b17f984cc92642e906d7a71f92b772ce09bdf3b1d06",
+  "analysisRunnerSha256": "6fbde835c2b256f5d62dde1275579d8d19a9b457b4db4e88f14d88ff70213a6a",
+  "figureSha256": "b5d8070f7abdc243063c4b91a1cda42093ca7d80290c7373b76ea46ce66b136e",
+  "reportSha256": "8193629b043b942d1b9b95b677f722ed39058e93c54ceb4daeb898bee3c5f0fb",
+  "wordSha256": "121c1efd50c7fbbf1b71cc2c59ed99bdca740891c3fe943b688eb38ca09b80fd",
+  "wordManifestSha256": "1e82561e4ea7f4e6b763261b6b1d6ce6b8d952f0b3087643ad6da2faa6d386a5",
+  "probabilityCoverageClaimed": false,
+  "confidenceIntervalClaimed": false,
+  "nativeDeterministicBoundsClaimed": false,
+  "visualQaClaimed": false,
+  "scientificTruthClaimed": false
+}

@@ -84,6 +84,9 @@ def build_graph(root):
     nativeIdentifiabilityCross = json.loads((root / "exports/native-identifiability-cross-model-synthesis.json").read_text(encoding="utf-8"))
     if nativeIdentifiabilityCross["totals"]["dataset_count"] != 3 or nativeIdentifiabilityCross["totals"]["fold_count"] != 15 or nativeIdentifiabilityCross["totals"]["held_out_point_count"] != 407 or nativeIdentifiabilityCross["totals"]["full_numerical_rank_fold_count"] != 15 or nativeIdentifiabilityCross["totals"]["local_diagnostic_failure_count"] != 0 or nativeIdentifiabilityCross["totals"]["sensitivity_exceeds_rmse_fold_ids"] != ["roszman1:1", "roszman1:5", "chwirut1:1"] or nativeIdentifiabilityCross["totals"]["sensitivity_equals_rmse_fold_ids"] or nativeIdentifiabilityCross["totals"]["max_sensitivity_to_rmse_ratio"] != 2.6972635478072906 or nativeIdentifiabilityCross["cross_model_pooled_error_metrics"] is not None or nativeIdentifiabilityCross["cross_model_stability_score"] is not None or nativeIdentifiabilityCross["decision"]["universal_stability_score_claimed"] or nativeIdentifiabilityCross["decision"]["calibrated_coverage_claimed"]:
         raise ValueError("Expected cross-model sensitivity ratios and no-score boundaries are not present")
+    sensitivityCoverage = json.loads((root / "exports/native-sensitivity-threshold-coverage.json").read_text(encoding="utf-8"))
+    if sensitivityCoverage["totals"]["point_count"] != 407 or sensitivityCoverage["totals"]["fold_count"] != 15 or sensitivityCoverage["totals"]["evaluation_count"] != 1221 or sensitivityCoverage["totals"]["thresholds"]["1"]["covered_count"] != 85 or sensitivityCoverage["totals"]["thresholds"]["1"]["violation_count"] != 322 or sensitivityCoverage["totals"]["thresholds"]["2"]["covered_count"] != 181 or sensitivityCoverage["totals"]["thresholds"]["2"]["violation_count"] != 226 or sensitivityCoverage["totals"]["thresholds"]["4"]["covered_count"] != 283 or sensitivityCoverage["totals"]["thresholds"]["4"]["violation_count"] != 124 or sensitivityCoverage["totals"]["max_ratio_point_id"] != "chwirut1:3:30" or sensitivityCoverage["totals"]["zero_sensitivity_point_count"] != 0 or sensitivityCoverage["cross_model_probability_coverage_score"] is not None or sensitivityCoverage["decision"]["probability_coverage_claimed"] or sensitivityCoverage["decision"]["native_deterministic_bounds_claimed"]:
+        raise ValueError("Expected sensitivity-threshold counts, violations and no-probability boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -868,6 +871,51 @@ def build_graph(root):
         edge("evidence-native-identifiability-cross-model", "evidence-enso-native-identifiability", "supports"),
         edge("experiment-native-identifiability-cross-model-protocol", "experiment-enso-native-identifiability-protocol", "supports"),
         edge("counterexample-enso-fold4-ratio-not-period-safety", "limitation-enso-native-local-period-scope", "supports"),
+    ])
+    nodes.extend([
+        node("claim-local-sd-deterministic-residual-bound", "claim", "局部线性化预测标准差可以直接作为确定性残差上界", "falsified", ["exports/native-sensitivity-threshold-coverage.json"]),
+        node("claim-fold-ratio-pointwise-coverage", "claim", "折级最大敏感度与 RMSE 的比值可以决定逐点覆盖结论", "falsified", ["exports/native-sensitivity-threshold-coverage.json"]),
+        node("evidence-native-sensitivity-threshold-coverage", "evidence", "407 点、1221 次固定阈值判定：1、2、4 倍分别覆盖 85、181、283 点，全部违规明细保留", "supported", ["exports/native-sensitivity-threshold-coverage.json", "validation/native-sensitivity-threshold-coverage-check.json"]),
+        node("counterexample-roszman1-fold5-aggregate-point-divergence", "counterexample", "Roszman1 第 5 折折级比值为 2.697264，但最大逐点比值仅 0.739369，1 倍阈值覆盖 5／5", "supported", ["exports/native-sensitivity-threshold-coverage.json"]),
+        node("counterexample-chwirut1-fold3-point-extreme", "counterexample", "Chwirut1 第 3 折折级比值仅 0.154094，但第 30 点残差／敏感度达 25.724483，4 倍阈值仍违规 26／51", "supported", ["exports/native-sensitivity-threshold-coverage.json"]),
+        node("counterexample-enso-all-folds-threshold-violations", "counterexample", "ENSO 折级比值最大仅 0.446846，但五折在三个固定阈值下均有违规，最大逐点比值 11.958800", "supported", ["exports/native-sensitivity-threshold-coverage.json"]),
+        node("experiment-native-sensitivity-threshold-coverage-protocol", "experiment", "冻结 1、2、4 倍阈值、407 点、零标准差规则与全部违规明细，不重新拟合或优化阈值", "supported", ["validation/native-sensitivity-threshold-coverage-protocol.json", "scripts/analyze_native_sensitivity_threshold_coverage.py"]),
+        node("limitation-native-sensitivity-threshold-not-probability", "limitation", "固定阈值计数不是概率覆盖率、置信区间、校准分数或确定性残差界", "active", ["exports/native-sensitivity-threshold-coverage.json", "docs/NATIVE_SENSITIVITY_THRESHOLD_COVERAGE_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-local-sd-deterministic-residual-bound", "contains"),
+        edge("track-holdout", "claim-fold-ratio-pointwise-coverage", "contains"),
+        edge("track-holdout", "evidence-native-sensitivity-threshold-coverage", "contains"),
+        edge("track-holdout", "counterexample-roszman1-fold5-aggregate-point-divergence", "contains"),
+        edge("track-holdout", "counterexample-chwirut1-fold3-point-extreme", "contains"),
+        edge("track-holdout", "counterexample-enso-all-folds-threshold-violations", "contains"),
+        edge("track-holdout", "experiment-native-sensitivity-threshold-coverage-protocol", "contains"),
+        edge("track-holdout", "limitation-native-sensitivity-threshold-not-probability", "contains"),
+        edge("evidence-native-sensitivity-threshold-coverage", "claim-local-sd-deterministic-residual-bound", "contradicts"),
+        edge("experiment-native-sensitivity-threshold-coverage-protocol", "claim-local-sd-deterministic-residual-bound", "tests"),
+        edge("evidence-native-sensitivity-threshold-coverage", "claim-fold-ratio-pointwise-coverage", "contradicts"),
+        edge("experiment-native-sensitivity-threshold-coverage-protocol", "claim-fold-ratio-pointwise-coverage", "tests"),
+        edge("counterexample-roszman1-fold5-aggregate-point-divergence", "claim-fold-ratio-pointwise-coverage", "contradicts"),
+        edge("counterexample-chwirut1-fold3-point-extreme", "claim-local-sd-deterministic-residual-bound", "contradicts"),
+        edge("counterexample-chwirut1-fold3-point-extreme", "claim-fold-ratio-pointwise-coverage", "contradicts"),
+        edge("counterexample-enso-all-folds-threshold-violations", "claim-local-sd-deterministic-residual-bound", "contradicts"),
+        edge("counterexample-enso-all-folds-threshold-violations", "claim-fold-ratio-pointwise-coverage", "contradicts"),
+        edge("evidence-native-sensitivity-threshold-coverage", "counterexample-roszman1-fold5-aggregate-point-divergence", "supports"),
+        edge("evidence-native-sensitivity-threshold-coverage", "counterexample-chwirut1-fold3-point-extreme", "supports"),
+        edge("evidence-native-sensitivity-threshold-coverage", "counterexample-enso-all-folds-threshold-violations", "supports"),
+        edge("limitation-native-sensitivity-threshold-not-probability", "evidence-native-sensitivity-threshold-coverage", "limits"),
+        edge("limitation-native-sensitivity-threshold-not-probability", "claim-local-sd-deterministic-residual-bound", "limits"),
+        edge("limitation-native-sensitivity-threshold-not-probability", "claim-fold-ratio-pointwise-coverage", "limits"),
+        edge("evidence-native-sensitivity-threshold-coverage", "evidence-native-identifiability-cross-model", "supports"),
+        edge("experiment-native-sensitivity-threshold-coverage-protocol", "experiment-native-identifiability-cross-model-protocol", "supports"),
+        edge("evidence-native-sensitivity-threshold-coverage", "evidence-roszman1-native-identifiability", "supports"),
+        edge("experiment-native-sensitivity-threshold-coverage-protocol", "experiment-roszman1-native-identifiability-protocol", "supports"),
+        edge("evidence-native-sensitivity-threshold-coverage", "evidence-chwirut1-native-identifiability", "supports"),
+        edge("experiment-native-sensitivity-threshold-coverage-protocol", "experiment-chwirut1-native-identifiability-protocol", "supports"),
+        edge("evidence-native-sensitivity-threshold-coverage", "evidence-enso-native-identifiability", "supports"),
+        edge("experiment-native-sensitivity-threshold-coverage-protocol", "experiment-enso-native-identifiability-protocol", "supports"),
+        edge("counterexample-roszman1-fold5-aggregate-point-divergence", "limitation-native-identifiability-cross-model-no-score", "supports"),
+        edge("counterexample-chwirut1-fold3-point-extreme", "claim-sensitivity-rmse-ratio-calibrated-coverage", "contradicts"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

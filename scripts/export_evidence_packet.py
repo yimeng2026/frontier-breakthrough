@@ -97,6 +97,8 @@ def build() -> dict:
     ensoNativeIdentifiabilityCheck = read("enso-native-identifiability-check.json")
     nativeIdentifiabilityCross = json.loads((ROOT / "exports/native-identifiability-cross-model-synthesis.json").read_text(encoding="utf-8"))
     nativeIdentifiabilityCrossCheck = read("native-identifiability-cross-model-check.json")
+    sensitivityCoverage = json.loads((ROOT / "exports/native-sensitivity-threshold-coverage.json").read_text(encoding="utf-8"))
+    sensitivityCoverageCheck = read("native-sensitivity-threshold-coverage-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -925,6 +927,39 @@ def build() -> dict:
             "limitations": "敏感度比值不是概率覆盖率或校准分数，条件数不能用于跨模型质量排名。不同模型的原生参数、误差和协方差不合并；局部满秩不证明全局识别，Chwirut1 同族边界和 ENSO 已知答案分层继续保留。" + " ".join(nativeIdentifiabilityCross["limitations"]),
             "upstreamContribution": "提供统一的三模型局部诊断检索接口和逐折敏感度—误差比值，完整保留 Roszman1 参数变化、Chwirut1 分母病征和 ENSO 周期补偿，同时禁止统一误差池与稳定性评分。",
             "snapshotFiles": ["validation/native-identifiability-cross-model-protocol.json", "validation/native-identifiability-cross-model-check.json", "validation/frontier-native-identifiability-cross-model-word.json"],
+        },
+        {
+            "id": "native-sensitivity-threshold-coverage", "domain": "math", "title": "三模型局部敏感度固定阈值覆盖与聚合错觉审计",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml"],
+            "metrics": {
+                "totals": sensitivityCoverage["totals"],
+                "datasets": [{
+                    "id": dataset["id"],
+                    "heldOutPointCount": dataset["held_out_point_count"],
+                    "thresholds": dataset["thresholds"],
+                    "folds": [{key: value for key, value in fold.items() if key != "points"} for fold in dataset["folds"]],
+                    "parameterStability": dataset["parameter_stability"],
+                    "scopeSpecific": dataset["scope_specific"],
+                    "knownAnswer": dataset["known_answer"],
+                } for dataset in sensitivityCoverage["datasets"]],
+                "crossModelProbabilityCoverageScore": sensitivityCoverage["cross_model_probability_coverage_score"],
+                "analysisScope": sensitivityCoverage["analysis_scope"],
+                "decision": sensitivityCoverage["decision"],
+                "implementation": {
+                    "protocolSha256": sensitivityCoverage["protocol_sha256"],
+                    "summarySha256": sensitivityCoverageCheck["summarySha256"],
+                    "analysisRunnerSha256": sensitivityCoverageCheck["analysisRunnerSha256"],
+                    "figureSha256": sensitivityCoverageCheck["figureSha256"],
+                    "reportSha256": sensitivityCoverageCheck["reportSha256"],
+                    "wordSha256": sensitivityCoverageCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "9b3199d"},
+            },
+            "scientificClaim": "407 点、1221 次固定阈值判定中，1、2、4 倍局部标准差分别覆盖 85、181、283 点，违规 322、226、124 点。最大逐点比值为 Chwirut1 第 3 折第 30 点的 25.724483；Roszman1 第 5 折折级比值为 2.697264，但 1 倍阈值已覆盖 5／5，证明折级比值不能替代逐点审计。",
+            "limitations": "固定阈值计数不是概率覆盖率、置信区间或校准分数，局部标准差不是确定性残差界。Chwirut1 和 ENSO 每折均有违规，少数完全覆盖折不能推广到全模型；没有优化阈值或隐藏违规。" + " ".join(sensitivityCoverage["limitations"]),
+            "upstreamContribution": "提供完整的固定阈值逐点判定、违规 ID、最大比值和零违规折接口，直接揭示最大敏感度与最大残差位置不同所造成的两类聚合错觉。",
+            "snapshotFiles": ["validation/native-sensitivity-threshold-coverage-protocol.json", "validation/native-sensitivity-threshold-coverage-check.json", "validation/frontier-native-sensitivity-threshold-coverage-word.json"],
         },
     ]
     packet = {

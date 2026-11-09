@@ -25,7 +25,7 @@ class RepositoryIntegrityTests(unittest.TestCase):
         self.assertGreaterEqual(report["groups"]["readme_local_links"]["count"], 84)
         self.assertGreaterEqual(report["groups"]["document_figure_links"]["count"], 44)
         self.assertGreaterEqual(report["groups"]["word_manifests"]["count"], 36)
-        self.assertEqual(report["groups"]["protocol_inputs"]["count"], 15)
+        self.assertEqual(report["groups"]["protocol_inputs"]["count"], 16)
         self.assertTrue(report["groups"]["dynamic_counts"]["readme_consistent"])
         self.assertFalse(report["decision"]["visual_qa_claimed"])
         stored = json.loads(REPORT.read_text(encoding="utf-8"))

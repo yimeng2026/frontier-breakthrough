@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "native_identifiability_cross_model":
+    if REPORT_MODE == "native_sensitivity_threshold_coverage":
+        replacements = {
+            "图：`papers/50_三模型敏感度阈值覆盖/fig50_native_sensitivity_threshold_coverage.png`。": "![](papers/50_三模型敏感度阈值覆盖/fig50_native_sensitivity_threshold_coverage.png)\n\n**图 50｜三模型局部敏感度固定阈值覆盖审计（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联组图与读图顺序」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "407 点、1221 次固定阈值判定、逐点违规与聚合错觉"
+    elif REPORT_MODE == "native_identifiability_cross_model":
         replacements = {
             "图：`papers/49_三模型局部可识别性综合/fig49_native_identifiability_cross_model.png`。": "![](papers/49_三模型局部可识别性综合/fig49_native_identifiability_cross_model.png)\n\n**图 49｜三模型局部可识别性受限综合（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联组图与读图顺序」；顺序第 1 幅，共 1 幅。",
         }

@@ -18,7 +18,7 @@
 - [定期消化机制](docs/RESEARCH_AUTOMATION.md)：检索—筛选—复现—回馈的闭环。
 - [机器可读目录](data/projects.json)：每项均有官方来源、证据级别、协作角色和本地状态。
 - [上游接口与证据契约](docs/UPSTREAM_INTERFACES.md)：真实跨库验证、统一 JSON 接口及组件边界。
-- [跨域证据包](exports/frontier-evidence.json)：五十三项已执行检查的结构化结果与限制。
+- [跨域证据包](exports/frontier-evidence.json)：五十四项已执行检查的结构化结果与限制。
 - [外部模型族限制文本修订审计](validation/external-scope-limitations-amendment-01-audit.json)：三份修订副本、原始文件与协议哈希、仅文档文本变更的完整记录。
 - [五条主线扩展工作包](docs/EXPANSION_2026-11-08.md)：真实留出、形式化反例、化学跨库、材料跨库和知识图谱的首轮成果。
 - [第二轮续展报告](docs/CONTINUATION_2026-11-08.md)：Eckerle4 双尾外推与 cvc5 交叉求解器复核。
@@ -62,6 +62,8 @@
 - [第四十阶段 Chwirut1 原生参数可识别性与分母诊断](docs/CHWIRUT1_NATIVE_IDENTIFIABILITY_2026-11-09.md)：五折解析雅可比、逐折自由度、参数补偿与原生极点诊断。
 - [第四十一阶段 ENSO 原生周期参数可识别性与谐波补偿](docs/ENSO_NATIVE_IDENTIFIABILITY_2026-11-09.md)：五折九参数解析雅可比、周期—振幅补偿与局部敏感度。
 - [第四十二阶段三模型局部可识别性受限综合](docs/NATIVE_IDENTIFIABILITY_CROSS_MODEL_2026-11-09.md)：15 折、407 个留出观测、敏感度比值与模型专有病征。
+- [第四十三阶段三模型局部敏感度固定阈值覆盖审计](docs/NATIVE_SENSITIVITY_THRESHOLD_COVERAGE_2026-11-09.md)：407 点、1221 次固定阈值判定、逐点违规与聚合错觉。
+- [三模型敏感度阈值覆盖原生 Word 图文版](papers/前沿共生三模型敏感度阈值覆盖_图文完整版.docx)：一幅四联实图、四个 Word 表格、一个原生 OMML 公式，含目录、页眉和页码。
 - [三模型局部可识别性综合原生 Word 图文版](papers/前沿共生三模型局部可识别性综合_图文完整版.docx)：一幅四联实图、五个 Word 表格、一个原生 OMML 公式，含目录、页眉和页码。
 - [ENSO 原生参数可识别性原生 Word 图文版](papers/前沿共生ENSO原生参数可识别性_图文完整版.docx)：一幅六联实图、六个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
 - [Chwirut1 原生参数可识别性原生 Word 图文版](papers/前沿共生Chwirut1原生参数可识别性_图文完整版.docx)：一幅六联实图、六个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
@@ -104,7 +106,7 @@
 - [有理模型原生 Word 图文版](papers/前沿共生有理模型与分母边界_图文完整版.docx)：一幅实图、四个 Word 表格、七个原生 OMML 公式，含目录、页眉和页码。
 - [续展原生 Word 图文版](papers/前沿共生续展_双尾外推与求解器复核_图文完整版.docx)：一幅实图、四个 Word 表格、七个原生 OMML 公式，含目录、页眉和页码。
 - [扩展工作包原生 Word 图文版](papers/前沿共生扩展工作包_图文完整版.docx)：两幅实图、三个 Word 表格、五个原生 OMML 公式，含目录、页眉和页码。
-- [主张—证据—反例—实验图谱](exports/frontier-knowledge-graph.json)：217 个节点、532 条边，支持与反例均可追溯到实际文件。
+- [主张—证据—反例—实验图谱](exports/frontier-knowledge-graph.json)：225 个节点、565 条边，支持与反例均可追溯到实际文件。
 - [研究简报合订本（Word）](papers/前沿共生研究简报_合订本.docx)：三篇长文、十三幅图，附真实证据与复现路径。
 - [研究简报合订本（Markdown）](papers/前沿共生研究简报_合订本.md)：便于审阅和继续修订的文本版本。
 
