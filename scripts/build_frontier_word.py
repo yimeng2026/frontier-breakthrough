@@ -48,7 +48,17 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "roszman1_whitened_cover_grid":
+    if REPORT_MODE == "roszman1_whitened_grid_convergence":
+        replacements = {
+            "图：`papers/66_Roszman1白化网格收敛与共享见证/fig66_roszman1_whitened_grid_convergence.png`。": "![](papers/66_Roszman1白化网格收敛与共享见证/fig66_roszman1_whitened_grid_convergence.png)\n\n**图 66｜Roszman1 白化网格增量诊断与共享极值见证（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联图与证据边界」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "81920 个细胞、20 个新增收紧、640 次顶点见证与增量边界"
+    elif REPORT_MODE == "roszman1_whitened_cover_grid_erratum":
+        replacements = {
+            "图：`papers/65E_Roszman1白化覆盖勘误/fig65e_roszman1_whitened_cover_grid_erratum.png`。": "![](papers/65E_Roszman1白化覆盖勘误/fig65e_roszman1_whitened_cover_grid_erratum.png)\n\n**图 65E｜Roszman1 白化覆盖勘误（第 1 幅，共 1 幅）**  \n**插入位置**：§5「勘误图件与后续规则」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "撤销失效白化证明、完整重算与 1920 次顶点复核"
+    elif REPORT_MODE == "roszman1_whitened_cover_grid":
         replacements = {
             "图：`papers/65_Roszman1协方差白化覆盖/fig65_roszman1_whitened_cover_grid.png`。": "![](papers/65_Roszman1协方差白化覆盖/fig65_roszman1_whitened_cover_grid.png)\n\n**图 65｜Roszman1 协方差白化覆盖与全预测区间（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联图与证据边界」；顺序第 1 幅，共 1 幅。",
         }

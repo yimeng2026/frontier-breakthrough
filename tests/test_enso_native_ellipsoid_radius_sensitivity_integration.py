@@ -14,7 +14,7 @@ class EnsoNativeEllipsoidRadiusSensitivityIntegrationTests(unittest.TestCase):
         packet = json.loads((ROOT / "exports/frontier-evidence.json").read_text(encoding="utf-8"))
         identifiers = {item["id"] for item in packet["items"]}
         self.assertIn("enso-native-ellipsoid-radius-sensitivity", identifiers)
-        self.assertEqual(len(packet["items"]), 69)
+        self.assertEqual(len(packet["items"]), 71)
         item = next(item for item in packet["items"] if item["id"] == "enso-native-ellipsoid-radius-sensitivity")
         metrics = item["metrics"]
         totals = metrics["totals"]
@@ -72,8 +72,8 @@ class EnsoNativeEllipsoidRadiusSensitivityIntegrationTests(unittest.TestCase):
         ]
         for identifier in identifiers:
             self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 345)
-        self.assertEqual(len(graph["edges"]), 1026)
+        self.assertEqual(len(graph["nodes"]), 361)
+        self.assertEqual(len(graph["edges"]), 1091)
         self.assertEqual(nodes["claim-enso-grid-all-safe"]["status"], "falsified")
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}
         self.assertIn(("counterexample-enso-fold4-radius32-nonpositive", "claim-enso-grid-all-safe", "contradicts"), edges)

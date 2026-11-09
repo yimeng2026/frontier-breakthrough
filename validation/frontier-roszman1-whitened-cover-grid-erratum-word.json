@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生Roszman1白化覆盖勘误_图文完整版.docx",
+  "bytes": 189668,
+  "sha256": "d9927c44957f3c72d25017cab3f6b045965a24ff8815428b7db82e7dfe2541b0",
+  "native_math_objects": 3,
+  "embedded_images": 1,
+  "native_tables": 5,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

@@ -135,6 +135,14 @@ def build_graph(root):
     whitenedExpected = {"fold_count": 5, "held_out_point_count": 25, "available_point_count": 20, "unavailable_point_count": 5, "grid_cover_count": 60, "partition_cell_count": 5460, "native_cell_evaluation_count": 5460, "outside_cell_count": 0, "unresolved_cell_count": 0, "unbounded_grid_count": 0, "bounded_grid_count": 60, "nonempty_intersection_count": 60, "candidate_evaluation_count": 200, "candidate_grid_containment_check_count": 600, "transform_witness_count": 200, "transform_violation_count": 0, "grid_candidate_violation_count": 0, "intersection_candidate_violation_count": 0, "center_prediction_mismatch_count": 0, "primary_intersection_tightened_count": 20, "primary_intersection_unchanged_count": 0}
     if any(roszmanWhitened["totals"][key] != value for key, value in whitenedExpected.items()) or roszmanWhitened["totals"]["unavailable_fold_ids"] != [5] or roszmanWhitened["totals"]["median_primary_intersection_to_ratio_width_ratio"] != 0.820642571296398 or roszmanWhitened["totals"]["largest_primary_intersection_tightening"]["x"] != -3373.14 or [item["intersection_tightened_count"] for item in roszmanWhitened["grid_totals"]] != [0, 17, 20] or [item["intersection_unchanged_count"] for item in roszmanWhitened["grid_totals"]] != [20, 3, 0] or not roszmanWhitened["ratio_receipt_verified"] or roszmanWhitened["analysis_scope"]["outside_boundary_amendment"] != "01" or roszmanWhitened["decision"]["exact_global_optimum_claimed"] or roszmanWhitened["decision"]["fold5_given_finite_bound"]:
         raise ValueError("Expected whitened-cover tightening, transform, boundary and unavailable-fold boundaries are not present")
+    roszmanCorrected = json.loads((root / "validation/roszman1-whitened-cover-grid-corrected-01.json").read_text(encoding="utf-8"))
+    correctedExpected = {"fold_count": 5, "held_out_point_count": 25, "available_point_count": 20, "unavailable_point_count": 5, "grid_cover_count": 60, "partition_cell_count": 5460, "native_cell_evaluation_count": 5460, "outside_cell_count": 0, "unresolved_cell_count": 0, "unbounded_grid_count": 0, "bounded_grid_count": 60, "nonempty_intersection_count": 60, "candidate_evaluation_count": 200, "candidate_grid_containment_check_count": 600, "transform_witness_count": 200, "transform_violation_count": 0, "grid_candidate_violation_count": 0, "intersection_candidate_violation_count": 0, "center_prediction_mismatch_count": 0, "vertex_evaluation_count": 1920, "vertex_interval_violation_count": 0, "primary_intersection_tightened_count": 17, "primary_intersection_unchanged_count": 3}
+    if any(roszmanCorrected["totals"][key] != value for key, value in correctedExpected.items()) or roszmanCorrected["totals"]["unavailable_fold_ids"] != [5] or roszmanCorrected["totals"]["median_primary_intersection_to_ratio_width_ratio"] != 0.4474424821614995 or roszmanCorrected["totals"]["largest_primary_intersection_tightening"]["x"] != -1894.65 or roszmanCorrected["original_proof_validity"] != "invalid_for_conservative_proof" or not roszmanCorrected["ratio_receipt_verified"] or roszmanCorrected["decision"]["original_results_used_as_valid_cover"] or roszmanCorrected["decision"]["fold5_given_finite_bound"]:
+        raise ValueError("Expected corrected whitened-cover counts, vertex gates and original-invalid scope are not present")
+    roszmanConvergence = json.loads((root / "validation/roszman1-whitened-grid-convergence.json").read_text(encoding="utf-8"))
+    convergenceExpected = {"fold_count": 5, "held_out_point_count": 25, "available_point_count": 20, "unavailable_point_count": 5, "grid8_cover_count": 20, "grid8_partition_cell_count": 81920, "native_cell_evaluation_count": 51520, "outside_cell_count": 30400, "unresolved_cell_count": 0, "grid8_unbounded_grid_count": 0, "grid8_bounded_grid_count": 20, "nonempty_intersection_count": 20, "candidate_evaluation_count": 200, "candidate_grid8_containment_check_count": 200, "transform_witness_count": 200, "transform_violation_count": 0, "grid8_candidate_violation_count": 0, "intersection_candidate_violation_count": 0, "center_prediction_mismatch_count": 0, "grid8_additional_tightened_count": 20, "grid8_plateau_count": 0, "grid8_witness_cell_count": 40, "grid8_vertex_evaluation_count": 640, "feasible_vertex_witness_count": 44, "outer_vertex_witness_count": 596}
+    if any(roszmanConvergence["totals"][key] != value for key, value in convergenceExpected.items()) or roszmanConvergence["totals"]["unavailable_fold_ids"] != [5] or roszmanConvergence["totals"]["median_grid8_to_grid4_width_ratio"] != 0.5874946735203854 or roszmanConvergence["totals"]["largest_grid8_incremental_tightening"]["x"] != -1894.65 or not roszmanConvergence["whitened_receipt_verified"] or not roszmanConvergence["stage56_receipt_verified"] or roszmanConvergence["analysis_scope"]["outside_count_amendment"] != "03" or roszmanConvergence["analysis_scope"]["original_whitened_proof_validity"] != "invalid_for_conservative_proof" or roszmanConvergence["decision"]["grid8_called_global_optimum"] or roszmanConvergence["decision"]["fold5_given_finite_bound"]:
+        raise ValueError("Expected grid-8 incremental counts, corrected sources, outside accounting and unavailable-fold boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -1605,6 +1613,95 @@ def build_graph(root):
         edge("evidence-roszman1-whitened-cover-grid", "evidence-roszman1-native-identifiability", "supports"),
         edge("experiment-roszman1-whitened-cover-grid-protocol", "experiment-roszman1-native-identifiability-protocol", "supports"),
         edge("experiment-roszman1-whitened-cover-grid-protocol", "claim-knowledge-graph", "tests"),
+    ])
+    nodes.extend([
+        node("claim-original-whitened-cover-valid", "claim", "原白化结果可以作为有效保守覆盖和后续收紧基线", "falsified", ["validation/roszman1-whitened-cover-grid-erratum-01.json"]),
+        node("claim-corrected-whitening-exact-global-optimum", "claim", "勘误后的白化覆盖和交集就是完整非线性全局最优界", "falsified", ["validation/roszman1-whitened-cover-grid-corrected-01.json"]),
+        node("evidence-roszman1-whitened-cover-erratum", "evidence", "修正后 5460 个细胞全部可评价，主网格 17 个收紧、3 个保持，中位宽度比 0.447442；1920 次顶点检查无违规", "supported", ["validation/roszman1-whitened-cover-grid-corrected-01.json", "validation/roszman1-whitened-cover-grid-erratum-check.json"]),
+        node("counterexample-whitened-denominator-sign-error", "counterexample", "第 1 折 x=-4868.68 的细胞顶点实际分母 -5245.427923 和预测 0.163070925 均被原区间排除，证明原白化符号错误不是数值噪声", "supported", ["validation/roszman1-whitened-cover-grid-erratum-01.json", "docs/ROSZMAN1_WHITENED_COVER_GRID_ERRATUM_2026-11-09.md"]),
+        node("experiment-roszman1-whitened-cover-erratum-protocol", "experiment", "冻结原失效范围、正确分母负号、原始输入链、全部重算与每个有界端点的 16 顶点检查", "supported", ["validation/roszman1-whitened-cover-grid-erratum-01.json", "scripts/analyze_roszman1_whitened_cover_grid_erratum.py"]),
+        node("counterexample-whitened-corrected-grid1-unchanged", "counterexample", "修正后第 1 层仍全部保持，主网格也有 3 个保持，白化仍不保证天然收紧", "supported", ["validation/roszman1-whitened-cover-grid-corrected-01.json", "docs/ROSZMAN1_WHITENED_COVER_GRID_ERRATUM_2026-11-09.md"]),
+        node("counterexample-whitened-corrected-fold5-unavailable", "counterexample", "第 5 折继续无负分母证书，0 个细胞与候选，5 个观测点仍无有限包络或残差上界", "supported", ["validation/roszman1-whitened-cover-grid-corrected-01.json", "docs/ROSZMAN1_WHITENED_COVER_GRID_ERRATUM_2026-11-09.md"]),
+        node("limitation-roszman1-whitened-original-invalid", "limitation", "原白化条目只作失效历史反例，不能作为有效覆盖或基线；修正结果同样不是精确全局最优，顶点检查不替代完整证明", "active", ["validation/roszman1-whitened-cover-grid-erratum-01.json", "docs/ROSZMAN1_WHITENED_COVER_GRID_ERRATUM_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-knowledge", "claim-original-whitened-cover-valid", "contains"),
+        edge("track-holdout", "claim-corrected-whitening-exact-global-optimum", "contains"),
+        edge("track-holdout", "evidence-roszman1-whitened-cover-erratum", "contains"),
+        edge("track-knowledge", "counterexample-whitened-denominator-sign-error", "contains"),
+        edge("track-knowledge", "experiment-roszman1-whitened-cover-erratum-protocol", "contains"),
+        edge("track-holdout", "counterexample-whitened-corrected-grid1-unchanged", "contains"),
+        edge("track-holdout", "counterexample-whitened-corrected-fold5-unavailable", "contains"),
+        edge("track-knowledge", "limitation-roszman1-whitened-original-invalid", "contains"),
+        edge("evidence-roszman1-whitened-cover-erratum", "claim-original-whitened-cover-valid", "contradicts"),
+        edge("experiment-roszman1-whitened-cover-erratum-protocol", "claim-original-whitened-cover-valid", "tests"),
+        edge("counterexample-whitened-denominator-sign-error", "claim-original-whitened-cover-valid", "contradicts"),
+        edge("counterexample-whitened-denominator-sign-error", "evidence-roszman1-whitened-cover-grid", "contradicts"),
+        edge("evidence-roszman1-whitened-cover-erratum", "counterexample-whitened-denominator-sign-error", "supports"),
+        edge("evidence-roszman1-whitened-cover-erratum", "claim-corrected-whitening-exact-global-optimum", "contradicts"),
+        edge("experiment-roszman1-whitened-cover-erratum-protocol", "claim-corrected-whitening-exact-global-optimum", "tests"),
+        edge("counterexample-whitened-corrected-grid1-unchanged", "claim-whitening-alone-tightens", "contradicts"),
+        edge("evidence-roszman1-whitened-cover-erratum", "counterexample-whitened-corrected-grid1-unchanged", "supports"),
+        edge("counterexample-whitened-corrected-fold5-unavailable", "claim-roszman-fold5-low-rmse-singularity-safe", "contradicts"),
+        edge("counterexample-whitened-corrected-fold5-unavailable", "counterexample-whitened-fold5-unavailable", "supports"),
+        edge("evidence-roszman1-whitened-cover-erratum", "counterexample-whitened-corrected-fold5-unavailable", "supports"),
+        edge("counterexample-whitened-corrected-grid1-unchanged", "limitation-roszman1-whitened-original-invalid", "supports"),
+        edge("limitation-roszman1-whitened-original-invalid", "evidence-roszman1-whitened-cover-grid", "limits"),
+        edge("limitation-roszman1-whitened-original-invalid", "evidence-roszman1-whitened-cover-erratum", "limits"),
+        edge("limitation-roszman1-whitened-original-invalid", "claim-corrected-whitening-exact-global-optimum", "limits"),
+        edge("limitation-roszman1-whitened-original-invalid", "claim-center-coverage-external-validation", "limits"),
+        edge("evidence-roszman1-whitened-cover-erratum", "evidence-roszman1-ratio-denominator", "supports"),
+        edge("experiment-roszman1-whitened-cover-erratum-protocol", "experiment-roszman1-ratio-denominator-protocol", "supports"),
+        edge("experiment-roszman1-whitened-cover-erratum-protocol", "experiment-roszman1-whitened-cover-grid-protocol", "supports"),
+        edge("evidence-roszman1-whitened-cover-erratum", "evidence-roszman1-native-identifiability", "supports"),
+        edge("experiment-roszman1-whitened-cover-erratum-protocol", "experiment-roszman1-native-identifiability-protocol", "supports"),
+        edge("evidence-roszman1-whitened-cover-erratum", "counterexample-whitened-boundary-rounding", "supports"),
+        edge("experiment-roszman1-whitened-cover-erratum-protocol", "claim-knowledge-graph", "tests"),
+        edge("counterexample-whitened-denominator-sign-error", "claim-knowledge-graph", "tests"),
+    ])
+    nodes.extend([
+        node("claim-grid8-convergence-global-optimum", "claim", "8⁴ 网格的增量收紧已经证明渐近收敛和完整非线性全局最优", "falsified", ["validation/roszman1-whitened-grid-convergence.json"]),
+        node("claim-outer-vertices-feasible", "claim", "白化外包盒的所有顶点都是参数球内的可行极值候选", "falsified", ["validation/roszman1-whitened-grid-convergence.json"]),
+        node("evidence-roszman1-whitened-grid-convergence", "evidence", "81920 个细胞中 51520 个可评价、30400 个几何球外；20 个交集相对修正 4⁴ 全部收紧，640 次顶点评价中 44 个可行、596 个球外", "supported", ["validation/roszman1-whitened-grid-convergence.json", "validation/roszman1-whitened-grid-convergence-check.json"]),
+        node("counterexample-grid8-incremental-not-asymptotic", "counterexample", "grid8/grid4 中位增量宽度比 0.587495 且平台为 0，只描述当前序列，不构成渐近误差、收敛或全局最优证明", "supported", ["validation/roszman1-whitened-grid-convergence.json", "docs/ROSZMAN1_WHITENED_GRID_CONVERGENCE_2026-11-09.md"]),
+        node("experiment-roszman1-whitened-grid-convergence-protocol", "experiment", "冻结 8⁴ 流式网格、修正白化与第五十六阶段端点输入、球外计数、增量宽度和顶点可行性门禁", "supported", ["validation/roszman1-whitened-grid-convergence-protocol.json", "validation/roszman1-whitened-grid-convergence-protocol-amendment-03.json", "scripts/analyze_roszman1_whitened_grid_convergence.py"]),
+        node("counterexample-grid8-outside-count-not-zero", "counterexample", "粗网格的 outside=0 不能移植到 8⁴；独立组合计数得到 30400 个几何球外细胞，边界细胞仍保留", "supported", ["validation/roszman1-whitened-grid-convergence-protocol-amendment-03.json", "docs/ROSZMAN1_WHITENED_GRID_CONVERGENCE_2026-11-09.md"]),
+        node("counterexample-grid8-fold5-unavailable", "counterexample", "第 5 折继续无负分母证书，0 个细胞与候选，5 个观测点仍无有限包络或残差上界", "supported", ["validation/roszman1-whitened-grid-convergence.json", "docs/ROSZMAN1_WHITENED_GRID_CONVERGENCE_2026-11-09.md"]),
+        node("limitation-roszman1-grid8-convergence-scope", "limitation", "增量诊断不等于全局收敛或最优；球外顶点不是可行极值，原始代数端点、正确分母和未决规则不可省略", "active", ["validation/roszman1-whitened-grid-convergence.json", "validation/roszman1-whitened-grid-convergence-protocol-amendment-03.json", "docs/ROSZMAN1_WHITENED_GRID_CONVERGENCE_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-grid8-convergence-global-optimum", "contains"),
+        edge("track-holdout", "claim-outer-vertices-feasible", "contains"),
+        edge("track-holdout", "evidence-roszman1-whitened-grid-convergence", "contains"),
+        edge("track-holdout", "counterexample-grid8-incremental-not-asymptotic", "contains"),
+        edge("track-holdout", "experiment-roszman1-whitened-grid-convergence-protocol", "contains"),
+        edge("track-holdout", "counterexample-grid8-outside-count-not-zero", "contains"),
+        edge("track-holdout", "counterexample-grid8-fold5-unavailable", "contains"),
+        edge("track-holdout", "limitation-roszman1-grid8-convergence-scope", "contains"),
+        edge("evidence-roszman1-whitened-grid-convergence", "claim-grid8-convergence-global-optimum", "contradicts"),
+        edge("experiment-roszman1-whitened-grid-convergence-protocol", "claim-grid8-convergence-global-optimum", "tests"),
+        edge("counterexample-grid8-incremental-not-asymptotic", "claim-grid8-convergence-global-optimum", "contradicts"),
+        edge("evidence-roszman1-whitened-grid-convergence", "counterexample-grid8-incremental-not-asymptotic", "supports"),
+        edge("evidence-roszman1-whitened-grid-convergence", "claim-outer-vertices-feasible", "contradicts"),
+        edge("experiment-roszman1-whitened-grid-convergence-protocol", "claim-outer-vertices-feasible", "tests"),
+        edge("counterexample-grid8-outside-count-not-zero", "claim-grid-cover-exact-global-optimum", "contradicts"),
+        edge("counterexample-grid8-fold5-unavailable", "claim-roszman-fold5-low-rmse-singularity-safe", "contradicts"),
+        edge("counterexample-grid8-fold5-unavailable", "counterexample-whitened-corrected-fold5-unavailable", "supports"),
+        edge("evidence-roszman1-whitened-grid-convergence", "counterexample-grid8-fold5-unavailable", "supports"),
+        edge("evidence-roszman1-whitened-grid-convergence", "counterexample-grid8-outside-count-not-zero", "supports"),
+        edge("counterexample-grid8-incremental-not-asymptotic", "limitation-roszman1-grid8-convergence-scope", "supports"),
+        edge("counterexample-grid8-outside-count-not-zero", "limitation-roszman1-grid8-convergence-scope", "supports"),
+        edge("limitation-roszman1-grid8-convergence-scope", "evidence-roszman1-whitened-grid-convergence", "limits"),
+        edge("limitation-roszman1-grid8-convergence-scope", "claim-grid8-convergence-global-optimum", "limits"),
+        edge("limitation-roszman1-grid8-convergence-scope", "claim-outer-vertices-feasible", "limits"),
+        edge("limitation-roszman1-grid8-convergence-scope", "claim-center-coverage-external-validation", "limits"),
+        edge("evidence-roszman1-whitened-grid-convergence", "evidence-roszman1-whitened-cover-erratum", "supports"),
+        edge("experiment-roszman1-whitened-grid-convergence-protocol", "experiment-roszman1-whitened-cover-erratum-protocol", "supports"),
+        edge("evidence-roszman1-whitened-grid-convergence", "evidence-roszman1-ratio-denominator", "supports"),
+        edge("experiment-roszman1-whitened-grid-convergence-protocol", "experiment-roszman1-ratio-denominator-protocol", "supports"),
+        edge("evidence-roszman1-whitened-grid-convergence", "evidence-roszman1-native-identifiability", "supports"),
+        edge("experiment-roszman1-whitened-grid-convergence-protocol", "experiment-roszman1-native-identifiability-protocol", "supports"),
+        edge("experiment-roszman1-whitened-grid-convergence-protocol", "claim-knowledge-graph", "tests"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

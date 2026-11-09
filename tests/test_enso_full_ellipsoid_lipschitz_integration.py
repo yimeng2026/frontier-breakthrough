@@ -14,7 +14,7 @@ class EnsoFullEllipsoidLipschitzIntegrationTests(unittest.TestCase):
         packet = json.loads((ROOT / "exports/frontier-evidence.json").read_text(encoding="utf-8"))
         identifiers = {item["id"] for item in packet["items"]}
         self.assertIn("enso-full-ellipsoid-lipschitz-intersection", identifiers)
-        self.assertEqual(len(packet["items"]), 69)
+        self.assertEqual(len(packet["items"]), 71)
         item = next(item for item in packet["items"] if item["id"] == "enso-full-ellipsoid-lipschitz-intersection")
         metrics = item["metrics"]
         totals = metrics["totals"]
@@ -65,8 +65,8 @@ class EnsoFullEllipsoidLipschitzIntegrationTests(unittest.TestCase):
         ]
         for identifier in identifiers:
             self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 345)
-        self.assertEqual(len(graph["edges"]), 1026)
+        self.assertEqual(len(graph["nodes"]), 361)
+        self.assertEqual(len(graph["edges"]), 1091)
         self.assertEqual(nodes["claim-lipschitz-alternative-always-tighter"]["status"], "falsified")
         self.assertEqual(nodes["claim-intersection-global-optimum"]["status"], "falsified")
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}

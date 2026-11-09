@@ -56,7 +56,12 @@
     "validation/roszman1-ratio-denominator-protocol.json",
     "validation/roszman1-ellipsoid-cover-grid-protocol.json",
     "validation/roszman1-whitened-cover-grid-protocol.json",
-    "validation/roszman1-whitened-cover-grid-protocol-amendment-01.json"
+    "validation/roszman1-whitened-cover-grid-protocol-amendment-01.json",
+    "validation/roszman1-whitened-cover-grid-erratum-01.json",
+    "validation/roszman1-whitened-grid-convergence-protocol.json",
+    "validation/roszman1-whitened-grid-convergence-protocol-amendment-01.json",
+    "validation/roszman1-whitened-grid-convergence-protocol-amendment-02.json",
+    "validation/roszman1-whitened-grid-convergence-protocol-amendment-03.json"
   ],
   "decision": {
     "external_web_checked": false,

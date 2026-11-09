@@ -14,9 +14,11 @@ class Roszman1WhitenedCoverGridIntegrationTests(unittest.TestCase):
         packet = json.loads((ROOT / "exports/frontier-evidence.json").read_text(encoding="utf-8"))
         identifiers = {item["id"] for item in packet["items"]}
         self.assertIn("roszman1-whitened-cover-grid", identifiers)
-        self.assertEqual(len(packet["items"]), 69)
+        self.assertEqual(len(packet["items"]), 71)
         item = next(item for item in packet["items"] if item["id"] == "roszman1-whitened-cover-grid")
         metrics = item["metrics"]
+        self.assertEqual(metrics["proofValidity"], "invalid_for_conservative_proof")
+        self.assertEqual(metrics["supersededBy"], "roszman1-whitened-cover-grid-erratum-01")
         totals = metrics["totals"]
         self.assertEqual(totals["held_out_point_count"], 25)
         self.assertEqual(totals["available_point_count"], 20)
@@ -62,8 +64,8 @@ class Roszman1WhitenedCoverGridIntegrationTests(unittest.TestCase):
         ]
         for identifier in identifiers:
             self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 345)
-        self.assertEqual(len(graph["edges"]), 1026)
+        self.assertEqual(len(graph["nodes"]), 361)
+        self.assertEqual(len(graph["edges"]), 1091)
         self.assertEqual(nodes["claim-whitening-alone-tightens"]["status"], "falsified")
         self.assertEqual(nodes["claim-whitened-cover-exact-optimum"]["status"], "falsified")
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}

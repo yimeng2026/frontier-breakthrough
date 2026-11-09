@@ -3264,6 +3264,164 @@
         "validation/roszman1-whitened-cover-grid-protocol-amendment-01.json",
         "docs/ROSZMAN1_WHITENED_COVER_GRID_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-original-whitened-cover-valid",
+      "kind": "claim",
+      "title": "原白化结果可以作为有效保守覆盖和后续收紧基线",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-whitened-cover-grid-erratum-01.json"
+      ]
+    },
+    {
+      "id": "claim-corrected-whitening-exact-global-optimum",
+      "kind": "claim",
+      "title": "勘误后的白化覆盖和交集就是完整非线性全局最优界",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-whitened-cover-grid-corrected-01.json"
+      ]
+    },
+    {
+      "id": "evidence-roszman1-whitened-cover-erratum",
+      "kind": "evidence",
+      "title": "修正后 5460 个细胞全部可评价，主网格 17 个收紧、3 个保持，中位宽度比 0.447442；1920 次顶点检查无违规",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-whitened-cover-grid-corrected-01.json",
+        "validation/roszman1-whitened-cover-grid-erratum-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-whitened-denominator-sign-error",
+      "kind": "counterexample",
+      "title": "第 1 折 x=-4868.68 的细胞顶点实际分母 -5245.427923 和预测 0.163070925 均被原区间排除，证明原白化符号错误不是数值噪声",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-whitened-cover-grid-erratum-01.json",
+        "docs/ROSZMAN1_WHITENED_COVER_GRID_ERRATUM_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "experiment-roszman1-whitened-cover-erratum-protocol",
+      "kind": "experiment",
+      "title": "冻结原失效范围、正确分母负号、原始输入链、全部重算与每个有界端点的 16 顶点检查",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-whitened-cover-grid-erratum-01.json",
+        "scripts/analyze_roszman1_whitened_cover_grid_erratum.py"
+      ]
+    },
+    {
+      "id": "counterexample-whitened-corrected-grid1-unchanged",
+      "kind": "counterexample",
+      "title": "修正后第 1 层仍全部保持，主网格也有 3 个保持，白化仍不保证天然收紧",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-whitened-cover-grid-corrected-01.json",
+        "docs/ROSZMAN1_WHITENED_COVER_GRID_ERRATUM_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "counterexample-whitened-corrected-fold5-unavailable",
+      "kind": "counterexample",
+      "title": "第 5 折继续无负分母证书，0 个细胞与候选，5 个观测点仍无有限包络或残差上界",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-whitened-cover-grid-corrected-01.json",
+        "docs/ROSZMAN1_WHITENED_COVER_GRID_ERRATUM_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "limitation-roszman1-whitened-original-invalid",
+      "kind": "limitation",
+      "title": "原白化条目只作失效历史反例，不能作为有效覆盖或基线；修正结果同样不是精确全局最优，顶点检查不替代完整证明",
+      "status": "active",
+      "sourceFiles": [
+        "validation/roszman1-whitened-cover-grid-erratum-01.json",
+        "docs/ROSZMAN1_WHITENED_COVER_GRID_ERRATUM_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "claim-grid8-convergence-global-optimum",
+      "kind": "claim",
+      "title": "8⁴ 网格的增量收紧已经证明渐近收敛和完整非线性全局最优",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-whitened-grid-convergence.json"
+      ]
+    },
+    {
+      "id": "claim-outer-vertices-feasible",
+      "kind": "claim",
+      "title": "白化外包盒的所有顶点都是参数球内的可行极值候选",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-whitened-grid-convergence.json"
+      ]
+    },
+    {
+      "id": "evidence-roszman1-whitened-grid-convergence",
+      "kind": "evidence",
+      "title": "81920 个细胞中 51520 个可评价、30400 个几何球外；20 个交集相对修正 4⁴ 全部收紧，640 次顶点评价中 44 个可行、596 个球外",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-whitened-grid-convergence.json",
+        "validation/roszman1-whitened-grid-convergence-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-grid8-incremental-not-asymptotic",
+      "kind": "counterexample",
+      "title": "grid8/grid4 中位增量宽度比 0.587495 且平台为 0，只描述当前序列，不构成渐近误差、收敛或全局最优证明",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-whitened-grid-convergence.json",
+        "docs/ROSZMAN1_WHITENED_GRID_CONVERGENCE_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "experiment-roszman1-whitened-grid-convergence-protocol",
+      "kind": "experiment",
+      "title": "冻结 8⁴ 流式网格、修正白化与第五十六阶段端点输入、球外计数、增量宽度和顶点可行性门禁",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-whitened-grid-convergence-protocol.json",
+        "validation/roszman1-whitened-grid-convergence-protocol-amendment-03.json",
+        "scripts/analyze_roszman1_whitened_grid_convergence.py"
+      ]
+    },
+    {
+      "id": "counterexample-grid8-outside-count-not-zero",
+      "kind": "counterexample",
+      "title": "粗网格的 outside=0 不能移植到 8⁴；独立组合计数得到 30400 个几何球外细胞，边界细胞仍保留",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-whitened-grid-convergence-protocol-amendment-03.json",
+        "docs/ROSZMAN1_WHITENED_GRID_CONVERGENCE_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "counterexample-grid8-fold5-unavailable",
+      "kind": "counterexample",
+      "title": "第 5 折继续无负分母证书，0 个细胞与候选，5 个观测点仍无有限包络或残差上界",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-whitened-grid-convergence.json",
+        "docs/ROSZMAN1_WHITENED_GRID_CONVERGENCE_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "limitation-roszman1-grid8-convergence-scope",
+      "kind": "limitation",
+      "title": "增量诊断不等于全局收敛或最优；球外顶点不是可行极值，原始代数端点、正确分母和未决规则不可省略",
+      "status": "active",
+      "sourceFiles": [
+        "validation/roszman1-whitened-grid-convergence.json",
+        "validation/roszman1-whitened-grid-convergence-protocol-amendment-03.json",
+        "docs/ROSZMAN1_WHITENED_GRID_CONVERGENCE_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -8394,6 +8552,331 @@
     },
     {
       "from": "experiment-roszman1-whitened-cover-grid-protocol",
+      "to": "claim-knowledge-graph",
+      "relation": "tests"
+    },
+    {
+      "from": "track-knowledge",
+      "to": "claim-original-whitened-cover-valid",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-corrected-whitening-exact-global-optimum",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-roszman1-whitened-cover-erratum",
+      "relation": "contains"
+    },
+    {
+      "from": "track-knowledge",
+      "to": "counterexample-whitened-denominator-sign-error",
+      "relation": "contains"
+    },
+    {
+      "from": "track-knowledge",
+      "to": "experiment-roszman1-whitened-cover-erratum-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-whitened-corrected-grid1-unchanged",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-whitened-corrected-fold5-unavailable",
+      "relation": "contains"
+    },
+    {
+      "from": "track-knowledge",
+      "to": "limitation-roszman1-whitened-original-invalid",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-roszman1-whitened-cover-erratum",
+      "to": "claim-original-whitened-cover-valid",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-whitened-cover-erratum-protocol",
+      "to": "claim-original-whitened-cover-valid",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-whitened-denominator-sign-error",
+      "to": "claim-original-whitened-cover-valid",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-whitened-denominator-sign-error",
+      "to": "evidence-roszman1-whitened-cover-grid",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-roszman1-whitened-cover-erratum",
+      "to": "counterexample-whitened-denominator-sign-error",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-whitened-cover-erratum",
+      "to": "claim-corrected-whitening-exact-global-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-whitened-cover-erratum-protocol",
+      "to": "claim-corrected-whitening-exact-global-optimum",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-whitened-corrected-grid1-unchanged",
+      "to": "claim-whitening-alone-tightens",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-roszman1-whitened-cover-erratum",
+      "to": "counterexample-whitened-corrected-grid1-unchanged",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-whitened-corrected-fold5-unavailable",
+      "to": "claim-roszman-fold5-low-rmse-singularity-safe",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-whitened-corrected-fold5-unavailable",
+      "to": "counterexample-whitened-fold5-unavailable",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-whitened-cover-erratum",
+      "to": "counterexample-whitened-corrected-fold5-unavailable",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-whitened-corrected-grid1-unchanged",
+      "to": "limitation-roszman1-whitened-original-invalid",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-roszman1-whitened-original-invalid",
+      "to": "evidence-roszman1-whitened-cover-grid",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-whitened-original-invalid",
+      "to": "evidence-roszman1-whitened-cover-erratum",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-whitened-original-invalid",
+      "to": "claim-corrected-whitening-exact-global-optimum",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-whitened-original-invalid",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-roszman1-whitened-cover-erratum",
+      "to": "evidence-roszman1-ratio-denominator",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-whitened-cover-erratum-protocol",
+      "to": "experiment-roszman1-ratio-denominator-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-whitened-cover-erratum-protocol",
+      "to": "experiment-roszman1-whitened-cover-grid-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-whitened-cover-erratum",
+      "to": "evidence-roszman1-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-whitened-cover-erratum-protocol",
+      "to": "experiment-roszman1-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-whitened-cover-erratum",
+      "to": "counterexample-whitened-boundary-rounding",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-whitened-cover-erratum-protocol",
+      "to": "claim-knowledge-graph",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-whitened-denominator-sign-error",
+      "to": "claim-knowledge-graph",
+      "relation": "tests"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-grid8-convergence-global-optimum",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-outer-vertices-feasible",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-roszman1-whitened-grid-convergence",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-grid8-incremental-not-asymptotic",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-roszman1-whitened-grid-convergence-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-grid8-outside-count-not-zero",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-grid8-fold5-unavailable",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-roszman1-grid8-convergence-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-roszman1-whitened-grid-convergence",
+      "to": "claim-grid8-convergence-global-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-whitened-grid-convergence-protocol",
+      "to": "claim-grid8-convergence-global-optimum",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-grid8-incremental-not-asymptotic",
+      "to": "claim-grid8-convergence-global-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-roszman1-whitened-grid-convergence",
+      "to": "counterexample-grid8-incremental-not-asymptotic",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-whitened-grid-convergence",
+      "to": "claim-outer-vertices-feasible",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-whitened-grid-convergence-protocol",
+      "to": "claim-outer-vertices-feasible",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-grid8-outside-count-not-zero",
+      "to": "claim-grid-cover-exact-global-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-grid8-fold5-unavailable",
+      "to": "claim-roszman-fold5-low-rmse-singularity-safe",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-grid8-fold5-unavailable",
+      "to": "counterexample-whitened-corrected-fold5-unavailable",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-whitened-grid-convergence",
+      "to": "counterexample-grid8-fold5-unavailable",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-whitened-grid-convergence",
+      "to": "counterexample-grid8-outside-count-not-zero",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-grid8-incremental-not-asymptotic",
+      "to": "limitation-roszman1-grid8-convergence-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-grid8-outside-count-not-zero",
+      "to": "limitation-roszman1-grid8-convergence-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-roszman1-grid8-convergence-scope",
+      "to": "evidence-roszman1-whitened-grid-convergence",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-grid8-convergence-scope",
+      "to": "claim-grid8-convergence-global-optimum",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-grid8-convergence-scope",
+      "to": "claim-outer-vertices-feasible",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-grid8-convergence-scope",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-roszman1-whitened-grid-convergence",
+      "to": "evidence-roszman1-whitened-cover-erratum",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-whitened-grid-convergence-protocol",
+      "to": "experiment-roszman1-whitened-cover-erratum-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-whitened-grid-convergence",
+      "to": "evidence-roszman1-ratio-denominator",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-whitened-grid-convergence-protocol",
+      "to": "experiment-roszman1-ratio-denominator-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-whitened-grid-convergence",
+      "to": "evidence-roszman1-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-whitened-grid-convergence-protocol",
+      "to": "experiment-roszman1-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-whitened-grid-convergence-protocol",
       "to": "claim-knowledge-graph",
       "relation": "tests"
     }
