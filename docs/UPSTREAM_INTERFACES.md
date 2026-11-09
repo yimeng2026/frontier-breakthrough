@@ -73,7 +73,8 @@
 | Chwirut1 原生椭球连续分母与保守预测界 | 五折连续分母均为正并生成 22 个原生包络；最大宽度 170.146309，中位宽度 19.222110；214 点中心一致性通过但不是概率覆盖 | `validation/chwirut1-native-ellipsoid-continuous-protocol.json`、`validation/chwirut1-native-ellipsoid-continuous-bounds.json`、`docs/CHWIRUT1_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md` | 提供端点凹凸性和原始非线性包络接口，区分区域证书、信息宽度、中心一致性与外部有效性 |
 | Chwirut1 原生椭球半径敏感性与临界半径 | 五折临界半径为 7.415974 至 16.542845；第 1 折半径 8 不可用，其余 24 案例通过并生成 105 个包络；第二份修订恢复 1070 计数 | `validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol.json`、`validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-02.json`、`validation/chwirut1-native-ellipsoid-radius-sensitivity.json` | 区分几何临界值、网格最大值与信息宽度，保留不可用案例和计数修订链，不选择最优半径或宣称概率覆盖 |
 | Roszman1 原生反正切椭球奇异证书与预测界 | 前四折负号通过并生成 20 个包络，第 5 折临界半径 2.828351 且跨零，5 点不可用；最大宽度 0.867292 | `validation/roszman1-native-ellipsoid-continuous-protocol.json`、`validation/roszman1-native-ellipsoid-continuous-bounds.json`、`docs/ROSZMAN1_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md` | 区分 arctan 有界性、分母存在性、奇异临界半径和中心一致性，不用低 RMSE 绕过奇异检查或宣称概率覆盖 |
-| 主张—证据—反例—实验图谱 | 248 个节点、645 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| ENSO 原生 Fourier 椭球正周期与连续预测包络 | 五折两个周期下界均为正并生成 168 个包络；最小临界半径 26.766839，最大宽度 17.641929，中位宽度 13.164436；中心一致性不是外部验证 | `validation/enso-native-ellipsoid-continuous-protocol.json`、`validation/enso-native-ellipsoid-continuous-bounds.json`、`docs/ENSO_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md` | 提供正周期支撑证书、原始 Fourier 包络和宽度审计；不宣称物理周期、概率覆盖、联合最优界或精确有理证明 |
+| 主张—证据—反例—实验图谱 | 255 个节点、672 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 范围感知外部分析适配层
 

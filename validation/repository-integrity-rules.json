@@ -41,7 +41,8 @@
     "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol.json",
     "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json",
     "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-02.json",
-    "validation/roszman1-native-ellipsoid-continuous-protocol.json"
+    "validation/roszman1-native-ellipsoid-continuous-protocol.json",
+    "validation/enso-native-ellipsoid-continuous-protocol.json"
   ],
   "decision": {
     "external_web_checked": false,

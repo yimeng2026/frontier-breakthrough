@@ -2328,6 +2328,73 @@
         "validation/roszman1-native-ellipsoid-continuous-bounds.json",
         "docs/ROSZMAN1_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-positive-period-proves-physical-period",
+      "kind": "claim",
+      "title": "椭球内两个 Fourier 周期均严格为正即可证明唯一物理周期或新周期机制",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/enso-native-ellipsoid-continuous-bounds.json"
+      ]
+    },
+    {
+      "id": "claim-independent-fourier-envelope-joint-optimum",
+      "kind": "claim",
+      "title": "各 Fourier 系数独立支撑放松求和就是联合参数区域上的最优预测包络",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/enso-native-ellipsoid-continuous-bounds.json",
+        "docs/ENSO_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "evidence-enso-native-ellipsoid-continuous",
+      "kind": "evidence",
+      "title": "五折两个周期下界均为正并生成 168 个包络；最小临界半径 26.766839，最大宽度 17.641929，中心一致性不是外部验证",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-ellipsoid-continuous-bounds.json",
+        "validation/enso-native-ellipsoid-continuous-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-wide-fourier-envelope",
+      "kind": "counterexample",
+      "title": "第 1 折最大包络宽度 17.641929、最大残差上界 14.576766，168 点宽度中位数为 13.164436，有界不等于高信息量",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-ellipsoid-continuous-bounds.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-center-consistency-not-probability",
+      "kind": "counterexample",
+      "title": "168 点中心预测均在包络内且实际残差不越界，但中心本就在椭球内，不能当作概率覆盖或外部科学验证",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-ellipsoid-continuous-bounds.json"
+      ]
+    },
+    {
+      "id": "experiment-enso-native-ellipsoid-continuous-protocol",
+      "kind": "experiment",
+      "title": "冻结九维椭球、两个周期正性支撑、解析临界半径和实际月份三角项包络规则，不用固定周期或 Taylor 替换",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-ellipsoid-continuous-protocol.json",
+        "scripts/analyze_enso_native_ellipsoid_continuous.py"
+      ]
+    },
+    {
+      "id": "limitation-enso-native-ellipsoid-period-scope",
+      "kind": "limitation",
+      "title": "正周期证书只覆盖所选椭球，不识别物理周期；独立放松不是联合最优界，高精度外向数值证书不是精确有理证明，认证前向仍与留出证据分层",
+      "status": "active",
+      "sourceFiles": [
+        "validation/enso-native-ellipsoid-continuous-bounds.json",
+        "docs/ENSO_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -5555,6 +5622,141 @@
       "from": "evidence-roszman1-native-ellipsoid-continuous",
       "to": "counterexample-roszman1-center-consistency-not-probability",
       "relation": "supports"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-positive-period-proves-physical-period",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-independent-fourier-envelope-joint-optimum",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-enso-native-ellipsoid-continuous",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-wide-fourier-envelope",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-center-consistency-not-probability",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-enso-native-ellipsoid-continuous-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-enso-native-ellipsoid-period-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-enso-native-ellipsoid-continuous",
+      "to": "claim-positive-period-proves-physical-period",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-native-ellipsoid-continuous-protocol",
+      "to": "claim-positive-period-proves-physical-period",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-enso-native-ellipsoid-continuous",
+      "to": "claim-finite-bound-high-information",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-native-ellipsoid-continuous-protocol",
+      "to": "claim-finite-bound-high-information",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-enso-wide-fourier-envelope",
+      "to": "claim-finite-bound-high-information",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-enso-native-ellipsoid-continuous",
+      "to": "claim-independent-fourier-envelope-joint-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-native-ellipsoid-continuous-protocol",
+      "to": "claim-independent-fourier-envelope-joint-optimum",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-enso-native-ellipsoid-period-scope",
+      "to": "evidence-enso-native-ellipsoid-continuous",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-enso-native-ellipsoid-period-scope",
+      "to": "claim-positive-period-proves-physical-period",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-enso-native-ellipsoid-period-scope",
+      "to": "claim-independent-fourier-envelope-joint-optimum",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-enso-native-ellipsoid-continuous",
+      "to": "counterexample-enso-wide-fourier-envelope",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-native-ellipsoid-continuous",
+      "to": "counterexample-enso-center-consistency-not-probability",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-enso-center-consistency-not-probability",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-enso-native-ellipsoid-continuous",
+      "to": "evidence-enso-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-native-ellipsoid-continuous-protocol",
+      "to": "experiment-enso-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-native-ellipsoid-continuous",
+      "to": "evidence-native-identifiability-cross-model",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-native-ellipsoid-continuous-protocol",
+      "to": "experiment-native-identifiability-cross-model-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-native-ellipsoid-continuous",
+      "to": "evidence-roszman1-native-ellipsoid-continuous",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-native-ellipsoid-continuous",
+      "to": "counterexample-enso-optimizer-mismatch",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-enso-native-ellipsoid-period-scope",
+      "to": "claim-certified-forward-equals-optimizer-reproduction",
+      "relation": "limits"
     }
   ]
 }

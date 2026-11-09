@@ -107,6 +107,8 @@ def build() -> dict:
     radiusAmendment02 = read("chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-02.json")
     roszman1Ellipsoid = read("roszman1-native-ellipsoid-continuous-bounds.json")
     roszman1EllipsoidCheck = read("roszman1-native-ellipsoid-continuous-check.json")
+    ensoEllipsoid = read("enso-native-ellipsoid-continuous-bounds.json")
+    ensoEllipsoidCheck = read("enso-native-ellipsoid-continuous-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -1096,6 +1098,46 @@ def build() -> dict:
             "limitations": "同号证书只覆盖所选椭球和区间，arctan 有界不消除分母不存在的问题。独立放松可能很宽，中心一致性不等于外部有效性；数值零区和跨零必须保留，高精度外向数值证书不是精确有理证明。" + " ".join(roszman1Ellipsoid["limitations"]),
             "upstreamContribution": "提供四维反正切模型的同号支撑证书、奇异临界半径、原始非线性包络与宽度审计接口，区分 arctan 有界性、分母存在性、中心一致性和概率解释。",
             "snapshotFiles": ["validation/roszman1-native-ellipsoid-continuous-protocol.json", "validation/roszman1-native-ellipsoid-continuous-check.json", "validation/frontier-roszman1-native-ellipsoid-continuous-word.json"],
+        },
+        {
+            "id": "enso-native-ellipsoid-continuous-bounds", "domain": "physics", "title": "ENSO 原生 Fourier 椭球正周期与连续预测包络",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/ENSO.dat"],
+            "metrics": {
+                "totals": ensoEllipsoid["totals"],
+                "folds": [{
+                    "fold": fold["fold"],
+                    "nativeTestRmse": fold["native_test_rmse"],
+                    "criticalPeriod": fold["critical_period"],
+                    "negativeControl": fold["negative_control"],
+                    "periodCertificate": fold["period_certificate"],
+                    "predictionEnvelopeAvailable": fold["prediction_envelope_available"],
+                    "unavailableReason": fold["unavailable_reason"],
+                    "envelopes": fold["envelopes"],
+                    "coverage": fold["coverage"],
+                    "maxEnvelopeWidth": fold["max_envelope_width"],
+                    "medianEnvelopeWidth": fold["median_envelope_width"],
+                    "maxResidualUpperBound": fold["max_residual_upper_bound"],
+                    "medianResidualUpperBound": fold["median_residual_upper_bound"],
+                } for fold in ensoEllipsoid["folds"]],
+                "parameterStability": ensoEllipsoid["parameter_stability"],
+                "knownAnswer": ensoEllipsoid["known_answer"],
+                "analysisScope": ensoEllipsoid["analysis_scope"],
+                "decision": ensoEllipsoid["decision"],
+                "implementation": {
+                    "protocolSha256": ensoEllipsoid["protocol_sha256"],
+                    "summarySha256": ensoEllipsoidCheck["summarySha256"],
+                    "analysisRunnerSha256": ensoEllipsoidCheck["analysisRunnerSha256"],
+                    "figureSha256": ensoEllipsoidCheck["figureSha256"],
+                    "reportSha256": ensoEllipsoidCheck["reportSha256"],
+                    "wordSha256": ensoEllipsoidCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "dbadf55"},
+            },
+            "scientificClaim": "五折在半径 4 的显式九维椭球内均通过两个 Fourier 周期的严格正性检查，生成 168 个使用实际月份三角项的保守包络。最小正周期临界半径为第 4 折 b4 的 26.766839；最大包络宽度为 17.641929，中位宽度为 13.164436。168 点中心一致性通过但不是概率覆盖、外部验证或物理周期证明。",
+            "limitations": "正周期只保证原生 Fourier 表达式在选定区域有定义，不证明周期唯一、内生或具有新物理机制。独立系数放松不是联合最优包络，宽界不必然高信息量；中心一致性不是外部有效性，高精度外向数值证书不是精确有理证明。" + " ".join(ensoEllipsoid["limitations"]),
+            "upstreamContribution": "提供九参数 Fourier 模型的双周期正性支撑证书、解析临界半径、实际月份包络及信息宽度接口，分离形式有界、联合最优性、物理周期、中心一致性和概率解释。",
+            "snapshotFiles": ["validation/enso-native-ellipsoid-continuous-protocol.json", "validation/enso-native-ellipsoid-continuous-check.json", "validation/frontier-enso-native-ellipsoid-continuous-word.json"],
         },
     ]
     packet = {

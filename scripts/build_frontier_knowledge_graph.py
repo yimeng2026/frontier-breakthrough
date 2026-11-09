@@ -96,6 +96,9 @@ def build_graph(root):
     roszman1Ellipsoid = json.loads((root / "validation/roszman1-native-ellipsoid-continuous-bounds.json").read_text(encoding="utf-8"))
     if roszman1Ellipsoid["totals"]["fold_count"] != 5 or roszman1Ellipsoid["totals"]["held_out_point_count"] != 25 or roszman1Ellipsoid["totals"]["unique_x_count"] != 25 or roszman1Ellipsoid["totals"]["certified_fold_count"] != 4 or roszman1Ellipsoid["totals"]["certified_fold_ids"] != [1, 2, 3, 4] or roszman1Ellipsoid["totals"]["unavailable_fold_ids"] != [5] or roszman1Ellipsoid["totals"]["available_point_count"] != 20 or roszman1Ellipsoid["totals"]["covered_point_count"] != 20 or roszman1Ellipsoid["totals"]["violation_point_count"] != 0 or roszman1Ellipsoid["totals"]["unavailable_point_count"] != 5 or roszman1Ellipsoid["totals"]["center_prediction_envelope_mismatch_count"] != 0 or roszman1Ellipsoid["totals"]["minimum_critical_sign_radius"] != 2.828350890156889 or roszman1Ellipsoid["totals"]["minimum_critical_sign_radius_fold"] != 5 or roszman1Ellipsoid["totals"]["max_envelope_width"] != 0.867292251653464 or roszman1Ellipsoid["totals"]["median_envelope_width"] != 0.3543650116278472 or roszman1Ellipsoid["analysis_scope"]["probability_region"] or roszman1Ellipsoid["decision"]["center_consistency_used_as_external_validation"]:
         raise ValueError("Expected Roszman1 singularity certificates, crossing and center-scope boundaries are not present")
+    ensoEllipsoid = json.loads((root / "validation/enso-native-ellipsoid-continuous-bounds.json").read_text(encoding="utf-8"))
+    if ensoEllipsoid["totals"]["fold_count"] != 5 or ensoEllipsoid["totals"]["held_out_point_count"] != 168 or ensoEllipsoid["totals"]["unique_month_count"] != 168 or ensoEllipsoid["totals"]["unique_envelope_count"] != 168 or ensoEllipsoid["totals"]["certified_fold_count"] != 5 or ensoEllipsoid["totals"]["certified_fold_ids"] != [1, 2, 3, 4, 5] or ensoEllipsoid["totals"]["unavailable_fold_ids"] or ensoEllipsoid["totals"]["available_point_count"] != 168 or ensoEllipsoid["totals"]["covered_point_count"] != 168 or ensoEllipsoid["totals"]["violation_point_count"] != 0 or ensoEllipsoid["totals"]["unavailable_point_count"] != 0 or ensoEllipsoid["totals"]["center_prediction_envelope_mismatch_count"] != 0 or ensoEllipsoid["totals"]["minimum_critical_period_radius"] != 26.76683884611663 or ensoEllipsoid["totals"]["minimum_critical_period_radius_fold"] != 4 or ensoEllipsoid["totals"]["minimum_critical_period_parameter"] != "b4" or ensoEllipsoid["totals"]["max_envelope_width"] != 17.64192935677042 or ensoEllipsoid["totals"]["median_envelope_width"] != 13.164436414771593 or ensoEllipsoid["totals"]["max_residual_upper_bound"] != 14.576765863967406 or ensoEllipsoid["totals"]["median_residual_upper_bound"] != 8.516811559710845 or ensoEllipsoid["analysis_scope"]["probability_region"] or ensoEllipsoid["analysis_scope"]["taylor_or_fixed_period_approximation"] or ensoEllipsoid["analysis_scope"]["exact_rational_certificate"] or ensoEllipsoid["decision"]["center_consistency_used_as_external_validation"] or ensoEllipsoid["known_answer"]["optimizer_within_certified_tolerances"] or not ensoEllipsoid["known_answer"]["certified_forward_rss_check_passed"] or any(not fold["negative_control"]["half_radius_accepted"] or not fold["negative_control"]["exact_radius_rejected"] for fold in ensoEllipsoid["folds"]):
+        raise ValueError("Expected ENSO positive-period certificates, envelope width and known-answer boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -1040,6 +1043,44 @@ def build_graph(root):
         edge("counterexample-roszman1-fold1-wide-envelope", "limitation-roszman1-native-no-bounds", "supports"),
         edge("counterexample-roszman1-center-consistency-not-probability", "claim-center-coverage-external-validation", "contradicts"),
         edge("evidence-roszman1-native-ellipsoid-continuous", "counterexample-roszman1-center-consistency-not-probability", "supports"),
+    ])
+    nodes.extend([
+        node("claim-positive-period-proves-physical-period", "claim", "椭球内两个 Fourier 周期均严格为正即可证明唯一物理周期或新周期机制", "falsified", ["validation/enso-native-ellipsoid-continuous-bounds.json"]),
+        node("claim-independent-fourier-envelope-joint-optimum", "claim", "各 Fourier 系数独立支撑放松求和就是联合参数区域上的最优预测包络", "falsified", ["validation/enso-native-ellipsoid-continuous-bounds.json", "docs/ENSO_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md"]),
+        node("evidence-enso-native-ellipsoid-continuous", "evidence", "五折两个周期下界均为正并生成 168 个包络；最小临界半径 26.766839，最大宽度 17.641929，中心一致性不是外部验证", "supported", ["validation/enso-native-ellipsoid-continuous-bounds.json", "validation/enso-native-ellipsoid-continuous-check.json"]),
+        node("counterexample-enso-wide-fourier-envelope", "counterexample", "第 1 折最大包络宽度 17.641929、最大残差上界 14.576766，168 点宽度中位数为 13.164436，有界不等于高信息量", "supported", ["validation/enso-native-ellipsoid-continuous-bounds.json"]),
+        node("counterexample-enso-center-consistency-not-probability", "counterexample", "168 点中心预测均在包络内且实际残差不越界，但中心本就在椭球内，不能当作概率覆盖或外部科学验证", "supported", ["validation/enso-native-ellipsoid-continuous-bounds.json"]),
+        node("experiment-enso-native-ellipsoid-continuous-protocol", "experiment", "冻结九维椭球、两个周期正性支撑、解析临界半径和实际月份三角项包络规则，不用固定周期或 Taylor 替换", "supported", ["validation/enso-native-ellipsoid-continuous-protocol.json", "scripts/analyze_enso_native_ellipsoid_continuous.py"]),
+        node("limitation-enso-native-ellipsoid-period-scope", "limitation", "正周期证书只覆盖所选椭球，不识别物理周期；独立放松不是联合最优界，高精度外向数值证书不是精确有理证明，认证前向仍与留出证据分层", "active", ["validation/enso-native-ellipsoid-continuous-bounds.json", "docs/ENSO_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-positive-period-proves-physical-period", "contains"),
+        edge("track-holdout", "claim-independent-fourier-envelope-joint-optimum", "contains"),
+        edge("track-holdout", "evidence-enso-native-ellipsoid-continuous", "contains"),
+        edge("track-holdout", "counterexample-enso-wide-fourier-envelope", "contains"),
+        edge("track-holdout", "counterexample-enso-center-consistency-not-probability", "contains"),
+        edge("track-holdout", "experiment-enso-native-ellipsoid-continuous-protocol", "contains"),
+        edge("track-holdout", "limitation-enso-native-ellipsoid-period-scope", "contains"),
+        edge("evidence-enso-native-ellipsoid-continuous", "claim-positive-period-proves-physical-period", "contradicts"),
+        edge("experiment-enso-native-ellipsoid-continuous-protocol", "claim-positive-period-proves-physical-period", "tests"),
+        edge("evidence-enso-native-ellipsoid-continuous", "claim-finite-bound-high-information", "contradicts"),
+        edge("experiment-enso-native-ellipsoid-continuous-protocol", "claim-finite-bound-high-information", "tests"),
+        edge("counterexample-enso-wide-fourier-envelope", "claim-finite-bound-high-information", "contradicts"),
+        edge("evidence-enso-native-ellipsoid-continuous", "claim-independent-fourier-envelope-joint-optimum", "contradicts"),
+        edge("experiment-enso-native-ellipsoid-continuous-protocol", "claim-independent-fourier-envelope-joint-optimum", "tests"),
+        edge("limitation-enso-native-ellipsoid-period-scope", "evidence-enso-native-ellipsoid-continuous", "limits"),
+        edge("limitation-enso-native-ellipsoid-period-scope", "claim-positive-period-proves-physical-period", "limits"),
+        edge("limitation-enso-native-ellipsoid-period-scope", "claim-independent-fourier-envelope-joint-optimum", "limits"),
+        edge("evidence-enso-native-ellipsoid-continuous", "counterexample-enso-wide-fourier-envelope", "supports"),
+        edge("evidence-enso-native-ellipsoid-continuous", "counterexample-enso-center-consistency-not-probability", "supports"),
+        edge("counterexample-enso-center-consistency-not-probability", "claim-center-coverage-external-validation", "contradicts"),
+        edge("evidence-enso-native-ellipsoid-continuous", "evidence-enso-native-identifiability", "supports"),
+        edge("experiment-enso-native-ellipsoid-continuous-protocol", "experiment-enso-native-identifiability-protocol", "supports"),
+        edge("evidence-enso-native-ellipsoid-continuous", "evidence-native-identifiability-cross-model", "supports"),
+        edge("experiment-enso-native-ellipsoid-continuous-protocol", "experiment-native-identifiability-cross-model-protocol", "supports"),
+        edge("evidence-enso-native-ellipsoid-continuous", "evidence-roszman1-native-ellipsoid-continuous", "supports"),
+        edge("evidence-enso-native-ellipsoid-continuous", "counterexample-enso-optimizer-mismatch", "supports"),
+        edge("limitation-enso-native-ellipsoid-period-scope", "claim-certified-forward-equals-optimizer-reproduction", "limits"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 
