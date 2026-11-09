@@ -1,0 +1,37 @@
+{
+  "status": "frozen_before_chwirut1_native_ellipsoid_radius_sensitivity_count_correction_v2",
+  "frozen_at_local": "2026-11-09T11:36:01+08:00",
+  "amendment_id": "chwirut1-native-ellipsoid-radius-sensitivity-amendment-02",
+  "original_protocol": {
+    "file": "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol.json",
+    "sha256": "3cff6b5096eb9dea0ec90750cb73f2d07cacc322c7c449fa510c7d1248adde3a"
+  },
+  "superseded_amendment": {
+    "file": "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json",
+    "sha256": "03488e9dab8dfc90c7ae35a20806944645c142589080967462c681d17df191b3",
+    "status": "preserved_for_history_but_not_used"
+  },
+  "correction": {
+    "field": "expected_structure.maximum_point_evaluations and grid_rule.maximum_point_evaluations",
+    "original_protocol_value": 1070,
+    "amendment_01_incorrect_value": 5350,
+    "corrected_value": 1070,
+    "formula": "5 radii * (57+54+51+23+29) fold-specific held-out observations = 1070 evaluations",
+    "reason": "Amendment 01 incorrectly treated every fold-radius case as if it contained all 214 observations. Each case contains only its own fold's observations, so the original protocol count was correct",
+    "unchanged_maximum_envelope_evaluations": 110
+  },
+  "preservation_rule": {
+    "original_protocol_file_unchanged": true,
+    "amendment_01_file_preserved_but_superseded": true,
+    "radii_folds_centers_covariances_and_critical_rules_unchanged": true,
+    "baseline_bounds_unchanged": true,
+    "no_model_or_radius_change_after_results": true
+  },
+  "decision": {
+    "radii_changed": false,
+    "models_changed": false,
+    "original_protocol_file_modified": false,
+    "amendment_01_file_modified": false,
+    "correction_hidden": false
+  }
+}
