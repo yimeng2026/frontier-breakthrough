@@ -85,6 +85,11 @@ def build_graph(root):
     externalScopeAmendment = json.loads((root / "validation/external-scope-limitations-amendment-01-audit.json").read_text(encoding="utf-8"))
     ensoCoverage = json.loads((root / "validation/enso-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     ensoProtocol = json.loads((root / "validation/enso-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
+    ensoNativeHoldout = json.loads((root / "validation/enso-native-holdout.json").read_text(encoding="utf-8"))
+    ensoNativeProtocol = json.loads((root / "validation/enso-native-holdout-protocol.json").read_text(encoding="utf-8"))
+    ensoNativeAmendment = json.loads((root / "validation/enso-native-holdout-protocol-amendment-01.json").read_text(encoding="utf-8"))
+    if ensoNativeHoldout["totals"]["point_count"] != 168 or ensoNativeHoldout["totals"]["native_optimizer_failure_count"] != 0 or ensoNativeHoldout["totals"]["native_better_than_rational_fold_count"] != 4 or ensoNativeHoldout["totals"]["rational_better_than_native_fold_count"] != 1 or ensoNativeHoldout["known_answer"]["within_certified_tolerances"] or not ensoNativeHoldout["known_answer"]["certified_forward_rss_check_passed"] or ensoNativeHoldout["known_answer"]["original_tolerances_relaxed"] or ensoNativeHoldout["known_answer"]["optimizer_mismatch_hidden"] or ensoNativeHoldout["folds"][0]["native_test_metrics"]["rmse"] <= ensoNativeHoldout["folds"][0]["rational_candidate_test_metrics"]["rmse"] or ensoNativeHoldout["folds"][4]["native_test_metrics"]["rmse"] >= ensoNativeHoldout["folds"][4]["rational_candidate_test_metrics"]["rmse"] or ensoNativeHoldout["decision"]["rational_bounds_transferred_to_native"]:
+        raise ValueError("Expected ENSO native fold comparison and optimizer/forward evidence separation are not present")
     if ensoCoverage["totals"]["point_count"] != 168 or ensoCoverage["totals"]["ellipsoid_available_point_count"] != 135 or ensoCoverage["totals"]["coverage_violation_count"] != 0 or ensoCoverage["totals"]["continuous_safe_fold_count"] != 4 or ensoCoverage["totals"]["independent_box_continuous_safe_fold_count"] != 3 or ensoCoverage["totals"]["tighter_point_count"] != 131 or ensoCoverage["totals"]["looser_point_count"] != 0 or ensoCoverage["folds"][4]["test_metrics"]["rmse"] >= ensoCoverage["folds"][4]["baseline_test_metrics"]["rmse"] or any(point.get("ellipsoid_available", False) for point in ensoCoverage["folds"][4]["point_results"]) or not ensoCoverage["analysis_scope"]["dataset_specific_scope_text"] or ensoCoverage["analysis_scope"]["scope_adapter_sha256"] != ensoProtocol["implementation_rule"]["scope_adapter_sha256"]:
         raise ValueError("Expected ENSO prediction-proof dissociation and scoped adapter provenance are not present")
     if externalScopeAmendment["correction_count"] != 3 or externalScopeAmendment["numeric_results_modified"] or not externalScopeAmendment["original_files_preserved"] or externalScopeAmendment["dataset_ids"] != ["mgh17", "gauss1", "misra1a"]:
@@ -588,6 +593,37 @@ def build_graph(root):
         edge("evidence-roszman1-native-identifiability", "limitation-roszman1-native-no-bounds", "supports"),
         edge("evidence-roszman1-native-identifiability", "claim-rational-bounds-transfer-native", "contradicts"),
         edge("experiment-roszman1-native-identifiability-protocol", "claim-prediction-stability-parameter-uniqueness", "tests"),
+    ])
+    nodes.extend([
+        node("claim-certified-forward-equals-optimizer-reproduction", "claim", "认证参数直接代入通过即可证明优化器已在同一容差内复现认证参数", "falsified", ["validation/enso-native-holdout.json", "validation/enso-native-holdout-protocol-amendment-01.json"]),
+        node("evidence-enso-native-holdout", "evidence", "ENSO 原生在第 2—5 折 RMSE 更低，第 1 折有理更低；默认 LM 未达原容差而认证前向通过", "supported", ["validation/enso-native-holdout.json"]),
+        node("counterexample-enso-native-fold1-rational-better", "counterexample", "ENSO 第 1 折原生 RMSE 为 3.448449，高于有理候选的 2.723813，不能写成所有折原生更优", "supported", ["validation/enso-native-holdout.json"]),
+        node("counterexample-enso-optimizer-mismatch", "counterexample", "默认 LM 的 b8 相对偏差约 0.000634 且 RSS 超出原容差，但认证参数直接代入通过", "supported", ["validation/enso-native-holdout.json", "validation/enso-native-holdout-protocol-amendment-01.json"]),
+        node("experiment-enso-native-holdout-protocol", "experiment", "冻结九参数起点、五段月份和失败规则，并保留优化器未达标后冻结的认证前向修订", "supported", ["validation/enso-native-holdout-protocol.json", "validation/enso-native-holdout-protocol-amendment-01.json", "scripts/analyze_enso_native_holdout.py"]),
+        node("limitation-enso-native-period-and-bounds", "limitation", "多数折预测更低不等于全域排名或原生误差界，周期参数随折变化也不证明新周期机制", "active", ["validation/enso-native-holdout.json"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-certified-forward-equals-optimizer-reproduction", "contains"),
+        edge("track-holdout", "evidence-enso-native-holdout", "contains"),
+        edge("track-holdout", "counterexample-enso-native-fold1-rational-better", "contains"),
+        edge("track-holdout", "counterexample-enso-optimizer-mismatch", "contains"),
+        edge("track-holdout", "experiment-enso-native-holdout-protocol", "contains"),
+        edge("track-holdout", "limitation-enso-native-period-and-bounds", "contains"),
+        edge("evidence-enso-native-holdout", "claim-model-family-fold-independent-winner", "contradicts"),
+        edge("counterexample-enso-native-fold1-rational-better", "claim-model-family-fold-independent-winner", "contradicts"),
+        edge("evidence-enso-native-holdout", "counterexample-enso-native-fold1-rational-better", "supports"),
+        edge("experiment-enso-native-holdout-protocol", "claim-model-family-fold-independent-winner", "tests"),
+        edge("evidence-enso-native-holdout", "claim-certified-forward-equals-optimizer-reproduction", "contradicts"),
+        edge("counterexample-enso-optimizer-mismatch", "claim-certified-forward-equals-optimizer-reproduction", "contradicts"),
+        edge("evidence-enso-native-holdout", "counterexample-enso-optimizer-mismatch", "supports"),
+        edge("experiment-enso-native-holdout-protocol", "claim-certified-forward-equals-optimizer-reproduction", "tests"),
+        edge("limitation-enso-native-period-and-bounds", "evidence-enso-native-holdout", "limits"),
+        edge("evidence-enso-native-holdout", "evidence-enso-prediction-proof-dissociation", "supports"),
+        edge("experiment-enso-native-holdout-protocol", "experiment-enso-scoped-prospective-protocol", "supports"),
+        edge("evidence-enso-native-holdout", "claim-nist-reproduction", "supports"),
+        edge("experiment-enso-native-holdout-protocol", "claim-nist-reproduction", "tests"),
+        edge("evidence-enso-native-holdout", "evidence-roszman1-native-holdout", "supports"),
+        edge("limitation-enso-native-period-and-bounds", "evidence-enso-prediction-proof-dissociation", "limits"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

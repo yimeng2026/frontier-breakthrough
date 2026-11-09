@@ -78,6 +78,9 @@ def build() -> dict:
     externalScopeAmendment = read("external-scope-limitations-amendment-01-audit.json")
     ensoCoverage = read("enso-ellipsoid-coverage.json")
     ensoProtocol = read("enso-ellipsoid-coverage-protocol.json")
+    ensoNativeHoldout = read("enso-native-holdout.json")
+    ensoNativeProtocol = read("enso-native-holdout-protocol.json")
+    ensoNativeAmendment = read("enso-native-holdout-protocol-amendment-01.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -650,6 +653,26 @@ def build() -> dict:
             "limitations": "解析雅可比、局部标准误、相关矩阵和 Delta-method 敏感度只描述冻结拟合附近，不是全局可识别性、概率区间、物理内生性或独立实验。" + " ".join(nativeIdentifiability["limitations"]),
             "upstreamContribution": "将解析雅可比、局部秩、条件数、参数补偿、逐折参数范围和留出敏感度连接到原生预测对照，阻止把预测稳定升级为参数唯一性证明。",
             "snapshotFiles": ["validation/roszman1-native-identifiability-protocol.json", "validation/roszman1-native-identifiability.json", "validation/frontier-roszman1-native-identifiability-word.json"],
+        },
+        {
+            "id": "enso-native-holdout-comparison", "domain": "physics", "title": "ENSO 原生 Fourier 与有理候选的同折预测及已知答案分层审计",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/ENSO.dat"],
+            "metrics": {
+                "totals": ensoNativeHoldout["totals"],
+                "folds": [{"fold": case["fold"], "optimizerSuccess": case["optimizer_success"], "nativeTestMetrics": case["native_test_metrics"], "rationalCandidateTestMetrics": case["rational_candidate_test_metrics"], "cubicBaselineTestMetrics": case["cubic_baseline_test_metrics"], "nativeBetterThanRational": case["native_better_than_rational"], "nativeBetterThanCubicBaseline": case["native_better_than_cubic_baseline"], "b4": case["native_parameters"]["b4"], "b7": case["native_parameters"]["b7"]} for case in ensoNativeHoldout["folds"]],
+                "pooled": ensoNativeHoldout["pooled"],
+                "periodStability": {name: ensoNativeHoldout["parameter_stability"][name] for name in ["b4", "b7"]},
+                "knownAnswer": {"optimizerRss": ensoNativeHoldout["known_answer"]["rss"], "certifiedRss": ensoNativeHoldout["known_answer"]["certified_rss"], "optimizerWithinOriginalTolerances": ensoNativeHoldout["known_answer"]["within_certified_tolerances"], "certifiedForwardRss": ensoNativeHoldout["known_answer"]["certified_forward_rss"], "certifiedForwardRssCheckPassed": ensoNativeHoldout["known_answer"]["certified_forward_rss_check_passed"], "certifiedForwardEvidenceClass": ensoNativeHoldout["known_answer"]["certified_forward_evidence_class"], "originalTolerancesRelaxed": ensoNativeHoldout["known_answer"]["original_tolerances_relaxed"], "optimizerMismatchHidden": ensoNativeHoldout["known_answer"]["optimizer_mismatch_hidden"]},
+                "analysisScope": ensoNativeHoldout["analysis_scope"],
+                "decision": ensoNativeHoldout["decision"],
+                "implementation": {"protocolSha256": ensoNativeHoldout["protocol_sha256"], "dataSha256": ensoNativeHoldout["data_sha256"], "candidateInputSha256": ensoNativeHoldout["candidate_input_sha256"], "analysisRunnerSha256": ensoNativeHoldout["analysis_runner_sha256"], "amendmentSha256": ensoNativeHoldout["known_answer"]["amendment_sha256"]},
+                "protocolCommits": {"protocol": "e1788f9", "diagnosticAmendment": "c2107bd", "results": "1e64be8"},
+            },
+            "scientificClaim": "原生 Fourier 模型在第 2、3、4、5 折 RMSE 更低，第 1 折有理候选更低；168 点汇总 RMSE 分别为 2.746295 和 3.433737。默认 LM 全数据复现未达原容差，但认证参数直接代入通过原 RSS 容差，两类已知答案证据不可合并。b4、b7 的范围分别为 3.126309 和 1.946067 个月。",
+            "limitations": "多数折更低不是全域模型排名；认证前向通过不等于优化器复现达标，周期变化不等于新周期机制。原生模型没有继承有理证明区域或概率校准。" + " ".join(ensoNativeHoldout["limitations"]),
+            "upstreamContribution": "把原生周期模型逐折胜负、优化器未达标、认证前向复核、周期变化和证明区域分离接入同一接口，并与 Roszman1 形成跨模型对照。",
+            "snapshotFiles": ["validation/enso-native-holdout-protocol.json", "validation/enso-native-holdout-protocol-amendment-01.json", "validation/enso-native-holdout.json", "validation/frontier-enso-native-holdout-word.json"],
         },
     ]
     packet = {

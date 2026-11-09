@@ -45,7 +45,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "roszman1_native_identifiability":
+    if REPORT_MODE == "enso_native_holdout":
+        replacements = {
+            "图：`papers/41_ENSO原生周期对照/fig41_enso_native_holdout.png`。": "![](papers/41_ENSO原生周期对照/fig41_enso_native_holdout.png)\n\n**图 41｜ENSO 原生 Fourier 与有理候选同折对照（第 1 幅，共 1 幅）**  \n**插入位置**：§5「图件与跨模型比较」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "168 个相同留出点、五折周期模型对照与证明边界"
+    elif REPORT_MODE == "roszman1_native_identifiability":
         replacements = {
             "图：`papers/40_Roszman1原生参数可识别性/fig40_roszman1_native_identifiability.png`。": "![](papers/40_Roszman1原生参数可识别性/fig40_roszman1_native_identifiability.png)\n\n**图 40｜Roszman1 原生参数局部可识别性与稳定性（第 1 幅，共 1 幅）**  \n**插入位置**：§5「图件与解释边界」；顺序第 1 幅，共 1 幅。",
         }

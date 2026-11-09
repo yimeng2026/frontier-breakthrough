@@ -1596,6 +1596,64 @@
       "sourceFiles": [
         "validation/roszman1-native-identifiability.json"
       ]
+    },
+    {
+      "id": "claim-certified-forward-equals-optimizer-reproduction",
+      "kind": "claim",
+      "title": "认证参数直接代入通过即可证明优化器已在同一容差内复现认证参数",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/enso-native-holdout.json",
+        "validation/enso-native-holdout-protocol-amendment-01.json"
+      ]
+    },
+    {
+      "id": "evidence-enso-native-holdout",
+      "kind": "evidence",
+      "title": "ENSO 原生在第 2—5 折 RMSE 更低，第 1 折有理更低；默认 LM 未达原容差而认证前向通过",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-holdout.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-native-fold1-rational-better",
+      "kind": "counterexample",
+      "title": "ENSO 第 1 折原生 RMSE 为 3.448449，高于有理候选的 2.723813，不能写成所有折原生更优",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-holdout.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-optimizer-mismatch",
+      "kind": "counterexample",
+      "title": "默认 LM 的 b8 相对偏差约 0.000634 且 RSS 超出原容差，但认证参数直接代入通过",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-holdout.json",
+        "validation/enso-native-holdout-protocol-amendment-01.json"
+      ]
+    },
+    {
+      "id": "experiment-enso-native-holdout-protocol",
+      "kind": "experiment",
+      "title": "冻结九参数起点、五段月份和失败规则，并保留优化器未达标后冻结的认证前向修订",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-holdout-protocol.json",
+        "validation/enso-native-holdout-protocol-amendment-01.json",
+        "scripts/analyze_enso_native_holdout.py"
+      ]
+    },
+    {
+      "id": "limitation-enso-native-period-and-bounds",
+      "kind": "limitation",
+      "title": "多数折预测更低不等于全域排名或原生误差界，周期参数随折变化也不证明新周期机制",
+      "status": "active",
+      "sourceFiles": [
+        "validation/enso-native-holdout.json"
+      ]
     }
   ],
   "edges": [
@@ -3408,6 +3466,111 @@
       "from": "experiment-roszman1-native-identifiability-protocol",
       "to": "claim-prediction-stability-parameter-uniqueness",
       "relation": "tests"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-certified-forward-equals-optimizer-reproduction",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-enso-native-holdout",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-native-fold1-rational-better",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-optimizer-mismatch",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-enso-native-holdout-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-enso-native-period-and-bounds",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-enso-native-holdout",
+      "to": "claim-model-family-fold-independent-winner",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-enso-native-fold1-rational-better",
+      "to": "claim-model-family-fold-independent-winner",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-enso-native-holdout",
+      "to": "counterexample-enso-native-fold1-rational-better",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-native-holdout-protocol",
+      "to": "claim-model-family-fold-independent-winner",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-enso-native-holdout",
+      "to": "claim-certified-forward-equals-optimizer-reproduction",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-enso-optimizer-mismatch",
+      "to": "claim-certified-forward-equals-optimizer-reproduction",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-enso-native-holdout",
+      "to": "counterexample-enso-optimizer-mismatch",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-native-holdout-protocol",
+      "to": "claim-certified-forward-equals-optimizer-reproduction",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-enso-native-period-and-bounds",
+      "to": "evidence-enso-native-holdout",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-enso-native-holdout",
+      "to": "evidence-enso-prediction-proof-dissociation",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-native-holdout-protocol",
+      "to": "experiment-enso-scoped-prospective-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-native-holdout",
+      "to": "claim-nist-reproduction",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-native-holdout-protocol",
+      "to": "claim-nist-reproduction",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-enso-native-holdout",
+      "to": "evidence-roszman1-native-holdout",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-enso-native-period-and-bounds",
+      "to": "evidence-enso-prediction-proof-dissociation",
+      "relation": "limits"
     }
   ]
 }
