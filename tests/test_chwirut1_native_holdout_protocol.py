@@ -15,7 +15,10 @@ class Chwirut1NativeHoldoutProtocolTests(unittest.TestCase):
             "4": [3.75, 4.0, 4.25, 4.75],
             "5": [5.0, 5.25, 5.75, 6.0],
         })
-        self.assertEqual(protocol["fold_rule"]["observation_counts"], [54, 54, 51, 23, 32])
+        amendment = json.loads((root / "validation/chwirut1-native-holdout-protocol-amendment-01.json").read_text(encoding="utf-8"))
+        self.assertEqual(amendment["original_protocol"]["sha256"], "735228da3c0eb4729b922d8e312b59844030a63ba360d502068bca28da695237")
+        self.assertEqual(amendment["correction"]["corrected_observation_counts"], [57, 54, 51, 23, 29])
+        self.assertFalse(amendment["decision"]["fold_assignments_changed"])
         self.assertTrue(protocol["dataset_scope"]["related_prior_dataset"]["same_native_model_family"])
         self.assertFalse(protocol["decision"]["independent_model_family_claimed"])
 

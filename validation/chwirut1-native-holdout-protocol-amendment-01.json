@@ -1,0 +1,30 @@
+{
+  "status": "frozen_before_chwirut1_native_holdout_metadata_correction",
+  "frozen_at_local": "2026-11-09T08:33:54+08:00",
+  "amendment_id": "chwirut1-native-holdout-amendment-01",
+  "original_protocol": {
+    "file": "validation/chwirut1-native-holdout-protocol.json",
+    "sha256": "735228da3c0eb4729b922d8e312b59844030a63ba360d502068bca28da695237"
+  },
+  "correction": {
+    "field": "fold_rule.observation_counts",
+    "original_observation_counts": [54, 54, 51, 23, 32],
+    "corrected_observation_counts": [57, 54, 51, 23, 29],
+    "source": "Counts recomputed from validation/chwirut1-ellipsoid-coverage.json folds[*].point_results",
+    "total_observations": 214,
+    "reason": "The original metadata estimate did not match the frozen candidate output; the correction preserves the original protocol and all scientific choices"
+  },
+  "preservation_rule": {
+    "original_protocol_file_unchanged": true,
+    "unique_distance_groups_unchanged": true,
+    "native_model_starts_optimizer_and_tolerances_unchanged": true,
+    "repeated_observations_preserved": true,
+    "no_fold_or_model_change_after_results": true
+  },
+  "decision": {
+    "fold_assignments_changed": false,
+    "repeated_observations_changed": false,
+    "original_protocol_file_modified": false,
+    "correction_hidden": false
+  }
+}
