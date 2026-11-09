@@ -1,0 +1,68 @@
+{
+  "status": "frozen_before_native_cross_dataset_synthesis",
+  "frozen_at_local": "2026-11-09T09:24:11+08:00",
+  "analysis_type": "Read-only post-hoc synthesis of three frozen native-versus-rational holdout comparisons; no refitting, retuning, new data or new experiment",
+  "inputs": {
+    "roszman1": {
+      "file": "validation/roszman1-native-holdout.json",
+      "sha256": "c8678e4635a23a9bf7a59233259c48c4307911df4dd50cf6e102cc8cb975e90e",
+      "fold_count": 5,
+      "point_count": 25
+    },
+    "enso": {
+      "file": "validation/enso-native-holdout.json",
+      "sha256": "b66ac7b4e8937418d1a27e87f6d9967430d73bac86a163c659a9df24485c4563",
+      "fold_count": 5,
+      "point_count": 168
+    },
+    "chwirut1": {
+      "file": "validation/chwirut1-native-holdout.json",
+      "sha256": "e030dea90416195326b92b78824a030f01a0ab2525f9b215cf7c094077a8ce88",
+      "fold_count": 5,
+      "point_count": 214
+    }
+  },
+  "rules": {
+    "primary_fold_metric": "RMSE exactly as recomputed from each frozen fold's held-out point predictions",
+    "secondary_fold_metrics": [
+      "MAE",
+      "maximum absolute residual"
+    ],
+    "fold_comparison": "Compare native and frozen rational-candidate RMSE within the same dataset and fold; exact equality is a tie, not a win",
+    "overall_fold_winner": "Compare native, frozen rational-candidate and frozen cubic-baseline RMSE within the same dataset and fold; retain exact ties",
+    "point_comparison": "Compare native and rational absolute residuals for the same stored observation; exact equality is a tie and no unavailable prediction may be discarded",
+    "ratio": "Native RMSE divided by rational-candidate RMSE within the same dataset and fold; all inputs must be finite and positive",
+    "metric_disagreement": "Retain folds where native-versus-rational direction under RMSE differs from direction under MAE or maximum absolute residual",
+    "point_fold_disagreement": "Retain folds where the unweighted majority of pointwise absolute-residual winners differs from the fold RMSE winner; ties exclude a fold from this diagnostic rather than forcing disagreement",
+    "dataset_pooling": "Within each dataset only, recompute native and rational metrics from all stored held-out point predictions and compare them with the frozen pooled metrics",
+    "cross_dataset_pooling": "Do not pool residuals, squared errors, RMSE, MAE or parameter values across datasets with different units and observation designs",
+    "descriptive_counts": "Fold-win and point-win counts may be displayed across the three datasets but are not independent Bernoulli trials, probabilities, effect sizes or universal model rankings",
+    "known_answer": "Preserve optimizer-known-answer status separately from certified-parameter forward evaluation and from all holdout results",
+    "proof_scope": "Do not transfer rational denominator, ellipsoid, parameter-box or continuous-safety certificates to any native model"
+  },
+  "expected_structure": {
+    "dataset_count": 3,
+    "folds_per_dataset": 5,
+    "total_fold_count": 15,
+    "total_point_count": 407,
+    "native_optimizer_failure_count": 0,
+    "missing_native_or_rational_point_prediction_count": 0
+  },
+  "output_rule": {
+    "summary": "exports/native-cross-dataset-synthesis.json",
+    "figure": "papers/45_三数据原生同折综合/fig45_native_cross_dataset_synthesis.png",
+    "report": "docs/NATIVE_CROSS_DATASET_SYNTHESIS_2026-11-09.md",
+    "word": "papers/前沿共生三数据原生同折综合_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "prohibitions": [
+    "No refitting, retuning, additional starts, changed folds or relaxed tolerances",
+    "No pooled cross-dataset error in raw or normalized units and no single scalar model score",
+    "No conversion of descriptive fold or point counts into probabilities, confidence intervals or universal rankings",
+    "No claim of independent wet-lab replication, independent model-family replication or new physical mechanism",
+    "No erasure of folds where rational or cubic models win, metric-direction disagreements or point-versus-fold disagreements",
+    "No native deterministic-bound, probability-calibration or transferred rational-certificate claim",
+    "No rewriting of the three frozen input files or their historical reports"
+  ]
+}
