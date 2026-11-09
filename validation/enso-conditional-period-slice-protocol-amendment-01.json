@@ -1,0 +1,34 @@
+{
+  "status": "frozen_before_enso_conditional_period_slice_support_direction_correction",
+  "frozen_at_local": "2026-11-09T13:31:35+08:00",
+  "amendment_id": "enso-conditional-period-slice-amendment-01",
+  "original_protocol": {
+    "file": "validation/enso-conditional-period-slice-protocol.json",
+    "sha256": "74db1ce1ffa965aefb77fc804c94ddac9f3fa5e1e4c27051d4d038a29a58edca"
+  },
+  "correction": {
+    "field": "candidate_rule.direction_formula",
+    "original_formula": "theta_candidate=theta_center+sign*radius*sqrt(C_pp)*e_p, with every other parameter held at its center",
+    "direction_formula": "For period p, theta_candidate=theta_center+sign*radius*(C*e_p)/sqrt(C_pp); all parameters may move because C*e_p generally has nonzero off-diagonal components",
+    "coordinate_only_formula_rejected_for_correlated_ellipsoid": true,
+    "off_diagonal_covariance_preserved": true,
+    "derivation": "For direction g=e_p, the ellipsoid support identity gives maximizing displacement delta=radius*C*g/sqrt(g^T*C*g). Then delta^T*C^(-1)*delta=radius^2. The original coordinate-only displacement is valid only when the covariance direction has no off-diagonal components",
+    "observed_failure_before_correction": "On the first frozen fold, coordinate-only b4 and b7 perturbations produced quadratic forms 135.77471580480335 and 142.43605405017527 instead of 16, so all 136 first-fold candidate evaluations were correctly rejected as infeasible and no result file was written",
+    "unchanged_structure": "The four direction labels, five folds, 168 months, 20 direction records and 672 evaluations remain unchanged. The Schur-complement slice rule, baseline and numerical certification rules are unchanged",
+    "effective_rule": "Only the candidate displacement formula is superseded. Candidate names b4_minus, b4_plus, b7_minus and b7_plus now denote the full covariance-support directions, not coordinate-only perturbations"
+  },
+  "preservation_rule": {
+    "original_protocol_file_unchanged": true,
+    "no_result_file_generated_before_correction": true,
+    "centers_covariances_periods_and_baseline_unchanged": true,
+    "candidate_directions_selected_after_evaluation": false,
+    "failed_coordinate_candidates_not_used_as_witnesses": true
+  },
+  "decision": {
+    "models_changed": false,
+    "covariances_changed": false,
+    "original_protocol_file_modified": false,
+    "slice_rule_changed": false,
+    "correction_hidden": false
+  }
+}

@@ -4,12 +4,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PROTOCOL = ROOT / "validation/enso-conditional-period-slice-protocol.json"
+AMENDMENT = ROOT / "validation/enso-conditional-period-slice-protocol-amendment-01.json"
 
 
 class EnsoConditionalPeriodSliceProtocolTests(unittest.TestCase):
     def setUp(self):
         self.assertTrue(PROTOCOL.is_file(), "Conditional-period slice protocol must be frozen before implementation")
+        self.assertTrue(AMENDMENT.is_file(), "Support-direction correction must be frozen before feasible candidates are used")
         self.protocol = json.loads(PROTOCOL.read_text(encoding="utf-8"))
+        self.amendment = json.loads(AMENDMENT.read_text(encoding="utf-8"))
 
     def test_frozen_inputs_cover_data_baseline_and_native_evaluators(self):
         self.assertEqual(self.protocol["status"], "frozen_before_enso_conditional_period_slice_bounds")
@@ -35,6 +38,17 @@ class EnsoConditionalPeriodSliceProtocolTests(unittest.TestCase):
         self.assertEqual(expected["refit_count"], 0)
         self.assertEqual(self.protocol["candidate_rule"]["directions"], ["b4_minus", "b4_plus", "b7_minus", "b7_plus"])
         self.assertFalse(self.protocol["candidate_rule"]["directions_selected_after_evaluation"])
+
+    def test_support_direction_correction_preserves_original_and_covariance(self):
+        self.assertEqual(self.amendment["original_protocol"]["sha256"], "74db1ce1ffa965aefb77fc804c94ddac9f3fa5e1e4c27051d4d038a29a58edca")
+        correction = self.amendment["correction"]
+        self.assertIn("C*e_p", correction["direction_formula"])
+        self.assertIn("all parameters may move", correction["direction_formula"])
+        self.assertTrue(correction["off_diagonal_covariance_preserved"])
+        self.assertTrue(correction["coordinate_only_formula_rejected_for_correlated_ellipsoid"])
+        self.assertTrue(self.amendment["preservation_rule"]["original_protocol_file_unchanged"])
+        self.assertTrue(self.amendment["preservation_rule"]["no_result_file_generated_before_correction"])
+        self.assertEqual(self.protocol["expected_structure"]["candidate_evaluation_count"], 672)
 
     def test_slice_is_not_full_ellipsoid_or_global_optimum(self):
         self.assertTrue(self.protocol["analysis_scope"]["conditional_slice_not_full_ellipsoid"])
