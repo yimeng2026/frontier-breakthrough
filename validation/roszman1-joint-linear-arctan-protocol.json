@@ -1,0 +1,126 @@
+{
+  "status": "frozen_before_roszman1_joint_linear_arctan_intersection",
+  "frozen_at_local": "2026-11-09T14:53:18+08:00",
+  "analysis_type": "Joint ellipsoid support for the linear part of native Roszman1 arctangent predictions, combined with frozen argument intervals and intersected with stage-46 independent envelopes; no full nonlinear optimum, probability or finite bound for the crossing fold",
+  "inputs": {
+    "native_identifiability": {
+      "file": "validation/roszman1-native-identifiability.json",
+      "sha256": "9888145d181c157da33b3bf0f93980ef0db15e4d3b368a96330c775363bc4322"
+    },
+    "independent_bounds": {
+      "file": "validation/roszman1-native-ellipsoid-continuous-bounds.json",
+      "sha256": "50c672fc3022b34465557daf98a12ce1f975b358e6ba5c9590202a2bdc4660a9"
+    },
+    "independent_receipt": {
+      "file": "validation/roszman1-native-ellipsoid-continuous-check.json",
+      "sha256": "e711e4f452234dd816334709cdf73901c8131bafdf72fcd524a94be2f209f3e3"
+    },
+    "native_model_runner": {
+      "file": "scripts/analyze_roszman1_native_holdout.py",
+      "sha256": "fa1c255122d0b8db9c3866e3dc9b8ac9565289667d1531230f499416b389ee0d"
+    },
+    "baseline_runner": {
+      "file": "scripts/analyze_roszman1_native_ellipsoid_continuous.py",
+      "sha256": "c3b84888aba9326ccb82e052401d7827e7c38b623855cc8e76cebd4d5505295e"
+    }
+  },
+  "joint_support_rule": {
+    "baseline_radius": 4,
+    "model": "f(x,theta)=b1-b2*x-arctan(b3/(x-b4))/pi",
+    "linear_part": "Define A(theta,x)=b1-b2*x. At each held-out x, compute exact ellipsoid support A_min and A_max from center_A plus or minus radius*sqrt(v(x)^T*C*v(x)), with v=(1,-x,0,0), instead of taking independent b1 and b2 corners",
+    "argument_interval": "Reuse the stage-46 argument_minimum and argument_maximum for z=b3/(x-b4), which were computed from independent b3 and denominator intervals under the certified nonzero sign",
+    "alternative_bound": "Because arctan is increasing, use alternative_min=A_min-arctan_max/pi and alternative_max=A_max-arctan_min/pi with outward rounding",
+    "intersection": "Intersect the alternative with the stage-46 independent envelope by taking the maximum lower bound and minimum upper bound; require nonempty intervals and center-prediction containment",
+    "sign_gate": "Construct alternatives only where x-b4 has a certified nonzero sign over the full ellipsoid and closed x interval. Fold 5 remains unavailable and receives no finite prediction or residual bound",
+    "scope": "The linear part is jointly supported, but the argument relaxation and their sum are not a joint full nonlinear global optimum"
+  },
+  "candidate_rule": {
+    "directions": ["b1_minus", "b1_plus", "b2_minus", "b2_plus", "b3_minus", "b3_plus", "b4_minus", "b4_plus"],
+    "direction_formula": "For each parameter p in {b1,b2,b3,b4} and each sign, use theta_candidate=theta_center+sign*radius*(C*e_p)/sqrt(C_pp); all parameters may move through the covariance direction",
+    "feasibility": "Require every candidate to have full ellipsoid quadratic form 16 within the high-precision tolerance and to preserve the certified nonzero denominator sign at evaluated distances",
+    "evaluation": "Evaluate the original native model at every available held-out x and every candidate, using high-precision arithmetic and cross-checking the frozen native_model implementation",
+    "containment": "Require all candidates to remain inside the stage-46 independent envelope, the joint-linear alternative and the intersection; record violations instead of hiding them",
+    "unavailable_preservation": "Do not create candidates, alternatives or intersections for fold 5 as a substitute for its unavailable finite bound",
+    "scope": "Candidates are implementation-consistency witnesses, not global optimizers or the analytic support proof"
+  },
+  "comparison_rule": {
+    "alternative_assumed_tighter_everywhere": false,
+    "alternative_comparison": "Compare alternative widths with stage-46 independent widths and preserve every outcome, including any wider or unchanged case",
+    "intersection_may_be_unchanged": true,
+    "intersection_comparison": "Report intersection width ratio and reduction for every available x; unchanged intersections remain valid",
+    "point_accounting": "Retain all 25 held-out observations: 20 available points and 5 unavailable points in fold 5. No unavailable point may be silently removed or assigned a finite residual bound",
+    "historical_preservation": "Do not rewrite the stage-46 baseline, receipts, protocols, reports, figures or Word documents"
+  },
+  "numerical_rule": {
+    "engine": "Use 80-digit mpmath arithmetic, exact linear support and frozen argument intervals",
+    "outward_rounding": "Apply the 1e-24 relative margin and nextafter outward conversion to certified lower and upper values",
+    "certificate_class": "High-precision numerical conservative interval, not exact rational algebra or a probability region",
+    "sign_gate": "Reject any alternative when x-b4 has no certified nonzero sign; never evaluate a logarithm, reciprocal or arctan across a singular denominator",
+    "native_crosscheck": "Cross-check center and candidate predictions against the frozen native_model implementation"
+  },
+  "analysis_scope": {
+    "joint_linear_not_full_nonlinear_optimum": true,
+    "candidate_checks_are_consistency_not_proof": true,
+    "crossing_fold_receives_no_bound": true,
+    "full_covariance_support_not_coordinate_only": true,
+    "refit": false,
+    "retrospective_bound_construction": true,
+    "independent_physical_experiment": false
+  },
+  "expected_structure": {
+    "fold_count": 5,
+    "held_out_point_count": 25,
+    "available_point_count": 20,
+    "unavailable_point_count": 5,
+    "unavailable_fold_ids": [5],
+    "joint_alternative_bound_count": 20,
+    "intersection_bound_count": 20,
+    "candidate_direction_count": 32,
+    "candidate_evaluation_count": 160,
+    "nonempty_intersection_count": 20,
+    "alternative_candidate_violation_count": 0,
+    "intersection_candidate_violation_count": 0,
+    "independent_candidate_violation_count": 0,
+    "center_prediction_mismatch_count": 0,
+    "candidate_feasibility_failure_count": 0,
+    "refit_count": 0
+  },
+  "output_rule": {
+    "summary": "validation/roszman1-joint-linear-arctan-intersection.json",
+    "figure": "papers/61_Roszman1联合线性反正切交集/fig61_roszman1_joint_linear_arctan_intersection.png",
+    "report": "docs/ROSZMAN1_JOINT_LINEAR_ARCTAN_INTERSECTION_2026-11-09.md",
+    "word": "papers/前沿共生Roszman1联合线性反正切交集_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "decision": {
+    "refit": false,
+    "joint_alternative_is_global_optimum": false,
+    "intersection_is_global_optimum": false,
+    "alternative_always_tighter_claimed": false,
+    "intersection_always_tighter_claimed": false,
+    "fold5_given_finite_bound": false,
+    "candidate_checks_replace_support_proof": false,
+    "candidate_directions_called_global_optimizers": false,
+    "coordinate_only_support_directions_used": false,
+    "probability_region_claimed": false,
+    "exact_rational_certificate_claimed": false,
+    "independent_model_family_replication_claimed": false,
+    "independent_physical_experiment_claimed": false,
+    "unavailable_points_hidden": false,
+    "wider_alternatives_hidden": false,
+    "unchanged_intersections_hidden": false,
+    "candidate_violations_hidden": false,
+    "historical_baseline_replaced": false
+  },
+  "prohibitions": [
+    "No refitting, changed centers, covariance matrices, folds, denominator intervals or post-hoc candidate directions",
+    "No finite alternative, intersection or residual bound for fold 5 or any crossing denominator",
+    "No coordinate-only candidate directions that ignore off-diagonal covariance",
+    "No calling the joint-linear alternative or intersection a full nonlinear global optimum",
+    "No assumption that the alternative or intersection is tighter everywhere",
+    "No hiding of unavailable points, wider alternatives, unchanged intersections or candidate violations",
+    "No probability, confidence, posterior, calibrated-coverage, independent-model-family or independent-experiment claim",
+    "No exact rational-certificate claim or replacement of historical baselines"
+  ]
+}
