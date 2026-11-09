@@ -1,0 +1,172 @@
+{
+  "status": "frozen_before_roszman1_whitened_cover_grid_erratum_01",
+  "frozen_at_local": "2026-11-09T17:14:47+08:00",
+  "analysis_type": "Erratum and complete recomputation of the stage-58 whitened cover after identifying a sign error in the affine denominator; original files remain as invalid historical evidence, while new results use corrected denominator intervals and explicit vertex interval gates",
+  "original_state": {
+    "proof_validity": "invalid_for_conservative_proof",
+    "original_runner_sha256": "abd9b89610398953386e86cf2676081056d14737f9ae1870687d9c7e3dde64a9",
+    "all_original_whitened_tightening_claims_suspended": true,
+    "scope": "The original whitened result, receipt, report, evidence item and knowledge-graph support edges are historical only. They must not be used as valid cover evidence or as a trusted baseline for new tightening",
+    "error": "The original whitened_cell_interval used +L_row4*u in d=d0-L_row4*u, reversing the denominator displacement sign",
+    "counterexample": {
+      "fold": 1,
+      "x": -4868.68,
+      "indices": [7, 1, 2, 2],
+      "u": [4.0, -3.0, -2.0, -1.0],
+      "original_denominator_interval": [-4427.651068045582, -4269.936142895595],
+      "actual_denominator": -5245.427923332379,
+      "original_prediction_minimum": 0.1681522813722415,
+      "actual_prediction": 0.1630709253053592,
+      "witness_is_outer_cover_vertex": true,
+      "implication": "The original denominator interval excludes the actual denominator and the original prediction lower bound excludes the actual native prediction, so the original cover is not a valid conservative proof"
+    }
+  },
+  "inputs": {
+    "original_protocol": {
+      "file": "validation/roszman1-whitened-cover-grid-protocol.json",
+      "sha256": "1ad14ef93dbd9a4d531841cd7ff1475bb8b10b5b1be9b6a7b79426b15ab87184"
+    },
+    "boundary_amendment": {
+      "file": "validation/roszman1-whitened-cover-grid-protocol-amendment-01.json",
+      "sha256": "61ddfa16e592b2ecf4c4864ad4ea75d8ea6bd4b03309fdf63686b792e128b00d"
+    },
+    "native_identifiability": {
+      "file": "validation/roszman1-native-identifiability.json",
+      "sha256": "9888145d181c157da33b3bf0f93980ef0db15e4d3b368a96330c775363bc4322"
+    },
+    "original_whitened_bounds": {
+      "file": "validation/roszman1-whitened-cover-grid.json",
+      "sha256": "76bcbec485dac10e2b73b2eb91426ff657c3c482a2610df6ed8cf145e8b1cd3c"
+    },
+    "original_receipt": {
+      "file": "validation/roszman1-whitened-cover-grid-check.json",
+      "sha256": "4809ab4f01712094814b58e3ead4728b9bdcb105d5fe6a7e3c2cc88750c97e9a"
+    },
+    "original_runner": {
+      "file": "scripts/analyze_roszman1_whitened_cover_grid.py",
+      "sha256": "abd9b89610398953386e86cf2676081056d14737f9ae1870687d9c7e3dde64a9"
+    },
+    "native_model_runner": {
+      "file": "scripts/analyze_roszman1_native_holdout.py",
+      "sha256": "fa1c255122d0b8db9c3866e3dc9b8ac9565289667d1531230f499416b389ee0d"
+    },
+    "interval_runner": {
+      "file": "scripts/analyze_roszman1_native_ellipsoid_continuous.py",
+      "sha256": "c3b84888aba9326ccb82e052401d7827e7c38b623855cc8e76cebd4d5505295e"
+    }
+  },
+  "correction_rule": {
+    "denominator": "d=d0-L_row4*u; the coefficients of the affine denominator form are -L_row4, not +L_row4",
+    "linear_term": "Retain the exact affine form b1-b2*x=l0+a_L^T*L*u",
+    "numerator": "Retain b3=c3+L_row3*u",
+    "native_interval": "Only after the corrected denominator interval has a fixed nonzero sign, form reciprocal and increasing-arctangent intervals and subtract them from the exact linear interval",
+    "outside_rule": "Retain the boundary-amendment tolerance 1e-12*(1+r^2) for outside-ball classification; do not relax denominator gates",
+    "unresolved_rule": "A possible ball-intersecting zero-denominator cell remains unresolved and produces an unbounded union, never a finite reciprocal or prediction interval",
+    "vertex_gate": "For every bounded union endpoint, evaluate all 16 cell vertices with the original model. Require actual denominator inside the corrected denominator interval and actual prediction inside the corrected prediction interval up to the frozen numerical tolerance; record any violation instead of hiding it",
+    "witness_scope": "Vertex checks detect implementation errors but do not replace the complete affine cover proof or prove global optimality"
+  },
+  "baseline_rule": {
+    "source": "Only the stage-56 ratio_minimum, ratio_maximum and ratio_width fields stored in the original stage-58 envelopes; no original whitened grid bounds or tightening claims are trusted",
+    "receipt_scope": "The original receipt is used only to verify file identity and the stage-56 source receipt, not to validate the erroneous whitened cover",
+    "intersection": "Intersect every corrected grid union with the stage-56 baseline. Require nonempty intersections and center containment",
+    "historical_comparison": "Corrected results may differ from the suspended original claims; do not force agreement or edit historical numbers"
+  },
+  "comparison_rule": {
+    "vertex_gate": "Recompute denominator and prediction intervals at every witness and reject any interval that excludes the corresponding actual value",
+    "nested_grids": "Require corrected finer-grid unions and intersections to remain conservative with respect to the preceding corrected coarser grid",
+    "candidate_rule": "Recompute all 200 original-model candidates and 600 candidate-grid checks with corrected intervals and exact forward/inverse whitening",
+    "point_accounting": "Retain all 25 observations and all five fold-5 unavailable observations; fold 5 receives no cells, candidates, vertex witnesses or finite residual bounds",
+    "tightening_scope": "Report corrected grid-specific outcomes without presuming the original 0,17,20 tightening inventory or the original 0.820643 median ratio"
+  },
+  "numerical_rule": {
+    "engine": "Use 80-digit mpmath arithmetic for symmetric covariance, Cholesky factor, affine forms, inverse transforms, native intervals and vertex witnesses",
+    "outward_rounding": "Apply the frozen 1e-24 relative margin and nextafter conversion to evaluated native bounds and intersections",
+    "outside_tolerance": "Use 1e-12*(1+r^2) only for outside-ball classification",
+    "vertex_tolerance": "Use 1e-10 relative plus absolute tolerance only to absorb direct native-model floating evaluation differences, not to accept a substantive interval exclusion",
+    "certificate_class": "Corrected deterministic conservative cover with high-precision floating-point arithmetic and explicit counterexample preservation; not exact rational arithmetic or probability"
+  },
+  "analysis_scope": {
+    "original_results_invalid_for_cover": true,
+    "corrected_negative_denominator_displacement": true,
+    "whole_ellipsoid_conservative_required": true,
+    "exact_affine_whitening": true,
+    "unresolved_cells_preserved": true,
+    "original_native_model": true,
+    "crossing_fold_receives_no_bound": true,
+    "candidate_checks_are_consistency_not_proof": true,
+    "refit": false,
+    "independent_physical_experiment": false
+  },
+  "expected_structure": {
+    "fold_count": 5,
+    "held_out_point_count": 25,
+    "available_point_count": 20,
+    "unavailable_point_count": 5,
+    "unavailable_fold_ids": [5],
+    "grid_cover_count": 60,
+    "partition_cell_count": 5460,
+    "outside_cell_count": 0,
+    "nonempty_intersection_count": 60,
+    "candidate_direction_count": 32,
+    "algebraic_extremizer_count": 40,
+    "candidate_evaluation_count": 200,
+    "candidate_grid_containment_check_count": 600,
+    "transform_witness_count": 200,
+    "transform_violation_count": 0,
+    "grid_candidate_violation_count": 0,
+    "intersection_candidate_violation_count": 0,
+    "candidate_feasibility_failure_count": 0,
+    "center_prediction_mismatch_count": 0,
+    "point_grid_consistency_check_count": 60,
+    "covered_point_count": 20,
+    "violation_point_count": 0,
+    "vertex_interval_violation_count": 0,
+    "refit_count": 0
+  },
+  "output_rule": {
+    "summary": "validation/roszman1-whitened-cover-grid-corrected-01.json",
+    "figure": "papers/65E_Roszman1白化覆盖勘误/fig65e_roszman1_whitened_cover_grid_erratum.png",
+    "report": "docs/ROSZMAN1_WHITENED_COVER_GRID_ERRATUM_2026-11-09.md",
+    "word": "papers/前沿共生Roszman1白化覆盖勘误_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true,
+    "overwrite_original_results": false
+  },
+  "historical_preservation": {
+    "original_files_unchanged": true,
+    "original_runner_unchanged": true,
+    "new_result_and_report_paths": true,
+    "original_invalid_scope_visible": true,
+    "stage56_and_stage57_unchanged": true
+  },
+  "decision": {
+    "refit": false,
+    "original_results_used_as_valid_cover": false,
+    "original_history_rewritten": false,
+    "sign_error_hidden": false,
+    "original_tightening_claims_retained_as_valid": false,
+    "exact_global_optimum_claimed": false,
+    "grid_union_is_exact_prediction_image": false,
+    "whitening_always_tighter_claimed": false,
+    "crossing_cells_given_finite_native_intervals": false,
+    "unproven_cells_discarded": false,
+    "fold5_given_finite_bound": false,
+    "candidate_checks_replace_cover_proof": false,
+    "probability_region_claimed": false,
+    "exact_rational_certificate_claimed": false,
+    "independent_model_family_replication_claimed": false,
+    "independent_physical_experiment_claimed": false,
+    "unavailable_points_hidden": false,
+    "candidate_violations_hidden": false
+  },
+  "prohibitions": [
+    "No editing or deleting original scripts, results, reports, receipts or historical protocols to conceal the error",
+    "No using original whitened bounds, tightening counts, medians or receipt as valid cover evidence",
+    "No denominator displacement with a positive L_row4 coefficient",
+    "No finite reciprocal or prediction interval for zero-containing denominator cells",
+    "No hiding vertex interval violations, unbounded unions, unresolved cells or unavailable points",
+    "No grid cells, candidates or finite residual bounds for fold 5",
+    "No exact-global-optimum, guaranteed-tightening, probability or independent-experiment claim",
+    "No replacement of stage-56 or stage-57 baselines"
+  ]
+}
