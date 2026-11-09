@@ -1,0 +1,125 @@
+{
+  "status": "frozen_before_chwirut1_log_support_intersection",
+  "frozen_at_local": "2026-11-09T14:30:58+08:00",
+  "analysis_type": "Conservative log-domain support for native Chwirut1 exponential-rational predictions using denominator secants and a finite set of tangents, full three-parameter ellipsoid support, exponentiation and intersection with stage-44 independent envelopes; no global optimizer, probability or independent-replication claim",
+  "inputs": {
+    "native_identifiability": {
+      "file": "validation/chwirut1-native-identifiability.json",
+      "sha256": "e8e76516b05e8fd83f60df0ad93215ce41984ca562cc9e5140291f5f6ba72cc8"
+    },
+    "independent_bounds": {
+      "file": "validation/chwirut1-native-ellipsoid-continuous-bounds.json",
+      "sha256": "5795bb98f399366f8b7f35ebd754683742e6dc61e38bc6f1bccb4fcf6ccb91d2"
+    },
+    "independent_receipt": {
+      "file": "validation/chwirut1-native-ellipsoid-continuous-check.json",
+      "sha256": "33d4d3a4fb88cd6270e19d4eafef697dc4967c0345e1f05c7d36644a6ed3047d"
+    },
+    "native_model_runner": {
+      "file": "scripts/analyze_chwirut1_native_holdout.py",
+      "sha256": "c3419658e1eb51acea67dee86518dd46ff7af25182a19bd407d5cb90a346b1ab"
+    },
+    "baseline_runner": {
+      "file": "scripts/analyze_chwirut1_native_ellipsoid_continuous.py",
+      "sha256": "4ad6f6e2d5877efaef45e23fc588521a920ad2a91c597d551f79d7d0769ea5e8"
+    }
+  },
+  "log_support_rule": {
+    "baseline_radius": 4,
+    "model": "f(x,theta)=exp(-b1*x)/(b2+b3*x), with x>0 and denominator positivity already certified over the frozen ellipsoid and each held-out distance interval",
+    "log_identity": "log(f)=-b1*x-log(d), where d=b2+b3*x>0. The transform does not replace or approximate the native model",
+    "denominator_interval": "At each unique held-out distance, use the frozen denominator minimum and maximum from the stage-44 envelope and require both to be strictly positive",
+    "upper_log_bound": "Because log(d) is concave, its secant on [d_min,d_max] is a lower bound. Hence -log(d) is bounded above by minus the secant. Combine -b1*x with the negative secant to form a linear function of b1,b2,b3 and compute its exact ellipsoid upper support",
+    "lower_log_bound": "Every tangent of log(d) at d0>0 is an upper bound. Hence -log(d) is bounded below by minus that tangent. Combine -b1*x with the negative tangent to form a linear function and compute its exact ellipsoid lower support",
+    "tangent_points": ["d_min", "d_center", "d_max"],
+    "tangent_selection": "Compute all three tangent lower supports without post-hoc additions and take their maximum as a valid lower bound; the finite set is not a global optimizer",
+    "prediction_conversion": "Exponentiate the lower and upper log supports with outward rounding, then intersect with the stage-44 independent envelope by taking the maximum lower bound and minimum upper bound",
+    "nonempty_gate": "Require every intersection to be nonempty and every frozen center prediction to remain inside the log alternative and intersection",
+    "scope": "The log alternative uses exact linear support for each secant or tangent but is not the joint nonlinear global optimum over the ellipsoid"
+  },
+  "candidate_rule": {
+    "directions": ["b1_minus", "b1_plus", "b2_minus", "b2_plus", "b3_minus", "b3_plus"],
+    "direction_formula": "For each parameter p in {b1,b2,b3} and each sign, use theta_candidate=theta_center+sign*radius*(C*e_p)/sqrt(C_pp); all parameters may move through the covariance direction",
+    "feasibility": "Require every candidate to have full ellipsoid quadratic form 16 within the high-precision tolerance and strictly positive denominator at every evaluated distance",
+    "evaluation": "Evaluate the original exp(-b1*x)/(b2+b3*x) at every unique held-out distance and every candidate, using high-precision arithmetic and cross-checking the frozen native model",
+    "containment": "Require all candidates to remain inside the stage-44 independent envelope, the log alternative and the intersection; record any violation instead of hiding it",
+    "scope": "Candidates are implementation-consistency witnesses, not global optimizers or the analytic proof"
+  },
+  "comparison_rule": {
+    "alternative_assumed_tighter_everywhere": false,
+    "alternative_comparison": "Compare log-alternative widths with stage-44 independent widths and preserve tighter, wider and equal outcomes",
+    "intersection_may_be_unchanged": true,
+    "intersection_comparison": "Report intersection width ratio and reduction for every unique distance; unchanged cases remain valid and are not hidden",
+    "point_accounting": "Keep all 214 held-out observations for residual and center consistency but construct only 22 unique-distance envelopes, avoiding duplicate-envelope counts",
+    "historical_preservation": "Do not rewrite the stage-44 baseline, receipts, protocols, reports, figures or Word documents"
+  },
+  "numerical_rule": {
+    "engine": "Use 80-digit mpmath arithmetic, exact secant/tangent formulas, full ellipsoid support and the frozen native model",
+    "outward_rounding": "Apply the 1e-24 relative margin and nextafter outward conversion to certified log and prediction bounds",
+    "certificate_class": "High-precision numerical conservative interval, not exact rational algebra or a probability region",
+    "positive_denominator_gate": "Reject non-positive denominator minima rather than taking a logarithm or constructing a finite bound",
+    "native_crosscheck": "Cross-check high-precision center and candidate predictions against the frozen native_model implementation"
+  },
+  "analysis_scope": {
+    "log_tangent_secant_not_model_replacement": true,
+    "finite_tangent_set_not_global_optimizer": true,
+    "candidate_checks_are_consistency_not_proof": true,
+    "independent_model_family_replication": false,
+    "full_covariance_support_not_coordinate_only": true,
+    "refit": false,
+    "retrospective_bound_construction": true
+  },
+  "expected_structure": {
+    "fold_count": 5,
+    "held_out_point_count": 214,
+    "unique_distance_count": 22,
+    "log_alternative_bound_count": 22,
+    "intersection_bound_count": 22,
+    "candidate_direction_count": 30,
+    "candidate_evaluation_count": 132,
+    "nonempty_intersection_count": 22,
+    "alternative_candidate_violation_count": 0,
+    "intersection_candidate_violation_count": 0,
+    "independent_candidate_violation_count": 0,
+    "center_prediction_mismatch_count": 0,
+    "candidate_feasibility_failure_count": 0,
+    "refit_count": 0
+  },
+  "output_rule": {
+    "summary": "validation/chwirut1-log-support-intersection.json",
+    "figure": "papers/60_Chwirut1对数支撑交集/fig60_chwirut1_log_support_intersection.png",
+    "report": "docs/CHWIRUT1_LOG_SUPPORT_INTERSECTION_2026-11-09.md",
+    "word": "papers/前沿共生Chwirut1对数支撑交集_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "decision": {
+    "refit": false,
+    "log_alternative_is_global_optimum": false,
+    "intersection_is_global_optimum": false,
+    "alternative_always_tighter_claimed": false,
+    "intersection_always_tighter_claimed": false,
+    "candidate_checks_replace_log_proof": false,
+    "candidate_directions_called_global_optimizers": false,
+    "nonpositive_denominator_ignored": false,
+    "coordinate_only_support_directions_used": false,
+    "probability_region_claimed": false,
+    "exact_rational_certificate_claimed": false,
+    "independent_model_family_replication_claimed": false,
+    "independent_physical_experiment_claimed": false,
+    "wider_alternatives_hidden": false,
+    "unchanged_intersections_hidden": false,
+    "candidate_violations_hidden": false,
+    "historical_baseline_replaced": false
+  },
+  "prohibitions": [
+    "No refitting, changed centers, covariance matrices, folds, denominator intervals or post-hoc tangent directions",
+    "No logarithm of a non-positive denominator or finite bound when positivity is not certified",
+    "No coordinate-only candidate directions that ignore off-diagonal covariance",
+    "No calling the finite tangent set, log alternative or intersection a global nonlinear optimum",
+    "No assumption that the alternative or intersection is tighter everywhere",
+    "No hiding of wider alternatives, unchanged intersections or candidate violations",
+    "No probability, confidence, posterior, calibrated-coverage, independent-model-family or independent-experiment claim",
+    "No exact rational-certificate claim or replacement of historical baselines"
+  ]
+}
