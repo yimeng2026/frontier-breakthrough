@@ -1,0 +1,132 @@
+{
+  "status": "frozen_before_enso_native_identifiability",
+  "frozen_at_local": "2026-11-09T10:14:11+08:00",
+  "analysis_id": "enso_native_identifiability",
+  "scientific_question": "At the five frozen nine-parameter Fourier fits, how do local Jacobian conditioning, period-amplitude compensation and held-out linearized sensitivity vary across contiguous month ranges, and how does this differ from prediction accuracy and period stability?",
+  "analysis_type": "Read-only post-hoc local-linearization and harmonic-correlation diagnostics at five frozen native fits; no refitting or new experiment",
+  "inputs": {
+    "native_holdout": {
+      "file": "validation/enso-native-holdout.json",
+      "sha256": "b66ac7b4e8937418d1a27e87f6d9967430d73bac86a163c659a9df24485c4563"
+    },
+    "native_holdout_protocol": {
+      "file": "validation/enso-native-holdout-protocol.json",
+      "sha256": "94d91a09b48ecc2c8904ce51e0507a4ad0d85e4f330d5b78374734c3b4eb8cc4"
+    },
+    "diagnostic_amendment": {
+      "file": "validation/enso-native-holdout-protocol-amendment-01.json",
+      "sha256": "ede9cbe123ef7d6a377f9495de635642d3519c808fc8c6cd11e2ac0df857d11a"
+    },
+    "data": {
+      "file": "data/ENSO.dat",
+      "sha256": "0c644f45b0e586cb1bb0613bad68f63c704efadacd086e768468d33d83f3e5d9",
+      "observations": 168
+    }
+  },
+  "dataset_scope": {
+    "response": "monthly averaged atmospheric pressure difference between Easter Island and Darwin, Australia",
+    "predictor": "time in months",
+    "angle_unit": "radians",
+    "independent_physical_experiment": false,
+    "new_period_mechanism_claimed": false
+  },
+  "fold_rule": {
+    "count": 5,
+    "ranges": {
+      "1": [1, 34],
+      "2": [35, 68],
+      "3": [69, 102],
+      "4": [103, 135],
+      "5": [136, 168]
+    },
+    "test_points_per_fold": [34, 34, 34, 33, 33],
+    "train_points_per_fold": [134, 134, 134, 135, 135],
+    "residual_degrees_of_freedom_per_fold": [125, 125, 125, 126, 126],
+    "assignment_rule": "Use inclusive integer month ranges identical to the frozen native folds; each month occurs once and all predictions remain in the frozen point order",
+    "frozen_fit_rule": "Use native_parameters and training_rss from each frozen fold exactly; no curve_fit call, parameter update or holdout change is permitted",
+    "training_rss_tolerance": "math.isclose(recomputed_rss,frozen_training_rss,rel_tol=1e-9,abs_tol=1e-12)",
+    "test_metric_rule": "Recomputed native_test_metrics must exactly reproduce the frozen metric dictionary"
+  },
+  "jacobian_rule": {
+    "parameter_order": ["b1", "b2", "b3", "b4", "b5", "b6", "b7", "b8", "b9"],
+    "annual_angle": "A0=2*pi*x/12",
+    "long_angle_1": "A=2*pi*x/b4",
+    "long_angle_2": "B=2*pi*x/b7",
+    "db1": "1",
+    "db2": "cos(A0)",
+    "db3": "sin(A0)",
+    "db4": "(A/b4)*(b5*sin(A)-b6*cos(A))",
+    "db5": "cos(A)",
+    "db6": "sin(A)",
+    "db7": "(B/b7)*(b8*sin(B)-b9*cos(B))",
+    "db8": "cos(B)",
+    "db9": "sin(B)",
+    "singular_rule": "b4=0, b7=0 or any non-finite Jacobian is retained as a failure; no replacement by certified fits, period bounds or post-hoc parameter repair"
+  },
+  "local_rule": {
+    "column_scaling": "Divide each Jacobian column by its Euclidean norm; require finite nonzero norms",
+    "rank_tolerance": "max(J.shape)*eps*largest_scaled_singular_value",
+    "numerical_rank": "Count scaled singular values greater than rank_tolerance; preserve rank deficiency rather than forcing rank nine",
+    "scaled_condition_number": "largest_scaled_singular_value/smallest_scaled_singular_value",
+    "unit_covariance": "pinv(Js.T@Js,rcond=1e-12,hermitian=True)",
+    "covariance": "sigma2*unit_covariance/outer(column_norms,column_norms)",
+    "sigma2": "training_RSS/(train_count-9), using the frozen fold-specific degrees of freedom [125,125,125,126,126]",
+    "standard_errors": "sqrt(diag(covariance)); local linearized standard errors only",
+    "correlation": "clip(covariance/outer(standard_errors,standard_errors),-1,1)",
+    "prediction_sd": "sqrt(max(0,sigma2*diagonal(Jtest_scaled@unit_covariance@Jtest_scaled.T))); descriptive delta method only",
+    "interpretation": "Local linearization at each frozen fit; rank, conditioning, standard errors and sensitivity do not prove global structural identifiability, calibrated uncertainty or physical period mechanisms"
+  },
+  "harmonic_correlation_rule": {
+    "annual_block": ["b2", "b3"],
+    "first_long_block": ["b4", "b5", "b6"],
+    "second_long_block": ["b7", "b8", "b9"],
+    "period_pair": "Record absolute correlation between b4 and b7",
+    "own_amplitudes": "Record maximum absolute correlation of b4 with b5,b6 and of b7 with b8,b9",
+    "cross_harmonic_blocks": "Record maximum absolute correlation between the first and second long blocks",
+    "annual_long_blocks": "Record maximum absolute correlation between the annual block and all six long-block parameters",
+    "period_ratio": "Record b4/b7 when both periods are nonzero, as a descriptive ratio only",
+    "interpretation": "These are local parameter-correlation diagnostics, not posterior dependence, causal coupling, new physical cycles or a single stability score"
+  },
+  "parameter_stability_rule": {
+    "statistics": "For every parameter across five frozen fits, record minimum, maximum, median, range and per-fold local standard errors",
+    "period_emphasis": "Report b4 and b7 values, ranges and local relative standard errors alongside native RMSE",
+    "prediction_stability_scope": "Lower held-out RMSE does not imply unique, invariant or physically endogenous periods or amplitudes"
+  },
+  "known_answer_rule": {
+    "optimizer_mismatch_retained": true,
+    "certified_forward_used_as_holdout": false,
+    "original_tolerances_relaxed": false,
+    "interpretation": "The existing optimizer-known-answer mismatch and certified-parameter forward pass remain separate from all five-fold local diagnostics"
+  },
+  "output_rule": {
+    "summary": "validation/enso-native-identifiability.json",
+    "figure": "papers/48_ENSO原生参数可识别性/fig48_enso_native_identifiability.png",
+    "report": "docs/ENSO_NATIVE_IDENTIFIABILITY_2026-11-09.md",
+    "word": "papers/前沿共生ENSO原生参数可识别性_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "decision": {
+    "refit": false,
+    "global_structural_identifiability_proved": false,
+    "physical_parameter_endogeneity_proved": false,
+    "new_physical_periods_proved": false,
+    "calibrated_prediction_intervals_produced": false,
+    "rational_bounds_transferred_to_native": false,
+    "independent_physical_experiment_claimed": false,
+    "prediction_stability_equals_parameter_uniqueness": false,
+    "rank_deficiency_hidden": false,
+    "period_singularities_hidden": false,
+    "native_deterministic_bounds_claimed": false,
+    "optimizer_known_answer_mismatch_hidden": false,
+    "original_tolerances_relaxed": false
+  },
+  "prohibitions": [
+    "No refitting, retuning, new starts, new fold assignments, period bounds or new parameter values",
+    "No conversion of local Jacobians, ranks, covariances, harmonic correlations or delta-method sensitivity into global identifiability or calibrated intervals",
+    "No transfer of rational denominator, ellipsoid, box or continuous-safety claims to the native Fourier model",
+    "No claim that lower held-out RMSE proves unique, invariant or physically endogenous parameters or new physical periods",
+    "No hiding of rank deficiency, non-finite values, failed variance estimates, zero periods, fold-level parameter variation or the known-answer optimizer mismatch",
+    "No replacement of the five frozen fold fits by the full-data certified parameters or by the full-data optimizer fit"
+  ]
+}
