@@ -1,0 +1,92 @@
+{
+  "status": "frozen_before_chwirut1_native_holdout",
+  "frozen_at_local": "2026-11-09T08:30:24+08:00",
+  "analysis_id": "chwirut1_native_holdout",
+  "scientific_question": "Using identical held-out observations and no shared distances across fitting and test sets, how does the native three-parameter exponential model compare with the frozen cubic/cubic rational candidate and frozen cubic polynomial baseline on NIST Chwirut1?",
+  "inputs": {
+    "data": {"file": "data/Chwirut1.dat", "sha256": "d9a055dfe5af71a8754c00f073ef00f8fed2e3fd1c6fd20cea8fd62d7cc3ed84", "observations": 214, "unique_predictor_values": 22},
+    "rational_candidate": {"file": "validation/chwirut1-ellipsoid-coverage.json", "sha256": "e6c6816d4c4616a1efbd739fcf92d4b782049e38201ebdd4db37479ca156ed33"}
+  },
+  "dataset_scope": {
+    "name": "NIST/ITL StRD Chwirut1",
+    "dataset_page": "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml",
+    "source_url": "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Chwirut1.dat",
+    "observed_data": true,
+    "generated_data": false,
+    "response": "ultrasonic response",
+    "predictor": "metal distance",
+    "independent_physical_experiment": false,
+    "related_prior_dataset": {
+      "name": "Chwirut2",
+      "same_study": true,
+      "same_native_model_family": true,
+      "scope": "Chwirut1 observations were not used to design previous candidates or regions, but Chwirut2 was analyzed previously; this is not an independent model-family or laboratory replication test"
+    }
+  },
+  "native_rule": {
+    "parameters": ["b1", "b2", "b3"],
+    "equation": "y=exp(-b1*x)/(b2+b3*x)+e",
+    "starts": [
+      {"b1": 0.1, "b2": 0.01, "b3": 0.02},
+      {"b1": 0.15, "b2": 0.008, "b3": 0.01}
+    ],
+    "optimizer": "scipy.optimize.curve_fit method=lm,maxfev=200000,full_output=true; select lowest finite training RSS",
+    "singular_rule": "Any evaluation point with b2+b3*x=0 returns non-finite prediction; do not replace it with a limit or certified fit",
+    "failure_rule": "Retain every failed start, non-finite RSS, non-finite prediction and failed fold; no post-hoc start, parameter bounds, scaling or fold changes",
+    "retuning": "No model, start, optimizer, parameter constraint, fold or threshold changes after seeing outcomes"
+  },
+  "known_answer_rule": {
+    "purpose": "Fit all 214 observations only to verify the native exponential equation and optimizer against the NIST known answer; never use this fit as holdout evidence",
+    "certified_parameters": {"b1": 0.19027818370, "b2": 0.0061314004477, "b3": 0.010530908399},
+    "certified_rss": 2384.4771393,
+    "parameter_relative_tolerance": 0.00001,
+    "parameter_absolute_tolerance": 0.00000001,
+    "rss_absolute_tolerance": 0.000001,
+    "evidence_class": "known_answer_reproduction_not_holdout"
+  },
+  "fold_rule": {
+    "count": 5,
+    "unique_x": {
+      "1": [0.5, 0.625, 0.75, 0.875, 1.0],
+      "2": [1.25, 1.5, 1.75, 2.0, 2.25],
+      "3": [2.5, 2.75, 3.0, 3.25],
+      "4": [3.75, 4.0, 4.25, 4.75],
+      "5": [5.0, 5.25, 5.75, 6.0]
+    },
+    "observation_counts": [54, 54, 51, 23, 32],
+    "construction": "All repeated observations of a frozen distance remain on the same side; no distance crosses fitting and test sets; every observation is evaluated once in the frozen point order"
+  },
+  "comparison_rule": {
+    "join": "Match native and rational predictions by fold and frozen point index, x and observed y; repeated x values are retained as separate observations",
+    "rational_metrics": "Reuse the frozen rational-candidate fold metrics and snapshot predictions without refitting",
+    "cubic_baseline_metrics": "Reuse the frozen cubic-baseline fold metrics without refitting; per-point baseline predictions are not available in the frozen result",
+    "metrics": "Recompute native RMSE, MAE and maximum absolute residual from held-out predictions in each fold",
+    "fold_winners": "Compare native RMSE with rational and cubic-baseline RMSE separately; preserve wins, losses, ties and failed fits without a single scalar ranking",
+    "pooled_metrics": "Compute native and rational RMSE, MAE and maximum absolute residual over all 214 held-out predictions only when every fold succeeds; do not fabricate pooled cubic-baseline metrics",
+    "parameter_stability": "Report minimum, median, maximum and range for all three parameters without converting fold variation into a probability distribution or independent physical replication",
+    "bound_separation": "Do not transfer rational denominator, ellipsoid, box, residual-bound or continuous-safety claims to the native exponential model"
+  },
+  "output_rule": {
+    "summary": "validation/chwirut1-native-holdout.json",
+    "figure": "papers/42_Chwirut1原生指数对照/fig42_chwirut1_native_holdout.png",
+    "refuse_overwrite": true
+  },
+  "decision": {
+    "independent_model_family_claimed": false,
+    "independent_physical_experiment_claimed": false,
+    "certified_full_fit_used_as_holdout": false,
+    "rational_bounds_transferred_to_native": false,
+    "native_deterministic_bounds_claimed": false,
+    "native_probability_calibration_claimed": false,
+    "native_physical_law_validated": false,
+    "failed_fits_hidden": false
+  },
+  "prohibitions": [
+    "No use of the certified full-data fit as a held-out prediction",
+    "No description of Chwirut1 as independent of the Chwirut2 study or native model family",
+    "No transfer of rational-model proof regions or residual bounds to the native exponential model",
+    "No hiding of optimizer failures, non-finite predictions, fold-level losses or repeated observations",
+    "No probability, confidence, physical-endogeneity, absolute-ranking or independent-experiment claim",
+    "No post-hoc start, parameter constraint, fold, scaling or model changes after seeing results"
+  ]
+}
