@@ -3028,6 +3028,84 @@
         "exports/native-conservative-support-synthesis.json",
         "docs/NATIVE_CONSERVATIVE_SUPPORT_SYNTHESIS_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-ratio-independent-box-tightest",
+      "kind": "claim",
+      "title": "独立 b3 与分母区间组成的比值界已经最紧，不可能再利用椭球相关性收紧",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-ratio-denominator-intersection.json"
+      ]
+    },
+    {
+      "id": "claim-ratio-component-full-global-optimum",
+      "kind": "claim",
+      "title": "比值分量的解析支撑与线性支撑相加就是完整四参数非线性全局最优",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-ratio-denominator-intersection.json"
+      ]
+    },
+    {
+      "id": "evidence-roszman1-ratio-denominator",
+      "kind": "evidence",
+      "title": "20 个解析比值区间、40 个可行端点见证与 200 次原生候选评价全部通过；最终交集 20 个收紧，中位宽度比 0.980783",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-ratio-denominator-intersection.json",
+        "validation/roszman1-ratio-denominator-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-ratio-storage-asymmetry",
+      "kind": "counterexample",
+      "title": "第 2 折冻结协方差 C34−C43=-1e-12；单边读取会产生约 1e-18 的端点残差，二次型必须使用其实际对称部分",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-native-identifiability.json",
+        "docs/ROSZMAN1_RATIO_DENOMINATOR_INTERSECTION_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "experiment-roszman1-ratio-denominator-protocol",
+      "kind": "experiment",
+      "title": "冻结负分母线性分式支撑、未平方分支恒等式、稳定倒数根、完整端点见证和 200 次候选复核",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-ratio-denominator-protocol.json",
+        "scripts/analyze_roszman1_ratio_denominator.py"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-ratio-fold5-unavailable",
+      "kind": "counterexample",
+      "title": "第 5 折不满足负分母符号门禁，无比值区间、端点见证、候选评价或有限残差上界",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-ratio-denominator-intersection.json",
+        "docs/ROSZMAN1_RATIO_DENOMINATOR_INTERSECTION_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-ratio-candidate-not-global-proof",
+      "kind": "counterexample",
+      "title": "200 次候选全部通过只验证实现和端点一致性，不能替代共同非线性极值求解或全局最优证明",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-ratio-denominator-intersection.json",
+        "validation/roszman1-ratio-denominator-check.json"
+      ]
+    },
+    {
+      "id": "limitation-roszman1-ratio-component-scope",
+      "kind": "limitation",
+      "title": "比值与线性分量可以在不同参数点取得支撑，组合仍保守但不是完整预测全局最优；高精度数值不是精确有理证书或概率区域",
+      "status": "active",
+      "sourceFiles": [
+        "validation/roszman1-ratio-denominator-intersection.json",
+        "docs/ROSZMAN1_RATIO_DENOMINATOR_INTERSECTION_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -7679,6 +7757,166 @@
     {
       "from": "experiment-native-conservative-support-synthesis-protocol",
       "to": "claim-center-coverage-external-validation",
+      "relation": "tests"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-ratio-independent-box-tightest",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-ratio-component-full-global-optimum",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-roszman1-ratio-denominator",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-ratio-storage-asymmetry",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-roszman1-ratio-denominator-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-ratio-fold5-unavailable",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-ratio-candidate-not-global-proof",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-roszman1-ratio-component-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-roszman1-ratio-denominator",
+      "to": "claim-ratio-independent-box-tightest",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-ratio-denominator-protocol",
+      "to": "claim-ratio-independent-box-tightest",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-roszman1-ratio-denominator",
+      "to": "claim-ratio-component-full-global-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-ratio-denominator-protocol",
+      "to": "claim-ratio-component-full-global-optimum",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-roszman1-ratio-candidate-not-global-proof",
+      "to": "claim-ratio-component-full-global-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-ratio-fold5-unavailable",
+      "to": "claim-roszman-fold5-low-rmse-singularity-safe",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-ratio-fold5-unavailable",
+      "to": "counterexample-roszman1-fold5-still-unavailable",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-ratio-denominator",
+      "to": "counterexample-roszman1-ratio-fold5-unavailable",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-ratio-denominator",
+      "to": "counterexample-roszman1-ratio-storage-asymmetry",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-roszman1-ratio-storage-asymmetry",
+      "to": "limitation-roszman1-ratio-component-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-roszman1-ratio-candidate-not-global-proof",
+      "to": "limitation-roszman1-ratio-component-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-roszman1-ratio-component-scope",
+      "to": "evidence-roszman1-ratio-denominator",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-ratio-component-scope",
+      "to": "claim-ratio-independent-box-tightest",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-ratio-component-scope",
+      "to": "claim-ratio-component-full-global-optimum",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-ratio-component-scope",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-roszman1-ratio-denominator",
+      "to": "evidence-roszman1-joint-linear-arctan",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-ratio-denominator-protocol",
+      "to": "experiment-roszman1-joint-linear-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-ratio-denominator",
+      "to": "evidence-roszman1-native-ellipsoid-continuous",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-ratio-denominator-protocol",
+      "to": "experiment-roszman1-native-ellipsoid-continuous-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-ratio-denominator",
+      "to": "evidence-native-conservative-support-synthesis",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-ratio-denominator-protocol",
+      "to": "experiment-native-conservative-support-synthesis-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-ratio-denominator",
+      "to": "evidence-roszman1-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-ratio-denominator-protocol",
+      "to": "experiment-roszman1-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-ratio-denominator-protocol",
+      "to": "claim-knowledge-graph",
       "relation": "tests"
     }
   ]

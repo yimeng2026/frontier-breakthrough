@@ -125,6 +125,8 @@ def build() -> dict:
     roszmanJointCheck = read("roszman1-joint-linear-arctan-check.json")
     conservativeSynthesis = json.loads((ROOT / "exports/native-conservative-support-synthesis.json").read_text(encoding="utf-8"))
     conservativeSynthesisCheck = read("native-conservative-support-synthesis-check.json")
+    roszmanRatio = read("roszman1-ratio-denominator-intersection.json")
+    roszmanRatioCheck = read("roszman1-ratio-denominator-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -1589,6 +1591,37 @@ def build() -> dict:
             "limitations": "三个基线不能互换，不能合并原始宽度、RMSE、参数、协方差或残差，也不建立统一稳定性评分、概率覆盖率、全局最优或模型赢家。964 次候选只验证实现一致性；Roszman1 第 5 折 5 点继续不可用，Chwirut1 同族边界与 ENSO 已知答案分层保持。" + " ".join(conservativeSynthesis["limitations"]),
             "upstreamContribution": "提供三份冻结收据驱动的受限综合接口、逐模型基线和完整折级证据；把收紧、保持、不可用和候选检查分别登记，禁止跨模型宽度池和统一评分。",
             "snapshotFiles": ["validation/native-conservative-support-synthesis-protocol.json", "validation/native-conservative-support-synthesis-check.json", "validation/frontier-native-conservative-support-synthesis-word.json"],
+        },
+        {
+            "id": "roszman1-ratio-denominator-intersection", "domain": "math", "title": "Roszman1 比值—分母联合区间与保守交集",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Roszman1.dat"],
+            "metrics": {
+                "totals": roszmanRatio["totals"],
+                "folds": roszmanRatio["folds"],
+                "knownAnswer": roszmanRatio["known_answer"],
+                "fullNonlinearGlobalOptimum": roszmanRatio["full_nonlinear_global_optimum"],
+                "analysisScope": roszmanRatio["analysis_scope"],
+                "decision": roszmanRatio["decision"],
+                "sourceReceiptVerifiedCount": roszmanRatioCheck["sourceReceiptVerifiedCount"],
+                "sourceProjectionMismatchCount": roszmanRatioCheck["sourceProjectionMismatchCount"],
+                "fold2StoredCrossCovarianceDifference": roszmanRatioCheck["fold2StoredCrossCovarianceDifference"],
+                "quadraticFormsUseSymmetricPart": roszmanRatioCheck["quadraticFormsUseSymmetricPart"],
+                "stableReciprocalRootUsed": roszmanRatioCheck["stableReciprocalRootUsed"],
+                "implementation": {
+                    "protocolSha256": roszmanRatio["protocol_sha256"],
+                    "summarySha256": roszmanRatioCheck["summarySha256"],
+                    "analysisRunnerSha256": roszmanRatioCheck["analysisRunnerSha256"],
+                    "figureSha256": roszmanRatioCheck["figureSha256"],
+                    "reportSha256": roszmanRatioCheck["reportSha256"],
+                    "wordSha256": roszmanRatioCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "e7a4512"},
+            },
+            "scientificClaim": "前四折 20 个固定 x 的 b3/(x-b4) 均获得负分母域内解析椭球区间，40 个端点见证可行，200 次原生候选评价全部通过。20 个替代界和最终交集均收紧，最终宽度比中位数为 0.980783，最大减少 0.008362313；第 5 折 5 点继续不可用。",
+            "limitations": "比值支撑只在固定 x 和负分母符号域内成立；线性支撑与比值支撑可来自不同参数点，其和不是完整四参数非线性全局最优。200 次候选不是全局优化器、概率覆盖或独立实验；第 2 折交叉项存储差异按二次型对称部分处理，不改写历史矩阵。" + " ".join(roszmanRatio["limitations"]),
+            "upstreamContribution": "提供负分母线性分式解析求根、未平方分支恒等式、稳定倒数根、40 个完整协方差端点见证和保守交集接口，并保留奇异不可用与数值对称性反例。",
+            "snapshotFiles": ["validation/roszman1-ratio-denominator-protocol.json", "validation/roszman1-ratio-denominator-check.json", "validation/frontier-roszman1-ratio-denominator-word.json"],
         },
     ]
     packet = {

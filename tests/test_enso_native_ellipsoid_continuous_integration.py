@@ -14,7 +14,7 @@ class EnsoNativeEllipsoidContinuousIntegrationTests(unittest.TestCase):
         packet = json.loads((ROOT / "exports/frontier-evidence.json").read_text(encoding="utf-8"))
         identifiers = {item["id"] for item in packet["items"]}
         self.assertIn("enso-native-ellipsoid-continuous-bounds", identifiers)
-        self.assertEqual(len(packet["items"]), 66)
+        self.assertEqual(len(packet["items"]), 67)
         item = next(item for item in packet["items"] if item["id"] == "enso-native-ellipsoid-continuous-bounds")
         metrics = item["metrics"]
         totals = metrics["totals"]
@@ -69,8 +69,8 @@ class EnsoNativeEllipsoidContinuousIntegrationTests(unittest.TestCase):
         ]
         for identifier in identifiers:
             self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 321)
-        self.assertEqual(len(graph["edges"]), 930)
+        self.assertEqual(len(graph["nodes"]), 329)
+        self.assertEqual(len(graph["edges"]), 962)
         self.assertEqual(nodes["claim-positive-period-proves-physical-period"]["status"], "falsified")
         self.assertEqual(nodes["claim-independent-fourier-envelope-joint-optimum"]["status"], "falsified")
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}

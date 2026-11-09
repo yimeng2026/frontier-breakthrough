@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生Roszman1比值分母联合区间_图文完整版.docx",
+  "bytes": 189377,
+  "sha256": "3b6b2c14b62ff4c706f6688e1f9dc66f1989e6941c8d54c669a691edf5df20dc",
+  "native_math_objects": 3,
+  "embedded_images": 1,
+  "native_tables": 5,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

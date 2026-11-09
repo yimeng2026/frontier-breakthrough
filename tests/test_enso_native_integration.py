@@ -44,8 +44,8 @@ class EnsoNativeIntegrationTests(unittest.TestCase):
         ]
         for identifier in identifiers:
             self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 321)
-        self.assertEqual(len(graph["edges"]), 930)
+        self.assertEqual(len(graph["nodes"]), 329)
+        self.assertEqual(len(graph["edges"]), 962)
         self.assertEqual(nodes["claim-certified-forward-equals-optimizer-reproduction"]["status"], "falsified")
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}
         self.assertIn(("evidence-enso-native-holdout", "claim-model-family-fold-independent-winner", "contradicts"), edges)

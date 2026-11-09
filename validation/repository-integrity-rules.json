@@ -52,7 +52,8 @@
     "validation/enso-phase-interval-triple-protocol.json",
     "validation/chwirut1-log-support-protocol.json",
     "validation/roszman1-joint-linear-arctan-protocol.json",
-    "validation/native-conservative-support-synthesis-protocol.json"
+    "validation/native-conservative-support-synthesis-protocol.json",
+    "validation/roszman1-ratio-denominator-protocol.json"
   ],
   "decision": {
     "external_web_checked": false,

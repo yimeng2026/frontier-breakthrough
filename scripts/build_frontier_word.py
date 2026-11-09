@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "native_conservative_support_synthesis":
+    if REPORT_MODE == "roszman1_ratio_denominator":
+        replacements = {
+            "图：`papers/63_Roszman1比值分母联合区间/fig63_roszman1_ratio_denominator_intersection.png`。": "![](papers/63_Roszman1比值分母联合区间/fig63_roszman1_ratio_denominator_intersection.png)\n\n**图 63｜Roszman1 比值—分母联合区间与保守交集（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联图与证据边界」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "20 个解析比值区间、40 个端点见证与 200 次候选复核"
+    elif REPORT_MODE == "native_conservative_support_synthesis":
         replacements = {
             "图：`papers/62_三模型保守支撑综合/fig62_native_conservative_support_synthesis.png`。": "![](papers/62_三模型保守支撑综合/fig62_native_conservative_support_synthesis.png)\n\n**图 62｜三模型保守支撑与局部收紧综合（第 1 幅，共 1 幅）**  \n**插入位置**：§6「四联图与证据边界」；顺序第 1 幅，共 1 幅。",
         }

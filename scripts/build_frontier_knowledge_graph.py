@@ -123,6 +123,10 @@ def build_graph(root):
     conservativeSynthesis = json.loads((root / "exports/native-conservative-support-synthesis.json").read_text(encoding="utf-8"))
     if conservativeSynthesis["totals"]["dataset_count"] != 3 or conservativeSynthesis["totals"]["held_out_point_count"] != 407 or conservativeSynthesis["totals"]["available_point_count"] != 402 or conservativeSynthesis["totals"]["unavailable_point_count"] != 5 or conservativeSynthesis["totals"]["unavailable_fold_ids"] != ["roszman1:5"] or conservativeSynthesis["totals"]["unique_envelope_count"] != 210 or conservativeSynthesis["totals"]["tightened_envelope_count"] != 79 or conservativeSynthesis["totals"]["unchanged_envelope_count"] != 131 or conservativeSynthesis["totals"]["nonempty_intersection_count"] != 210 or conservativeSynthesis["totals"]["candidate_evaluation_count"] != 964 or conservativeSynthesis["totals"]["candidate_violation_count"] != 0 or conservativeSynthesis["totals"]["center_prediction_mismatch_count"] != 0 or conservativeSynthesis["totals"]["source_receipt_verified_count"] != 3 or conservativeSynthesis["totals"]["source_projection_mismatch_count"] != 0 or [dataset["ratio_summary"]["median"] for dataset in conservativeSynthesis["datasets"]] != [0.25654045819729265, 0.690796188558053, 1.0] or any(conservativeSynthesis[key] is not None for key in ["cross_dataset_pooled_error_metrics", "cross_dataset_raw_widths", "unified_stability_score", "probability_coverage", "global_optimum"]) or any(conservativeSynthesis["decision"].values()):
         raise ValueError("Expected conservative-support synthesis counts, model-specific baselines and unavailable-fold boundaries are not present")
+    roszmanRatio = json.loads((root / "validation/roszman1-ratio-denominator-intersection.json").read_text(encoding="utf-8"))
+    ratioExpected = {"fold_count": 5, "held_out_point_count": 25, "available_point_count": 20, "unavailable_point_count": 5, "ratio_interval_count": 20, "algebraic_extremizer_count": 40, "support_candidate_evaluation_count": 160, "candidate_evaluation_count": 200, "nonempty_intersection_count": 20, "ratio_candidate_violation_count": 0, "alternative_candidate_violation_count": 0, "intersection_candidate_violation_count": 0, "candidate_feasibility_failure_count": 0, "center_prediction_mismatch_count": 0, "intersection_tightened_count": 20, "intersection_unchanged_count": 0}
+    if any(roszmanRatio["totals"][key] != value for key, value in ratioExpected.items()) or roszmanRatio["totals"]["unavailable_fold_ids"] != [5] or roszmanRatio["totals"]["median_intersection_to_joint_linear_width_ratio"] != 0.9807825850555489 or roszmanRatio["totals"]["largest_intersection_tightening"]["x"] != -1208.68 or roszmanRatio["totals"]["largest_ratio_tightening"]["x"] != -996.31 or not roszmanRatio["independent_receipt_verified"] or not roszmanRatio["joint_linear_receipt_verified"] or roszmanRatio["decision"]["fold5_given_finite_bound"] or roszmanRatio["decision"]["full_nonlinear_global_optimum_claimed"]:
+        raise ValueError("Expected ratio-denominator analytic support, extremizer counts and unavailable-fold boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -1461,6 +1465,50 @@ def build_graph(root):
         edge("evidence-native-conservative-support-synthesis", "evidence-native-ellipsoid-cross-model", "supports"),
         edge("experiment-native-conservative-support-synthesis-protocol", "experiment-native-ellipsoid-cross-model-protocol", "supports"),
         edge("experiment-native-conservative-support-synthesis-protocol", "claim-center-coverage-external-validation", "tests"),
+    ])
+    nodes.extend([
+        node("claim-ratio-independent-box-tightest", "claim", "独立 b3 与分母区间组成的比值界已经最紧，不可能再利用椭球相关性收紧", "falsified", ["validation/roszman1-ratio-denominator-intersection.json"]),
+        node("claim-ratio-component-full-global-optimum", "claim", "比值分量的解析支撑与线性支撑相加就是完整四参数非线性全局最优", "falsified", ["validation/roszman1-ratio-denominator-intersection.json"]),
+        node("evidence-roszman1-ratio-denominator", "evidence", "20 个解析比值区间、40 个可行端点见证与 200 次原生候选评价全部通过；最终交集 20 个收紧，中位宽度比 0.980783", "supported", ["validation/roszman1-ratio-denominator-intersection.json", "validation/roszman1-ratio-denominator-check.json"]),
+        node("counterexample-roszman1-ratio-storage-asymmetry", "counterexample", "第 2 折冻结协方差 C34−C43=-1e-12；单边读取会产生约 1e-18 的端点残差，二次型必须使用其实际对称部分", "supported", ["validation/roszman1-native-identifiability.json", "docs/ROSZMAN1_RATIO_DENOMINATOR_INTERSECTION_2026-11-09.md"]),
+        node("experiment-roszman1-ratio-denominator-protocol", "experiment", "冻结负分母线性分式支撑、未平方分支恒等式、稳定倒数根、完整端点见证和 200 次候选复核", "supported", ["validation/roszman1-ratio-denominator-protocol.json", "scripts/analyze_roszman1_ratio_denominator.py"]),
+        node("counterexample-roszman1-ratio-fold5-unavailable", "counterexample", "第 5 折不满足负分母符号门禁，无比值区间、端点见证、候选评价或有限残差上界", "supported", ["validation/roszman1-ratio-denominator-intersection.json", "docs/ROSZMAN1_RATIO_DENOMINATOR_INTERSECTION_2026-11-09.md"]),
+        node("counterexample-roszman1-ratio-candidate-not-global-proof", "counterexample", "200 次候选全部通过只验证实现和端点一致性，不能替代共同非线性极值求解或全局最优证明", "supported", ["validation/roszman1-ratio-denominator-intersection.json", "validation/roszman1-ratio-denominator-check.json"]),
+        node("limitation-roszman1-ratio-component-scope", "limitation", "比值与线性分量可以在不同参数点取得支撑，组合仍保守但不是完整预测全局最优；高精度数值不是精确有理证书或概率区域", "active", ["validation/roszman1-ratio-denominator-intersection.json", "docs/ROSZMAN1_RATIO_DENOMINATOR_INTERSECTION_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-ratio-independent-box-tightest", "contains"),
+        edge("track-holdout", "claim-ratio-component-full-global-optimum", "contains"),
+        edge("track-holdout", "evidence-roszman1-ratio-denominator", "contains"),
+        edge("track-holdout", "counterexample-roszman1-ratio-storage-asymmetry", "contains"),
+        edge("track-holdout", "experiment-roszman1-ratio-denominator-protocol", "contains"),
+        edge("track-holdout", "counterexample-roszman1-ratio-fold5-unavailable", "contains"),
+        edge("track-holdout", "counterexample-roszman1-ratio-candidate-not-global-proof", "contains"),
+        edge("track-holdout", "limitation-roszman1-ratio-component-scope", "contains"),
+        edge("evidence-roszman1-ratio-denominator", "claim-ratio-independent-box-tightest", "contradicts"),
+        edge("experiment-roszman1-ratio-denominator-protocol", "claim-ratio-independent-box-tightest", "tests"),
+        edge("evidence-roszman1-ratio-denominator", "claim-ratio-component-full-global-optimum", "contradicts"),
+        edge("experiment-roszman1-ratio-denominator-protocol", "claim-ratio-component-full-global-optimum", "tests"),
+        edge("counterexample-roszman1-ratio-candidate-not-global-proof", "claim-ratio-component-full-global-optimum", "contradicts"),
+        edge("counterexample-roszman1-ratio-fold5-unavailable", "claim-roszman-fold5-low-rmse-singularity-safe", "contradicts"),
+        edge("counterexample-roszman1-ratio-fold5-unavailable", "counterexample-roszman1-fold5-still-unavailable", "supports"),
+        edge("evidence-roszman1-ratio-denominator", "counterexample-roszman1-ratio-fold5-unavailable", "supports"),
+        edge("evidence-roszman1-ratio-denominator", "counterexample-roszman1-ratio-storage-asymmetry", "supports"),
+        edge("counterexample-roszman1-ratio-storage-asymmetry", "limitation-roszman1-ratio-component-scope", "supports"),
+        edge("counterexample-roszman1-ratio-candidate-not-global-proof", "limitation-roszman1-ratio-component-scope", "supports"),
+        edge("limitation-roszman1-ratio-component-scope", "evidence-roszman1-ratio-denominator", "limits"),
+        edge("limitation-roszman1-ratio-component-scope", "claim-ratio-independent-box-tightest", "limits"),
+        edge("limitation-roszman1-ratio-component-scope", "claim-ratio-component-full-global-optimum", "limits"),
+        edge("limitation-roszman1-ratio-component-scope", "claim-center-coverage-external-validation", "limits"),
+        edge("evidence-roszman1-ratio-denominator", "evidence-roszman1-joint-linear-arctan", "supports"),
+        edge("experiment-roszman1-ratio-denominator-protocol", "experiment-roszman1-joint-linear-protocol", "supports"),
+        edge("evidence-roszman1-ratio-denominator", "evidence-roszman1-native-ellipsoid-continuous", "supports"),
+        edge("experiment-roszman1-ratio-denominator-protocol", "experiment-roszman1-native-ellipsoid-continuous-protocol", "supports"),
+        edge("evidence-roszman1-ratio-denominator", "evidence-native-conservative-support-synthesis", "supports"),
+        edge("experiment-roszman1-ratio-denominator-protocol", "experiment-native-conservative-support-synthesis-protocol", "supports"),
+        edge("evidence-roszman1-ratio-denominator", "evidence-roszman1-native-identifiability", "supports"),
+        edge("experiment-roszman1-ratio-denominator-protocol", "experiment-roszman1-native-identifiability-protocol", "supports"),
+        edge("experiment-roszman1-ratio-denominator-protocol", "claim-knowledge-graph", "tests"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 
