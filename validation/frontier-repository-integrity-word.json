@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生仓库完整性审计_图文完整版.docx",
+  "bytes": 100810,
+  "sha256": "71e5cafba8f1de5cec92712323cf422eb1ddd4d81a6e06b78799aefafe7ca73e",
+  "native_math_objects": 1,
+  "embedded_images": 1,
+  "native_tables": 5,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

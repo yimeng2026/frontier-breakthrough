@@ -71,6 +71,7 @@ def build() -> dict:
     corpusCheck = read("extreme-corpus-check.json")
     corpusV2Spec = read("extreme-corpus-v2-audit.json")
     corpusV2Check = read("extreme-corpus-v2-check.json")
+    repositoryAudit = read("repository-integrity-report.json")
     roszman1Coverage = read("roszman1-ellipsoid-coverage.json")
     roszman1Protocol = read("roszman1-ellipsoid-coverage-protocol.json")
     nativeHoldout = read("roszman1-native-holdout.json")
@@ -725,6 +726,24 @@ def build() -> dict:
             "limitations": "全集分级只约束极值相关文档的阅读等级，不证明物理理论为真，不批量改写历史 Markdown 或 Word，也不把 complete 等同于全局可识别性、概率覆盖或独立实验。",
             "upstreamContribution": "提供全文件覆盖、逐文件哈希、三类阅读义务、历史保持和可执行验收接口，防止旧 16 份计数被误当作第三十五阶段全集。",
             "snapshotFiles": ["validation/extreme-corpus-v2-audit.json", "validation/extreme-corpus-v2-check.json", "validation/frontier-extreme-corpus-v2-word.json"],
+        },
+        {
+            "id": "repository-integrity-audit", "domain": "math", "title": "全仓库链接、Word 哈希、证据图谱与协议输入一致性审计",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://github.com/yimeng2026/frontier-breakthrough"],
+            "metrics": {
+                "errorCount": repositoryAudit["error_count"],
+                "groups": repositoryAudit["groups"],
+                "decision": repositoryAudit["decision"],
+                "rulesSha256": repositoryAudit["rules_sha256"],
+                "analysisRunnerSha256": repositoryAudit["analysis_runner_sha256"],
+                "previousReceiptPreserved": (ROOT / "validation/repository-integrity-report-v1.json").is_file(),
+                "protocolCommits": {"rules": "300cc26", "audit": "24dc02f"},
+            },
+            "scientificClaim": "当前范围内 84 个 README 本地链接、45 个报告图片路径、37 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 10 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
+            "limitations": "审计只验证本地结构、路径、哈希和计数，不检查外部网页，不进行视觉渲染验收，不证明科学理论为真，也不把历史旧计数误判为错误。",
+            "upstreamContribution": "提供可重复的负例门禁、动态 JSON/README 计数核对和显式 --refresh 历史收据保留机制，防止链接、Word、图谱和协议在持续研究中漂移。",
+            "snapshotFiles": ["validation/repository-integrity-rules.json", "validation/repository-integrity-report.json", "validation/repository-integrity-report-v1.json", "validation/frontier-repository-integrity-word.json"],
         },
     ]
     packet = {

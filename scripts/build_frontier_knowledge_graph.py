@@ -66,6 +66,9 @@ def build_graph(root):
     corpusV2Check = json.loads((root / "validation/extreme-corpus-v2-check.json").read_text(encoding="utf-8"))
     if corpusV2Check["status"] != "passed" or corpusV2Check["document_count"] != 23 or corpusV2Check["companion_required_count"] != 12 or corpusV2Check["complete_count"] != 4 or corpusV2Check["descriptive_only_count"] != 7 or corpusV2Check["hash_matched_document_count"] != 22 or corpusV2Check["unchanged_original_count"] != 10 or corpusV2Check["error_count"] != 0 or not corpusV2Check["previous_files_preserved"] or [item["review_status"] for item in corpusV2Spec["documents"][-7:]] != ["companion_required", "companion_required", "complete", "descriptive_only", "complete", "descriptive_only", "descriptive_only"]:
         raise ValueError("Expected expanded extreme corpus and historical preservation are not present")
+    repositoryAudit = json.loads((root / "validation/repository-integrity-report.json").read_text(encoding="utf-8"))
+    if repositoryAudit["status"] != "passed" or repositoryAudit["error_count"] != 0 or repositoryAudit["groups"]["readme_local_links"]["count"] < 84 or repositoryAudit["groups"]["document_figure_links"]["count"] < 44 or repositoryAudit["groups"]["word_manifests"]["count"] < 36 or repositoryAudit["groups"]["protocol_inputs"]["count"] != 10 or repositoryAudit["groups"]["corpus_v2"]["documents"] != 23 or not repositoryAudit["groups"]["dynamic_counts"]["readme_consistent"] or repositoryAudit["decision"]["visual_qa_claimed"] or repositoryAudit["decision"]["scientific_truth_claimed"]:
+        raise ValueError("Expected repository integrity audit and dynamic counts are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -670,6 +673,12 @@ def build_graph(root):
         edge("track-knowledge", "experiment-extreme-corpus-v2-classification", "contains"),
         edge("experiment-extreme-corpus-v2-classification", "claim-knowledge-graph", "tests"),
         edge("experiment-extreme-corpus-classification", "experiment-extreme-corpus-v2-classification", "supports"),
+    ])
+    nodes.append(node("experiment-repository-integrity-audit", "experiment", "检查 README 链接、图片、Word 哈希、证据快照、图谱、全集计数和 10 份近期协议，错误数为 0", "supported", ["validation/repository-integrity-rules.json", "validation/repository-integrity-report.json", "scripts/audit_repository_integrity.py"]))
+    edges.extend([
+        edge("track-knowledge", "experiment-repository-integrity-audit", "contains"),
+        edge("experiment-repository-integrity-audit", "claim-knowledge-graph", "tests"),
+        edge("experiment-extreme-corpus-v2-classification", "experiment-repository-integrity-audit", "supports"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

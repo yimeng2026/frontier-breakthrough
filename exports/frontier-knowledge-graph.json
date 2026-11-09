@@ -1722,6 +1722,17 @@
         "validation/extreme-corpus-v2-check.json",
         "scripts/validate_extreme_corpus_v2.py"
       ]
+    },
+    {
+      "id": "experiment-repository-integrity-audit",
+      "kind": "experiment",
+      "title": "检查 README 链接、图片、Word 哈希、证据快照、图谱、全集计数和 10 份近期协议，错误数为 0",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/repository-integrity-rules.json",
+        "validation/repository-integrity-report.json",
+        "scripts/audit_repository_integrity.py"
+      ]
     }
   ],
   "edges": [
@@ -3758,6 +3769,21 @@
     {
       "from": "experiment-extreme-corpus-classification",
       "to": "experiment-extreme-corpus-v2-classification",
+      "relation": "supports"
+    },
+    {
+      "from": "track-knowledge",
+      "to": "experiment-repository-integrity-audit",
+      "relation": "contains"
+    },
+    {
+      "from": "experiment-repository-integrity-audit",
+      "to": "claim-knowledge-graph",
+      "relation": "tests"
+    },
+    {
+      "from": "experiment-extreme-corpus-v2-classification",
+      "to": "experiment-repository-integrity-audit",
       "relation": "supports"
     }
   ]

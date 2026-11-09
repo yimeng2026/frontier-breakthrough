@@ -4,24 +4,24 @@
   "errors": [],
   "groups": {
     "readme_local_links": {
-      "count": 84,
+      "count": 86,
       "errors": []
     },
     "document_figure_links": {
-      "count": 44,
+      "count": 45,
       "errors": []
     },
     "word_manifests": {
-      "count": 36,
+      "count": 37,
       "errors": []
     },
     "evidence_snapshots": {
-      "count": 161,
+      "count": 165,
       "errors": []
     },
     "knowledge_graph": {
-      "nodes": 184,
-      "edges": 407,
+      "nodes": 185,
+      "edges": 410,
       "errors": []
     },
     "protocol_inputs": {
@@ -36,9 +36,9 @@
       "errors": []
     },
     "dynamic_counts": {
-      "evidenceItems": 47,
-      "graphNodes": 184,
-      "graphEdges": 407,
+      "evidenceItems": 48,
+      "graphNodes": 185,
+      "graphEdges": 410,
       "readme_consistent": true,
       "errors": []
     }
@@ -50,5 +50,5 @@
     "historical_text_rewritten": false
   },
   "rules_sha256": "b5980c2c98f12c7924e2a255fdcbe3642d6c8fcf1245b56947ed00378b717331",
-  "analysis_runner_sha256": "a70a8da3016350bfd01d1405dac6a44ad68ee5d3dc0aa45df95042c532fd3c20"
+  "analysis_runner_sha256": "403aabb3f22e6fa26eca8595777df16c1f5be34f6f948de7f1c8e7f8f20effdf"
 }

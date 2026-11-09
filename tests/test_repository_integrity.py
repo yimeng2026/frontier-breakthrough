@@ -66,6 +66,26 @@ class RepositoryIntegrityTests(unittest.TestCase):
         report = module.audit(readme_text="# no valid counts")
         self.assertTrue(any("README evidence count" in error or "README graph count" in error for error in report["errors"]))
 
+    def test_refresh_preserves_previous_receipt(self):
+        module = self.load_module()
+        import tempfile
+        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
+            output = Path(directory) / "refresh-report.json"
+            previous = '{"status":"previous"}\n'
+            output.write_text(previous, encoding="utf-8")
+            saved_output = module.OUTPUT
+            saved_argv = sys.argv[:]
+            module.OUTPUT = output
+            sys.argv = ["audit_repository_integrity.py", "--refresh"]
+            try:
+                module.main()
+            finally:
+                module.OUTPUT = saved_output
+                sys.argv = saved_argv
+            backup = output.with_name("refresh-report-v1.json")
+            self.assertEqual(backup.read_text(encoding="utf-8"), previous)
+            self.assertEqual(json.loads(output.read_text(encoding="utf-8"))["error_count"], 0)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -4534,6 +4534,82 @@
         "validation/extreme-corpus-v2-check.json",
         "validation/frontier-extreme-corpus-v2-word.json"
       ]
+    },
+    {
+      "id": "repository-integrity-audit",
+      "domain": "math",
+      "title": "全仓库链接、Word 哈希、证据图谱与协议输入一致性审计",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://github.com/yimeng2026/frontier-breakthrough"
+      ],
+      "metrics": {
+        "errorCount": 0,
+        "groups": {
+          "readme_local_links": {
+            "count": 86,
+            "errors": []
+          },
+          "document_figure_links": {
+            "count": 45,
+            "errors": []
+          },
+          "word_manifests": {
+            "count": 37,
+            "errors": []
+          },
+          "evidence_snapshots": {
+            "count": 165,
+            "errors": []
+          },
+          "knowledge_graph": {
+            "nodes": 185,
+            "edges": 410,
+            "errors": []
+          },
+          "protocol_inputs": {
+            "count": 10,
+            "recordsChecked": 24,
+            "errors": []
+          },
+          "corpus_v2": {
+            "documents": 23,
+            "hashMatchedDocuments": 22,
+            "unchangedOriginals": 10,
+            "errors": []
+          },
+          "dynamic_counts": {
+            "evidenceItems": 48,
+            "graphNodes": 185,
+            "graphEdges": 410,
+            "readme_consistent": true,
+            "errors": []
+          }
+        },
+        "decision": {
+          "external_web_checked": false,
+          "visual_qa_claimed": false,
+          "scientific_truth_claimed": false,
+          "historical_text_rewritten": false
+        },
+        "rulesSha256": "b5980c2c98f12c7924e2a255fdcbe3642d6c8fcf1245b56947ed00378b717331",
+        "analysisRunnerSha256": "403aabb3f22e6fa26eca8595777df16c1f5be34f6f948de7f1c8e7f8f20effdf",
+        "previousReceiptPreserved": true,
+        "protocolCommits": {
+          "rules": "300cc26",
+          "audit": "24dc02f"
+        }
+      },
+      "scientificClaim": "当前范围内 84 个 README 本地链接、45 个报告图片路径、37 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 10 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
+      "limitations": "审计只验证本地结构、路径、哈希和计数，不检查外部网页，不进行视觉渲染验收，不证明科学理论为真，也不把历史旧计数误判为错误。",
+      "upstreamContribution": "提供可重复的负例门禁、动态 JSON/README 计数核对和显式 --refresh 历史收据保留机制，防止链接、Word、图谱和协议在持续研究中漂移。",
+      "snapshotFiles": [
+        "validation/repository-integrity-rules.json",
+        "validation/repository-integrity-report.json",
+        "validation/repository-integrity-report-v1.json",
+        "validation/frontier-repository-integrity-word.json"
+      ]
     }
   ]
 }

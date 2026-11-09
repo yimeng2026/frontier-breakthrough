@@ -166,6 +166,7 @@ def main():
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--refresh", action="store_true")
     args = parser.parse_args()
     report = audit()
     if report["error_count"]:
@@ -176,8 +177,12 @@ def main():
             raise ValueError("Repository integrity report is stale")
         print("OK: repository integrity audit passed")
         return
-    if OUTPUT.exists():
-        raise FileExistsError("Refusing to overwrite repository integrity report")
+    if OUTPUT.exists() and not args.refresh:
+        raise FileExistsError("Refusing to overwrite repository integrity report without --refresh")
+    if args.refresh and OUTPUT.exists():
+        backup = OUTPUT.with_name(f"{OUTPUT.stem}-v1.json")
+        if not backup.exists():
+            backup.write_bytes(OUTPUT.read_bytes())
     OUTPUT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"OK: repository integrity audit passed; wrote {OUTPUT}")
 

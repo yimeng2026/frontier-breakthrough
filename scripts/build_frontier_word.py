@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "extreme_corpus_v2":
+    if REPORT_MODE == "repository_integrity":
+        replacements = {
+            "图：`papers/44_仓库完整性审计/fig44_repository_integrity.png`。": "![](papers/44_仓库完整性审计/fig44_repository_integrity.png)\n\n**图 44｜全仓库链接、清单、图谱与协议完整性审计（第 1 幅，共 1 幅）**  \n**插入位置**：§5「审计组图与负例门禁」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "本地链接、Word 哈希、证据图谱、全集计数和协议输入的确定性验收"
+    elif REPORT_MODE == "extreme_corpus_v2":
         replacements = {
             "图：`papers/43_极值全集分级V2/fig43_extreme_corpus_v2.png`。": "![](papers/43_极值全集分级V2/fig43_extreme_corpus_v2.png)\n\n**图 43｜极值相关报告全集分级第二版（第 1 幅，共 1 幅）**  \n**插入位置**：§5「已具备相应完整证据的文档与分级图」；顺序第 1 幅，共 1 幅。",
         }
