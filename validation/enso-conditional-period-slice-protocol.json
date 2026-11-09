@@ -1,0 +1,115 @@
+{
+  "status": "frozen_before_enso_conditional_period_slice_bounds",
+  "frozen_at_local": "2026-11-09T13:19:26+08:00",
+  "analysis_type": "High-precision joint coefficient support on fixed-period ellipsoid slices of the native ENSO Fourier model, with deterministic feasible period-perturbation tests against exporting those slice bounds to the full ellipsoid; no refitting, global optimizer claim or probability region",
+  "inputs": {
+    "native_identifiability": {
+      "file": "validation/enso-native-identifiability.json",
+      "sha256": "19656ed9f5930bed7e9bbdcd1072f50b5e68a8836c1975ab550dc1d828011d7e"
+    },
+    "baseline_bounds": {
+      "file": "validation/enso-native-ellipsoid-continuous-bounds.json",
+      "sha256": "d6eab927eaafc9dc8d469fa42e830660b0e673bde52031b1cd2bd78f795f61ea"
+    },
+    "baseline_receipt": {
+      "file": "validation/enso-native-ellipsoid-continuous-check.json",
+      "sha256": "e1b0b71432fab1d071682bb5646828edbf83d5137f5ba7db1942ec37f30cab73"
+    },
+    "baseline_runner": {
+      "file": "scripts/analyze_enso_native_ellipsoid_continuous.py",
+      "sha256": "614a419ce8388ab644b9665023600ebfb475c82577b550e74ee632b4f9c438e1"
+    },
+    "native_model_runner": {
+      "file": "scripts/analyze_enso_native_holdout.py",
+      "sha256": "1b0b195170bf98c542c74544850db8c0a76d05698bbcbdb6063ae24ba6061a92"
+    },
+    "support_runner": {
+      "file": "scripts/analyze_roszman1_native_ellipsoid_continuous.py",
+      "sha256": "c3b84888aba9326ccb82e052401d7827e7c38b623855cc8e76cebd4d5505295e"
+    }
+  },
+  "slice_rule": {
+    "baseline_radius": 4,
+    "periods": ["b4", "b7"],
+    "coefficient_order": ["b1", "b2", "b3", "b5", "b6", "b8", "b9"],
+    "slice": "For each fold, freeze b4 and b7 at their native centers and retain the seven-dimensional coefficient slice of the same nine-dimensional ellipsoid; no period estimate or covariance is changed",
+    "schur_complement": "With c denoting the seven coefficients and p the two periods, use S=C_cc-C_cp*C_pp^(-1)*C_pc. This is the quadratic-form matrix of the ellipsoid slice, not the marginal coefficient block C_cc and not a posterior conditional covariance",
+    "support": "At each held-out month, form v(x) from the intercept and actual sine/cosine values at the frozen center periods. Evaluate the center prediction f_c(x) with the original native model and compute f_c(x) plus or minus radius*sqrt(v(x)^T*S*v(x))",
+    "outward_rounding": "Use 80-digit mpmath arithmetic, the frozen 1e-24 outward relative margin and nextafter outward conversion; this is a numerical interval certificate, not exact rational algebra",
+    "positive_definite_check": "Require both C and S to be symmetric positive definite by high-precision Cholesky and fail rather than fabricate a bound",
+    "independent_comparison": "Compare each slice envelope with the stage-47 independent-coefficient envelope at the same fold and month. The conditional slice envelope must be contained in that baseline envelope; report width ratio and width reduction",
+    "scope": "The support is jointly optimized over the seven coefficients only on the fixed-period slice. It is not a joint nonlinear optimum over the full nine-dimensional ellipsoid"
+  },
+  "candidate_rule": {
+    "directions": ["b4_minus", "b4_plus", "b7_minus", "b7_plus"],
+    "direction_formula": "For each period p and each sign, set theta_candidate=theta_center+sign*radius*sqrt(C_pp)*e_p, leaving every other parameter at its center. These four points lie on the full ellipsoid boundary by the support identity",
+    "directions_selected_after_evaluation": false,
+    "evaluation": "Evaluate the original nonlinear Fourier model with each candidate's actual periods and every unique held-out month. Do not use fixed-period or Taylor substitution for the candidate evaluation",
+    "feasibility": "Recompute the full ellipsoid quadratic form for every candidate and require it to equal radius^2 within the high-precision numerical tolerance; require both candidate periods to remain strictly positive",
+    "slice_violation": "Record whenever a candidate prediction lies below the conditional slice lower bound or above its upper bound. Retain every candidate and every month, including zero-violation records",
+    "independent_baseline_check": "Require every candidate prediction to remain inside the stage-47 independent full-ellipsoid envelope at the same fold and month; this audits implementation consistency and is not a new independent validation",
+    "not_optimizer": "The four deterministic directions are feasibility witnesses only, not global maximizers or minimizers of the nonlinear model"
+  },
+  "outcome_rule": {
+    "violation_witness": "Any strictly outside candidate is a concrete counterexample to exporting the fixed-period slice bound to the full ellipsoid; record its direction, parameters, month, prediction and exceedance",
+    "zero_witness": "If no candidate violates a slice bound, report only that these four directions found no witness. Never infer full-ellipsoid safety from an empty candidate counterexample set",
+    "tightening": "Report conditional width reductions independently from full-region violation counts; a large slice tightening does not compensate for a full-region counterexample",
+    "baseline_preservation": "Do not rewrite the stage-47 baseline, native identifiability files, protocols, reports, figures or Word documents"
+  },
+  "analysis_scope": {
+    "conditional_slice_not_full_ellipsoid": true,
+    "candidate_directions_are_global_optimizers": false,
+    "zero_witness_would_not_prove_full_safety": true,
+    "schur_complement_is_posterior_conditional_covariance": false,
+    "marginal_block_substituted_for_slice_matrix": false,
+    "refit": false,
+    "retrospective_mechanism_audit": true
+  },
+  "expected_structure": {
+    "fold_count": 5,
+    "held_out_point_count": 168,
+    "slice_envelope_count": 168,
+    "coefficient_count": 7,
+    "period_count": 2,
+    "candidate_directions_per_fold": 4,
+    "candidate_direction_count": 20,
+    "candidate_evaluation_count": 672,
+    "full_independent_violation_count": 0,
+    "refit_count": 0
+  },
+  "output_rule": {
+    "summary": "validation/enso-conditional-period-slice-bounds.json",
+    "figure": "papers/57_ENSO条件周期切片界/fig57_enso_conditional_period_slice_bounds.png",
+    "report": "docs/ENSO_CONDITIONAL_PERIOD_SLICE_BOUNDS_2026-11-09.md",
+    "word": "papers/前沿共生ENSO条件周期切片界_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "decision": {
+    "refit": false,
+    "slice_bound_called_full_ellipsoid_bound": false,
+    "joint_full_nonlinear_optimum_claimed": false,
+    "candidate_directions_called_global_optimizers": false,
+    "zero_witness_called_safety_proof": false,
+    "probability_region_claimed": false,
+    "physical_periods_proved": false,
+    "schur_complement_called_posterior_covariance": false,
+    "marginal_block_called_conditional_slice": false,
+    "exact_rational_certificate_claimed": false,
+    "baseline_envelope_replaced_by_slice_envelope": false,
+    "candidate_violations_hidden": false,
+    "center_consistency_used_as_external_validation": false,
+    "independent_physical_experiment_claimed": false,
+    "historical_files_rewritten": false
+  },
+  "prohibitions": [
+    "No refitting, changed centers, covariance matrices, folds, periods or post-hoc candidate directions",
+    "No substitution of the marginal coefficient covariance block for the Schur-complement slice matrix",
+    "No calling fixed-period joint coefficient support a full-ellipsoid joint nonlinear optimum",
+    "No hiding of candidate violations or treating zero candidate violations as a global safety proof",
+    "No probability, confidence, posterior, calibrated-coverage or physical-period claim",
+    "No replacement of the stage-47 independent full-ellipsoid baseline by the conditional slice envelope",
+    "No exact rational-certificate claim for high-precision numerical intervals",
+    "No rewriting of historical files or use of center consistency as external scientific validation"
+  ]
+}
