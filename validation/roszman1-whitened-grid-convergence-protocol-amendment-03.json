@@ -1,0 +1,44 @@
+{
+  "status": "frozen_before_roszman1_whitened_grid_convergence_results",
+  "frozen_at_local": "2026-11-09T17:53:49+08:00",
+  "amendment": "03",
+  "previous_amendment": {
+    "file": "validation/roszman1-whitened-grid-convergence-protocol-amendment-02.json",
+    "sha256": "1486361e1e7121dab30bf7ca769a0eaba54374c0a2fb283ffea0404630c0b2d9"
+  },
+  "reason": "The original outside_cell_count=0 applied only to the coarse grids. The 8-per-dimension grid has legitimate wholly outside-ball cells at larger coordinate distances, which must be counted rather than forced to zero or hidden",
+  "independent_combinatorial_check": {
+    "distance_squares_by_index": [9, 4, 1, 0, 0, 1, 4, 9],
+    "radius_squared": 16,
+    "outside_per_available_x": 1520,
+    "evaluated_per_available_x": 2576,
+    "available_x_count": 20,
+    "rule": "For each of the 8^4 integer index tuples, sum the squared minimum absolute coordinate endpoint per axis and count values strictly greater than 16",
+    "boundary_example": "Distance vector (2,2,2,2) has squared norm 16 and is retained, not discarded",
+    "outside_example": "Distance vector (0,0,3,3) has squared norm 18 and is wholly outside the radius-4 ball"
+  },
+  "correction": {
+    "expected_outside_cell_count": 30400,
+    "expected_evaluated_cell_count": 51520,
+    "outside_per_available_x": 1520,
+    "evaluated_per_available_x": 2576,
+    "boundary_cells_retained": true,
+    "outside_proof_unchanged": "Only cells whose minimum distance proves them wholly outside the ball are excluded; all remaining cells still undergo denominator classification",
+    "denominator_gate_unchanged": true,
+    "original_outside_count_scope": "The original zero count remains unchanged in the original protocol and is corrected only by this new amendment"
+  },
+  "historical_preservation": {
+    "previous_amendment_unchanged": true,
+    "original_protocol_unchanged": true,
+    "convergence_result_not_yet_written": true,
+    "stage56_and_erratum_files_unchanged": true
+  },
+  "decision": {
+    "outside_cells_silently_dropped": false,
+    "denominator_gate_relaxed": false,
+    "outside_count_forced_to_zero": false,
+    "previous_amendment_rewritten": false,
+    "original_whitened_cover_used": false,
+    "plateau_called_convergence_proof": false
+  }
+}
