@@ -1,0 +1,171 @@
+{
+  "status": "frozen_before_roszman1_ratio_denominator_joint_interval",
+  "frozen_at_local": "2026-11-09T15:35:54+08:00",
+  "analysis_type": "Analytic ellipsoid support for the native Roszman1 linear-fractional argument b3/(x-b4), followed by arctangent monotonicity, the existing joint-linear support and a conservative intersection with stage 54; no full four-parameter nonlinear optimum or finite bound for fold 5",
+  "inputs": {
+    "native_identifiability": {
+      "file": "validation/roszman1-native-identifiability.json",
+      "sha256": "9888145d181c157da33b3bf0f93980ef0db15e4d3b368a96330c775363bc4322"
+    },
+    "independent_bounds": {
+      "file": "validation/roszman1-native-ellipsoid-continuous-bounds.json",
+      "sha256": "50c672fc3022b34465557daf98a12ce1f975b358e6ba5c9590202a2bdc4660a9"
+    },
+    "independent_receipt": {
+      "file": "validation/roszman1-native-ellipsoid-continuous-check.json",
+      "sha256": "e711e4f452234dd816334709cdf73901c8131bafdf72fcd524a94be2f209f3e3"
+    },
+    "joint_linear_bounds": {
+      "file": "validation/roszman1-joint-linear-arctan-intersection.json",
+      "sha256": "45852e2534f51098ae390e62092d1b8df04c609d37aba5211121f637599c3b35"
+    },
+    "joint_linear_receipt": {
+      "file": "validation/roszman1-joint-linear-arctan-check.json",
+      "sha256": "5f0eb06cc99161eaaabbdc033ffa49998f97a9c8bb795b8cf09edf888d9e4ff5"
+    },
+    "native_model_runner": {
+      "file": "scripts/analyze_roszman1_native_holdout.py",
+      "sha256": "fa1c255122d0b8db9c3866e3dc9b8ac9565289667d1531230f499416b389ee0d"
+    },
+    "baseline_runner": {
+      "file": "scripts/analyze_roszman1_native_ellipsoid_continuous.py",
+      "sha256": "c3b84888aba9326ccb82e052401d7827e7c38b623855cc8e76cebd4d5505295e"
+    }
+  },
+  "receipt_gate": {
+    "stage46": "Require status=passed and summarySha256 to match the frozen independent-bounds file",
+    "stage54": "Require status=passed and summarySha256 to match the frozen joint-linear-bounds file",
+    "mismatch_policy": "Stop before computing any new interval if a receipt, source hash or fold order differs"
+  },
+  "ratio_rule": {
+    "model": "f(x,theta)=b1-b2*x-arctan(b3/(x-b4))/pi",
+    "ellipsoid": "theta=theta_center+delta with delta^T*C^-1*delta<=r^2, r=4; use the full four-parameter covariance",
+    "fixed_x": "Let c=b3_center, d0=x-b4_center, a=e3, v=e4, d=d0-v^T*delta and z=(c+a^T*delta)/d",
+    "denominator_sign": "negative",
+    "sign_gate": "Require d0+r*sqrt(C44)<0 before solving the ratio; this makes d<0 for every feasible delta. Fold 5 fails this gate and remains unavailable",
+    "support_conditions": "For negative d, z>=t iff b3-t*d<=0 for all feasible delta, and z<=t iff b3-t*d>=0 for all feasible delta",
+    "alpha_and_q": "alpha(t)=c-t*d0 and q(t)=C33+2*t*C34+t^2*C44. The extrema of b3-t*d are alpha(t)+/-r*sqrt(q(t))",
+    "quadratic_form": "A=d0^2-r^2*C44; B=c*d0+r^2*C34; D=c^2-r^2*C33; solve A*t^2-2*B*t+D=0",
+    "root_rule": "Compute both high-precision roots (B+/-sqrt(B^2-A*D))/A; reject nonpositive A, negative discriminant, zero q or a root that does not satisfy its unsquared support identity",
+    "lower_branch": "alpha=c-t*d0<=0 and alpha+r*sqrt(C33+2*t*C34+t^2*C44)=0",
+    "upper_branch": "alpha=c-t*d0>=0 and alpha-r*sqrt(C33+2*t*C34+t^2*C44)=0",
+    "branch_assignment": "Require exactly one lower-support root and one upper-support root, order them, and check the corresponding support sign and nonzero denominator before accepting the ratio interval",
+    "lower_extremizer": "delta=+r*C*(e3+t*e4)/sqrt((e3+t*e4)^T*C*(e3+t*e4))",
+    "upper_extremizer": "delta=-r*C*(e3+t*e4)/sqrt((e3+t*e4)^T*C*(e3+t*e4))",
+    "extremizer_witness": "At each accepted root evaluate the full four-parameter witness, ellipsoid quadratic form, denominator, ratio and original native prediction. Require quadratic=16, negative denominator and ratio consistent with the corresponding outward-rounded endpoint",
+    "argument_comparison": "Retain the stage-46 independent argument interval and require the new ratio interval to lie within it up to the frozen outward-rounding tolerance; do not edit either historical file",
+    "known_answer": {
+      "center": "c=1, d0=-2",
+      "covariance": "C33=C44=1, C34=0",
+      "radius": 1,
+      "ratio_minimum": -1.3333333333333333,
+      "ratio_maximum": 0.0,
+      "lower_witness": "delta3=0.6, delta4=-0.8",
+      "upper_witness": "delta3=-1, delta4=0",
+      "branch_negative_control": "The lower root does not satisfy the upper identity and the upper root does not satisfy the lower identity",
+      "singular_negative_control": "c=1, d0=-1, C33=C44=1, C34=0, r=1 gives A=0 and a crossing denominator, so it must be rejected before root solving"
+    },
+    "scope": "The ratio component has analytic ellipsoid support at each fixed available x; this is not a Charnes-Cooper or other relaxation and is not a joint optimum of the full native prediction"
+  },
+  "prediction_rule": {
+    "linear_support": "Reuse the stage-54 exact ellipsoid support for A=b1-b2*x, including its full covariance direction and outward rounding",
+    "ratio_arctangent": "Because arctan is increasing, use atan(ratio_min) and atan(ratio_max) with outward rounding",
+    "alternative": "alternative_min=linear_min-atan(ratio_max)/pi and alternative_max=linear_max-atan(ratio_min)/pi",
+    "intersection": "Intersect the alternative with the frozen stage-54 final intersection. This also preserves the stage-46 baseline because stage 54 was intersected with it; do not replace either historical baseline",
+    "dependency_scope": "The linear support and ratio support are each valid over the same ellipsoid but may be attained at different parameter witnesses. Their sum is conservative and is not a joint full-prediction optimum",
+    "comparison": "Record alternative and final widths, ratios and reductions against the stage-54 final intersection; retain every wider alternative, unchanged intersection and empty-intersection failure rather than presuming universal tightening",
+    "point_accounting": "Retain 20 available points and all five fold-5 unavailable points. Fold 5 receives no ratio interval, finite prediction bound, extremizer, candidate evaluation or residual upper bound"
+  },
+  "candidate_rule": {
+    "support_directions": ["b1_minus", "b1_plus", "b2_minus", "b2_plus", "b3_minus", "b3_plus", "b4_minus", "b4_plus"],
+    "support_evaluation": "Reuse the 32 frozen stage-54 full-covariance support candidates and their 160 original-model evaluations; do not edit the historical records",
+    "algebraic_extremizers": "Add two ratio-extremizer evaluations at each of the 20 available x positions, for 40 additional original-model evaluations",
+    "containment": "Every support candidate and algebraic extremizer must lie in the new ratio interval, alternative and final intersection; also retain stage-46 and stage-54 containment checks",
+    "scope": "The 200 evaluations are consistency witnesses, not a global optimizer, global optimum proof, probability coverage or independent physical experiment"
+  },
+  "numerical_rule": {
+    "engine": "Use 80-digit mpmath arithmetic for covariance support, quadratic roots, unsquared branch identities, extremizers and arctangent evaluation",
+    "outward_rounding": "Apply the frozen 1e-24 relative margin and nextafter conversion to ratio endpoints, arctangent bounds and prediction bounds",
+    "certificate_class": "Analytic model-specific support evaluated with high-precision outward-rounded floating-point arithmetic; not an exact rational-algebra certificate or a probability region",
+    "native_crosscheck": "Cross-check center and all candidate predictions against the frozen native_model implementation",
+    "empty_intersection": "An empty final intersection is a construction failure to report, not a case to hide or repair by changing historical bounds"
+  },
+  "analysis_scope": {
+    "ratio_component_exact_support": true,
+    "negative_denominator_sign_required": true,
+    "linear_and_ratio_components_not_joint_prediction_optimum": true,
+    "candidate_checks_are_consistency_not_proof": true,
+    "crossing_fold_receives_no_bound": true,
+    "full_covariance_support_not_coordinate_only": true,
+    "refit": false,
+    "retrospective_bound_construction": true,
+    "independent_physical_experiment": false
+  },
+  "expected_structure": {
+    "fold_count": 5,
+    "held_out_point_count": 25,
+    "available_point_count": 20,
+    "unavailable_point_count": 5,
+    "unavailable_fold_ids": [5],
+    "ratio_interval_count": 20,
+    "ratio_alternative_bound_count": 20,
+    "intersection_bound_count": 20,
+    "algebraic_extremizer_count": 40,
+    "support_candidate_evaluation_count": 160,
+    "candidate_evaluation_count": 200,
+    "nonempty_intersection_count": 20,
+    "ratio_candidate_violation_count": 0,
+    "alternative_candidate_violation_count": 0,
+    "intersection_candidate_violation_count": 0,
+    "independent_candidate_violation_count": 0,
+    "joint_linear_candidate_violation_count": 0,
+    "extremizer_feasibility_failure_count": 0,
+    "candidate_feasibility_failure_count": 0,
+    "center_prediction_mismatch_count": 0,
+    "covered_point_count": 20,
+    "violation_point_count": 0,
+    "refit_count": 0
+  },
+  "output_rule": {
+    "summary": "validation/roszman1-ratio-denominator-intersection.json",
+    "figure": "papers/63_Roszman1比值分母联合区间/fig63_roszman1_ratio_denominator_intersection.png",
+    "report": "docs/ROSZMAN1_RATIO_DENOMINATOR_INTERSECTION_2026-11-09.md",
+    "word": "papers/前沿共生Roszman1比值分母联合区间_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "decision": {
+    "refit": false,
+    "charnes_cooper_relaxation_used": false,
+    "mobius_relaxation_used": false,
+    "full_nonlinear_global_optimum_claimed": false,
+    "ratio_interval_is_independent_box_relaxation": false,
+    "alternative_is_global_optimum": false,
+    "intersection_is_global_optimum": false,
+    "alternative_always_tighter_claimed": false,
+    "intersection_always_tighter_claimed": false,
+    "fold5_given_finite_bound": false,
+    "candidate_checks_replace_support_proof": false,
+    "candidate_directions_called_global_optimizers": false,
+    "coordinate_only_support_directions_used": false,
+    "probability_region_claimed": false,
+    "exact_rational_certificate_claimed": false,
+    "independent_model_family_replication_claimed": false,
+    "independent_physical_experiment_claimed": false,
+    "unavailable_points_hidden": false,
+    "wider_alternatives_hidden": false,
+    "unchanged_intersections_hidden": false,
+    "candidate_violations_hidden": false,
+    "historical_baseline_replaced": false
+  },
+  "prohibitions": [
+    "No refitting, changed centers, covariance matrices, folds, sign certificates, historical results or post-hoc candidate directions",
+    "No ratio root solving before the negative denominator sign gate and no finite bound or extremizer for fold 5",
+    "No accepting squared roots without the unsquared branch identity and a feasible extremizer witness",
+    "No replacing the analytic ratio support with independent numerator/denominator boxes, Charnes-Cooper, Mobius or another unverified relaxation",
+    "No calling the separate linear-plus-ratio construction a joint full-prediction global optimum",
+    "No hiding wider alternatives, unchanged intersections, unavailable points, branch failures or candidate violations",
+    "No probability, confidence, posterior, calibrated-coverage, independent-model-family or independent-experiment claim",
+    "No exact rational-certificate claim or replacement of stage-46 or stage-54 baselines"
+  ]
+}
