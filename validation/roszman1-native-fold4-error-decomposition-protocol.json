@@ -1,0 +1,62 @@
+{
+  "status": "frozen_before_roszman1_native_fold4_error_decomposition",
+  "frozen_at_local": "2026-11-09T09:44:15+08:00",
+  "analysis_type": "Read-only post-hoc arithmetic decomposition of the five frozen Roszman1 fold-4 held-out predictions; no refitting, retuning or new experiment",
+  "inputs": {
+    "native_holdout": {
+      "file": "validation/roszman1-native-holdout.json",
+      "sha256": "c8678e4635a23a9bf7a59233259c48c4307911df4dd50cf6e102cc8cb975e90e"
+    },
+    "cross_dataset_synthesis": {
+      "file": "exports/native-cross-dataset-synthesis.json",
+      "sha256": "3892a4ae65b6fbbcc18c38fc3429ec41dec8276bbd8e0813d63144a550b38441"
+    }
+  },
+  "target": {
+    "dataset": "roszman1",
+    "fold": 4,
+    "point_count": 5,
+    "native_absolute_residual_winner_count": 3,
+    "rational_absolute_residual_winner_count": 2,
+    "native_rmse_lower": true,
+    "rational_mae_lower": true
+  },
+  "rules": {
+    "signed_residual": "For either model, residual equals observed_y minus prediction",
+    "absolute_delta": "delta_i equals native absolute residual minus rational absolute residual; negative favors native and positive favors rational",
+    "squared_delta": "q_i equals native squared residual minus rational squared residual; negative favors native and positive favors rational",
+    "aggregate_absolute": "D1 equals the sum of delta_i; native MAE minus rational MAE must equal D1 divided by five",
+    "aggregate_squared": "D2 equals the sum of q_i; native MSE minus rational MSE must equal D2 divided by five, with MSE defined as RMSE squared",
+    "weight_identity": "For every point, q_i must equal delta_i multiplied by w_i, where w_i is native absolute residual plus rational absolute residual",
+    "point_groups": "Group points by the sign of delta_i; exact zero is retained as a tie and never forced into either winner",
+    "weight_summary": "Report raw residual-unit weights and their sums and means within each point group; do not convert them into probabilities or physical contributions",
+    "leave_one_out": "For each point, subtract only its delta_i and q_i from D1 and D2; this diagnoses metric arithmetic after removing that observation's contribution and is not model refitting",
+    "direction_reversal": "A removal reverses the native-lower-RMSE direction when the remaining D2 is nonnegative; it reverses the rational-lower-MAE direction when the remaining D1 is nonpositive; exact zero is labeled tie",
+    "metric_recomputation": "Recompute native and rational MAE, MSE and RMSE from all five stored predictions and require agreement with the frozen fold metrics",
+    "reporting": "Retain every point, raw sums, net deltas, weights and leave-one-out result; do not report only normalized shares or selected observations"
+  },
+  "expected_identities": {
+    "aggregate_absolute_delta_sign": "positive",
+    "aggregate_squared_delta_sign": "negative",
+    "per_point_absolute_and_squared_delta_signs_identical": true,
+    "weight_identity_mismatch_count": 0,
+    "frozen_metric_mismatch_count": 0
+  },
+  "output_rule": {
+    "summary": "validation/roszman1-native-fold4-error-decomposition.json",
+    "figure": "papers/46_Roszman1第4折误差分解/fig46_roszman1_fold4_error_decomposition.png",
+    "report": "docs/ROSZMAN1_NATIVE_FOLD4_ERROR_DECOMPOSITION_2026-11-09.md",
+    "word": "papers/前沿共生Roszman1第4折误差分解_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "prohibitions": [
+    "No refitting, changed predictions, changed fold membership or new starts",
+    "No interpretation of leave-one-out metric arithmetic as five refitted models",
+    "No causal, physical-mechanism, probability, confidence-interval or statistical-significance claim from five observations",
+    "No conversion of residual weights into posterior probabilities or universal model-selection rules",
+    "No claim that per-point absolute and squared residual preferences can disagree when both are computed from the same pair of absolute residuals",
+    "No native deterministic-bound, probability-calibration, independent-experiment or universal-model-ranking claim",
+    "No rewriting of the native holdout or cross-dataset synthesis inputs"
+  ]
+}
