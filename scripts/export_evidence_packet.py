@@ -89,6 +89,8 @@ def build() -> dict:
     chwirut1NativeAmendment = read("chwirut1-native-holdout-protocol-amendment-01.json")
     nativeCross = json.loads((ROOT / "exports/native-cross-dataset-synthesis.json").read_text(encoding="utf-8"))
     nativeCrossCheck = read("native-cross-dataset-synthesis-check.json")
+    fold4Decomposition = read("roszman1-native-fold4-error-decomposition.json")
+    fold4DecompositionCheck = read("roszman1-native-fold4-error-decomposition-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -788,6 +790,33 @@ def build() -> dict:
             "limitations": "这是只读事后综合，不重新拟合，不跨量纲合并误差，不把折数或点数当成概率、统一评分或普适排名。三个数据集都没有原生五折全胜；指标反例、Chwirut1 同族边界、ENSO 已知答案分层和原生无误差界均保留。" + " ".join(nativeCross["limitations"]),
             "upstreamContribution": "把三类原生结构与同一有理候选、三次基线的逐折、逐点和多指标方向接入统一接口，明确区分优于有理、三者最低、逐点多票数和平方误差，为后续误差贡献分解提供可追溯反例。",
             "snapshotFiles": ["validation/native-cross-dataset-synthesis-protocol.json", "validation/native-cross-dataset-synthesis-check.json", "validation/frontier-native-cross-dataset-word.json"],
+        },
+        {
+            "id": "roszman1-fold4-error-decomposition", "domain": "math", "title": "Roszman1 第 4 折绝对误差与平方误差贡献分解",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Roszman1.dat"],
+            "metrics": {
+                "points": fold4Decomposition["points"],
+                "groups": fold4Decomposition["groups"],
+                "aggregate": fold4Decomposition["aggregate"],
+                "leaveOneOut": fold4Decomposition["leave_one_out"],
+                "totals": fold4Decomposition["totals"],
+                "analysisScope": fold4Decomposition["analysis_scope"],
+                "decision": fold4Decomposition["decision"],
+                "implementation": {
+                    "protocolSha256": fold4Decomposition["protocol_sha256"],
+                    "summarySha256": fold4DecompositionCheck["summarySha256"],
+                    "analysisRunnerSha256": fold4DecompositionCheck["analysisRunnerSha256"],
+                    "figureSha256": fold4DecompositionCheck["figureSha256"],
+                    "reportSha256": fold4DecompositionCheck["reportSha256"],
+                    "wordSha256": fold4DecompositionCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "9340999"},
+            },
+            "scientificClaim": "Roszman1 第 4 折 D1 为 +0.000461975122、D2 为 -1.317350031e-5，因此有理 MAE 更低而原生 RMSE 更低。原生优势点平均残差权重 0.018460300，有理优势点为 0.004268459；五个点的绝对与平方方向全部一致。移除第 4 或第 5 点的贡献均反转 MAE 方向，五次单点移除均不反转 RMSE 方向。",
+            "limitations": "五个冻结点只支持算术分解，不支持统计显著性、因果机制或普适模型选择。残差权重不是概率，单点移除不是重新拟合；没有建立原生确定性界、概率校准或独立实验。" + " ".join(fold4Decomposition["limitations"]),
+            "upstreamContribution": "提供可复用的绝对差值—残差权重—平方差值恒等式、完整五点贡献和单点移除接口，把指标反向精确定位到高残差点与不同单点依赖结构，避免把汇总反向误读为单点矛盾。",
+            "snapshotFiles": ["validation/roszman1-native-fold4-error-decomposition-protocol.json", "validation/roszman1-native-fold4-error-decomposition-check.json", "validation/frontier-roszman1-fold4-decomposition-word.json"],
         },
     ]
     packet = {

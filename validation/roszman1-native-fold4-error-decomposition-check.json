@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "errorCount": 0,
+  "pointCount": 5,
+  "maeReversingPointIndices": [
+    4,
+    5
+  ],
+  "rmseReversingPointIndices": [],
+  "protocolSha256": "d1ec7a3c223826145e2a9531eae2920ccb7aaa927ee027b411f99906c5d7ab1d",
+  "summarySha256": "3f236ea8c4dca3a595f70acf55640614a8d81c1bbb470f62394beecfc727658a",
+  "analysisRunnerSha256": "d815af9d6fedc59c26b343b335f6a2c1ce2314bdd6630d044c4a31f3aa1eb7e5",
+  "figureSha256": "979df9f46f3eb5f92923f07bd218ea4da879b1183a4abf9ab48549ecf57167e6",
+  "reportSha256": "b106f6e610d71d7957ec6f3e80c6a6364c688532c7c4e225aa9b2e66265d1ebf",
+  "wordSha256": "9f7c3eab29b26f8abd68064609a7f702610b7312ff9980ecc58b6f7e291e3776",
+  "wordManifestSha256": "6b81baa1b470a945651f6f60998fc1d0dd63be7c1e4d2fe17f57f21bc86a621c",
+  "leaveOneOutRefitClaimed": false,
+  "statisticalSignificanceClaimed": false,
+  "visualQaClaimed": false,
+  "scientificTruthClaimed": false
+}

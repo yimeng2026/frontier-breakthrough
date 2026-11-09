@@ -4548,29 +4548,29 @@
         "errorCount": 0,
         "groups": {
           "readme_local_links": {
-            "count": 88,
+            "count": 90,
             "errors": []
           },
           "document_figure_links": {
-            "count": 46,
+            "count": 47,
             "errors": []
           },
           "word_manifests": {
-            "count": 38,
+            "count": 39,
             "errors": []
           },
           "evidence_snapshots": {
-            "count": 168,
+            "count": 171,
             "errors": []
           },
           "knowledge_graph": {
-            "nodes": 191,
-            "edges": 432,
+            "nodes": 197,
+            "edges": 452,
             "errors": []
           },
           "protocol_inputs": {
-            "count": 11,
-            "recordsChecked": 27,
+            "count": 12,
+            "recordsChecked": 29,
             "errors": []
           },
           "corpus_v2": {
@@ -4580,9 +4580,9 @@
             "errors": []
           },
           "dynamic_counts": {
-            "evidenceItems": 49,
-            "graphNodes": 191,
-            "graphEdges": 432,
+            "evidenceItems": 50,
+            "graphNodes": 197,
+            "graphEdges": 452,
             "readme_consistent": true,
             "errors": []
           }
@@ -4593,7 +4593,7 @@
           "scientific_truth_claimed": false,
           "historical_text_rewritten": false
         },
-        "rulesSha256": "0b70e895740f9b37a9d2db196baf8e473154e48f0209a9c445045e786ccc0e92",
+        "rulesSha256": "02ca32b30eb3725cf473c02c5d212ff0f067558db334b477fa5535a1f715c000",
         "analysisRunnerSha256": "403aabb3f22e6fa26eca8595777df16c1f5be34f6f948de7f1c8e7f8f20effdf",
         "previousReceiptPreserved": true,
         "protocolCommits": {
@@ -4601,7 +4601,7 @@
           "audit": "24dc02f"
         }
       },
-      "scientificClaim": "当前范围内 88 个 README 本地链接、46 个报告图片路径、38 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 11 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
+      "scientificClaim": "当前范围内 90 个 README 本地链接、47 个报告图片路径、39 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 12 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
       "limitations": "审计只验证本地结构、路径、哈希和计数，不检查外部网页，不进行视觉渲染验收，不证明科学理论为真，也不把历史旧计数误判为错误。",
       "upstreamContribution": "提供可重复的负例门禁、动态 JSON/README 计数核对和显式 --refresh 历史收据保留机制，防止链接、Word、图谱和协议在持续研究中漂移。",
       "snapshotFiles": [
@@ -5112,6 +5112,271 @@
         "validation/native-cross-dataset-synthesis-protocol.json",
         "validation/native-cross-dataset-synthesis-check.json",
         "validation/frontier-native-cross-dataset-word.json"
+      ]
+    },
+    {
+      "id": "roszman1-fold4-error-decomposition",
+      "domain": "math",
+      "title": "Roszman1 第 4 折绝对误差与平方误差贡献分解",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Roszman1.dat"
+      ],
+      "metrics": {
+        "points": [
+          {
+            "index": 1,
+            "x": -1206.18,
+            "observed_y": 0.461699,
+            "native_prediction": 0.47223006663115286,
+            "rational_prediction": 0.47246829680367375,
+            "native_residual": -0.01053106663115283,
+            "rational_residual": -0.010769296803673722,
+            "native_absolute_residual": 0.01053106663115283,
+            "rational_absolute_residual": 0.010769296803673722,
+            "absolute_delta": -0.0002382301725208924,
+            "weight": 0.021300363434826552,
+            "squared_delta": -5.074389255836439e-06,
+            "absolute_winner": "native"
+          },
+          {
+            "index": 2,
+            "x": -1206.04,
+            "observed_y": 0.461144,
+            "native_prediction": 0.47225245483301415,
+            "rational_prediction": 0.47249002554589314,
+            "native_residual": -0.011108454833014147,
+            "rational_residual": -0.011346025545893146,
+            "native_absolute_residual": 0.011108454833014147,
+            "rational_absolute_residual": 0.011346025545893146,
+            "absolute_delta": -0.00023757071287899834,
+            "weight": 0.022454480378907293,
+            "squared_delta": -5.334526910944496e-06,
+            "absolute_winner": "native"
+          },
+          {
+            "index": 3,
+            "x": -997.92,
+            "observed_y": 0.513532,
+            "native_prediction": 0.5081790672021843,
+            "rational_prediction": 0.5072588763490988,
+            "native_residual": 0.005352932797815679,
+            "rational_residual": 0.006273123650901158,
+            "native_absolute_residual": 0.005352932797815679,
+            "rational_absolute_residual": 0.006273123650901158,
+            "absolute_delta": -0.0009201908530854785,
+            "weight": 0.011626056448716837,
+            "squared_delta": -1.0698190801564674e-05,
+            "absolute_winner": "native"
+          },
+          {
+            "index": 4,
+            "x": -996.61,
+            "observed_y": 0.506641,
+            "native_prediction": 0.5084223491095651,
+            "rational_prediction": 0.5074942689210841,
+            "native_residual": -0.0017813491095650669,
+            "rational_residual": -0.0008532689210840605,
+            "native_absolute_residual": 0.0017813491095650669,
+            "rational_absolute_residual": 0.0008532689210840605,
+            "absolute_delta": 0.0009280801884810064,
+            "weight": 0.0026346180306491274,
+            "squared_delta": 2.4451367984603e-06,
+            "absolute_winner": "rational"
+          },
+          {
+            "index": 5,
+            "x": -996.31,
+            "observed_y": 0.505062,
+            "native_prediction": 0.5084780932066658,
+            "rational_prediction": 0.5075482065349612,
+            "native_residual": -0.0034160932066658045,
+            "rational_residual": -0.002486206534961233,
+            "native_absolute_residual": 0.0034160932066658045,
+            "rational_absolute_residual": 0.002486206534961233,
+            "absolute_delta": 0.0009298866717045717,
+            "weight": 0.005902299741627037,
+            "squared_delta": 5.488469862144319e-06,
+            "absolute_winner": "rational"
+          }
+        ],
+        "groups": {
+          "native": {
+            "point_indices": [
+              1,
+              2,
+              3
+            ],
+            "count": 3,
+            "absolute_delta_sum": -0.0013959917384853693,
+            "squared_delta_sum": -2.110710696834561e-05,
+            "weight_sum": 0.05538090026245068,
+            "mean_weight": 0.01846030008748356
+          },
+          "rational": {
+            "point_indices": [
+              4,
+              5
+            ],
+            "count": 2,
+            "absolute_delta_sum": 0.001857966860185578,
+            "squared_delta_sum": 7.933606660604619e-06,
+            "weight_sum": 0.008536917772276165,
+            "mean_weight": 0.004268458886138082
+          },
+          "tie": {
+            "point_indices": [],
+            "count": 0,
+            "absolute_delta_sum": 0.0,
+            "squared_delta_sum": 0.0,
+            "weight_sum": 0.0,
+            "mean_weight": null
+          }
+        },
+        "aggregate": {
+          "absolute_delta_sum": 0.0004619751217002088,
+          "squared_delta_sum": -1.317350030774099e-05,
+          "native_mae": 0.0064379793156427055,
+          "rational_mae": 0.006345584291302664,
+          "native_mse": 5.5559584030320654e-05,
+          "rational_mse": 5.819428409186885e-05,
+          "native_rmse": 0.0074538301584031715,
+          "rational_rmse": 0.007628517817496978,
+          "native_mae_minus_rational_mae": 9.239502434004159e-05,
+          "native_mse_minus_rational_mse": -2.634700061548196e-06,
+          "absolute_delta_sum_divided_by_point_count": 9.239502434004177e-05,
+          "squared_delta_sum_divided_by_point_count": -2.634700061548198e-06,
+          "weight_identity_max_absolute_error": 9.317362419797304e-21,
+          "weight_identity_mismatch_count": 0,
+          "frozen_metric_mismatch_count": 0,
+          "native_rmse_lower": true,
+          "rational_mae_lower": true
+        },
+        "leaveOneOut": [
+          {
+            "point_index": 1,
+            "x": -1206.18,
+            "remaining_absolute_delta_sum": 0.0007002052942211012,
+            "remaining_squared_delta_sum": -8.099111051904551e-06,
+            "remaining_mae_direction": "rational",
+            "remaining_rmse_direction": "native",
+            "reverses_rational_mae": false,
+            "reverses_native_rmse": false,
+            "reverses_either_direction": false,
+            "reverses_both_directions": false,
+            "refit_performed": false
+          },
+          {
+            "point_index": 2,
+            "x": -1206.04,
+            "remaining_absolute_delta_sum": 0.0006995458345792072,
+            "remaining_squared_delta_sum": -7.838973396796494e-06,
+            "remaining_mae_direction": "rational",
+            "remaining_rmse_direction": "native",
+            "reverses_rational_mae": false,
+            "reverses_native_rmse": false,
+            "reverses_either_direction": false,
+            "reverses_both_directions": false,
+            "refit_performed": false
+          },
+          {
+            "point_index": 3,
+            "x": -997.92,
+            "remaining_absolute_delta_sum": 0.0013821659747856874,
+            "remaining_squared_delta_sum": -2.475309506176316e-06,
+            "remaining_mae_direction": "rational",
+            "remaining_rmse_direction": "native",
+            "reverses_rational_mae": false,
+            "reverses_native_rmse": false,
+            "reverses_either_direction": false,
+            "reverses_both_directions": false,
+            "refit_performed": false
+          },
+          {
+            "point_index": 4,
+            "x": -996.61,
+            "remaining_absolute_delta_sum": -0.00046610506678079755,
+            "remaining_squared_delta_sum": -1.561863710620129e-05,
+            "remaining_mae_direction": "native",
+            "remaining_rmse_direction": "native",
+            "reverses_rational_mae": true,
+            "reverses_native_rmse": false,
+            "reverses_either_direction": true,
+            "reverses_both_directions": false,
+            "refit_performed": false
+          },
+          {
+            "point_index": 5,
+            "x": -996.31,
+            "remaining_absolute_delta_sum": -0.0004679115500043629,
+            "remaining_squared_delta_sum": -1.866197016988531e-05,
+            "remaining_mae_direction": "native",
+            "remaining_rmse_direction": "native",
+            "reverses_rational_mae": true,
+            "reverses_native_rmse": false,
+            "reverses_either_direction": true,
+            "reverses_both_directions": false,
+            "refit_performed": false
+          }
+        ],
+        "totals": {
+          "point_count": 5,
+          "native_absolute_winner_count": 3,
+          "rational_absolute_winner_count": 2,
+          "absolute_tie_count": 0,
+          "leave_one_out_reverses_rational_mae_count": 2,
+          "leave_one_out_reverses_native_rmse_count": 0,
+          "leave_one_out_reverses_either_count": 2,
+          "leave_one_out_reverses_both_count": 0,
+          "per_point_absolute_squared_direction_disagreement_count": 0
+        },
+        "analysisScope": {
+          "dataset": "roszman1",
+          "fold": 4,
+          "refit": false,
+          "retuned": false,
+          "post_hoc": true,
+          "arithmetic_decomposition_only": true,
+          "leave_one_out_refit": false,
+          "all_points_retained": true,
+          "per_point_absolute_squared_preference_can_differ": false,
+          "aggregate_absolute_squared_direction_can_differ": true,
+          "probability_analysis": false,
+          "physical_mechanism_identified": false
+        },
+        "decision": {
+          "per_point_absolute_squared_direction_disagreement_claimed": false,
+          "leave_one_out_refitting_performed": false,
+          "statistical_significance_claimed": false,
+          "physical_mechanism_claimed": false,
+          "probability_calibration_claimed": false,
+          "native_deterministic_bounds_claimed": false,
+          "rational_bounds_transferred_to_native": false,
+          "universal_model_ranking_claimed": false,
+          "independent_experiment_claimed": false,
+          "failed_points_hidden": false
+        },
+        "implementation": {
+          "protocolSha256": "d1ec7a3c223826145e2a9531eae2920ccb7aaa927ee027b411f99906c5d7ab1d",
+          "summarySha256": "3f236ea8c4dca3a595f70acf55640614a8d81c1bbb470f62394beecfc727658a",
+          "analysisRunnerSha256": "d815af9d6fedc59c26b343b335f6a2c1ce2314bdd6630d044c4a31f3aa1eb7e5",
+          "figureSha256": "979df9f46f3eb5f92923f07bd218ea4da879b1183a4abf9ab48549ecf57167e6",
+          "reportSha256": "b106f6e610d71d7957ec6f3e80c6a6364c688532c7c4e225aa9b2e66265d1ebf",
+          "wordSha256": "9f7c3eab29b26f8abd68064609a7f702610b7312ff9980ecc58b6f7e291e3776"
+        },
+        "protocolCommits": {
+          "protocol": "9340999"
+        }
+      },
+      "scientificClaim": "Roszman1 第 4 折 D1 为 +0.000461975122、D2 为 -1.317350031e-5，因此有理 MAE 更低而原生 RMSE 更低。原生优势点平均残差权重 0.018460300，有理优势点为 0.004268459；五个点的绝对与平方方向全部一致。移除第 4 或第 5 点的贡献均反转 MAE 方向，五次单点移除均不反转 RMSE 方向。",
+      "limitations": "五个冻结点只支持算术分解，不支持统计显著性、因果机制或普适模型选择。残差权重不是概率，单点移除不是重新拟合；没有建立原生确定性界、概率校准或独立实验。Five held-out observations support arithmetic diagnosis only, not statistical significance or a universal model-selection rule Leave-one-out records subtract stored metric contributions and do not represent five refitted models Residual-sum weights explain how squared errors emphasize larger residuals; they are not probabilities or physical causal contributions The same pair of absolute residuals has the same per-point preference under absolute and squared loss; only aggregate directions can reverse No native deterministic bound, probability calibration, independent experiment or new physical mechanism is established",
+      "upstreamContribution": "提供可复用的绝对差值—残差权重—平方差值恒等式、完整五点贡献和单点移除接口，把指标反向精确定位到高残差点与不同单点依赖结构，避免把汇总反向误读为单点矛盾。",
+      "snapshotFiles": [
+        "validation/roszman1-native-fold4-error-decomposition-protocol.json",
+        "validation/roszman1-native-fold4-error-decomposition-check.json",
+        "validation/frontier-roszman1-fold4-decomposition-word.json"
       ]
     }
   ]

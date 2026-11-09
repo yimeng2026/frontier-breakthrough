@@ -65,7 +65,8 @@
 | 极值相关报告全集分级第二版 | 23 份文档：12 份联读、7 份描述、4 份完整；22 份非接口文档哈希匹配，旧 10 份联读原文未变 | `validation/extreme-corpus-v2-audit.json`、`validation/extreme-corpus-v2-check.json`、`docs/EXTREME_REPORTING_CORPUS_V2_AUDIT.md` | 约束第三十五阶段文档阅读等级，保留旧清单、旧验证器、原文和收据，不把 complete 等同于物理真实性 |
 | 全仓库一致性审计 | 检查 README 本地链接、报告图片、Word 清单、证据快照、图谱、全集计数和 10 份近期协议，错误数为 0；显式刷新保留旧收据 | `validation/repository-integrity-rules.json`、`validation/repository-integrity-report.json`、`docs/REPOSITORY_INTEGRITY_2026-11-09.md` | 提供动态 JSON/README 计数核对与负例门禁，不把结构一致误称为科学真实性或视觉验收 |
 | 三数据原生模型同折综合 | 15 折、407 个配对留出点；原生 11 折 RMSE 低于有理、10 折为三者最低；保留 Roszman1 逐点 12 比 13 与第 4 折 RMSE／MAE 反向 | `validation/native-cross-dataset-synthesis-protocol.json`、`exports/native-cross-dataset-synthesis.json`、`docs/NATIVE_CROSS_DATASET_SYNTHESIS_2026-11-09.md` | 区分折级 RMSE、逐点多票数与不同误差指标，不跨量纲合并误差，不建立概率排名或移植有理证书 |
-| 主张—证据—反例—实验图谱 | 191 个节点、432 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| Roszman1 第 4 折误差贡献分解 | D1 为 +0.000461975122、D2 为 -1.317350031e-5；五点逐点方向全部一致；移除第 4 或第 5 点反转 MAE，五次移除均不反转 RMSE | `validation/roszman1-native-fold4-error-decomposition-protocol.json`、`validation/roszman1-native-fold4-error-decomposition.json`、`docs/ROSZMAN1_NATIVE_FOLD4_ERROR_DECOMPOSITION_2026-11-09.md` | 用残差权重恒等式定位汇总反向，不把五点算术、单点贡献移除当作显著性、因果机制或重新拟合 |
+| 主张—证据—反例—实验图谱 | 197 个节点、452 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 范围感知外部分析适配层
 

@@ -1790,6 +1790,63 @@
         "exports/native-cross-dataset-synthesis.json",
         "docs/NATIVE_CROSS_DATASET_SYNTHESIS_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-aggregate-loss-direction-implies-per-point",
+      "kind": "claim",
+      "title": "汇总 RMSE 与 MAE 反向意味着单点绝对与平方残差方向也相反",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-native-fold4-error-decomposition.json"
+      ]
+    },
+    {
+      "id": "evidence-roszman1-fold4-error-decomposition",
+      "kind": "evidence",
+      "title": "第 4 折 D1 为正、D2 为负；五点逐点方向一致，权重恒等式和冻结指标全部通过",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-native-fold4-error-decomposition.json",
+        "validation/roszman1-native-fold4-error-decomposition-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-fold4-weighted-reversal",
+      "kind": "counterexample",
+      "title": "原生优势点平均权重 0.018460300，有理优势点平均权重 0.004268459，汇总反向来自残差尺度加权",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-native-fold4-error-decomposition.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-fold4-leave-one-out-asymmetry",
+      "kind": "counterexample",
+      "title": "移除第 4 或第 5 点均反转 MAE 方向，五次移除均不反转 RMSE 方向，两种指标具有不同单点依赖",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-native-fold4-error-decomposition.json"
+      ]
+    },
+    {
+      "id": "experiment-roszman1-fold4-error-decomposition-protocol",
+      "kind": "experiment",
+      "title": "冻结五点预测、绝对与平方差值、残差权重恒等式及不重拟合的单点贡献移除规则",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-native-fold4-error-decomposition-protocol.json",
+        "scripts/analyze_roszman1_native_fold4_error_decomposition.py"
+      ]
+    },
+    {
+      "id": "limitation-roszman1-fold4-five-point-arithmetic",
+      "kind": "limitation",
+      "title": "五点贡献分解和单点移除只是算术诊断，不是显著性、因果机制、重新拟合或普适模型选择规则",
+      "status": "active",
+      "sourceFiles": [
+        "validation/roszman1-native-fold4-error-decomposition.json",
+        "docs/ROSZMAN1_NATIVE_FOLD4_ERROR_DECOMPOSITION_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -3952,6 +4009,106 @@
       "from": "experiment-native-cross-dataset-synthesis-protocol",
       "to": "experiment-chwirut1-native-holdout-protocol",
       "relation": "supports"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-aggregate-loss-direction-implies-per-point",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-roszman1-fold4-error-decomposition",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-fold4-weighted-reversal",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-fold4-leave-one-out-asymmetry",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-roszman1-fold4-error-decomposition-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-roszman1-fold4-five-point-arithmetic",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-roszman1-fold4-error-decomposition",
+      "to": "claim-single-error-metric-sufficient",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-fold4-error-decomposition-protocol",
+      "to": "claim-single-error-metric-sufficient",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-roszman1-fold4-error-decomposition",
+      "to": "claim-aggregate-loss-direction-implies-per-point",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-fold4-weighted-reversal",
+      "to": "claim-single-error-metric-sufficient",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-fold4-weighted-reversal",
+      "to": "claim-aggregate-loss-direction-implies-per-point",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-fold4-error-decomposition-protocol",
+      "to": "claim-aggregate-loss-direction-implies-per-point",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-roszman1-fold4-error-decomposition",
+      "to": "counterexample-roszman1-fold4-weighted-reversal",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-fold4-error-decomposition",
+      "to": "counterexample-roszman1-fold4-leave-one-out-asymmetry",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-roszman1-fold4-leave-one-out-asymmetry",
+      "to": "claim-single-error-metric-sufficient",
+      "relation": "contradicts"
+    },
+    {
+      "from": "limitation-roszman1-fold4-five-point-arithmetic",
+      "to": "evidence-roszman1-fold4-error-decomposition",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-fold4-five-point-arithmetic",
+      "to": "claim-aggregate-loss-direction-implies-per-point",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-roszman1-fold4-error-decomposition",
+      "to": "evidence-native-cross-dataset-synthesis",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-fold4-error-decomposition-protocol",
+      "to": "experiment-native-cross-dataset-synthesis-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-roszman1-fold4-five-point-arithmetic",
+      "to": "counterexample-roszman1-fold4-leave-one-out-asymmetry",
+      "relation": "limits"
     }
   ]
 }

@@ -72,6 +72,9 @@ def build_graph(root):
     nativeCross = json.loads((root / "exports/native-cross-dataset-synthesis.json").read_text(encoding="utf-8"))
     if nativeCross["totals"]["dataset_count"] != 3 or nativeCross["totals"]["fold_count"] != 15 or nativeCross["totals"]["point_count"] != 407 or nativeCross["totals"]["native_better_than_rational_fold_count"] != 11 or nativeCross["totals"]["rational_better_than_native_fold_count"] != 4 or nativeCross["totals"]["overall_best_model_fold_counts"] != {"native": 10, "rational": 3, "cubic": 2, "tie": 0} or nativeCross["totals"]["point_outcomes"] != {"native": 256, "rational": 151, "tie": 0} or nativeCross["totals"]["metric_direction_disagreement_fold_ids"] != ["roszman1:4"] or nativeCross["totals"]["point_fold_disagreement_fold_ids"] or nativeCross["cross_dataset_pooled_error_metrics"] is not None or nativeCross["decision"]["universal_model_ranking_claimed"] or nativeCross["decision"]["rational_bounds_transferred_to_native"]:
         raise ValueError("Expected native cross-dataset fold, point and metric-direction boundaries are not present")
+    fold4Decomposition = json.loads((root / "validation/roszman1-native-fold4-error-decomposition.json").read_text(encoding="utf-8"))
+    if fold4Decomposition["totals"]["point_count"] != 5 or fold4Decomposition["totals"]["native_absolute_winner_count"] != 3 or fold4Decomposition["totals"]["rational_absolute_winner_count"] != 2 or fold4Decomposition["totals"]["leave_one_out_reverses_rational_mae_count"] != 2 or fold4Decomposition["totals"]["leave_one_out_reverses_native_rmse_count"] != 0 or fold4Decomposition["totals"]["per_point_absolute_squared_direction_disagreement_count"] != 0 or fold4Decomposition["aggregate"]["absolute_delta_sum"] <= 0 or fold4Decomposition["aggregate"]["squared_delta_sum"] >= 0 or fold4Decomposition["aggregate"]["weight_identity_mismatch_count"] or fold4Decomposition["aggregate"]["frozen_metric_mismatch_count"] or fold4Decomposition["decision"]["leave_one_out_refitting_performed"] or fold4Decomposition["decision"]["statistical_significance_claimed"]:
+        raise ValueError("Expected Roszman1 fold-4 weighted reversal and leave-one-out boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -714,6 +717,36 @@ def build_graph(root):
         edge("experiment-native-cross-dataset-synthesis-protocol", "experiment-roszman1-native-holdout-protocol", "supports"),
         edge("experiment-native-cross-dataset-synthesis-protocol", "experiment-enso-native-holdout-protocol", "supports"),
         edge("experiment-native-cross-dataset-synthesis-protocol", "experiment-chwirut1-native-holdout-protocol", "supports"),
+    ])
+    nodes.extend([
+        node("claim-aggregate-loss-direction-implies-per-point", "claim", "汇总 RMSE 与 MAE 反向意味着单点绝对与平方残差方向也相反", "falsified", ["validation/roszman1-native-fold4-error-decomposition.json"]),
+        node("evidence-roszman1-fold4-error-decomposition", "evidence", "第 4 折 D1 为正、D2 为负；五点逐点方向一致，权重恒等式和冻结指标全部通过", "supported", ["validation/roszman1-native-fold4-error-decomposition.json", "validation/roszman1-native-fold4-error-decomposition-check.json"]),
+        node("counterexample-roszman1-fold4-weighted-reversal", "counterexample", "原生优势点平均权重 0.018460300，有理优势点平均权重 0.004268459，汇总反向来自残差尺度加权", "supported", ["validation/roszman1-native-fold4-error-decomposition.json"]),
+        node("counterexample-roszman1-fold4-leave-one-out-asymmetry", "counterexample", "移除第 4 或第 5 点均反转 MAE 方向，五次移除均不反转 RMSE 方向，两种指标具有不同单点依赖", "supported", ["validation/roszman1-native-fold4-error-decomposition.json"]),
+        node("experiment-roszman1-fold4-error-decomposition-protocol", "experiment", "冻结五点预测、绝对与平方差值、残差权重恒等式及不重拟合的单点贡献移除规则", "supported", ["validation/roszman1-native-fold4-error-decomposition-protocol.json", "scripts/analyze_roszman1_native_fold4_error_decomposition.py"]),
+        node("limitation-roszman1-fold4-five-point-arithmetic", "limitation", "五点贡献分解和单点移除只是算术诊断，不是显著性、因果机制、重新拟合或普适模型选择规则", "active", ["validation/roszman1-native-fold4-error-decomposition.json", "docs/ROSZMAN1_NATIVE_FOLD4_ERROR_DECOMPOSITION_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-aggregate-loss-direction-implies-per-point", "contains"),
+        edge("track-holdout", "evidence-roszman1-fold4-error-decomposition", "contains"),
+        edge("track-holdout", "counterexample-roszman1-fold4-weighted-reversal", "contains"),
+        edge("track-holdout", "counterexample-roszman1-fold4-leave-one-out-asymmetry", "contains"),
+        edge("track-holdout", "experiment-roszman1-fold4-error-decomposition-protocol", "contains"),
+        edge("track-holdout", "limitation-roszman1-fold4-five-point-arithmetic", "contains"),
+        edge("evidence-roszman1-fold4-error-decomposition", "claim-single-error-metric-sufficient", "contradicts"),
+        edge("experiment-roszman1-fold4-error-decomposition-protocol", "claim-single-error-metric-sufficient", "tests"),
+        edge("evidence-roszman1-fold4-error-decomposition", "claim-aggregate-loss-direction-implies-per-point", "contradicts"),
+        edge("counterexample-roszman1-fold4-weighted-reversal", "claim-single-error-metric-sufficient", "contradicts"),
+        edge("counterexample-roszman1-fold4-weighted-reversal", "claim-aggregate-loss-direction-implies-per-point", "contradicts"),
+        edge("experiment-roszman1-fold4-error-decomposition-protocol", "claim-aggregate-loss-direction-implies-per-point", "tests"),
+        edge("evidence-roszman1-fold4-error-decomposition", "counterexample-roszman1-fold4-weighted-reversal", "supports"),
+        edge("evidence-roszman1-fold4-error-decomposition", "counterexample-roszman1-fold4-leave-one-out-asymmetry", "supports"),
+        edge("counterexample-roszman1-fold4-leave-one-out-asymmetry", "claim-single-error-metric-sufficient", "contradicts"),
+        edge("limitation-roszman1-fold4-five-point-arithmetic", "evidence-roszman1-fold4-error-decomposition", "limits"),
+        edge("limitation-roszman1-fold4-five-point-arithmetic", "claim-aggregate-loss-direction-implies-per-point", "limits"),
+        edge("evidence-roszman1-fold4-error-decomposition", "evidence-native-cross-dataset-synthesis", "supports"),
+        edge("experiment-roszman1-fold4-error-decomposition-protocol", "experiment-native-cross-dataset-synthesis-protocol", "supports"),
+        edge("limitation-roszman1-fold4-five-point-arithmetic", "counterexample-roszman1-fold4-leave-one-out-asymmetry", "limits"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

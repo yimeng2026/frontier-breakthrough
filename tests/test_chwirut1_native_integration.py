@@ -45,8 +45,8 @@ class Chwirut1NativeIntegrationTests(unittest.TestCase):
         ]
         for identifier in identifiers:
             self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 191)
-        self.assertEqual(len(graph["edges"]), 432)
+        self.assertEqual(len(graph["nodes"]), 197)
+        self.assertEqual(len(graph["edges"]), 452)
         self.assertEqual(nodes["claim-low-rmse-independent-replication"]["status"], "falsified")
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}
         self.assertIn(("evidence-chwirut1-native-holdout", "claim-model-family-fold-independent-winner", "contradicts"), edges)

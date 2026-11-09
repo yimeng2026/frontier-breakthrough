@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "native_cross_dataset":
+    if REPORT_MODE == "roszman1_fold4_decomposition":
+        replacements = {
+            "图：`papers/46_Roszman1第4折误差分解/fig46_roszman1_fold4_error_decomposition.png`。": "![](papers/46_Roszman1第4折误差分解/fig46_roszman1_fold4_error_decomposition.png)\n\n**图 46｜Roszman1 第 4 折绝对误差与平方误差贡献分解（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联组图与读图顺序」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "五个冻结留出点、残差权重恒等式与单点贡献移除诊断"
+    elif REPORT_MODE == "native_cross_dataset":
         replacements = {
             "图：`papers/45_三数据原生同折综合/fig45_native_cross_dataset_synthesis.png`。": "![](papers/45_三数据原生同折综合/fig45_native_cross_dataset_synthesis.png)\n\n**图 45｜三数据原生模型同折对照四联综合（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联组图与读图顺序」；顺序第 1 幅，共 1 幅。",
         }
