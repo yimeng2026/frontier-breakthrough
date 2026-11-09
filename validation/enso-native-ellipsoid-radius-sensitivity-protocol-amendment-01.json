@@ -1,0 +1,45 @@
+{
+  "status": "frozen_before_enso_native_ellipsoid_radius_sensitivity_count_correction",
+  "frozen_at_local": "2026-11-09T12:42:23+08:00",
+  "amendment_id": "enso-native-ellipsoid-radius-sensitivity-amendment-01",
+  "original_protocol": {
+    "file": "validation/enso-native-ellipsoid-radius-sensitivity-protocol.json",
+    "sha256": "c1a7cceef711a7b1b401de43dd451cf2a37f1974010a13a9c2a0dd8f5d955ef2"
+  },
+  "correction": {
+    "fields": [
+      "expected_structure.held_out_point_count_per_case",
+      "expected_structure.unique_month_count_per_case",
+      "expected_structure.maximum_point_evaluations",
+      "expected_structure.maximum_envelope_evaluations",
+      "grid_rule.maximum_point_evaluations",
+      "grid_rule.maximum_envelope_evaluations"
+    ],
+    "original_maximum_evaluations": 5040,
+    "corrected_structure": {
+      "held_out_point_count_per_radius": 168,
+      "unique_month_count_per_radius": 168,
+      "fold_held_out_point_counts": [34, 34, 34, 33, 33],
+      "fold_unique_month_counts": [34, 34, 34, 33, 33],
+      "maximum_point_evaluations": 1008,
+      "maximum_envelope_evaluations": 1008,
+      "formula": "6 radii * (34+34+34+33+33) fold-specific held-out observations = 1008 evaluations"
+    },
+    "reason": "Each fold-radius case contains only its own fold's held-out observations, namely 34, 34, 34, 33 and 33. The original protocol incorrectly treated every case as if it contained all 168 observations. No sensitivity results had been generated when this structural correction was frozen",
+    "effective_rule": "The corrected structure supersedes only the named count fields. The original file remains unchanged for audit history; all radii, models, centers, covariances, baseline requirements and certification rules are unchanged"
+  },
+  "preservation_rule": {
+    "original_protocol_file_unchanged": true,
+    "radii_folds_centers_covariances_and_critical_rules_unchanged": true,
+    "baseline_bounds_unchanged": true,
+    "no_model_or_radius_change_after_results": true,
+    "no_sensitivity_results_generated_before_correction": true
+  },
+  "decision": {
+    "radii_changed": false,
+    "models_changed": false,
+    "original_protocol_file_modified": false,
+    "baseline_files_modified": false,
+    "correction_hidden": false
+  }
+}
