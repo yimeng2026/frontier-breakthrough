@@ -99,6 +99,9 @@ def build_graph(root):
     ensoEllipsoid = json.loads((root / "validation/enso-native-ellipsoid-continuous-bounds.json").read_text(encoding="utf-8"))
     if ensoEllipsoid["totals"]["fold_count"] != 5 or ensoEllipsoid["totals"]["held_out_point_count"] != 168 or ensoEllipsoid["totals"]["unique_month_count"] != 168 or ensoEllipsoid["totals"]["unique_envelope_count"] != 168 or ensoEllipsoid["totals"]["certified_fold_count"] != 5 or ensoEllipsoid["totals"]["certified_fold_ids"] != [1, 2, 3, 4, 5] or ensoEllipsoid["totals"]["unavailable_fold_ids"] or ensoEllipsoid["totals"]["available_point_count"] != 168 or ensoEllipsoid["totals"]["covered_point_count"] != 168 or ensoEllipsoid["totals"]["violation_point_count"] != 0 or ensoEllipsoid["totals"]["unavailable_point_count"] != 0 or ensoEllipsoid["totals"]["center_prediction_envelope_mismatch_count"] != 0 or ensoEllipsoid["totals"]["minimum_critical_period_radius"] != 26.76683884611663 or ensoEllipsoid["totals"]["minimum_critical_period_radius_fold"] != 4 or ensoEllipsoid["totals"]["minimum_critical_period_parameter"] != "b4" or ensoEllipsoid["totals"]["max_envelope_width"] != 17.64192935677042 or ensoEllipsoid["totals"]["median_envelope_width"] != 13.164436414771593 or ensoEllipsoid["totals"]["max_residual_upper_bound"] != 14.576765863967406 or ensoEllipsoid["totals"]["median_residual_upper_bound"] != 8.516811559710845 or ensoEllipsoid["analysis_scope"]["probability_region"] or ensoEllipsoid["analysis_scope"]["taylor_or_fixed_period_approximation"] or ensoEllipsoid["analysis_scope"]["exact_rational_certificate"] or ensoEllipsoid["decision"]["center_consistency_used_as_external_validation"] or ensoEllipsoid["known_answer"]["optimizer_within_certified_tolerances"] or not ensoEllipsoid["known_answer"]["certified_forward_rss_check_passed"] or any(not fold["negative_control"]["half_radius_accepted"] or not fold["negative_control"]["exact_radius_rejected"] for fold in ensoEllipsoid["folds"]):
         raise ValueError("Expected ENSO positive-period certificates, envelope width and known-answer boundaries are not present")
+    ensoRadius = json.loads((root / "validation/enso-native-ellipsoid-radius-sensitivity.json").read_text(encoding="utf-8"))
+    if ensoRadius["totals"]["case_count"] != 30 or ensoRadius["totals"]["maximum_point_evaluations"] != 1008 or ensoRadius["totals"]["maximum_envelope_evaluations"] != 1008 or ensoRadius["totals"]["actual_envelope_evaluation_count"] != 942 or ensoRadius["totals"]["certified_case_count"] != 28 or ensoRadius["totals"]["available_point_count"] != 942 or ensoRadius["totals"]["covered_point_count"] != 942 or ensoRadius["totals"]["violation_point_count"] != 0 or ensoRadius["totals"]["unavailable_point_count"] != 66 or ensoRadius["totals"]["unavailable_case_ids"] != ["enso:4:r32", "enso:5:r32"] or ensoRadius["totals"]["fold_held_out_point_counts"] != [34, 34, 34, 33, 33] or ensoRadius["totals"]["center_prediction_envelope_mismatch_count"] != 0 or ensoRadius["totals"]["max_envelope_width"] != 141.13543485416332 or ensoRadius["totals"]["max_residual_upper_bound"] != 75.54732074215885 or ensoRadius["totals"]["minimum_critical_period_radius"] != 26.76683884611663 or ensoRadius["totals"]["minimum_critical_period_radius_fold"] != 4 or not ensoRadius["baseline"]["matches_frozen_baseline"] or ensoRadius["baseline"]["exact_fold_projection_match_count"] != 5 or ensoRadius["analysis_scope"]["count_correction"]["corrected_maximum_evaluations"] != 1008 or not ensoRadius["analysis_scope"]["count_correction"]["original_protocol_preserved"] or ensoRadius["decision"]["optimal_radius_selected"] or ensoRadius["decision"]["unavailable_cases_given_bounds"] or [fold["max_certified_grid_radius"] for fold in ensoRadius["folds"]] != [32, 32, 32, 16, 16]:
+        raise ValueError("Expected ENSO radius-grid failures, width, baseline and count-correction boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -1081,6 +1084,49 @@ def build_graph(root):
         edge("evidence-enso-native-ellipsoid-continuous", "evidence-roszman1-native-ellipsoid-continuous", "supports"),
         edge("evidence-enso-native-ellipsoid-continuous", "counterexample-enso-optimizer-mismatch", "supports"),
         edge("limitation-enso-native-ellipsoid-period-scope", "claim-certified-forward-equals-optimizer-reproduction", "limits"),
+    ])
+    nodes.extend([
+        node("claim-enso-grid-all-safe", "claim", "冻结的六个半径在五折都能证明两个 Fourier 周期严格为正", "falsified", ["validation/enso-native-ellipsoid-radius-sensitivity.json"]),
+        node("evidence-enso-native-ellipsoid-radius-sensitivity", "evidence", "30 个案例共 1008 次逐点判定，28 个案例生成 942 个包络；第 4、5 折半径 32 不可用，半径 4 五折完整复现", "supported", ["validation/enso-native-ellipsoid-radius-sensitivity.json", "validation/enso-native-ellipsoid-radius-sensitivity-check.json"]),
+        node("counterexample-enso-fold4-radius32-nonpositive", "counterexample", "第 4 折半径 32 时 b4 下界为 -8.735510，33 个留出月份不生成有限包络", "supported", ["validation/enso-native-ellipsoid-radius-sensitivity.json"]),
+        node("counterexample-enso-fold5-radius32-near-zero", "counterexample", "第 5 折半径 32 时 b4 下界为 -0.015584，虽接近零仍不能四舍五入为正，33 个留出月份不生成有限包络", "supported", ["validation/enso-native-ellipsoid-radius-sensitivity.json"]),
+        node("counterexample-enso-radius-width-growth", "counterexample", "可用案例最大包络宽度由半径 1 的 4.410482 增至 141.135435；半径 32 可用子集的中位宽度为 109.854012，有界不等于高信息量", "supported", ["validation/enso-native-ellipsoid-radius-sensitivity.json"]),
+        node("experiment-enso-native-radius-sensitivity-protocol", "experiment", "冻结五折六半径网格、双周期解析临界半径、原始 Fourier 包络和半径 4 逐折完整复现规则", "supported", ["validation/enso-native-ellipsoid-radius-sensitivity-protocol.json", "scripts/analyze_enso_native_ellipsoid_radius_sensitivity.py"]),
+        node("experiment-enso-native-radius-count-amendment", "experiment", "在结果生成前将错误的 5040 计数修正为 6×(34+34+34+33+33)=1008；原协议和全部历史文件保持", "supported", ["validation/enso-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json", "tests/test_enso_native_ellipsoid_radius_sensitivity_protocol.py"]),
+        node("limitation-enso-native-radius-grid-scope", "limitation", "固定网格是事后敏感性审计，网格最大值不是精确上限；不可用案例不补界，独立放松不是联合最优，中心一致性不是外部验证", "active", ["validation/enso-native-ellipsoid-radius-sensitivity.json", "docs/ENSO_NATIVE_ELLIPSOID_RADIUS_SENSITIVITY_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-enso-grid-all-safe", "contains"),
+        edge("track-holdout", "evidence-enso-native-ellipsoid-radius-sensitivity", "contains"),
+        edge("track-holdout", "counterexample-enso-fold4-radius32-nonpositive", "contains"),
+        edge("track-holdout", "counterexample-enso-fold5-radius32-near-zero", "contains"),
+        edge("track-holdout", "counterexample-enso-radius-width-growth", "contains"),
+        edge("track-holdout", "experiment-enso-native-radius-sensitivity-protocol", "contains"),
+        edge("track-holdout", "experiment-enso-native-radius-count-amendment", "contains"),
+        edge("track-holdout", "limitation-enso-native-radius-grid-scope", "contains"),
+        edge("evidence-enso-native-ellipsoid-radius-sensitivity", "claim-enso-grid-all-safe", "contradicts"),
+        edge("experiment-enso-native-radius-sensitivity-protocol", "claim-enso-grid-all-safe", "tests"),
+        edge("counterexample-enso-fold4-radius32-nonpositive", "claim-enso-grid-all-safe", "contradicts"),
+        edge("counterexample-enso-fold5-radius32-near-zero", "claim-enso-grid-all-safe", "contradicts"),
+        edge("evidence-enso-native-ellipsoid-radius-sensitivity", "claim-grid-max-exact-safe-max", "contradicts"),
+        edge("experiment-enso-native-radius-sensitivity-protocol", "claim-grid-max-exact-safe-max", "tests"),
+        edge("evidence-enso-native-ellipsoid-radius-sensitivity", "claim-critical-radius-probability-optimum", "contradicts"),
+        edge("experiment-enso-native-radius-sensitivity-protocol", "claim-critical-radius-probability-optimum", "tests"),
+        edge("counterexample-enso-fold4-radius32-nonpositive", "claim-grid-max-exact-safe-max", "contradicts"),
+        edge("counterexample-enso-fold5-radius32-near-zero", "claim-grid-max-exact-safe-max", "contradicts"),
+        edge("counterexample-enso-radius-width-growth", "claim-finite-bound-high-information", "contradicts"),
+        edge("evidence-enso-native-ellipsoid-radius-sensitivity", "counterexample-enso-radius-width-growth", "supports"),
+        edge("evidence-enso-native-ellipsoid-radius-sensitivity", "counterexample-enso-fold4-radius32-nonpositive", "supports"),
+        edge("evidence-enso-native-ellipsoid-radius-sensitivity", "counterexample-enso-fold5-radius32-near-zero", "supports"),
+        edge("limitation-enso-native-radius-grid-scope", "evidence-enso-native-ellipsoid-radius-sensitivity", "limits"),
+        edge("limitation-enso-native-radius-grid-scope", "claim-enso-grid-all-safe", "limits"),
+        edge("limitation-enso-native-radius-grid-scope", "claim-grid-max-exact-safe-max", "limits"),
+        edge("limitation-enso-native-radius-grid-scope", "claim-critical-radius-probability-optimum", "limits"),
+        edge("evidence-enso-native-ellipsoid-radius-sensitivity", "evidence-enso-native-ellipsoid-continuous", "supports"),
+        edge("experiment-enso-native-radius-sensitivity-protocol", "experiment-enso-native-ellipsoid-continuous-protocol", "supports"),
+        edge("experiment-enso-native-radius-count-amendment", "experiment-enso-native-radius-sensitivity-protocol", "supports"),
+        edge("experiment-enso-native-radius-count-amendment", "evidence-enso-native-ellipsoid-radius-sensitivity", "supports"),
+        edge("experiment-enso-native-radius-count-amendment", "claim-knowledge-graph", "tests"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

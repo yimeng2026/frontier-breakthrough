@@ -2395,6 +2395,82 @@
         "validation/enso-native-ellipsoid-continuous-bounds.json",
         "docs/ENSO_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-enso-grid-all-safe",
+      "kind": "claim",
+      "title": "冻结的六个半径在五折都能证明两个 Fourier 周期严格为正",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/enso-native-ellipsoid-radius-sensitivity.json"
+      ]
+    },
+    {
+      "id": "evidence-enso-native-ellipsoid-radius-sensitivity",
+      "kind": "evidence",
+      "title": "30 个案例共 1008 次逐点判定，28 个案例生成 942 个包络；第 4、5 折半径 32 不可用，半径 4 五折完整复现",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-ellipsoid-radius-sensitivity.json",
+        "validation/enso-native-ellipsoid-radius-sensitivity-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-fold4-radius32-nonpositive",
+      "kind": "counterexample",
+      "title": "第 4 折半径 32 时 b4 下界为 -8.735510，33 个留出月份不生成有限包络",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-ellipsoid-radius-sensitivity.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-fold5-radius32-near-zero",
+      "kind": "counterexample",
+      "title": "第 5 折半径 32 时 b4 下界为 -0.015584，虽接近零仍不能四舍五入为正，33 个留出月份不生成有限包络",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-ellipsoid-radius-sensitivity.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-radius-width-growth",
+      "kind": "counterexample",
+      "title": "可用案例最大包络宽度由半径 1 的 4.410482 增至 141.135435；半径 32 可用子集的中位宽度为 109.854012，有界不等于高信息量",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-ellipsoid-radius-sensitivity.json"
+      ]
+    },
+    {
+      "id": "experiment-enso-native-radius-sensitivity-protocol",
+      "kind": "experiment",
+      "title": "冻结五折六半径网格、双周期解析临界半径、原始 Fourier 包络和半径 4 逐折完整复现规则",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-ellipsoid-radius-sensitivity-protocol.json",
+        "scripts/analyze_enso_native_ellipsoid_radius_sensitivity.py"
+      ]
+    },
+    {
+      "id": "experiment-enso-native-radius-count-amendment",
+      "kind": "experiment",
+      "title": "在结果生成前将错误的 5040 计数修正为 6×(34+34+34+33+33)=1008；原协议和全部历史文件保持",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json",
+        "tests/test_enso_native_ellipsoid_radius_sensitivity_protocol.py"
+      ]
+    },
+    {
+      "id": "limitation-enso-native-radius-grid-scope",
+      "kind": "limitation",
+      "title": "固定网格是事后敏感性审计，网格最大值不是精确上限；不可用案例不补界，独立放松不是联合最优，中心一致性不是外部验证",
+      "status": "active",
+      "sourceFiles": [
+        "validation/enso-native-ellipsoid-radius-sensitivity.json",
+        "docs/ENSO_NATIVE_ELLIPSOID_RADIUS_SENSITIVITY_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -5757,6 +5833,161 @@
       "from": "limitation-enso-native-ellipsoid-period-scope",
       "to": "claim-certified-forward-equals-optimizer-reproduction",
       "relation": "limits"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-enso-grid-all-safe",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-enso-native-ellipsoid-radius-sensitivity",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-fold4-radius32-nonpositive",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-fold5-radius32-near-zero",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-radius-width-growth",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-enso-native-radius-sensitivity-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-enso-native-radius-count-amendment",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-enso-native-radius-grid-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-enso-native-ellipsoid-radius-sensitivity",
+      "to": "claim-enso-grid-all-safe",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-native-radius-sensitivity-protocol",
+      "to": "claim-enso-grid-all-safe",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-enso-fold4-radius32-nonpositive",
+      "to": "claim-enso-grid-all-safe",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-enso-fold5-radius32-near-zero",
+      "to": "claim-enso-grid-all-safe",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-enso-native-ellipsoid-radius-sensitivity",
+      "to": "claim-grid-max-exact-safe-max",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-native-radius-sensitivity-protocol",
+      "to": "claim-grid-max-exact-safe-max",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-enso-native-ellipsoid-radius-sensitivity",
+      "to": "claim-critical-radius-probability-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-native-radius-sensitivity-protocol",
+      "to": "claim-critical-radius-probability-optimum",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-enso-fold4-radius32-nonpositive",
+      "to": "claim-grid-max-exact-safe-max",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-enso-fold5-radius32-near-zero",
+      "to": "claim-grid-max-exact-safe-max",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-enso-radius-width-growth",
+      "to": "claim-finite-bound-high-information",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-enso-native-ellipsoid-radius-sensitivity",
+      "to": "counterexample-enso-radius-width-growth",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-native-ellipsoid-radius-sensitivity",
+      "to": "counterexample-enso-fold4-radius32-nonpositive",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-native-ellipsoid-radius-sensitivity",
+      "to": "counterexample-enso-fold5-radius32-near-zero",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-enso-native-radius-grid-scope",
+      "to": "evidence-enso-native-ellipsoid-radius-sensitivity",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-enso-native-radius-grid-scope",
+      "to": "claim-enso-grid-all-safe",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-enso-native-radius-grid-scope",
+      "to": "claim-grid-max-exact-safe-max",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-enso-native-radius-grid-scope",
+      "to": "claim-critical-radius-probability-optimum",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-enso-native-ellipsoid-radius-sensitivity",
+      "to": "evidence-enso-native-ellipsoid-continuous",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-native-radius-sensitivity-protocol",
+      "to": "experiment-enso-native-ellipsoid-continuous-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-native-radius-count-amendment",
+      "to": "experiment-enso-native-radius-sensitivity-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-native-radius-count-amendment",
+      "to": "evidence-enso-native-ellipsoid-radius-sensitivity",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-native-radius-count-amendment",
+      "to": "claim-knowledge-graph",
+      "relation": "tests"
     }
   ]
 }

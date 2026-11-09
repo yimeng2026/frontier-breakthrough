@@ -109,6 +109,8 @@ def build() -> dict:
     roszman1EllipsoidCheck = read("roszman1-native-ellipsoid-continuous-check.json")
     ensoEllipsoid = read("enso-native-ellipsoid-continuous-bounds.json")
     ensoEllipsoidCheck = read("enso-native-ellipsoid-continuous-check.json")
+    ensoRadius = read("enso-native-ellipsoid-radius-sensitivity.json")
+    ensoRadiusCheck = read("enso-native-ellipsoid-radius-sensitivity-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -1138,6 +1140,53 @@ def build() -> dict:
             "limitations": "正周期只保证原生 Fourier 表达式在选定区域有定义，不证明周期唯一、内生或具有新物理机制。独立系数放松不是联合最优包络，宽界不必然高信息量；中心一致性不是外部有效性，高精度外向数值证书不是精确有理证明。" + " ".join(ensoEllipsoid["limitations"]),
             "upstreamContribution": "提供九参数 Fourier 模型的双周期正性支撑证书、解析临界半径、实际月份包络及信息宽度接口，分离形式有界、联合最优性、物理周期、中心一致性和概率解释。",
             "snapshotFiles": ["validation/enso-native-ellipsoid-continuous-protocol.json", "validation/enso-native-ellipsoid-continuous-check.json", "validation/frontier-enso-native-ellipsoid-continuous-word.json"],
+        },
+        {
+            "id": "enso-native-ellipsoid-radius-sensitivity", "domain": "physics", "title": "ENSO 原生 Fourier 椭球半径敏感性与正周期失效边界",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/ENSO.dat"],
+            "metrics": {
+                "totals": ensoRadius["totals"],
+                "folds": [{
+                    "fold": fold["fold"],
+                    "nativeTestRmse": fold["native_test_rmse"],
+                    "criticalPeriod": fold["critical_period"],
+                    "negativeControl": fold["negative_control"],
+                    "maxCertifiedGridRadius": fold["max_certified_grid_radius"],
+                    "caseSummaries": [{
+                        "caseId": case["case_id"],
+                        "radius": case["radius"],
+                        "analyticRelation": case["analytic_relation"],
+                        "periodCertificate": case["period_certificate"],
+                        "predictionEnvelopeAvailable": case["prediction_envelope_available"],
+                        "unavailableReason": case["unavailable_reason"],
+                        "coverage": case["coverage"],
+                        "maxEnvelopeWidth": case["max_envelope_width"],
+                        "medianEnvelopeWidth": case["median_envelope_width"],
+                        "maxResidualUpperBound": case["max_residual_upper_bound"],
+                        "medianResidualUpperBound": case["median_residual_upper_bound"],
+                    } for case in fold["cases"]],
+                } for fold in ensoRadius["folds"]],
+                "baseline": ensoRadius["baseline"],
+                "radiusSummaries": ensoRadius["radius_summaries"],
+                "knownAnswer": ensoRadius["known_answer"],
+                "analysisScope": ensoRadius["analysis_scope"],
+                "decision": ensoRadius["decision"],
+                "implementation": {
+                    "protocolSha256": ensoRadius["protocol_sha256"],
+                    "amendmentSha256": ensoRadius["metadata_amendment_sha256"],
+                    "summarySha256": ensoRadiusCheck["summarySha256"],
+                    "analysisRunnerSha256": ensoRadiusCheck["analysisRunnerSha256"],
+                    "figureSha256": ensoRadiusCheck["figureSha256"],
+                    "reportSha256": ensoRadiusCheck["reportSha256"],
+                    "wordSha256": ensoRadiusCheck["wordSha256"],
+                },
+                "protocolCommits": {"originalProtocol": "4beffb5", "countAmendment": "ac63bba"},
+            },
+            "scientificClaim": "五折六半径共 30 个案例、1008 次逐点判定；28 个案例生成 942 个原生 Fourier 包络，第 4、5 折半径 32 的 b4 下界分别为 -8.735510 和 -0.015584，66 个留出月份不生成有限界。最大包络宽度为 141.135435，半径 4 的五折投影和汇总与第四十七阶段完全一致。",
+            "limitations": "这是事后固定网格敏感性审计，不是概率区域、独立验证或半径优化。网格最大可用半径不是精确上限；不可用案例不补界，独立系数放松不是联合最优，中心一致性不是外部验证。原协议的 5040 计数在结果生成前修正为 1008，原文件保持不变。" + " ".join(ensoRadius["limitations"]),
+            "upstreamContribution": "提供 Fourier 正周期临界半径的固定网格压力测试、逐折完整基线复现、不可用反例、包络宽度敏感性和显式计数修正链与复现接口。",
+            "snapshotFiles": ["validation/enso-native-ellipsoid-radius-sensitivity-protocol.json", "validation/enso-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json", "validation/enso-native-ellipsoid-radius-sensitivity-check.json", "validation/frontier-enso-native-ellipsoid-radius-sensitivity-word.json"],
         },
     ]
     packet = {

@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "enso_native_ellipsoid_continuous":
+    if REPORT_MODE == "enso_native_ellipsoid_radius_sensitivity":
+        replacements = {
+            "图：`papers/55_ENSO原生椭球半径敏感性/fig55_enso_native_ellipsoid_radius_sensitivity.png`。": "![](papers/55_ENSO原生椭球半径敏感性/fig55_enso_native_ellipsoid_radius_sensitivity.png)\n\n**图 55｜ENSO 原生椭球半径敏感性与正周期失效边界（第 1 幅，共 1 幅）**  \n**插入位置**：§5「半径 4 基线完整复现与四联图」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "五折六半径、30 个案例、942 个可用包络与两个正周期失效反例"
+    elif REPORT_MODE == "enso_native_ellipsoid_continuous":
         replacements = {
             "图：`papers/54_ENSO原生椭球连续界/fig54_enso_native_ellipsoid_continuous_bounds.png`。": "![](papers/54_ENSO原生椭球连续界/fig54_enso_native_ellipsoid_continuous_bounds.png)\n\n**图 54｜ENSO 原生 Fourier 正周期与连续预测包络（第 1 幅，共 1 幅）**  \n**插入位置**：§5「中心一致性与四联组图」；顺序第 1 幅，共 1 幅。",
         }

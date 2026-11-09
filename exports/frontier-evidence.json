@@ -4548,29 +4548,29 @@
         "errorCount": 0,
         "groups": {
           "readme_local_links": {
-            "count": 106,
+            "count": 108,
             "errors": []
           },
           "document_figure_links": {
-            "count": 55,
+            "count": 56,
             "errors": []
           },
           "word_manifests": {
-            "count": 47,
+            "count": 48,
             "errors": []
           },
           "evidence_snapshots": {
-            "count": 197,
+            "count": 201,
             "errors": []
           },
           "knowledge_graph": {
-            "nodes": 255,
-            "edges": 672,
+            "nodes": 263,
+            "edges": 703,
             "errors": []
           },
           "protocol_inputs": {
-            "count": 22,
-            "recordsChecked": 50,
+            "count": 24,
+            "recordsChecked": 54,
             "errors": []
           },
           "corpus_v2": {
@@ -4580,9 +4580,9 @@
             "errors": []
           },
           "dynamic_counts": {
-            "evidenceItems": 58,
-            "graphNodes": 255,
-            "graphEdges": 672,
+            "evidenceItems": 59,
+            "graphNodes": 263,
+            "graphEdges": 703,
             "readme_consistent": true,
             "errors": []
           }
@@ -4593,7 +4593,7 @@
           "scientific_truth_claimed": false,
           "historical_text_rewritten": false
         },
-        "rulesSha256": "99795b14509678c1a469f17a88b35c9fcfdb83545dccccd9623598882b0c027a",
+        "rulesSha256": "72f3339effb0f8faacb841cf1be5d57ce3c967bf52a565b7c7a86c7bcb9da165",
         "analysisRunnerSha256": "403aabb3f22e6fa26eca8595777df16c1f5be34f6f948de7f1c8e7f8f20effdf",
         "previousReceiptPreserved": true,
         "protocolCommits": {
@@ -4601,7 +4601,7 @@
           "audit": "24dc02f"
         }
       },
-      "scientificClaim": "当前范围内 106 个 README 本地链接、55 个报告图片路径、47 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 22 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
+      "scientificClaim": "当前范围内 108 个 README 本地链接、56 个报告图片路径、48 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 24 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
       "limitations": "审计只验证本地结构、路径、哈希和计数，不检查外部网页，不进行视觉渲染验收，不证明科学理论为真，也不把历史旧计数误判为错误。",
       "upstreamContribution": "提供可重复的负例门禁、动态 JSON/README 计数核对和显式 --refresh 历史收据保留机制，防止链接、Word、图谱和协议在持续研究中漂移。",
       "snapshotFiles": [
@@ -22761,6 +22761,1250 @@
         "validation/enso-native-ellipsoid-continuous-protocol.json",
         "validation/enso-native-ellipsoid-continuous-check.json",
         "validation/frontier-enso-native-ellipsoid-continuous-word.json"
+      ]
+    },
+    {
+      "id": "enso-native-ellipsoid-radius-sensitivity",
+      "domain": "physics",
+      "title": "ENSO 原生 Fourier 椭球半径敏感性与正周期失效边界",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/ENSO.dat"
+      ],
+      "metrics": {
+        "totals": {
+          "fold_count": 5,
+          "radius_count": 6,
+          "case_count": 30,
+          "held_out_point_count_per_radius": 168,
+          "unique_month_count_per_radius": 168,
+          "fold_held_out_point_counts": [
+            34,
+            34,
+            34,
+            33,
+            33
+          ],
+          "fold_unique_month_counts": [
+            34,
+            34,
+            34,
+            33,
+            33
+          ],
+          "maximum_point_evaluations": 1008,
+          "maximum_envelope_evaluations": 1008,
+          "actual_envelope_evaluation_count": 942,
+          "certified_case_count": 28,
+          "available_point_count": 942,
+          "covered_point_count": 942,
+          "violation_point_count": 0,
+          "unavailable_point_count": 66,
+          "unavailable_case_count": 2,
+          "unavailable_case_ids": [
+            "enso:4:r32",
+            "enso:5:r32"
+          ],
+          "center_prediction_envelope_mismatch_count": 0,
+          "max_envelope_width": 141.13543485416332,
+          "median_envelope_width": 15.14954765223098,
+          "max_residual_upper_bound": 75.54732074215885,
+          "median_residual_upper_bound": 10.615255931469495,
+          "minimum_critical_period_radius": 26.76683884611663,
+          "minimum_critical_period_radius_fold": 4,
+          "minimum_critical_period_parameter": "b4"
+        },
+        "folds": [
+          {
+            "fold": 1,
+            "nativeTestRmse": 3.448449143701017,
+            "criticalPeriod": {
+              "radius": 42.87224878516176,
+              "b4_radius": 44.24270315517963,
+              "b7_radius": 42.87224878516176,
+              "limiting_parameter": "b7",
+              "endpoint_results": [
+                {
+                  "parameter": "b4",
+                  "center": 42.116470838575566,
+                  "unit_support": 0.9519416273199588,
+                  "radius": 44.24270315517963
+                },
+                {
+                  "parameter": "b7",
+                  "center": 28.57836553967075,
+                  "unit_support": 0.6665935739195895,
+                  "radius": 42.87224878516176
+                }
+              ],
+              "strict_rule": "positive periods require radius < critical radius; exact critical radius is rejected"
+            },
+            "negativeControl": {
+              "half_radius_accepted": true,
+              "exact_radius_rejected": true
+            },
+            "maxCertifiedGridRadius": 32,
+            "caseSummaries": [
+              {
+                "caseId": "enso:1:r1",
+                "radius": 1,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 41.1645292112556,
+                  "b4_maximum": 43.068412465895534,
+                  "b4_zero_tolerance": 4.4068412465895525e-11,
+                  "b7_minimum": 27.911771965751157,
+                  "b7_maximum": 29.244959113590344,
+                  "b7_zero_tolerance": 3.024495911359034e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 4.410482339192611,
+                "medianEnvelopeWidth": 4.063826555964167,
+                "maxResidualUpperBound": 8.9010777926507,
+                "medianResidualUpperBound": 4.572809277707075
+              },
+              {
+                "caseId": "enso:1:r2",
+                "radius": 2,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 40.212587583935644,
+                  "b4_maximum": 44.02035409321549,
+                  "b4_zero_tolerance": 4.502035409321548e-11,
+                  "b7_minimum": 27.24517839183157,
+                  "b7_maximum": 29.911552687509932,
+                  "b7_zero_tolerance": 3.091155268750993e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 8.820964678385213,
+                "medianEnvelopeWidth": 8.127653111928321,
+                "maxResidualUpperBound": 10.792973816422933,
+                "medianResidualUpperBound": 6.646812213676009
+              },
+              {
+                "caseId": "enso:1:r4",
+                "radius": 4,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 38.30870432929572,
+                  "b4_maximum": 45.92423734785541,
+                  "b4_zero_tolerance": 4.69242373478554e-11,
+                  "b7_minimum": 25.91199124399239,
+                  "b7_maximum": 31.24473983534911,
+                  "b7_zero_tolerance": 3.224473983534911e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 17.64192935677042,
+                "medianEnvelopeWidth": 16.255306223856632,
+                "maxResidualUpperBound": 14.576765863967406,
+                "medianResidualUpperBound": 10.700904625060378
+              },
+              {
+                "caseId": "enso:1:r8",
+                "radius": 8,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 34.50093782001589,
+                  "b4_maximum": 49.73200385713524,
+                  "b4_zero_tolerance": 5.0732003857135235e-11,
+                  "b7_minimum": 23.24561694831403,
+                  "b7_maximum": 33.911114131027475,
+                  "b7_zero_tolerance": 3.4911114131027466e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 35.28385871354083,
+                "medianEnvelopeWidth": 32.51061244771326,
+                "maxResidualUpperBound": 22.770600065228134,
+                "medianResidualUpperBound": 18.86279801113809
+              },
+              {
+                "caseId": "enso:1:r16",
+                "radius": 16,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 26.88540480145622,
+                  "b4_maximum": 57.347536875694914,
+                  "b4_zero_tolerance": 5.834753687569491e-11,
+                  "b7_minimum": 17.912868356957315,
+                  "b7_maximum": 39.243862722384186,
+                  "b7_zero_tolerance": 4.0243862722384184e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 70.56771742708166,
+                "medianEnvelopeWidth": 65.0212248954265,
+                "maxResidualUpperBound": 40.26346202861801,
+                "medianResidualUpperBound": 35.02850706213361
+              },
+              {
+                "caseId": "enso:1:r32",
+                "radius": 32,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 11.654338764336883,
+                  "b4_maximum": 72.57860291281426,
+                  "b4_zero_tolerance": 7.357860291281425e-11,
+                  "b7_minimum": 7.247371174243885,
+                  "b7_maximum": 49.909359905097624,
+                  "b7_zero_tolerance": 5.0909359905097614e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 141.13543485416332,
+                "medianEnvelopeWidth": 130.042449790853,
+                "maxResidualUpperBound": 75.54732074215885,
+                "medianResidualUpperBound": 67.47389071753071
+              }
+            ]
+          },
+          {
+            "fold": 2,
+            "nativeTestRmse": 2.8418857472529337,
+            "criticalPeriod": {
+              "radius": 53.72625759184087,
+              "b4_radius": 53.72625759184087,
+              "b7_radius": 79.34049700978231,
+              "limiting_parameter": "b4",
+              "endpoint_results": [
+                {
+                  "parameter": "b4",
+                  "center": 43.918424073564054,
+                  "unit_support": 0.8174480420209601,
+                  "radius": 53.72625759184087
+                },
+                {
+                  "parameter": "b7",
+                  "center": 26.75943493527534,
+                  "unit_support": 0.33727334644722523,
+                  "radius": 79.34049700978231
+                }
+              ],
+              "strict_rule": "positive periods require radius < critical radius; exact critical radius is rejected"
+            },
+            "negativeControl": {
+              "half_radius_accepted": true,
+              "exact_radius_rejected": true
+            },
+            "maxCertifiedGridRadius": 32,
+            "caseSummaries": [
+              {
+                "caseId": "enso:2:r1",
+                "radius": 1,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 43.100976031543084,
+                  "b4_maximum": 44.73587211558502,
+                  "b4_zero_tolerance": 4.5735872115585014e-11,
+                  "b7_minimum": 26.42216158882811,
+                  "b7_maximum": 27.09670828172257,
+                  "b7_zero_tolerance": 2.8096708281722564e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 3.903142513686895,
+                "medianEnvelopeWidth": 3.4443272926991138,
+                "maxResidualUpperBound": 8.579673207637454,
+                "medianResidualUpperBound": 3.53022046408331
+              },
+              {
+                "caseId": "enso:2:r2",
+                "radius": 2,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 42.28352798952213,
+                  "b4_maximum": 45.55332015760598,
+                  "b4_zero_tolerance": 4.6553320157605973e-11,
+                  "b7_minimum": 26.084888242380885,
+                  "b7_maximum": 27.433981628169793,
+                  "b7_zero_tolerance": 2.843398162816979e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 7.806285027373782,
+                "medianEnvelopeWidth": 6.8886545853982195,
+                "maxResidualUpperBound": 10.266680939774217,
+                "medianResidualUpperBound": 5.161815049938535
+              },
+              {
+                "caseId": "enso:2:r4",
+                "radius": 4,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 40.64863190548021,
+                  "b4_maximum": 47.1882162416479,
+                  "b4_zero_tolerance": 4.818821624164789e-11,
+                  "b7_minimum": 25.410341549486436,
+                  "b7_maximum": 28.108528321064245,
+                  "b7_zero_tolerance": 2.910852832106424e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 15.612570054747557,
+                "medianEnvelopeWidth": 13.777309170796425,
+                "maxResidualUpperBound": 13.64069640404774,
+                "medianResidualUpperBound": 8.788161237877732
+              },
+              {
+                "caseId": "enso:2:r8",
+                "radius": 8,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 37.37883973739637,
+                  "b4_maximum": 50.45800840973174,
+                  "b4_zero_tolerance": 5.145800840973174e-11,
+                  "b7_minimum": 24.061248163697535,
+                  "b7_maximum": 29.457621706853146,
+                  "b7_zero_tolerance": 3.0457621706853144e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 31.225140109495104,
+                "medianEnvelopeWidth": 27.554618341592843,
+                "maxResidualUpperBound": 20.388727332594794,
+                "medianResidualUpperBound": 15.537234282048042
+              },
+              {
+                "caseId": "enso:2:r16",
+                "radius": 16,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 30.83925540122869,
+                  "b4_maximum": 56.997592745899425,
+                  "b4_zero_tolerance": 5.7997592745899415e-11,
+                  "b7_minimum": 21.363061392119732,
+                  "b7_maximum": 32.15580847843095,
+                  "b7_zero_tolerance": 3.315580847843094e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 62.450280218990194,
+                "medianEnvelopeWidth": 55.10923668318567,
+                "maxResidualUpperBound": 34.82463512558048,
+                "medianResidualUpperBound": 29.278778049410263
+              },
+              {
+                "caseId": "enso:2:r32",
+                "radius": 32,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 17.760086728893327,
+                  "b4_maximum": 70.0767614182348,
+                  "b4_zero_tolerance": 7.107676141823477e-11,
+                  "b7_minimum": 15.966687848964131,
+                  "b7_maximum": 37.55218202158655,
+                  "b7_zero_tolerance": 3.855218202158655e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 124.9005604379804,
+                "medianEnvelopeWidth": 110.21847336637136,
+                "maxResidualUpperBound": 65.48451978978855,
+                "medianResidualUpperBound": 57.40446925026497
+              }
+            ]
+          },
+          {
+            "fold": 3,
+            "nativeTestRmse": 2.4893584593736207,
+            "criticalPeriod": {
+              "radius": 45.06878982541118,
+              "b4_radius": 45.06878982541118,
+              "b7_radius": 79.92390637464327,
+              "limiting_parameter": "b4",
+              "endpoint_results": [
+                {
+                  "parameter": "b4",
+                  "center": 44.78523847913697,
+                  "unit_support": 0.9937084765893952,
+                  "radius": 45.06878982541118
+                },
+                {
+                  "parameter": "b7",
+                  "center": 26.91348111218918,
+                  "unit_support": 0.3367388098628745,
+                  "radius": 79.92390637464327
+                }
+              ],
+              "strict_rule": "positive periods require radius < critical radius; exact critical radius is rejected"
+            },
+            "negativeControl": {
+              "half_radius_accepted": true,
+              "exact_radius_rejected": true
+            },
+            "maxCertifiedGridRadius": 32,
+            "caseSummaries": [
+              {
+                "caseId": "enso:3:r1",
+                "radius": 1,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 43.79153000254757,
+                  "b4_maximum": 45.778946955726376,
+                  "b4_zero_tolerance": 4.6778946955726365e-11,
+                  "b7_minimum": 26.576742302326302,
+                  "b7_maximum": 27.250219922052057,
+                  "b7_zero_tolerance": 2.8250219922052054e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 3.4368596255240758,
+                "medianEnvelopeWidth": 3.1143319756610968,
+                "maxResidualUpperBound": 7.222748030352233,
+                "medianResidualUpperBound": 2.976401416919534
+              },
+              {
+                "caseId": "enso:3:r2",
+                "radius": 2,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 42.79782152595817,
+                  "b4_maximum": 46.772655432315766,
+                  "b4_zero_tolerance": 4.777265543231576e-11,
+                  "b7_minimum": 26.240003492463426,
+                  "b7_maximum": 27.586958731914933,
+                  "b7_zero_tolerance": 2.858695873191493e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 6.873719251048143,
+                "medianEnvelopeWidth": 6.228663951322186,
+                "maxResidualUpperBound": 8.638687662295153,
+                "medianResidualUpperBound": 4.654202648579167
+              },
+              {
+                "caseId": "enso:3:r4",
+                "radius": 4,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 40.81040457277938,
+                  "b4_maximum": 48.76007238549456,
+                  "b4_zero_tolerance": 4.976007238549455e-11,
+                  "b7_minimum": 25.566525872737678,
+                  "b7_maximum": 28.26043635164068,
+                  "b7_zero_tolerance": 2.926043635164068e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 13.747438502096275,
+                "medianEnvelopeWidth": 12.457327902644366,
+                "maxResidualUpperBound": 11.640301140493067,
+                "medianResidualUpperBound": 7.722456822912964
+              },
+              {
+                "caseId": "enso:3:r8",
+                "radius": 8,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 36.8355706664218,
+                  "b4_maximum": 52.73490629185214,
+                  "b4_zero_tolerance": 5.373490629185213e-11,
+                  "b7_minimum": 24.21957063328618,
+                  "b7_maximum": 29.60739159109218,
+                  "b7_zero_tolerance": 3.0607391591092174e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 27.49487700419254,
+                "medianEnvelopeWidth": 24.914655805288724,
+                "maxResidualUpperBound": 18.376006017863634,
+                "medianResidualUpperBound": 13.68670675241764
+              },
+              {
+                "caseId": "enso:3:r16",
+                "radius": 16,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 28.885902853706643,
+                  "b4_maximum": 60.6845741045673,
+                  "b4_zero_tolerance": 6.168457410456729e-11,
+                  "b7_minimum": 21.525660154383186,
+                  "b7_maximum": 32.30130206999518,
+                  "b7_zero_tolerance": 3.330130206999517e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 54.98975400838508,
+                "medianEnvelopeWidth": 49.82931161057745,
+                "maxResidualUpperBound": 31.847415772604766,
+                "medianResidualUpperBound": 26.468275767989326
+              },
+              {
+                "caseId": "enso:3:r32",
+                "radius": 32,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 12.986567228276323,
+                  "b4_maximum": 76.58390972999763,
+                  "b4_zero_tolerance": 7.758390972999761e-11,
+                  "b7_minimum": 16.137839196577193,
+                  "b7_maximum": 37.68912302780117,
+                  "b7_zero_tolerance": 3.868912302780116e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 34,
+                  "covered_point_count": 34,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 109.97950801677014,
+                "medianEnvelopeWidth": 99.6586232211549,
+                "maxResidualUpperBound": 58.79023528208703,
+                "medianResidualUpperBound": 52.27340007879199
+              }
+            ]
+          },
+          {
+            "fold": 4,
+            "nativeTestRmse": 2.409878120632471,
+            "criticalPeriod": {
+              "radius": 26.76683884611663,
+              "b4_radius": 26.76683884611663,
+              "b7_radius": 39.587037163194125,
+              "limiting_parameter": "b4",
+              "endpoint_results": [
+                {
+                  "parameter": "b4",
+                  "center": 44.680828945207466,
+                  "unit_support": 1.6692605803053142,
+                  "radius": 26.76683884611663
+                },
+                {
+                  "parameter": "b7",
+                  "center": 27.010212104540663,
+                  "unit_support": 0.6822994101122903,
+                  "radius": 39.587037163194125
+                }
+              ],
+              "strict_rule": "positive periods require radius < critical radius; exact critical radius is rejected"
+            },
+            "negativeControl": {
+              "half_radius_accepted": true,
+              "exact_radius_rejected": true
+            },
+            "maxCertifiedGridRadius": 16,
+            "caseSummaries": [
+              {
+                "caseId": "enso:4:r1",
+                "radius": 1,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 43.011568364902146,
+                  "b4_maximum": 46.350089525512786,
+                  "b4_zero_tolerance": 4.7350089525512783e-11,
+                  "b7_minimum": 26.32791269442837,
+                  "b7_maximum": 27.692511514652956,
+                  "b7_zero_tolerance": 2.8692511514652954e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 33,
+                  "covered_point_count": 33,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 3.550747180848449,
+                "medianEnvelopeWidth": 3.1969876340531838,
+                "maxResidualUpperBound": 7.623935812497801,
+                "medianResidualUpperBound": 3.194545287002214
+              },
+              {
+                "caseId": "enso:4:r2",
+                "radius": 2,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 41.342307784596834,
+                  "b4_maximum": 48.0193501058181,
+                  "b4_zero_tolerance": 4.9019350105818096e-11,
+                  "b7_minimum": 25.645613284316077,
+                  "b7_maximum": 28.374810924765246,
+                  "b7_zero_tolerance": 2.9374810924765244e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 33,
+                  "covered_point_count": 33,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 7.101494361696889,
+                "medianEnvelopeWidth": 6.393975268106359,
+                "maxResidualUpperBound": 9.346299401638907,
+                "medianResidualUpperBound": 4.9324321861486595
+              },
+              {
+                "caseId": "enso:4:r4",
+                "radius": 4,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 38.0037866239862,
+                  "b4_maximum": 51.35787126642873,
+                  "b4_zero_tolerance": 5.235787126642872e-11,
+                  "b7_minimum": 24.2810144640915,
+                  "b7_maximum": 29.73940974498983,
+                  "b7_zero_tolerance": 3.0739409744989824e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 33,
+                  "covered_point_count": 33,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 14.202988723393771,
+                "medianEnvelopeWidth": 12.787950536212714,
+                "maxResidualUpperBound": 12.791026579921116,
+                "medianResidualUpperBound": 8.076431624274585
+              },
+              {
+                "caseId": "enso:4:r8",
+                "radius": 8,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 31.32674430276495,
+                  "b4_maximum": 58.03491358764999,
+                  "b4_zero_tolerance": 5.903491358764998e-11,
+                  "b7_minimum": 21.551816823642337,
+                  "b7_maximum": 32.46860738543899,
+                  "b7_zero_tolerance": 3.3468607385438984e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 33,
+                  "covered_point_count": 33,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 28.405977446787524,
+                "medianEnvelopeWidth": 25.575901072425417,
+                "maxResidualUpperBound": 19.680480936485534,
+                "medianResidualUpperBound": 14.55504247468383
+              },
+              {
+                "caseId": "enso:4:r16",
+                "radius": 16,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 17.972659660322435,
+                  "b4_maximum": 71.38899823009251,
+                  "b4_zero_tolerance": 7.23889982300925e-11,
+                  "b7_minimum": 16.093421542744014,
+                  "b7_maximum": 37.927002666337316,
+                  "b7_zero_tolerance": 3.892700266633731e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 33,
+                  "covered_point_count": 33,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 56.811954893575056,
+                "medianEnvelopeWidth": 51.15180214485084,
+                "maxResidualUpperBound": 33.45938964961437,
+                "medianResidualUpperBound": 27.11857610629463
+              },
+              {
+                "caseId": "enso:4:r32",
+                "radius": 32,
+                "analyticRelation": "at_or_above_critical",
+                "periodCertificate": {
+                  "b4_minimum": -8.73550962456259,
+                  "b4_maximum": 98.09716751497753,
+                  "b4_zero_tolerance": 9.909716751497752e-11,
+                  "b7_minimum": 5.176630980947372,
+                  "b7_maximum": 48.84379322813396,
+                  "b7_zero_tolerance": 4.9843793228133955e-11,
+                  "positive_certified": false,
+                  "unavailable_reason": "at least one period is not certified strictly positive"
+                },
+                "predictionEnvelopeAvailable": false,
+                "unavailableReason": "at least one period is not certified strictly positive",
+                "coverage": {
+                  "available_point_count": 0,
+                  "covered_point_count": 0,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 33,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": null,
+                "medianEnvelopeWidth": null,
+                "maxResidualUpperBound": null,
+                "medianResidualUpperBound": null
+              }
+            ]
+          },
+          {
+            "fold": 5,
+            "nativeTestRmse": 2.3729570605012986,
+            "criticalPeriod": {
+              "radius": 31.988981288629372,
+              "b4_radius": 31.988981288629372,
+              "b7_radius": 43.769289589273214,
+              "limiting_parameter": "b4",
+              "endpoint_results": [
+                {
+                  "parameter": "b4",
+                  "center": 45.24277937834114,
+                  "unit_support": 1.4143238563968554,
+                  "radius": 31.988981288629372
+                },
+                {
+                  "parameter": "b7",
+                  "center": 26.63229865677676,
+                  "unit_support": 0.6084699776188209,
+                  "radius": 43.769289589273214
+                }
+              ],
+              "strict_rule": "positive periods require radius < critical radius; exact critical radius is rejected"
+            },
+            "negativeControl": {
+              "half_radius_accepted": true,
+              "exact_radius_rejected": true
+            },
+            "maxCertifiedGridRadius": 16,
+            "caseSummaries": [
+              {
+                "caseId": "enso:5:r1",
+                "radius": 1,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 43.82845552194428,
+                  "b4_maximum": 46.657103234738,
+                  "b4_zero_tolerance": 4.7657103234737994e-11,
+                  "b7_minimum": 26.023828679157937,
+                  "b7_maximum": 27.240768634395586,
+                  "b7_zero_tolerance": 2.824076863439558e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 33,
+                  "covered_point_count": 33,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 3.563859069521936,
+                "medianEnvelopeWidth": 3.1898308262749464,
+                "maxResidualUpperBound": 6.573965195187115,
+                "medianResidualUpperBound": 3.5908227128455903
+              },
+              {
+                "caseId": "enso:5:r2",
+                "radius": 2,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 42.41413166554742,
+                  "b4_maximum": 48.07142709113486,
+                  "b4_zero_tolerance": 4.907142709113485e-11,
+                  "b7_minimum": 25.415358701539116,
+                  "b7_maximum": 27.849238612014407,
+                  "b7_zero_tolerance": 2.8849238612014403e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 33,
+                  "covered_point_count": 33,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 7.127718139043867,
+                "medianEnvelopeWidth": 6.379661652549885,
+                "maxResidualUpperBound": 8.138344022348686,
+                "medianResidualUpperBound": 5.129731919841986
+              },
+              {
+                "caseId": "enso:5:r4",
+                "radius": 4,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 39.58548395275371,
+                  "b4_maximum": 50.90007480392857,
+                  "b4_zero_tolerance": 5.190007480392856e-11,
+                  "b7_minimum": 24.198418746301474,
+                  "b7_maximum": 29.06617856725205,
+                  "b7_zero_tolerance": 3.0066178567252046e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 33,
+                  "covered_point_count": 33,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 14.255436278087718,
+                "medianEnvelopeWidth": 12.75932330509976,
+                "maxResidualUpperBound": 11.267101676671821,
+                "medianResidualUpperBound": 8.226006551560063
+              },
+              {
+                "caseId": "enso:5:r8",
+                "radius": 8,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 33.92818852716629,
+                  "b4_maximum": 56.55737022951599,
+                  "b4_zero_tolerance": 5.755737022951598e-11,
+                  "b7_minimum": 21.76453883582619,
+                  "b7_maximum": 31.500058477727332,
+                  "b7_zero_tolerance": 3.2500058477727324e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 33,
+                  "covered_point_count": 33,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 28.510872556175425,
+                "medianEnvelopeWidth": 25.51864661019951,
+                "maxResidualUpperBound": 17.723435664711275,
+                "medianResidualUpperBound": 14.627090877146983
+              },
+              {
+                "caseId": "enso:5:r16",
+                "radius": 16,
+                "analyticRelation": "below_critical",
+                "periodCertificate": {
+                  "b4_minimum": 22.61359767599145,
+                  "b4_maximum": 67.87196108069084,
+                  "b4_zero_tolerance": 6.887196108069083e-11,
+                  "b7_minimum": 16.896779014875623,
+                  "b7_maximum": 36.3678182986779,
+                  "b7_zero_tolerance": 3.7367818298677894e-11,
+                  "positive_certified": true,
+                  "unavailable_reason": null
+                },
+                "predictionEnvelopeAvailable": true,
+                "unavailableReason": null,
+                "coverage": {
+                  "available_point_count": 33,
+                  "covered_point_count": 33,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 0,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": 57.02174511235085,
+                "medianEnvelopeWidth": 51.037293220399015,
+                "maxResidualUpperBound": 31.44999689928556,
+                "medianResidualUpperBound": 28.168147753231256
+              },
+              {
+                "caseId": "enso:5:r32",
+                "radius": 32,
+                "analyticRelation": "at_or_above_critical",
+                "periodCertificate": {
+                  "b4_minimum": -0.015584026358234438,
+                  "b4_maximum": 90.50114278304054,
+                  "b4_zero_tolerance": 9.150114278304052e-11,
+                  "b7_minimum": 7.16125937297449,
+                  "b7_maximum": 46.10333794057904,
+                  "b7_zero_tolerance": 4.710333794057903e-11,
+                  "positive_certified": false,
+                  "unavailable_reason": "at least one period is not certified strictly positive"
+                },
+                "predictionEnvelopeAvailable": false,
+                "unavailableReason": "at least one period is not certified strictly positive",
+                "coverage": {
+                  "available_point_count": 0,
+                  "covered_point_count": 0,
+                  "violation_point_count": 0,
+                  "unavailable_point_count": 33,
+                  "center_prediction_envelope_mismatch_count": 0
+                },
+                "maxEnvelopeWidth": null,
+                "medianEnvelopeWidth": null,
+                "maxResidualUpperBound": null,
+                "medianResidualUpperBound": null
+              }
+            ]
+          }
+        ],
+        "baseline": {
+          "radius": 4,
+          "certified_fold_count": 5,
+          "available_point_count": 168,
+          "covered_point_count": 168,
+          "violation_point_count": 0,
+          "unavailable_point_count": 0,
+          "center_prediction_envelope_mismatch_count": 0,
+          "max_envelope_width": 17.64192935677042,
+          "median_envelope_width": 13.164436414771593,
+          "max_residual_upper_bound": 14.576765863967406,
+          "median_residual_upper_bound": 8.516811559710845,
+          "exact_fold_projection_match_count": 5,
+          "fold_projection_mismatch_ids": [],
+          "matches_frozen_baseline": true
+        },
+        "radiusSummaries": [
+          {
+            "radius": 1,
+            "certified_case_count": 5,
+            "available_point_count": 168,
+            "covered_point_count": 168,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0,
+            "max_envelope_width": 4.410482339192611,
+            "median_envelope_width": 3.2911091036929068,
+            "max_residual_upper_bound": 8.9010777926507,
+            "median_residual_upper_bound": 3.578883354098228,
+            "unavailable_case_ids": []
+          },
+          {
+            "radius": 2,
+            "certified_case_count": 5,
+            "available_point_count": 168,
+            "covered_point_count": 168,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0,
+            "max_envelope_width": 8.820964678385213,
+            "median_envelope_width": 6.582218207385804,
+            "max_residual_upper_bound": 10.792973816422933,
+            "median_residual_upper_bound": 5.160824883714548,
+            "unavailable_case_ids": []
+          },
+          {
+            "radius": 4,
+            "certified_case_count": 5,
+            "available_point_count": 168,
+            "covered_point_count": 168,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0,
+            "max_envelope_width": 17.64192935677042,
+            "median_envelope_width": 13.164436414771593,
+            "max_residual_upper_bound": 14.576765863967406,
+            "median_residual_upper_bound": 8.516811559710845,
+            "unavailable_case_ids": []
+          },
+          {
+            "radius": 8,
+            "certified_case_count": 5,
+            "available_point_count": 168,
+            "covered_point_count": 168,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0,
+            "max_envelope_width": 35.28385871354083,
+            "median_envelope_width": 26.32887282954318,
+            "max_residual_upper_bound": 22.770600065228134,
+            "median_residual_upper_bound": 15.295866731250094,
+            "unavailable_case_ids": []
+          },
+          {
+            "radius": 16,
+            "certified_case_count": 5,
+            "available_point_count": 168,
+            "covered_point_count": 168,
+            "violation_point_count": 0,
+            "unavailable_point_count": 0,
+            "center_prediction_envelope_mismatch_count": 0,
+            "max_envelope_width": 70.56771742708166,
+            "median_envelope_width": 52.65774565908636,
+            "max_residual_upper_bound": 40.26346202861801,
+            "median_residual_upper_bound": 28.451821216260008,
+            "unavailable_case_ids": []
+          },
+          {
+            "radius": 32,
+            "certified_case_count": 3,
+            "available_point_count": 102,
+            "covered_point_count": 102,
+            "violation_point_count": 0,
+            "unavailable_point_count": 66,
+            "center_prediction_envelope_mismatch_count": 0,
+            "max_envelope_width": 141.13543485416332,
+            "median_envelope_width": 109.85401163093286,
+            "max_residual_upper_bound": 75.54732074215885,
+            "median_residual_upper_bound": 57.40446925026497,
+            "unavailable_case_ids": [
+              "enso:4:r32",
+              "enso:5:r32"
+            ]
+          }
+        ],
+        "knownAnswer": {
+          "optimizer_within_certified_tolerances": false,
+          "certified_forward_rss_check_passed": true,
+          "original_tolerances_relaxed": false,
+          "optimizer_mismatch_hidden": false,
+          "used_as_holdout": false,
+          "certified_reference_periods": {
+            "b4": 44.3110887,
+            "b7": 26.88761444
+          }
+        },
+        "analysisScope": {
+          "retrospective_fixed_grid_sensitivity": true,
+          "prospective_independent_validation": false,
+          "radius_grid_selected_after_case_outcomes": false,
+          "joint_nonlinear_optimum_claimed": false,
+          "period_centers_or_covariances_changed": false,
+          "full_stage47_baseline_reused_as_frozen_input": true,
+          "refit": false,
+          "radii_frozen_before_results": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32
+          ],
+          "original_fourier_model": true,
+          "independent_coefficient_relaxation": true,
+          "high_precision_decimal_digits": 80,
+          "outward_rounding": true,
+          "outward_relative_margin": 1e-24,
+          "exact_rational_certificate": false,
+          "probability_region": false,
+          "new_period_mechanism": false,
+          "count_correction": {
+            "original_maximum_evaluations": 5040,
+            "corrected_maximum_evaluations": 1008,
+            "original_protocol_preserved": true
+          }
+        },
+        "decision": {
+          "refit": false,
+          "probability_region_claimed": false,
+          "optimal_radius_selected": false,
+          "critical_radius_is_confidence_level": false,
+          "critical_radius_is_universal_maximum": false,
+          "grid_maximum_called_exact_safe_maximum": false,
+          "exact_critical_radius_accepted": false,
+          "unavailable_cases_given_bounds": false,
+          "positive_period_used_as_physical_proof": false,
+          "independent_envelope_called_joint_optimum": false,
+          "center_consistency_used_as_external_validation": false,
+          "actual_coverage_used_as_probability": false,
+          "exact_rational_certificate_claimed": false,
+          "fixed_period_or_taylor_substitution": false,
+          "independent_physical_experiment_claimed": false,
+          "baseline_files_rewritten": false,
+          "failed_cases_hidden": false
+        },
+        "implementation": {
+          "protocolSha256": "c1a7cceef711a7b1b401de43dd451cf2a37f1974010a13a9c2a0dd8f5d955ef2",
+          "amendmentSha256": "279ccb720c9e88d8ce5c2870454c5f7e2f4f25fa25d68202107f0c2dea51b2fc",
+          "summarySha256": "7106db9490aa8bdcad40fd1a509eabcc4efc2c3177c82adfa25c72fc630b9dce",
+          "analysisRunnerSha256": "7bf494cdd7ecd21a52d587280734107b85419f56ba349d4d74f72017f32e0dae",
+          "figureSha256": "7cef4666b8250cd565cb68567395e9cfe05661202a4c089c0e3aed01ba59fb3d",
+          "reportSha256": "c7da1b909ab024a48eee7c82bcfa2e725c161cc1d74a3a38c88b68dc0eb998e0",
+          "wordSha256": "45ce4bf5a378af0bd4a6fb60e7d3c36e7d53471333c603043b5c11971c5d49f2"
+        },
+        "protocolCommits": {
+          "originalProtocol": "4beffb5",
+          "countAmendment": "ac63bba"
+        }
+      },
+      "scientificClaim": "五折六半径共 30 个案例、1008 次逐点判定；28 个案例生成 942 个原生 Fourier 包络，第 4、5 折半径 32 的 b4 下界分别为 -8.735510 和 -0.015584，66 个留出月份不生成有限界。最大包络宽度为 141.135435，半径 4 的五折投影和汇总与第四十七阶段完全一致。",
+      "limitations": "这是事后固定网格敏感性审计，不是概率区域、独立验证或半径优化。网格最大可用半径不是精确上限；不可用案例不补界，独立系数放松不是联合最优，中心一致性不是外部验证。原协议的 5040 计数在结果生成前修正为 1008，原文件保持不变。This is a retrospective fixed-grid sensitivity audit, not prospective independent validation or radius optimization Critical radii are geometric properties of the selected ellipsoids, not probabilities, physical periods or universal maxima The largest certified grid radius is separate from the analytic critical radius and is not an exact safe maximum Exact critical radii are rejected because period positivity is strict; unavailable cases receive no finite envelope Independent coefficient relaxations are conservative and are not joint nonlinear optima; finite bounds need not be informative Center-prediction containment and actual-residual coverage are arithmetic consistency checks, not probability coverage or external validation High-precision outward-rounded numerical certificates are not exact rational-algebra proofs The optimizer mismatch and certified forward pass remain known-answer diagnostics, not holdout evidence The count correction is explicit and the original protocol and all stage-47 historical files remain unchanged",
+      "upstreamContribution": "提供 Fourier 正周期临界半径的固定网格压力测试、逐折完整基线复现、不可用反例、包络宽度敏感性和显式计数修正链与复现接口。",
+      "snapshotFiles": [
+        "validation/enso-native-ellipsoid-radius-sensitivity-protocol.json",
+        "validation/enso-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json",
+        "validation/enso-native-ellipsoid-radius-sensitivity-check.json",
+        "validation/frontier-enso-native-ellipsoid-radius-sensitivity-word.json"
       ]
     }
   ]
