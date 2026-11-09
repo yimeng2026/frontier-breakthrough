@@ -75,6 +75,9 @@ def build_graph(root):
     fold4Decomposition = json.loads((root / "validation/roszman1-native-fold4-error-decomposition.json").read_text(encoding="utf-8"))
     if fold4Decomposition["totals"]["point_count"] != 5 or fold4Decomposition["totals"]["native_absolute_winner_count"] != 3 or fold4Decomposition["totals"]["rational_absolute_winner_count"] != 2 or fold4Decomposition["totals"]["leave_one_out_reverses_rational_mae_count"] != 2 or fold4Decomposition["totals"]["leave_one_out_reverses_native_rmse_count"] != 0 or fold4Decomposition["totals"]["per_point_absolute_squared_direction_disagreement_count"] != 0 or fold4Decomposition["aggregate"]["absolute_delta_sum"] <= 0 or fold4Decomposition["aggregate"]["squared_delta_sum"] >= 0 or fold4Decomposition["aggregate"]["weight_identity_mismatch_count"] or fold4Decomposition["aggregate"]["frozen_metric_mismatch_count"] or fold4Decomposition["decision"]["leave_one_out_refitting_performed"] or fold4Decomposition["decision"]["statistical_significance_claimed"]:
         raise ValueError("Expected Roszman1 fold-4 weighted reversal and leave-one-out boundaries are not present")
+    chwirut1NativeIdentifiability = json.loads((root / "validation/chwirut1-native-identifiability.json").read_text(encoding="utf-8"))
+    if chwirut1NativeIdentifiability["totals"]["fold_count"] != 5 or chwirut1NativeIdentifiability["totals"]["held_out_point_count"] != 214 or chwirut1NativeIdentifiability["totals"]["full_numerical_rank_fold_count"] != 5 or chwirut1NativeIdentifiability["totals"]["local_diagnostic_failure_count"] != 0 or chwirut1NativeIdentifiability["totals"]["max_scaled_condition_number"] != 28.674083116404475 or chwirut1NativeIdentifiability["totals"]["max_absolute_off_diagonal_parameter_correlation"] != 0.9794131139106378 or chwirut1NativeIdentifiability["totals"]["max_local_prediction_standard_deviation"] != 14.836682306268235 or chwirut1NativeIdentifiability["totals"]["minimum_absolute_denominator"] != 0.009384279096904605 or chwirut1NativeIdentifiability["totals"]["pole_inside_observed_range_fold_count"] != 0 or chwirut1NativeIdentifiability["folds"][0]["training_jacobian"]["parameters"][1]["absolute_relative_standard_error"] != 1.7106283204180401 or chwirut1NativeIdentifiability["analysis_scope"]["refit"] or chwirut1NativeIdentifiability["decision"]["global_structural_identifiability_proved"] or chwirut1NativeIdentifiability["decision"]["independent_model_family_claimed"]:
+        raise ValueError("Expected Chwirut1 native local-identifiability, denominator and related-study boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -747,6 +750,38 @@ def build_graph(root):
         edge("evidence-roszman1-fold4-error-decomposition", "evidence-native-cross-dataset-synthesis", "supports"),
         edge("experiment-roszman1-fold4-error-decomposition-protocol", "experiment-native-cross-dataset-synthesis-protocol", "supports"),
         edge("limitation-roszman1-fold4-five-point-arithmetic", "counterexample-roszman1-fold4-leave-one-out-asymmetry", "limits"),
+    ])
+    nodes.extend([
+        node("claim-native-pole-free-observations-global-safety", "claim", "观测点分母非零且极点在观测范围外即可证明全域原生安全", "falsified", ["validation/chwirut1-native-identifiability.json"]),
+        node("evidence-chwirut1-native-identifiability", "evidence", "五折局部秩均为 3，最大条件数 28.674083，最大相关 0.979413，第 1 折最大敏感度 14.836682，五折极点均在观测范围外", "supported", ["validation/chwirut1-native-identifiability.json", "validation/chwirut1-native-identifiability-check.json"]),
+        node("counterexample-chwirut1-native-fold1-local-instability", "counterexample", "第 1 折虽然局部满秩，但 b2 相对标准误 1.710628、最大敏感度 14.836682 且 RMSE 为 14.465527", "supported", ["validation/chwirut1-native-identifiability.json"]),
+        node("counterexample-chwirut1-native-low-rmse-parameter-uniqueness", "counterexample", "第 4 折原生 RMSE 最低为 1.368210，但三个参数仍随折变化，低误差不能证明参数唯一或内生", "supported", ["validation/chwirut1-native-identifiability.json"]),
+        node("experiment-chwirut1-native-identifiability-protocol", "experiment", "冻结五折参数、逐折自由度、解析雅可比、Delta-method 与原生分母极点诊断规则", "supported", ["validation/chwirut1-native-identifiability-protocol.json", "scripts/analyze_chwirut1_native_identifiability.py"]),
+        node("limitation-chwirut1-native-local-and-related-scope", "limitation", "局部秩、协方差和观测点极点不是全局识别、概率区间或全域证书；Chwirut1 与 Chwirut2 同研究同模型族", "active", ["validation/chwirut1-native-identifiability.json", "docs/CHWIRUT1_NATIVE_IDENTIFIABILITY_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-native-pole-free-observations-global-safety", "contains"),
+        edge("track-holdout", "evidence-chwirut1-native-identifiability", "contains"),
+        edge("track-holdout", "counterexample-chwirut1-native-fold1-local-instability", "contains"),
+        edge("track-holdout", "counterexample-chwirut1-native-low-rmse-parameter-uniqueness", "contains"),
+        edge("track-holdout", "experiment-chwirut1-native-identifiability-protocol", "contains"),
+        edge("track-holdout", "limitation-chwirut1-native-local-and-related-scope", "contains"),
+        edge("evidence-chwirut1-native-identifiability", "claim-local-rank-global-identifiability", "contradicts"),
+        edge("experiment-chwirut1-native-identifiability-protocol", "claim-local-rank-global-identifiability", "tests"),
+        edge("evidence-chwirut1-native-identifiability", "claim-native-pole-free-observations-global-safety", "contradicts"),
+        edge("experiment-chwirut1-native-identifiability-protocol", "claim-native-pole-free-observations-global-safety", "tests"),
+        edge("counterexample-chwirut1-native-fold1-local-instability", "claim-local-rank-global-identifiability", "contradicts"),
+        edge("counterexample-chwirut1-native-low-rmse-parameter-uniqueness", "claim-prediction-stability-parameter-uniqueness", "contradicts"),
+        edge("evidence-chwirut1-native-identifiability", "counterexample-chwirut1-native-fold1-local-instability", "supports"),
+        edge("evidence-chwirut1-native-identifiability", "counterexample-chwirut1-native-low-rmse-parameter-uniqueness", "supports"),
+        edge("limitation-chwirut1-native-local-and-related-scope", "evidence-chwirut1-native-identifiability", "limits"),
+        edge("limitation-chwirut1-native-local-and-related-scope", "claim-native-pole-free-observations-global-safety", "limits"),
+        edge("limitation-chwirut1-native-local-and-related-scope", "claim-untouched-data-independent-model-family", "limits"),
+        edge("evidence-chwirut1-native-identifiability", "evidence-chwirut1-native-holdout", "supports"),
+        edge("experiment-chwirut1-native-identifiability-protocol", "experiment-chwirut1-native-holdout-protocol", "supports"),
+        edge("evidence-chwirut1-native-identifiability", "evidence-roszman1-native-identifiability", "supports"),
+        edge("experiment-chwirut1-native-identifiability-protocol", "experiment-roszman1-native-identifiability-protocol", "supports"),
+        edge("counterexample-chwirut1-native-low-rmse-parameter-uniqueness", "claim-low-rmse-independent-replication", "contradicts"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

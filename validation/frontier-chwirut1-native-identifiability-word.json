@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生Chwirut1原生参数可识别性_图文完整版.docx",
+  "bytes": 329393,
+  "sha256": "2b82c7f3738a6463c4de20cd954587ad89b6964d2279d9d3ef55ba898aa90310",
+  "native_math_objects": 2,
+  "embedded_images": 1,
+  "native_tables": 6,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

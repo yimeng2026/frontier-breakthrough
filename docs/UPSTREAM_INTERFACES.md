@@ -66,7 +66,8 @@
 | 全仓库一致性审计 | 检查 README 本地链接、报告图片、Word 清单、证据快照、图谱、全集计数和 10 份近期协议，错误数为 0；显式刷新保留旧收据 | `validation/repository-integrity-rules.json`、`validation/repository-integrity-report.json`、`docs/REPOSITORY_INTEGRITY_2026-11-09.md` | 提供动态 JSON/README 计数核对与负例门禁，不把结构一致误称为科学真实性或视觉验收 |
 | 三数据原生模型同折综合 | 15 折、407 个配对留出点；原生 11 折 RMSE 低于有理、10 折为三者最低；保留 Roszman1 逐点 12 比 13 与第 4 折 RMSE／MAE 反向 | `validation/native-cross-dataset-synthesis-protocol.json`、`exports/native-cross-dataset-synthesis.json`、`docs/NATIVE_CROSS_DATASET_SYNTHESIS_2026-11-09.md` | 区分折级 RMSE、逐点多票数与不同误差指标，不跨量纲合并误差，不建立概率排名或移植有理证书 |
 | Roszman1 第 4 折误差贡献分解 | D1 为 +0.000461975122、D2 为 -1.317350031e-5；五点逐点方向全部一致；移除第 4 或第 5 点反转 MAE，五次移除均不反转 RMSE | `validation/roszman1-native-fold4-error-decomposition-protocol.json`、`validation/roszman1-native-fold4-error-decomposition.json`、`docs/ROSZMAN1_NATIVE_FOLD4_ERROR_DECOMPOSITION_2026-11-09.md` | 用残差权重恒等式定位汇总反向，不把五点算术、单点贡献移除当作显著性、因果机制或重新拟合 |
-| 主张—证据—反例—实验图谱 | 197 个节点、452 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| Chwirut1 原生参数可识别性与分母诊断 | 五折局部秩均为 3，最大条件数 28.674083，第 1 折 b2 相对标准误 1.710628、最大敏感度 14.836682；五折极点均在观测范围外 | `validation/chwirut1-native-identifiability-protocol.json`、`validation/chwirut1-native-identifiability.json`、`docs/CHWIRUT1_NATIVE_IDENTIFIABILITY_2026-11-09.md` | 使用逐折自由度、解析雅可比和原生分母诊断，不把满秩、局部协方差或观测点极点写成全局识别、概率区间或独立复现 |
+| 主张—证据—反例—实验图谱 | 203 个节点、474 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 范围感知外部分析适配层
 

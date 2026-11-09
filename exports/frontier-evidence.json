@@ -4548,29 +4548,29 @@
         "errorCount": 0,
         "groups": {
           "readme_local_links": {
-            "count": 90,
+            "count": 92,
             "errors": []
           },
           "document_figure_links": {
-            "count": 47,
+            "count": 48,
             "errors": []
           },
           "word_manifests": {
-            "count": 39,
+            "count": 40,
             "errors": []
           },
           "evidence_snapshots": {
-            "count": 171,
+            "count": 174,
             "errors": []
           },
           "knowledge_graph": {
-            "nodes": 197,
-            "edges": 452,
+            "nodes": 203,
+            "edges": 474,
             "errors": []
           },
           "protocol_inputs": {
-            "count": 12,
-            "recordsChecked": 29,
+            "count": 13,
+            "recordsChecked": 33,
             "errors": []
           },
           "corpus_v2": {
@@ -4580,9 +4580,9 @@
             "errors": []
           },
           "dynamic_counts": {
-            "evidenceItems": 50,
-            "graphNodes": 197,
-            "graphEdges": 452,
+            "evidenceItems": 51,
+            "graphNodes": 203,
+            "graphEdges": 474,
             "readme_consistent": true,
             "errors": []
           }
@@ -4593,7 +4593,7 @@
           "scientific_truth_claimed": false,
           "historical_text_rewritten": false
         },
-        "rulesSha256": "02ca32b30eb3725cf473c02c5d212ff0f067558db334b477fa5535a1f715c000",
+        "rulesSha256": "895f28e2bcae7d3593d73ad0ce749215160998d66478f76d60506ae0071a9c39",
         "analysisRunnerSha256": "403aabb3f22e6fa26eca8595777df16c1f5be34f6f948de7f1c8e7f8f20effdf",
         "previousReceiptPreserved": true,
         "protocolCommits": {
@@ -4601,7 +4601,7 @@
           "audit": "24dc02f"
         }
       },
-      "scientificClaim": "当前范围内 90 个 README 本地链接、47 个报告图片路径、39 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 12 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
+      "scientificClaim": "当前范围内 92 个 README 本地链接、48 个报告图片路径、40 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 13 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
       "limitations": "审计只验证本地结构、路径、哈希和计数，不检查外部网页，不进行视觉渲染验收，不证明科学理论为真，也不把历史旧计数误判为错误。",
       "upstreamContribution": "提供可重复的负例门禁、动态 JSON/README 计数核对和显式 --refresh 历史收据保留机制，防止链接、Word、图谱和协议在持续研究中漂移。",
       "snapshotFiles": [
@@ -5377,6 +5377,364 @@
         "validation/roszman1-native-fold4-error-decomposition-protocol.json",
         "validation/roszman1-native-fold4-error-decomposition-check.json",
         "validation/frontier-roszman1-fold4-decomposition-word.json"
+      ]
+    },
+    {
+      "id": "chwirut1-native-identifiability",
+      "domain": "physics",
+      "title": "Chwirut1 原生指数模型局部可识别性、参数稳定性与分母诊断",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Chwirut1.dat"
+      ],
+      "metrics": {
+        "totals": {
+          "fold_count": 5,
+          "held_out_point_count": 214,
+          "full_numerical_rank_fold_count": 5,
+          "local_diagnostic_failure_count": 0,
+          "max_scaled_condition_number": 28.674083116404475,
+          "max_absolute_off_diagonal_parameter_correlation": 0.9794131139106378,
+          "max_local_prediction_standard_deviation": 14.836682306268235,
+          "native_test_rmse_minimum": 1.3682100460705144,
+          "native_test_rmse_maximum": 14.465526570336303,
+          "minimum_absolute_denominator": 0.009384279096904605,
+          "pole_inside_observed_range_fold_count": 0
+        },
+        "foldObservationCounts": [
+          57,
+          54,
+          51,
+          23,
+          29
+        ],
+        "residualDegreesOfFreedom": [
+          154,
+          157,
+          160,
+          188,
+          182
+        ],
+        "folds": [
+          {
+            "fold": 1,
+            "trainCount": 157,
+            "testCount": 57,
+            "numericalRank": 3,
+            "scaledConditionNumber": 28.674083116404475,
+            "maxAbsoluteOffDiagonalParameterCorrelation": 0.9794131139106378,
+            "maxLocalPredictionStandardDeviation": 14.836682306268235,
+            "testMetrics": {
+              "rmse": 14.465526570336303,
+              "mae": 11.383831417263481,
+              "max_absolute_residual": 34.56420305694451
+            },
+            "parameters": [
+              {
+                "name": "b1",
+                "value": 0.10197290606900491,
+                "local_standard_error": 0.027732789311755327,
+                "absolute_relative_standard_error": 0.2719623317686817
+              },
+              {
+                "name": "b2",
+                "value": 0.0013481643928198739,
+                "local_standard_error": 0.0023062081909368676,
+                "absolute_relative_standard_error": 1.7106283204180401
+              },
+              {
+                "name": "b3",
+                "value": 0.01607222940816946,
+                "local_standard_error": 0.002164130889371824,
+                "absolute_relative_standard_error": 0.1346503235121696
+              }
+            ],
+            "denominatorDiagnostics": {
+              "minimum_absolute_denominator_train": 0.0214384511530317,
+              "minimum_absolute_denominator_held_out": 0.009384279096904605,
+              "minimum_absolute_denominator_all": 0.009384279096904605,
+              "zero_denominator_count": 0,
+              "pole_x": -0.08388160463504872,
+              "pole_inside_observed_closed_range": false,
+              "singular_evaluation_hidden": false,
+              "interpretation": "Native exponential denominator geometry at the frozen fit; not a transferred rational certificate"
+            }
+          },
+          {
+            "fold": 2,
+            "trainCount": 160,
+            "testCount": 54,
+            "numericalRank": 3,
+            "scaledConditionNumber": 15.606198010974579,
+            "maxAbsoluteOffDiagonalParameterCorrelation": 0.9612386590346687,
+            "maxLocalPredictionStandardDeviation": 0.6643994418772533,
+            "testMetrics": {
+              "rmse": 2.622277550680226,
+              "mae": 2.0710655171961916,
+              "max_absolute_residual": 6.015521299119683
+            },
+            "parameters": [
+              {
+                "name": "b1",
+                "value": 0.20155053784283966,
+                "local_standard_error": 0.02605552864954041,
+                "absolute_relative_standard_error": 0.12927541116192592
+              },
+              {
+                "name": "b2",
+                "value": 0.0065196578644481406,
+                "local_standard_error": 0.00043719674647027496,
+                "absolute_relative_standard_error": 0.06705823458226541
+              },
+              {
+                "name": "b3",
+                "value": 0.009725363401064573,
+                "local_standard_error": 0.0009951819552714545,
+                "absolute_relative_standard_error": 0.10232851094926883
+              }
+            ],
+            "denominatorDiagnostics": {
+              "minimum_absolute_denominator_train": 0.011382339564980427,
+              "minimum_absolute_denominator_held_out": 0.018676362115778857,
+              "minimum_absolute_denominator_all": 0.011382339564980427,
+              "zero_denominator_count": 0,
+              "pole_x": -0.6703767865100522,
+              "pole_inside_observed_closed_range": false,
+              "singular_evaluation_hidden": false,
+              "interpretation": "Native exponential denominator geometry at the frozen fit; not a transferred rational certificate"
+            }
+          },
+          {
+            "fold": 3,
+            "trainCount": 163,
+            "testCount": 51,
+            "numericalRank": 3,
+            "scaledConditionNumber": 14.870684225433935,
+            "maxAbsoluteOffDiagonalParameterCorrelation": 0.9419983973258718,
+            "maxLocalPredictionStandardDeviation": 0.42768770306988163,
+            "testMetrics": {
+              "rmse": 2.775494469668534,
+              "mae": 1.9399903435006307,
+              "max_absolute_residual": 10.656904385302195
+            },
+            "parameters": [
+              {
+                "name": "b1",
+                "value": 0.1838307841658672,
+                "local_standard_error": 0.025446222525807267,
+                "absolute_relative_standard_error": 0.1384219875972873
+              },
+              {
+                "name": "b2",
+                "value": 0.006090058945361599,
+                "local_standard_error": 0.0003672842686444421,
+                "absolute_relative_standard_error": 0.06030881998673898
+              },
+              {
+                "name": "b3",
+                "value": 0.01068457994389589,
+                "local_standard_error": 0.0008646542685572314,
+                "absolute_relative_standard_error": 0.08092543395224529
+              }
+            ],
+            "denominatorDiagnostics": {
+              "minimum_absolute_denominator_train": 0.011432348917309543,
+              "minimum_absolute_denominator_held_out": 0.032801508805101326,
+              "minimum_absolute_denominator_all": 0.011432348917309543,
+              "zero_denominator_count": 0,
+              "pole_x": -0.5699858092073011,
+              "pole_inside_observed_closed_range": false,
+              "singular_evaluation_hidden": false,
+              "interpretation": "Native exponential denominator geometry at the frozen fit; not a transferred rational certificate"
+            }
+          },
+          {
+            "fold": 4,
+            "trainCount": 191,
+            "testCount": 23,
+            "numericalRank": 3,
+            "scaledConditionNumber": 15.897471299436486,
+            "maxAbsoluteOffDiagonalParameterCorrelation": 0.9542148217761333,
+            "maxLocalPredictionStandardDeviation": 0.42716519816135806,
+            "testMetrics": {
+              "rmse": 1.3682100460705144,
+              "mae": 1.0180138615537278,
+              "max_absolute_residual": 3.4317556610176885
+            },
+            "parameters": [
+              {
+                "name": "b1",
+                "value": 0.1837998732874438,
+                "local_standard_error": 0.025376180227849626,
+                "absolute_relative_standard_error": 0.13806418782543953
+              },
+              {
+                "name": "b2",
+                "value": 0.006071281460854413,
+                "local_standard_error": 0.0003796026582320257,
+                "absolute_relative_standard_error": 0.06252430573011256
+              },
+              {
+                "name": "b3",
+                "value": 0.01071520700723592,
+                "local_standard_error": 0.0008943472380679202,
+                "absolute_relative_standard_error": 0.08346523193289429
+              }
+            ],
+            "denominatorDiagnostics": {
+              "minimum_absolute_denominator_train": 0.011428884964472374,
+              "minimum_absolute_denominator_held_out": 0.046253307737989115,
+              "minimum_absolute_denominator_all": 0.011428884964472374,
+              "zero_denominator_count": 0,
+              "pole_x": -0.5666042155559394,
+              "pole_inside_observed_closed_range": false,
+              "singular_evaluation_hidden": false,
+              "interpretation": "Native exponential denominator geometry at the frozen fit; not a transferred rational certificate"
+            }
+          },
+          {
+            "fold": 5,
+            "trainCount": 185,
+            "testCount": 29,
+            "numericalRank": 3,
+            "scaledConditionNumber": 17.693024070313964,
+            "maxAbsoluteOffDiagonalParameterCorrelation": 0.9644587629911029,
+            "maxLocalPredictionStandardDeviation": 0.41778526902643276,
+            "testMetrics": {
+              "rmse": 2.7237923197301117,
+              "mae": 2.2471386159021938,
+              "max_absolute_residual": 6.141371148820718
+            },
+            "parameters": [
+              {
+                "name": "b1",
+                "value": 0.23070636104144254,
+                "local_standard_error": 0.029101265319668827,
+                "absolute_relative_standard_error": 0.12613984802283484
+              },
+              {
+                "name": "b2",
+                "value": 0.006543609566912807,
+                "local_standard_error": 0.00037702229111091643,
+                "absolute_relative_standard_error": 0.05761686837449729
+              },
+              {
+                "name": "b3",
+                "value": 0.009335238111552463,
+                "local_standard_error": 0.0009273461921302365,
+                "absolute_relative_standard_error": 0.09933824730004853
+              }
+            ],
+            "denominatorDiagnostics": {
+              "minimum_absolute_denominator_train": 0.01121122862268904,
+              "minimum_absolute_denominator_held_out": 0.05321980012467512,
+              "minimum_absolute_denominator_all": 0.01121122862268904,
+              "zero_denominator_count": 0,
+              "pole_x": -0.7009579711539459,
+              "pole_inside_observed_closed_range": false,
+              "singular_evaluation_hidden": false,
+              "interpretation": "Native exponential denominator geometry at the frozen fit; not a transferred rational certificate"
+            }
+          }
+        ],
+        "parameterStability": {
+          "b1": {
+            "values": [
+              0.10197290606900491,
+              0.20155053784283966,
+              0.1838307841658672,
+              0.1837998732874438,
+              0.23070636104144254
+            ],
+            "minimum": 0.10197290606900491,
+            "maximum": 0.23070636104144254,
+            "median": 0.1838307841658672,
+            "range": 0.12873345497243763,
+            "median_local_standard_error": 0.02605552864954041
+          },
+          "b2": {
+            "values": [
+              0.0013481643928198739,
+              0.0065196578644481406,
+              0.006090058945361599,
+              0.006071281460854413,
+              0.006543609566912807
+            ],
+            "minimum": 0.0013481643928198739,
+            "maximum": 0.006543609566912807,
+            "median": 0.006090058945361599,
+            "range": 0.005195445174092934,
+            "median_local_standard_error": 0.0003796026582320257
+          },
+          "b3": {
+            "values": [
+              0.01607222940816946,
+              0.009725363401064573,
+              0.01068457994389589,
+              0.01071520700723592,
+              0.009335238111552463
+            ],
+            "minimum": 0.009335238111552463,
+            "maximum": 0.01607222940816946,
+            "median": 0.01068457994389589,
+            "range": 0.006736991296616998,
+            "median_local_standard_error": 0.0009273461921302365
+          }
+        },
+        "analysisScope": {
+          "post_hoc": true,
+          "refit": false,
+          "new_model_or_parameters": false,
+          "new_holdout_selection": false,
+          "analytic_jacobian": true,
+          "local_linearization": true,
+          "fold_specific_residual_degrees_of_freedom": true,
+          "repeated_observations_retained": true,
+          "calibrated_interval": false,
+          "global_identifiability": false,
+          "independent_validation": false,
+          "independent_model_family_test": false,
+          "related_prior_dataset": {
+            "name": "Chwirut2",
+            "same_study": true,
+            "same_native_model_family": true,
+            "independent_model_family_or_laboratory_replication": false
+          }
+        },
+        "decision": {
+          "refit": false,
+          "global_structural_identifiability_proved": false,
+          "physical_parameter_endogeneity_proved": false,
+          "calibrated_prediction_intervals_produced": false,
+          "rational_bounds_transferred_to_native": false,
+          "independent_physical_experiment_claimed": false,
+          "independent_model_family_claimed": false,
+          "prediction_stability_equals_parameter_uniqueness": false,
+          "rank_deficiency_hidden": false,
+          "denominator_singularities_hidden": false,
+          "native_deterministic_bounds_claimed": false
+        },
+        "implementation": {
+          "protocolSha256": "02f7f035305c8fccb86133967a7cf4fcef57a4f367521f9fe639fb6a313bd8ad",
+          "summarySha256": "e8e76516b05e8fd83f60df0ad93215ce41984ca562cc9e5140291f5f6ba72cc8",
+          "analysisRunnerSha256": "189143bbe901f8e22e3cd7cc76a522e2cc374ff9365521834718d1949555daae",
+          "figureSha256": "27668dc5cc7a9f4f3d89e911e50adcfae0e6c66a1e3ae82a5511091948df3c7c",
+          "reportSha256": "b0b627c17c8181a041bf4a72e9c4523223c6aea935571b29f96337b0cb7dbde2",
+          "wordSha256": "2b82c7f3738a6463c4de20cd954587ad89b6964d2279d9d3ef55ba898aa90310"
+        },
+        "protocolCommits": {
+          "protocol": "eab7b6f"
+        }
+      },
+      "scientificClaim": "五折局部数值秩均为 3，最大缩放条件数 28.674083、最大相关绝对值 0.979413，第 1 折最大局部预测标准差 14.836682、b2 相对标准误 1.710628。五折极点均在观测范围外，最小绝对分母 0.009384279；b1、b2、b3 的逐折范围分别为 0.128733455、0.005195445、0.006736991。",
+      "limitations": "局部满秩、协方差和 Delta-method 不证明全局可识别或概率校准，观测点分母与极点不证明全域安全。第 1 折高误差和局部不稳定必须保留，Chwirut1 与 Chwirut2 同研究同模型族。Local Jacobians, numerical ranks, covariances and delta-method sensitivities do not prove global structural identifiability or calibrated uncertainty Column-normalized condition numbers reduce unit-scale dominance but do not remove nonlinear parameter compensation Lower held-out RMSE does not imply unique, invariant or physically endogenous parameters Parameter variation across folds is descriptive and is not a posterior distribution or independent physical estimate Native denominator and pole diagnostics are not rational certificates or native deterministic bounds Chwirut1 shares its study and native model family with Chwirut2 and is not an independent model-family or laboratory replication",
+      "upstreamContribution": "将逐折自由度、重复距离、解析雅可比、局部相关、原生分母与极点统一到五折诊断接口，明确区分预测误差、参数补偿、局部敏感度和全域证明义务。",
+      "snapshotFiles": [
+        "validation/chwirut1-native-identifiability-protocol.json",
+        "validation/chwirut1-native-identifiability-check.json",
+        "validation/frontier-chwirut1-native-identifiability-word.json"
       ]
     }
   ]

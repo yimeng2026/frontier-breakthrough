@@ -30,8 +30,8 @@ class ExtremeCorpusV2IntegrationTests(unittest.TestCase):
         nodes = {node["id"]: node for node in graph["nodes"]}
         identifier = "experiment-extreme-corpus-v2-classification"
         self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 197)
-        self.assertEqual(len(graph["edges"]), 452)
+        self.assertEqual(len(graph["nodes"]), 203)
+        self.assertEqual(len(graph["edges"]), 474)
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}
         self.assertIn(("track-knowledge", identifier, "contains"), edges)
         self.assertIn((identifier, "claim-knowledge-graph", "tests"), edges)

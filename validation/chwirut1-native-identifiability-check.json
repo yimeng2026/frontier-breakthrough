@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "errorCount": 0,
+  "foldCount": 5,
+  "heldOutPointCount": 214,
+  "fullRankFoldCount": 5,
+  "poleInsideObservedRangeFoldCount": 0,
+  "protocolSha256": "02f7f035305c8fccb86133967a7cf4fcef57a4f367521f9fe639fb6a313bd8ad",
+  "summarySha256": "e8e76516b05e8fd83f60df0ad93215ce41984ca562cc9e5140291f5f6ba72cc8",
+  "analysisRunnerSha256": "189143bbe901f8e22e3cd7cc76a522e2cc374ff9365521834718d1949555daae",
+  "figureSha256": "27668dc5cc7a9f4f3d89e911e50adcfae0e6c66a1e3ae82a5511091948df3c7c",
+  "reportSha256": "b0b627c17c8181a041bf4a72e9c4523223c6aea935571b29f96337b0cb7dbde2",
+  "wordSha256": "2b82c7f3738a6463c4de20cd954587ad89b6964d2279d9d3ef55ba898aa90310",
+  "wordManifestSha256": "690e4a7517ecbb9812d81e45e5f11df7b8843113e4b63e035f66ea4416605eda",
+  "globalIdentifiabilityClaimed": false,
+  "calibratedIntervalsClaimed": false,
+  "independentReplicationClaimed": false,
+  "visualQaClaimed": false,
+  "scientificTruthClaimed": false
+}

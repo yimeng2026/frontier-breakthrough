@@ -1847,6 +1847,63 @@
         "validation/roszman1-native-fold4-error-decomposition.json",
         "docs/ROSZMAN1_NATIVE_FOLD4_ERROR_DECOMPOSITION_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-native-pole-free-observations-global-safety",
+      "kind": "claim",
+      "title": "观测点分母非零且极点在观测范围外即可证明全域原生安全",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/chwirut1-native-identifiability.json"
+      ]
+    },
+    {
+      "id": "evidence-chwirut1-native-identifiability",
+      "kind": "evidence",
+      "title": "五折局部秩均为 3，最大条件数 28.674083，最大相关 0.979413，第 1 折最大敏感度 14.836682，五折极点均在观测范围外",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-native-identifiability.json",
+        "validation/chwirut1-native-identifiability-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-chwirut1-native-fold1-local-instability",
+      "kind": "counterexample",
+      "title": "第 1 折虽然局部满秩，但 b2 相对标准误 1.710628、最大敏感度 14.836682 且 RMSE 为 14.465527",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-native-identifiability.json"
+      ]
+    },
+    {
+      "id": "counterexample-chwirut1-native-low-rmse-parameter-uniqueness",
+      "kind": "counterexample",
+      "title": "第 4 折原生 RMSE 最低为 1.368210，但三个参数仍随折变化，低误差不能证明参数唯一或内生",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-native-identifiability.json"
+      ]
+    },
+    {
+      "id": "experiment-chwirut1-native-identifiability-protocol",
+      "kind": "experiment",
+      "title": "冻结五折参数、逐折自由度、解析雅可比、Delta-method 与原生分母极点诊断规则",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-native-identifiability-protocol.json",
+        "scripts/analyze_chwirut1_native_identifiability.py"
+      ]
+    },
+    {
+      "id": "limitation-chwirut1-native-local-and-related-scope",
+      "kind": "limitation",
+      "title": "局部秩、协方差和观测点极点不是全局识别、概率区间或全域证书；Chwirut1 与 Chwirut2 同研究同模型族",
+      "status": "active",
+      "sourceFiles": [
+        "validation/chwirut1-native-identifiability.json",
+        "docs/CHWIRUT1_NATIVE_IDENTIFIABILITY_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -4109,6 +4166,116 @@
       "from": "limitation-roszman1-fold4-five-point-arithmetic",
       "to": "counterexample-roszman1-fold4-leave-one-out-asymmetry",
       "relation": "limits"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-native-pole-free-observations-global-safety",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-chwirut1-native-identifiability",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-chwirut1-native-fold1-local-instability",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-chwirut1-native-low-rmse-parameter-uniqueness",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-chwirut1-native-identifiability-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-chwirut1-native-local-and-related-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-chwirut1-native-identifiability",
+      "to": "claim-local-rank-global-identifiability",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-chwirut1-native-identifiability-protocol",
+      "to": "claim-local-rank-global-identifiability",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-chwirut1-native-identifiability",
+      "to": "claim-native-pole-free-observations-global-safety",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-chwirut1-native-identifiability-protocol",
+      "to": "claim-native-pole-free-observations-global-safety",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-chwirut1-native-fold1-local-instability",
+      "to": "claim-local-rank-global-identifiability",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-chwirut1-native-low-rmse-parameter-uniqueness",
+      "to": "claim-prediction-stability-parameter-uniqueness",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-chwirut1-native-identifiability",
+      "to": "counterexample-chwirut1-native-fold1-local-instability",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-chwirut1-native-identifiability",
+      "to": "counterexample-chwirut1-native-low-rmse-parameter-uniqueness",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-chwirut1-native-local-and-related-scope",
+      "to": "evidence-chwirut1-native-identifiability",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-chwirut1-native-local-and-related-scope",
+      "to": "claim-native-pole-free-observations-global-safety",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-chwirut1-native-local-and-related-scope",
+      "to": "claim-untouched-data-independent-model-family",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-chwirut1-native-identifiability",
+      "to": "evidence-chwirut1-native-holdout",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-chwirut1-native-identifiability-protocol",
+      "to": "experiment-chwirut1-native-holdout-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-chwirut1-native-identifiability",
+      "to": "evidence-roszman1-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-chwirut1-native-identifiability-protocol",
+      "to": "experiment-roszman1-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-chwirut1-native-low-rmse-parameter-uniqueness",
+      "to": "claim-low-rmse-independent-replication",
+      "relation": "contradicts"
     }
   ]
 }

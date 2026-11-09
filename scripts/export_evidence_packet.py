@@ -91,6 +91,8 @@ def build() -> dict:
     nativeCrossCheck = read("native-cross-dataset-synthesis-check.json")
     fold4Decomposition = read("roszman1-native-fold4-error-decomposition.json")
     fold4DecompositionCheck = read("roszman1-native-fold4-error-decomposition-check.json")
+    chwirut1NativeIdentifiability = read("chwirut1-native-identifiability.json")
+    chwirut1NativeIdentifiabilityCheck = read("chwirut1-native-identifiability-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -817,6 +819,44 @@ def build() -> dict:
             "limitations": "五个冻结点只支持算术分解，不支持统计显著性、因果机制或普适模型选择。残差权重不是概率，单点移除不是重新拟合；没有建立原生确定性界、概率校准或独立实验。" + " ".join(fold4Decomposition["limitations"]),
             "upstreamContribution": "提供可复用的绝对差值—残差权重—平方差值恒等式、完整五点贡献和单点移除接口，把指标反向精确定位到高残差点与不同单点依赖结构，避免把汇总反向误读为单点矛盾。",
             "snapshotFiles": ["validation/roszman1-native-fold4-error-decomposition-protocol.json", "validation/roszman1-native-fold4-error-decomposition-check.json", "validation/frontier-roszman1-fold4-decomposition-word.json"],
+        },
+        {
+            "id": "chwirut1-native-identifiability", "domain": "physics", "title": "Chwirut1 原生指数模型局部可识别性、参数稳定性与分母诊断",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Chwirut1.dat"],
+            "metrics": {
+                "totals": chwirut1NativeIdentifiability["totals"],
+                "foldObservationCounts": [fold["test_count"] for fold in chwirut1NativeIdentifiability["folds"]],
+                "residualDegreesOfFreedom": [fold["train_count"] - 3 for fold in chwirut1NativeIdentifiability["folds"]],
+                "folds": [{
+                    "fold": fold["fold"],
+                    "trainCount": fold["train_count"],
+                    "testCount": fold["test_count"],
+                    "numericalRank": fold["training_jacobian"]["numerical_rank"],
+                    "scaledConditionNumber": fold["training_jacobian"]["scaled_condition_number"],
+                    "maxAbsoluteOffDiagonalParameterCorrelation": fold["training_jacobian"]["max_absolute_off_diagonal_parameter_correlation"],
+                    "maxLocalPredictionStandardDeviation": fold["held_out_prediction_sensitivity"]["max_local_standard_deviation"],
+                    "testMetrics": fold["test_metrics"],
+                    "parameters": fold["training_jacobian"]["parameters"],
+                    "denominatorDiagnostics": fold["denominator_diagnostics"],
+                } for fold in chwirut1NativeIdentifiability["folds"]],
+                "parameterStability": chwirut1NativeIdentifiability["parameter_stability"],
+                "analysisScope": chwirut1NativeIdentifiability["analysis_scope"],
+                "decision": chwirut1NativeIdentifiability["decision"],
+                "implementation": {
+                    "protocolSha256": chwirut1NativeIdentifiability["protocol_sha256"],
+                    "summarySha256": chwirut1NativeIdentifiabilityCheck["summarySha256"],
+                    "analysisRunnerSha256": chwirut1NativeIdentifiabilityCheck["analysisRunnerSha256"],
+                    "figureSha256": chwirut1NativeIdentifiabilityCheck["figureSha256"],
+                    "reportSha256": chwirut1NativeIdentifiabilityCheck["reportSha256"],
+                    "wordSha256": chwirut1NativeIdentifiabilityCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "eab7b6f"},
+            },
+            "scientificClaim": "五折局部数值秩均为 3，最大缩放条件数 28.674083、最大相关绝对值 0.979413，第 1 折最大局部预测标准差 14.836682、b2 相对标准误 1.710628。五折极点均在观测范围外，最小绝对分母 0.009384279；b1、b2、b3 的逐折范围分别为 0.128733455、0.005195445、0.006736991。",
+            "limitations": "局部满秩、协方差和 Delta-method 不证明全局可识别或概率校准，观测点分母与极点不证明全域安全。第 1 折高误差和局部不稳定必须保留，Chwirut1 与 Chwirut2 同研究同模型族。" + " ".join(chwirut1NativeIdentifiability["limitations"]),
+            "upstreamContribution": "将逐折自由度、重复距离、解析雅可比、局部相关、原生分母与极点统一到五折诊断接口，明确区分预测误差、参数补偿、局部敏感度和全域证明义务。",
+            "snapshotFiles": ["validation/chwirut1-native-identifiability-protocol.json", "validation/chwirut1-native-identifiability-check.json", "validation/frontier-chwirut1-native-identifiability-word.json"],
         },
     ]
     packet = {

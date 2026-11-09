@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "roszman1_fold4_decomposition":
+    if REPORT_MODE == "chwirut1_native_identifiability":
+        replacements = {
+            "图：`papers/47_Chwirut1原生参数可识别性/fig47_chwirut1_native_identifiability.png`。": "![](papers/47_Chwirut1原生参数可识别性/fig47_chwirut1_native_identifiability.png)\n\n**图 47｜Chwirut1 原生指数模型局部可识别性与分母六联诊断（第 1 幅，共 1 幅）**  \n**插入位置**：§6「六联图与读图顺序」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "五折解析雅可比、逐折自由度、参数补偿与原生分母极点诊断"
+    elif REPORT_MODE == "roszman1_fold4_decomposition":
         replacements = {
             "图：`papers/46_Roszman1第4折误差分解/fig46_roszman1_fold4_error_decomposition.png`。": "![](papers/46_Roszman1第4折误差分解/fig46_roszman1_fold4_error_decomposition.png)\n\n**图 46｜Roszman1 第 4 折绝对误差与平方误差贡献分解（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联组图与读图顺序」；顺序第 1 幅，共 1 幅。",
         }

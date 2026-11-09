@@ -1,0 +1,2217 @@
+{
+  "status": "computed_chwirut1_native_identifiability",
+  "protocol_sha256": "02f7f035305c8fccb86133967a7cf4fcef57a4f367521f9fe639fb6a313bd8ad",
+  "native_holdout_sha256": "e030dea90416195326b92b78824a030f01a0ab2525f9b215cf7c094077a8ce88",
+  "native_holdout_protocol_sha256": "735228da3c0eb4729b922d8e312b59844030a63ba360d502068bca28da695237",
+  "metadata_amendment_sha256": "4754a0cea606b86edf65be49054161bedec53e6a63f1ba9aa0b9139c1f3696d2",
+  "data_sha256": "d9a055dfe5af71a8754c00f073ef00f8fed2e3fd1c6fd20cea8fd62d7cc3ed84",
+  "analysis_scope": {
+    "post_hoc": true,
+    "refit": false,
+    "new_model_or_parameters": false,
+    "new_holdout_selection": false,
+    "analytic_jacobian": true,
+    "local_linearization": true,
+    "fold_specific_residual_degrees_of_freedom": true,
+    "repeated_observations_retained": true,
+    "calibrated_interval": false,
+    "global_identifiability": false,
+    "independent_validation": false,
+    "independent_model_family_test": false,
+    "related_prior_dataset": {
+      "name": "Chwirut2",
+      "same_study": true,
+      "same_native_model_family": true,
+      "independent_model_family_or_laboratory_replication": false
+    }
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "train_count": 157,
+      "train_unique_distance_count": 17,
+      "test_count": 57,
+      "native_parameters": {
+        "b1": 0.10197290606900491,
+        "b2": 0.0013481643928198739,
+        "b3": 0.01607222940816946
+      },
+      "training_rss": 831.7504179173762,
+      "training_metrics": {
+        "rmse": 2.301689241086003,
+        "mae": 1.6297539021725913,
+        "max_absolute_residual": 10.90175998061957
+      },
+      "test_metrics": {
+        "rmse": 14.465526570336303,
+        "mae": 11.383831417263481,
+        "max_absolute_residual": 34.56420305694451
+      },
+      "denominator_diagnostics": {
+        "minimum_absolute_denominator_train": 0.0214384511530317,
+        "minimum_absolute_denominator_held_out": 0.009384279096904605,
+        "minimum_absolute_denominator_all": 0.009384279096904605,
+        "zero_denominator_count": 0,
+        "pole_x": -0.08388160463504872,
+        "pole_inside_observed_closed_range": false,
+        "singular_evaluation_hidden": false,
+        "interpretation": "Native exponential denominator geometry at the frozen fit; not a transferred rational certificate"
+      },
+      "training_jacobian": {
+        "shape": [
+          157,
+          3
+        ],
+        "parameter_count": 3,
+        "raw_singular_values": [
+          16783.52386690483,
+          2123.2113153209843,
+          83.32520427526661
+        ],
+        "column_norms": [
+          553.8932047377748,
+          8271.099716966479,
+          14747.330421465473
+        ],
+        "local_covariance_valid": true,
+        "interpretation": "Local linearization at the frozen fit; rank and conditioning do not establish global structural identifiability",
+        "scaled_singular_values": [
+          1.6712347869380038,
+          0.45119539505982836,
+          0.058283809116180196
+        ],
+        "scaled_condition_number": 28.674083116404475,
+        "numerical_rank": 3,
+        "numerical_rank_tolerance": 5.826092087641102e-14,
+        "training_residual_variance_estimate": 5.400976739723222,
+        "parameter_covariance_matrix": [
+          [
+            0.0007691076030102104,
+            5.806043920065438e-05,
+            -5.810115644849038e-05
+          ],
+          [
+            5.806043920065438e-05,
+            5.3185962199443e-06,
+            -4.888188544525945e-06
+          ],
+          [
+            -5.8101156448490364e-05,
+            -4.888188544525944e-06,
+            4.6834625063332815e-06
+          ]
+        ],
+        "parameter_correlation_matrix": [
+          [
+            0.9999999999999999,
+            0.9077959777940061,
+            -0.9680720924836079
+          ],
+          [
+            0.9077959777940061,
+            1.0,
+            -0.9794131139106378
+          ],
+          [
+            -0.9680720924836077,
+            -0.9794131139106376,
+            1.0
+          ]
+        ],
+        "max_absolute_off_diagonal_parameter_correlation": 0.9794131139106378,
+        "parameters": [
+          {
+            "name": "b1",
+            "value": 0.10197290606900491,
+            "local_standard_error": 0.027732789311755327,
+            "absolute_relative_standard_error": 0.2719623317686817
+          },
+          {
+            "name": "b2",
+            "value": 0.0013481643928198739,
+            "local_standard_error": 0.0023062081909368676,
+            "absolute_relative_standard_error": 1.7106283204180401
+          },
+          {
+            "name": "b3",
+            "value": 0.01607222940816946,
+            "local_standard_error": 0.002164130889371824,
+            "absolute_relative_standard_error": 0.1346503235121696
+          }
+        ]
+      },
+      "held_out_prediction_sensitivity": {
+        "median_local_standard_deviation": 5.1305911300792975,
+        "max_local_standard_deviation": 14.836682306268235,
+        "interpretation": "Delta-method local sensitivity propagated from the fitting design, not a calibrated prediction interval"
+      },
+      "held_out_points": [
+        {
+          "x": 0.5,
+          "observed_y": 92.9,
+          "native_prediction": 101.26420305694451,
+          "residual": -8.364203056944504,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.625,
+          "observed_y": 78.7,
+          "native_prediction": 82.3514502375694,
+          "residual": -3.6514502375693922,
+          "local_linearized_prediction_standard_deviation": 8.51117587365738
+        },
+        {
+          "x": 0.75,
+          "observed_y": 64.2,
+          "native_prediction": 69.12016736151381,
+          "residual": -4.920167361513805,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        },
+        {
+          "x": 0.875,
+          "observed_y": 64.9,
+          "native_prediction": 59.34831642778132,
+          "residual": 5.5516835722186855,
+          "local_linearized_prediction_standard_deviation": 3.1864659456456534
+        },
+        {
+          "x": 1.0,
+          "observed_y": 57.1,
+          "native_prediction": 51.83889807183358,
+          "residual": 5.261101928166418,
+          "local_linearized_prediction_standard_deviation": 2.013127402647387
+        },
+        {
+          "x": 0.5,
+          "observed_y": 90.6,
+          "native_prediction": 101.26420305694451,
+          "residual": -10.664203056944515,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.625,
+          "observed_y": 76.9,
+          "native_prediction": 82.3514502375694,
+          "residual": -5.451450237569389,
+          "local_linearized_prediction_standard_deviation": 8.51117587365738
+        },
+        {
+          "x": 0.75,
+          "observed_y": 71.6,
+          "native_prediction": 69.12016736151381,
+          "residual": 2.4798326384861866,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        },
+        {
+          "x": 0.875,
+          "observed_y": 63.6,
+          "native_prediction": 59.34831642778132,
+          "residual": 4.251683572218681,
+          "local_linearized_prediction_standard_deviation": 3.1864659456456534
+        },
+        {
+          "x": 1.0,
+          "observed_y": 54.0,
+          "native_prediction": 51.83889807183358,
+          "residual": 2.161101928166417,
+          "local_linearized_prediction_standard_deviation": 2.013127402647387
+        },
+        {
+          "x": 0.5,
+          "observed_y": 80.0,
+          "native_prediction": 101.26420305694451,
+          "residual": -21.26420305694451,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.625,
+          "observed_y": 79.0,
+          "native_prediction": 82.3514502375694,
+          "residual": -3.351450237569395,
+          "local_linearized_prediction_standard_deviation": 8.51117587365738
+        },
+        {
+          "x": 0.75,
+          "observed_y": 63.8,
+          "native_prediction": 69.12016736151381,
+          "residual": -5.3201673615138105,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        },
+        {
+          "x": 0.875,
+          "observed_y": 57.2,
+          "native_prediction": 59.34831642778132,
+          "residual": -2.1483164277813174,
+          "local_linearized_prediction_standard_deviation": 3.1864659456456534
+        },
+        {
+          "x": 1.0,
+          "observed_y": 53.2,
+          "native_prediction": 51.83889807183358,
+          "residual": 1.3611019281664198,
+          "local_linearized_prediction_standard_deviation": 2.013127402647387
+        },
+        {
+          "x": 0.5,
+          "observed_y": 74.1,
+          "native_prediction": 101.26420305694451,
+          "residual": -27.164203056944515,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.625,
+          "observed_y": 67.3,
+          "native_prediction": 82.3514502375694,
+          "residual": -15.051450237569398,
+          "local_linearized_prediction_standard_deviation": 8.51117587365738
+        },
+        {
+          "x": 0.75,
+          "observed_y": 60.8,
+          "native_prediction": 69.12016736151381,
+          "residual": -8.32016736151381,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        },
+        {
+          "x": 0.875,
+          "observed_y": 55.5,
+          "native_prediction": 59.34831642778132,
+          "residual": -3.84831642778132,
+          "local_linearized_prediction_standard_deviation": 3.1864659456456534
+        },
+        {
+          "x": 1.0,
+          "observed_y": 50.3,
+          "native_prediction": 51.83889807183358,
+          "residual": -1.5388980718335858,
+          "local_linearized_prediction_standard_deviation": 2.013127402647387
+        },
+        {
+          "x": 0.5,
+          "observed_y": 81.5,
+          "native_prediction": 101.26420305694451,
+          "residual": -19.76420305694451,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.75,
+          "observed_y": 62.4,
+          "native_prediction": 69.12016736151381,
+          "residual": -6.720167361513809,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        },
+        {
+          "x": 0.5,
+          "observed_y": 78.0,
+          "native_prediction": 101.26420305694451,
+          "residual": -23.26420305694451,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.75,
+          "observed_y": 59.9,
+          "native_prediction": 69.12016736151381,
+          "residual": -9.22016736151381,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        },
+        {
+          "x": 0.5,
+          "observed_y": 76.8,
+          "native_prediction": 101.26420305694451,
+          "residual": -24.464203056944513,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.75,
+          "observed_y": 61.0,
+          "native_prediction": 69.12016736151381,
+          "residual": -8.120167361513808,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        },
+        {
+          "x": 0.5,
+          "observed_y": 78.0,
+          "native_prediction": 101.26420305694451,
+          "residual": -23.26420305694451,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.75,
+          "observed_y": 63.5,
+          "native_prediction": 69.12016736151381,
+          "residual": -5.620167361513808,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        },
+        {
+          "x": 0.5,
+          "observed_y": 76.8,
+          "native_prediction": 101.26420305694451,
+          "residual": -24.464203056944513,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.75,
+          "observed_y": 60.0,
+          "native_prediction": 69.12016736151381,
+          "residual": -9.120167361513808,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        },
+        {
+          "x": 1.0,
+          "observed_y": 47.8,
+          "native_prediction": 51.83889807183358,
+          "residual": -4.038898071833586,
+          "local_linearized_prediction_standard_deviation": 2.013127402647387
+        },
+        {
+          "x": 0.5,
+          "observed_y": 75.8,
+          "native_prediction": 101.26420305694451,
+          "residual": -25.464203056944513,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.75,
+          "observed_y": 62.0,
+          "native_prediction": 69.12016736151381,
+          "residual": -7.120167361513808,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        },
+        {
+          "x": 1.0,
+          "observed_y": 48.8,
+          "native_prediction": 51.83889807183358,
+          "residual": -3.038898071833586,
+          "local_linearized_prediction_standard_deviation": 2.013127402647387
+        },
+        {
+          "x": 0.5,
+          "observed_y": 70.5,
+          "native_prediction": 101.26420305694451,
+          "residual": -30.76420305694451,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.75,
+          "observed_y": 59.5,
+          "native_prediction": 69.12016736151381,
+          "residual": -9.620167361513808,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        },
+        {
+          "x": 1.0,
+          "observed_y": 48.5,
+          "native_prediction": 51.83889807183358,
+          "residual": -3.338898071833583,
+          "local_linearized_prediction_standard_deviation": 2.013127402647387
+        },
+        {
+          "x": 0.5,
+          "observed_y": 78.0,
+          "native_prediction": 101.26420305694451,
+          "residual": -23.26420305694451,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.625,
+          "observed_y": 66.0,
+          "native_prediction": 82.3514502375694,
+          "residual": -16.351450237569395,
+          "local_linearized_prediction_standard_deviation": 8.51117587365738
+        },
+        {
+          "x": 0.75,
+          "observed_y": 62.0,
+          "native_prediction": 69.12016736151381,
+          "residual": -7.120167361513808,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        },
+        {
+          "x": 0.875,
+          "observed_y": 58.0,
+          "native_prediction": 59.34831642778132,
+          "residual": -1.3483164277813202,
+          "local_linearized_prediction_standard_deviation": 3.1864659456456534
+        },
+        {
+          "x": 1.0,
+          "observed_y": 47.7,
+          "native_prediction": 51.83889807183358,
+          "residual": -4.13889807183358,
+          "local_linearized_prediction_standard_deviation": 2.013127402647387
+        },
+        {
+          "x": 0.5,
+          "observed_y": 70.8,
+          "native_prediction": 101.26420305694451,
+          "residual": -30.464203056944513,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.75,
+          "observed_y": 54.7,
+          "native_prediction": 69.12016736151381,
+          "residual": -14.420167361513805,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        },
+        {
+          "x": 1.0,
+          "observed_y": 48.0,
+          "native_prediction": 51.83889807183358,
+          "residual": -3.838898071833583,
+          "local_linearized_prediction_standard_deviation": 2.013127402647387
+        },
+        {
+          "x": 0.5,
+          "observed_y": 80.7,
+          "native_prediction": 101.26420305694451,
+          "residual": -20.564203056944507,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.75,
+          "observed_y": 61.3,
+          "native_prediction": 69.12016736151381,
+          "residual": -7.8201673615138105,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        },
+        {
+          "x": 1.0,
+          "observed_y": 47.5,
+          "native_prediction": 51.83889807183358,
+          "residual": -4.338898071833583,
+          "local_linearized_prediction_standard_deviation": 2.013127402647387
+        },
+        {
+          "x": 0.5,
+          "observed_y": 66.7,
+          "native_prediction": 101.26420305694451,
+          "residual": -34.56420305694451,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.75,
+          "observed_y": 59.2,
+          "native_prediction": 69.12016736151381,
+          "residual": -9.920167361513805,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        },
+        {
+          "x": 1.0,
+          "observed_y": 40.8,
+          "native_prediction": 51.83889807183358,
+          "residual": -11.038898071833586,
+          "local_linearized_prediction_standard_deviation": 2.013127402647387
+        },
+        {
+          "x": 0.5,
+          "observed_y": 81.0,
+          "native_prediction": 101.26420305694451,
+          "residual": -20.26420305694451,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.75,
+          "observed_y": 64.5,
+          "native_prediction": 69.12016736151381,
+          "residual": -4.620167361513808,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        },
+        {
+          "x": 0.5,
+          "observed_y": 81.7,
+          "native_prediction": 101.26420305694451,
+          "residual": -19.564203056944507,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.75,
+          "observed_y": 61.6,
+          "native_prediction": 69.12016736151381,
+          "residual": -7.520167361513806,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        },
+        {
+          "x": 0.5,
+          "observed_y": 81.3,
+          "native_prediction": 101.26420305694451,
+          "residual": -19.964203056944513,
+          "local_linearized_prediction_standard_deviation": 14.836682306268235
+        },
+        {
+          "x": 0.75,
+          "observed_y": 60.9,
+          "native_prediction": 69.12016736151381,
+          "residual": -8.22016736151381,
+          "local_linearized_prediction_standard_deviation": 5.1305911300792975
+        }
+      ]
+    },
+    {
+      "fold": 2,
+      "train_count": 160,
+      "train_unique_distance_count": 17,
+      "test_count": 54,
+      "native_parameters": {
+        "b1": 0.20155053784283966,
+        "b2": 0.0065196578644481406,
+        "b3": 0.009725363401064573
+      },
+      "training_rss": 2057.262477774179,
+      "training_metrics": {
+        "rmse": 3.5857900783632912,
+        "mae": 2.434284494981843,
+        "max_absolute_residual": 13.466752344932658
+      },
+      "test_metrics": {
+        "rmse": 2.622277550680226,
+        "mae": 2.0710655171961916,
+        "max_absolute_residual": 6.015521299119683
+      },
+      "denominator_diagnostics": {
+        "minimum_absolute_denominator_train": 0.011382339564980427,
+        "minimum_absolute_denominator_held_out": 0.018676362115778857,
+        "minimum_absolute_denominator_all": 0.011382339564980427,
+        "zero_denominator_count": 0,
+        "pole_x": -0.6703767865100522,
+        "pole_inside_observed_closed_range": false,
+        "singular_evaluation_hidden": false,
+        "interpretation": "Native exponential denominator geometry at the frozen fit; not a transferred rational certificate"
+      },
+      "training_jacobian": {
+        "shape": [
+          160,
+          3
+        ],
+        "parameter_count": 3,
+        "raw_singular_values": [
+          47594.169406573616,
+          8858.663306983473,
+          138.8266092122741
+        ],
+        "column_norms": [
+          535.8566747643779,
+          39794.75231693068,
+          27564.30110802381
+        ],
+        "local_covariance_valid": true,
+        "interpretation": "Local linearization at the frozen fit; rank and conditioning do not establish global structural identifiability",
+        "scaled_singular_values": [
+          1.6259007309478692,
+          0.5878713404276571,
+          0.10418301304420875
+        ],
+        "scaled_condition_number": 15.606198010974579,
+        "numerical_rank": 3,
+        "numerical_rank_tolerance": 5.776359767210228e-14,
+        "training_residual_variance_estimate": 13.103582660982031,
+        "parameter_covariance_matrix": [
+          [
+            0.000678890573207021,
+            9.575222646019736e-06,
+            -2.4351530532941314e-05
+          ],
+          [
+            9.575222646019736e-06,
+            1.9114099512419386e-07,
+            -4.1822562901806497e-07
+          ],
+          [
+            -2.4351530532941314e-05,
+            -4.1822562901806497e-07,
+            9.903871240979155e-07
+          ]
+        ],
+        "parameter_correlation_matrix": [
+          [
+            1.0,
+            0.8405664864469873,
+            -0.9391260353122708
+          ],
+          [
+            0.8405664864469873,
+            0.9999999999999999,
+            -0.9612386590346687
+          ],
+          [
+            -0.9391260353122708,
+            -0.9612386590346687,
+            1.0
+          ]
+        ],
+        "max_absolute_off_diagonal_parameter_correlation": 0.9612386590346687,
+        "parameters": [
+          {
+            "name": "b1",
+            "value": 0.20155053784283966,
+            "local_standard_error": 0.02605552864954041,
+            "absolute_relative_standard_error": 0.12927541116192592
+          },
+          {
+            "name": "b2",
+            "value": 0.0065196578644481406,
+            "local_standard_error": 0.00043719674647027496,
+            "absolute_relative_standard_error": 0.06705823458226541
+          },
+          {
+            "name": "b3",
+            "value": 0.009725363401064573,
+            "local_standard_error": 0.0009951819552714545,
+            "absolute_relative_standard_error": 0.10232851094926883
+          }
+        ]
+      },
+      "held_out_prediction_sensitivity": {
+        "median_local_standard_deviation": 0.5533913625569723,
+        "max_local_standard_deviation": 0.6643994418772533,
+        "interpretation": "Delta-method local sensitivity propagated from the fitting design, not a calibrated prediction interval"
+      },
+      "held_out_points": [
+        {
+          "x": 1.25,
+          "observed_y": 43.3,
+          "native_prediction": 41.619068530995186,
+          "residual": 1.6809314690048112,
+          "local_linearized_prediction_standard_deviation": 0.6643994418772533
+        },
+        {
+          "x": 1.75,
+          "observed_y": 31.1,
+          "native_prediction": 29.855866592138412,
+          "residual": 1.2441334078615895,
+          "local_linearized_prediction_standard_deviation": 0.5533913625569723
+        },
+        {
+          "x": 2.25,
+          "observed_y": 23.6,
+          "native_prediction": 22.372145215324228,
+          "residual": 1.227854784675774,
+          "local_linearized_prediction_standard_deviation": 0.4430998891572017
+        },
+        {
+          "x": 1.75,
+          "observed_y": 31.05,
+          "native_prediction": 29.855866592138412,
+          "residual": 1.1941334078615888,
+          "local_linearized_prediction_standard_deviation": 0.5533913625569723
+        },
+        {
+          "x": 2.25,
+          "observed_y": 23.775,
+          "native_prediction": 22.372145215324228,
+          "residual": 1.402854784675771,
+          "local_linearized_prediction_standard_deviation": 0.4430998891572017
+        },
+        {
+          "x": 1.25,
+          "observed_y": 39.2,
+          "native_prediction": 41.619068530995186,
+          "residual": -2.419068530995183,
+          "local_linearized_prediction_standard_deviation": 0.6643994418772533
+        },
+        {
+          "x": 1.75,
+          "observed_y": 29.3,
+          "native_prediction": 29.855866592138412,
+          "residual": -0.5558665921384112,
+          "local_linearized_prediction_standard_deviation": 0.5533913625569723
+        },
+        {
+          "x": 2.25,
+          "observed_y": 21.4,
+          "native_prediction": 22.372145215324228,
+          "residual": -0.9721452153242289,
+          "local_linearized_prediction_standard_deviation": 0.4430998891572017
+        },
+        {
+          "x": 1.75,
+          "observed_y": 29.175,
+          "native_prediction": 29.855866592138412,
+          "residual": -0.6808665921384112,
+          "local_linearized_prediction_standard_deviation": 0.5533913625569723
+        },
+        {
+          "x": 2.25,
+          "observed_y": 22.125,
+          "native_prediction": 22.372145215324228,
+          "residual": -0.2471452153242275,
+          "local_linearized_prediction_standard_deviation": 0.4430998891572017
+        },
+        {
+          "x": 1.25,
+          "observed_y": 42.5,
+          "native_prediction": 41.619068530995186,
+          "residual": 0.880931469004814,
+          "local_linearized_prediction_standard_deviation": 0.6643994418772533
+        },
+        {
+          "x": 1.75,
+          "observed_y": 26.8,
+          "native_prediction": 29.855866592138412,
+          "residual": -3.055866592138411,
+          "local_linearized_prediction_standard_deviation": 0.5533913625569723
+        },
+        {
+          "x": 2.25,
+          "observed_y": 20.4,
+          "native_prediction": 22.372145215324228,
+          "residual": -1.972145215324229,
+          "local_linearized_prediction_standard_deviation": 0.4430998891572017
+        },
+        {
+          "x": 1.75,
+          "observed_y": 26.85,
+          "native_prediction": 29.855866592138412,
+          "residual": -3.0058665921384105,
+          "local_linearized_prediction_standard_deviation": 0.5533913625569723
+        },
+        {
+          "x": 2.25,
+          "observed_y": 21.0,
+          "native_prediction": 22.372145215324228,
+          "residual": -1.3721452153242275,
+          "local_linearized_prediction_standard_deviation": 0.4430998891572017
+        },
+        {
+          "x": 1.25,
+          "observed_y": 41.0,
+          "native_prediction": 41.619068530995186,
+          "residual": -0.619068530995186,
+          "local_linearized_prediction_standard_deviation": 0.6643994418772533
+        },
+        {
+          "x": 1.75,
+          "observed_y": 29.4,
+          "native_prediction": 29.855866592138412,
+          "residual": -0.4558665921384133,
+          "local_linearized_prediction_standard_deviation": 0.5533913625569723
+        },
+        {
+          "x": 2.25,
+          "observed_y": 20.4,
+          "native_prediction": 22.372145215324228,
+          "residual": -1.972145215324229,
+          "local_linearized_prediction_standard_deviation": 0.4430998891572017
+        },
+        {
+          "x": 1.75,
+          "observed_y": 29.3625,
+          "native_prediction": 29.855866592138412,
+          "residual": -0.49336659213841116,
+          "local_linearized_prediction_standard_deviation": 0.5533913625569723
+        },
+        {
+          "x": 2.25,
+          "observed_y": 21.15,
+          "native_prediction": 22.372145215324228,
+          "residual": -1.222145215324229,
+          "local_linearized_prediction_standard_deviation": 0.4430998891572017
+        },
+        {
+          "x": 1.5,
+          "observed_y": 32.5,
+          "native_prediction": 35.01552129911968,
+          "residual": -2.5155212991196834,
+          "local_linearized_prediction_standard_deviation": 0.6178200884183594
+        },
+        {
+          "x": 1.5,
+          "observed_y": 33.2,
+          "native_prediction": 35.01552129911968,
+          "residual": -1.8155212991196805,
+          "local_linearized_prediction_standard_deviation": 0.6178200884183594
+        },
+        {
+          "x": 1.5,
+          "observed_y": 32.9,
+          "native_prediction": 35.01552129911968,
+          "residual": -2.115521299119685,
+          "local_linearized_prediction_standard_deviation": 0.6178200884183594
+        },
+        {
+          "x": 1.5,
+          "observed_y": 33.8,
+          "native_prediction": 35.01552129911968,
+          "residual": -1.2155212991196862,
+          "local_linearized_prediction_standard_deviation": 0.6178200884183594
+        },
+        {
+          "x": 1.5,
+          "observed_y": 32.0,
+          "native_prediction": 35.01552129911968,
+          "residual": -3.0155212991196834,
+          "local_linearized_prediction_standard_deviation": 0.6178200884183594
+        },
+        {
+          "x": 2.0,
+          "observed_y": 22.2,
+          "native_prediction": 25.731022517105632,
+          "residual": -3.531022517105633,
+          "local_linearized_prediction_standard_deviation": 0.492078719005242
+        },
+        {
+          "x": 2.0,
+          "observed_y": 22.57,
+          "native_prediction": 25.731022517105632,
+          "residual": -3.161022517105632,
+          "local_linearized_prediction_standard_deviation": 0.492078719005242
+        },
+        {
+          "x": 1.5,
+          "observed_y": 35.2,
+          "native_prediction": 35.01552129911968,
+          "residual": 0.18447870088031948,
+          "local_linearized_prediction_standard_deviation": 0.6178200884183594
+        },
+        {
+          "x": 2.0,
+          "observed_y": 20.0,
+          "native_prediction": 25.731022517105632,
+          "residual": -5.731022517105632,
+          "local_linearized_prediction_standard_deviation": 0.492078719005242
+        },
+        {
+          "x": 2.0,
+          "observed_y": 20.32,
+          "native_prediction": 25.731022517105632,
+          "residual": -5.411022517105632,
+          "local_linearized_prediction_standard_deviation": 0.492078719005242
+        },
+        {
+          "x": 1.5,
+          "observed_y": 35.8,
+          "native_prediction": 35.01552129911968,
+          "residual": 0.7844787008803138,
+          "local_linearized_prediction_standard_deviation": 0.6178200884183594
+        },
+        {
+          "x": 2.0,
+          "observed_y": 21.0,
+          "native_prediction": 25.731022517105632,
+          "residual": -4.731022517105632,
+          "local_linearized_prediction_standard_deviation": 0.492078719005242
+        },
+        {
+          "x": 2.0,
+          "observed_y": 21.67,
+          "native_prediction": 25.731022517105632,
+          "residual": -4.061022517105631,
+          "local_linearized_prediction_standard_deviation": 0.492078719005242
+        },
+        {
+          "x": 1.25,
+          "observed_y": 37.8,
+          "native_prediction": 41.619068530995186,
+          "residual": -3.819068530995189,
+          "local_linearized_prediction_standard_deviation": 0.6643994418772533
+        },
+        {
+          "x": 2.25,
+          "observed_y": 20.2,
+          "native_prediction": 22.372145215324228,
+          "residual": -2.172145215324228,
+          "local_linearized_prediction_standard_deviation": 0.4430998891572017
+        },
+        {
+          "x": 2.25,
+          "observed_y": 21.07,
+          "native_prediction": 22.372145215324228,
+          "residual": -1.3021452153242272,
+          "local_linearized_prediction_standard_deviation": 0.4430998891572017
+        },
+        {
+          "x": 1.5,
+          "observed_y": 39.8,
+          "native_prediction": 35.01552129911968,
+          "residual": 4.784478700880314,
+          "local_linearized_prediction_standard_deviation": 0.6178200884183594
+        },
+        {
+          "x": 2.0,
+          "observed_y": 29.8,
+          "native_prediction": 25.731022517105632,
+          "residual": 4.068977482894368,
+          "local_linearized_prediction_standard_deviation": 0.492078719005242
+        },
+        {
+          "x": 2.0,
+          "observed_y": 29.62,
+          "native_prediction": 25.731022517105632,
+          "residual": 3.8889774828943686,
+          "local_linearized_prediction_standard_deviation": 0.492078719005242
+        },
+        {
+          "x": 1.5,
+          "observed_y": 29.0,
+          "native_prediction": 35.01552129911968,
+          "residual": -6.015521299119683,
+          "local_linearized_prediction_standard_deviation": 0.6178200884183594
+        },
+        {
+          "x": 2.0,
+          "observed_y": 24.0,
+          "native_prediction": 25.731022517105632,
+          "residual": -1.7310225171056324,
+          "local_linearized_prediction_standard_deviation": 0.492078719005242
+        },
+        {
+          "x": 2.0,
+          "observed_y": 24.56,
+          "native_prediction": 25.731022517105632,
+          "residual": -1.1710225171056337,
+          "local_linearized_prediction_standard_deviation": 0.492078719005242
+        },
+        {
+          "x": 1.5,
+          "observed_y": 30.7,
+          "native_prediction": 35.01552129911968,
+          "residual": -4.315521299119684,
+          "local_linearized_prediction_standard_deviation": 0.6178200884183594
+        },
+        {
+          "x": 2.0,
+          "observed_y": 25.7,
+          "native_prediction": 25.731022517105632,
+          "residual": -0.031022517105633085,
+          "local_linearized_prediction_standard_deviation": 0.492078719005242
+        },
+        {
+          "x": 2.0,
+          "observed_y": 25.99,
+          "native_prediction": 25.731022517105632,
+          "residual": 0.25897748289436606,
+          "local_linearized_prediction_standard_deviation": 0.492078719005242
+        },
+        {
+          "x": 1.5,
+          "observed_y": 35.5,
+          "native_prediction": 35.01552129911968,
+          "residual": 0.48447870088031664,
+          "local_linearized_prediction_standard_deviation": 0.6178200884183594
+        },
+        {
+          "x": 1.75,
+          "observed_y": 25.5,
+          "native_prediction": 29.855866592138412,
+          "residual": -4.355866592138412,
+          "local_linearized_prediction_standard_deviation": 0.5533913625569723
+        },
+        {
+          "x": 1.75,
+          "observed_y": 25.95,
+          "native_prediction": 29.855866592138412,
+          "residual": -3.9058665921384126,
+          "local_linearized_prediction_standard_deviation": 0.5533913625569723
+        },
+        {
+          "x": 1.75,
+          "observed_y": 29.8,
+          "native_prediction": 29.855866592138412,
+          "residual": -0.055866592138411164,
+          "local_linearized_prediction_standard_deviation": 0.5533913625569723
+        },
+        {
+          "x": 1.75,
+          "observed_y": 29.81,
+          "native_prediction": 29.855866592138412,
+          "residual": -0.045866592138413154,
+          "local_linearized_prediction_standard_deviation": 0.5533913625569723
+        },
+        {
+          "x": 1.75,
+          "observed_y": 28.4,
+          "native_prediction": 29.855866592138412,
+          "residual": -1.4558665921384133,
+          "local_linearized_prediction_standard_deviation": 0.5533913625569723
+        },
+        {
+          "x": 1.75,
+          "observed_y": 28.69,
+          "native_prediction": 29.855866592138412,
+          "residual": -1.1658665921384106,
+          "local_linearized_prediction_standard_deviation": 0.5533913625569723
+        },
+        {
+          "x": 1.75,
+          "observed_y": 28.9,
+          "native_prediction": 29.855866592138412,
+          "residual": -0.9558665921384133,
+          "local_linearized_prediction_standard_deviation": 0.5533913625569723
+        },
+        {
+          "x": 1.75,
+          "observed_y": 28.95,
+          "native_prediction": 29.855866592138412,
+          "residual": -0.9058665921384126,
+          "local_linearized_prediction_standard_deviation": 0.5533913625569723
+        }
+      ]
+    },
+    {
+      "fold": 3,
+      "train_count": 163,
+      "train_unique_distance_count": 18,
+      "test_count": 51,
+      "native_parameters": {
+        "b1": 0.1838307841658672,
+        "b2": 0.006090058945361599,
+        "b3": 0.01068457994389589
+      },
+      "training_rss": 1993.4174526230124,
+      "training_metrics": {
+        "rmse": 3.497078055186581,
+        "mae": 2.3562479523414694,
+        "max_absolute_residual": 13.110419510065682
+      },
+      "test_metrics": {
+        "rmse": 2.775494469668534,
+        "mae": 1.9399903435006307,
+        "max_absolute_residual": 10.656904385302195
+      },
+      "denominator_diagnostics": {
+        "minimum_absolute_denominator_train": 0.011432348917309543,
+        "minimum_absolute_denominator_held_out": 0.032801508805101326,
+        "minimum_absolute_denominator_all": 0.011432348917309543,
+        "zero_denominator_count": 0,
+        "pole_x": -0.5699858092073011,
+        "pole_inside_observed_closed_range": false,
+        "singular_evaluation_hidden": false,
+        "interpretation": "Native exponential denominator geometry at the frozen fit; not a transferred rational certificate"
+      },
+      "training_jacobian": {
+        "shape": [
+          163,
+          3
+        ],
+        "parameter_count": 3,
+        "raw_singular_values": [
+          48910.44212954577,
+          9681.392500421325,
+          138.63290438623343
+        ],
+        "column_norms": [
+          561.5865683864536,
+          40235.93589748989,
+          29440.346671130257
+        ],
+        "local_covariance_valid": true,
+        "interpretation": "Local linearization at the frozen fit; rank and conditioning do not establish global structural identifiability",
+        "scaled_singular_values": [
+          1.6402167310565348,
+          0.5454569442035606,
+          0.11029867262268978
+        ],
+        "scaled_condition_number": 14.870684225433935,
+        "numerical_rank": 3,
+        "numerical_rank_tolerance": 5.936480799433656e-14,
+        "training_residual_variance_estimate": 12.458859078893827,
+        "parameter_covariance_matrix": [
+          [
+            0.0006475102408329012,
+            7.491849382107207e-06,
+            -2.063448765029389e-05
+          ],
+          [
+            7.491849382107207e-06,
+            1.348977339936827e-07,
+            -2.9915411487172176e-07
+          ],
+          [
+            -2.063448765029389e-05,
+            -2.991541148717217e-07,
+            7.476270041342408e-07
+          ]
+        ],
+        "parameter_correlation_matrix": [
+          [
+            1.0,
+            0.8016104860308285,
+            -0.9378381156268069
+          ],
+          [
+            0.8016104860308285,
+            1.0,
+            -0.9419983973258718
+          ],
+          [
+            -0.9378381156268069,
+            -0.9419983973258717,
+            0.9999999999999999
+          ]
+        ],
+        "max_absolute_off_diagonal_parameter_correlation": 0.9419983973258718,
+        "parameters": [
+          {
+            "name": "b1",
+            "value": 0.1838307841658672,
+            "local_standard_error": 0.025446222525807267,
+            "absolute_relative_standard_error": 0.1384219875972873
+          },
+          {
+            "name": "b2",
+            "value": 0.006090058945361599,
+            "local_standard_error": 0.0003672842686444421,
+            "absolute_relative_standard_error": 0.06030881998673898
+          },
+          {
+            "name": "b3",
+            "value": 0.01068457994389589,
+            "local_standard_error": 0.0008646542685572314,
+            "absolute_relative_standard_error": 0.08092543395224529
+          }
+        ]
+      },
+      "held_out_prediction_sensitivity": {
+        "median_local_standard_deviation": 0.41427088163388776,
+        "max_local_standard_deviation": 0.42768770306988163,
+        "interpretation": "Delta-method local sensitivity propagated from the fitting design, not a calibrated prediction interval"
+      },
+      "held_out_points": [
+        {
+          "x": 2.75,
+          "observed_y": 17.7375,
+          "native_prediction": 17.00416881889781,
+          "residual": 0.7333311811021908,
+          "local_linearized_prediction_standard_deviation": 0.3998919531261738
+        },
+        {
+          "x": 3.25,
+          "observed_y": 13.8,
+          "native_prediction": 13.480671885653598,
+          "residual": 0.31932811434640307,
+          "local_linearized_prediction_standard_deviation": 0.42768770306988163
+        },
+        {
+          "x": 2.75,
+          "observed_y": 17.5125,
+          "native_prediction": 17.00416881889781,
+          "residual": 0.5083311811021893,
+          "local_linearized_prediction_standard_deviation": 0.3998919531261738
+        },
+        {
+          "x": 3.25,
+          "observed_y": 14.25,
+          "native_prediction": 13.480671885653598,
+          "residual": 0.7693281143464024,
+          "local_linearized_prediction_standard_deviation": 0.42768770306988163
+        },
+        {
+          "x": 2.75,
+          "observed_y": 16.4625,
+          "native_prediction": 17.00416881889781,
+          "residual": -0.5416688188978114,
+          "local_linearized_prediction_standard_deviation": 0.3998919531261738
+        },
+        {
+          "x": 3.25,
+          "observed_y": 12.525,
+          "native_prediction": 13.480671885653598,
+          "residual": -0.9556718856535973,
+          "local_linearized_prediction_standard_deviation": 0.42768770306988163
+        },
+        {
+          "x": 2.75,
+          "observed_y": 16.7625,
+          "native_prediction": 17.00416881889781,
+          "residual": -0.24166881889781067,
+          "local_linearized_prediction_standard_deviation": 0.3998919531261738
+        },
+        {
+          "x": 3.25,
+          "observed_y": 13.2,
+          "native_prediction": 13.480671885653598,
+          "residual": -0.28067188565359835,
+          "local_linearized_prediction_standard_deviation": 0.42768770306988163
+        },
+        {
+          "x": 3.0,
+          "observed_y": 12.41,
+          "native_prediction": 15.103095614697807,
+          "residual": -2.693095614697807,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 13.12,
+          "native_prediction": 15.103095614697807,
+          "residual": -1.9830956146978078,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 15.56,
+          "native_prediction": 15.103095614697807,
+          "residual": 0.45690438530219346,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 13.84,
+          "native_prediction": 15.103095614697807,
+          "residual": -1.2630956146978072,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 12.75,
+          "native_prediction": 15.103095614697807,
+          "residual": -2.353095614697807,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 14.62,
+          "native_prediction": 15.103095614697807,
+          "residual": -0.4830956146978078,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 13.87,
+          "native_prediction": 15.103095614697807,
+          "residual": -1.2330956146978078,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 11.81,
+          "native_prediction": 15.103095614697807,
+          "residual": -3.2930956146978065,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 13.31,
+          "native_prediction": 15.103095614697807,
+          "residual": -1.7930956146978065,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 12.56,
+          "native_prediction": 15.103095614697807,
+          "residual": -2.5430956146978065,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 12.75,
+          "native_prediction": 15.103095614697807,
+          "residual": -2.353095614697807,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 13.12,
+          "native_prediction": 15.103095614697807,
+          "residual": -1.9830956146978078,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 2.5,
+          "observed_y": 18.82,
+          "native_prediction": 19.253710667002668,
+          "residual": -0.4337106670026678,
+          "local_linearized_prediction_standard_deviation": 0.3868018747968318
+        },
+        {
+          "x": 3.0,
+          "observed_y": 13.95,
+          "native_prediction": 15.103095614697807,
+          "residual": -1.1530956146978077,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 2.5,
+          "observed_y": 19.31,
+          "native_prediction": 19.253710667002668,
+          "residual": 0.05628933299733063,
+          "local_linearized_prediction_standard_deviation": 0.3868018747968318
+        },
+        {
+          "x": 3.0,
+          "observed_y": 12.75,
+          "native_prediction": 15.103095614697807,
+          "residual": -2.353095614697807,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 2.5,
+          "observed_y": 21.0,
+          "native_prediction": 19.253710667002668,
+          "residual": 1.746289332997332,
+          "local_linearized_prediction_standard_deviation": 0.3868018747968318
+        },
+        {
+          "x": 3.0,
+          "observed_y": 15.64,
+          "native_prediction": 15.103095614697807,
+          "residual": 0.5369043853021935,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 2.75,
+          "observed_y": 13.87,
+          "native_prediction": 17.00416881889781,
+          "residual": -3.1341688188978107,
+          "local_linearized_prediction_standard_deviation": 0.3998919531261738
+        },
+        {
+          "x": 3.25,
+          "observed_y": 9.67,
+          "native_prediction": 13.480671885653598,
+          "residual": -3.8106718856535977,
+          "local_linearized_prediction_standard_deviation": 0.42768770306988163
+        },
+        {
+          "x": 3.0,
+          "observed_y": 24.19,
+          "native_prediction": 15.103095614697807,
+          "residual": 9.086904385302194,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 25.76,
+          "native_prediction": 15.103095614697807,
+          "residual": 10.656904385302195,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 18.07,
+          "native_prediction": 15.103095614697807,
+          "residual": 2.9669043853021932,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 11.81,
+          "native_prediction": 15.103095614697807,
+          "residual": -3.2930956146978065,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 12.07,
+          "native_prediction": 15.103095614697807,
+          "residual": -3.0330956146978068,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 16.12,
+          "native_prediction": 15.103095614697807,
+          "residual": 1.016904385302194,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 2.5,
+          "observed_y": 23.7,
+          "native_prediction": 19.253710667002668,
+          "residual": 4.446289332997331,
+          "local_linearized_prediction_standard_deviation": 0.3868018747968318
+        },
+        {
+          "x": 2.5,
+          "observed_y": 23.81,
+          "native_prediction": 19.253710667002668,
+          "residual": 4.556289332997331,
+          "local_linearized_prediction_standard_deviation": 0.3868018747968318
+        },
+        {
+          "x": 3.0,
+          "observed_y": 17.7,
+          "native_prediction": 15.103095614697807,
+          "residual": 2.5969043853021923,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 2.5,
+          "observed_y": 17.7,
+          "native_prediction": 19.253710667002668,
+          "residual": -1.5537106670026688,
+          "local_linearized_prediction_standard_deviation": 0.3868018747968318
+        },
+        {
+          "x": 2.5,
+          "observed_y": 18.67,
+          "native_prediction": 19.253710667002668,
+          "residual": -0.5837106670026664,
+          "local_linearized_prediction_standard_deviation": 0.3868018747968318
+        },
+        {
+          "x": 3.0,
+          "observed_y": 16.24,
+          "native_prediction": 15.103095614697807,
+          "residual": 1.1369043853021914,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 2.5,
+          "observed_y": 16.3,
+          "native_prediction": 19.253710667002668,
+          "residual": -2.9537106670026674,
+          "local_linearized_prediction_standard_deviation": 0.3868018747968318
+        },
+        {
+          "x": 2.5,
+          "observed_y": 16.95,
+          "native_prediction": 19.253710667002668,
+          "residual": -2.303710667002669,
+          "local_linearized_prediction_standard_deviation": 0.3868018747968318
+        },
+        {
+          "x": 3.0,
+          "observed_y": 13.35,
+          "native_prediction": 15.103095614697807,
+          "residual": -1.7530956146978074,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 13.69,
+          "native_prediction": 15.103095614697807,
+          "residual": -1.4130956146978075,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 13.31,
+          "native_prediction": 15.103095614697807,
+          "residual": -1.7930956146978065,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 12.94,
+          "native_prediction": 15.103095614697807,
+          "residual": -2.1630956146978075,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 15.19,
+          "native_prediction": 15.103095614697807,
+          "residual": 0.08690438530219247,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 14.62,
+          "native_prediction": 15.103095614697807,
+          "residual": -0.4830956146978078,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 3.0,
+          "observed_y": 15.64,
+          "native_prediction": 15.103095614697807,
+          "residual": 0.5369043853021935,
+          "local_linearized_prediction_standard_deviation": 0.41427088163388776
+        },
+        {
+          "x": 2.75,
+          "observed_y": 17.17,
+          "native_prediction": 17.00416881889781,
+          "residual": 0.16583118110219175,
+          "local_linearized_prediction_standard_deviation": 0.3998919531261738
+        },
+        {
+          "x": 2.75,
+          "observed_y": 16.65,
+          "native_prediction": 17.00416881889781,
+          "residual": -0.3541688188978114,
+          "local_linearized_prediction_standard_deviation": 0.3998919531261738
+        }
+      ]
+    },
+    {
+      "fold": 4,
+      "train_count": 191,
+      "train_unique_distance_count": 18,
+      "test_count": 23,
+      "native_parameters": {
+        "b1": 0.1837998732874438,
+        "b2": 0.006071281460854413,
+        "b3": 0.01071520700723592
+      },
+      "training_rss": 2342.655564761152,
+      "training_metrics": {
+        "rmse": 3.5021725230131713,
+        "mae": 2.403057067447002,
+        "max_absolute_residual": 13.114997285363216
+      },
+      "test_metrics": {
+        "rmse": 1.3682100460705144,
+        "mae": 1.0180138615537278,
+        "max_absolute_residual": 3.4317556610176885
+      },
+      "denominator_diagnostics": {
+        "minimum_absolute_denominator_train": 0.011428884964472374,
+        "minimum_absolute_denominator_held_out": 0.046253307737989115,
+        "minimum_absolute_denominator_all": 0.011428884964472374,
+        "zero_denominator_count": 0,
+        "pole_x": -0.5666042155559394,
+        "pole_inside_observed_closed_range": false,
+        "singular_evaluation_hidden": false,
+        "interpretation": "Native exponential denominator geometry at the frozen fit; not a transferred rational certificate"
+      },
+      "training_jacobian": {
+        "shape": [
+          191,
+          3
+        ],
+        "parameter_count": 3,
+        "raw_singular_values": [
+          49419.21670937117,
+          10779.702641737751,
+          139.01728273474947
+        ],
+        "column_norms": [
+          622.6416043389086,
+          40346.12869813189,
+          30500.532971135104
+        ],
+        "local_covariance_valid": true,
+        "interpretation": "Local linearization at the frozen fit; rank and conditioning do not establish global structural identifiability",
+        "scaled_singular_values": [
+          1.6292327200950718,
+          0.5788763439529041,
+          0.10248376546229858
+        ],
+        "scaled_condition_number": 15.897471299436486,
+        "numerical_rank": 3,
+        "numerical_rank_tolerance": 6.909660611190886e-14,
+        "training_residual_variance_estimate": 12.460933855112511,
+        "parameter_covariance_matrix": [
+          [
+            0.0006439505229563063,
+            8.151974041212059e-06,
+            -2.1656016736593425e-05
+          ],
+          [
+            8.151974041212059e-06,
+            1.4409817813682008e-07,
+            -3.2292750627215407e-07
+          ],
+          [
+            -2.1656016736593425e-05,
+            -3.2292750627215407e-07,
+            7.998569822397172e-07
+          ]
+        ],
+        "parameter_correlation_matrix": [
+          [
+            1.0,
+            0.8462667797421622,
+            -0.9542148217761333
+          ],
+          [
+            0.8462667797421622,
+            0.9999999999999998,
+            -0.9511951423959961
+          ],
+          [
+            -0.9542148217761333,
+            -0.9511951423959961,
+            1.0
+          ]
+        ],
+        "max_absolute_off_diagonal_parameter_correlation": 0.9542148217761333,
+        "parameters": [
+          {
+            "name": "b1",
+            "value": 0.1837998732874438,
+            "local_standard_error": 0.025376180227849626,
+            "absolute_relative_standard_error": 0.13806418782543953
+          },
+          {
+            "name": "b2",
+            "value": 0.006071281460854413,
+            "local_standard_error": 0.0003796026582320257,
+            "absolute_relative_standard_error": 0.06252430573011256
+          },
+          {
+            "name": "b3",
+            "value": 0.01071520700723592,
+            "local_standard_error": 0.0008943472380679202,
+            "absolute_relative_standard_error": 0.08346523193289429
+          }
+        ]
+      },
+      "held_out_prediction_sensitivity": {
+        "median_local_standard_deviation": 0.41565209667819913,
+        "max_local_standard_deviation": 0.42716519816135806,
+        "interpretation": "Delta-method local sensitivity propagated from the fitting design, not a calibrated prediction interval"
+      },
+      "held_out_points": [
+        {
+          "x": 3.75,
+          "observed_y": 11.5875,
+          "native_prediction": 10.852253715099224,
+          "residual": 0.7352462849007768,
+          "local_linearized_prediction_standard_deviation": 0.40634858525252987
+        },
+        {
+          "x": 4.25,
+          "observed_y": 9.4125,
+          "native_prediction": 8.871755661017689,
+          "residual": 0.5407443389823108,
+          "local_linearized_prediction_standard_deviation": 0.42206523700960236
+        },
+        {
+          "x": 4.75,
+          "observed_y": 7.725,
+          "native_prediction": 7.331697990579622,
+          "residual": 0.39330200942037763,
+          "local_linearized_prediction_standard_deviation": 0.42716519816135806
+        },
+        {
+          "x": 3.75,
+          "observed_y": 9.45,
+          "native_prediction": 10.852253715099224,
+          "residual": -1.4022537150992243,
+          "local_linearized_prediction_standard_deviation": 0.40634858525252987
+        },
+        {
+          "x": 4.25,
+          "observed_y": 9.15,
+          "native_prediction": 8.871755661017689,
+          "residual": 0.2782443389823115,
+          "local_linearized_prediction_standard_deviation": 0.42206523700960236
+        },
+        {
+          "x": 4.75,
+          "observed_y": 7.9125,
+          "native_prediction": 7.331697990579622,
+          "residual": 0.5808020094203776,
+          "local_linearized_prediction_standard_deviation": 0.42716519816135806
+        },
+        {
+          "x": 3.75,
+          "observed_y": 10.5375,
+          "native_prediction": 10.852253715099224,
+          "residual": -0.3147537150992239,
+          "local_linearized_prediction_standard_deviation": 0.40634858525252987
+        },
+        {
+          "x": 4.25,
+          "observed_y": 8.5875,
+          "native_prediction": 8.871755661017689,
+          "residual": -0.2842556610176885,
+          "local_linearized_prediction_standard_deviation": 0.42206523700960236
+        },
+        {
+          "x": 4.75,
+          "observed_y": 7.125,
+          "native_prediction": 7.331697990579622,
+          "residual": -0.20669799057962202,
+          "local_linearized_prediction_standard_deviation": 0.42716519816135806
+        },
+        {
+          "x": 3.75,
+          "observed_y": 10.875,
+          "native_prediction": 10.852253715099224,
+          "residual": 0.02274628490077646,
+          "local_linearized_prediction_standard_deviation": 0.40634858525252987
+        },
+        {
+          "x": 4.25,
+          "observed_y": 8.175,
+          "native_prediction": 8.871755661017689,
+          "residual": -0.6967556610176882,
+          "local_linearized_prediction_standard_deviation": 0.42206523700960236
+        },
+        {
+          "x": 4.75,
+          "observed_y": 7.35,
+          "native_prediction": 7.331697990579622,
+          "residual": 0.01830200942037763,
+          "local_linearized_prediction_standard_deviation": 0.42716519816135806
+        },
+        {
+          "x": 4.0,
+          "observed_y": 11.25,
+          "native_prediction": 9.79744824942465,
+          "residual": 1.4525517505753491,
+          "local_linearized_prediction_standard_deviation": 0.41565209667819913
+        },
+        {
+          "x": 4.0,
+          "observed_y": 10.42,
+          "native_prediction": 9.79744824942465,
+          "residual": 0.6225517505753491,
+          "local_linearized_prediction_standard_deviation": 0.41565209667819913
+        },
+        {
+          "x": 4.0,
+          "observed_y": 8.17,
+          "native_prediction": 9.79744824942465,
+          "residual": -1.627448249424651,
+          "local_linearized_prediction_standard_deviation": 0.41565209667819913
+        },
+        {
+          "x": 3.75,
+          "observed_y": 7.76,
+          "native_prediction": 10.852253715099224,
+          "residual": -3.0922537150992238,
+          "local_linearized_prediction_standard_deviation": 0.40634858525252987
+        },
+        {
+          "x": 4.25,
+          "observed_y": 5.44,
+          "native_prediction": 8.871755661017689,
+          "residual": -3.4317556610176885,
+          "local_linearized_prediction_standard_deviation": 0.42206523700960236
+        },
+        {
+          "x": 4.75,
+          "observed_y": 4.87,
+          "native_prediction": 7.331697990579622,
+          "residual": -2.461697990579622,
+          "local_linearized_prediction_standard_deviation": 0.42716519816135806
+        },
+        {
+          "x": 4.0,
+          "observed_y": 11.55,
+          "native_prediction": 9.79744824942465,
+          "residual": 1.7525517505753498,
+          "local_linearized_prediction_standard_deviation": 0.41565209667819913
+        },
+        {
+          "x": 4.0,
+          "observed_y": 8.74,
+          "native_prediction": 9.79744824942465,
+          "residual": -1.0574482494246507,
+          "local_linearized_prediction_standard_deviation": 0.41565209667819913
+        },
+        {
+          "x": 4.0,
+          "observed_y": 8.62,
+          "native_prediction": 9.79744824942465,
+          "residual": -1.1774482494246516,
+          "local_linearized_prediction_standard_deviation": 0.41565209667819913
+        },
+        {
+          "x": 3.75,
+          "observed_y": 10.39,
+          "native_prediction": 10.852253715099224,
+          "residual": -0.462253715099223,
+          "local_linearized_prediction_standard_deviation": 0.40634858525252987
+        },
+        {
+          "x": 3.75,
+          "observed_y": 10.05,
+          "native_prediction": 10.852253715099224,
+          "residual": -0.8022537150992228,
+          "local_linearized_prediction_standard_deviation": 0.40634858525252987
+        }
+      ]
+    },
+    {
+      "fold": 5,
+      "train_count": 185,
+      "train_unique_distance_count": 18,
+      "test_count": 29,
+      "native_parameters": {
+        "b1": 0.23070636104144254,
+        "b2": 0.006543609566912807,
+        "b3": 0.009335238111552463
+      },
+      "training_rss": 2206.0483653478163,
+      "training_metrics": {
+        "rmse": 3.453199351128869,
+        "mae": 2.3135137305754077,
+        "max_absolute_residual": 13.421522098739814
+      },
+      "test_metrics": {
+        "rmse": 2.7237923197301117,
+        "mae": 2.2471386159021938,
+        "max_absolute_residual": 6.141371148820718
+      },
+      "denominator_diagnostics": {
+        "minimum_absolute_denominator_train": 0.01121122862268904,
+        "minimum_absolute_denominator_held_out": 0.05321980012467512,
+        "minimum_absolute_denominator_all": 0.01121122862268904,
+        "zero_denominator_count": 0,
+        "pole_x": -0.7009579711539459,
+        "pole_inside_observed_closed_range": false,
+        "singular_evaluation_hidden": false,
+        "interpretation": "Native exponential denominator geometry at the frozen fit; not a transferred rational certificate"
+      },
+      "training_jacobian": {
+        "shape": [
+          185,
+          3
+        ],
+        "parameter_count": 3,
+        "raw_singular_values": [
+          51380.470403956235,
+          11526.259032742411,
+          119.57150438908364
+        ],
+        "column_norms": [
+          618.5643523165578,
+          41659.3027196343,
+          32201.57695862542
+        ],
+        "local_covariance_valid": true,
+        "interpretation": "Local linearization at the frozen fit; rank and conditioning do not establish global structural identifiability",
+        "scaled_singular_values": [
+          1.634687460209631,
+          0.5650315856798088,
+          0.09239163716237592
+        ],
+        "scaled_condition_number": 17.693024070313964,
+        "numerical_rank": 3,
+        "numerical_rank_tolerance": 6.715010328645782e-14,
+        "training_residual_variance_estimate": 12.121144864548441,
+        "parameter_covariance_matrix": [
+          [
+            0.0008468836432057597,
+            9.486789528746984e-06,
+            -2.6027798080266105e-05
+          ],
+          [
+            9.486789528746984e-06,
+            1.421458079945246e-07,
+            -3.3321264863937856e-07
+          ],
+          [
+            -2.6027798080266102e-05,
+            -3.332126486393785e-07,
+            8.599709600584495e-07
+          ]
+        ],
+        "parameter_correlation_matrix": [
+          [
+            1.0,
+            0.8646500378773843,
+            -0.9644587629911029
+          ],
+          [
+            0.8646500378773843,
+            0.9999999999999998,
+            -0.9530431352112108
+          ],
+          [
+            -0.9644587629911027,
+            -0.9530431352112106,
+            1.0
+          ]
+        ],
+        "max_absolute_off_diagonal_parameter_correlation": 0.9644587629911029,
+        "parameters": [
+          {
+            "name": "b1",
+            "value": 0.23070636104144254,
+            "local_standard_error": 0.029101265319668827,
+            "absolute_relative_standard_error": 0.12613984802283484
+          },
+          {
+            "name": "b2",
+            "value": 0.006543609566912807,
+            "local_standard_error": 0.00037702229111091643,
+            "absolute_relative_standard_error": 0.05761686837449729
+          },
+          {
+            "name": "b3",
+            "value": 0.009335238111552463,
+            "local_standard_error": 0.0009273461921302365,
+            "absolute_relative_standard_error": 0.09933824730004853
+          }
+        ]
+      },
+      "held_out_prediction_sensitivity": {
+        "median_local_standard_deviation": 0.3955150449387123,
+        "max_local_standard_deviation": 0.41778526902643276,
+        "interpretation": "Delta-method local sensitivity propagated from the fitting design, not a calibrated prediction interval"
+      },
+      "held_out_points": [
+        {
+          "x": 5.25,
+          "observed_y": 7.35,
+          "native_prediction": 5.361256607460194,
+          "residual": 1.9887433925398055,
+          "local_linearized_prediction_standard_deviation": 0.41184056872697933
+        },
+        {
+          "x": 5.75,
+          "observed_y": 8.025,
+          "native_prediction": 4.406888022327506,
+          "residual": 3.618111977672494,
+          "local_linearized_prediction_standard_deviation": 0.3955150449387123
+        },
+        {
+          "x": 5.25,
+          "observed_y": 8.475,
+          "native_prediction": 5.361256607460194,
+          "residual": 3.1137433925398055,
+          "local_linearized_prediction_standard_deviation": 0.41184056872697933
+        },
+        {
+          "x": 5.75,
+          "observed_y": 6.1125,
+          "native_prediction": 4.406888022327506,
+          "residual": 1.7056119776724934,
+          "local_linearized_prediction_standard_deviation": 0.3955150449387123
+        },
+        {
+          "x": 5.25,
+          "observed_y": 6.1125,
+          "native_prediction": 5.361256607460194,
+          "residual": 0.7512433925398057,
+          "local_linearized_prediction_standard_deviation": 0.41184056872697933
+        },
+        {
+          "x": 5.75,
+          "observed_y": 5.9625,
+          "native_prediction": 4.406888022327506,
+          "residual": 1.555611977672494,
+          "local_linearized_prediction_standard_deviation": 0.3955150449387123
+        },
+        {
+          "x": 5.25,
+          "observed_y": 5.9625,
+          "native_prediction": 5.361256607460194,
+          "residual": 0.6012433925398062,
+          "local_linearized_prediction_standard_deviation": 0.41184056872697933
+        },
+        {
+          "x": 5.75,
+          "observed_y": 5.625,
+          "native_prediction": 4.406888022327506,
+          "residual": 1.2181119776724936,
+          "local_linearized_prediction_standard_deviation": 0.3955150449387123
+        },
+        {
+          "x": 6.0,
+          "observed_y": 5.63,
+          "native_prediction": 4.004706649308872,
+          "residual": 1.6252933506911278,
+          "local_linearized_prediction_standard_deviation": 0.385702912252377
+        },
+        {
+          "x": 6.0,
+          "observed_y": 3.94,
+          "native_prediction": 4.004706649308872,
+          "residual": -0.06470664930887216,
+          "local_linearized_prediction_standard_deviation": 0.385702912252377
+        },
+        {
+          "x": 6.0,
+          "observed_y": 5.44,
+          "native_prediction": 4.004706649308872,
+          "residual": 1.4352933506911283,
+          "local_linearized_prediction_standard_deviation": 0.385702912252377
+        },
+        {
+          "x": 6.0,
+          "observed_y": 5.63,
+          "native_prediction": 4.004706649308872,
+          "residual": 1.6252933506911278,
+          "local_linearized_prediction_standard_deviation": 0.385702912252377
+        },
+        {
+          "x": 6.0,
+          "observed_y": 5.44,
+          "native_prediction": 4.004706649308872,
+          "residual": 1.4352933506911283,
+          "local_linearized_prediction_standard_deviation": 0.385702912252377
+        },
+        {
+          "x": 5.0,
+          "observed_y": 9.0,
+          "native_prediction": 5.928628851179282,
+          "residual": 3.0713711488207176,
+          "local_linearized_prediction_standard_deviation": 0.41778526902643276
+        },
+        {
+          "x": 6.0,
+          "observed_y": 6.67,
+          "native_prediction": 4.004706649308872,
+          "residual": 2.665293350691128,
+          "local_linearized_prediction_standard_deviation": 0.385702912252377
+        },
+        {
+          "x": 5.0,
+          "observed_y": 7.31,
+          "native_prediction": 5.928628851179282,
+          "residual": 1.3813711488207172,
+          "local_linearized_prediction_standard_deviation": 0.41778526902643276
+        },
+        {
+          "x": 6.0,
+          "observed_y": 7.42,
+          "native_prediction": 4.004706649308872,
+          "residual": 3.415293350691128,
+          "local_linearized_prediction_standard_deviation": 0.385702912252377
+        },
+        {
+          "x": 5.0,
+          "observed_y": 8.55,
+          "native_prediction": 5.928628851179282,
+          "residual": 2.6213711488207183,
+          "local_linearized_prediction_standard_deviation": 0.41778526902643276
+        },
+        {
+          "x": 6.0,
+          "observed_y": 10.12,
+          "native_prediction": 4.004706649308872,
+          "residual": 6.115293350691127,
+          "local_linearized_prediction_standard_deviation": 0.385702912252377
+        },
+        {
+          "x": 5.25,
+          "observed_y": 4.01,
+          "native_prediction": 5.361256607460194,
+          "residual": -1.3512566074601944,
+          "local_linearized_prediction_standard_deviation": 0.41184056872697933
+        },
+        {
+          "x": 5.75,
+          "observed_y": 3.75,
+          "native_prediction": 4.406888022327506,
+          "residual": -0.6568880223275064,
+          "local_linearized_prediction_standard_deviation": 0.3955150449387123
+        },
+        {
+          "x": 5.0,
+          "observed_y": 12.07,
+          "native_prediction": 5.928628851179282,
+          "residual": 6.141371148820718,
+          "local_linearized_prediction_standard_deviation": 0.41778526902643276
+        },
+        {
+          "x": 6.0,
+          "observed_y": 8.74,
+          "native_prediction": 4.004706649308872,
+          "residual": 4.735293350691128,
+          "local_linearized_prediction_standard_deviation": 0.385702912252377
+        },
+        {
+          "x": 5.0,
+          "observed_y": 7.87,
+          "native_prediction": 5.928628851179282,
+          "residual": 1.9413711488207177,
+          "local_linearized_prediction_standard_deviation": 0.41778526902643276
+        },
+        {
+          "x": 6.0,
+          "observed_y": 8.51,
+          "native_prediction": 4.004706649308872,
+          "residual": 4.505293350691128,
+          "local_linearized_prediction_standard_deviation": 0.385702912252377
+        },
+        {
+          "x": 5.0,
+          "observed_y": 7.2,
+          "native_prediction": 5.928628851179282,
+          "residual": 1.2713711488207178,
+          "local_linearized_prediction_standard_deviation": 0.41778526902643276
+        },
+        {
+          "x": 6.0,
+          "observed_y": 6.64,
+          "native_prediction": 4.004706649308872,
+          "residual": 2.6352933506911276,
+          "local_linearized_prediction_standard_deviation": 0.385702912252377
+        },
+        {
+          "x": 6.0,
+          "observed_y": 4.87,
+          "native_prediction": 4.004706649308872,
+          "residual": 0.865293350691128,
+          "local_linearized_prediction_standard_deviation": 0.385702912252377
+        },
+        {
+          "x": 6.0,
+          "observed_y": 5.06,
+          "native_prediction": 4.004706649308872,
+          "residual": 1.0552933506911275,
+          "local_linearized_prediction_standard_deviation": 0.385702912252377
+        }
+      ]
+    }
+  ],
+  "parameter_stability": {
+    "b1": {
+      "values": [
+        0.10197290606900491,
+        0.20155053784283966,
+        0.1838307841658672,
+        0.1837998732874438,
+        0.23070636104144254
+      ],
+      "minimum": 0.10197290606900491,
+      "maximum": 0.23070636104144254,
+      "median": 0.1838307841658672,
+      "range": 0.12873345497243763,
+      "median_local_standard_error": 0.02605552864954041
+    },
+    "b2": {
+      "values": [
+        0.0013481643928198739,
+        0.0065196578644481406,
+        0.006090058945361599,
+        0.006071281460854413,
+        0.006543609566912807
+      ],
+      "minimum": 0.0013481643928198739,
+      "maximum": 0.006543609566912807,
+      "median": 0.006090058945361599,
+      "range": 0.005195445174092934,
+      "median_local_standard_error": 0.0003796026582320257
+    },
+    "b3": {
+      "values": [
+        0.01607222940816946,
+        0.009725363401064573,
+        0.01068457994389589,
+        0.01071520700723592,
+        0.009335238111552463
+      ],
+      "minimum": 0.009335238111552463,
+      "maximum": 0.01607222940816946,
+      "median": 0.01068457994389589,
+      "range": 0.006736991296616998,
+      "median_local_standard_error": 0.0009273461921302365
+    }
+  },
+  "totals": {
+    "fold_count": 5,
+    "held_out_point_count": 214,
+    "full_numerical_rank_fold_count": 5,
+    "local_diagnostic_failure_count": 0,
+    "max_scaled_condition_number": 28.674083116404475,
+    "max_absolute_off_diagonal_parameter_correlation": 0.9794131139106378,
+    "max_local_prediction_standard_deviation": 14.836682306268235,
+    "native_test_rmse_minimum": 1.3682100460705144,
+    "native_test_rmse_maximum": 14.465526570336303,
+    "minimum_absolute_denominator": 0.009384279096904605,
+    "pole_inside_observed_range_fold_count": 0
+  },
+  "decision": {
+    "refit": false,
+    "global_structural_identifiability_proved": false,
+    "physical_parameter_endogeneity_proved": false,
+    "calibrated_prediction_intervals_produced": false,
+    "rational_bounds_transferred_to_native": false,
+    "independent_physical_experiment_claimed": false,
+    "independent_model_family_claimed": false,
+    "prediction_stability_equals_parameter_uniqueness": false,
+    "rank_deficiency_hidden": false,
+    "denominator_singularities_hidden": false,
+    "native_deterministic_bounds_claimed": false
+  },
+  "limitations": [
+    "Local Jacobians, numerical ranks, covariances and delta-method sensitivities do not prove global structural identifiability or calibrated uncertainty",
+    "Column-normalized condition numbers reduce unit-scale dominance but do not remove nonlinear parameter compensation",
+    "Lower held-out RMSE does not imply unique, invariant or physically endogenous parameters",
+    "Parameter variation across folds is descriptive and is not a posterior distribution or independent physical estimate",
+    "Native denominator and pole diagnostics are not rational certificates or native deterministic bounds",
+    "Chwirut1 shares its study and native model family with Chwirut2 and is not an independent model-family or laboratory replication"
+  ],
+  "analysis_runner_sha256": "189143bbe901f8e22e3cd7cc76a522e2cc374ff9365521834718d1949555daae"
+}
