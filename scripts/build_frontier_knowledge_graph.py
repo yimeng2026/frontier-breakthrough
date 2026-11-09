@@ -62,6 +62,10 @@ def build_graph(root):
         raise ValueError("Expected ten-dataset extreme audit and small-sample percentile boundaries are not present")
     extremeCheck = json.loads((root / "validation/extreme-reporting-check.json").read_text(encoding="utf-8"))
     corpusCheck = json.loads((root / "validation/extreme-corpus-check.json").read_text(encoding="utf-8"))
+    corpusV2Spec = json.loads((root / "validation/extreme-corpus-v2-audit.json").read_text(encoding="utf-8"))
+    corpusV2Check = json.loads((root / "validation/extreme-corpus-v2-check.json").read_text(encoding="utf-8"))
+    if corpusV2Check["status"] != "passed" or corpusV2Check["document_count"] != 23 or corpusV2Check["companion_required_count"] != 12 or corpusV2Check["complete_count"] != 4 or corpusV2Check["descriptive_only_count"] != 7 or corpusV2Check["hash_matched_document_count"] != 22 or corpusV2Check["unchanged_original_count"] != 10 or corpusV2Check["error_count"] != 0 or not corpusV2Check["previous_files_preserved"] or [item["review_status"] for item in corpusV2Spec["documents"][-7:]] != ["companion_required", "companion_required", "complete", "descriptive_only", "complete", "descriptive_only", "descriptive_only"]:
+        raise ValueError("Expected expanded extreme corpus and historical preservation are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -660,6 +664,12 @@ def build_graph(root):
         edge("evidence-chwirut1-native-holdout", "evidence-roszman1-native-holdout", "supports"),
         edge("evidence-chwirut1-native-holdout", "evidence-enso-native-holdout", "supports"),
         edge("limitation-chwirut1-native-related-study-and-bounds", "claim-untouched-data-independent-model-family", "limits"),
+    ])
+    nodes.append(node("experiment-extreme-corpus-v2-classification", "experiment", "对 23 份极值相关文档全集分级，22 份非接口文档哈希匹配，旧 10 份联读原文未变", "supported", ["validation/extreme-corpus-v2-audit.json", "validation/extreme-corpus-v2-check.json", "scripts/validate_extreme_corpus_v2.py"]))
+    edges.extend([
+        edge("track-knowledge", "experiment-extreme-corpus-v2-classification", "contains"),
+        edge("experiment-extreme-corpus-v2-classification", "claim-knowledge-graph", "tests"),
+        edge("experiment-extreme-corpus-classification", "experiment-extreme-corpus-v2-classification", "supports"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

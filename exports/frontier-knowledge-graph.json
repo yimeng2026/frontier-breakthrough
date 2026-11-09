@@ -1711,6 +1711,17 @@
         "validation/chwirut1-native-holdout.json",
         "validation/chwirut1-ellipsoid-coverage-protocol.json"
       ]
+    },
+    {
+      "id": "experiment-extreme-corpus-v2-classification",
+      "kind": "experiment",
+      "title": "对 23 份极值相关文档全集分级，22 份非接口文档哈希匹配，旧 10 份联读原文未变",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/extreme-corpus-v2-audit.json",
+        "validation/extreme-corpus-v2-check.json",
+        "scripts/validate_extreme_corpus_v2.py"
+      ]
     }
   ],
   "edges": [
@@ -3733,6 +3744,21 @@
       "from": "limitation-chwirut1-native-related-study-and-bounds",
       "to": "claim-untouched-data-independent-model-family",
       "relation": "limits"
+    },
+    {
+      "from": "track-knowledge",
+      "to": "experiment-extreme-corpus-v2-classification",
+      "relation": "contains"
+    },
+    {
+      "from": "experiment-extreme-corpus-v2-classification",
+      "to": "claim-knowledge-graph",
+      "relation": "tests"
+    },
+    {
+      "from": "experiment-extreme-corpus-classification",
+      "to": "experiment-extreme-corpus-v2-classification",
+      "relation": "supports"
     }
   ]
 }

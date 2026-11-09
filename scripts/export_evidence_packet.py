@@ -69,6 +69,8 @@ def build() -> dict:
     extremeV2Check = read("extreme-reporting-v2-check.json")
     extremeCheck = read("extreme-reporting-check.json")
     corpusCheck = read("extreme-corpus-check.json")
+    corpusV2Spec = read("extreme-corpus-v2-audit.json")
+    corpusV2Check = read("extreme-corpus-v2-check.json")
     roszman1Coverage = read("roszman1-ellipsoid-coverage.json")
     roszman1Protocol = read("roszman1-ellipsoid-coverage-protocol.json")
     nativeHoldout = read("roszman1-native-holdout.json")
@@ -697,6 +699,32 @@ def build() -> dict:
             "limitations": "多数折更低不是全域排名或独立模型族复现，参数变化不是后验分布，原生模型没有继承有理证明区域。重复距离与计数修订必须保留。" + " ".join(chwirut1NativeHoldout["limitations"]),
             "upstreamContribution": "把原生指数模型逐折胜负、重复距离、计数修订、参数变化和 Chwirut2 同族边界接入同一接口，并与 Roszman1、ENSO 形成受限的跨原生模型对照。",
             "snapshotFiles": ["validation/chwirut1-native-holdout-protocol.json", "validation/chwirut1-native-holdout-protocol-amendment-01.json", "validation/chwirut1-native-holdout.json", "validation/frontier-chwirut1-native-holdout-word.json"],
+        },
+        {
+            "id": "extreme-corpus-v2-classification", "domain": "math", "title": "第三十五阶段极值相关报告全集分级与历史保持审计",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml", "https://www.itl.nist.gov/div898/strd/lls/data/filip.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/misra1a.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml"],
+            "metrics": {
+                "documentCount": corpusV2Check["document_count"],
+                "companionRequiredCount": corpusV2Check["companion_required_count"],
+                "completeCount": corpusV2Check["complete_count"],
+                "descriptiveOnlyCount": corpusV2Check["descriptive_only_count"],
+                "hashMatchedDocumentCount": corpusV2Check["hash_matched_document_count"],
+                "unchangedOriginalCount": corpusV2Check["unchanged_original_count"],
+                "errorCount": corpusV2Check["error_count"],
+                "newDocumentStatuses": [item["review_status"] for item in corpusV2Spec["documents"][-7:]],
+                "previousFilesPreserved": corpusV2Check["previous_files_preserved"],
+                "corpusDocumentSha256": corpusV2Check["corpus_document_sha256"],
+                "specSha256": corpusV2Check["spec_sha256"],
+                "validatorSha256": corpusV2Check["validator_sha256"],
+                "previousSpecSha256": corpusV2Check["previous_spec_sha256"],
+                "previousCheckSha256": corpusV2Check["previous_check_sha256"],
+                "protocolCommits": {"classification": "25a5688", "validation": "398e4e5"},
+            },
+            "scientificClaim": "全集已扩展到 23 份文档：12 份联读、7 份描述、4 份完整；22 份非接口文档哈希匹配，旧 10 份联读原文未变，历史协议、验证器和收据均保留。新增 7 份依次为 2 份联读、2 份完整、3 份描述。",
+            "limitations": "全集分级只约束极值相关文档的阅读等级，不证明物理理论为真，不批量改写历史 Markdown 或 Word，也不把 complete 等同于全局可识别性、概率覆盖或独立实验。",
+            "upstreamContribution": "提供全文件覆盖、逐文件哈希、三类阅读义务、历史保持和可执行验收接口，防止旧 16 份计数被误当作第三十五阶段全集。",
+            "snapshotFiles": ["validation/extreme-corpus-v2-audit.json", "validation/extreme-corpus-v2-check.json", "validation/frontier-extreme-corpus-v2-word.json"],
         },
     ]
     packet = {

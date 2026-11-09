@@ -18,7 +18,7 @@
 - [定期消化机制](docs/RESEARCH_AUTOMATION.md)：检索—筛选—复现—回馈的闭环。
 - [机器可读目录](data/projects.json)：每项均有官方来源、证据级别、协作角色和本地状态。
 - [上游接口与证据契约](docs/UPSTREAM_INTERFACES.md)：真实跨库验证、统一 JSON 接口及组件边界。
-- [跨域证据包](exports/frontier-evidence.json)：四十六项已执行检查的结构化结果与限制。
+- [跨域证据包](exports/frontier-evidence.json)：四十七项已执行检查的结构化结果与限制。
 - [外部模型族限制文本修订审计](validation/external-scope-limitations-amendment-01-audit.json)：三份修订副本、原始文件与协议哈希、仅文档文本变更的完整记录。
 - [五条主线扩展工作包](docs/EXPANSION_2026-11-08.md)：真实留出、形式化反例、化学跨库、材料跨库和知识图谱的首轮成果。
 - [第二轮续展报告](docs/CONTINUATION_2026-11-08.md)：Eckerle4 双尾外推与 cvc5 交叉求解器复核。
@@ -55,6 +55,8 @@
 - [第三十三阶段 Roszman1 原生参数可识别性与稳定性](docs/ROSZMAN1_NATIVE_IDENTIFIABILITY_2026-11-09.md)：五折解析雅可比、局部条件、参数变化与留出敏感度。
 - [第三十四阶段 ENSO 原生 Fourier 模型同折对照](docs/ENSO_NATIVE_HOLDOUT_2026-11-09.md)：168 个相同留出月份、逐折胜负、已知答案分层与周期变化。
 - [第三十五阶段 Chwirut1 原生指数模型同折对照](docs/CHWIRUT1_NATIVE_HOLDOUT_2026-11-09.md)：214 个相同留出观测、22 个距离分组、计数修订与同族边界。
+- [第三十六阶段极值相关报告全集分级（第二版）](docs/EXTREME_REPORTING_CORPUS_V2_AUDIT.md)：23 份文档、12 份联读、7 份描述、4 份完整与历史哈希保持。
+- [极值报告全集分级第二版原生 Word 图文版](papers/前沿共生极值报告全集分级V2_图文完整版.docx)：一幅实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
 - [Chwirut1 原生指数同折对照原生 Word 图文版](papers/前沿共生Chwirut1原生指数同折对照_图文完整版.docx)：一幅三联实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
 - [ENSO 原生周期同折对照原生 Word 图文版](papers/前沿共生ENSO原生周期同折对照_图文完整版.docx)：一幅三联实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
 - [Roszman1 原生参数可识别性原生 Word 图文版](papers/前沿共生Roszman1原生参数可识别性_图文完整版.docx)：一幅四联实图、四个 Word 表格、两个原生 OMML 公式，含目录、页眉和页码。
@@ -90,7 +92,7 @@
 - [有理模型原生 Word 图文版](papers/前沿共生有理模型与分母边界_图文完整版.docx)：一幅实图、四个 Word 表格、七个原生 OMML 公式，含目录、页眉和页码。
 - [续展原生 Word 图文版](papers/前沿共生续展_双尾外推与求解器复核_图文完整版.docx)：一幅实图、四个 Word 表格、七个原生 OMML 公式，含目录、页眉和页码。
 - [扩展工作包原生 Word 图文版](papers/前沿共生扩展工作包_图文完整版.docx)：两幅实图、三个 Word 表格、五个原生 OMML 公式，含目录、页眉和页码。
-- [主张—证据—反例—实验图谱](exports/frontier-knowledge-graph.json)：183 个节点、404 条边，支持与反例均可追溯到实际文件。
+- [主张—证据—反例—实验图谱](exports/frontier-knowledge-graph.json)：184 个节点、407 条边，支持与反例均可追溯到实际文件。
 - [研究简报合订本（Word）](papers/前沿共生研究简报_合订本.docx)：三篇长文、十三幅图，附真实证据与复现路径。
 - [研究简报合订本（Markdown）](papers/前沿共生研究简报_合订本.md)：便于审阅和继续修订的文本版本。
 

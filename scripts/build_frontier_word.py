@@ -21,7 +21,10 @@ from build_total_word import audit_docx_package, normalize_math_commands, paragr
 
 
 def enforce_extreme_reporting_gate(summary=None, corpus_text=None):
-    if REPORT_MODE == "maximum_full_composition_v2":
+    if REPORT_MODE == "extreme_corpus_v2":
+        from validate_extreme_corpus_v2 import validate_corpus
+        errors = validate_corpus(corpus_text=corpus_text)
+    elif REPORT_MODE == "maximum_full_composition_v2":
         from validate_extreme_reporting_v2 import validate_v2_report
         if summary is None:
             summary = json.loads((ROOT / "exports/maximum-full-composition-audit-v2.json").read_text(encoding="utf-8"))
@@ -45,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "chwirut1_native_holdout":
+    if REPORT_MODE == "extreme_corpus_v2":
+        replacements = {
+            "图：`papers/43_极值全集分级V2/fig43_extreme_corpus_v2.png`。": "![](papers/43_极值全集分级V2/fig43_extreme_corpus_v2.png)\n\n**图 43｜极值相关报告全集分级第二版（第 1 幅，共 1 幅）**  \n**插入位置**：§5「已具备相应完整证据的文档与分级图」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "23 份文档、12 份联读、7 份描述、4 份完整与历史哈希保持"
+    elif REPORT_MODE == "chwirut1_native_holdout":
         replacements = {
             "图：`papers/42_Chwirut1原生指数对照/fig42_chwirut1_native_holdout.png`。": "![](papers/42_Chwirut1原生指数对照/fig42_chwirut1_native_holdout.png)\n\n**图 42｜Chwirut1 原生指数与有理候选同折对照（第 1 幅，共 1 幅）**  \n**插入位置**：§5「图件与三类原生模型比较」；顺序第 1 幅，共 1 幅。",
         }
