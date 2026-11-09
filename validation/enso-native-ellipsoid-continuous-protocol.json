@@ -1,0 +1,86 @@
+{
+  "status": "frozen_before_enso_native_ellipsoid_continuous_bounds",
+  "frozen_at_local": "2026-11-09T12:16:43+08:00",
+  "analysis_type": "High-precision numerical certification of positive periods and conservative native Fourier prediction envelopes over explicitly defined parameter ellipsoids and continuous month intervals; no refitting or probability-region claim",
+  "inputs": {
+    "native_identifiability": {
+      "file": "validation/enso-native-identifiability.json",
+      "sha256": "19656ed9f5930bed7e9bbdcd1072f50b5e68a8836c1975ab550dc1d828011d7e",
+      "fold_count": 5,
+      "held_out_point_count": 168,
+      "unique_month_count": 168
+    }
+  },
+  "region_rule": {
+    "center": "Each frozen native parameter vector b1 through b9 exactly as stored; no refitting or center update",
+    "matrix": "The corresponding frozen nine-by-nine local covariance matrix is used only to define an ellipsoid and is not interpreted as posterior or confidence covariance",
+    "ellipsoid": "E={theta:(theta-center)^T C^(-1)(theta-center) <= radius^2}; require symmetric positive-definite C by high-precision Cholesky",
+    "radius": 4,
+    "radius_scope": "Radius four is a frozen arithmetic choice, not a confidence level, probability coverage, optimized bound or calibrated uncertainty region",
+    "support_identity": "For any vector g, the maximum of g^T(theta-center) over E is radius*sqrt(g^T C g)",
+    "independent_relaxation": "Independent coefficient relaxations may be loose but must remain conservative and do not require linearizing periods"
+  },
+  "period_rule": {
+    "periods": ["b4", "b7"],
+    "support": "For each period p in {b4,b7}, compute p_min and p_max from the ellipsoid support in that coordinate",
+    "positive_certificate": "Require both outward-rounded period minima to be strictly positive; otherwise do not generate finite prediction or residual bounds",
+    "critical_radius": "When both period centers are positive, critical radius is min(b4/sqrt(C_b4b4),b7/sqrt(C_b7b7)); strict positivity requires radius < critical value and the limiting parameter is recorded",
+    "negative_control": "For every fold, verify that half the analytic critical radius is accepted and the exact critical radius is rejected",
+    "zero_guard": "Period minima within a scale-dependent numerical zero zone are rejected rather than mislabeled as strictly positive",
+    "scope": "Positive periods only ensure a defined Fourier model over the selected region; they do not establish unique or physical periods"
+  },
+  "prediction_rule": {
+    "native_model": "f=b1+b2*cos(A0)+b3*sin(A0)+b5*cos(A)+b6*sin(A)+b8*cos(B)+b9*sin(B), with A0=2*pi*x/12, A=2*pi*x/b4 and B=2*pi*x/b7",
+    "term_bounds": "For each harmonic coefficient c and its actual sine or cosine value t, use c_min*t and c_max*t when t>=0 and reverse them when t<0; zero gives zero contribution",
+    "intercept": "Bound b1 separately from its ellipsoid support",
+    "prediction_envelope": "Sum all term minima for f_min and all term maxima for f_max; the actual trigonometric signs are used at each month and no Taylor or fixed-period approximation is substituted",
+    "residual_upper_bound": "For each observed y, use max(abs(y-f_min),abs(y-f_max)) conditional on the defined ellipsoid and positive periods",
+    "center_consistency": "Require every frozen center prediction to lie inside its available envelope and actual residual not to exceed its upper bound; this is arithmetic consistency, not external validation or probability coverage",
+    "width_audit": "Report envelope widths and residual upper bounds so formally valid but wide bounds cannot be called high information or new period evidence"
+  },
+  "numerical_rule": {
+    "engine": "mpmath with 80 decimal digits and exact decimal conversion of stored input values",
+    "outward_relative_margin": "Apply a relative margin of 1e-24 before conversion to binary floats, then use nextafter in the outward direction for every certified lower and upper value",
+    "certificate_class": "High-precision numerical interval certificate, not exact rational algebra",
+    "positive_definite_check": "Fail rather than generate bounds if the covariance matrix is not symmetric positive definite",
+    "failure_preservation": "Non-finite values, failed Cholesky, non-positive periods, exact critical radii and unavailable envelopes are retained explicitly"
+  },
+  "expected_structure": {
+    "fold_count": 5,
+    "held_out_point_count": 168,
+    "unique_month_count": 168,
+    "radius": 4,
+    "refit_count": 0
+  },
+  "output_rule": {
+    "summary": "validation/enso-native-ellipsoid-continuous-bounds.json",
+    "figure": "papers/54_ENSO原生椭球连续界/fig54_enso_native_ellipsoid_continuous_bounds.png",
+    "report": "docs/ENSO_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md",
+    "word": "papers/前沿共生ENSO原生椭球连续界_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "decision": {
+    "refit": false,
+    "probability_region_claimed": false,
+    "confidence_interval_claimed": false,
+    "new_physical_periods_proved": false,
+    "exact_rational_certificate_claimed": false,
+    "all_parameters_or_all_x_certified": false,
+    "uncertified_folds_given_bounds": false,
+    "actual_coverage_used_as_probability": false,
+    "center_consistency_used_as_external_validation": false,
+    "rational_bounds_transferred_to_native": false,
+    "independent_physical_experiment_claimed": false,
+    "failed_folds_hidden": false
+  },
+  "prohibitions": [
+    "No refitting, changed centers, changed covariance matrices, changed folds, period bounds or post-hoc radius selection",
+    "No Taylor or fixed-period substitution for the native Fourier model",
+    "No finite prediction or residual bound when either period cannot be certified positive",
+    "No probability, confidence, posterior, calibrated-coverage, optimal-radius, new-period or physical-endogeneity claim",
+    "No use of center-prediction containment or actual-residual coverage as independent scientific validation",
+    "No exact rational-certificate claim for the high-precision numerical intervals",
+    "No hiding of non-positive periods, unavailable folds, wide envelopes or numerical failures"
+  ]
+}
