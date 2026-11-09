@@ -64,7 +64,8 @@
 | Chwirut1 原生指数同折对照 | 原生在第 1、3、4、5 折 RMSE 更低，第 2 折有理候选更低；214 点汇总 RMSE 为 7.778996 对 9.456158；22 个距离分组与同族边界完整保留 | `validation/chwirut1-native-holdout-protocol.json`、`validation/chwirut1-native-holdout-protocol-amendment-01.json`、`validation/chwirut1-native-holdout.json`、`docs/CHWIRUT1_NATIVE_HOLDOUT_2026-11-09.md` | 保留重复观测、计数修订和参数变化，不把预测优势写成独立模型族复现、原生误差界或概率校准 |
 | 极值相关报告全集分级第二版 | 23 份文档：12 份联读、7 份描述、4 份完整；22 份非接口文档哈希匹配，旧 10 份联读原文未变 | `validation/extreme-corpus-v2-audit.json`、`validation/extreme-corpus-v2-check.json`、`docs/EXTREME_REPORTING_CORPUS_V2_AUDIT.md` | 约束第三十五阶段文档阅读等级，保留旧清单、旧验证器、原文和收据，不把 complete 等同于物理真实性 |
 | 全仓库一致性审计 | 检查 README 本地链接、报告图片、Word 清单、证据快照、图谱、全集计数和 10 份近期协议，错误数为 0；显式刷新保留旧收据 | `validation/repository-integrity-rules.json`、`validation/repository-integrity-report.json`、`docs/REPOSITORY_INTEGRITY_2026-11-09.md` | 提供动态 JSON/README 计数核对与负例门禁，不把结构一致误称为科学真实性或视觉验收 |
-| 主张—证据—反例—实验图谱 | 185 个节点、410 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| 三数据原生模型同折综合 | 15 折、407 个配对留出点；原生 11 折 RMSE 低于有理、10 折为三者最低；保留 Roszman1 逐点 12 比 13 与第 4 折 RMSE／MAE 反向 | `validation/native-cross-dataset-synthesis-protocol.json`、`exports/native-cross-dataset-synthesis.json`、`docs/NATIVE_CROSS_DATASET_SYNTHESIS_2026-11-09.md` | 区分折级 RMSE、逐点多票数与不同误差指标，不跨量纲合并误差，不建立概率排名或移植有理证书 |
+| 主张—证据—反例—实验图谱 | 191 个节点、432 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 范围感知外部分析适配层
 

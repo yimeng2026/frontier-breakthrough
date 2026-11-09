@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生三数据原生同折综合_图文完整版.docx",
+  "bytes": 228312,
+  "sha256": "afed232524f5b0bdce9bf9e92d153bf8a4cbf840032539af231e95b1e42c4bcd",
+  "native_math_objects": 7,
+  "embedded_images": 1,
+  "native_tables": 6,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

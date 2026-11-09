@@ -67,8 +67,11 @@ def build_graph(root):
     if corpusV2Check["status"] != "passed" or corpusV2Check["document_count"] != 23 or corpusV2Check["companion_required_count"] != 12 or corpusV2Check["complete_count"] != 4 or corpusV2Check["descriptive_only_count"] != 7 or corpusV2Check["hash_matched_document_count"] != 22 or corpusV2Check["unchanged_original_count"] != 10 or corpusV2Check["error_count"] != 0 or not corpusV2Check["previous_files_preserved"] or [item["review_status"] for item in corpusV2Spec["documents"][-7:]] != ["companion_required", "companion_required", "complete", "descriptive_only", "complete", "descriptive_only", "descriptive_only"]:
         raise ValueError("Expected expanded extreme corpus and historical preservation are not present")
     repositoryAudit = json.loads((root / "validation/repository-integrity-report.json").read_text(encoding="utf-8"))
-    if repositoryAudit["status"] != "passed" or repositoryAudit["error_count"] != 0 or repositoryAudit["groups"]["readme_local_links"]["count"] < 84 or repositoryAudit["groups"]["document_figure_links"]["count"] < 44 or repositoryAudit["groups"]["word_manifests"]["count"] < 36 or repositoryAudit["groups"]["protocol_inputs"]["count"] != 10 or repositoryAudit["groups"]["corpus_v2"]["documents"] != 23 or not repositoryAudit["groups"]["dynamic_counts"]["readme_consistent"] or repositoryAudit["decision"]["visual_qa_claimed"] or repositoryAudit["decision"]["scientific_truth_claimed"]:
+    if repositoryAudit["status"] != "passed" or repositoryAudit["error_count"] != 0 or repositoryAudit["groups"]["readme_local_links"]["count"] < 84 or repositoryAudit["groups"]["document_figure_links"]["count"] < 44 or repositoryAudit["groups"]["word_manifests"]["count"] < 36 or repositoryAudit["groups"]["protocol_inputs"]["count"] < 10 or repositoryAudit["groups"]["corpus_v2"]["documents"] != 23 or not repositoryAudit["groups"]["dynamic_counts"]["readme_consistent"] or repositoryAudit["decision"]["visual_qa_claimed"] or repositoryAudit["decision"]["scientific_truth_claimed"]:
         raise ValueError("Expected repository integrity audit and dynamic counts are not present")
+    nativeCross = json.loads((root / "exports/native-cross-dataset-synthesis.json").read_text(encoding="utf-8"))
+    if nativeCross["totals"]["dataset_count"] != 3 or nativeCross["totals"]["fold_count"] != 15 or nativeCross["totals"]["point_count"] != 407 or nativeCross["totals"]["native_better_than_rational_fold_count"] != 11 or nativeCross["totals"]["rational_better_than_native_fold_count"] != 4 or nativeCross["totals"]["overall_best_model_fold_counts"] != {"native": 10, "rational": 3, "cubic": 2, "tie": 0} or nativeCross["totals"]["point_outcomes"] != {"native": 256, "rational": 151, "tie": 0} or nativeCross["totals"]["metric_direction_disagreement_fold_ids"] != ["roszman1:4"] or nativeCross["totals"]["point_fold_disagreement_fold_ids"] or nativeCross["cross_dataset_pooled_error_metrics"] is not None or nativeCross["decision"]["universal_model_ranking_claimed"] or nativeCross["decision"]["rational_bounds_transferred_to_native"]:
+        raise ValueError("Expected native cross-dataset fold, point and metric-direction boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -679,6 +682,38 @@ def build_graph(root):
         edge("track-knowledge", "experiment-repository-integrity-audit", "contains"),
         edge("experiment-repository-integrity-audit", "claim-knowledge-graph", "tests"),
         edge("experiment-extreme-corpus-v2-classification", "experiment-repository-integrity-audit", "supports"),
+    ])
+    nodes.extend([
+        node("claim-single-error-metric-sufficient", "claim", "单一误差指标或逐点多票数足以决定模型优劣", "falsified", ["exports/native-cross-dataset-synthesis.json"]),
+        node("evidence-native-cross-dataset-synthesis", "evidence", "三数据 15 折中原生 11 折 RMSE 低于有理、10 折为三者最低；407 点逐点结果与指标反例完整保留", "supported", ["exports/native-cross-dataset-synthesis.json", "validation/native-cross-dataset-synthesis-check.json"]),
+        node("counterexample-roszman1-native-fold4-metric-direction", "counterexample", "Roszman1 第 4 折原生 RMSE 更低但有理 MAE 更低，单一指标不能隐藏方向分歧", "supported", ["exports/native-cross-dataset-synthesis.json"]),
+        node("counterexample-roszman1-native-point-majority-rmse", "counterexample", "Roszman1 逐点计数为原生 12、有理 13，但原生 25 点 RMSE 更低，逐点多票数不等同于平方误差", "supported", ["exports/native-cross-dataset-synthesis.json"]),
+        node("experiment-native-cross-dataset-synthesis-protocol", "experiment", "冻结三项输入哈希、15 折、407 点、RMSE 主指标和逐点规则的只读综合协议", "supported", ["validation/native-cross-dataset-synthesis-protocol.json", "scripts/analyze_native_cross_dataset_synthesis.py"]),
+        node("limitation-native-cross-dataset-scope", "limitation", "三数据事后综合不跨量纲合并误差，不是概率排名、独立实验、原生误差界或普适规律", "active", ["exports/native-cross-dataset-synthesis.json", "docs/NATIVE_CROSS_DATASET_SYNTHESIS_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-single-error-metric-sufficient", "contains"),
+        edge("track-holdout", "evidence-native-cross-dataset-synthesis", "contains"),
+        edge("track-holdout", "counterexample-roszman1-native-fold4-metric-direction", "contains"),
+        edge("track-holdout", "counterexample-roszman1-native-point-majority-rmse", "contains"),
+        edge("track-holdout", "experiment-native-cross-dataset-synthesis-protocol", "contains"),
+        edge("track-holdout", "limitation-native-cross-dataset-scope", "contains"),
+        edge("evidence-native-cross-dataset-synthesis", "claim-model-family-fold-independent-winner", "contradicts"),
+        edge("experiment-native-cross-dataset-synthesis-protocol", "claim-model-family-fold-independent-winner", "tests"),
+        edge("evidence-native-cross-dataset-synthesis", "claim-single-error-metric-sufficient", "contradicts"),
+        edge("counterexample-roszman1-native-fold4-metric-direction", "claim-single-error-metric-sufficient", "contradicts"),
+        edge("counterexample-roszman1-native-point-majority-rmse", "claim-single-error-metric-sufficient", "contradicts"),
+        edge("experiment-native-cross-dataset-synthesis-protocol", "claim-single-error-metric-sufficient", "tests"),
+        edge("evidence-native-cross-dataset-synthesis", "counterexample-roszman1-native-fold4-metric-direction", "supports"),
+        edge("evidence-native-cross-dataset-synthesis", "counterexample-roszman1-native-point-majority-rmse", "supports"),
+        edge("limitation-native-cross-dataset-scope", "evidence-native-cross-dataset-synthesis", "limits"),
+        edge("limitation-native-cross-dataset-scope", "claim-single-error-metric-sufficient", "limits"),
+        edge("evidence-native-cross-dataset-synthesis", "evidence-roszman1-native-holdout", "supports"),
+        edge("evidence-native-cross-dataset-synthesis", "evidence-enso-native-holdout", "supports"),
+        edge("evidence-native-cross-dataset-synthesis", "evidence-chwirut1-native-holdout", "supports"),
+        edge("experiment-native-cross-dataset-synthesis-protocol", "experiment-roszman1-native-holdout-protocol", "supports"),
+        edge("experiment-native-cross-dataset-synthesis-protocol", "experiment-enso-native-holdout-protocol", "supports"),
+        edge("experiment-native-cross-dataset-synthesis-protocol", "experiment-chwirut1-native-holdout-protocol", "supports"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

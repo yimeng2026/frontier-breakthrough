@@ -30,7 +30,8 @@
     "validation/enso-native-holdout-protocol-amendment-01.json",
     "validation/chwirut1-native-holdout-protocol.json",
     "validation/chwirut1-native-holdout-protocol-amendment-01.json",
-    "validation/extreme-corpus-v2-audit.json"
+    "validation/extreme-corpus-v2-audit.json",
+    "validation/native-cross-dataset-synthesis-protocol.json"
   ],
   "decision": {
     "external_web_checked": false,

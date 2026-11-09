@@ -1,0 +1,674 @@
+{
+  "status": "computed_native_cross_dataset_synthesis",
+  "protocol_sha256": "c7ae0ea4aefc92516b3623f97d32aab88075d358346b772d52ebe23f73666820",
+  "analysis_scope": {
+    "refit": false,
+    "retuned": false,
+    "new_data": false,
+    "post_hoc": true,
+    "same_frozen_points": true,
+    "cross_dataset_error_pooling": false,
+    "descriptive_counts_are_probabilities": false,
+    "known_answer_used_as_holdout": false,
+    "native_deterministic_bounds_computed": false,
+    "rational_bounds_transferred_to_native": false
+  },
+  "datasets": [
+    {
+      "id": "roszman1",
+      "label": "Roszman1 native arctangent",
+      "source_file": "validation/roszman1-native-holdout.json",
+      "source_sha256": "c8678e4635a23a9bf7a59233259c48c4307911df4dd50cf6e102cc8cb975e90e",
+      "folds": [
+        {
+          "fold": 1,
+          "fold_id": "roszman1:1",
+          "point_count": 5,
+          "native_rmse": 0.010044543789192596,
+          "rational_rmse": 0.0009972308887413533,
+          "cubic_rmse": 0.056140263339699036,
+          "native_to_rational_rmse_ratio": 10.072435483692482,
+          "native_better_than_rational": false,
+          "native_better_than_cubic": true,
+          "overall_winner": "rational",
+          "native_vs_rational_direction": {
+            "rmse": "rational",
+            "mae": "rational",
+            "max_absolute_residual": "rational"
+          },
+          "metric_direction_disagreement": false,
+          "point_outcomes": {
+            "native": 0,
+            "rational": 5,
+            "tie": 0
+          },
+          "point_majority_winner": "rational",
+          "point_fold_disagreement": false
+        },
+        {
+          "fold": 2,
+          "fold_id": "roszman1:2",
+          "point_count": 5,
+          "native_rmse": 0.005867985323301031,
+          "rational_rmse": 0.00559352982401722,
+          "cubic_rmse": 0.003946730577271104,
+          "native_to_rational_rmse_ratio": 1.0490666015769448,
+          "native_better_than_rational": false,
+          "native_better_than_cubic": false,
+          "overall_winner": "cubic",
+          "native_vs_rational_direction": {
+            "rmse": "rational",
+            "mae": "rational",
+            "max_absolute_residual": "rational"
+          },
+          "metric_direction_disagreement": false,
+          "point_outcomes": {
+            "native": 0,
+            "rational": 5,
+            "tie": 0
+          },
+          "point_majority_winner": "rational",
+          "point_fold_disagreement": false
+        },
+        {
+          "fold": 3,
+          "fold_id": "roszman1:3",
+          "point_count": 5,
+          "native_rmse": 0.007531095882129697,
+          "rational_rmse": 0.01159705052733208,
+          "cubic_rmse": 0.007466153057211624,
+          "native_to_rational_rmse_ratio": 0.6493975226183858,
+          "native_better_than_rational": true,
+          "native_better_than_cubic": false,
+          "overall_winner": "cubic",
+          "native_vs_rational_direction": {
+            "rmse": "native",
+            "mae": "native",
+            "max_absolute_residual": "native"
+          },
+          "metric_direction_disagreement": false,
+          "point_outcomes": {
+            "native": 4,
+            "rational": 1,
+            "tie": 0
+          },
+          "point_majority_winner": "native",
+          "point_fold_disagreement": false
+        },
+        {
+          "fold": 4,
+          "fold_id": "roszman1:4",
+          "point_count": 5,
+          "native_rmse": 0.0074538301584031715,
+          "rational_rmse": 0.007628517817496978,
+          "cubic_rmse": 0.008900113582184252,
+          "native_to_rational_rmse_ratio": 0.9771007077294703,
+          "native_better_than_rational": true,
+          "native_better_than_cubic": true,
+          "overall_winner": "native",
+          "native_vs_rational_direction": {
+            "rmse": "native",
+            "mae": "rational",
+            "max_absolute_residual": "native"
+          },
+          "metric_direction_disagreement": true,
+          "point_outcomes": {
+            "native": 3,
+            "rational": 2,
+            "tie": 0
+          },
+          "point_majority_winner": "native",
+          "point_fold_disagreement": false
+        },
+        {
+          "fold": 5,
+          "fold_id": "roszman1:5",
+          "point_count": 5,
+          "native_rmse": 0.006228106060478816,
+          "rational_rmse": 0.49020058545268824,
+          "cubic_rmse": 0.010312177770563686,
+          "native_to_rational_rmse_ratio": 0.01270521954747833,
+          "native_better_than_rational": true,
+          "native_better_than_cubic": true,
+          "overall_winner": "native",
+          "native_vs_rational_direction": {
+            "rmse": "native",
+            "mae": "native",
+            "max_absolute_residual": "native"
+          },
+          "metric_direction_disagreement": false,
+          "point_outcomes": {
+            "native": 5,
+            "rational": 0,
+            "tie": 0
+          },
+          "point_majority_winner": "native",
+          "point_fold_disagreement": false
+        }
+      ],
+      "ratio_summary": {
+        "minimum": 0.01270521954747833,
+        "median": 0.9771007077294703,
+        "maximum": 10.072435483692482,
+        "scope": "Five within-dataset fold ratios; descriptive and not independent samples"
+      },
+      "point_outcomes": {
+        "native": 12,
+        "rational": 13,
+        "tie": 0
+      },
+      "pooled": {
+        "native": {
+          "rmse": 0.00756825483191744,
+          "mae": 0.006536601597057907,
+          "max_absolute_residual": 0.012957070974358664
+        },
+        "rational": {
+          "rmse": 0.2193269622679899,
+          "mae": 0.06687302550238089,
+          "max_absolute_residual": 0.9920522540747575
+        },
+        "cubic": null,
+        "frozen_metric_mismatch_count": 0,
+        "scope": "All 25 held-out predictions; per-point cubic-baseline predictions were not present in the frozen input"
+      },
+      "totals": {
+        "fold_count": 5,
+        "point_count": 25,
+        "native_optimizer_failure_count": 0,
+        "native_better_than_rational_fold_count": 3,
+        "rational_better_than_native_fold_count": 2,
+        "native_better_than_cubic_fold_count": 3,
+        "cubic_better_than_native_fold_count": 2,
+        "overall_best_model_fold_counts": {
+          "native": 2,
+          "rational": 1,
+          "cubic": 2,
+          "tie": 0
+        },
+        "metric_direction_disagreement_count": 1,
+        "point_fold_disagreement_count": 0
+      },
+      "known_answer": {
+        "optimizer_within_certified_tolerances": true,
+        "certified_forward_rss_check_passed": null,
+        "evidence_class": "known_answer_reproduction_not_holdout",
+        "original_tolerances_relaxed": false
+      },
+      "analysis_scope": {
+        "native_model": true,
+        "candidate_results_frozen_before_native_fit": true,
+        "same_holdout_points": true,
+        "post_hoc_model_family_comparison": true,
+        "known_answer_is_holdout": false,
+        "native_deterministic_bounds_computed": false,
+        "rational_bounds_transferred_to_native": false,
+        "independent_physical_experiment": false
+      }
+    },
+    {
+      "id": "enso",
+      "label": "ENSO native Fourier",
+      "source_file": "validation/enso-native-holdout.json",
+      "source_sha256": "b66ac7b4e8937418d1a27e87f6d9967430d73bac86a163c659a9df24485c4563",
+      "folds": [
+        {
+          "fold": 1,
+          "fold_id": "enso:1",
+          "point_count": 34,
+          "native_rmse": 3.448449143701017,
+          "rational_rmse": 2.7238127584543035,
+          "cubic_rmse": 5.827335434441512,
+          "native_to_rational_rmse_ratio": 1.2660375178130552,
+          "native_better_than_rational": false,
+          "native_better_than_cubic": true,
+          "overall_winner": "rational",
+          "native_vs_rational_direction": {
+            "rmse": "rational",
+            "mae": "rational",
+            "max_absolute_residual": "rational"
+          },
+          "metric_direction_disagreement": false,
+          "point_outcomes": {
+            "native": 17,
+            "rational": 17,
+            "tie": 0
+          },
+          "point_majority_winner": "tie",
+          "point_fold_disagreement": false
+        },
+        {
+          "fold": 2,
+          "fold_id": "enso:2",
+          "point_count": 34,
+          "native_rmse": 2.8418857472529337,
+          "rational_rmse": 3.3846808126491004,
+          "cubic_rmse": 3.472071286937893,
+          "native_to_rational_rmse_ratio": 0.8396318307570825,
+          "native_better_than_rational": true,
+          "native_better_than_cubic": true,
+          "overall_winner": "native",
+          "native_vs_rational_direction": {
+            "rmse": "native",
+            "mae": "native",
+            "max_absolute_residual": "native"
+          },
+          "metric_direction_disagreement": false,
+          "point_outcomes": {
+            "native": 17,
+            "rational": 17,
+            "tie": 0
+          },
+          "point_majority_winner": "tie",
+          "point_fold_disagreement": false
+        },
+        {
+          "fold": 3,
+          "fold_id": "enso:3",
+          "point_count": 34,
+          "native_rmse": 2.4893584593736207,
+          "rational_rmse": 3.3351302924292012,
+          "cubic_rmse": 3.2961720550339235,
+          "native_to_rational_rmse_ratio": 0.7464051599496739,
+          "native_better_than_rational": true,
+          "native_better_than_cubic": true,
+          "overall_winner": "native",
+          "native_vs_rational_direction": {
+            "rmse": "native",
+            "mae": "native",
+            "max_absolute_residual": "native"
+          },
+          "metric_direction_disagreement": false,
+          "point_outcomes": {
+            "native": 26,
+            "rational": 8,
+            "tie": 0
+          },
+          "point_majority_winner": "native",
+          "point_fold_disagreement": false
+        },
+        {
+          "fold": 4,
+          "fold_id": "enso:4",
+          "point_count": 33,
+          "native_rmse": 2.409878120632471,
+          "rational_rmse": 4.2004754455756155,
+          "cubic_rmse": 4.290307709909275,
+          "native_to_rational_rmse_ratio": 0.5737155595495289,
+          "native_better_than_rational": true,
+          "native_better_than_cubic": true,
+          "overall_winner": "native",
+          "native_vs_rational_direction": {
+            "rmse": "native",
+            "mae": "native",
+            "max_absolute_residual": "native"
+          },
+          "metric_direction_disagreement": false,
+          "point_outcomes": {
+            "native": 21,
+            "rational": 12,
+            "tie": 0
+          },
+          "point_majority_winner": "native",
+          "point_fold_disagreement": false
+        },
+        {
+          "fold": 5,
+          "fold_id": "enso:5",
+          "point_count": 33,
+          "native_rmse": 2.3729570605012986,
+          "rational_rmse": 3.387222832692024,
+          "cubic_rmse": 8.501406590947113,
+          "native_to_rational_rmse_ratio": 0.7005612496463277,
+          "native_better_than_rational": true,
+          "native_better_than_cubic": true,
+          "overall_winner": "native",
+          "native_vs_rational_direction": {
+            "rmse": "native",
+            "mae": "native",
+            "max_absolute_residual": "native"
+          },
+          "metric_direction_disagreement": false,
+          "point_outcomes": {
+            "native": 22,
+            "rational": 11,
+            "tie": 0
+          },
+          "point_majority_winner": "native",
+          "point_fold_disagreement": false
+        }
+      ],
+      "ratio_summary": {
+        "minimum": 0.5737155595495289,
+        "median": 0.7464051599496739,
+        "maximum": 1.2660375178130552,
+        "scope": "Five within-dataset fold ratios; descriptive and not independent samples"
+      },
+      "point_outcomes": {
+        "native": 103,
+        "rational": 65,
+        "tie": 0
+      },
+      "pooled": {
+        "native": {
+          "rmse": 2.7462953205805767,
+          "mae": 2.187961188307978,
+          "max_absolute_residual": 7.009181768878449
+        },
+        "rational": {
+          "rmse": 3.4337372699481605,
+          "mae": 2.7178225616236014,
+          "max_absolute_residual": 10.26479691765005
+        },
+        "cubic": null,
+        "frozen_metric_mismatch_count": 0,
+        "scope": "All 168 held-out predictions; per-point cubic-baseline predictions were not present in the frozen input"
+      },
+      "totals": {
+        "fold_count": 5,
+        "point_count": 168,
+        "native_optimizer_failure_count": 0,
+        "native_better_than_rational_fold_count": 4,
+        "rational_better_than_native_fold_count": 1,
+        "native_better_than_cubic_fold_count": 5,
+        "cubic_better_than_native_fold_count": 0,
+        "overall_best_model_fold_counts": {
+          "native": 4,
+          "rational": 1,
+          "cubic": 0,
+          "tie": 0
+        },
+        "metric_direction_disagreement_count": 0,
+        "point_fold_disagreement_count": 0
+      },
+      "known_answer": {
+        "optimizer_within_certified_tolerances": false,
+        "certified_forward_rss_check_passed": true,
+        "evidence_class": "known_answer_reproduction_not_holdout",
+        "original_tolerances_relaxed": false
+      },
+      "analysis_scope": {
+        "native_model": true,
+        "candidate_results_frozen_before_native_fit": true,
+        "same_holdout_points": true,
+        "post_hoc_model_family_comparison": true,
+        "known_answer_is_holdout": false,
+        "native_deterministic_bounds_computed": false,
+        "rational_bounds_transferred_to_native": false,
+        "independent_physical_experiment": false
+      }
+    },
+    {
+      "id": "chwirut1",
+      "label": "Chwirut1 native exponential",
+      "source_file": "validation/chwirut1-native-holdout.json",
+      "source_sha256": "e030dea90416195326b92b78824a030f01a0ab2525f9b215cf7c094077a8ce88",
+      "folds": [
+        {
+          "fold": 1,
+          "fold_id": "chwirut1:1",
+          "point_count": 57,
+          "native_rmse": 14.465526570336303,
+          "rational_rmse": 16.138743756819224,
+          "cubic_rmse": 15.10811245428186,
+          "native_to_rational_rmse_ratio": 0.896322959723806,
+          "native_better_than_rational": true,
+          "native_better_than_cubic": true,
+          "overall_winner": "native",
+          "native_vs_rational_direction": {
+            "rmse": "native",
+            "mae": "native",
+            "max_absolute_residual": "native"
+          },
+          "metric_direction_disagreement": false,
+          "point_outcomes": {
+            "native": 45,
+            "rational": 12,
+            "tie": 0
+          },
+          "point_majority_winner": "native",
+          "point_fold_disagreement": false
+        },
+        {
+          "fold": 2,
+          "fold_id": "chwirut1:2",
+          "point_count": 54,
+          "native_rmse": 2.622277550680226,
+          "rational_rmse": 2.4493945003433435,
+          "cubic_rmse": 3.9559114550296703,
+          "native_to_rational_rmse_ratio": 1.0705819541575066,
+          "native_better_than_rational": false,
+          "native_better_than_cubic": true,
+          "overall_winner": "rational",
+          "native_vs_rational_direction": {
+            "rmse": "rational",
+            "mae": "rational",
+            "max_absolute_residual": "rational"
+          },
+          "metric_direction_disagreement": false,
+          "point_outcomes": {
+            "native": 17,
+            "rational": 37,
+            "tie": 0
+          },
+          "point_majority_winner": "rational",
+          "point_fold_disagreement": false
+        },
+        {
+          "fold": 3,
+          "fold_id": "chwirut1:3",
+          "point_count": 51,
+          "native_rmse": 2.775494469668534,
+          "rational_rmse": 8.488618909338863,
+          "cubic_rmse": 4.820903500712885,
+          "native_to_rational_rmse_ratio": 0.326966553606858,
+          "native_better_than_rational": true,
+          "native_better_than_cubic": true,
+          "overall_winner": "native",
+          "native_vs_rational_direction": {
+            "rmse": "native",
+            "mae": "native",
+            "max_absolute_residual": "native"
+          },
+          "metric_direction_disagreement": false,
+          "point_outcomes": {
+            "native": 43,
+            "rational": 8,
+            "tie": 0
+          },
+          "point_majority_winner": "native",
+          "point_fold_disagreement": false
+        },
+        {
+          "fold": 4,
+          "fold_id": "chwirut1:4",
+          "point_count": 23,
+          "native_rmse": 1.3682100460705144,
+          "rational_rmse": 1.5342121863881184,
+          "cubic_rmse": 3.9849289449012026,
+          "native_to_rational_rmse_ratio": 0.8917997511749595,
+          "native_better_than_rational": true,
+          "native_better_than_cubic": true,
+          "overall_winner": "native",
+          "native_vs_rational_direction": {
+            "rmse": "native",
+            "mae": "native",
+            "max_absolute_residual": "native"
+          },
+          "metric_direction_disagreement": false,
+          "point_outcomes": {
+            "native": 15,
+            "rational": 8,
+            "tie": 0
+          },
+          "point_majority_winner": "native",
+          "point_fold_disagreement": false
+        },
+        {
+          "fold": 5,
+          "fold_id": "chwirut1:5",
+          "point_count": 29,
+          "native_rmse": 2.7237923197301117,
+          "rational_rmse": 2.8556168919034737,
+          "cubic_rmse": 28.747338380862608,
+          "native_to_rational_rmse_ratio": 0.9538367445061962,
+          "native_better_than_rational": true,
+          "native_better_than_cubic": true,
+          "overall_winner": "native",
+          "native_vs_rational_direction": {
+            "rmse": "native",
+            "mae": "native",
+            "max_absolute_residual": "native"
+          },
+          "metric_direction_disagreement": false,
+          "point_outcomes": {
+            "native": 21,
+            "rational": 8,
+            "tie": 0
+          },
+          "point_majority_winner": "native",
+          "point_fold_disagreement": false
+        }
+      ],
+      "ratio_summary": {
+        "minimum": 0.326966553606858,
+        "median": 0.896322959723806,
+        "maximum": 1.0705819541575066,
+        "scope": "Five within-dataset fold ratios; descriptive and not independent samples"
+      },
+      "point_outcomes": {
+        "native": 141,
+        "rational": 73,
+        "tie": 0
+      },
+      "pooled": {
+        "native": {
+          "rmse": 7.778996285751361,
+          "mae": 4.4310129668600196,
+          "max_absolute_residual": 34.56420305694451
+        },
+        "rational": {
+          "rmse": 9.456157887519154,
+          "mae": 5.9228755288869275,
+          "max_absolute_residual": 37.82681992868282
+        },
+        "cubic": null,
+        "frozen_metric_mismatch_count": 0,
+        "scope": "All 214 held-out predictions; per-point cubic-baseline predictions were not present in the frozen input"
+      },
+      "totals": {
+        "fold_count": 5,
+        "point_count": 214,
+        "native_optimizer_failure_count": 0,
+        "native_better_than_rational_fold_count": 4,
+        "rational_better_than_native_fold_count": 1,
+        "native_better_than_cubic_fold_count": 5,
+        "cubic_better_than_native_fold_count": 0,
+        "overall_best_model_fold_counts": {
+          "native": 4,
+          "rational": 1,
+          "cubic": 0,
+          "tie": 0
+        },
+        "metric_direction_disagreement_count": 0,
+        "point_fold_disagreement_count": 0
+      },
+      "known_answer": {
+        "optimizer_within_certified_tolerances": true,
+        "certified_forward_rss_check_passed": null,
+        "evidence_class": "known_answer_reproduction_not_holdout",
+        "original_tolerances_relaxed": false
+      },
+      "analysis_scope": {
+        "native_model": true,
+        "candidate_results_frozen_before_native_fit": true,
+        "same_holdout_points": true,
+        "repeated_x_never_crosses_fitting_and_test": true,
+        "post_hoc_model_family_comparison": true,
+        "known_answer_is_holdout": false,
+        "native_deterministic_bounds_computed": false,
+        "rational_bounds_transferred_to_native": false,
+        "independent_physical_experiment": false,
+        "independent_model_family_test": false,
+        "related_prior_dataset": {
+          "name": "Chwirut2",
+          "same_study": true,
+          "same_native_model_family": true,
+          "scope": "Chwirut1 observations were not used to design previous candidates or regions, but Chwirut2 was analyzed previously; this is not an independent model-family or laboratory replication test"
+        }
+      }
+    }
+  ],
+  "totals": {
+    "dataset_count": 3,
+    "fold_count": 15,
+    "point_count": 407,
+    "native_optimizer_failure_count": 0,
+    "missing_point_prediction_count": 0,
+    "native_better_than_rational_fold_count": 11,
+    "rational_better_than_native_fold_count": 4,
+    "native_rational_tie_fold_count": 0,
+    "native_better_than_cubic_fold_count": 13,
+    "cubic_better_than_native_fold_count": 2,
+    "overall_best_model_fold_counts": {
+      "native": 10,
+      "rational": 3,
+      "cubic": 2,
+      "tie": 0
+    },
+    "native_rational_sweep_dataset_count": 0,
+    "native_cubic_sweep_dataset_count": 2,
+    "native_overall_sweep_dataset_count": 0,
+    "rational_beats_native_fold_ids": [
+      "roszman1:1",
+      "roszman1:2",
+      "enso:1",
+      "chwirut1:2"
+    ],
+    "cubic_beats_native_fold_ids": [
+      "roszman1:2",
+      "roszman1:3"
+    ],
+    "metric_direction_disagreement_fold_ids": [
+      "roszman1:4"
+    ],
+    "point_fold_disagreement_fold_ids": [],
+    "point_outcomes": {
+      "native": 256,
+      "rational": 151,
+      "tie": 0
+    },
+    "pooled_metric_mismatch_count": 0,
+    "optimizer_known_answer_pass_dataset_ids": [
+      "roszman1",
+      "chwirut1"
+    ],
+    "optimizer_miss_but_certified_forward_pass_dataset_ids": [
+      "enso"
+    ]
+  },
+  "cross_dataset_pooled_error_metrics": null,
+  "decision": {
+    "native_always_beats_rational": false,
+    "native_always_beats_cubic": false,
+    "native_deterministic_bounds_claimed": false,
+    "rational_bounds_transferred_to_native": false,
+    "probability_calibration_claimed": false,
+    "independent_experiment_claimed": false,
+    "independent_model_family_replication_claimed": false,
+    "new_physical_mechanism_claimed": false,
+    "universal_model_ranking_claimed": false,
+    "cross_dataset_pooled_metric_claimed": false,
+    "descriptive_probability_claimed": false,
+    "failed_or_disagreeing_folds_hidden": false
+  },
+  "limitations": [
+    "Three datasets and fifteen folds are a descriptive post-hoc sample, not independent probability draws",
+    "Raw residuals and parameter values have different units and observation designs and are never pooled across datasets",
+    "Fold RMSE, unweighted pointwise winners, MAE and maximum residual answer different questions and may disagree",
+    "Chwirut1 shares its study and native model family with Chwirut2 and is not an independent model-family replication",
+    "ENSO optimizer known-answer mismatch remains separate from certified-parameter forward evaluation and holdout evidence",
+    "No native deterministic error bound or probability interval is produced and no rational certificate is transferred"
+  ],
+  "analysis_runner_sha256": "c6403d7f938f148cb309a05f476cfb3049b12967a3df3a9629a1c879650389a2"
+}

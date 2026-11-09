@@ -87,6 +87,8 @@ def build() -> dict:
     chwirut1NativeHoldout = read("chwirut1-native-holdout.json")
     chwirut1NativeProtocol = read("chwirut1-native-holdout-protocol.json")
     chwirut1NativeAmendment = read("chwirut1-native-holdout-protocol-amendment-01.json")
+    nativeCross = json.loads((ROOT / "exports/native-cross-dataset-synthesis.json").read_text(encoding="utf-8"))
+    nativeCrossCheck = read("native-cross-dataset-synthesis-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -740,10 +742,52 @@ def build() -> dict:
                 "previousReceiptPreserved": (ROOT / "validation/repository-integrity-report-v1.json").is_file(),
                 "protocolCommits": {"rules": "300cc26", "audit": "24dc02f"},
             },
-            "scientificClaim": "当前范围内 84 个 README 本地链接、45 个报告图片路径、37 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 10 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
+            "scientificClaim": f"当前范围内 {repositoryAudit['groups']['readme_local_links']['count']} 个 README 本地链接、{repositoryAudit['groups']['document_figure_links']['count']} 个报告图片路径、{repositoryAudit['groups']['word_manifests']['count']} 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 {repositoryAudit['groups']['protocol_inputs']['count']} 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
             "limitations": "审计只验证本地结构、路径、哈希和计数，不检查外部网页，不进行视觉渲染验收，不证明科学理论为真，也不把历史旧计数误判为错误。",
             "upstreamContribution": "提供可重复的负例门禁、动态 JSON/README 计数核对和显式 --refresh 历史收据保留机制，防止链接、Word、图谱和协议在持续研究中漂移。",
             "snapshotFiles": ["validation/repository-integrity-rules.json", "validation/repository-integrity-report.json", "validation/repository-integrity-report-v1.json", "validation/frontier-repository-integrity-word.json"],
+        },
+        {
+            "id": "native-cross-dataset-synthesis", "domain": "physics", "title": "三数据原生模型同折胜负、逐点结果与指标方向综合",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml"],
+            "metrics": {
+                "totals": nativeCross["totals"],
+                "datasets": [{
+                    "id": dataset["id"],
+                    "ratioSummary": dataset["ratio_summary"],
+                    "pointOutcomes": dataset["point_outcomes"],
+                    "pooled": dataset["pooled"],
+                    "folds": [{
+                        "fold": case["fold"],
+                        "pointCount": case["point_count"],
+                        "nativeRmse": case["native_rmse"],
+                        "rationalRmse": case["rational_rmse"],
+                        "cubicRmse": case["cubic_rmse"],
+                        "nativeToRationalRmseRatio": case["native_to_rational_rmse_ratio"],
+                        "overallWinner": case["overall_winner"],
+                        "nativeVsRationalDirection": case["native_vs_rational_direction"],
+                        "pointOutcomes": case["point_outcomes"],
+                        "pointFoldDisagreement": case["point_fold_disagreement"],
+                    } for case in dataset["folds"]],
+                } for dataset in nativeCross["datasets"]],
+                "crossDatasetPooledErrorMetrics": nativeCross["cross_dataset_pooled_error_metrics"],
+                "analysisScope": nativeCross["analysis_scope"],
+                "decision": nativeCross["decision"],
+                "implementation": {
+                    "protocolSha256": nativeCross["protocol_sha256"],
+                    "summarySha256": nativeCrossCheck["summarySha256"],
+                    "analysisRunnerSha256": nativeCrossCheck["analysisRunnerSha256"],
+                    "figureSha256": nativeCrossCheck["figureSha256"],
+                    "reportSha256": nativeCrossCheck["reportSha256"],
+                    "wordSha256": nativeCrossCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "b19975c"},
+            },
+            "scientificClaim": "三项冻结对照共 15 折、407 个配对留出点：原生模型 11 折 RMSE 低于有理候选、13 折低于三次基线，三者最低次数分别为原生 10、有理 3、三次 2。逐点绝对残差计数为原生 256、有理 151；Roszman1 为 12 比 13，且第 4 折原生 RMSE 更低但有理 MAE 更低。",
+            "limitations": "这是只读事后综合，不重新拟合，不跨量纲合并误差，不把折数或点数当成概率、统一评分或普适排名。三个数据集都没有原生五折全胜；指标反例、Chwirut1 同族边界、ENSO 已知答案分层和原生无误差界均保留。" + " ".join(nativeCross["limitations"]),
+            "upstreamContribution": "把三类原生结构与同一有理候选、三次基线的逐折、逐点和多指标方向接入统一接口，明确区分优于有理、三者最低、逐点多票数和平方误差，为后续误差贡献分解提供可追溯反例。",
+            "snapshotFiles": ["validation/native-cross-dataset-synthesis-protocol.json", "validation/native-cross-dataset-synthesis-check.json", "validation/frontier-native-cross-dataset-word.json"],
         },
     ]
     packet = {

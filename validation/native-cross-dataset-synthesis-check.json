@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "errorCount": 0,
+  "datasetCount": 3,
+  "foldCount": 15,
+  "pointCount": 407,
+  "protocolSha256": "c7ae0ea4aefc92516b3623f97d32aab88075d358346b772d52ebe23f73666820",
+  "summarySha256": "3892a4ae65b6fbbcc18c38fc3429ec41dec8276bbd8e0813d63144a550b38441",
+  "analysisRunnerSha256": "c6403d7f938f148cb309a05f476cfb3049b12967a3df3a9629a1c879650389a2",
+  "figureSha256": "24ddcc11c3c4a74d2598d2516bd44bbec06bdb8c786a421f70339405e2eb8001",
+  "reportSha256": "7e0bf4f62d8820f87c35b9524ecafdf226cf108bf22c98728efe4a7f4dd9f07f",
+  "wordSha256": "afed232524f5b0bdce9bf9e92d153bf8a4cbf840032539af231e95b1e42c4bcd",
+  "wordManifestSha256": "d421661ac01a93b29cf2e18753e4f1ed756b445f61af2f6d65bd039270250107",
+  "crossDatasetPooledErrorMetrics": null,
+  "visualQaClaimed": false,
+  "scientificTruthClaimed": false
+}

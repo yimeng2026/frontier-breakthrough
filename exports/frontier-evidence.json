@@ -4548,29 +4548,29 @@
         "errorCount": 0,
         "groups": {
           "readme_local_links": {
-            "count": 86,
+            "count": 88,
             "errors": []
           },
           "document_figure_links": {
-            "count": 45,
+            "count": 46,
             "errors": []
           },
           "word_manifests": {
-            "count": 37,
+            "count": 38,
             "errors": []
           },
           "evidence_snapshots": {
-            "count": 165,
+            "count": 168,
             "errors": []
           },
           "knowledge_graph": {
-            "nodes": 185,
-            "edges": 410,
+            "nodes": 191,
+            "edges": 432,
             "errors": []
           },
           "protocol_inputs": {
-            "count": 10,
-            "recordsChecked": 24,
+            "count": 11,
+            "recordsChecked": 27,
             "errors": []
           },
           "corpus_v2": {
@@ -4580,9 +4580,9 @@
             "errors": []
           },
           "dynamic_counts": {
-            "evidenceItems": 48,
-            "graphNodes": 185,
-            "graphEdges": 410,
+            "evidenceItems": 49,
+            "graphNodes": 191,
+            "graphEdges": 432,
             "readme_consistent": true,
             "errors": []
           }
@@ -4593,7 +4593,7 @@
           "scientific_truth_claimed": false,
           "historical_text_rewritten": false
         },
-        "rulesSha256": "b5980c2c98f12c7924e2a255fdcbe3642d6c8fcf1245b56947ed00378b717331",
+        "rulesSha256": "0b70e895740f9b37a9d2db196baf8e473154e48f0209a9c445045e786ccc0e92",
         "analysisRunnerSha256": "403aabb3f22e6fa26eca8595777df16c1f5be34f6f948de7f1c8e7f8f20effdf",
         "previousReceiptPreserved": true,
         "protocolCommits": {
@@ -4601,7 +4601,7 @@
           "audit": "24dc02f"
         }
       },
-      "scientificClaim": "当前范围内 84 个 README 本地链接、45 个报告图片路径、37 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 10 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
+      "scientificClaim": "当前范围内 88 个 README 本地链接、46 个报告图片路径、38 份 Word 清单、全部证据快照、图节点与边、23 份全集文档及 11 份近期协议的输入均通过一致性检查，错误数为 0；README 与 JSON 当前计数一致。",
       "limitations": "审计只验证本地结构、路径、哈希和计数，不检查外部网页，不进行视觉渲染验收，不证明科学理论为真，也不把历史旧计数误判为错误。",
       "upstreamContribution": "提供可重复的负例门禁、动态 JSON/README 计数核对和显式 --refresh 历史收据保留机制，防止链接、Word、图谱和协议在持续研究中漂移。",
       "snapshotFiles": [
@@ -4609,6 +4609,509 @@
         "validation/repository-integrity-report.json",
         "validation/repository-integrity-report-v1.json",
         "validation/frontier-repository-integrity-word.json"
+      ]
+    },
+    {
+      "id": "native-cross-dataset-synthesis",
+      "domain": "physics",
+      "title": "三数据原生模型同折胜负、逐点结果与指标方向综合",
+      "status": "verified",
+      "evidenceClass": "local_recomputation",
+      "sources": [
+        "https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml",
+        "https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml"
+      ],
+      "metrics": {
+        "totals": {
+          "dataset_count": 3,
+          "fold_count": 15,
+          "point_count": 407,
+          "native_optimizer_failure_count": 0,
+          "missing_point_prediction_count": 0,
+          "native_better_than_rational_fold_count": 11,
+          "rational_better_than_native_fold_count": 4,
+          "native_rational_tie_fold_count": 0,
+          "native_better_than_cubic_fold_count": 13,
+          "cubic_better_than_native_fold_count": 2,
+          "overall_best_model_fold_counts": {
+            "native": 10,
+            "rational": 3,
+            "cubic": 2,
+            "tie": 0
+          },
+          "native_rational_sweep_dataset_count": 0,
+          "native_cubic_sweep_dataset_count": 2,
+          "native_overall_sweep_dataset_count": 0,
+          "rational_beats_native_fold_ids": [
+            "roszman1:1",
+            "roszman1:2",
+            "enso:1",
+            "chwirut1:2"
+          ],
+          "cubic_beats_native_fold_ids": [
+            "roszman1:2",
+            "roszman1:3"
+          ],
+          "metric_direction_disagreement_fold_ids": [
+            "roszman1:4"
+          ],
+          "point_fold_disagreement_fold_ids": [],
+          "point_outcomes": {
+            "native": 256,
+            "rational": 151,
+            "tie": 0
+          },
+          "pooled_metric_mismatch_count": 0,
+          "optimizer_known_answer_pass_dataset_ids": [
+            "roszman1",
+            "chwirut1"
+          ],
+          "optimizer_miss_but_certified_forward_pass_dataset_ids": [
+            "enso"
+          ]
+        },
+        "datasets": [
+          {
+            "id": "roszman1",
+            "ratioSummary": {
+              "minimum": 0.01270521954747833,
+              "median": 0.9771007077294703,
+              "maximum": 10.072435483692482,
+              "scope": "Five within-dataset fold ratios; descriptive and not independent samples"
+            },
+            "pointOutcomes": {
+              "native": 12,
+              "rational": 13,
+              "tie": 0
+            },
+            "pooled": {
+              "native": {
+                "rmse": 0.00756825483191744,
+                "mae": 0.006536601597057907,
+                "max_absolute_residual": 0.012957070974358664
+              },
+              "rational": {
+                "rmse": 0.2193269622679899,
+                "mae": 0.06687302550238089,
+                "max_absolute_residual": 0.9920522540747575
+              },
+              "cubic": null,
+              "frozen_metric_mismatch_count": 0,
+              "scope": "All 25 held-out predictions; per-point cubic-baseline predictions were not present in the frozen input"
+            },
+            "folds": [
+              {
+                "fold": 1,
+                "pointCount": 5,
+                "nativeRmse": 0.010044543789192596,
+                "rationalRmse": 0.0009972308887413533,
+                "cubicRmse": 0.056140263339699036,
+                "nativeToRationalRmseRatio": 10.072435483692482,
+                "overallWinner": "rational",
+                "nativeVsRationalDirection": {
+                  "rmse": "rational",
+                  "mae": "rational",
+                  "max_absolute_residual": "rational"
+                },
+                "pointOutcomes": {
+                  "native": 0,
+                  "rational": 5,
+                  "tie": 0
+                },
+                "pointFoldDisagreement": false
+              },
+              {
+                "fold": 2,
+                "pointCount": 5,
+                "nativeRmse": 0.005867985323301031,
+                "rationalRmse": 0.00559352982401722,
+                "cubicRmse": 0.003946730577271104,
+                "nativeToRationalRmseRatio": 1.0490666015769448,
+                "overallWinner": "cubic",
+                "nativeVsRationalDirection": {
+                  "rmse": "rational",
+                  "mae": "rational",
+                  "max_absolute_residual": "rational"
+                },
+                "pointOutcomes": {
+                  "native": 0,
+                  "rational": 5,
+                  "tie": 0
+                },
+                "pointFoldDisagreement": false
+              },
+              {
+                "fold": 3,
+                "pointCount": 5,
+                "nativeRmse": 0.007531095882129697,
+                "rationalRmse": 0.01159705052733208,
+                "cubicRmse": 0.007466153057211624,
+                "nativeToRationalRmseRatio": 0.6493975226183858,
+                "overallWinner": "cubic",
+                "nativeVsRationalDirection": {
+                  "rmse": "native",
+                  "mae": "native",
+                  "max_absolute_residual": "native"
+                },
+                "pointOutcomes": {
+                  "native": 4,
+                  "rational": 1,
+                  "tie": 0
+                },
+                "pointFoldDisagreement": false
+              },
+              {
+                "fold": 4,
+                "pointCount": 5,
+                "nativeRmse": 0.0074538301584031715,
+                "rationalRmse": 0.007628517817496978,
+                "cubicRmse": 0.008900113582184252,
+                "nativeToRationalRmseRatio": 0.9771007077294703,
+                "overallWinner": "native",
+                "nativeVsRationalDirection": {
+                  "rmse": "native",
+                  "mae": "rational",
+                  "max_absolute_residual": "native"
+                },
+                "pointOutcomes": {
+                  "native": 3,
+                  "rational": 2,
+                  "tie": 0
+                },
+                "pointFoldDisagreement": false
+              },
+              {
+                "fold": 5,
+                "pointCount": 5,
+                "nativeRmse": 0.006228106060478816,
+                "rationalRmse": 0.49020058545268824,
+                "cubicRmse": 0.010312177770563686,
+                "nativeToRationalRmseRatio": 0.01270521954747833,
+                "overallWinner": "native",
+                "nativeVsRationalDirection": {
+                  "rmse": "native",
+                  "mae": "native",
+                  "max_absolute_residual": "native"
+                },
+                "pointOutcomes": {
+                  "native": 5,
+                  "rational": 0,
+                  "tie": 0
+                },
+                "pointFoldDisagreement": false
+              }
+            ]
+          },
+          {
+            "id": "enso",
+            "ratioSummary": {
+              "minimum": 0.5737155595495289,
+              "median": 0.7464051599496739,
+              "maximum": 1.2660375178130552,
+              "scope": "Five within-dataset fold ratios; descriptive and not independent samples"
+            },
+            "pointOutcomes": {
+              "native": 103,
+              "rational": 65,
+              "tie": 0
+            },
+            "pooled": {
+              "native": {
+                "rmse": 2.7462953205805767,
+                "mae": 2.187961188307978,
+                "max_absolute_residual": 7.009181768878449
+              },
+              "rational": {
+                "rmse": 3.4337372699481605,
+                "mae": 2.7178225616236014,
+                "max_absolute_residual": 10.26479691765005
+              },
+              "cubic": null,
+              "frozen_metric_mismatch_count": 0,
+              "scope": "All 168 held-out predictions; per-point cubic-baseline predictions were not present in the frozen input"
+            },
+            "folds": [
+              {
+                "fold": 1,
+                "pointCount": 34,
+                "nativeRmse": 3.448449143701017,
+                "rationalRmse": 2.7238127584543035,
+                "cubicRmse": 5.827335434441512,
+                "nativeToRationalRmseRatio": 1.2660375178130552,
+                "overallWinner": "rational",
+                "nativeVsRationalDirection": {
+                  "rmse": "rational",
+                  "mae": "rational",
+                  "max_absolute_residual": "rational"
+                },
+                "pointOutcomes": {
+                  "native": 17,
+                  "rational": 17,
+                  "tie": 0
+                },
+                "pointFoldDisagreement": false
+              },
+              {
+                "fold": 2,
+                "pointCount": 34,
+                "nativeRmse": 2.8418857472529337,
+                "rationalRmse": 3.3846808126491004,
+                "cubicRmse": 3.472071286937893,
+                "nativeToRationalRmseRatio": 0.8396318307570825,
+                "overallWinner": "native",
+                "nativeVsRationalDirection": {
+                  "rmse": "native",
+                  "mae": "native",
+                  "max_absolute_residual": "native"
+                },
+                "pointOutcomes": {
+                  "native": 17,
+                  "rational": 17,
+                  "tie": 0
+                },
+                "pointFoldDisagreement": false
+              },
+              {
+                "fold": 3,
+                "pointCount": 34,
+                "nativeRmse": 2.4893584593736207,
+                "rationalRmse": 3.3351302924292012,
+                "cubicRmse": 3.2961720550339235,
+                "nativeToRationalRmseRatio": 0.7464051599496739,
+                "overallWinner": "native",
+                "nativeVsRationalDirection": {
+                  "rmse": "native",
+                  "mae": "native",
+                  "max_absolute_residual": "native"
+                },
+                "pointOutcomes": {
+                  "native": 26,
+                  "rational": 8,
+                  "tie": 0
+                },
+                "pointFoldDisagreement": false
+              },
+              {
+                "fold": 4,
+                "pointCount": 33,
+                "nativeRmse": 2.409878120632471,
+                "rationalRmse": 4.2004754455756155,
+                "cubicRmse": 4.290307709909275,
+                "nativeToRationalRmseRatio": 0.5737155595495289,
+                "overallWinner": "native",
+                "nativeVsRationalDirection": {
+                  "rmse": "native",
+                  "mae": "native",
+                  "max_absolute_residual": "native"
+                },
+                "pointOutcomes": {
+                  "native": 21,
+                  "rational": 12,
+                  "tie": 0
+                },
+                "pointFoldDisagreement": false
+              },
+              {
+                "fold": 5,
+                "pointCount": 33,
+                "nativeRmse": 2.3729570605012986,
+                "rationalRmse": 3.387222832692024,
+                "cubicRmse": 8.501406590947113,
+                "nativeToRationalRmseRatio": 0.7005612496463277,
+                "overallWinner": "native",
+                "nativeVsRationalDirection": {
+                  "rmse": "native",
+                  "mae": "native",
+                  "max_absolute_residual": "native"
+                },
+                "pointOutcomes": {
+                  "native": 22,
+                  "rational": 11,
+                  "tie": 0
+                },
+                "pointFoldDisagreement": false
+              }
+            ]
+          },
+          {
+            "id": "chwirut1",
+            "ratioSummary": {
+              "minimum": 0.326966553606858,
+              "median": 0.896322959723806,
+              "maximum": 1.0705819541575066,
+              "scope": "Five within-dataset fold ratios; descriptive and not independent samples"
+            },
+            "pointOutcomes": {
+              "native": 141,
+              "rational": 73,
+              "tie": 0
+            },
+            "pooled": {
+              "native": {
+                "rmse": 7.778996285751361,
+                "mae": 4.4310129668600196,
+                "max_absolute_residual": 34.56420305694451
+              },
+              "rational": {
+                "rmse": 9.456157887519154,
+                "mae": 5.9228755288869275,
+                "max_absolute_residual": 37.82681992868282
+              },
+              "cubic": null,
+              "frozen_metric_mismatch_count": 0,
+              "scope": "All 214 held-out predictions; per-point cubic-baseline predictions were not present in the frozen input"
+            },
+            "folds": [
+              {
+                "fold": 1,
+                "pointCount": 57,
+                "nativeRmse": 14.465526570336303,
+                "rationalRmse": 16.138743756819224,
+                "cubicRmse": 15.10811245428186,
+                "nativeToRationalRmseRatio": 0.896322959723806,
+                "overallWinner": "native",
+                "nativeVsRationalDirection": {
+                  "rmse": "native",
+                  "mae": "native",
+                  "max_absolute_residual": "native"
+                },
+                "pointOutcomes": {
+                  "native": 45,
+                  "rational": 12,
+                  "tie": 0
+                },
+                "pointFoldDisagreement": false
+              },
+              {
+                "fold": 2,
+                "pointCount": 54,
+                "nativeRmse": 2.622277550680226,
+                "rationalRmse": 2.4493945003433435,
+                "cubicRmse": 3.9559114550296703,
+                "nativeToRationalRmseRatio": 1.0705819541575066,
+                "overallWinner": "rational",
+                "nativeVsRationalDirection": {
+                  "rmse": "rational",
+                  "mae": "rational",
+                  "max_absolute_residual": "rational"
+                },
+                "pointOutcomes": {
+                  "native": 17,
+                  "rational": 37,
+                  "tie": 0
+                },
+                "pointFoldDisagreement": false
+              },
+              {
+                "fold": 3,
+                "pointCount": 51,
+                "nativeRmse": 2.775494469668534,
+                "rationalRmse": 8.488618909338863,
+                "cubicRmse": 4.820903500712885,
+                "nativeToRationalRmseRatio": 0.326966553606858,
+                "overallWinner": "native",
+                "nativeVsRationalDirection": {
+                  "rmse": "native",
+                  "mae": "native",
+                  "max_absolute_residual": "native"
+                },
+                "pointOutcomes": {
+                  "native": 43,
+                  "rational": 8,
+                  "tie": 0
+                },
+                "pointFoldDisagreement": false
+              },
+              {
+                "fold": 4,
+                "pointCount": 23,
+                "nativeRmse": 1.3682100460705144,
+                "rationalRmse": 1.5342121863881184,
+                "cubicRmse": 3.9849289449012026,
+                "nativeToRationalRmseRatio": 0.8917997511749595,
+                "overallWinner": "native",
+                "nativeVsRationalDirection": {
+                  "rmse": "native",
+                  "mae": "native",
+                  "max_absolute_residual": "native"
+                },
+                "pointOutcomes": {
+                  "native": 15,
+                  "rational": 8,
+                  "tie": 0
+                },
+                "pointFoldDisagreement": false
+              },
+              {
+                "fold": 5,
+                "pointCount": 29,
+                "nativeRmse": 2.7237923197301117,
+                "rationalRmse": 2.8556168919034737,
+                "cubicRmse": 28.747338380862608,
+                "nativeToRationalRmseRatio": 0.9538367445061962,
+                "overallWinner": "native",
+                "nativeVsRationalDirection": {
+                  "rmse": "native",
+                  "mae": "native",
+                  "max_absolute_residual": "native"
+                },
+                "pointOutcomes": {
+                  "native": 21,
+                  "rational": 8,
+                  "tie": 0
+                },
+                "pointFoldDisagreement": false
+              }
+            ]
+          }
+        ],
+        "crossDatasetPooledErrorMetrics": null,
+        "analysisScope": {
+          "refit": false,
+          "retuned": false,
+          "new_data": false,
+          "post_hoc": true,
+          "same_frozen_points": true,
+          "cross_dataset_error_pooling": false,
+          "descriptive_counts_are_probabilities": false,
+          "known_answer_used_as_holdout": false,
+          "native_deterministic_bounds_computed": false,
+          "rational_bounds_transferred_to_native": false
+        },
+        "decision": {
+          "native_always_beats_rational": false,
+          "native_always_beats_cubic": false,
+          "native_deterministic_bounds_claimed": false,
+          "rational_bounds_transferred_to_native": false,
+          "probability_calibration_claimed": false,
+          "independent_experiment_claimed": false,
+          "independent_model_family_replication_claimed": false,
+          "new_physical_mechanism_claimed": false,
+          "universal_model_ranking_claimed": false,
+          "cross_dataset_pooled_metric_claimed": false,
+          "descriptive_probability_claimed": false,
+          "failed_or_disagreeing_folds_hidden": false
+        },
+        "implementation": {
+          "protocolSha256": "c7ae0ea4aefc92516b3623f97d32aab88075d358346b772d52ebe23f73666820",
+          "summarySha256": "3892a4ae65b6fbbcc18c38fc3429ec41dec8276bbd8e0813d63144a550b38441",
+          "analysisRunnerSha256": "c6403d7f938f148cb309a05f476cfb3049b12967a3df3a9629a1c879650389a2",
+          "figureSha256": "24ddcc11c3c4a74d2598d2516bd44bbec06bdb8c786a421f70339405e2eb8001",
+          "reportSha256": "7e0bf4f62d8820f87c35b9524ecafdf226cf108bf22c98728efe4a7f4dd9f07f",
+          "wordSha256": "afed232524f5b0bdce9bf9e92d153bf8a4cbf840032539af231e95b1e42c4bcd"
+        },
+        "protocolCommits": {
+          "protocol": "b19975c"
+        }
+      },
+      "scientificClaim": "三项冻结对照共 15 折、407 个配对留出点：原生模型 11 折 RMSE 低于有理候选、13 折低于三次基线，三者最低次数分别为原生 10、有理 3、三次 2。逐点绝对残差计数为原生 256、有理 151；Roszman1 为 12 比 13，且第 4 折原生 RMSE 更低但有理 MAE 更低。",
+      "limitations": "这是只读事后综合，不重新拟合，不跨量纲合并误差，不把折数或点数当成概率、统一评分或普适排名。三个数据集都没有原生五折全胜；指标反例、Chwirut1 同族边界、ENSO 已知答案分层和原生无误差界均保留。Three datasets and fifteen folds are a descriptive post-hoc sample, not independent probability draws Raw residuals and parameter values have different units and observation designs and are never pooled across datasets Fold RMSE, unweighted pointwise winners, MAE and maximum residual answer different questions and may disagree Chwirut1 shares its study and native model family with Chwirut2 and is not an independent model-family replication ENSO optimizer known-answer mismatch remains separate from certified-parameter forward evaluation and holdout evidence No native deterministic error bound or probability interval is produced and no rational certificate is transferred",
+      "upstreamContribution": "把三类原生结构与同一有理候选、三次基线的逐折、逐点和多指标方向接入统一接口，明确区分优于有理、三者最低、逐点多票数和平方误差，为后续误差贡献分解提供可追溯反例。",
+      "snapshotFiles": [
+        "validation/native-cross-dataset-synthesis-protocol.json",
+        "validation/native-cross-dataset-synthesis-check.json",
+        "validation/frontier-native-cross-dataset-word.json"
       ]
     }
   ]

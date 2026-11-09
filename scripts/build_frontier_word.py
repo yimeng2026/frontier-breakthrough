@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "repository_integrity":
+    if REPORT_MODE == "native_cross_dataset":
+        replacements = {
+            "图：`papers/45_三数据原生同折综合/fig45_native_cross_dataset_synthesis.png`。": "![](papers/45_三数据原生同折综合/fig45_native_cross_dataset_synthesis.png)\n\n**图 45｜三数据原生模型同折对照四联综合（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联组图与读图顺序」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "15 折、407 个相同留出点、逐点胜负与指标方向的受限综合"
+    elif REPORT_MODE == "repository_integrity":
         replacements = {
             "图：`papers/44_仓库完整性审计/fig44_repository_integrity.png`。": "![](papers/44_仓库完整性审计/fig44_repository_integrity.png)\n\n**图 44｜全仓库链接、清单、图谱与协议完整性审计（第 1 幅，共 1 幅）**  \n**插入位置**：§5「审计组图与负例门禁」；顺序第 1 幅，共 1 幅。",
         }

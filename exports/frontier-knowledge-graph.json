@@ -1733,6 +1733,63 @@
         "validation/repository-integrity-report.json",
         "scripts/audit_repository_integrity.py"
       ]
+    },
+    {
+      "id": "claim-single-error-metric-sufficient",
+      "kind": "claim",
+      "title": "单一误差指标或逐点多票数足以决定模型优劣",
+      "status": "falsified",
+      "sourceFiles": [
+        "exports/native-cross-dataset-synthesis.json"
+      ]
+    },
+    {
+      "id": "evidence-native-cross-dataset-synthesis",
+      "kind": "evidence",
+      "title": "三数据 15 折中原生 11 折 RMSE 低于有理、10 折为三者最低；407 点逐点结果与指标反例完整保留",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-cross-dataset-synthesis.json",
+        "validation/native-cross-dataset-synthesis-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-native-fold4-metric-direction",
+      "kind": "counterexample",
+      "title": "Roszman1 第 4 折原生 RMSE 更低但有理 MAE 更低，单一指标不能隐藏方向分歧",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-cross-dataset-synthesis.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-native-point-majority-rmse",
+      "kind": "counterexample",
+      "title": "Roszman1 逐点计数为原生 12、有理 13，但原生 25 点 RMSE 更低，逐点多票数不等同于平方误差",
+      "status": "supported",
+      "sourceFiles": [
+        "exports/native-cross-dataset-synthesis.json"
+      ]
+    },
+    {
+      "id": "experiment-native-cross-dataset-synthesis-protocol",
+      "kind": "experiment",
+      "title": "冻结三项输入哈希、15 折、407 点、RMSE 主指标和逐点规则的只读综合协议",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/native-cross-dataset-synthesis-protocol.json",
+        "scripts/analyze_native_cross_dataset_synthesis.py"
+      ]
+    },
+    {
+      "id": "limitation-native-cross-dataset-scope",
+      "kind": "limitation",
+      "title": "三数据事后综合不跨量纲合并误差，不是概率排名、独立实验、原生误差界或普适规律",
+      "status": "active",
+      "sourceFiles": [
+        "exports/native-cross-dataset-synthesis.json",
+        "docs/NATIVE_CROSS_DATASET_SYNTHESIS_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -3784,6 +3841,116 @@
     {
       "from": "experiment-extreme-corpus-v2-classification",
       "to": "experiment-repository-integrity-audit",
+      "relation": "supports"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-single-error-metric-sufficient",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-native-cross-dataset-synthesis",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-native-fold4-metric-direction",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-native-point-majority-rmse",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-native-cross-dataset-synthesis-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-native-cross-dataset-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-native-cross-dataset-synthesis",
+      "to": "claim-model-family-fold-independent-winner",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-native-cross-dataset-synthesis-protocol",
+      "to": "claim-model-family-fold-independent-winner",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-native-cross-dataset-synthesis",
+      "to": "claim-single-error-metric-sufficient",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-native-fold4-metric-direction",
+      "to": "claim-single-error-metric-sufficient",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-native-point-majority-rmse",
+      "to": "claim-single-error-metric-sufficient",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-native-cross-dataset-synthesis-protocol",
+      "to": "claim-single-error-metric-sufficient",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-native-cross-dataset-synthesis",
+      "to": "counterexample-roszman1-native-fold4-metric-direction",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-cross-dataset-synthesis",
+      "to": "counterexample-roszman1-native-point-majority-rmse",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-native-cross-dataset-scope",
+      "to": "evidence-native-cross-dataset-synthesis",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-native-cross-dataset-scope",
+      "to": "claim-single-error-metric-sufficient",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-native-cross-dataset-synthesis",
+      "to": "evidence-roszman1-native-holdout",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-cross-dataset-synthesis",
+      "to": "evidence-enso-native-holdout",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-native-cross-dataset-synthesis",
+      "to": "evidence-chwirut1-native-holdout",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-native-cross-dataset-synthesis-protocol",
+      "to": "experiment-roszman1-native-holdout-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-native-cross-dataset-synthesis-protocol",
+      "to": "experiment-enso-native-holdout-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-native-cross-dataset-synthesis-protocol",
+      "to": "experiment-chwirut1-native-holdout-protocol",
       "relation": "supports"
     }
   ]
