@@ -1,0 +1,89 @@
+{
+  "status": "frozen_before_roszman1_native_ellipsoid_continuous_bounds",
+  "frozen_at_local": "2026-11-09T11:54:53+08:00",
+  "analysis_type": "High-precision numerical certification of x-b4 sign and conservative native arctangent prediction envelopes over explicitly defined parameter ellipsoids and continuous held-out intervals; no refitting or probability-region claim",
+  "inputs": {
+    "native_identifiability": {
+      "file": "validation/roszman1-native-identifiability.json",
+      "sha256": "9888145d181c157da33b3bf0f93980ef0db15e4d3b368a96330c775363bc4322",
+      "fold_count": 5,
+      "held_out_point_count": 25,
+      "unique_held_out_x_count": 25
+    }
+  },
+  "region_rule": {
+    "center": "Each frozen native parameter vector b1,b2,b3,b4 exactly as stored; no refitting or center update",
+    "matrix": "The corresponding frozen four-by-four local covariance matrix is used only to define an ellipsoid and is not interpreted as posterior or confidence covariance",
+    "ellipsoid": "E={theta:(theta-center)^T C^(-1)(theta-center) <= radius^2}; require symmetric positive-definite C by high-precision Cholesky",
+    "radius": 4,
+    "radius_scope": "Radius four is a frozen arithmetic choice, not a confidence level, probability coverage, optimized bound or calibrated uncertainty region",
+    "support_identity": "For any vector g, the maximum of g^T(theta-center) over E is radius*sqrt(g^T C g)",
+    "independent_relaxation": "Independent linear-term, argument and arctangent relaxations may be loose but must remain conservative"
+  },
+  "singularity_rule": {
+    "denominator": "d(x,b4)=x-b4",
+    "point_support": "s=radius*sqrt(C_b4b4), independent of x",
+    "point_bounds": "d_min(x)=x-b4_hat-s and d_max(x)=x-b4_hat+s",
+    "continuous_interval": "Both bounds are affine in x, so their extrema occur at endpoints",
+    "negative_certificate": "Require both outward-rounded endpoint d_max values to be strictly negative",
+    "positive_certificate": "Require both outward-rounded endpoint d_min values to be strictly positive",
+    "failure": "If neither sign can be certified, mark the fold unavailable and do not generate finite prediction or residual bounds",
+    "critical_radius": "When both endpoint centers have the same sign, critical radius is min(abs(d_hat_left)/sqrt(C_b4b4),abs(d_hat_right)/sqrt(C_b4b4)); strict sign requires radius < critical value",
+    "negative_control": "For every fold, verify that half the analytic critical radius is accepted and the exact critical radius is rejected",
+    "scope": "The certificate applies only to the defined ellipsoid and closed interval, not all parameters, all x or physical reality"
+  },
+  "prediction_rule": {
+    "native_model": "f=b1-b2*x-(1/pi)*arctan(b3/(x-b4)); use the original arctangent function, not a Taylor approximation",
+    "linear_term": "Compute A_min and A_max from b1_min,b1_max,b2_min,b2_max and x, evaluating both candidates to respect the sign of x",
+    "argument_bounds": "Compute b3_min and b3_max from the ellipsoid support and evaluate all four ratios of b3_min,b3_max with d_min,d_max to obtain z_min and z_max conservatively",
+    "arctangent_bounds": "Use atan(z_min) and atan(z_max) because arctangent is increasing",
+    "prediction_envelope": "Use f_min=A_min-atan(z_max)/pi and f_max=A_max-atan(z_min)/pi; independent relaxations may be loose but remain conservative",
+    "residual_upper_bound": "For each observed y, use max(abs(y-f_min),abs(y-f_max)) conditional on the defined ellipsoid and certified nonzero sign",
+    "center_consistency": "Require every frozen center prediction to lie inside its available envelope and actual residual not to exceed its upper bound; this is arithmetic consistency, not external validation or probability coverage",
+    "width_audit": "Report argument ranges, envelope widths and residual upper bounds so formally valid but wide bounds cannot be called high information"
+  },
+  "numerical_rule": {
+    "engine": "mpmath with 80 decimal digits and exact decimal conversion of stored input values",
+    "outward_relative_margin": "Apply a relative margin of 1e-24 before conversion to binary floats, then use nextafter in the outward direction for every certified lower and upper value",
+    "certificate_class": "High-precision numerical interval certificate, not exact rational algebra",
+    "positive_definite_check": "Fail rather than generate bounds if the covariance matrix is not symmetric positive definite",
+    "failure_preservation": "Non-finite values, failed Cholesky, sign crossings, exact critical radii and unavailable envelopes are retained explicitly"
+  },
+  "expected_structure": {
+    "fold_count": 5,
+    "held_out_point_count": 25,
+    "unique_held_out_x_count": 25,
+    "radius": 4,
+    "refit_count": 0
+  },
+  "output_rule": {
+    "summary": "validation/roszman1-native-ellipsoid-continuous-bounds.json",
+    "figure": "papers/53_Roszman1原生椭球奇异界/fig53_roszman1_native_ellipsoid_continuous_bounds.png",
+    "report": "docs/ROSZMAN1_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md",
+    "word": "papers/前沿共生Roszman1原生椭球奇异界_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "decision": {
+    "refit": false,
+    "probability_region_claimed": false,
+    "confidence_interval_claimed": false,
+    "exact_rational_certificate_claimed": false,
+    "all_parameters_or_all_x_certified": false,
+    "uncertified_folds_given_bounds": false,
+    "actual_coverage_used_as_probability": false,
+    "center_consistency_used_as_external_validation": false,
+    "rational_bounds_transferred_to_native": false,
+    "independent_physical_experiment_claimed": false,
+    "failed_folds_hidden": false
+  },
+  "prohibitions": [
+    "No refitting, changed centers, changed covariance matrices, changed folds or post-hoc radius selection",
+    "No Taylor-model substitution for the native arctangent prediction envelope",
+    "No finite prediction or residual bound when x-b4 sign cannot be certified over the full ellipsoid and continuous interval",
+    "No probability, confidence, posterior, calibrated-coverage, optimal-radius or physical-endogeneity claim",
+    "No use of center-prediction containment or actual-residual coverage as independent scientific validation",
+    "No exact rational-certificate claim for the high-precision numerical intervals",
+    "No hiding of sign crossings, unavailable folds, wide envelopes or numerical failures"
+  ]
+}
