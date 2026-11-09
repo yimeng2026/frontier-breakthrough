@@ -1,0 +1,29 @@
+{
+  "status": "frozen_before_chwirut1_native_ellipsoid_radius_sensitivity_count_correction",
+  "frozen_at_local": "2026-11-09T11:32:52+08:00",
+  "amendment_id": "chwirut1-native-ellipsoid-radius-sensitivity-amendment-01",
+  "original_protocol": {
+    "file": "validation/chwirut1-native-ellipsoid-radius-sensitivity-protocol.json",
+    "sha256": "3cff6b5096eb9dea0ec90750cb73f2d07cacc322c7c449fa510c7d1248adde3a"
+  },
+  "correction": {
+    "field": "expected_structure.maximum_point_evaluations and grid_rule.maximum_point_evaluations",
+    "original_maximum_point_evaluations": 1070,
+    "corrected_maximum_point_evaluations": 5350,
+    "formula": "25 fold-radius cases * 214 held-out observations per case = 5350 evaluations",
+    "unchanged_maximum_envelope_evaluations": 110,
+    "reason": "The original point-evaluation metadata underestimated the Cartesian product; the correction does not alter any scientific choice"
+  },
+  "preservation_rule": {
+    "original_protocol_file_unchanged": true,
+    "radii_folds_centers_covariances_and_critical_rules_unchanged": true,
+    "baseline_bounds_unchanged": true,
+    "no_model_or_radius_change_after_results": true
+  },
+  "decision": {
+    "radii_changed": false,
+    "models_changed": false,
+    "original_protocol_file_modified": false,
+    "correction_hidden": false
+  }
+}
