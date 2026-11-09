@@ -1,0 +1,60 @@
+{
+  "status": "frozen_before_roszman1_whitened_grid_convergence_results",
+  "frozen_at_local": "2026-11-09T17:40:41+08:00",
+  "amendment": "01",
+  "original_protocol": {
+    "file": "validation/roszman1-whitened-grid-convergence-protocol.json",
+    "sha256": "c784136c0c75a4d069dff00b85b694c91549f5e8f2b48a17747f5f9b57dcd7b1"
+  },
+  "reason": "The original stage-58 whitened result is invalid for conservative proof because its denominator displacement used the wrong sign. Grid-8 convergence must use the corrected grid-4 result and corrected denominator implementation instead",
+  "corrected_inputs": {
+    "whitened_bounds": {
+      "file": "validation/roszman1-whitened-cover-grid-corrected-01.json",
+      "sha256": "526d18aa08a0538e85b21bfa512aafa3d314c626cdfa34629f977cd692d15629"
+    },
+    "whitened_receipt": {
+      "file": "validation/roszman1-whitened-cover-grid-erratum-check.json",
+      "sha256": "dd6f3cc5cfd916faded7726de44a44458f18559aacd889800a3a5fe5fb03ef7f"
+    },
+    "whitened_runner": {
+      "file": "scripts/analyze_roszman1_whitened_cover_grid_erratum.py",
+      "sha256": "00dcea0311f1d4ddfc4a2d7c8f77caeb65e54ae85b934c26b5e4890eb4a5753b"
+    }
+  },
+  "corrected_receipt_rule": {
+    "primary_grid": 4,
+    "native_cell_evaluation_count": 5460,
+    "unresolved_cell_count": 0,
+    "vertex_interval_violation_count": 0,
+    "transform_witness_count": 200,
+    "original_proof_validity": "invalid_for_conservative_proof",
+    "primary_intersection_tightened_count": 17,
+    "primary_intersection_unchanged_count": 3,
+    "median_primary_intersection_to_ratio_width_ratio": 0.4474424821614995,
+    "summary_sha256": "526d18aa08a0538e85b21bfa512aafa3d314c626cdfa34629f977cd692d15629",
+    "receipt_scope": "The corrected receipt verifies the corrected implementation and the original invalid scope; the old whitened result and old grid-4 tightening claims are not trusted"
+  },
+  "correction_rule": {
+    "denominator": "d=d0-L_row4*u",
+    "vertex_gate": "Reuse the corrected vertex_interval_audit so every endpoint vertex is checked for denominator-interval and prediction-interval containment",
+    "grid4_reference": "Use the corrected grid-4 union and final intersection for incremental grid-8/grid-4 comparisons",
+    "historical_grid_totals": "Use the corrected 1,2,4 grid totals, not the suspended original medians or counts",
+    "candidate_witnesses": "Continue to require all 200 exact forward/inverse transform witnesses and 200 grid-8 candidate checks",
+    "unchanged_rules": "Grid-8 partition count 81920, outside boundary tolerance, unresolved-denominator handling, incremental ratios, plateau meaning and storage budget remain as in the original protocol"
+  },
+  "historical_preservation": {
+    "original_protocol_unchanged": true,
+    "original_whitened_runner_unchanged": true,
+    "original_results_used_as_valid_cover": false,
+    "convergence_result_not_yet_written": true,
+    "erratum_files_preserved": true
+  },
+  "decision": {
+    "original_whitened_cover_used": false,
+    "plateau_called_convergence_proof": false,
+    "original_history_rewritten": false,
+    "sign_error_hidden": false,
+    "exact_global_optimum_claimed": false,
+    "fold5_given_finite_bound": false
+  }
+}
