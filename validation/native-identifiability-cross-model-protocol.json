@@ -1,0 +1,63 @@
+{
+  "status": "frozen_before_native_identifiability_cross_model_synthesis",
+  "frozen_at_local": "2026-11-09T10:30:50+08:00",
+  "analysis_type": "Read-only post-hoc synthesis of three frozen native local-identifiability studies; no refitting, covariance recomputation or new experiment",
+  "inputs": {
+    "roszman1": {
+      "file": "validation/roszman1-native-identifiability.json",
+      "sha256": "9888145d181c157da33b3bf0f93980ef0db15e4d3b368a96330c775363bc4322",
+      "parameter_count": 4,
+      "held_out_point_count": 25
+    },
+    "chwirut1": {
+      "file": "validation/chwirut1-native-identifiability.json",
+      "sha256": "e8e76516b05e8fd83f60df0ad93215ce41984ca562cc9e5140291f5f6ba72cc8",
+      "parameter_count": 3,
+      "held_out_point_count": 214
+    },
+    "enso": {
+      "file": "validation/enso-native-identifiability.json",
+      "sha256": "19656ed9f5930bed7e9bbdcd1072f50b5e68a8836c1975ab550dc1d828011d7e",
+      "parameter_count": 9,
+      "held_out_point_count": 168
+    }
+  },
+  "rules": {
+    "source_preservation": "Use only stored frozen parameters, Jacobian diagnostics, period/denominator diagnostics, held-out prediction sensitivity and native test metrics; do not rerun optimizers, SVD, covariance or period fitting",
+    "fold_coverage": "Include all five folds from each dataset in input order Roszman1, Chwirut1, ENSO; no fold selection or cross-dataset reordering by performance",
+    "sensitivity_error_ratio": "For each fold, divide max local linearized prediction standard deviation by actual held-out RMSE; require finite positive values and preserve the raw numerator and denominator",
+    "ratio_direction": "Ratio greater than one means the maximum local sensitivity exceeds actual RMSE; ratio equal to one is retained separately and is not forced above or below one",
+    "descriptive_counts": "Count full-rank folds, local diagnostic failures and ratio-greater-than-one folds; these counts are not probabilities, calibration scores or model-quality rankings",
+    "dataset_summaries": "Within each dataset report raw minima, medians and maxima of scaled condition numbers, maximum parameter correlations and sensitivity/error ratios",
+    "parameter_stability": "Preserve every parameter-stability record in native units; do not normalize parameters into a common stability score",
+    "scope_specific_evidence": "Preserve Roszman1 parameter ranges, Chwirut1 denominator/pole and fold-1 b2 diagnostics, and ENSO period ranges, fold-4 period standard errors and harmonic correlation blocks",
+    "cross_dataset_pooling": "Do not pool residuals, RMSE, prediction standard deviations, covariance matrices, parameter values or condition numbers into a single error or stability metric",
+    "known_answer_and_proof_scope": "Keep ENSO optimizer-known-answer mismatch separate from certified forward evaluation; do not transfer rational certificates or describe local linearization as global identifiability or calibrated uncertainty"
+  },
+  "expected_structure": {
+    "dataset_count": 3,
+    "folds_per_dataset": 5,
+    "total_fold_count": 15,
+    "total_held_out_point_count": 407,
+    "parameter_counts": [4, 3, 9],
+    "full_numerical_rank_fold_count": 15,
+    "local_diagnostic_failure_count": 0
+  },
+  "output_rule": {
+    "summary": "exports/native-identifiability-cross-model-synthesis.json",
+    "figure": "papers/49_三模型局部可识别性综合/fig49_native_identifiability_cross_model.png",
+    "report": "docs/NATIVE_IDENTIFIABILITY_CROSS_MODEL_2026-11-09.md",
+    "word": "papers/前沿共生三模型局部可识别性综合_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "prohibitions": [
+    "No refitting, retuning, new starts, changed folds, new covariance estimates or new parameter values",
+    "No pooled cross-model residual, RMSE, sensitivity, covariance or parameter metric",
+    "No conversion of fold counts or sensitivity/error ratios into probabilities, calibrated coverage, effect sizes or universal stability scores",
+    "No ranking of model quality or physical validity by condition number alone",
+    "No claim of global structural identifiability, physical endogeneity, new physical periods, independent experiment or independent model-family replication",
+    "No erasure of folds whose sensitivity exceeds RMSE, fold-level parameter variation, denominator poles or harmonic compensation",
+    "No rewriting of the three frozen local-identifiability inputs"
+  ]
+}
