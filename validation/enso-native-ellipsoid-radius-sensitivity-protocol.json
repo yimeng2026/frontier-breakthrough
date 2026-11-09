@@ -1,0 +1,110 @@
+{
+  "status": "frozen_before_enso_native_ellipsoid_radius_sensitivity",
+  "frozen_at_local": "2026-11-09T12:38:34+08:00",
+  "analysis_type": "Retrospective fixed-grid sensitivity audit of high-precision positive-period certificates and conservative native Fourier prediction envelopes over explicit parameter ellipsoids; no refitting, radius optimization or probability-region claim",
+  "inputs": {
+    "native_identifiability": {
+      "file": "validation/enso-native-identifiability.json",
+      "sha256": "19656ed9f5930bed7e9bbdcd1072f50b5e68a8836c1975ab550dc1d828011d7e"
+    },
+    "baseline_bounds": {
+      "file": "validation/enso-native-ellipsoid-continuous-bounds.json",
+      "sha256": "d6eab927eaafc9dc8d469fa42e830660b0e673bde52031b1cd2bd78f795f61ea",
+      "baseline_radius": 4
+    },
+    "baseline_runner": {
+      "file": "scripts/analyze_enso_native_ellipsoid_continuous.py",
+      "sha256": "614a419ce8388ab644b9665023600ebfb475c82577b550e74ee632b4f9c438e1"
+    }
+  },
+  "critical_radius_rule": {
+    "periods": ["b4", "b7"],
+    "unit_support": "For period p, use the frozen covariance diagonal to compute sqrt(C_pp); the positive-center critical value is center_p/sqrt(C_pp)",
+    "fold_radius": "rho_fold=min(b4/sqrt(C_b4b4),b7/sqrt(C_b7b7)); record both values and the limiting parameter",
+    "strict_rule": "Positive-period certification requires radius < rho_fold. The exact critical radius and larger radii do not produce a strictly positive lower bound and must not receive finite prediction envelopes",
+    "geometric_scope": "The critical radius is a geometric property of the selected ellipsoid, not a confidence level, optimal radius, physical period estimate or universal maximum",
+    "negative_control": "Reuse the frozen baseline implementation and require every fold's half-critical radius to be accepted and exact critical radius to be rejected",
+    "zero_guard": "Period minima in the implementation's scale-dependent numerical zero zone are rejected rather than labeled strictly positive"
+  },
+  "grid_rule": {
+    "radii": [1, 2, 4, 8, 16, 32],
+    "selection": "Radii 1 and 2 are below the stage-47 baseline, 4 reproduces it, 8 and 16 widen it, and 32 is a coarse stress above the two smallest known analytic critical radii. No radius may be added, removed or replaced after inspecting case outcomes",
+    "case_count": 30,
+    "case_evaluation": "For every fold and radius, evaluate both period supports and record certified or unavailable status, both period minima and maxima, the analytic critical radius and the limiting parameter",
+    "envelope_evaluation": "Only certified cases generate original Fourier prediction envelopes at all unique held-out months and residual upper bounds for all observations, using the actual sine and cosine signs without fixed-period or Taylor substitution",
+    "width_audit": "Report maximum and median envelope widths and residual upper bounds per case. Unavailable cases retain null bounds and explicit unavailable counts rather than fabricated values",
+    "center_consistency": "Require every available center prediction to remain inside its envelope and actual residual not to exceed its upper bound; this is arithmetic consistency, not probability coverage or external validation",
+    "grid_maximum": "Report the largest certified radius within the fixed grid separately from the analytic critical radius; never call the grid maximum the exact safe maximum",
+    "maximum_point_evaluations": 5040,
+    "maximum_envelope_evaluations": 5040
+  },
+  "baseline_rule": {
+    "radius": 4,
+    "preservation": "Recompute every radius-4 fold with the frozen stage-47 implementation and require fold identity, critical radii, period certificates, prediction envelopes, point results, coverage counts and fold aggregate widths to match the frozen baseline exactly",
+    "baseline_totals": "Require fold_count=5, available_point_count=168, covered_point_count=168, violation_point_count=0, unavailable_point_count=0 and center_prediction_envelope_mismatch_count=0; require max_envelope_width=17.64192935677042, median_envelope_width=13.164436414771593, max_residual_upper_bound=14.576765863967406 and median_residual_upper_bound=8.516811559710845",
+    "historical_preservation": "Do not rewrite the stage-47 protocol, bounds, receipt, report, figure, Word document or manifest"
+  },
+  "numerical_rule": {
+    "engine": "Reuse the frozen 80-digit mpmath support, positive-period and original Fourier envelope implementation from stage 47",
+    "outward_rounding": "Retain the 1e-24 relative margin and nextafter outward conversion",
+    "certificate_class": "High-precision numerical interval certificate, not exact rational algebra",
+    "failure_preservation": "Non-finite values, failed positive-definite checks, non-positive periods, exact critical radii and unavailable cases are retained explicitly"
+  },
+  "analysis_scope": {
+    "retrospective_fixed_grid_sensitivity": true,
+    "prospective_independent_validation": false,
+    "radius_grid_selected_after_case_outcomes": false,
+    "joint_nonlinear_optimum_claimed": false,
+    "period_centers_or_covariances_changed": false,
+    "full_stage47_baseline_reused_as_frozen_input": true
+  },
+  "expected_structure": {
+    "fold_count": 5,
+    "radius_count": 6,
+    "case_count": 30,
+    "held_out_point_count_per_case": 168,
+    "unique_month_count_per_case": 168,
+    "maximum_point_evaluations": 5040,
+    "maximum_envelope_evaluations": 5040,
+    "refit_count": 0
+  },
+  "output_rule": {
+    "summary": "validation/enso-native-ellipsoid-radius-sensitivity.json",
+    "figure": "papers/55_ENSO原生椭球半径敏感性/fig55_enso_native_ellipsoid_radius_sensitivity.png",
+    "report": "docs/ENSO_NATIVE_ELLIPSOID_RADIUS_SENSITIVITY_2026-11-09.md",
+    "word": "papers/前沿共生ENSO原生椭球半径敏感性_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "decision": {
+    "refit": false,
+    "probability_region_claimed": false,
+    "optimal_radius_selected": false,
+    "critical_radius_is_confidence_level": false,
+    "critical_radius_is_universal_maximum": false,
+    "grid_maximum_called_exact_safe_maximum": false,
+    "exact_critical_radius_accepted": false,
+    "unavailable_cases_given_bounds": false,
+    "positive_period_used_as_physical_proof": false,
+    "independent_envelope_called_joint_optimum": false,
+    "center_consistency_used_as_external_validation": false,
+    "actual_coverage_used_as_probability": false,
+    "exact_rational_certificate_claimed": false,
+    "fixed_period_or_taylor_substitution": false,
+    "independent_physical_experiment_claimed": false,
+    "baseline_files_rewritten": false,
+    "failed_cases_hidden": false
+  },
+  "prohibitions": [
+    "No refitting, changed centers, changed covariance matrices, changed folds, period bounds or post-hoc radius selection",
+    "No acceptance of the exact critical radius as strictly period-positive",
+    "No finite prediction or residual bound for unavailable or exact-critical cases",
+    "No probability, confidence, posterior, calibrated-coverage, optimal-radius, physical-period or physical-endogeneity claim",
+    "No use of center-prediction containment or actual-residual coverage as independent scientific validation",
+    "No calling the largest certified grid radius the exact or universal safe maximum",
+    "No calling independent coefficient relaxations a joint nonlinear optimum",
+    "No fixed-period or Taylor substitution for the native Fourier model",
+    "No rewriting of stage-47 historical files",
+    "No hiding of unavailable cases, limiting periods, wide envelopes or numerical failures"
+  ]
+}
