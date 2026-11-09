@@ -115,6 +115,8 @@ def build() -> dict:
     nativeEllipsoidCrossCheck = read("native-ellipsoid-cross-model-check.json")
     ensoSlice = read("enso-conditional-period-slice-bounds.json")
     ensoSliceCheck = read("enso-conditional-period-slice-check.json")
+    ensoLipschitz = read("enso-full-ellipsoid-lipschitz-intersection.json")
+    ensoLipschitzCheck = read("enso-full-ellipsoid-lipschitz-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -1303,6 +1305,60 @@ def build() -> dict:
             "limitations": "Schur 补只给出固定周期切片上的七系数联合支撑，不是九维联合非线性最优。四个方向不是全局优化器，零越界不证明安全；切片收紧不能替代原独立全椭球包络。原坐标-only 公式经可行性门禁拒绝后单独修正，不作为最终反例。" + " ".join(ensoSlice["limitations"]),
             "upstreamContribution": "提供椭球切片 Schur 补、完整协方差支撑候选、逐月收紧与全域外推反例接口，分开条件有效性、全域保守性、候选非最优性和修正历史。",
             "snapshotFiles": ["validation/enso-conditional-period-slice-protocol.json", "validation/enso-conditional-period-slice-protocol-amendment-01.json", "validation/enso-conditional-period-slice-check.json", "validation/frontier-enso-conditional-period-slice-word.json"],
+        },
+        {
+            "id": "enso-full-ellipsoid-lipschitz-intersection", "domain": "physics", "title": "ENSO 全椭球 Lipschitz 保守界与交集收紧",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/ENSO.dat"],
+            "metrics": {
+                "totals": ensoLipschitz["totals"],
+                "folds": [{
+                    "fold": fold["fold"],
+                    "nativeTestRmse": fold["native_test_rmse"],
+                    "candidateEvaluationCount": fold["candidate_evaluation_count"],
+                    "alternativeTighterCount": fold["alternative_tighter_count"],
+                    "alternativeWiderCount": fold["alternative_wider_count"],
+                    "alternativeEqualCount": fold["alternative_equal_count"],
+                    "intersectionTightenedCount": fold["intersection_tightened_count"],
+                    "intersectionUnchangedCount": fold["intersection_unchanged_count"],
+                    "intersectionBoundChangedCount": fold["intersection_bound_changed_count"],
+                    "nonemptyIntersectionCount": fold["nonempty_intersection_count"],
+                    "alternativeCandidateViolationCount": fold["alternative_candidate_violation_count"],
+                    "intersectionCandidateViolationCount": fold["intersection_candidate_violation_count"],
+                    "independentCandidateViolationCount": fold["independent_candidate_violation_count"],
+                    "candidateFeasibilityFailureCount": fold["candidate_feasibility_failure_count"],
+                    "centerPredictionMismatchCount": fold["center_prediction_mismatch_count"],
+                    "minAlternativeToIndependentWidthRatio": fold["min_alternative_to_independent_width_ratio"],
+                    "medianAlternativeToIndependentWidthRatio": fold["median_alternative_to_independent_width_ratio"],
+                    "maxAlternativeToIndependentWidthRatio": fold["max_alternative_to_independent_width_ratio"],
+                    "minIntersectionToIndependentWidthRatio": fold["min_intersection_to_independent_width_ratio"],
+                    "medianIntersectionToIndependentWidthRatio": fold["median_intersection_to_independent_width_ratio"],
+                    "maxIntersectionToIndependentWidthRatio": fold["max_intersection_to_independent_width_ratio"],
+                    "maxIntersectionWidthReduction": fold["max_intersection_width_reduction"],
+                    "medianIntersectionWidthReduction": fold["median_intersection_width_reduction"],
+                    "maxAlternativeRemainderSupport": fold["max_alternative_remainder_support"],
+                    "largestIntersectionTightening": fold["largest_intersection_tightening"],
+                    "envelopes": fold["envelopes"],
+                } for fold in ensoLipschitz["folds"]],
+                "independentReceiptVerified": ensoLipschitz["independent_receipt_verified"],
+                "sliceReceiptVerified": ensoLipschitz["slice_receipt_verified"],
+                "fullEllipsoidJointNonlinearOptimum": ensoLipschitz["full_ellipsoid_joint_nonlinear_optimum"],
+                "analysisScope": ensoLipschitz["analysis_scope"],
+                "decision": ensoLipschitz["decision"],
+                "implementation": {
+                    "protocolSha256": ensoLipschitz["protocol_sha256"],
+                    "summarySha256": ensoLipschitzCheck["summarySha256"],
+                    "analysisRunnerSha256": ensoLipschitzCheck["analysisRunnerSha256"],
+                    "figureSha256": ensoLipschitzCheck["figureSha256"],
+                    "reportSha256": ensoLipschitzCheck["reportSha256"],
+                    "wordSha256": ensoLipschitzCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "18d051e"},
+            },
+            "scientificClaim": "全椭球 Lipschitz 替代界在 13 个月份更紧、155 个月份更宽；与第四十七阶段独立包络取交集后，13 个月份收紧、155 个月份保持。最大收紧在第 1 折 x=4，宽度比 0.535904、宽度减少 8.086192；672 个候选全部在替代界和交集内。",
+            "limitations": "替代界由精确分解、边际支撑、三角不等式和 Lipschitz 余项构成，不是全域联合最优。交集可保持不变，候选检查只验证实现一致性；不隐藏更宽替代界、未收紧交集或历史基线。" + " ".join(ensoLipschitz["limitations"]),
+            "upstreamContribution": "提供全椭球 Lipschitz 分解、周期余项、保守交集、逐月宽度比较和候选一致性接口，明确分开局部收紧、全域最优性与解析证明。",
+            "snapshotFiles": ["validation/enso-full-ellipsoid-lipschitz-protocol.json", "validation/enso-full-ellipsoid-lipschitz-check.json", "validation/frontier-enso-full-ellipsoid-lipschitz-word.json"],
         },
     ]
     packet = {

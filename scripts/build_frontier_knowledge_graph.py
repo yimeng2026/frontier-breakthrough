@@ -108,6 +108,9 @@ def build_graph(root):
     ensoSlice = json.loads((root / "validation/enso-conditional-period-slice-bounds.json").read_text(encoding="utf-8"))
     if ensoSlice["totals"]["slice_envelope_count"] != 168 or ensoSlice["totals"]["candidate_direction_count"] != 20 or ensoSlice["totals"]["candidate_evaluation_count"] != 672 or ensoSlice["totals"]["slice_violation_evaluation_count"] != 199 or ensoSlice["totals"]["slice_violating_envelope_count"] != 95 or ensoSlice["totals"]["full_independent_violation_count"] != 0 or ensoSlice["totals"]["slice_containment_violation_count"] != 0 or ensoSlice["totals"]["candidate_feasibility_failure_count"] != 0 or ensoSlice["totals"]["median_slice_to_independent_width_ratio"] != 0.31983975629460537 or ensoSlice["totals"]["max_width_reduction"] != 13.283611289252011 or ensoSlice["totals"]["max_slice_violation_exceedance"] != 2.3416912445042737 or ensoSlice["totals"]["slice_global_validity"] != "falsified_by_feasible_candidate" or ensoSlice["totals"]["largest_violation_witness"]["fold"] != 4 or ensoSlice["totals"]["largest_violation_witness"]["x"] != 134.0 or not ensoSlice["baseline_receipt_verified"] or ensoSlice["baseline_envelope_match_count"] != 168 or [fold["slice_violation_evaluation_count"] for fold in ensoSlice["folds"]] != [56, 4, 0, 57, 82] or ensoSlice["decision"]["slice_bound_called_full_ellipsoid_bound"] or ensoSlice["decision"]["zero_witness_called_safety_proof"]:
         raise ValueError("Expected conditional slice tightening, export witnesses and baseline boundaries are not present")
+    ensoLipschitz = json.loads((root / "validation/enso-full-ellipsoid-lipschitz-intersection.json").read_text(encoding="utf-8"))
+    if ensoLipschitz["totals"]["alternative_tighter_count"] != 13 or ensoLipschitz["totals"]["alternative_wider_count"] != 155 or ensoLipschitz["totals"]["alternative_equal_count"] != 0 or ensoLipschitz["totals"]["intersection_tightened_count"] != 13 or ensoLipschitz["totals"]["intersection_unchanged_count"] != 155 or ensoLipschitz["totals"]["nonempty_intersection_count"] != 168 or ensoLipschitz["totals"]["alternative_candidate_violation_count"] != 0 or ensoLipschitz["totals"]["intersection_candidate_violation_count"] != 0 or ensoLipschitz["totals"]["independent_candidate_violation_count"] != 0 or ensoLipschitz["totals"]["center_prediction_mismatch_count"] != 0 or ensoLipschitz["totals"]["median_alternative_to_independent_width_ratio"] != 2.3027937209620504 or ensoLipschitz["totals"]["median_intersection_to_independent_width_ratio"] != 1.0 or ensoLipschitz["totals"]["max_intersection_width_reduction"] != 8.086192176366756 or ensoLipschitz["totals"]["largest_intersection_tightening"]["x"] != 4.0 or not ensoLipschitz["independent_receipt_verified"] or not ensoLipschitz["slice_receipt_verified"] or ensoLipschitz["decision"]["intersection_is_global_optimum"] or ensoLipschitz["decision"]["candidate_checks_replace_analytic_proof"]:
+        raise ValueError("Expected Lipschitz wider alternatives, local intersections and candidate boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -1226,6 +1229,50 @@ def build_graph(root):
         edge("experiment-enso-conditional-period-slice-protocol", "claim-independent-fourier-envelope-joint-optimum", "tests"),
         edge("counterexample-enso-slice-fold4-x134-export", "limitation-enso-native-ellipsoid-period-scope", "supports"),
         edge("evidence-enso-conditional-period-slice", "counterexample-enso-optimizer-mismatch", "supports"),
+    ])
+    nodes.extend([
+        node("claim-lipschitz-alternative-always-tighter", "claim", "边际线性支撑加 Lipschitz 周期余项在每个月份都必然比独立系数包络更紧", "falsified", ["validation/enso-full-ellipsoid-lipschitz-intersection.json"]),
+        node("claim-intersection-global-optimum", "claim", "两种有效保守包络的交集自动等于完整非线性区域上的全局最优界", "falsified", ["validation/enso-full-ellipsoid-lipschitz-intersection.json"]),
+        node("evidence-enso-full-lipschitz-intersection", "evidence", "替代界在 13 个月份更紧、155 个月份更宽；交集在 13 个月份收紧、155 个月份保持，672 个候选全部在交集内", "supported", ["validation/enso-full-ellipsoid-lipschitz-intersection.json", "validation/enso-full-ellipsoid-lipschitz-check.json"]),
+        node("counterexample-enso-lipschitz-wider-majority", "counterexample", "替代界宽度比中位数为 2.302794、最大值为 4.223063，155 个月份比原独立包络更宽，联合线性支撑不等于全域必紧", "supported", ["validation/enso-full-ellipsoid-lipschitz-intersection.json"]),
+        node("evidence-enso-fold1-x4-intersection-tightening", "evidence", "第 1 折 x=4 的交集为 2.871684 至 12.209009，宽度比 0.535904，宽度减少 8.086192；这是局部而非普遍收紧", "supported", ["validation/enso-full-ellipsoid-lipschitz-intersection.json", "docs/ENSO_FULL_ELLIPSOID_LIPSCHITZ_INTERSECTION_2026-11-09.md"]),
+        node("experiment-enso-full-lipschitz-protocol", "experiment", "冻结精确分解、边际线性支撑、Lipschitz 余项、与独立包络的交集及 672 次候选一致性门禁", "supported", ["validation/enso-full-ellipsoid-lipschitz-protocol.json", "scripts/analyze_enso_full_ellipsoid_lipschitz.py"]),
+        node("counterexample-enso-candidate-check-not-global-proof", "counterexample", "672 个候选全部在替代界和交集内，只能说明实现一致，候选方向不是全局优化器，不能替代解析证明或全域最优性论证", "supported", ["validation/enso-full-ellipsoid-lipschitz-intersection.json"]),
+        node("limitation-enso-full-lipschitz-intersection-scope", "limitation", "替代界可以更宽，交集可以不变；Lipschitz 余项不是 Taylor 替换，交集不是全局最优，候选检查不是独立实验或概率覆盖", "active", ["validation/enso-full-ellipsoid-lipschitz-intersection.json", "docs/ENSO_FULL_ELLIPSOID_LIPSCHITZ_INTERSECTION_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-lipschitz-alternative-always-tighter", "contains"),
+        edge("track-holdout", "claim-intersection-global-optimum", "contains"),
+        edge("track-holdout", "evidence-enso-full-lipschitz-intersection", "contains"),
+        edge("track-holdout", "counterexample-enso-lipschitz-wider-majority", "contains"),
+        edge("track-holdout", "evidence-enso-fold1-x4-intersection-tightening", "contains"),
+        edge("track-holdout", "experiment-enso-full-lipschitz-protocol", "contains"),
+        edge("track-holdout", "counterexample-enso-candidate-check-not-global-proof", "contains"),
+        edge("track-holdout", "limitation-enso-full-lipschitz-intersection-scope", "contains"),
+        edge("evidence-enso-full-lipschitz-intersection", "claim-lipschitz-alternative-always-tighter", "contradicts"),
+        edge("experiment-enso-full-lipschitz-protocol", "claim-lipschitz-alternative-always-tighter", "tests"),
+        edge("counterexample-enso-lipschitz-wider-majority", "claim-lipschitz-alternative-always-tighter", "contradicts"),
+        edge("evidence-enso-full-lipschitz-intersection", "counterexample-enso-lipschitz-wider-majority", "supports"),
+        edge("evidence-enso-full-lipschitz-intersection", "claim-intersection-global-optimum", "contradicts"),
+        edge("experiment-enso-full-lipschitz-protocol", "claim-intersection-global-optimum", "tests"),
+        edge("evidence-enso-fold1-x4-intersection-tightening", "evidence-enso-full-lipschitz-intersection", "supports"),
+        edge("evidence-enso-fold1-x4-intersection-tightening", "limitation-enso-full-lipschitz-intersection-scope", "supports"),
+        edge("counterexample-enso-candidate-check-not-global-proof", "limitation-enso-full-lipschitz-intersection-scope", "supports"),
+        edge("limitation-enso-full-lipschitz-intersection-scope", "evidence-enso-full-lipschitz-intersection", "limits"),
+        edge("limitation-enso-full-lipschitz-intersection-scope", "claim-lipschitz-alternative-always-tighter", "limits"),
+        edge("limitation-enso-full-lipschitz-intersection-scope", "claim-intersection-global-optimum", "limits"),
+        edge("evidence-enso-full-lipschitz-intersection", "evidence-enso-conditional-period-slice", "supports"),
+        edge("experiment-enso-full-lipschitz-protocol", "experiment-enso-conditional-period-slice-protocol", "supports"),
+        edge("evidence-enso-full-lipschitz-intersection", "evidence-enso-native-ellipsoid-continuous", "supports"),
+        edge("experiment-enso-full-lipschitz-protocol", "experiment-enso-native-ellipsoid-continuous-protocol", "supports"),
+        edge("evidence-enso-full-lipschitz-intersection", "evidence-native-ellipsoid-cross-model", "supports"),
+        edge("evidence-enso-full-lipschitz-intersection", "counterexample-enso-optimizer-mismatch", "supports"),
+        edge("experiment-enso-full-lipschitz-protocol", "claim-independent-fourier-envelope-joint-optimum", "tests"),
+        edge("evidence-enso-full-lipschitz-intersection", "claim-independent-fourier-envelope-joint-optimum", "contradicts"),
+        edge("limitation-enso-full-lipschitz-intersection-scope", "claim-independent-fourier-envelope-joint-optimum", "limits"),
+        edge("counterexample-enso-lipschitz-wider-majority", "claim-finite-bound-high-information", "contradicts"),
+        edge("experiment-enso-full-lipschitz-protocol", "claim-center-coverage-external-validation", "tests"),
+        edge("limitation-enso-full-lipschitz-intersection-scope", "claim-center-coverage-external-validation", "limits"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

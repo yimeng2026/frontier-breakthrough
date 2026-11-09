@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "enso_conditional_period_slice":
+    if REPORT_MODE == "enso_full_ellipsoid_lipschitz":
+        replacements = {
+            "图：`papers/58_ENSO全椭球Lipschitz交集/fig58_enso_full_ellipsoid_lipschitz_intersection.png`。": "![](papers/58_ENSO全椭球Lipschitz交集/fig58_enso_full_ellipsoid_lipschitz_intersection.png)\n\n**图 58｜ENSO 全椭球 Lipschitz 保守界与交集收紧（第 1 幅，共 1 幅）**  \n**插入位置**：§6「四联图与证据边界」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "168 个全域替代界与交集、13 个收紧月份和 672 次候选一致性复核"
+    elif REPORT_MODE == "enso_conditional_period_slice":
         replacements = {
             "图：`papers/57_ENSO条件周期切片界/fig57_enso_conditional_period_slice_bounds.png`。": "![](papers/57_ENSO条件周期切片界/fig57_enso_conditional_period_slice_bounds.png)\n\n**图 57｜ENSO 条件周期切片联合支撑与全域反例（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联图与证据边界」；顺序第 1 幅，共 1 幅。",
         }

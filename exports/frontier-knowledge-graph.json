@@ -2643,6 +2643,82 @@
         "validation/enso-conditional-period-slice-bounds.json",
         "docs/ENSO_CONDITIONAL_PERIOD_SLICE_BOUNDS_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-lipschitz-alternative-always-tighter",
+      "kind": "claim",
+      "title": "边际线性支撑加 Lipschitz 周期余项在每个月份都必然比独立系数包络更紧",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/enso-full-ellipsoid-lipschitz-intersection.json"
+      ]
+    },
+    {
+      "id": "claim-intersection-global-optimum",
+      "kind": "claim",
+      "title": "两种有效保守包络的交集自动等于完整非线性区域上的全局最优界",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/enso-full-ellipsoid-lipschitz-intersection.json"
+      ]
+    },
+    {
+      "id": "evidence-enso-full-lipschitz-intersection",
+      "kind": "evidence",
+      "title": "替代界在 13 个月份更紧、155 个月份更宽；交集在 13 个月份收紧、155 个月份保持，672 个候选全部在交集内",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-full-ellipsoid-lipschitz-intersection.json",
+        "validation/enso-full-ellipsoid-lipschitz-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-lipschitz-wider-majority",
+      "kind": "counterexample",
+      "title": "替代界宽度比中位数为 2.302794、最大值为 4.223063，155 个月份比原独立包络更宽，联合线性支撑不等于全域必紧",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-full-ellipsoid-lipschitz-intersection.json"
+      ]
+    },
+    {
+      "id": "evidence-enso-fold1-x4-intersection-tightening",
+      "kind": "evidence",
+      "title": "第 1 折 x=4 的交集为 2.871684 至 12.209009，宽度比 0.535904，宽度减少 8.086192；这是局部而非普遍收紧",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-full-ellipsoid-lipschitz-intersection.json",
+        "docs/ENSO_FULL_ELLIPSOID_LIPSCHITZ_INTERSECTION_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "experiment-enso-full-lipschitz-protocol",
+      "kind": "experiment",
+      "title": "冻结精确分解、边际线性支撑、Lipschitz 余项、与独立包络的交集及 672 次候选一致性门禁",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-full-ellipsoid-lipschitz-protocol.json",
+        "scripts/analyze_enso_full_ellipsoid_lipschitz.py"
+      ]
+    },
+    {
+      "id": "counterexample-enso-candidate-check-not-global-proof",
+      "kind": "counterexample",
+      "title": "672 个候选全部在替代界和交集内，只能说明实现一致，候选方向不是全局优化器，不能替代解析证明或全域最优性论证",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-full-ellipsoid-lipschitz-intersection.json"
+      ]
+    },
+    {
+      "id": "limitation-enso-full-lipschitz-intersection-scope",
+      "kind": "limitation",
+      "title": "替代界可以更宽，交集可以不变；Lipschitz 余项不是 Taylor 替换，交集不是全局最优，候选检查不是独立实验或概率覆盖",
+      "status": "active",
+      "sourceFiles": [
+        "validation/enso-full-ellipsoid-lipschitz-intersection.json",
+        "docs/ENSO_FULL_ELLIPSOID_LIPSCHITZ_INTERSECTION_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -6495,6 +6571,166 @@
       "from": "evidence-enso-conditional-period-slice",
       "to": "counterexample-enso-optimizer-mismatch",
       "relation": "supports"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-lipschitz-alternative-always-tighter",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-intersection-global-optimum",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-enso-full-lipschitz-intersection",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-lipschitz-wider-majority",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-enso-fold1-x4-intersection-tightening",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-enso-full-lipschitz-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-candidate-check-not-global-proof",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-enso-full-lipschitz-intersection-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-enso-full-lipschitz-intersection",
+      "to": "claim-lipschitz-alternative-always-tighter",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-full-lipschitz-protocol",
+      "to": "claim-lipschitz-alternative-always-tighter",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-enso-lipschitz-wider-majority",
+      "to": "claim-lipschitz-alternative-always-tighter",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-enso-full-lipschitz-intersection",
+      "to": "counterexample-enso-lipschitz-wider-majority",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-full-lipschitz-intersection",
+      "to": "claim-intersection-global-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-full-lipschitz-protocol",
+      "to": "claim-intersection-global-optimum",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-enso-fold1-x4-intersection-tightening",
+      "to": "evidence-enso-full-lipschitz-intersection",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-fold1-x4-intersection-tightening",
+      "to": "limitation-enso-full-lipschitz-intersection-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-enso-candidate-check-not-global-proof",
+      "to": "limitation-enso-full-lipschitz-intersection-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-enso-full-lipschitz-intersection-scope",
+      "to": "evidence-enso-full-lipschitz-intersection",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-enso-full-lipschitz-intersection-scope",
+      "to": "claim-lipschitz-alternative-always-tighter",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-enso-full-lipschitz-intersection-scope",
+      "to": "claim-intersection-global-optimum",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-enso-full-lipschitz-intersection",
+      "to": "evidence-enso-conditional-period-slice",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-full-lipschitz-protocol",
+      "to": "experiment-enso-conditional-period-slice-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-full-lipschitz-intersection",
+      "to": "evidence-enso-native-ellipsoid-continuous",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-full-lipschitz-protocol",
+      "to": "experiment-enso-native-ellipsoid-continuous-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-full-lipschitz-intersection",
+      "to": "evidence-native-ellipsoid-cross-model",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-full-lipschitz-intersection",
+      "to": "counterexample-enso-optimizer-mismatch",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-full-lipschitz-protocol",
+      "to": "claim-independent-fourier-envelope-joint-optimum",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-enso-full-lipschitz-intersection",
+      "to": "claim-independent-fourier-envelope-joint-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "limitation-enso-full-lipschitz-intersection-scope",
+      "to": "claim-independent-fourier-envelope-joint-optimum",
+      "relation": "limits"
+    },
+    {
+      "from": "counterexample-enso-lipschitz-wider-majority",
+      "to": "claim-finite-bound-high-information",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-full-lipschitz-protocol",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-enso-full-lipschitz-intersection-scope",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "limits"
     }
   ]
 }
