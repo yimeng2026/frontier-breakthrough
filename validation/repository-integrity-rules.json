@@ -1,0 +1,41 @@
+{
+  "status": "frozen_repository_integrity_audit",
+  "frozen_at_local": "2026-11-09T09:05:04+08:00",
+  "readme": {
+    "file": "README.md",
+    "minimum_local_links": 84
+  },
+  "figures": {
+    "minimum_document_links": 44
+  },
+  "word_manifests": {
+    "minimum_count": 36
+  },
+  "corpus_v2": {
+    "file": "validation/extreme-corpus-v2-audit.json",
+    "documents": 23,
+    "companion_required": 12,
+    "descriptive_only": 7,
+    "complete": 4,
+    "non_null_hashes": 22,
+    "historical_originals": 10
+  },
+  "protocols": [
+    "validation/external-bound-decomposition-v5-protocol.json",
+    "validation/internal-external-bound-comparison-v5-protocol.json",
+    "validation/maximum-full-composition-v2-protocol.json",
+    "validation/roszman1-native-holdout-protocol.json",
+    "validation/roszman1-native-identifiability-protocol.json",
+    "validation/enso-native-holdout-protocol.json",
+    "validation/enso-native-holdout-protocol-amendment-01.json",
+    "validation/chwirut1-native-holdout-protocol.json",
+    "validation/chwirut1-native-holdout-protocol-amendment-01.json",
+    "validation/extreme-corpus-v2-audit.json"
+  ],
+  "decision": {
+    "external_web_checked": false,
+    "visual_qa_claimed": false,
+    "scientific_truth_claimed": false,
+    "historical_text_rewritten": false
+  }
+}
