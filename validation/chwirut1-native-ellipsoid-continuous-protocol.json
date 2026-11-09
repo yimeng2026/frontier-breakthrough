@@ -1,0 +1,87 @@
+{
+  "status": "frozen_before_chwirut1_native_ellipsoid_continuous_bounds",
+  "frozen_at_local": "2026-11-09T11:05:16+08:00",
+  "analysis_type": "High-precision numerical certification of denominator sign and conservative native exponential prediction envelopes over explicitly defined parameter ellipsoids and continuous held-out distance intervals; no refitting or probability-region claim",
+  "inputs": {
+    "native_identifiability": {
+      "file": "validation/chwirut1-native-identifiability.json",
+      "sha256": "e8e76516b05e8fd83f60df0ad93215ce41984ca562cc9e5140291f5f6ba72cc8",
+      "fold_count": 5,
+      "held_out_point_count": 214,
+      "unique_held_out_distance_count": 22
+    }
+  },
+  "region_rule": {
+    "center": "Each frozen native parameter vector b1,b2,b3 exactly as stored; no refitting or center update",
+    "matrix": "The corresponding frozen local parameter covariance matrix is used only to define an ellipsoid and is not interpreted as a posterior or confidence covariance",
+    "ellipsoid": "E={theta:(theta-center)^T C^(-1)(theta-center) <= radius^2}; require symmetric positive-definite C by high-precision Cholesky",
+    "radius": 4,
+    "radius_scope": "Radius four is a frozen arithmetic choice, not a confidence level, probability coverage, optimized bound or calibrated uncertainty region",
+    "support_identity": "For any vector g, the maximum of g^T(theta-center) over E is radius*sqrt(g^T C g)",
+    "related_dataset_scope": "Chwirut1 shares its study and native model family with Chwirut2; this is not independent model-family or laboratory replication"
+  },
+  "denominator_rule": {
+    "model": "d(x,theta)=b2+b3*x",
+    "point_support": "s(x)=radius*sqrt(C_b2b2+2*C_b2b3*x+C_b3b3*x^2)",
+    "point_bounds": "d_min(x)=d_hat(x)-s(x), d_max(x)=d_hat(x)+s(x)",
+    "continuous_interval": "For each frozen held-out distance interval [a,b], evaluate both endpoints for both bounds; d_min is concave so its minimum occurs at an endpoint and d_max is convex so its maximum occurs at an endpoint",
+    "positive_certificate": "Require both outward-rounded endpoint d_min values to be strictly greater than zero; only then certify d(x,theta)>0 over the full ellipsoid and closed continuous interval",
+    "failure": "If either endpoint cannot be certified positive, mark the fold unavailable and do not generate a finite prediction or residual bound",
+    "proof_scope": "This certifies only the explicitly defined ellipsoid and closed interval, not all parameters, all x or physical reality"
+  },
+  "prediction_rule": {
+    "native_model": "f(x,theta)=exp(-b1*x)/(b2+b3*x); use the original nonlinear function, not a Taylor approximation",
+    "b1_bounds": "Compute b1_min and b1_max from the ellipsoid support in the b1 coordinate",
+    "numerator_bounds": "For positive x, numerator_min=exp(-b1_max*x) and numerator_max=exp(-b1_min*x)",
+    "conservative_envelope": "When denominator positivity is certified, use f_min=numerator_min/denominator_max and f_max=numerator_max/denominator_min; independent numerator and denominator relaxations may be loose but must remain conservative",
+    "residual_upper_bound": "For each observed y, use max(abs(y-f_min),abs(y-f_max)); the observed point residual bound is conditional on the defined ellipsoid and certified denominator positivity",
+    "center_consistency": "Require the frozen center prediction to lie inside every available envelope and its actual residual not to exceed the computed upper bound; this is an arithmetic consistency check, not external validation or probability coverage",
+    "width_audit": "Report envelope widths and residual upper bounds so that very wide but formally valid bounds cannot be presented as high information"
+  },
+  "numerical_rule": {
+    "engine": "mpmath with 80 decimal digits of precision and exact decimal conversion of stored input values",
+    "outward_relative_margin": "Apply a relative margin of 1e-24 before conversion to binary floats, then use nextafter in the outward direction for every certified lower and upper value",
+    "certificate_class": "High-precision numerical interval certificate with outward rounding, not an exact rational-algebra certificate",
+    "positive_definite_check": "Fail rather than generate bounds if the covariance matrix is not symmetric positive definite",
+    "failure_preservation": "Non-finite values, failed Cholesky, sign failure and unavailable envelopes are retained explicitly"
+  },
+  "expected_structure": {
+    "fold_count": 5,
+    "held_out_point_count": 214,
+    "unique_held_out_distance_count": 22,
+    "radius": 4,
+    "refit_count": 0
+  },
+  "output_rule": {
+    "summary": "validation/chwirut1-native-ellipsoid-continuous-bounds.json",
+    "figure": "papers/51_Chwirut1原生椭球连续界/fig51_chwirut1_native_ellipsoid_continuous_bounds.png",
+    "report": "docs/CHWIRUT1_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md",
+    "word": "papers/前沿共生Chwirut1原生椭球连续界_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "decision": {
+    "refit": false,
+    "probability_region_claimed": false,
+    "confidence_interval_claimed": false,
+    "exact_rational_certificate_claimed": false,
+    "all_parameters_or_all_x_certified": false,
+    "uncertified_folds_given_bounds": false,
+    "actual_coverage_used_as_probability": false,
+    "center_consistency_used_as_external_validation": false,
+    "rational_bounds_transferred_to_native": false,
+    "independent_model_family_claimed": false,
+    "independent_physical_experiment_claimed": false,
+    "failed_folds_hidden": false
+  },
+  "prohibitions": [
+    "No refitting, changed centers, changed covariance matrices, changed folds or post-hoc radius selection",
+    "No Taylor-model substitution for the native exponential prediction envelope",
+    "No finite prediction or residual bound when denominator positivity is not certified over the full ellipsoid and continuous interval",
+    "No probability, confidence, posterior, calibrated-coverage or physical-endogeneity claim for the ellipsoid or its coverage counts",
+    "No use of center-prediction containment or actual-residual coverage as independent scientific validation",
+    "No exact rational-certificate claim for the high-precision numerical interval computations",
+    "No description of Chwirut1 as independent of the Chwirut2 study or native model family",
+    "No hiding of unavailable folds, non-positive denominators, wide envelopes or numerical failures"
+  ]
+}
