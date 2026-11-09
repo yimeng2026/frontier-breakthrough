@@ -1,0 +1,118 @@
+{
+  "status": "frozen_before_chwirut1_native_identifiability",
+  "frozen_at_local": "2026-11-09T09:58:35+08:00",
+  "analysis_id": "chwirut1_native_identifiability",
+  "scientific_question": "At the five frozen native exponential fits, how do local Jacobian conditioning, parameter compensation, denominator geometry and held-out linearized sensitivity vary across distance groups, and how does this differ from prediction accuracy?",
+  "analysis_type": "Read-only post-hoc local-linearization and denominator diagnostics at five frozen native fits; no refitting or new experiment",
+  "inputs": {
+    "native_holdout": {
+      "file": "validation/chwirut1-native-holdout.json",
+      "sha256": "e030dea90416195326b92b78824a030f01a0ab2525f9b215cf7c094077a8ce88"
+    },
+    "native_holdout_protocol": {
+      "file": "validation/chwirut1-native-holdout-protocol.json",
+      "sha256": "735228da3c0eb4729b922d8e312b59844030a63ba360d502068bca28da695237"
+    },
+    "metadata_amendment": {
+      "file": "validation/chwirut1-native-holdout-protocol-amendment-01.json",
+      "sha256": "4754a0cea606b86edf65be49054161bedec53e6a63f1ba9aa0b9139c1f3696d2"
+    },
+    "data": {
+      "file": "data/Chwirut1.dat",
+      "sha256": "d9a055dfe5af71a8754c00f073ef00f8fed2e3fd1c6fd20cea8fd62d7cc3ed84",
+      "observations": 214,
+      "unique_predictor_values": 22
+    }
+  },
+  "dataset_scope": {
+    "response": "ultrasonic response",
+    "predictor": "metal distance",
+    "observed_x_closed_range": [0.5, 6.0],
+    "repeated_observations_retained": true,
+    "related_prior_dataset": {
+      "name": "Chwirut2",
+      "same_study": true,
+      "same_native_model_family": true,
+      "independent_model_family_or_laboratory_replication": false
+    }
+  },
+  "fold_rule": {
+    "count": 5,
+    "unique_x": {
+      "1": [0.5, 0.625, 0.75, 0.875, 1.0],
+      "2": [1.25, 1.5, 1.75, 2.0, 2.25],
+      "3": [2.5, 2.75, 3.0, 3.25],
+      "4": [3.75, 4.0, 4.25, 4.75],
+      "5": [5.0, 5.25, 5.75, 6.0]
+    },
+    "test_points_per_fold": [57, 54, 51, 23, 29],
+    "train_points_per_fold": [157, 160, 163, 191, 185],
+    "train_unique_distances_per_fold": [17, 17, 18, 18, 18],
+    "residual_degrees_of_freedom_per_fold": [154, 157, 160, 188, 182],
+    "assignment_rule": "Use np.isin on each frozen unique-distance list; every repeated observation remains on the same side and in the original point order",
+    "frozen_fit_rule": "Use native_parameters and training_rss from each frozen fold exactly; no curve_fit call, parameter update or holdout change is permitted",
+    "training_rss_tolerance": "math.isclose(recomputed_rss,frozen_training_rss,rel_tol=1e-9,abs_tol=1e-12)",
+    "test_metric_rule": "Recomputed native_test_metrics must exactly reproduce the frozen metric dictionary"
+  },
+  "jacobian_rule": {
+    "parameter_order": ["b1", "b2", "b3"],
+    "model": "f=exp(-b1*x)/(b2+b3*x)",
+    "denominator": "d=b2+b3*x",
+    "db1": "-x*f",
+    "db2": "-f/d",
+    "db3": "-x*f/d",
+    "singular_rule": "Any zero or non-finite denominator or Jacobian is retained as a failure; no limit substitution or parameter repair"
+  },
+  "denominator_rule": {
+    "train_and_test": "Record minimum absolute denominator separately on training and held-out observations and minimum over all observations",
+    "pole": "When b3 is nonzero, record pole x=-b2/b3 and whether it lies inside the observed closed range [0.5,6.0]; otherwise retain a missing pole and failed diagnostic",
+    "interpretation": "Denominator and pole geometry are descriptive native-model diagnostics, not transferred rational certificates or global safety proofs"
+  },
+  "local_rule": {
+    "column_scaling": "Divide each Jacobian column by its Euclidean norm; require finite nonzero norms",
+    "rank_tolerance": "max(J.shape)*eps*largest_scaled_singular_value",
+    "numerical_rank": "Count scaled singular values greater than rank_tolerance; preserve rank deficiency rather than forcing rank three",
+    "scaled_condition_number": "largest_scaled_singular_value/smallest_scaled_singular_value",
+    "unit_covariance": "pinv(Js.T@Js,rcond=1e-12,hermitian=True)",
+    "covariance": "sigma2*unit_covariance/outer(column_norms,column_norms)",
+    "sigma2": "training_RSS/(train_count-3), using the frozen fold-specific degrees of freedom [154,157,160,188,182]",
+    "standard_errors": "sqrt(diag(covariance)); local linearized standard errors only",
+    "correlation": "clip(covariance/outer(standard_errors,standard_errors),-1,1)",
+    "prediction_sd": "sqrt(max(0,sigma2*diagonal(Jtest_scaled@unit_covariance@Jtest_scaled.T))); descriptive delta method only",
+    "interpretation": "Local linearization at each frozen fit; rank, conditioning, standard errors and sensitivity do not prove global structural identifiability or calibrated uncertainty"
+  },
+  "parameter_stability_rule": {
+    "statistics": "For each parameter across five frozen fits, record minimum, maximum, median, range and per-fold local standard errors",
+    "comparison": "Report raw parameter values and native RMSE side by side; do not collapse them into a single stability score",
+    "prediction_stability_scope": "Lower held-out RMSE does not imply unique, invariant or physically endogenous parameters"
+  },
+  "output_rule": {
+    "summary": "validation/chwirut1-native-identifiability.json",
+    "figure": "papers/47_Chwirut1原生参数可识别性/fig47_chwirut1_native_identifiability.png",
+    "report": "docs/CHWIRUT1_NATIVE_IDENTIFIABILITY_2026-11-09.md",
+    "word": "papers/前沿共生Chwirut1原生参数可识别性_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "decision": {
+    "refit": false,
+    "global_structural_identifiability_proved": false,
+    "physical_parameter_endogeneity_proved": false,
+    "calibrated_prediction_intervals_produced": false,
+    "rational_bounds_transferred_to_native": false,
+    "independent_physical_experiment_claimed": false,
+    "independent_model_family_claimed": false,
+    "prediction_stability_equals_parameter_uniqueness": false,
+    "rank_deficiency_hidden": false,
+    "denominator_singularities_hidden": false,
+    "native_deterministic_bounds_claimed": false
+  },
+  "prohibitions": [
+    "No refitting, retuning, new starts, new fold assignments or new parameter values",
+    "No conversion of local Jacobians, ranks, covariances or delta-method sensitivity into global identifiability or calibrated intervals",
+    "No transfer of rational denominator, ellipsoid, box or continuous-safety claims to the native exponential model",
+    "No claim that lower held-out RMSE proves unique, invariant or physically endogenous parameters",
+    "No description of Chwirut1 as independent of the Chwirut2 study or native model family",
+    "No hiding of rank deficiency, non-finite values, failed variance estimates, denominator poles or fold-level parameter variation"
+  ]
+}
