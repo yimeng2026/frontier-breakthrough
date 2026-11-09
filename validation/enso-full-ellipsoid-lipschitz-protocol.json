@@ -1,0 +1,125 @@
+{
+  "status": "frozen_before_enso_full_ellipsoid_lipschitz_intersection",
+  "frozen_at_local": "2026-11-09T13:49:38+08:00",
+  "analysis_type": "Conservative full-ellipsoid native Fourier bounds from exact linear decomposition, marginal support and Lipschitz period remainders, intersected with the stage-47 independent envelopes and checked against all stage-50 feasible candidates; no joint-global-optimum or probability claim",
+  "inputs": {
+    "native_identifiability": {
+      "file": "validation/enso-native-identifiability.json",
+      "sha256": "19656ed9f5930bed7e9bbdcd1072f50b5e68a8836c1975ab550dc1d828011d7e"
+    },
+    "independent_bounds": {
+      "file": "validation/enso-native-ellipsoid-continuous-bounds.json",
+      "sha256": "d6eab927eaafc9dc8d469fa42e830660b0e673bde52031b1cd2bd78f795f61ea"
+    },
+    "independent_receipt": {
+      "file": "validation/enso-native-ellipsoid-continuous-check.json",
+      "sha256": "e1b0b71432fab1d071682bb5646828edbf83d5137f5ba7db1942ec37f30cab73"
+    },
+    "slice_witnesses": {
+      "file": "validation/enso-conditional-period-slice-bounds.json",
+      "sha256": "db09ed73e33b554f9386962252be45153739c9600d0b0bb8b4298e87793ceda3"
+    },
+    "slice_receipt": {
+      "file": "validation/enso-conditional-period-slice-check.json",
+      "sha256": "829e76b9def8fe4fe7bac4050c555980f303c8bbcdbed88a960b1f6339b487af"
+    },
+    "native_model_runner": {
+      "file": "scripts/analyze_enso_native_holdout.py",
+      "sha256": "1b0b195170bf98c542c74544850db8c0a76d05698bbcbdb6063ae24ba6061a92"
+    },
+    "support_runner": {
+      "file": "scripts/analyze_roszman1_native_ellipsoid_continuous.py",
+      "sha256": "c3b84888aba9326ccb82e052401d7827e7c38b623855cc8e76cebd4d5505295e"
+    }
+  },
+  "decomposition_rule": {
+    "baseline_radius": 4,
+    "identity": "Write f(theta,x)=f_c(x)+v_c(x)^T delta_c+R(theta,x), where v_c contains the intercept and center-period trigonometric values and R contains b5,b6,b8,b9 multiplied by the corresponding actual-minus-center sine or cosine differences",
+    "linear_support": "Bound the linear term by radius*sqrt(v_c^T*C_cc*v_c), using the marginal coefficient block because periods remain free in the full ellipsoid. Do not substitute the fixed-period Schur-complement slice matrix",
+    "period_support": "For each period p in {b4,b7}, use delta_p_max=radius*sqrt(C_pp) and p_min=center_p-delta_p_max>0 from the stage-47 positive-period certificate",
+    "phase_remainder": "For each month x and period p, use D_p(x)=min(2,2*pi*abs(x)*delta_p_max/(center_p*p_min)); both sine and cosine differences are bounded by D_p(x) through Lipschitz continuity and the universal cap 2",
+    "amplitude_caps": "For each harmonic coefficient c, use abs(c)<=abs(center_c)+radius*sqrt(C_cc). Define A4=abs(b5_center)+abs(b6_center)+radius*(sqrt(C_55)+sqrt(C_66)) and A7 analogously for b8,b9",
+    "remainder_support": "Use abs(R(theta,x))<=A4*D4(x)+A7*D7(x). This follows from the exact decomposition, triangle inequality and phase bound, not from a Taylor model substitution",
+    "alternative_bound": "Use f_c(x) plus or minus radius*sqrt(v_c^T*C_cc*v_c)+A4*D4(x)+A7*D7(x), with high-precision outward rounding. This is a conservative full-ellipsoid alternative, not a joint global optimum",
+    "intersection": "Intersect the alternative with the stage-47 independent envelope by taking the maximum lower bound and minimum upper bound. Require a nonempty interval and center-prediction containment; never replace the historical baseline"
+  },
+  "candidate_rule": {
+    "candidate_source": "Use all 672 candidate evaluations from the stage-50 full covariance-support directions without adding, removing or reordering them",
+    "feasibility_gate": "Require the stage-50 receipt to pass, all candidate directions to remain feasible with quadratic form 16, and all candidates to remain inside the stage-47 independent envelope",
+    "alternative_check": "Require every candidate prediction to lie inside the alternative full-ellipsoid bound",
+    "intersection_check": "Require every candidate prediction to lie inside the intersection bound",
+    "scope": "Candidate checks are implementation-consistency tests, not the analytic proof and not a global optimizer or independent physical experiment"
+  },
+  "comparison_rule": {
+    "alternative_assumed_tighter_everywhere": false,
+    "alternative_comparison": "Classify every alternative width as tighter, wider or equal to the stage-47 independent width without suppressing wider alternatives",
+    "intersection_may_be_unchanged": true,
+    "intersection_comparison": "Report intersection width ratio and reduction for every month. A tighter intersection is allowed but not assumed; unchanged intersections remain valid",
+    "nonempty_gate": "Require all intersections to be nonempty and every center and candidate prediction to remain inside; any contradiction invalidates the implementation rather than weakening the bound",
+    "no_optimum": "Neither the alternative nor the intersection is claimed to be the full nonlinear global optimum"
+  },
+  "numerical_rule": {
+    "engine": "Use 80-digit mpmath arithmetic and the frozen native model, support and outward-rounding implementations",
+    "outward_rounding": "Apply the 1e-24 relative margin and nextafter outward conversion for certified lower and upper values",
+    "certificate_class": "High-precision numerical conservative interval, not exact rational algebra",
+    "positive_period_gate": "Reject non-positive period minima instead of applying the phase denominator formula",
+    "historical_preservation": "Do not rewrite stage-47 or stage-50 inputs, receipts, reports, figures or Word documents"
+  },
+  "analysis_scope": {
+    "full_ellipsoid_triangle_inequality_not_joint_optimum": true,
+    "candidate_checks_are_consistency_not_proof": true,
+    "intersection_preserves_both_valid_bounds": true,
+    "marginal_linear_support_not_conditional_slice": true,
+    "lipschitz_remainder_is_not_taylor_substitution": true,
+    "refit": false,
+    "retrospective_bound_construction": true
+  },
+  "expected_structure": {
+    "fold_count": 5,
+    "held_out_point_count": 168,
+    "alternative_bound_count": 168,
+    "intersection_bound_count": 168,
+    "candidate_evaluation_count": 672,
+    "nonempty_intersection_count": 168,
+    "alternative_candidate_violation_count": 0,
+    "intersection_candidate_violation_count": 0,
+    "center_prediction_mismatch_count": 0,
+    "refit_count": 0
+  },
+  "output_rule": {
+    "summary": "validation/enso-full-ellipsoid-lipschitz-intersection.json",
+    "figure": "papers/58_ENSO全椭球Lipschitz交集/fig58_enso_full_ellipsoid_lipschitz_intersection.png",
+    "report": "docs/ENSO_FULL_ELLIPSOID_LIPSCHITZ_INTERSECTION_2026-11-09.md",
+    "word": "papers/前沿共生ENSO全椭球Lipschitz交集_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true
+  },
+  "decision": {
+    "refit": false,
+    "intersection_is_global_optimum": false,
+    "alternative_always_tighter_claimed": false,
+    "intersection_always_tighter_claimed": false,
+    "candidate_checks_replace_analytic_proof": false,
+    "candidate_directions_called_global_optimizers": false,
+    "lipschitz_remainder_called_taylor_model": false,
+    "conditional_slice_matrix_used_for_full_linear_support": false,
+    "probability_region_claimed": false,
+    "physical_periods_proved": false,
+    "exact_rational_certificate_claimed": false,
+    "wider_alternatives_hidden": false,
+    "unchanged_intersections_hidden": false,
+    "candidate_violations_hidden": false,
+    "historical_baseline_replaced": false,
+    "independent_physical_experiment_claimed": false
+  },
+  "prohibitions": [
+    "No refitting, changed centers, covariance matrices, folds, period bounds or post-hoc candidate directions",
+    "No use of the fixed-period Schur slice matrix for the full linear-support term",
+    "No assumption that the alternative is tighter everywhere or that every intersection must strictly tighten",
+    "No hiding of wider alternatives, unchanged intersections or candidate violations",
+    "No calling candidate checks the analytic proof or a global optimization procedure",
+    "No probability, confidence, posterior, calibrated-coverage, physical-period or independent-experiment claim",
+    "No exact rational-certificate claim for high-precision numerical intervals",
+    "No replacement or rewriting of historical baseline files"
+  ]
+}
