@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "roszman1_ratio_denominator":
+    if REPORT_MODE == "roszman1_ellipsoid_cover_grid":
+        replacements = {
+            "图：`papers/64_Roszman1椭球覆盖盒细分/fig64_roszman1_ellipsoid_cover_grid.png`。": "![](papers/64_Roszman1椭球覆盖盒细分/fig64_roszman1_ellipsoid_cover_grid.png)\n\n**图 64｜Roszman1 椭球覆盖盒细分与全预测区间（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联图与研究转向」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "5460 次细胞评价、600 次候选网格检查与 60 个保持交集"
+    elif REPORT_MODE == "roszman1_ratio_denominator":
         replacements = {
             "图：`papers/63_Roszman1比值分母联合区间/fig63_roszman1_ratio_denominator_intersection.png`。": "![](papers/63_Roszman1比值分母联合区间/fig63_roszman1_ratio_denominator_intersection.png)\n\n**图 63｜Roszman1 比值—分母联合区间与保守交集（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联图与证据边界」；顺序第 1 幅，共 1 幅。",
         }

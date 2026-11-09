@@ -127,6 +127,10 @@ def build_graph(root):
     ratioExpected = {"fold_count": 5, "held_out_point_count": 25, "available_point_count": 20, "unavailable_point_count": 5, "ratio_interval_count": 20, "algebraic_extremizer_count": 40, "support_candidate_evaluation_count": 160, "candidate_evaluation_count": 200, "nonempty_intersection_count": 20, "ratio_candidate_violation_count": 0, "alternative_candidate_violation_count": 0, "intersection_candidate_violation_count": 0, "candidate_feasibility_failure_count": 0, "center_prediction_mismatch_count": 0, "intersection_tightened_count": 20, "intersection_unchanged_count": 0}
     if any(roszmanRatio["totals"][key] != value for key, value in ratioExpected.items()) or roszmanRatio["totals"]["unavailable_fold_ids"] != [5] or roszmanRatio["totals"]["median_intersection_to_joint_linear_width_ratio"] != 0.9807825850555489 or roszmanRatio["totals"]["largest_intersection_tightening"]["x"] != -1208.68 or roszmanRatio["totals"]["largest_ratio_tightening"]["x"] != -996.31 or not roszmanRatio["independent_receipt_verified"] or not roszmanRatio["joint_linear_receipt_verified"] or roszmanRatio["decision"]["fold5_given_finite_bound"] or roszmanRatio["decision"]["full_nonlinear_global_optimum_claimed"]:
         raise ValueError("Expected ratio-denominator analytic support, extremizer counts and unavailable-fold boundaries are not present")
+    roszmanGrid = json.loads((root / "validation/roszman1-ellipsoid-cover-grid.json").read_text(encoding="utf-8"))
+    gridExpected = {"fold_count": 5, "held_out_point_count": 25, "available_point_count": 20, "unavailable_point_count": 5, "grid_cover_count": 60, "cell_evaluation_count": 5460, "nonempty_intersection_count": 60, "candidate_evaluation_count": 200, "candidate_grid_containment_check_count": 600, "grid_candidate_violation_count": 0, "intersection_candidate_violation_count": 0, "cover_box_candidate_violation_count": 0, "candidate_feasibility_failure_count": 0, "center_prediction_mismatch_count": 0, "primary_intersection_tightened_count": 0, "primary_intersection_unchanged_count": 20, "median_primary_intersection_to_ratio_width_ratio": 1.0, "max_primary_intersection_width_reduction": 0.0}
+    if any(roszmanGrid["totals"][key] != value for key, value in gridExpected.items()) or roszmanGrid["totals"]["unavailable_fold_ids"] != [5] or [item["cell_evaluation_count"] for item in roszmanGrid["grid_totals"]] != [20, 320, 5120] or any(item["intersection_tightened_count"] != 0 or item["intersection_unchanged_count"] != 20 for item in roszmanGrid["grid_totals"]) or not roszmanGrid["ratio_receipt_verified"] or roszmanGrid["decision"]["exact_global_optimum_claimed"] or roszmanGrid["decision"]["fold5_given_finite_bound"]:
+        raise ValueError("Expected full-cover cell counts, unchanged-grid counterexample and fold-5 boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -1509,6 +1513,50 @@ def build_graph(root):
         edge("evidence-roszman1-ratio-denominator", "evidence-roszman1-native-identifiability", "supports"),
         edge("experiment-roszman1-ratio-denominator-protocol", "experiment-roszman1-native-identifiability-protocol", "supports"),
         edge("experiment-roszman1-ratio-denominator-protocol", "claim-knowledge-graph", "tests"),
+    ])
+    nodes.extend([
+        node("claim-grid-more-cells-tighter", "claim", "增加坐标盒网格密度必然收紧 Roszman1 预测交集", "falsified", ["validation/roszman1-ellipsoid-cover-grid.json"]),
+        node("claim-grid-cover-exact-global-optimum", "claim", "完整覆盖盒和网格并集就是椭球上原始预测的精确全局最优界", "falsified", ["validation/roszman1-ellipsoid-cover-grid.json"]),
+        node("evidence-roszman1-ellipsoid-cover-grid", "evidence", "5460 次原生细胞评价、200 次候选和 600 次网格检查全部通过；60 个交集全部保持，主网格收紧数为 0", "supported", ["validation/roszman1-ellipsoid-cover-grid.json", "validation/roszman1-ellipsoid-cover-grid-check.json"]),
+        node("counterexample-roszman1-grid-all-unchanged", "counterexample", "1、2、4 每维分段的 60 个交集均未收紧，宽度比全部为 1，计算量增加没有转化为区间收益", "supported", ["validation/roszman1-ellipsoid-cover-grid.json", "docs/ROSZMAN1_ELLIPSOID_COVER_GRID_2026-11-09.md"]),
+        node("experiment-roszman1-ellipsoid-cover-grid-protocol", "experiment", "冻结坐标支撑外包盒、三层完整网格、原始模型区间、主网格和全部候选包含检查", "supported", ["validation/roszman1-ellipsoid-cover-grid-protocol.json", "scripts/analyze_roszman1_ellipsoid_cover_grid.py"]),
+        node("counterexample-roszman1-grid-fold5-unavailable", "counterexample", "第 5 折没有负分母证书，0 个细胞与候选，5 个观测点仍无有限包络或残差上界", "supported", ["validation/roszman1-ellipsoid-cover-grid.json", "docs/ROSZMAN1_ELLIPSOID_COVER_GRID_2026-11-09.md"]),
+        node("counterexample-roszman1-coordinate-cover-not-optimal", "counterexample", "主网格 x=-4868.68 的并集为 -0.190962—0.676330，明显宽于第五十六阶段交集，覆盖有效不等于精确最优", "supported", ["validation/roszman1-ellipsoid-cover-grid.json", "docs/ROSZMAN1_ELLIPSOID_COVER_GRID_2026-11-09.md"]),
+        node("limitation-roszman1-grid-cover-scope", "limitation", "坐标盒和网格只是完整保守覆盖，不是精确非线性像；当前负结果不否定所有覆盖，候选见证不替代覆盖证明或独立实验", "active", ["validation/roszman1-ellipsoid-cover-grid.json", "docs/ROSZMAN1_ELLIPSOID_COVER_GRID_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-grid-more-cells-tighter", "contains"),
+        edge("track-holdout", "claim-grid-cover-exact-global-optimum", "contains"),
+        edge("track-holdout", "evidence-roszman1-ellipsoid-cover-grid", "contains"),
+        edge("track-holdout", "counterexample-roszman1-grid-all-unchanged", "contains"),
+        edge("track-holdout", "experiment-roszman1-ellipsoid-cover-grid-protocol", "contains"),
+        edge("track-holdout", "counterexample-roszman1-grid-fold5-unavailable", "contains"),
+        edge("track-holdout", "counterexample-roszman1-coordinate-cover-not-optimal", "contains"),
+        edge("track-holdout", "limitation-roszman1-grid-cover-scope", "contains"),
+        edge("evidence-roszman1-ellipsoid-cover-grid", "claim-grid-more-cells-tighter", "contradicts"),
+        edge("experiment-roszman1-ellipsoid-cover-grid-protocol", "claim-grid-more-cells-tighter", "tests"),
+        edge("counterexample-roszman1-grid-all-unchanged", "claim-grid-more-cells-tighter", "contradicts"),
+        edge("evidence-roszman1-ellipsoid-cover-grid", "counterexample-roszman1-grid-all-unchanged", "supports"),
+        edge("evidence-roszman1-ellipsoid-cover-grid", "claim-grid-cover-exact-global-optimum", "contradicts"),
+        edge("experiment-roszman1-ellipsoid-cover-grid-protocol", "claim-grid-cover-exact-global-optimum", "tests"),
+        edge("counterexample-roszman1-coordinate-cover-not-optimal", "claim-grid-cover-exact-global-optimum", "contradicts"),
+        edge("counterexample-roszman1-grid-fold5-unavailable", "claim-roszman-fold5-low-rmse-singularity-safe", "contradicts"),
+        edge("counterexample-roszman1-grid-fold5-unavailable", "counterexample-roszman1-ratio-fold5-unavailable", "supports"),
+        edge("evidence-roszman1-ellipsoid-cover-grid", "counterexample-roszman1-grid-fold5-unavailable", "supports"),
+        edge("counterexample-roszman1-grid-all-unchanged", "limitation-roszman1-grid-cover-scope", "supports"),
+        edge("counterexample-roszman1-coordinate-cover-not-optimal", "limitation-roszman1-grid-cover-scope", "supports"),
+        edge("limitation-roszman1-grid-cover-scope", "evidence-roszman1-ellipsoid-cover-grid", "limits"),
+        edge("limitation-roszman1-grid-cover-scope", "claim-grid-more-cells-tighter", "limits"),
+        edge("limitation-roszman1-grid-cover-scope", "claim-grid-cover-exact-global-optimum", "limits"),
+        edge("limitation-roszman1-grid-cover-scope", "claim-center-coverage-external-validation", "limits"),
+        edge("evidence-roszman1-ellipsoid-cover-grid", "evidence-roszman1-ratio-denominator", "supports"),
+        edge("experiment-roszman1-ellipsoid-cover-grid-protocol", "experiment-roszman1-ratio-denominator-protocol", "supports"),
+        edge("evidence-roszman1-ellipsoid-cover-grid", "evidence-native-conservative-support-synthesis", "supports"),
+        edge("experiment-roszman1-ellipsoid-cover-grid-protocol", "experiment-native-conservative-support-synthesis-protocol", "supports"),
+        edge("evidence-roszman1-ellipsoid-cover-grid", "evidence-roszman1-native-identifiability", "supports"),
+        edge("experiment-roszman1-ellipsoid-cover-grid-protocol", "experiment-roszman1-native-identifiability-protocol", "supports"),
+        edge("experiment-roszman1-ellipsoid-cover-grid-protocol", "claim-center-coverage-external-validation", "tests"),
+        edge("experiment-roszman1-ellipsoid-cover-grid-protocol", "claim-knowledge-graph", "tests"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

@@ -3106,6 +3106,84 @@
         "validation/roszman1-ratio-denominator-intersection.json",
         "docs/ROSZMAN1_RATIO_DENOMINATOR_INTERSECTION_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-grid-more-cells-tighter",
+      "kind": "claim",
+      "title": "增加坐标盒网格密度必然收紧 Roszman1 预测交集",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-ellipsoid-cover-grid.json"
+      ]
+    },
+    {
+      "id": "claim-grid-cover-exact-global-optimum",
+      "kind": "claim",
+      "title": "完整覆盖盒和网格并集就是椭球上原始预测的精确全局最优界",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-ellipsoid-cover-grid.json"
+      ]
+    },
+    {
+      "id": "evidence-roszman1-ellipsoid-cover-grid",
+      "kind": "evidence",
+      "title": "5460 次原生细胞评价、200 次候选和 600 次网格检查全部通过；60 个交集全部保持，主网格收紧数为 0",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-ellipsoid-cover-grid.json",
+        "validation/roszman1-ellipsoid-cover-grid-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-grid-all-unchanged",
+      "kind": "counterexample",
+      "title": "1、2、4 每维分段的 60 个交集均未收紧，宽度比全部为 1，计算量增加没有转化为区间收益",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-ellipsoid-cover-grid.json",
+        "docs/ROSZMAN1_ELLIPSOID_COVER_GRID_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "experiment-roszman1-ellipsoid-cover-grid-protocol",
+      "kind": "experiment",
+      "title": "冻结坐标支撑外包盒、三层完整网格、原始模型区间、主网格和全部候选包含检查",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-ellipsoid-cover-grid-protocol.json",
+        "scripts/analyze_roszman1_ellipsoid_cover_grid.py"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-grid-fold5-unavailable",
+      "kind": "counterexample",
+      "title": "第 5 折没有负分母证书，0 个细胞与候选，5 个观测点仍无有限包络或残差上界",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-ellipsoid-cover-grid.json",
+        "docs/ROSZMAN1_ELLIPSOID_COVER_GRID_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "counterexample-roszman1-coordinate-cover-not-optimal",
+      "kind": "counterexample",
+      "title": "主网格 x=-4868.68 的并集为 -0.190962—0.676330，明显宽于第五十六阶段交集，覆盖有效不等于精确最优",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-ellipsoid-cover-grid.json",
+        "docs/ROSZMAN1_ELLIPSOID_COVER_GRID_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "limitation-roszman1-grid-cover-scope",
+      "kind": "limitation",
+      "title": "坐标盒和网格只是完整保守覆盖，不是精确非线性像；当前负结果不否定所有覆盖，候选见证不替代覆盖证明或独立实验",
+      "status": "active",
+      "sourceFiles": [
+        "validation/roszman1-ellipsoid-cover-grid.json",
+        "docs/ROSZMAN1_ELLIPSOID_COVER_GRID_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -7916,6 +7994,166 @@
     },
     {
       "from": "experiment-roszman1-ratio-denominator-protocol",
+      "to": "claim-knowledge-graph",
+      "relation": "tests"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-grid-more-cells-tighter",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-grid-cover-exact-global-optimum",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-roszman1-ellipsoid-cover-grid",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-grid-all-unchanged",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-roszman1-ellipsoid-cover-grid-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-grid-fold5-unavailable",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-roszman1-coordinate-cover-not-optimal",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-roszman1-grid-cover-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-roszman1-ellipsoid-cover-grid",
+      "to": "claim-grid-more-cells-tighter",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-ellipsoid-cover-grid-protocol",
+      "to": "claim-grid-more-cells-tighter",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-roszman1-grid-all-unchanged",
+      "to": "claim-grid-more-cells-tighter",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-roszman1-ellipsoid-cover-grid",
+      "to": "counterexample-roszman1-grid-all-unchanged",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-ellipsoid-cover-grid",
+      "to": "claim-grid-cover-exact-global-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-ellipsoid-cover-grid-protocol",
+      "to": "claim-grid-cover-exact-global-optimum",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-roszman1-coordinate-cover-not-optimal",
+      "to": "claim-grid-cover-exact-global-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-grid-fold5-unavailable",
+      "to": "claim-roszman-fold5-low-rmse-singularity-safe",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-roszman1-grid-fold5-unavailable",
+      "to": "counterexample-roszman1-ratio-fold5-unavailable",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-ellipsoid-cover-grid",
+      "to": "counterexample-roszman1-grid-fold5-unavailable",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-roszman1-grid-all-unchanged",
+      "to": "limitation-roszman1-grid-cover-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-roszman1-coordinate-cover-not-optimal",
+      "to": "limitation-roszman1-grid-cover-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-roszman1-grid-cover-scope",
+      "to": "evidence-roszman1-ellipsoid-cover-grid",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-grid-cover-scope",
+      "to": "claim-grid-more-cells-tighter",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-grid-cover-scope",
+      "to": "claim-grid-cover-exact-global-optimum",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-grid-cover-scope",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-roszman1-ellipsoid-cover-grid",
+      "to": "evidence-roszman1-ratio-denominator",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-ellipsoid-cover-grid-protocol",
+      "to": "experiment-roszman1-ratio-denominator-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-ellipsoid-cover-grid",
+      "to": "evidence-native-conservative-support-synthesis",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-ellipsoid-cover-grid-protocol",
+      "to": "experiment-native-conservative-support-synthesis-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-ellipsoid-cover-grid",
+      "to": "evidence-roszman1-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-ellipsoid-cover-grid-protocol",
+      "to": "experiment-roszman1-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-ellipsoid-cover-grid-protocol",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "tests"
+    },
+    {
+      "from": "experiment-roszman1-ellipsoid-cover-grid-protocol",
       "to": "claim-knowledge-graph",
       "relation": "tests"
     }

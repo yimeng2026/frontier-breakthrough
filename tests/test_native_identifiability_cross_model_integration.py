@@ -14,7 +14,7 @@ class NativeIdentifiabilityCrossModelIntegrationTests(unittest.TestCase):
         packet = json.loads((ROOT / "exports/frontier-evidence.json").read_text(encoding="utf-8"))
         identifiers = {item["id"] for item in packet["items"]}
         self.assertIn("native-identifiability-cross-model-synthesis", identifiers)
-        self.assertEqual(len(packet["items"]), 67)
+        self.assertEqual(len(packet["items"]), 68)
         item = next(item for item in packet["items"] if item["id"] == "native-identifiability-cross-model-synthesis")
         metrics = item["metrics"]
         self.assertEqual(metrics["totals"]["dataset_count"], 3)
@@ -49,8 +49,8 @@ class NativeIdentifiabilityCrossModelIntegrationTests(unittest.TestCase):
         ]
         for identifier in identifiers:
             self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 329)
-        self.assertEqual(len(graph["edges"]), 962)
+        self.assertEqual(len(graph["nodes"]), 337)
+        self.assertEqual(len(graph["edges"]), 994)
         self.assertEqual(nodes["claim-sensitivity-rmse-ratio-calibrated-coverage"]["status"], "falsified")
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}
         self.assertIn(("counterexample-roszman1-fold5-sensitivity-rmse", "claim-sensitivity-rmse-ratio-calibrated-coverage", "contradicts"), edges)

@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生Roszman1椭球覆盖盒细分_图文完整版.docx",
+  "bytes": 147153,
+  "sha256": "b9d465a71ec3753a75ef60cfcad0bf6ce77d1acffacd4e0681935810b13a8533",
+  "native_math_objects": 3,
+  "embedded_images": 1,
+  "native_tables": 5,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

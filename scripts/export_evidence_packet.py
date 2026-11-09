@@ -127,6 +127,8 @@ def build() -> dict:
     conservativeSynthesisCheck = read("native-conservative-support-synthesis-check.json")
     roszmanRatio = read("roszman1-ratio-denominator-intersection.json")
     roszmanRatioCheck = read("roszman1-ratio-denominator-check.json")
+    roszmanGrid = read("roszman1-ellipsoid-cover-grid.json")
+    roszmanGridCheck = read("roszman1-ellipsoid-cover-grid-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -1622,6 +1624,58 @@ def build() -> dict:
             "limitations": "比值支撑只在固定 x 和负分母符号域内成立；线性支撑与比值支撑可来自不同参数点，其和不是完整四参数非线性全局最优。200 次候选不是全局优化器、概率覆盖或独立实验；第 2 折交叉项存储差异按二次型对称部分处理，不改写历史矩阵。" + " ".join(roszmanRatio["limitations"]),
             "upstreamContribution": "提供负分母线性分式解析求根、未平方分支恒等式、稳定倒数根、40 个完整协方差端点见证和保守交集接口，并保留奇异不可用与数值对称性反例。",
             "snapshotFiles": ["validation/roszman1-ratio-denominator-protocol.json", "validation/roszman1-ratio-denominator-check.json", "validation/frontier-roszman1-ratio-denominator-word.json"],
+        },
+        {
+            "id": "roszman1-ellipsoid-cover-grid", "domain": "math", "title": "Roszman1 椭球覆盖盒细分与全预测区间",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Roszman1.dat"],
+            "metrics": {
+                "totals": roszmanGrid["totals"],
+                "gridTotals": roszmanGrid["grid_totals"],
+                "folds": [{
+                    "fold": fold["fold"],
+                    "nativeTestRmse": fold["native_test_rmse"],
+                    "predictionEnvelopeAvailable": fold["prediction_envelope_available"],
+                    "unavailableReason": fold["unavailable_reason"],
+                    "gridCoverCount": fold["grid_cover_count"],
+                    "cellEvaluationCount": fold["cell_evaluation_count"],
+                    "candidateEvaluationCount": fold["candidate_evaluation_count"],
+                    "candidateGridContainmentCheckCount": fold["candidate_grid_containment_check_count"],
+                    "algebraicExtremizerCount": fold["algebraic_extremizer_count"],
+                    "primary": fold["primary"],
+                    "points": fold["points"],
+                    "envelopes": [{
+                        "x": envelope["x"],
+                        "centerPrediction": envelope["center_prediction"],
+                        "ratioMinimum": envelope["ratio_minimum"],
+                        "ratioMaximum": envelope["ratio_maximum"],
+                        "ratioWidth": envelope["ratio_width"],
+                        "grids": [{key: value for key, value in grid.items() if key != "cells"} for grid in envelope["grids"]],
+                        "candidateEvaluations": envelope["candidate_evaluations"],
+                    } for envelope in fold["envelopes"]],
+                } for fold in roszmanGrid["folds"]],
+                "cellDetailFile": "validation/roszman1-ellipsoid-cover-grid.json",
+                "cellDetailSha256": roszmanGridCheck["summarySha256"],
+                "primaryGrid": roszmanGrid["primary_grid"],
+                "ratioReceiptVerified": roszmanGrid["ratio_receipt_verified"],
+                "sourceProjectionMismatchCount": roszmanGridCheck["sourceProjectionMismatchCount"],
+                "analysisScope": roszmanGrid["analysis_scope"],
+                "exactGlobalOptimum": roszmanGrid["exact_global_optimum"],
+                "decision": roszmanGrid["decision"],
+                "implementation": {
+                    "protocolSha256": roszmanGrid["protocol_sha256"],
+                    "summarySha256": roszmanGridCheck["summarySha256"],
+                    "analysisRunnerSha256": roszmanGridCheck["analysisRunnerSha256"],
+                    "figureSha256": roszmanGridCheck["figureSha256"],
+                    "reportSha256": roszmanGridCheck["reportSha256"],
+                    "wordSha256": roszmanGridCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "93fc8dc"},
+            },
+            "scientificClaim": "坐标支撑盒和 1、2、4 每维分段网格对整个参数椭球形成确定性覆盖，共执行 5460 次原始模型细胞评价、200 次候选评价和 600 次候选网格检查。60 个交集全部非空且全部保持，主网格 4 的收紧数为 0；第 5 折 5 点继续不可用。",
+            "limitations": "网格覆盖有效不等于更紧或精确全局最优；60 个交集全部保持是负结果，不能推广为所有覆盖永远无效。候选只作见证，覆盖由坐标支撑和完整分区给出；第 5 折不生成细胞或有限界。" + " ".join(roszmanGrid["limitations"]),
+            "upstreamContribution": "提供完整椭球外包盒、三层原生区间覆盖、全部细胞明细与负结果接口，明确区分覆盖证明、候选见证、计算量和实际收紧。",
+            "snapshotFiles": ["validation/roszman1-ellipsoid-cover-grid-protocol.json", "validation/roszman1-ellipsoid-cover-grid-check.json", "validation/frontier-roszman1-ellipsoid-cover-grid-word.json"],
         },
     ]
     packet = {
