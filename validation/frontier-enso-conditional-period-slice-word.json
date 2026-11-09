@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生ENSO条件周期切片界_图文完整版.docx",
+  "bytes": 259667,
+  "sha256": "fb00a762dae470723be6284218f6e357eeae21cd628484b61a955f7969d9b0ce",
+  "native_math_objects": 3,
+  "embedded_images": 1,
+  "native_tables": 5,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}

@@ -113,6 +113,8 @@ def build() -> dict:
     ensoRadiusCheck = read("enso-native-ellipsoid-radius-sensitivity-check.json")
     nativeEllipsoidCross = json.loads((ROOT / "exports/native-ellipsoid-cross-model-synthesis.json").read_text(encoding="utf-8"))
     nativeEllipsoidCrossCheck = read("native-ellipsoid-cross-model-check.json")
+    ensoSlice = read("enso-conditional-period-slice-bounds.json")
+    ensoSliceCheck = read("enso-conditional-period-slice-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -1245,6 +1247,62 @@ def build() -> dict:
             "limitations": "原始宽度、残差、RMSE、参数和协方差保留模型特有单位，归一化只在各自数据集内部进行。可用性与中心一致性是算术诊断，不是概率覆盖或外部验证；包络不是联合非线性最优，Roszman1 不可用点不删除。" + " ".join(nativeEllipsoidCross["limitations"]),
             "upstreamContribution": "提供跨模型只读复算、源收据核对、全点状态、实际包络计数和数据集内部归一化接口，明确禁止跨单位误差合并、统一评分和证书移植。",
             "snapshotFiles": ["validation/native-ellipsoid-cross-model-synthesis-protocol.json", "validation/native-ellipsoid-cross-model-check.json", "validation/frontier-native-ellipsoid-cross-model-word.json"],
+        },
+        {
+            "id": "enso-conditional-period-slice-bounds", "domain": "physics", "title": "ENSO 条件周期切片联合支撑与全域反例",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/enso.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/ENSO.dat"],
+            "metrics": {
+                "totals": ensoSlice["totals"],
+                "folds": [{
+                    "fold": fold["fold"],
+                    "nativeTestRmse": fold["native_test_rmse"],
+                    "conditionalCovariance": fold["conditional_covariance"],
+                    "conditionalMatrixScope": fold["conditional_matrix_scope"],
+                    "candidateDirections": fold["candidate_directions"],
+                    "baselineEnvelopeMatchCount": fold["baseline_envelope_match_count"],
+                    "candidateEvaluationCount": fold["candidate_evaluation_count"],
+                    "sliceViolationEvaluationCount": fold["slice_violation_evaluation_count"],
+                    "sliceViolatingEnvelopeCount": fold["slice_violating_envelope_count"],
+                    "fullIndependentViolationCount": fold["full_independent_violation_count"],
+                    "sliceContainmentViolationCount": fold["slice_containment_violation_count"],
+                    "candidateFeasibilityFailureCount": fold["candidate_feasibility_failure_count"],
+                    "centerPredictionMismatchCount": fold["center_prediction_mismatch_count"],
+                    "minSliceToIndependentWidthRatio": fold["min_slice_to_independent_width_ratio"],
+                    "medianSliceToIndependentWidthRatio": fold["median_slice_to_independent_width_ratio"],
+                    "maxSliceToIndependentWidthRatio": fold["max_slice_to_independent_width_ratio"],
+                    "maxWidthReduction": fold["max_width_reduction"],
+                    "medianWidthReduction": fold["median_width_reduction"],
+                    "maxSliceViolationExceedance": fold["max_slice_violation_exceedance"],
+                    "largestViolationWitness": fold["largest_violation_witness"],
+                    "sliceSummaries": [{
+                        "x": envelope["x"],
+                        "sliceToIndependentWidthRatio": envelope["slice_to_independent_width_ratio"],
+                        "widthReduction": envelope["width_reduction"],
+                        "candidateOutsideCount": sum(candidate["outside_slice"] for candidate in envelope["candidate_evaluations"]),
+                        "maxSliceExceedance": max(candidate["slice_exceedance"] for candidate in envelope["candidate_evaluations"]),
+                    } for envelope in fold["slice_envelopes"]],
+                } for fold in ensoSlice["folds"]],
+                "baselineReceiptVerified": ensoSlice["baseline_receipt_verified"],
+                "baselineEnvelopeMatchCount": ensoSlice["baseline_envelope_match_count"],
+                "fullEllipsoidJointNonlinearOptimum": ensoSlice["full_ellipsoid_joint_nonlinear_optimum"],
+                "analysisScope": ensoSlice["analysis_scope"],
+                "decision": ensoSlice["decision"],
+                "implementation": {
+                    "protocolSha256": ensoSlice["protocol_sha256"],
+                    "amendmentSha256": ensoSlice["metadata_amendment_sha256"],
+                    "summarySha256": ensoSliceCheck["summarySha256"],
+                    "analysisRunnerSha256": ensoSliceCheck["analysisRunnerSha256"],
+                    "figureSha256": ensoSliceCheck["figureSha256"],
+                    "reportSha256": ensoSliceCheck["reportSha256"],
+                    "wordSha256": ensoSliceCheck["wordSha256"],
+                },
+                "protocolCommits": {"originalProtocol": "94d7cb0", "supportDirectionAmendment": "e93dae0"},
+            },
+            "scientificClaim": "168 个固定周期切片的宽度比中位数为 0.319840，最大宽度减少 13.283611；672 次完整协方差支撑候选评价中 199 次跑出切片界，95 个月份受影响，全部候选仍在原独立包络内。最大反例为第 4 折 b4_minus、x=134，越界 2.341691。",
+            "limitations": "Schur 补只给出固定周期切片上的七系数联合支撑，不是九维联合非线性最优。四个方向不是全局优化器，零越界不证明安全；切片收紧不能替代原独立全椭球包络。原坐标-only 公式经可行性门禁拒绝后单独修正，不作为最终反例。" + " ".join(ensoSlice["limitations"]),
+            "upstreamContribution": "提供椭球切片 Schur 补、完整协方差支撑候选、逐月收紧与全域外推反例接口，分开条件有效性、全域保守性、候选非最优性和修正历史。",
+            "snapshotFiles": ["validation/enso-conditional-period-slice-protocol.json", "validation/enso-conditional-period-slice-protocol-amendment-01.json", "validation/enso-conditional-period-slice-check.json", "validation/frontier-enso-conditional-period-slice-word.json"],
         },
     ]
     packet = {

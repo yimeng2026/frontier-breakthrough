@@ -45,7 +45,9 @@
     "validation/enso-native-ellipsoid-continuous-protocol.json",
     "validation/enso-native-ellipsoid-radius-sensitivity-protocol.json",
     "validation/enso-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json",
-    "validation/native-ellipsoid-cross-model-synthesis-protocol.json"
+    "validation/native-ellipsoid-cross-model-synthesis-protocol.json",
+    "validation/enso-conditional-period-slice-protocol.json",
+    "validation/enso-conditional-period-slice-protocol-amendment-01.json"
   ],
   "decision": {
     "external_web_checked": false,

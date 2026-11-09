@@ -2546,6 +2546,103 @@
         "exports/native-ellipsoid-cross-model-synthesis.json",
         "docs/NATIVE_ELLIPSOID_CROSS_MODEL_SYNTHESIS_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-slice-bound-full-ellipsoid",
+      "kind": "claim",
+      "title": "固定周期切片上的七系数联合支撑界可以直接当作完整九维椭球预测界",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/enso-conditional-period-slice-bounds.json"
+      ]
+    },
+    {
+      "id": "claim-marginal-block-equals-schur-slice",
+      "kind": "claim",
+      "title": "边际系数协方差块与固定周期切片的 Schur 补可以不加区分地互换",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/enso-conditional-period-slice-bounds.json",
+        "docs/ENSO_CONDITIONAL_PERIOD_SLICE_BOUNDS_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "claim-zero-candidate-violations-prove-full-safety",
+      "kind": "claim",
+      "title": "四个候选方向没有越界即可证明切片界在完整椭球上安全",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/enso-conditional-period-slice-bounds.json"
+      ]
+    },
+    {
+      "id": "evidence-enso-conditional-period-slice",
+      "kind": "evidence",
+      "title": "168 个切片宽度比中位数为 0.319840；672 次可行候选中 199 次跑出切片界，95 个月份受影响，原独立包络违规仍为 0",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-conditional-period-slice-bounds.json",
+        "validation/enso-conditional-period-slice-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-slice-fold4-x134-export",
+      "kind": "counterexample",
+      "title": "第 4 折 b4_minus、x=134 的可行候选预测 15.689547，超出切片上界 2.341691，但仍在原独立包络 5.142915 至 17.211587 内",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-conditional-period-slice-bounds.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-fold3-zero-witness-not-safe",
+      "kind": "counterexample",
+      "title": "第 3 折四个方向没有候选越界，但候选不是全局优化器，零记录不构成完整区域安全证明",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-conditional-period-slice-bounds.json"
+      ]
+    },
+    {
+      "id": "counterexample-enso-coordinate-only-candidate-infeasible",
+      "kind": "counterexample",
+      "title": "原坐标-only 候选在相关椭球上二次型不是 16，第一折 136 次评价全部被可行性门禁拒绝，没有作为最终反例；修正改用完整 C e_p 支撑方向",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-conditional-period-slice-protocol-amendment-01.json",
+        "docs/ENSO_CONDITIONAL_PERIOD_SLICE_BOUNDS_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "experiment-enso-conditional-period-slice-protocol",
+      "kind": "experiment",
+      "title": "冻结七系数 Schur 补切片、四个完整协方差支撑方向、672 次原生评价和原独立包络一致性门禁",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-conditional-period-slice-protocol.json",
+        "validation/enso-conditional-period-slice-protocol-amendment-01.json",
+        "scripts/analyze_enso_conditional_period_slice.py"
+      ]
+    },
+    {
+      "id": "experiment-enso-support-direction-amendment",
+      "kind": "experiment",
+      "title": "将错误的坐标-only 位移修正为 r·C·e_p／√C_pp，保留原协议和不可行记录，修正后所有候选二次型均为 16",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/enso-conditional-period-slice-protocol-amendment-01.json",
+        "tests/test_enso_conditional_period_slice_protocol.py"
+      ]
+    },
+    {
+      "id": "limitation-enso-conditional-period-slice-scope",
+      "kind": "limitation",
+      "title": "切片联合支撑不是九维联合非线性最优，候选不是优化器，零反例不证明安全，切片收紧不能替代全域保守性或物理周期证据",
+      "status": "active",
+      "sourceFiles": [
+        "validation/enso-conditional-period-slice-bounds.json",
+        "docs/ENSO_CONDITIONAL_PERIOD_SLICE_BOUNDS_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -6223,6 +6320,181 @@
       "from": "limitation-native-ellipsoid-cross-model-normalization",
       "to": "claim-center-coverage-external-validation",
       "relation": "limits"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-slice-bound-full-ellipsoid",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-marginal-block-equals-schur-slice",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-zero-candidate-violations-prove-full-safety",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-enso-conditional-period-slice",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-slice-fold4-x134-export",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-fold3-zero-witness-not-safe",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-enso-coordinate-only-candidate-infeasible",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-enso-conditional-period-slice-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-enso-support-direction-amendment",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-enso-conditional-period-slice-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-enso-conditional-period-slice",
+      "to": "claim-slice-bound-full-ellipsoid",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-conditional-period-slice-protocol",
+      "to": "claim-slice-bound-full-ellipsoid",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-enso-slice-fold4-x134-export",
+      "to": "claim-slice-bound-full-ellipsoid",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-enso-conditional-period-slice",
+      "to": "counterexample-enso-slice-fold4-x134-export",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-conditional-period-slice",
+      "to": "claim-marginal-block-equals-schur-slice",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-conditional-period-slice-protocol",
+      "to": "claim-marginal-block-equals-schur-slice",
+      "relation": "tests"
+    },
+    {
+      "from": "experiment-enso-support-direction-amendment",
+      "to": "experiment-enso-conditional-period-slice-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-support-direction-amendment",
+      "to": "evidence-enso-conditional-period-slice",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-support-direction-amendment",
+      "to": "claim-knowledge-graph",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-enso-coordinate-only-candidate-infeasible",
+      "to": "experiment-enso-support-direction-amendment",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-enso-conditional-period-slice-scope",
+      "to": "evidence-enso-conditional-period-slice",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-enso-conditional-period-slice-scope",
+      "to": "claim-slice-bound-full-ellipsoid",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-enso-conditional-period-slice-scope",
+      "to": "claim-marginal-block-equals-schur-slice",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-enso-conditional-period-slice-scope",
+      "to": "claim-independent-fourier-envelope-joint-optimum",
+      "relation": "limits"
+    },
+    {
+      "from": "counterexample-enso-fold3-zero-witness-not-safe",
+      "to": "claim-zero-candidate-violations-prove-full-safety",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-conditional-period-slice-protocol",
+      "to": "claim-zero-candidate-violations-prove-full-safety",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-enso-conditional-period-slice-scope",
+      "to": "claim-zero-candidate-violations-prove-full-safety",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-enso-conditional-period-slice",
+      "to": "evidence-enso-native-ellipsoid-continuous",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-enso-conditional-period-slice-protocol",
+      "to": "experiment-enso-native-ellipsoid-continuous-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-conditional-period-slice",
+      "to": "evidence-enso-native-ellipsoid-radius-sensitivity",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-conditional-period-slice",
+      "to": "evidence-native-ellipsoid-cross-model",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-conditional-period-slice",
+      "to": "claim-independent-fourier-envelope-joint-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-enso-conditional-period-slice-protocol",
+      "to": "claim-independent-fourier-envelope-joint-optimum",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-enso-slice-fold4-x134-export",
+      "to": "limitation-enso-native-ellipsoid-period-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-enso-conditional-period-slice",
+      "to": "counterexample-enso-optimizer-mismatch",
+      "relation": "supports"
     }
   ]
 }

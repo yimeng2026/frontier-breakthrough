@@ -76,7 +76,8 @@
 | ENSO 原生 Fourier 椭球正周期与连续预测包络 | 五折两个周期下界均为正并生成 168 个包络；最小临界半径 26.766839，最大宽度 17.641929，中位宽度 13.164436；中心一致性不是外部验证 | `validation/enso-native-ellipsoid-continuous-protocol.json`、`validation/enso-native-ellipsoid-continuous-bounds.json`、`docs/ENSO_NATIVE_ELLIPSOID_CONTINUOUS_BOUNDS_2026-11-09.md` | 提供正周期支撑证书、原始 Fourier 包络和宽度审计；不宣称物理周期、概率覆盖、联合最优界或精确有理证明 |
 | ENSO 原生 Fourier 椭球半径敏感性 | 五折六半径共 30 个案例、1008 次逐点判定，28 个案例生成 942 个包络；第 4、5 折半径 32 不可用，66 点为空界；最大宽度 141.135435 | `validation/enso-native-ellipsoid-radius-sensitivity-protocol.json`、`validation/enso-native-ellipsoid-radius-sensitivity-protocol-amendment-01.json`、`validation/enso-native-ellipsoid-radius-sensitivity.json` | 提供正周期网格压力测试、半径 4 逐折完整复现、近零失败和宽度敏感性；不优化半径或把中心一致性当作外部验证 |
 | 三模型原生椭球包络受限综合 | 15 折 407 点中 14 折、402 点可用并生成 210 个包络；Roszman1 第 5 折 5 点不可用；Chwirut1 第 1 折宽度比 8.851594 | `validation/native-ellipsoid-cross-model-synthesis-protocol.json`、`exports/native-ellipsoid-cross-model-synthesis.json`、`docs/NATIVE_ELLIPSOID_CROSS_MODEL_SYNTHESIS_2026-11-09.md` | 提供源收据核对、全点状态和仅限数据集内部的归一化；不合并原始误差、统一评分或移植证书 |
-| 主张—证据—反例—实验图谱 | 271 个节点、735 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
+| ENSO 条件周期切片联合支撑与全域反例 | 168 个切片宽度比中位数 0.319840；672 次可行候选中 199 次跑出切片界，95 个月份受影响，原独立包络违规为 0 | `validation/enso-conditional-period-slice-protocol.json`、`validation/enso-conditional-period-slice-protocol-amendment-01.json`、`validation/enso-conditional-period-slice-bounds.json` | 提供 Schur 补切片与完整协方差支撑候选接口；不把条件收紧当作全域最优，也不把零反例当作安全证明 |
+| 主张—证据—反例—实验图谱 | 281 个节点、770 条边，所有节点链接实际证据文件 | `exports/frontier-knowledge-graph.json`、`contracts/frontier-knowledge-graph.schema.json` | 为上游和组件提供同时包含支持、反例与限制的可追溯接口 |
 
 ## 范围感知外部分析适配层
 

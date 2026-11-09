@@ -41,8 +41,8 @@ class Roszman1NativeIdentifiabilityIntegrationTests(unittest.TestCase):
         ]
         for identifier in identifiers:
             self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 271)
-        self.assertEqual(len(graph["edges"]), 735)
+        self.assertEqual(len(graph["nodes"]), 281)
+        self.assertEqual(len(graph["edges"]), 770)
         self.assertEqual(nodes["claim-local-rank-global-identifiability"]["status"], "falsified")
         self.assertEqual(nodes["claim-prediction-stability-parameter-uniqueness"]["status"], "falsified")
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}

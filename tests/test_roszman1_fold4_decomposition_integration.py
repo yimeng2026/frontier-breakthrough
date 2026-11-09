@@ -14,7 +14,7 @@ class Roszman1Fold4DecompositionIntegrationTests(unittest.TestCase):
         packet = json.loads((ROOT / "exports/frontier-evidence.json").read_text(encoding="utf-8"))
         identifiers = {item["id"] for item in packet["items"]}
         self.assertIn("roszman1-fold4-error-decomposition", identifiers)
-        self.assertEqual(len(packet["items"]), 60)
+        self.assertEqual(len(packet["items"]), 61)
         item = next(item for item in packet["items"] if item["id"] == "roszman1-fold4-error-decomposition")
         metrics = item["metrics"]
         self.assertEqual(metrics["totals"]["point_count"], 5)
@@ -51,8 +51,8 @@ class Roszman1Fold4DecompositionIntegrationTests(unittest.TestCase):
         ]
         for identifier in identifiers:
             self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 271)
-        self.assertEqual(len(graph["edges"]), 735)
+        self.assertEqual(len(graph["nodes"]), 281)
+        self.assertEqual(len(graph["edges"]), 770)
         self.assertEqual(nodes["claim-aggregate-loss-direction-implies-per-point"]["status"], "falsified")
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}
         self.assertIn(("evidence-roszman1-fold4-error-decomposition", "claim-single-error-metric-sufficient", "contradicts"), edges)

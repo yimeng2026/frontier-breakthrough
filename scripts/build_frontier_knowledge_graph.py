@@ -105,6 +105,9 @@ def build_graph(root):
     nativeEllipsoidCross = json.loads((root / "exports/native-ellipsoid-cross-model-synthesis.json").read_text(encoding="utf-8"))
     if nativeEllipsoidCross["totals"]["dataset_count"] != 3 or nativeEllipsoidCross["totals"]["fold_count"] != 15 or nativeEllipsoidCross["totals"]["held_out_point_count"] != 407 or nativeEllipsoidCross["totals"]["certified_fold_count"] != 14 or nativeEllipsoidCross["totals"]["available_point_count"] != 402 or nativeEllipsoidCross["totals"]["covered_point_count"] != 402 or nativeEllipsoidCross["totals"]["violation_point_count"] != 0 or nativeEllipsoidCross["totals"]["unavailable_point_count"] != 5 or nativeEllipsoidCross["totals"]["unique_envelope_count"] != 210 or nativeEllipsoidCross["totals"]["center_prediction_envelope_mismatch_count"] != 0 or nativeEllipsoidCross["totals"]["source_receipt_verified_count"] != 3 or nativeEllipsoidCross["totals"]["source_projection_mismatch_count"] != 0 or nativeEllipsoidCross["totals"]["unavailable_fold_ids"] != ["roszman1:5"] or nativeEllipsoidCross["cross_dataset_pooled_error_metrics"] is not None or nativeEllipsoidCross["cross_dataset_stability_score"] is not None or nativeEllipsoidCross["decision"]["universal_stability_score_claimed"] or nativeEllipsoidCross["decision"]["unavailable_points_dropped"]:
         raise ValueError("Expected native ellipsoid counts, unavailable fold and no-pooling boundaries are not present")
+    ensoSlice = json.loads((root / "validation/enso-conditional-period-slice-bounds.json").read_text(encoding="utf-8"))
+    if ensoSlice["totals"]["slice_envelope_count"] != 168 or ensoSlice["totals"]["candidate_direction_count"] != 20 or ensoSlice["totals"]["candidate_evaluation_count"] != 672 or ensoSlice["totals"]["slice_violation_evaluation_count"] != 199 or ensoSlice["totals"]["slice_violating_envelope_count"] != 95 or ensoSlice["totals"]["full_independent_violation_count"] != 0 or ensoSlice["totals"]["slice_containment_violation_count"] != 0 or ensoSlice["totals"]["candidate_feasibility_failure_count"] != 0 or ensoSlice["totals"]["median_slice_to_independent_width_ratio"] != 0.31983975629460537 or ensoSlice["totals"]["max_width_reduction"] != 13.283611289252011 or ensoSlice["totals"]["max_slice_violation_exceedance"] != 2.3416912445042737 or ensoSlice["totals"]["slice_global_validity"] != "falsified_by_feasible_candidate" or ensoSlice["totals"]["largest_violation_witness"]["fold"] != 4 or ensoSlice["totals"]["largest_violation_witness"]["x"] != 134.0 or not ensoSlice["baseline_receipt_verified"] or ensoSlice["baseline_envelope_match_count"] != 168 or [fold["slice_violation_evaluation_count"] for fold in ensoSlice["folds"]] != [56, 4, 0, 57, 82] or ensoSlice["decision"]["slice_bound_called_full_ellipsoid_bound"] or ensoSlice["decision"]["zero_witness_called_safety_proof"]:
+        raise ValueError("Expected conditional slice tightening, export witnesses and baseline boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -1174,6 +1177,55 @@ def build_graph(root):
         edge("evidence-native-ellipsoid-cross-model", "claim-finite-bound-high-information", "contradicts"),
         edge("experiment-native-ellipsoid-cross-model-protocol", "claim-finite-bound-high-information", "tests"),
         edge("limitation-native-ellipsoid-cross-model-normalization", "claim-center-coverage-external-validation", "limits"),
+    ])
+    nodes.extend([
+        node("claim-slice-bound-full-ellipsoid", "claim", "固定周期切片上的七系数联合支撑界可以直接当作完整九维椭球预测界", "falsified", ["validation/enso-conditional-period-slice-bounds.json"]),
+        node("claim-marginal-block-equals-schur-slice", "claim", "边际系数协方差块与固定周期切片的 Schur 补可以不加区分地互换", "falsified", ["validation/enso-conditional-period-slice-bounds.json", "docs/ENSO_CONDITIONAL_PERIOD_SLICE_BOUNDS_2026-11-09.md"]),
+        node("claim-zero-candidate-violations-prove-full-safety", "claim", "四个候选方向没有越界即可证明切片界在完整椭球上安全", "falsified", ["validation/enso-conditional-period-slice-bounds.json"]),
+        node("evidence-enso-conditional-period-slice", "evidence", "168 个切片宽度比中位数为 0.319840；672 次可行候选中 199 次跑出切片界，95 个月份受影响，原独立包络违规仍为 0", "supported", ["validation/enso-conditional-period-slice-bounds.json", "validation/enso-conditional-period-slice-check.json"]),
+        node("counterexample-enso-slice-fold4-x134-export", "counterexample", "第 4 折 b4_minus、x=134 的可行候选预测 15.689547，超出切片上界 2.341691，但仍在原独立包络 5.142915 至 17.211587 内", "supported", ["validation/enso-conditional-period-slice-bounds.json"]),
+        node("counterexample-enso-fold3-zero-witness-not-safe", "counterexample", "第 3 折四个方向没有候选越界，但候选不是全局优化器，零记录不构成完整区域安全证明", "supported", ["validation/enso-conditional-period-slice-bounds.json"]),
+        node("counterexample-enso-coordinate-only-candidate-infeasible", "counterexample", "原坐标-only 候选在相关椭球上二次型不是 16，第一折 136 次评价全部被可行性门禁拒绝，没有作为最终反例；修正改用完整 C e_p 支撑方向", "supported", ["validation/enso-conditional-period-slice-protocol-amendment-01.json", "docs/ENSO_CONDITIONAL_PERIOD_SLICE_BOUNDS_2026-11-09.md"]),
+        node("experiment-enso-conditional-period-slice-protocol", "experiment", "冻结七系数 Schur 补切片、四个完整协方差支撑方向、672 次原生评价和原独立包络一致性门禁", "supported", ["validation/enso-conditional-period-slice-protocol.json", "validation/enso-conditional-period-slice-protocol-amendment-01.json", "scripts/analyze_enso_conditional_period_slice.py"]),
+        node("experiment-enso-support-direction-amendment", "experiment", "将错误的坐标-only 位移修正为 r·C·e_p／√C_pp，保留原协议和不可行记录，修正后所有候选二次型均为 16", "supported", ["validation/enso-conditional-period-slice-protocol-amendment-01.json", "tests/test_enso_conditional_period_slice_protocol.py"]),
+        node("limitation-enso-conditional-period-slice-scope", "limitation", "切片联合支撑不是九维联合非线性最优，候选不是优化器，零反例不证明安全，切片收紧不能替代全域保守性或物理周期证据", "active", ["validation/enso-conditional-period-slice-bounds.json", "docs/ENSO_CONDITIONAL_PERIOD_SLICE_BOUNDS_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-slice-bound-full-ellipsoid", "contains"),
+        edge("track-holdout", "claim-marginal-block-equals-schur-slice", "contains"),
+        edge("track-holdout", "claim-zero-candidate-violations-prove-full-safety", "contains"),
+        edge("track-holdout", "evidence-enso-conditional-period-slice", "contains"),
+        edge("track-holdout", "counterexample-enso-slice-fold4-x134-export", "contains"),
+        edge("track-holdout", "counterexample-enso-fold3-zero-witness-not-safe", "contains"),
+        edge("track-holdout", "counterexample-enso-coordinate-only-candidate-infeasible", "contains"),
+        edge("track-holdout", "experiment-enso-conditional-period-slice-protocol", "contains"),
+        edge("track-holdout", "experiment-enso-support-direction-amendment", "contains"),
+        edge("track-holdout", "limitation-enso-conditional-period-slice-scope", "contains"),
+        edge("evidence-enso-conditional-period-slice", "claim-slice-bound-full-ellipsoid", "contradicts"),
+        edge("experiment-enso-conditional-period-slice-protocol", "claim-slice-bound-full-ellipsoid", "tests"),
+        edge("counterexample-enso-slice-fold4-x134-export", "claim-slice-bound-full-ellipsoid", "contradicts"),
+        edge("evidence-enso-conditional-period-slice", "counterexample-enso-slice-fold4-x134-export", "supports"),
+        edge("evidence-enso-conditional-period-slice", "claim-marginal-block-equals-schur-slice", "contradicts"),
+        edge("experiment-enso-conditional-period-slice-protocol", "claim-marginal-block-equals-schur-slice", "tests"),
+        edge("experiment-enso-support-direction-amendment", "experiment-enso-conditional-period-slice-protocol", "supports"),
+        edge("experiment-enso-support-direction-amendment", "evidence-enso-conditional-period-slice", "supports"),
+        edge("experiment-enso-support-direction-amendment", "claim-knowledge-graph", "tests"),
+        edge("counterexample-enso-coordinate-only-candidate-infeasible", "experiment-enso-support-direction-amendment", "supports"),
+        edge("limitation-enso-conditional-period-slice-scope", "evidence-enso-conditional-period-slice", "limits"),
+        edge("limitation-enso-conditional-period-slice-scope", "claim-slice-bound-full-ellipsoid", "limits"),
+        edge("limitation-enso-conditional-period-slice-scope", "claim-marginal-block-equals-schur-slice", "limits"),
+        edge("limitation-enso-conditional-period-slice-scope", "claim-independent-fourier-envelope-joint-optimum", "limits"),
+        edge("counterexample-enso-fold3-zero-witness-not-safe", "claim-zero-candidate-violations-prove-full-safety", "contradicts"),
+        edge("experiment-enso-conditional-period-slice-protocol", "claim-zero-candidate-violations-prove-full-safety", "tests"),
+        edge("limitation-enso-conditional-period-slice-scope", "claim-zero-candidate-violations-prove-full-safety", "limits"),
+        edge("evidence-enso-conditional-period-slice", "evidence-enso-native-ellipsoid-continuous", "supports"),
+        edge("experiment-enso-conditional-period-slice-protocol", "experiment-enso-native-ellipsoid-continuous-protocol", "supports"),
+        edge("evidence-enso-conditional-period-slice", "evidence-enso-native-ellipsoid-radius-sensitivity", "supports"),
+        edge("evidence-enso-conditional-period-slice", "evidence-native-ellipsoid-cross-model", "supports"),
+        edge("evidence-enso-conditional-period-slice", "claim-independent-fourier-envelope-joint-optimum", "contradicts"),
+        edge("experiment-enso-conditional-period-slice-protocol", "claim-independent-fourier-envelope-joint-optimum", "tests"),
+        edge("counterexample-enso-slice-fold4-x134-export", "limitation-enso-native-ellipsoid-period-scope", "supports"),
+        edge("evidence-enso-conditional-period-slice", "counterexample-enso-optimizer-mismatch", "supports"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

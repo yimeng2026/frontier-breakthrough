@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "native_ellipsoid_cross_model":
+    if REPORT_MODE == "enso_conditional_period_slice":
+        replacements = {
+            "图：`papers/57_ENSO条件周期切片界/fig57_enso_conditional_period_slice_bounds.png`。": "![](papers/57_ENSO条件周期切片界/fig57_enso_conditional_period_slice_bounds.png)\n\n**图 57｜ENSO 条件周期切片联合支撑与全域反例（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联图与证据边界」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "168 个条件切片、672 次候选评价、199 次全域外推反例与支撑方向修正"
+    elif REPORT_MODE == "native_ellipsoid_cross_model":
         replacements = {
             "图：`papers/56_三模型原生椭球包络综合/fig56_native_ellipsoid_cross_model_synthesis.png`。": "![](papers/56_三模型原生椭球包络综合/fig56_native_ellipsoid_cross_model_synthesis.png)\n\n**图 56｜三模型原生椭球包络受限综合（第 1 幅，共 1 幅）**  \n**插入位置**：§5「中心一致性、模型病征与四联图」；顺序第 1 幅，共 1 幅。",
         }
