@@ -14,7 +14,7 @@ class Chwirut1LogSupportIntegrationTests(unittest.TestCase):
         packet = json.loads((ROOT / "exports/frontier-evidence.json").read_text(encoding="utf-8"))
         identifiers = {item["id"] for item in packet["items"]}
         self.assertIn("chwirut1-log-support-intersection", identifiers)
-        self.assertEqual(len(packet["items"]), 68)
+        self.assertEqual(len(packet["items"]), 69)
         item = next(item for item in packet["items"] if item["id"] == "chwirut1-log-support-intersection")
         metrics = item["metrics"]
         totals = metrics["totals"]
@@ -68,8 +68,8 @@ class Chwirut1LogSupportIntegrationTests(unittest.TestCase):
         ]
         for identifier in identifiers:
             self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 337)
-        self.assertEqual(len(graph["edges"]), 994)
+        self.assertEqual(len(graph["nodes"]), 345)
+        self.assertEqual(len(graph["edges"]), 1026)
         self.assertEqual(nodes["claim-independent-numerator-denominator-tightest"]["status"], "falsified")
         self.assertEqual(nodes["claim-log-intersection-global-optimum"]["status"], "falsified")
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}

@@ -4,29 +4,29 @@
   "errors": [],
   "groups": {
     "readme_local_links": {
-      "count": 126,
+      "count": 128,
       "errors": []
     },
     "document_figure_links": {
-      "count": 65,
+      "count": 66,
       "errors": []
     },
     "word_manifests": {
-      "count": 57,
+      "count": 58,
       "errors": []
     },
     "evidence_snapshots": {
-      "count": 229,
+      "count": 233,
       "errors": []
     },
     "knowledge_graph": {
-      "nodes": 337,
-      "edges": 994,
+      "nodes": 345,
+      "edges": 1026,
       "errors": []
     },
     "protocol_inputs": {
-      "count": 34,
-      "recordsChecked": 111,
+      "count": 36,
+      "recordsChecked": 117,
       "errors": []
     },
     "corpus_v2": {
@@ -36,9 +36,9 @@
       "errors": []
     },
     "dynamic_counts": {
-      "evidenceItems": 68,
-      "graphNodes": 337,
-      "graphEdges": 994,
+      "evidenceItems": 69,
+      "graphNodes": 345,
+      "graphEdges": 1026,
       "readme_consistent": true,
       "errors": []
     }
@@ -49,6 +49,6 @@
     "scientific_truth_claimed": false,
     "historical_text_rewritten": false
   },
-  "rules_sha256": "4f67b0e6c1720a896c49506633237ca2887f3854051e0bf55e01b69457718d93",
+  "rules_sha256": "19c1548b1262ab1e837349e662af3de2cbd0e9c5948a563991456da78f3db8f3",
   "analysis_runner_sha256": "403aabb3f22e6fa26eca8595777df16c1f5be34f6f948de7f1c8e7f8f20effdf"
 }

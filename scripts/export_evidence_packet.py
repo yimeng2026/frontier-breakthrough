@@ -129,6 +129,8 @@ def build() -> dict:
     roszmanRatioCheck = read("roszman1-ratio-denominator-check.json")
     roszmanGrid = read("roszman1-ellipsoid-cover-grid.json")
     roszmanGridCheck = read("roszman1-ellipsoid-cover-grid-check.json")
+    roszmanWhitened = read("roszman1-whitened-cover-grid.json")
+    roszmanWhitenedCheck = read("roszman1-whitened-cover-grid-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -1676,6 +1678,63 @@ def build() -> dict:
             "limitations": "网格覆盖有效不等于更紧或精确全局最优；60 个交集全部保持是负结果，不能推广为所有覆盖永远无效。候选只作见证，覆盖由坐标支撑和完整分区给出；第 5 折不生成细胞或有限界。" + " ".join(roszmanGrid["limitations"]),
             "upstreamContribution": "提供完整椭球外包盒、三层原生区间覆盖、全部细胞明细与负结果接口，明确区分覆盖证明、候选见证、计算量和实际收紧。",
             "snapshotFiles": ["validation/roszman1-ellipsoid-cover-grid-protocol.json", "validation/roszman1-ellipsoid-cover-grid-check.json", "validation/frontier-roszman1-ellipsoid-cover-grid-word.json"],
+        },
+        {
+            "id": "roszman1-whitened-cover-grid", "domain": "math", "title": "Roszman1 协方差白化覆盖与全预测区间",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Roszman1.dat"],
+            "metrics": {
+                "totals": roszmanWhitened["totals"],
+                "gridTotals": roszmanWhitened["grid_totals"],
+                "folds": [{
+                    "fold": fold["fold"],
+                    "nativeTestRmse": fold["native_test_rmse"],
+                    "predictionEnvelopeAvailable": fold["prediction_envelope_available"],
+                    "unavailableReason": fold["unavailable_reason"],
+                    "gridCoverCount": fold["grid_cover_count"],
+                    "partitionCellCount": fold["partition_cell_count"],
+                    "evaluatedCellCount": fold["evaluated_cell_count"],
+                    "outsideCellCount": fold["outside_cell_count"],
+                    "unresolvedCellCount": fold["unresolved_cell_count"],
+                    "unboundedGridCount": fold["unbounded_grid_count"],
+                    "candidateEvaluationCount": fold["candidate_evaluation_count"],
+                    "candidateGridContainmentCheckCount": fold["candidate_grid_containment_check_count"],
+                    "transformWitnessCount": fold["transform_witness_count"],
+                    "primary": fold["primary"],
+                    "points": fold["points"],
+                    "envelopes": [{
+                        "x": envelope["x"],
+                        "centerPrediction": envelope["center_prediction"],
+                        "ratioMinimum": envelope["ratio_minimum"],
+                        "ratioMaximum": envelope["ratio_maximum"],
+                        "ratioWidth": envelope["ratio_width"],
+                        "grids": [{key: value for key, value in grid.items() if key != "cells"} for grid in envelope["grids"]],
+                        "candidateEvaluations": envelope["candidate_evaluations"],
+                    } for envelope in fold["envelopes"]],
+                } for fold in roszmanWhitened["folds"]],
+                "cellDetailFile": "validation/roszman1-whitened-cover-grid.json",
+                "cellDetailSha256": roszmanWhitenedCheck["summarySha256"],
+                "primaryGrid": roszmanWhitened["primary_grid"],
+                "ratioReceiptVerified": roszmanWhitened["ratio_receipt_verified"],
+                "sourceProjectionMismatchCount": roszmanWhitenedCheck["sourceProjectionMismatchCount"],
+                "analysisScope": roszmanWhitened["analysis_scope"],
+                "exactGlobalOptimum": roszmanWhitened["exact_global_optimum"],
+                "decision": roszmanWhitened["decision"],
+                "implementation": {
+                    "protocolSha256": roszmanWhitened["protocol_sha256"],
+                    "protocolAmendmentSha256": roszmanWhitened["protocol_amendment_sha256"],
+                    "summarySha256": roszmanWhitenedCheck["summarySha256"],
+                    "analysisRunnerSha256": roszmanWhitenedCheck["analysisRunnerSha256"],
+                    "figureSha256": roszmanWhitenedCheck["figureSha256"],
+                    "reportSha256": roszmanWhitenedCheck["reportSha256"],
+                    "wordSha256": roszmanWhitenedCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "249ef08", "amendment01": "4b2dbe4"},
+            },
+            "scientificClaim": "精确白化后的 5460 个分区细胞全部可评价，未决和球外排除均为 0，60 个网格均有界。主网格 4 的 20 个交集全部收紧，宽度比中位数 0.820643、最大减少 0.090006515；200 个候选正逆变换和 600 次网格检查全部通过。第 1 层保持 20 个、第 2 层保持 3 个，第 5 折继续不可用。",
+            "limitations": "白化不天然保证收紧，外包盒仍含球外点，覆盖与候选通过不是精确全局最优。边界容差只保留更多可疑细胞，不放宽分母门禁；未决规则和第 5 折失败保持。" + " ".join(roszmanWhitened["limitations"]),
+            "upstreamContribution": "提供精确 Cholesky 白化、完整细胞分类、200 个共享正逆见证和三层原始预测覆盖接口，同时保留粗网格反例、边界修订和全部细胞文件哈希。",
+            "snapshotFiles": ["validation/roszman1-whitened-cover-grid-protocol.json", "validation/roszman1-whitened-cover-grid-protocol-amendment-01.json", "validation/roszman1-whitened-cover-grid-check.json", "validation/frontier-roszman1-whitened-cover-grid-word.json"],
         },
     ]
     packet = {

@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "roszman1_ellipsoid_cover_grid":
+    if REPORT_MODE == "roszman1_whitened_cover_grid":
+        replacements = {
+            "图：`papers/65_Roszman1协方差白化覆盖/fig65_roszman1_whitened_cover_grid.png`。": "![](papers/65_Roszman1协方差白化覆盖/fig65_roszman1_whitened_cover_grid.png)\n\n**图 65｜Roszman1 协方差白化覆盖与全预测区间（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联图与证据边界」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "5460 个细胞、200 个变换见证与主网格 20 个收紧交集"
+    elif REPORT_MODE == "roszman1_ellipsoid_cover_grid":
         replacements = {
             "图：`papers/64_Roszman1椭球覆盖盒细分/fig64_roszman1_ellipsoid_cover_grid.png`。": "![](papers/64_Roszman1椭球覆盖盒细分/fig64_roszman1_ellipsoid_cover_grid.png)\n\n**图 64｜Roszman1 椭球覆盖盒细分与全预测区间（第 1 幅，共 1 幅）**  \n**插入位置**：§5「四联图与研究转向」；顺序第 1 幅，共 1 幅。",
         }

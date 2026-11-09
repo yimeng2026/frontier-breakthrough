@@ -3184,6 +3184,86 @@
         "validation/roszman1-ellipsoid-cover-grid.json",
         "docs/ROSZMAN1_ELLIPSOID_COVER_GRID_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-whitening-alone-tightens",
+      "kind": "claim",
+      "title": "只要进行协方差白化，不细分也能保证 Roszman1 预测界收紧",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-whitened-cover-grid.json"
+      ]
+    },
+    {
+      "id": "claim-whitened-cover-exact-optimum",
+      "kind": "claim",
+      "title": "白化覆盖盒和细分网格就是椭球上原始预测的精确全局最优界",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/roszman1-whitened-cover-grid.json"
+      ]
+    },
+    {
+      "id": "evidence-roszman1-whitened-cover-grid",
+      "kind": "evidence",
+      "title": "5460 个细胞全部可评价，主网格 20 个交集全部收紧，中位宽度比 0.820643；200 个变换见证和 600 次网格检查通过",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-whitened-cover-grid.json",
+        "validation/roszman1-whitened-cover-grid-check.json"
+      ]
+    },
+    {
+      "id": "counterexample-whitened-grid1-unchanged",
+      "kind": "counterexample",
+      "title": "白化后第 1 层 20 个交集仍全部保持，第 2 层也有 3 个保持，白化本身并不保证收紧",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-whitened-cover-grid.json",
+        "docs/ROSZMAN1_WHITENED_COVER_GRID_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "experiment-roszman1-whitened-cover-grid-protocol",
+      "kind": "experiment",
+      "title": "冻结 Cholesky 白化、三层完整覆盖、球外排除、未决细胞、主网格和候选正逆见证",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-whitened-cover-grid-protocol.json",
+        "validation/roszman1-whitened-cover-grid-protocol-amendment-01.json",
+        "scripts/analyze_roszman1_whitened_cover_grid.py"
+      ]
+    },
+    {
+      "id": "counterexample-whitened-boundary-rounding",
+      "kind": "counterexample",
+      "title": "初版球外分类将最小平方距离 16.000000000000007 的 320 个边界细胞误排除；修订后保留边界不确定细胞，最终未决为 0",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-whitened-cover-grid-protocol-amendment-01.json",
+        "docs/ROSZMAN1_WHITENED_COVER_GRID_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "counterexample-whitened-fold5-unavailable",
+      "kind": "counterexample",
+      "title": "第 5 折仍无负分母证书，0 个细胞与候选，5 个观测点继续无有限包络或残差上界",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/roszman1-whitened-cover-grid.json",
+        "docs/ROSZMAN1_WHITENED_COVER_GRID_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "limitation-roszman1-whitened-cover-scope",
+      "kind": "limitation",
+      "title": "白化覆盖仍含球外点，主网格收紧不是精确全局最优；边界容差只保留更多细胞，候选见证不替代完整覆盖或独立实验",
+      "status": "active",
+      "sourceFiles": [
+        "validation/roszman1-whitened-cover-grid.json",
+        "validation/roszman1-whitened-cover-grid-protocol-amendment-01.json",
+        "docs/ROSZMAN1_WHITENED_COVER_GRID_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -8154,6 +8234,166 @@
     },
     {
       "from": "experiment-roszman1-ellipsoid-cover-grid-protocol",
+      "to": "claim-knowledge-graph",
+      "relation": "tests"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-whitening-alone-tightens",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-whitened-cover-exact-optimum",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-roszman1-whitened-cover-grid",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-whitened-grid1-unchanged",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-roszman1-whitened-cover-grid-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-whitened-boundary-rounding",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-whitened-fold5-unavailable",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-roszman1-whitened-cover-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-roszman1-whitened-cover-grid",
+      "to": "claim-whitening-alone-tightens",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-whitened-cover-grid-protocol",
+      "to": "claim-whitening-alone-tightens",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-whitened-grid1-unchanged",
+      "to": "claim-whitening-alone-tightens",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-roszman1-whitened-cover-grid",
+      "to": "counterexample-whitened-grid1-unchanged",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-whitened-cover-grid",
+      "to": "claim-whitened-cover-exact-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-roszman1-whitened-cover-grid-protocol",
+      "to": "claim-whitened-cover-exact-optimum",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-whitened-boundary-rounding",
+      "to": "limitation-roszman1-whitened-cover-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-whitened-fold5-unavailable",
+      "to": "claim-roszman-fold5-low-rmse-singularity-safe",
+      "relation": "contradicts"
+    },
+    {
+      "from": "counterexample-whitened-fold5-unavailable",
+      "to": "counterexample-roszman1-grid-fold5-unavailable",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-whitened-cover-grid",
+      "to": "counterexample-whitened-fold5-unavailable",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-whitened-cover-grid",
+      "to": "counterexample-whitened-boundary-rounding",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-whitened-grid1-unchanged",
+      "to": "limitation-roszman1-whitened-cover-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-roszman1-whitened-cover-scope",
+      "to": "evidence-roszman1-whitened-cover-grid",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-whitened-cover-scope",
+      "to": "claim-whitening-alone-tightens",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-whitened-cover-scope",
+      "to": "claim-whitened-cover-exact-optimum",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-roszman1-whitened-cover-scope",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-roszman1-whitened-cover-grid",
+      "to": "evidence-roszman1-ellipsoid-cover-grid",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-whitened-cover-grid-protocol",
+      "to": "experiment-roszman1-ellipsoid-cover-grid-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-whitened-cover-grid",
+      "to": "evidence-roszman1-ratio-denominator",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-whitened-cover-grid-protocol",
+      "to": "experiment-roszman1-ratio-denominator-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-whitened-cover-grid-protocol",
+      "to": "experiment-native-conservative-support-synthesis-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-roszman1-whitened-cover-grid",
+      "to": "evidence-roszman1-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-whitened-cover-grid-protocol",
+      "to": "experiment-roszman1-native-identifiability-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-roszman1-whitened-cover-grid-protocol",
       "to": "claim-knowledge-graph",
       "relation": "tests"
     }
