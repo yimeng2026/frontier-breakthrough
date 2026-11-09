@@ -114,6 +114,9 @@ def build_graph(root):
     ensoPhase = json.loads((root / "validation/enso-phase-interval-triple-intersection.json").read_text(encoding="utf-8"))
     if ensoPhase["totals"]["phase_tighter_than_lipschitz_count"] != 29 or ensoPhase["totals"]["phase_wider_than_lipschitz_count"] != 139 or ensoPhase["totals"]["triple_tightened_count"] != 37 or ensoPhase["totals"]["triple_unchanged_count"] != 131 or ensoPhase["totals"]["nonempty_triple_intersection_count"] != 168 or ensoPhase["totals"]["phase_candidate_violation_count"] != 0 or ensoPhase["totals"]["triple_candidate_violation_count"] != 0 or ensoPhase["totals"]["center_prediction_mismatch_count"] != 0 or ensoPhase["totals"]["median_phase_to_lipschitz_width_ratio"] != 1.5386143812259636 or ensoPhase["totals"]["median_triple_to_lipschitz_width_ratio"] != 1.0 or ensoPhase["totals"]["max_triple_width_reduction"] != 4.371401855122352 or ensoPhase["totals"]["largest_triple_tightening"]["x"] != 25.0 or not ensoPhase["independent_receipt_verified"] or not ensoPhase["slice_receipt_verified"] or not ensoPhase["lipschitz_receipt_verified"] or ensoPhase["decision"]["triple_intersection_is_global_optimum"] or ensoPhase["decision"]["candidate_checks_replace_interval_proof"]:
         raise ValueError("Expected phase-width mismatch, local triple intersections and candidate boundaries are not present")
+    chwirutLog = json.loads((root / "validation/chwirut1-log-support-intersection.json").read_text(encoding="utf-8"))
+    if chwirutLog["totals"]["held_out_point_count"] != 214 or chwirutLog["totals"]["unique_distance_count"] != 22 or chwirutLog["totals"]["log_alternative_bound_count"] != 22 or chwirutLog["totals"]["intersection_bound_count"] != 22 or chwirutLog["totals"]["candidate_direction_count"] != 30 or chwirutLog["totals"]["candidate_evaluation_count"] != 132 or chwirutLog["totals"]["alternative_tighter_count"] != 22 or chwirutLog["totals"]["alternative_wider_count"] != 0 or chwirutLog["totals"]["intersection_tightened_count"] != 22 or chwirutLog["totals"]["intersection_unchanged_count"] != 0 or chwirutLog["totals"]["nonempty_intersection_count"] != 22 or chwirutLog["totals"]["alternative_candidate_violation_count"] != 0 or chwirutLog["totals"]["intersection_candidate_violation_count"] != 0 or chwirutLog["totals"]["independent_candidate_violation_count"] != 0 or chwirutLog["totals"]["covered_point_count"] != 214 or chwirutLog["totals"]["violation_point_count"] != 0 or chwirutLog["totals"]["median_intersection_to_independent_width_ratio"] != 0.25654045819729265 or chwirutLog["totals"]["max_intersection_width_reduction"] != 20.935447900396312 or chwirutLog["totals"]["largest_intersection_tightening"]["x"] != 1.5 or not chwirutLog["independent_receipt_verified"] or chwirutLog["decision"]["log_alternative_is_global_optimum"] or chwirutLog["decision"]["candidate_checks_replace_log_proof"]:
+        raise ValueError("Expected Chwirut1 log-support tightening, candidates and related-model boundaries are not present")
     roszman1Coverage = json.loads((root / "validation/roszman1-ellipsoid-coverage.json").read_text(encoding="utf-8"))
     roszman1Protocol = json.loads((root / "validation/roszman1-ellipsoid-coverage-protocol.json").read_text(encoding="utf-8"))
     nativeHoldout = json.loads((root / "validation/roszman1-native-holdout.json").read_text(encoding="utf-8"))
@@ -1320,6 +1323,50 @@ def build_graph(root):
         edge("limitation-enso-phase-interval-triple-scope", "claim-independent-fourier-envelope-joint-optimum", "limits"),
         edge("experiment-enso-phase-interval-triple-protocol", "claim-center-coverage-external-validation", "tests"),
         edge("limitation-enso-phase-interval-triple-scope", "claim-center-coverage-external-validation", "limits"),
+    ])
+    nodes.extend([
+        node("claim-independent-numerator-denominator-tightest", "claim", "独立指数极值和分母极值的组合已经给出 Chwirut1 最紧有效包络，不可能再利用参数相关性收紧", "falsified", ["validation/chwirut1-log-support-intersection.json"]),
+        node("claim-log-intersection-global-optimum", "claim", "分母割线、三条切线与独立包络的交集就是完整非线性全局最优界", "falsified", ["validation/chwirut1-log-support-intersection.json"]),
+        node("evidence-chwirut1-log-support", "evidence", "22 个 Chwirut1 距离的对数替代界和交集全部收紧，宽度比中位数 0.256540，132 个候选与 214 个观测点全部一致", "supported", ["validation/chwirut1-log-support-intersection.json", "validation/chwirut1-log-support-check.json"]),
+        node("evidence-chwirut1-fold2-x15-tightening", "evidence", "第 2 折 x=1.5 使用 d_max 切线，包络从 24.862759—51.467129 收紧到 32.806691—38.475613，宽度减少 20.935448", "supported", ["validation/chwirut1-log-support-intersection.json", "docs/CHWIRUT1_LOG_SUPPORT_INTERSECTION_2026-11-09.md"]),
+        node("counterexample-chwirut1-independent-extreme-composition-wide", "counterexample", "独立分子和分母极值组合会显著放大范围，22 个距离均可被对数域线性支撑收紧；原包络保守但不是最优", "supported", ["validation/chwirut1-log-support-intersection.json", "docs/CHWIRUT1_LOG_SUPPORT_INTERSECTION_2026-11-09.md"]),
+        node("experiment-chwirut1-log-support-protocol", "experiment", "冻结分母割线、三个切点、完整三参数支撑、指数化交集及 30 个候选方向的 132 次原生评价", "supported", ["validation/chwirut1-log-support-protocol.json", "scripts/analyze_chwirut1_log_support.py"]),
+        node("counterexample-chwirut1-candidate-not-global-proof", "counterexample", "132 个候选全部包含只验证实现一致性，候选方向不是全局优化器，三条切线也不是全局切点搜索", "supported", ["validation/chwirut1-log-support-intersection.json"]),
+        node("limitation-chwirut1-log-support-scope", "limitation", "对数支撑只覆盖冻结椭球和距离，不是全局最优或独立复现；Chwirut1 与 Chwirut2 同研究同模型族，候选和中心一致性不是概率覆盖", "active", ["validation/chwirut1-log-support-intersection.json", "docs/CHWIRUT1_LOG_SUPPORT_INTERSECTION_2026-11-09.md"]),
+    ])
+    edges.extend([
+        edge("track-holdout", "claim-independent-numerator-denominator-tightest", "contains"),
+        edge("track-holdout", "claim-log-intersection-global-optimum", "contains"),
+        edge("track-holdout", "evidence-chwirut1-log-support", "contains"),
+        edge("track-holdout", "evidence-chwirut1-fold2-x15-tightening", "contains"),
+        edge("track-holdout", "counterexample-chwirut1-independent-extreme-composition-wide", "contains"),
+        edge("track-holdout", "experiment-chwirut1-log-support-protocol", "contains"),
+        edge("track-holdout", "counterexample-chwirut1-candidate-not-global-proof", "contains"),
+        edge("track-holdout", "limitation-chwirut1-log-support-scope", "contains"),
+        edge("evidence-chwirut1-log-support", "claim-independent-numerator-denominator-tightest", "contradicts"),
+        edge("experiment-chwirut1-log-support-protocol", "claim-independent-numerator-denominator-tightest", "tests"),
+        edge("counterexample-chwirut1-independent-extreme-composition-wide", "claim-independent-numerator-denominator-tightest", "contradicts"),
+        edge("evidence-chwirut1-log-support", "counterexample-chwirut1-independent-extreme-composition-wide", "supports"),
+        edge("evidence-chwirut1-log-support", "claim-log-intersection-global-optimum", "contradicts"),
+        edge("experiment-chwirut1-log-support-protocol", "claim-log-intersection-global-optimum", "tests"),
+        edge("evidence-chwirut1-fold2-x15-tightening", "evidence-chwirut1-log-support", "supports"),
+        edge("evidence-chwirut1-fold2-x15-tightening", "limitation-chwirut1-log-support-scope", "supports"),
+        edge("counterexample-chwirut1-candidate-not-global-proof", "limitation-chwirut1-log-support-scope", "supports"),
+        edge("limitation-chwirut1-log-support-scope", "evidence-chwirut1-log-support", "limits"),
+        edge("limitation-chwirut1-log-support-scope", "claim-independent-numerator-denominator-tightest", "limits"),
+        edge("limitation-chwirut1-log-support-scope", "claim-log-intersection-global-optimum", "limits"),
+        edge("evidence-chwirut1-log-support", "evidence-chwirut1-native-ellipsoid-continuous", "supports"),
+        edge("experiment-chwirut1-log-support-protocol", "experiment-chwirut1-native-ellipsoid-continuous-protocol", "supports"),
+        edge("evidence-chwirut1-log-support", "evidence-native-ellipsoid-cross-model", "supports"),
+        edge("experiment-chwirut1-log-support-protocol", "experiment-native-ellipsoid-cross-model-protocol", "supports"),
+        edge("evidence-chwirut1-log-support", "evidence-native-identifiability-cross-model", "supports"),
+        edge("counterexample-chwirut1-independent-extreme-composition-wide", "claim-finite-bound-high-information", "contradicts"),
+        edge("experiment-chwirut1-log-support-protocol", "claim-center-coverage-external-validation", "tests"),
+        edge("limitation-chwirut1-log-support-scope", "claim-center-coverage-external-validation", "limits"),
+        edge("evidence-chwirut1-log-support", "evidence-chwirut1-native-identifiability", "supports"),
+        edge("experiment-chwirut1-log-support-protocol", "experiment-chwirut1-native-radius-sensitivity-protocol", "supports"),
+        edge("experiment-chwirut1-log-support-protocol", "claim-knowledge-graph", "tests"),
+        edge("limitation-chwirut1-log-support-scope", "claim-chwirut-extrapolation", "limits"),
     ])
     return {"schemaVersion": 1, "asOf": "2026-11-09", "project": "frontier-breakthrough", "nodes": nodes, "edges": edges}
 

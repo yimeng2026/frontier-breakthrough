@@ -18,7 +18,7 @@
 - [定期消化机制](docs/RESEARCH_AUTOMATION.md)：检索—筛选—复现—回馈的闭环。
 - [机器可读目录](data/projects.json)：每项均有官方来源、证据级别、协作角色和本地状态。
 - [上游接口与证据契约](docs/UPSTREAM_INTERFACES.md)：真实跨库验证、统一 JSON 接口及组件边界。
-- [跨域证据包](exports/frontier-evidence.json)：六十三项已执行检查的结构化结果与限制。
+- [跨域证据包](exports/frontier-evidence.json)：六十四项已执行检查的结构化结果与限制。
 - [外部模型族限制文本修订审计](validation/external-scope-limitations-amendment-01-audit.json)：三份修订副本、原始文件与协议哈希、仅文档文本变更的完整记录。
 - [五条主线扩展工作包](docs/EXPANSION_2026-11-08.md)：真实留出、形式化反例、化学跨库、材料跨库和知识图谱的首轮成果。
 - [第二轮续展报告](docs/CONTINUATION_2026-11-08.md)：Eckerle4 双尾外推与 cvc5 交叉求解器复核。
@@ -72,6 +72,8 @@
 - [第五十阶段 ENSO 条件周期切片联合支撑与全域反例](docs/ENSO_CONDITIONAL_PERIOD_SLICE_BOUNDS_2026-11-09.md)：168 个切片、672 次候选评价、199 次外推反例与完整支撑方向修正。
 - [第五十一阶段 ENSO 全椭球 Lipschitz 保守界与交集收紧](docs/ENSO_FULL_ELLIPSOID_LIPSCHITZ_INTERSECTION_2026-11-09.md)：168 个替代界与交集、13 个收紧月份、155 个保持月份及 672 次候选复核。
 - [第五十二阶段 ENSO 精确三角区间余项与三重交集](docs/ENSO_PHASE_INTERVAL_TRIPLE_INTERSECTION_2026-11-09.md)：168 个相位替代界与三重交集、37 个新增收紧月份及宽度—收益不一致反例。
+- [第五十三阶段 Chwirut1 对数支撑与保守交集](docs/CHWIRUT1_LOG_SUPPORT_INTERSECTION_2026-11-09.md)：22 个收紧距离、132 次候选复核与分母割线切线联合支撑。
+- [Chwirut1 对数支撑交集原生 Word 图文版](papers/前沿共生Chwirut1对数支撑交集_图文完整版.docx)：一幅四联实图、五个 Word 表格、四个原生 OMML 公式，含目录、页眉和页码。
 - [ENSO 三角区间三重交集原生 Word 图文版](papers/前沿共生ENSO三角区间三重交集_图文完整版.docx)：一幅四联实图、五个 Word 表格、四个原生 OMML 公式，含目录、页眉和页码。
 - [ENSO 全椭球 Lipschitz 交集原生 Word 图文版](papers/前沿共生ENSO全椭球Lipschitz交集_图文完整版.docx)：一幅四联实图、五个 Word 表格、四个原生 OMML 公式，含目录、页眉和页码。
 - [ENSO 条件周期切片界原生 Word 图文版](papers/前沿共生ENSO条件周期切片界_图文完整版.docx)：一幅四联实图、五个 Word 表格、三个原生 OMML 公式，含目录、页眉和页码。
@@ -124,7 +126,7 @@
 - [有理模型原生 Word 图文版](papers/前沿共生有理模型与分母边界_图文完整版.docx)：一幅实图、四个 Word 表格、七个原生 OMML 公式，含目录、页眉和页码。
 - [续展原生 Word 图文版](papers/前沿共生续展_双尾外推与求解器复核_图文完整版.docx)：一幅实图、四个 Word 表格、七个原生 OMML 公式，含目录、页眉和页码。
 - [扩展工作包原生 Word 图文版](papers/前沿共生扩展工作包_图文完整版.docx)：两幅实图、三个 Word 表格、五个原生 OMML 公式，含目录、页眉和页码。
-- [主张—证据—反例—实验图谱](exports/frontier-knowledge-graph.json)：297 个节点、834 条边，支持与反例均可追溯到实际文件。
+- [主张—证据—反例—实验图谱](exports/frontier-knowledge-graph.json)：305 个节点、866 条边，支持与反例均可追溯到实际文件。
 - [研究简报合订本（Word）](papers/前沿共生研究简报_合订本.docx)：三篇长文、十三幅图，附真实证据与复现路径。
 - [研究简报合订本（Markdown）](papers/前沿共生研究简报_合订本.md)：便于审阅和继续修订的文本版本。
 

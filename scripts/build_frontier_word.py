@@ -48,7 +48,12 @@ def prepare_frontier_markdown(source):
     heading = f"# {TITLE}\n"
     if source.startswith(heading):
         source = source[len(heading):].lstrip("\n")
-    if REPORT_MODE == "enso_phase_interval_triple":
+    if REPORT_MODE == "chwirut1_log_support":
+        replacements = {
+            "图：`papers/60_Chwirut1对数支撑交集/fig60_chwirut1_log_support_intersection.png`。": "![](papers/60_Chwirut1对数支撑交集/fig60_chwirut1_log_support_intersection.png)\n\n**图 60｜Chwirut1 对数支撑与保守交集（第 1 幅，共 1 幅）**  \n**插入位置**：§6「四联图与证据边界」；顺序第 1 幅，共 1 幅。",
+        }
+        subtitle = "22 个收紧距离、132 次候选复核与分母割线切线联合支撑"
+    elif REPORT_MODE == "enso_phase_interval_triple":
         replacements = {
             "图：`papers/59_ENSO三角区间三重交集/fig59_enso_phase_interval_triple_intersection.png`。": "![](papers/59_ENSO三角区间三重交集/fig59_enso_phase_interval_triple_intersection.png)\n\n**图 59｜ENSO 精确三角区间余项与三重交集（第 1 幅，共 1 幅）**  \n**插入位置**：§6「四联图与证据边界」；顺序第 1 幅，共 1 幅。",
         }

@@ -14,7 +14,7 @@ class NativeEllipsoidCrossModelIntegrationTests(unittest.TestCase):
         packet = json.loads((ROOT / "exports/frontier-evidence.json").read_text(encoding="utf-8"))
         identifiers = {item["id"] for item in packet["items"]}
         self.assertIn("native-ellipsoid-cross-model-synthesis", identifiers)
-        self.assertEqual(len(packet["items"]), 63)
+        self.assertEqual(len(packet["items"]), 64)
         item = next(item for item in packet["items"] if item["id"] == "native-ellipsoid-cross-model-synthesis")
         metrics = item["metrics"]
         totals = metrics["totals"]
@@ -67,8 +67,8 @@ class NativeEllipsoidCrossModelIntegrationTests(unittest.TestCase):
         ]
         for identifier in identifiers:
             self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 297)
-        self.assertEqual(len(graph["edges"]), 834)
+        self.assertEqual(len(graph["nodes"]), 305)
+        self.assertEqual(len(graph["edges"]), 866)
         self.assertEqual(nodes["claim-cross-model-envelope-width-direct-ranking"]["status"], "falsified")
         self.assertEqual(nodes["claim-normalized-envelope-ratio-stability-score"]["status"], "falsified")
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}

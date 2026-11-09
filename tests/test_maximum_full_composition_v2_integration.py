@@ -41,8 +41,8 @@ class MaximumFullCompositionV2IntegrationTests(unittest.TestCase):
         ]
         for identifier in identifiers:
             self.assertIn(identifier, nodes)
-        self.assertEqual(len(graph["nodes"]), 297)
-        self.assertEqual(len(graph["edges"]), 834)
+        self.assertEqual(len(graph["nodes"]), 305)
+        self.assertEqual(len(graph["edges"]), 866)
         self.assertEqual(nodes["claim-descriptive-percentile-probability-coverage"]["status"], "falsified")
         edges = {(item["from"], item["to"], item["relation"]) for item in graph["edges"]}
         self.assertIn(("evidence-maximum-full-composition-v2", "claim-descriptive-percentile-probability-coverage", "contradicts"), edges)

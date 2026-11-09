@@ -2796,6 +2796,83 @@
         "validation/enso-phase-interval-triple-intersection.json",
         "docs/ENSO_PHASE_INTERVAL_TRIPLE_INTERSECTION_2026-11-09.md"
       ]
+    },
+    {
+      "id": "claim-independent-numerator-denominator-tightest",
+      "kind": "claim",
+      "title": "独立指数极值和分母极值的组合已经给出 Chwirut1 最紧有效包络，不可能再利用参数相关性收紧",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/chwirut1-log-support-intersection.json"
+      ]
+    },
+    {
+      "id": "claim-log-intersection-global-optimum",
+      "kind": "claim",
+      "title": "分母割线、三条切线与独立包络的交集就是完整非线性全局最优界",
+      "status": "falsified",
+      "sourceFiles": [
+        "validation/chwirut1-log-support-intersection.json"
+      ]
+    },
+    {
+      "id": "evidence-chwirut1-log-support",
+      "kind": "evidence",
+      "title": "22 个 Chwirut1 距离的对数替代界和交集全部收紧，宽度比中位数 0.256540，132 个候选与 214 个观测点全部一致",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-log-support-intersection.json",
+        "validation/chwirut1-log-support-check.json"
+      ]
+    },
+    {
+      "id": "evidence-chwirut1-fold2-x15-tightening",
+      "kind": "evidence",
+      "title": "第 2 折 x=1.5 使用 d_max 切线，包络从 24.862759—51.467129 收紧到 32.806691—38.475613，宽度减少 20.935448",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-log-support-intersection.json",
+        "docs/CHWIRUT1_LOG_SUPPORT_INTERSECTION_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "counterexample-chwirut1-independent-extreme-composition-wide",
+      "kind": "counterexample",
+      "title": "独立分子和分母极值组合会显著放大范围，22 个距离均可被对数域线性支撑收紧；原包络保守但不是最优",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-log-support-intersection.json",
+        "docs/CHWIRUT1_LOG_SUPPORT_INTERSECTION_2026-11-09.md"
+      ]
+    },
+    {
+      "id": "experiment-chwirut1-log-support-protocol",
+      "kind": "experiment",
+      "title": "冻结分母割线、三个切点、完整三参数支撑、指数化交集及 30 个候选方向的 132 次原生评价",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-log-support-protocol.json",
+        "scripts/analyze_chwirut1_log_support.py"
+      ]
+    },
+    {
+      "id": "counterexample-chwirut1-candidate-not-global-proof",
+      "kind": "counterexample",
+      "title": "132 个候选全部包含只验证实现一致性，候选方向不是全局优化器，三条切线也不是全局切点搜索",
+      "status": "supported",
+      "sourceFiles": [
+        "validation/chwirut1-log-support-intersection.json"
+      ]
+    },
+    {
+      "id": "limitation-chwirut1-log-support-scope",
+      "kind": "limitation",
+      "title": "对数支撑只覆盖冻结椭球和距离，不是全局最优或独立复现；Chwirut1 与 Chwirut2 同研究同模型族，候选和中心一致性不是概率覆盖",
+      "status": "active",
+      "sourceFiles": [
+        "validation/chwirut1-log-support-intersection.json",
+        "docs/CHWIRUT1_LOG_SUPPORT_INTERSECTION_2026-11-09.md"
+      ]
     }
   ],
   "edges": [
@@ -6967,6 +7044,166 @@
     {
       "from": "limitation-enso-phase-interval-triple-scope",
       "to": "claim-center-coverage-external-validation",
+      "relation": "limits"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-independent-numerator-denominator-tightest",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "claim-log-intersection-global-optimum",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-chwirut1-log-support",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "evidence-chwirut1-fold2-x15-tightening",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-chwirut1-independent-extreme-composition-wide",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "experiment-chwirut1-log-support-protocol",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "counterexample-chwirut1-candidate-not-global-proof",
+      "relation": "contains"
+    },
+    {
+      "from": "track-holdout",
+      "to": "limitation-chwirut1-log-support-scope",
+      "relation": "contains"
+    },
+    {
+      "from": "evidence-chwirut1-log-support",
+      "to": "claim-independent-numerator-denominator-tightest",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-chwirut1-log-support-protocol",
+      "to": "claim-independent-numerator-denominator-tightest",
+      "relation": "tests"
+    },
+    {
+      "from": "counterexample-chwirut1-independent-extreme-composition-wide",
+      "to": "claim-independent-numerator-denominator-tightest",
+      "relation": "contradicts"
+    },
+    {
+      "from": "evidence-chwirut1-log-support",
+      "to": "counterexample-chwirut1-independent-extreme-composition-wide",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-chwirut1-log-support",
+      "to": "claim-log-intersection-global-optimum",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-chwirut1-log-support-protocol",
+      "to": "claim-log-intersection-global-optimum",
+      "relation": "tests"
+    },
+    {
+      "from": "evidence-chwirut1-fold2-x15-tightening",
+      "to": "evidence-chwirut1-log-support",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-chwirut1-fold2-x15-tightening",
+      "to": "limitation-chwirut1-log-support-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-chwirut1-candidate-not-global-proof",
+      "to": "limitation-chwirut1-log-support-scope",
+      "relation": "supports"
+    },
+    {
+      "from": "limitation-chwirut1-log-support-scope",
+      "to": "evidence-chwirut1-log-support",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-chwirut1-log-support-scope",
+      "to": "claim-independent-numerator-denominator-tightest",
+      "relation": "limits"
+    },
+    {
+      "from": "limitation-chwirut1-log-support-scope",
+      "to": "claim-log-intersection-global-optimum",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-chwirut1-log-support",
+      "to": "evidence-chwirut1-native-ellipsoid-continuous",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-chwirut1-log-support-protocol",
+      "to": "experiment-chwirut1-native-ellipsoid-continuous-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-chwirut1-log-support",
+      "to": "evidence-native-ellipsoid-cross-model",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-chwirut1-log-support-protocol",
+      "to": "experiment-native-ellipsoid-cross-model-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "evidence-chwirut1-log-support",
+      "to": "evidence-native-identifiability-cross-model",
+      "relation": "supports"
+    },
+    {
+      "from": "counterexample-chwirut1-independent-extreme-composition-wide",
+      "to": "claim-finite-bound-high-information",
+      "relation": "contradicts"
+    },
+    {
+      "from": "experiment-chwirut1-log-support-protocol",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-chwirut1-log-support-scope",
+      "to": "claim-center-coverage-external-validation",
+      "relation": "limits"
+    },
+    {
+      "from": "evidence-chwirut1-log-support",
+      "to": "evidence-chwirut1-native-identifiability",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-chwirut1-log-support-protocol",
+      "to": "experiment-chwirut1-native-radius-sensitivity-protocol",
+      "relation": "supports"
+    },
+    {
+      "from": "experiment-chwirut1-log-support-protocol",
+      "to": "claim-knowledge-graph",
+      "relation": "tests"
+    },
+    {
+      "from": "limitation-chwirut1-log-support-scope",
+      "to": "claim-chwirut-extrapolation",
       "relation": "limits"
     }
   ]

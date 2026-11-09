@@ -49,7 +49,8 @@
     "validation/enso-conditional-period-slice-protocol.json",
     "validation/enso-conditional-period-slice-protocol-amendment-01.json",
     "validation/enso-full-ellipsoid-lipschitz-protocol.json",
-    "validation/enso-phase-interval-triple-protocol.json"
+    "validation/enso-phase-interval-triple-protocol.json",
+    "validation/chwirut1-log-support-protocol.json"
   ],
   "decision": {
     "external_web_checked": false,

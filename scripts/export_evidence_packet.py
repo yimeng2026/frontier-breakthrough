@@ -119,6 +119,8 @@ def build() -> dict:
     ensoLipschitzCheck = read("enso-full-ellipsoid-lipschitz-check.json")
     ensoPhase = read("enso-phase-interval-triple-intersection.json")
     ensoPhaseCheck = read("enso-phase-interval-triple-check.json")
+    chwirutLog = read("chwirut1-log-support-intersection.json")
+    chwirutLogCheck = read("chwirut1-log-support-check.json")
     items = [
         {
             "id": "pysindy-linear-system", "domain": "math", "title": "稀疏动力学已知答案复核",
@@ -1421,6 +1423,64 @@ def build() -> dict:
             "limitations": "三角区间和独立乘积区间不是联合全局最优。替代界可以更宽，三重交集可以不变；另有 8 个月替代更宽但交集收紧，不能把替代宽度比当作最终稳定性评分。候选检查只验证实现一致性。" + " ".join(ensoPhase["limitations"]),
             "upstreamContribution": "提供完整三角临界点枚举、乘积区间、三重交集、逐月收益和宽度—交集不一致反例接口，明确区分局部收紧、全局最优性与候选一致性。",
             "snapshotFiles": ["validation/enso-phase-interval-triple-protocol.json", "validation/enso-phase-interval-triple-check.json", "validation/frontier-enso-phase-interval-triple-word.json"],
+        },
+        {
+            "id": "chwirut1-log-support-intersection", "domain": "physics", "title": "Chwirut1 对数支撑与保守交集",
+            "status": "verified", "evidenceClass": "local_recomputation",
+            "sources": ["https://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml", "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Chwirut1.dat"],
+            "metrics": {
+                "totals": chwirutLog["totals"],
+                "folds": [{
+                    "fold": fold["fold"],
+                    "nativeTestRmse": fold["native_test_rmse"],
+                    "candidateDirections": fold["candidate_directions"],
+                    "candidateEvaluationCount": fold["candidate_evaluation_count"],
+                    "alternativeTighterCount": fold["alternative_tighter_count"],
+                    "alternativeWiderCount": fold["alternative_wider_count"],
+                    "alternativeEqualCount": fold["alternative_equal_count"],
+                    "intersectionTightenedCount": fold["intersection_tightened_count"],
+                    "intersectionUnchangedCount": fold["intersection_unchanged_count"],
+                    "intersectionBoundChangedCount": fold["intersection_bound_changed_count"],
+                    "nonemptyIntersectionCount": fold["nonempty_intersection_count"],
+                    "alternativeCandidateViolationCount": fold["alternative_candidate_violation_count"],
+                    "intersectionCandidateViolationCount": fold["intersection_candidate_violation_count"],
+                    "independentCandidateViolationCount": fold["independent_candidate_violation_count"],
+                    "candidateFeasibilityFailureCount": fold["candidate_feasibility_failure_count"],
+                    "centerPredictionMismatchCount": fold["center_prediction_mismatch_count"],
+                    "coveredPointCount": fold["covered_point_count"],
+                    "violationPointCount": fold["violation_point_count"],
+                    "minAlternativeToIndependentWidthRatio": fold["min_alternative_to_independent_width_ratio"],
+                    "medianAlternativeToIndependentWidthRatio": fold["median_alternative_to_independent_width_ratio"],
+                    "maxAlternativeToIndependentWidthRatio": fold["max_alternative_to_independent_width_ratio"],
+                    "minIntersectionToIndependentWidthRatio": fold["min_intersection_to_independent_width_ratio"],
+                    "medianIntersectionToIndependentWidthRatio": fold["median_intersection_to_independent_width_ratio"],
+                    "maxIntersectionToIndependentWidthRatio": fold["max_intersection_to_independent_width_ratio"],
+                    "maxIntersectionWidthReduction": fold["max_intersection_width_reduction"],
+                    "medianIntersectionWidthReduction": fold["median_intersection_width_reduction"],
+                    "tangentWinnerCounts": fold["tangent_winner_counts"],
+                    "largestIntersectionTightening": fold["largest_intersection_tightening"],
+                    "envelopes": fold["envelopes"],
+                    "points": fold["points"],
+                } for fold in chwirutLog["folds"]],
+                "relatedPriorDataset": chwirutLog["related_prior_dataset"],
+                "knownAnswer": chwirutLog["known_answer"],
+                "fullNonlinearGlobalOptimum": chwirutLog["full_nonlinear_global_optimum"],
+                "analysisScope": chwirutLog["analysis_scope"],
+                "decision": chwirutLog["decision"],
+                "implementation": {
+                    "protocolSha256": chwirutLog["protocol_sha256"],
+                    "summarySha256": chwirutLogCheck["summarySha256"],
+                    "analysisRunnerSha256": chwirutLogCheck["analysisRunnerSha256"],
+                    "figureSha256": chwirutLogCheck["figureSha256"],
+                    "reportSha256": chwirutLogCheck["reportSha256"],
+                    "wordSha256": chwirutLogCheck["wordSha256"],
+                },
+                "protocolCommits": {"protocol": "005c48a"},
+            },
+            "scientificClaim": "22 个 Chwirut1 唯一距离的对数替代界与交集全部收紧，宽度比中位数为 0.256540；第 2 折 x=1.5 最大减少 20.935448。30 个协方差支撑方向的 132 次候选全部通过，214 个观测点的中心与残差一致性全部通过。",
+            "limitations": "分母割线与三条切线的支撑不是全局非线性最优，交集也不是全局最优；候选只验证实现一致性。Chwirut1 与 Chwirut2 同研究同模型族，不是独立复现；高精度数值区间不是概率区域。" + " ".join(chwirutLog["limitations"]),
+            "upstreamContribution": "提供正分母对数割线切线、全协方差支撑、指数化交集和原生候选接口，展示独立极值组合的保守性以及模型专属的收紧方式。",
+            "snapshotFiles": ["validation/chwirut1-log-support-protocol.json", "validation/chwirut1-log-support-check.json", "validation/frontier-chwirut1-log-support-word.json"],
         },
     ]
     packet = {

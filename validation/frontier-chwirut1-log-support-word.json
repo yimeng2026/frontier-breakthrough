@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "file": "前沿共生Chwirut1对数支撑交集_图文完整版.docx",
+  "bytes": 199431,
+  "sha256": "9b9a53542a40e5071840bb128e1b9b804f235662a63da42387c45daadbd2437c",
+  "native_math_objects": 4,
+  "embedded_images": 1,
+  "native_tables": 5,
+  "native_toc_and_page_field": true,
+  "validation_gate": "passed",
+  "visual_qa": "Unavailable: no directly executable node.exe in this runtime; no LibreOffice fallback"
+}
