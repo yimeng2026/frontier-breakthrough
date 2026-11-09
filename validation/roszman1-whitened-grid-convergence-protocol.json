@@ -1,0 +1,180 @@
+{
+  "status": "frozen_before_roszman1_whitened_grid_convergence",
+  "frozen_at_local": "2026-11-09T17:02:09+08:00",
+  "analysis_type": "Prospective 8-per-dimension whitened-cover diagnostic against frozen 1,2,4 grids, with incremental width ratios, plateau inventory and feasible/outer vertex witnesses; no convergence, exact-global-optimum or fold-5 finite-bound claim",
+  "inputs": {
+    "native_identifiability": {
+      "file": "validation/roszman1-native-identifiability.json",
+      "sha256": "9888145d181c157da33b3bf0f93980ef0db15e4d3b368a96330c775363bc4322"
+    },
+    "whitened_bounds": {
+      "file": "validation/roszman1-whitened-cover-grid.json",
+      "sha256": "76bcbec485dac10e2b73b2eb91426ff657c3c482a2610df6ed8cf145e8b1cd3c"
+    },
+    "whitened_receipt": {
+      "file": "validation/roszman1-whitened-cover-grid-check.json",
+      "sha256": "4809ab4f01712094814b58e3ead4728b9bdcb105d5fe6a7e3c2cc88750c97e9a"
+    },
+    "native_model_runner": {
+      "file": "scripts/analyze_roszman1_native_holdout.py",
+      "sha256": "fa1c255122d0b8db9c3866e3dc9b8ac9565289667d1531230f499416b389ee0d"
+    },
+    "whitened_runner": {
+      "file": "scripts/analyze_roszman1_whitened_cover_grid.py",
+      "sha256": "abd9b89610398953386e86cf2676081056d14737f9ae1870687d9c7e3dde64a9"
+    },
+    "interval_runner": {
+      "file": "scripts/analyze_roszman1_native_ellipsoid_continuous.py",
+      "sha256": "c3b84888aba9326ccb82e052401d7827e7c38b623855cc8e76cebd4d5505295e"
+    }
+  },
+  "receipt_gate": {
+    "stage58": "Require status=passed, summarySha256 matching the frozen whitened result, primary_grid=4, all 5460 cells evaluated, zero unresolved cells and 200 valid transform witnesses",
+    "historical_grids": "Use the stored 1,2,4 grid results only as historical references; do not recompute or rewrite them",
+    "fold_order": "Require identical fold ids and available x positions in native and stage-58 records",
+    "mismatch_policy": "Stop before grid-8 evaluation if a source hash, receipt, fold order, x inventory or historical grid structure differs"
+  },
+  "grid8_rule": {
+    "divisions": 8,
+    "cells_per_available_x": 4096,
+    "available_x_count": 20,
+    "partition_cell_count": 81920,
+    "whitening": "Reuse the exact symmetric Cholesky transform and radius 4 from stage 58; C_s=(C+C^T)/2=L*L^T, u=L^-1*delta and theta=theta_center+L*u",
+    "whitened_box": "Partition [-4,4]^4 into eight equal intervals per coordinate with the stage-58 outward-rounded endpoints",
+    "outside_rule": "Discard only when minimum_norm_squared exceeds r^2+1e-12*(1+r^2); preserve every boundary-uncertain cell",
+    "outside_count_reason": "The frozen grid-8 boundaries have minimum cell-wise norm at most r after the boundary tolerance, so outside_cell_count=0",
+    "denominator_rule": "Evaluate only cells whose denominator interval has a fixed nonzero sign. Preserve a possible ball-intersecting zero-denominator cell as unresolved and make that grid-8 union unbounded",
+    "native_interval": "Use exact affine forms in whitened coordinates and original-model interval arithmetic; no Taylor substitution or coordinate-only candidate approximation",
+    "union": "For a bounded grid, take the minimum evaluated cell lower and maximum evaluated cell upper. For an unresolved grid, use union_bounded=false and null endpoints",
+    "intersection": "Intersect every grid-8 union with the stage-56 baseline stored in the stage-58 envelopes. Require a nonempty intersection and center containment",
+    "nested_requirement": "Require grid-8 unions and final intersections to remain contained in the corresponding frozen grid-4 unions and intersections up to the boundary-rounding tolerance",
+    "no_winner_selection": "Grid 8 is a prospective diagnostic grid, not a post-hoc optimum or a replacement for the historical primary grid"
+  },
+  "comparison_rule": {
+    "stage56_width_ratio": "grid8_intersection_width/stage56_intersection_width",
+    "incremental_width_ratio": "grid8_intersection_width/grid4_intersection_width",
+    "additional_tightening": "Count a point only when grid8_intersection_width<grid4_intersection_width beyond the frozen numerical tolerance",
+    "plateau": "incremental_width_ratio=1 within the frozen 1e-12 relative-plus-absolute numerical tolerance; descriptive only, not a convergence proof",
+    "nested_check": "Check grid8 against both the stage-56 baseline and the frozen grid-4 final intersection; the grid-4 final intersection is already contained in stage 56",
+    "native_cell_evaluation_count": "81920-unresolved_cell_count",
+    "vertex_evaluation_count": "16*witness_cell_count",
+    "report": "Retain evaluated, outside and unresolved cell counts, bounded status, union and intersection widths, incremental ratio, additional tightening and plateau outcomes for every available x",
+    "scope": "Grid-4/grid-8 ratios measure only this frozen refinement sequence. They are not an asymptotic error estimate, probability, calibrated coverage or proof of global convergence"
+  },
+  "witness_rule": {
+    "selection": "For each bounded grid-8 union endpoint, retain the attaining cell and evaluate all 16 whitened-cell vertices with the original native model",
+    "witness_cell_count": "Normally two per bounded available x, one for the union minimum and one for the union maximum; if an endpoint has no evaluated cell or the union is unbounded, do not manufacture a witness",
+    "vertices_per_witness_cell": 16,
+    "vertex_evaluation": "For every vertex compute theta=theta_center+L*u, whitened norm, reconstructed parameters, denominator and original native prediction; record the cell interval endpoint and vertex-to-interval gap",
+    "feasibility": "A vertex is a feasible extremum candidate only when its whitened norm is at most r within tolerance and its denominator is negative; outer-cover vertices remain witnesses but are not feasible extrema",
+    "unresolved": "No finite vertex witness is manufactured for an unresolved denominator cell; an unbounded union remains unbounded",
+    "scope": "Vertex witnesses explain the interval construction and shared extreme candidates; they do not prove that an outer-cover vertex belongs to the ellipsoid or that an interval endpoint is an exact nonlinear global extremum",
+    "known_answer": {
+      "grid1_vertex_norm": 2.0,
+      "grid1_scope": "Every vertex of [-1,1]^4 has norm 2, so all are outside the unit ball and none is a feasible extremum candidate",
+      "grid2_single_axis_vertex_norm": 1.0,
+      "grid2_scope": "The 2-per-dimension grid also admits vertices with exactly one nonzero coordinate and norm 1, which can be feasible candidates if denominator and reconstruction checks pass",
+      "crossing_control": "A possible ball-intersecting cell with denominator interval containing zero remains unresolved and does not receive finite vertex witnesses"
+    }
+  },
+  "candidate_rule": {
+    "source": "Reuse the 160 full-covariance support candidates and 40 algebraic extremizers from stage 58",
+    "transform_witnesses": "Recompute every candidate's whitened norm and reconstruction with the frozen factor and require all 200 to remain valid",
+    "original_model_evaluations": "Evaluate all 200 candidates with the frozen native_model implementation and require negative denominator and finite prediction",
+    "grid8_containment": "Check every candidate prediction against the grid-8 union and final intersection for 200 checks; unbounded-union containment is explicitly not a finite-interval certificate",
+    "scope": "Candidates and vertex witnesses do not replace the complete cell partition or the whitening cover proof"
+  },
+  "point_and_history_rule": {
+    "point_accounting": "Retain 20 available observations and all five fold-5 unavailable observations. Fold 5 receives no grid-8 cells, candidates, vertex witnesses or finite residual upper bounds",
+    "historical_preservation": "Do not rewrite stage-58, its protocol or boundary amendment, stage-56, stage-57 or any earlier results",
+    "cell_storage": "Stream all 81920 cells and store only aggregate counts, endpoint-attaining cell records and their vertex witnesses; full deterministic regeneration is provided by the analysis script"
+  },
+  "numerical_rule": {
+    "engine": "Use 80-digit mpmath arithmetic for whitening, affine cell intervals, native predictions and reconstruction",
+    "outward_rounding": "Apply the stage-58 1e-24 relative margin and nextafter conversion to evaluated native bounds and intersections",
+    "outside_tolerance": "Use 1e-12*(1+r^2) only for outside-ball classification; never relax denominator gates",
+    "plateau_tolerance": "Use 1e-12 relative plus absolute tolerance only to describe equal grid-4/grid-8 widths, not to claim mathematical convergence",
+    "certificate_class": "Deterministic conservative grid and witness diagnostics with high-precision floating-point arithmetic; not exact rational certificates or probability"
+  },
+  "analysis_scope": {
+    "whole_ellipsoid_conservative": true,
+    "exact_affine_whitening": true,
+    "prospective_grid8_diagnostic": true,
+    "incremental_not_asymptotic_convergence": true,
+    "unresolved_cells_preserved": true,
+    "original_native_model": true,
+    "crossing_fold_receives_no_bound": true,
+    "candidate_checks_are_consistency_not_proof": true,
+    "refit": false,
+    "independent_physical_experiment": false
+  },
+  "expected_structure": {
+    "fold_count": 5,
+    "held_out_point_count": 25,
+    "available_point_count": 20,
+    "unavailable_point_count": 5,
+    "unavailable_fold_ids": [5],
+    "grid4_reference_count": 20,
+    "grid8_cover_count": 20,
+    "grid8_partition_cell_count": 81920,
+    "outside_cell_count": 0,
+    "nonempty_intersection_count": 20,
+    "candidate_direction_count": 32,
+    "algebraic_extremizer_count": 40,
+    "candidate_evaluation_count": 200,
+    "candidate_grid8_containment_check_count": 200,
+    "transform_witness_count": 200,
+    "transform_violation_count": 0,
+    "grid8_candidate_violation_count": 0,
+    "intersection_candidate_violation_count": 0,
+    "candidate_feasibility_failure_count": 0,
+    "center_prediction_mismatch_count": 0,
+    "point_grid8_consistency_check_count": 20,
+    "covered_point_count": 20,
+    "violation_point_count": 0,
+    "refit_count": 0
+  },
+  "output_rule": {
+    "summary": "validation/roszman1-whitened-grid-convergence.json",
+    "figure": "papers/66_Roszman1白化网格收敛与共享见证/fig66_roszman1_whitened_grid_convergence.png",
+    "report": "docs/ROSZMAN1_WHITENED_GRID_CONVERGENCE_2026-11-09.md",
+    "word": "papers/前沿共生Roszman1白化网格收敛与共享见证_图文完整版.docx",
+    "deterministic_regeneration": true,
+    "manual_result_editing_forbidden": true,
+    "duplicate_all_cell_records": false
+  },
+  "decision": {
+    "refit": false,
+    "grid8_called_global_optimum": false,
+    "grid8_union_is_exact_prediction_image": false,
+    "plateau_called_convergence_proof": false,
+    "additional_cells_called_error_bound": false,
+    "grid8_selected_after_results": false,
+    "outer_vertices_called_feasible": false,
+    "crossing_cells_given_finite_native_intervals": false,
+    "unproven_cells_discarded": false,
+    "unbounded_unions_hidden": false,
+    "fold5_given_finite_bound": false,
+    "candidate_checks_replace_cover_proof": false,
+    "candidate_directions_called_global_optimizers": false,
+    "probability_region_claimed": false,
+    "exact_rational_certificate_claimed": false,
+    "independent_model_family_replication_claimed": false,
+    "independent_physical_experiment_claimed": false,
+    "unavailable_points_hidden": false,
+    "unchanged_intersections_hidden": false,
+    "candidate_violations_hidden": false,
+    "duplicate_all_cell_records": false,
+    "historical_baseline_replaced": false
+  },
+  "prohibitions": [
+    "No refitting, changed centers, covariance matrices, folds, historical grids or post-hoc grid selection",
+    "No treating grid-4/grid-8 comparisons as asymptotic convergence, an error bound or an exact global optimum",
+    "No calling outer-cover vertices feasible extrema without whitened-norm, reconstruction and denominator checks",
+    "No discarding unresolved cells, manufacturing finite intervals for zero denominators or hiding unbounded unions",
+    "No grid-8 cells, candidates, vertex witnesses or finite residual bounds for fold 5",
+    "No candidate-based substitute for complete cell partition and the whitening cover proof",
+    "No probability, independent-experiment or exact-rational-certificate claim",
+    "No replacement of historical baselines or duplication of all cell records in the convergence summary"
+  ]
+}
