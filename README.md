@@ -168,3 +168,7 @@ python -m unittest discover -s tests -v
 ```
 
 项目文档在 `C:\Users\一梦\Documents\kimi\workspace\frontier-breakthrough`；科研运行环境优先放在 `D:\research-engines`，环境、模型和缓存不进入 Git。
+
+## 许可证
+
+本仓 MIT，见 [LICENSE](LICENSE)。
