@@ -155,7 +155,7 @@
 - 任何新规律必须接受留出数据、跨条件、量纲、基线和负结果检验。
 - 化学数据异常先排查单位、算法、结构与实验条件，不能把差异直接称为造假。
 - 不把外部设施或论文写成我们的合作方、成果或能力。
-证据记录格式见 [yimeng2026/evidence-schema](https://github.com/yimeng2026/evidence-schema)。
+- 证据记录格式见 [yimeng2026/evidence-schema](https://github.com/yimeng2026/evidence-schema)。
 
 ## 当前范围
 
